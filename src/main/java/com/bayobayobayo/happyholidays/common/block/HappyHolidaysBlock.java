@@ -6,9 +6,10 @@ import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
 
 public interface HappyHolidaysBlock {
+
     Properties getProperties();
     String getBlockId();
-    RegistryObject<Block> getRegisteredBlock();
 
-    RegistryObject<Block> registerBlock();
+    void registerBlock();
+    void configureBlock();
 }

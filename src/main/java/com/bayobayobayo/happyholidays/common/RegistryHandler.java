@@ -5,6 +5,7 @@ import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -18,9 +19,4 @@ public class RegistryHandler {
             ForgeRegistries.ITEMS,
             HappyHolidaysMod.MOD_ID
     );
-
-    public static void initRegistries(IEventBus eventBus) {
-        BLOCKS.register(eventBus);
-        ITEMS.register(eventBus);
-    }
 }

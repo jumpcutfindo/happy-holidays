@@ -4,19 +4,24 @@ import com.bayobayobayo.happyholidays.common.RegistryHandler;
 import com.bayobayobayo.happyholidays.common.block.HappyHolidaysBlock;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ChristmasBlock extends Block implements HappyHolidaysBlock {
-    private RegistryObject<Block> registeredBlock;
+    RegistryObject<Block> blockRegistryObject;
+    RegistryObject<Item> blockItemRegistryObject;
 
-    private final String blockId;
-    private final Properties properties;
+    final String blockId;
+    final Properties properties;
+    final Item.Properties itemProperties;
 
-    public ChristmasBlock(String blockId, Properties properties) {
+    public ChristmasBlock(String blockId, Properties properties, Item.Properties itemProperties) {
         super(properties);
 
         this.blockId = blockId;
         this.properties = properties;
+        this.itemProperties = itemProperties;
     }
 
     @Override
@@ -30,13 +35,16 @@ public class ChristmasBlock extends Block implements HappyHolidaysBlock {
     }
 
     @Override
-    public RegistryObject<Block> registerBlock() {
-        if (registeredBlock == null) registeredBlock = RegistryHandler.BLOCKS.register(blockId, () -> this);
-        return registeredBlock;
+    public void registerBlock() {
+        blockRegistryObject = RegistryHandler.BLOCKS.register(blockId, () -> this);
+        blockItemRegistryObject = RegistryHandler.ITEMS.register(
+                blockId,
+                () -> new BlockItem(blockRegistryObject.get(), itemProperties)
+        );
     }
 
     @Override
-    public RegistryObject<Block> getRegisteredBlock() {
-        return registeredBlock != null ? registeredBlock : registerBlock();
+    public void configureBlock() {
+        // Default left empty since we don't want the block to do anything
     }
 }

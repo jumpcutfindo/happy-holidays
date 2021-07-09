@@ -1,24 +1,34 @@
 package com.bayobayobayo.happyholidays.common.handlers.christmas;
 
+import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.WildPresentBlock;
 import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
-import com.bayobayobayo.happyholidays.common.item.christmas.WildPresentBlockItem;
 
 
 public class ChristmasHandler implements ModuleHandler {
+    private final ChristmasBlock[] christmasBlocks;
 
     public ChristmasHandler(){
+        christmasBlocks = new ChristmasBlock[] {
+                new WildPresentBlock()
+        };
     }
 
     @Override
     public void registerBlocks() {
-        WildPresentBlock wildPresentBlock = new WildPresentBlock();
-        wildPresentBlock.registerBlock();
-        WildPresentBlockItem wildPresentBlockItem = new WildPresentBlockItem(wildPresentBlock);
-        wildPresentBlockItem.registerItem();
+        for (ChristmasBlock block : christmasBlocks) {
+            block.registerBlock();
+        }
     }
 
     @Override
     public void registerItems() {
+    }
+
+    @Override
+    public void configureBlocks() {
+        for (ChristmasBlock block : christmasBlocks) {
+            block.configureBlock();
+        }
     }
 }

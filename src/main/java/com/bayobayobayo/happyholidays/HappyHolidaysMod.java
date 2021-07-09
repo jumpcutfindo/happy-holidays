@@ -3,6 +3,7 @@ package com.bayobayobayo.happyholidays;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
@@ -28,13 +29,21 @@ public class HappyHolidaysMod
         MinecraftForge.EVENT_BUS.register(this);
 
         // Register registries
-        RegistryHandler.initRegistries(bus);
+        RegistryHandler.BLOCKS.register(bus);
+        RegistryHandler.ITEMS.register(bus);
 
         // Register holiday modules
         ModuleHandler.registerModules();
+
+        // Client-related loading
+        bus.addListener(this::onClientLoaded);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+    }
+
+    private void onClientLoaded(final FMLClientSetupEvent event) {
+        ModuleHandler.configureModules();
     }
 
 }
