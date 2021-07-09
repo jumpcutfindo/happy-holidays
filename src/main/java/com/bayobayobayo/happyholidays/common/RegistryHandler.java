@@ -8,7 +8,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class HappyHolidaysRegistry {
+public class RegistryHandler {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(
             ForgeRegistries.BLOCKS,
             HappyHolidaysMod.MOD_ID
