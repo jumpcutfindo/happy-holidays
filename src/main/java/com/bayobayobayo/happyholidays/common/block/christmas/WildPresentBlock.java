@@ -30,7 +30,8 @@ public class WildPresentBlock extends ChristmasBlock {
                     .sound(SoundType.WOOL)
                     .noOcclusion();
 
-    private static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(ItemGroup.TAB_DECORATIONS);
+    private static final Item.Properties ITEM_PROPERTIES =
+            new Item.Properties().tab(ItemGroup.TAB_DECORATIONS);
 
     private static final VoxelShape SHAPE = VoxelShapes.or(
             HappyHolidaysUtils.createVoxelShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0),

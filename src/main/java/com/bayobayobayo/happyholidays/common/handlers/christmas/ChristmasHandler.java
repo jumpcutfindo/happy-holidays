@@ -2,6 +2,7 @@ package com.bayobayobayo.happyholidays.common.handlers.christmas;
 
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.WildPresentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.RedBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 
 
@@ -10,7 +11,8 @@ public class ChristmasHandler implements ModuleHandler {
 
     public ChristmasHandler(){
         christmasBlocks = new ChristmasBlock[] {
-                new WildPresentBlock()
+                new WildPresentBlock(),
+                new RedBallOrnamentBlock()
         };
     }
 
