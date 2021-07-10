@@ -9,12 +9,12 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ChristmasBlock extends Block implements HappyHolidaysBlock {
-    RegistryObject<Block> blockRegistryObject;
-    RegistryObject<Item> blockItemRegistryObject;
+    public RegistryObject<Block> blockRegistryObject;
+    public RegistryObject<Item> blockItemRegistryObject;
 
-    final String blockId;
-    final Properties properties;
-    final Item.Properties itemProperties;
+    public final String blockId;
+    public final Properties properties;
+    public final Item.Properties itemProperties;
 
     public ChristmasBlock(String blockId, Properties properties, Item.Properties itemProperties) {
         super(properties);
