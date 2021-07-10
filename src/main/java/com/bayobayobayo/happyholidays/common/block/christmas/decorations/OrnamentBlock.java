@@ -3,14 +3,12 @@ package com.bayobayobayo.happyholidays.common.block.christmas.decorations;
 import javax.annotation.Nullable;
 
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FlowerBlock;
-import net.minecraft.block.HorizontalFaceBlock;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.VineBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -21,13 +19,15 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.AttachFace;
-import net.minecraft.state.properties.BellAttachment;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ITag;
 import net.minecraft.util.Direction;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
 public class OrnamentBlock extends ChristmasBlock {
@@ -45,6 +45,17 @@ public class OrnamentBlock extends ChristmasBlock {
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ItemGroup.TAB_DECORATIONS);
+
+
+    private static final VoxelShape NORMAL_SHAPE = VoxelShapes.or(
+            HappyHolidaysUtils.createShape(6.0, 0.0, 6.0, 10.0, 5.0, 10.0)
+    );
+    private static final VoxelShape HANGING_SHAPE = VoxelShapes.or(
+            HappyHolidaysUtils.createShape(6.0, 9.5, 6.0, 10.0, 16.0, 10.0)
+    );
+    private static final VoxelShape WALL_SHAPE = VoxelShapes.or(
+            HappyHolidaysUtils.createShape(6.0, 0.0, 4.0, 10.0, 6.0, 0.0)
+    );
 
     public OrnamentBlock(String blockId) {
         super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
@@ -108,5 +119,28 @@ public class OrnamentBlock extends ChristmasBlock {
     @Override
     public void configureBlock() {
         RenderTypeLookup.setRenderLayer(blockRegistryObject.get(), RenderType.translucent());
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos,
+                               ISelectionContext context) {
+        Direction direction = blockState.getValue(FACING);
+        AttachFace attachFace = blockState.getValue(ATTACH_FACE);
+
+        if (attachFace == AttachFace.FLOOR) {
+            return NORMAL_SHAPE;
+        } else if (attachFace == AttachFace.CEILING) {
+            return HANGING_SHAPE;
+        } else {
+            if (direction == Direction.NORTH) {
+                return WALL_SHAPE;
+            } else if (direction == Direction.SOUTH) {
+                return HappyHolidaysUtils.rotateShape(WALL_SHAPE, Rotation.CLOCKWISE_180);
+            } else if (direction == Direction.EAST) {
+                return HappyHolidaysUtils.rotateShape(WALL_SHAPE, Rotation.CLOCKWISE_90);
+            } else {
+                return HappyHolidaysUtils.rotateShape(WALL_SHAPE, Rotation.COUNTERCLOCKWISE_90);
+            }
+        }
     }
 }
