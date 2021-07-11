@@ -1,7 +1,5 @@
 package com.bayobayobayo.happyholidays.common.handlers;
 
-import com.bayobayobayo.happyholidays.common.handlers.christmas.ChristmasHandler;
-
 public interface ModuleHandler {
     ChristmasHandler christmasHandler = new ChristmasHandler();
 

@@ -1,8 +1,13 @@
-package com.bayobayobayo.happyholidays.common.handlers.christmas;
+package com.bayobayobayo.happyholidays.common.handlers;
 
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.WildPresentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BlueBallOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.GoldBallOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.GreenBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.RedBallOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.SilverBallOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.YellowBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 
 
@@ -12,7 +17,12 @@ public class ChristmasHandler implements ModuleHandler {
     public ChristmasHandler(){
         christmasBlocks = new ChristmasBlock[] {
                 new WildPresentBlock(),
-                new RedBallOrnamentBlock()
+                new RedBallOrnamentBlock(),
+                new BlueBallOrnamentBlock(),
+                new YellowBallOrnamentBlock(),
+                new GreenBallOrnamentBlock(),
+                new SilverBallOrnamentBlock(),
+                new GoldBallOrnamentBlock()
         };
     }
 

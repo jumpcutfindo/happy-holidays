@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "# ",
+        "Ri"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:string"
+        },
+        "R": {
+            "item": "minecraft:glass"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "happyholidays:silver_ball_ornament_block",
+        "count": 4
+    }
+}
