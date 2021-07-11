@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "R"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:string"
+        },
+        "R": {
+            "item": "minecraft:red_stained_glass"
+        }
+    },
+    "result": {
+        "item": "happyholidays:red_ball_ornament_block",
+        "count": 4
+    }
+}
