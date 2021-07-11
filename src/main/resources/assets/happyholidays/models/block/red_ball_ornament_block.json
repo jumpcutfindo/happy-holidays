@@ -46,6 +46,37 @@
 			}
 		}
 	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 6, 0],
+			"scale": [0.78, 0.78, 0.78]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 6, 0],
+			"scale": [0.78, 0.78, 0.78]
+		},
+		"firstperson_righthand": {
+			"translation": [0, 6, 0]
+		},
+		"firstperson_lefthand": {
+			"translation": [0, 6, 0]
+		},
+		"ground": {
+			"translation": [0, 4, 0]
+		},
+		"gui": {
+			"rotation": [25, 50, 0],
+			"translation": [0, 8, 0],
+			"scale": [1.5, 1.5, 1.5]
+		},
+		"head": {
+			"translation": [0, 14, 0]
+		},
+		"fixed": {
+			"translation": [0, 11, 0],
+			"scale": [2, 2, 2]
+		}
+	},
 	"groups": [
 		{
 			"name": "Ornament Top",

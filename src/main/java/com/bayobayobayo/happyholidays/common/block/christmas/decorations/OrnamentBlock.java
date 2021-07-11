@@ -132,7 +132,6 @@ public class OrnamentBlock extends ChristmasBlock {
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
                                   IWorld world, BlockPos pos1, BlockPos pos2) {
-        System.out.println("Update shape called");
         return this.canSurvive(blockState, world, pos1) ? blockState : Blocks.AIR.defaultBlockState();
     }
 
