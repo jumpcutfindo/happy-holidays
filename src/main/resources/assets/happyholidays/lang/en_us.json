@@ -8,5 +8,8 @@
     "block.happyholidays.gold_ball_ornament_block": "Gold Bauble",
     "block.happyholidays.raw_gingerbread_block": "Block of Gingerbread Dough",
     "block.happyholidays.gingerbread_block": "Block of Gingerbread",
-    "block.happyholidays.soggy_gingerbread_block": "Block of Soggy Gingerbread"
+    "block.happyholidays.soggy_gingerbread_block": "Block of Soggy Gingerbread",
+
+    "item.happyholidays.raw_gingerbread": "Gingerbread Dough",
+    "item.happyholidays.gingerbread_cookie": "Gingerbread Cookie"
 }

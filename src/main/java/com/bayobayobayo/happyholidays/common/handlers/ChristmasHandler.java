@@ -13,6 +13,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.RawGing
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.SoggyGingerbreadBlock;
 import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.GingerbreadCookieItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
 
 
@@ -35,7 +36,8 @@ public class ChristmasHandler implements ModuleHandler {
         };
 
         christmasItems = new ChristmasItem[] {
-                new RawGingerbreadItem()
+                new RawGingerbreadItem(),
+                new GingerbreadCookieItem()
         };
     }
 

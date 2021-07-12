@@ -8,7 +8,9 @@ import net.minecraft.item.ItemGroup;
 public class RawGingerbreadItem extends ChristmasItem {
     private static final String ITEM_ID = "raw_gingerbread";
 
-    private static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(ItemGroup.TAB_DECORATIONS);
+    private static final Item.Properties ITEM_PROPERTIES =
+            new Item.Properties()
+                    .tab(ItemGroup.TAB_DECORATIONS);
 
     public RawGingerbreadItem() {
         super(ITEM_ID, ITEM_PROPERTIES);

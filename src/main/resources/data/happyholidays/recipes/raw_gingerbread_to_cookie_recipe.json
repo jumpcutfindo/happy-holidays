@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:smelting",
+    "ingredient": {
+        "item": "happyholidays:raw_gingerbread"
+    },
+    "result": {
+        "item": "happyholidays:gingerbread_cookie",
+        "count": 1
+    },
+    "experience": 0.1,
+    "cookingtime": 200
+}
