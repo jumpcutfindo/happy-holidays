@@ -1,5 +1,8 @@
 package com.bayobayobayo.happyholidays.common.handlers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.WildPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BlueBallOrnamentBlock;
@@ -16,10 +19,16 @@ import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.GingerbreadCookieItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
 
+import net.minecraft.block.Block;
+import net.minecraftforge.fml.RegistryObject;
+
 
 public class ChristmasHandler implements ModuleHandler {
     private final ChristmasBlock[] christmasBlocks;
     private final ChristmasItem[] christmasItems;
+
+    HashMap<String, ChristmasBlock> christmasBlockMap;
+    HashMap<String, ChristmasItem> christmasItemMap;
 
     public ChristmasHandler(){
         christmasBlocks = new ChristmasBlock[] {
@@ -39,12 +48,16 @@ public class ChristmasHandler implements ModuleHandler {
                 new RawGingerbreadItem(),
                 new GingerbreadCookieItem()
         };
+
+        christmasBlockMap = new HashMap<>();
+        christmasItemMap = new HashMap<>();
     }
 
     @Override
     public void registerBlocks() {
         for (ChristmasBlock block : christmasBlocks) {
             block.registerBlock();
+            christmasBlockMap.put(block.getBlockId(), block);
         }
     }
 
@@ -52,6 +65,7 @@ public class ChristmasHandler implements ModuleHandler {
     public void registerItems() {
         for (ChristmasItem item : christmasItems) {
             item.registerItem();
+            christmasItemMap.put(item.getItemId(), item);
         }
     }
 
@@ -60,5 +74,10 @@ public class ChristmasHandler implements ModuleHandler {
         for (ChristmasBlock block : christmasBlocks) {
             block.configureBlock();
         }
+    }
+
+    @Override
+    public RegistryObject<Block> getRegisteredBlock(String blockId) {
+        return christmasBlockMap.get(blockId).getRegisteredBlock();
     }
 }

@@ -12,9 +12,9 @@ public class ChristmasBlock extends Block implements HappyHolidaysBlock {
     public RegistryObject<Block> blockRegistryObject;
     public RegistryObject<Item> blockItemRegistryObject;
 
-    public final String blockId;
-    public final Properties properties;
-    public final Item.Properties itemProperties;
+    private final String blockId;
+    private final Properties properties;
+    private final Item.Properties itemProperties;
 
     public ChristmasBlock(String blockId, Properties properties, Item.Properties itemProperties) {
         super(properties);
@@ -32,6 +32,16 @@ public class ChristmasBlock extends Block implements HappyHolidaysBlock {
     @Override
     public String getBlockId() {
         return blockId;
+    }
+
+    @Override
+    public RegistryObject<Block> getRegisteredBlock() {
+        return blockRegistryObject;
+    }
+
+    @Override
+    public RegistryObject<Item> getRegisteredBlockItem() {
+        return blockItemRegistryObject;
     }
 
     @Override
