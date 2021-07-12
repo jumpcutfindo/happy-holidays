@@ -12,10 +12,13 @@ import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.Gingerb
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.RawGingerbreadBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.SoggyGingerbreadBlock;
 import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
 
 
 public class ChristmasHandler implements ModuleHandler {
     private final ChristmasBlock[] christmasBlocks;
+    private final ChristmasItem[] christmasItems;
 
     public ChristmasHandler(){
         christmasBlocks = new ChristmasBlock[] {
@@ -30,6 +33,10 @@ public class ChristmasHandler implements ModuleHandler {
                 new GingerbreadBlock(),
                 new SoggyGingerbreadBlock()
         };
+
+        christmasItems = new ChristmasItem[] {
+                new RawGingerbreadItem()
+        };
     }
 
     @Override
@@ -41,6 +48,9 @@ public class ChristmasHandler implements ModuleHandler {
 
     @Override
     public void registerItems() {
+        for (ChristmasItem item : christmasItems) {
+            item.registerItem();
+        }
     }
 
     @Override
