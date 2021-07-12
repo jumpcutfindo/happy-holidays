@@ -8,6 +8,9 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.GreenBa
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.RedBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.SilverBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.YellowBallOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.GingerbreadBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.RawGingerbreadBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.SoggyGingerbreadBlock;
 import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 
 
@@ -22,7 +25,10 @@ public class ChristmasHandler implements ModuleHandler {
                 new YellowBallOrnamentBlock(),
                 new GreenBallOrnamentBlock(),
                 new SilverBallOrnamentBlock(),
-                new GoldBallOrnamentBlock()
+                new GoldBallOrnamentBlock(),
+                new RawGingerbreadBlock(),
+                new GingerbreadBlock(),
+                new SoggyGingerbreadBlock()
         };
     }
 

@@ -5,5 +5,8 @@
     "block.happyholidays.yellow_ball_ornament_block": "Yellow Bauble",
     "block.happyholidays.green_ball_ornament_block": "Green Bauble",
     "block.happyholidays.silver_ball_ornament_block": "Silver Bauble",
-    "block.happyholidays.gold_ball_ornament_block": "Gold Bauble"
+    "block.happyholidays.gold_ball_ornament_block": "Gold Bauble",
+    "block.happyholidays.raw_gingerbread_block": "Block of Gingerbread Dough",
+    "block.happyholidays.gingerbread_block": "Block of Gingerbread",
+    "block.happyholidays.soggy_gingerbread_block": "Block of Soggy Gingerbread"
 }
