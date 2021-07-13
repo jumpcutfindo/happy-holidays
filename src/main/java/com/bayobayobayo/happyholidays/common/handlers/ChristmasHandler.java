@@ -1,8 +1,8 @@
 package com.bayobayobayo.happyholidays.common.handlers;
 
 import java.util.HashMap;
-import java.util.Map;
 
+import com.bayobayobayo.happyholidays.common.block.HappyHolidaysBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.WildPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BlueBallOrnamentBlock;
@@ -14,18 +14,25 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.YellowB
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.GingerbreadBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.RawGingerbreadBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.SoggyGingerbreadBlock;
-import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.entity.HappyHolidaysEntities;
+import com.bayobayobayo.happyholidays.common.entity.christmas.ChristmasEntities;
+import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadEntities;
+import com.bayobayobayo.happyholidays.common.item.HappyHolidaysItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.GingerbreadCookieItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.fml.RegistryObject;
 
 
 public class ChristmasHandler implements ModuleHandler {
     private final ChristmasBlock[] christmasBlocks;
     private final ChristmasItem[] christmasItems;
+    private final ChristmasEntities[] christmasEntities;
 
     HashMap<String, ChristmasBlock> christmasBlockMap;
     HashMap<String, ChristmasItem> christmasItemMap;
@@ -49,6 +56,10 @@ public class ChristmasHandler implements ModuleHandler {
                 new GingerbreadCookieItem()
         };
 
+        christmasEntities = new ChristmasEntities[] {
+                new GingerbreadEntities()
+        };
+
         christmasBlockMap = new HashMap<>();
         christmasItemMap = new HashMap<>();
     }
@@ -70,10 +81,44 @@ public class ChristmasHandler implements ModuleHandler {
     }
 
     @Override
+    public void registerEntities() {
+        for (ChristmasEntities entities : christmasEntities) {
+            entities.registerEntities();
+        }
+    }
+
+    @Override
     public void configureBlocks() {
         for (ChristmasBlock block : christmasBlocks) {
             block.configureBlock();
         }
+    }
+
+    @Override
+    public void configureItems() {
+
+    }
+
+    @Override
+    public void configureEntities() {
+        for (ChristmasEntities entities : christmasEntities) {
+            entities.configureEntities();
+        }
+    }
+
+    @Override
+    public HappyHolidaysBlock[] getBlocks() {
+        return christmasBlocks;
+    }
+
+    @Override
+    public HappyHolidaysItem[] getItems() {
+        return christmasItems;
+    }
+
+    @Override
+    public HappyHolidaysEntities[] getEntities() {
+        return christmasEntities;
     }
 
     @Override

@@ -11,5 +11,7 @@
     "block.happyholidays.soggy_gingerbread_block": "Block of Soggy Gingerbread",
 
     "item.happyholidays.raw_gingerbread": "Gingerbread Dough",
-    "item.happyholidays.gingerbread_cookie": "Gingerbread Cookie"
+    "item.happyholidays.gingerbread_cookie": "Gingerbread Cookie",
+
+    "entity.happyholidays.gingerbread_man": "Gingerbread Man"
 }
