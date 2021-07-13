@@ -24,7 +24,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class GingerbreadEntities implements ChristmasEntities {
 
-    private RegistryObject<EntityType<GingerbreadPersonEntity>> gingerbreadManObject;
+    private RegistryObject<EntityType<GingerbreadManEntity>> gingerbreadManObject;
 
     public GingerbreadEntities() {
     }
@@ -40,10 +40,10 @@ public class GingerbreadEntities implements ChristmasEntities {
 
     @Override
     public void registerEntities() {
-        gingerbreadManObject = RegistryHandler.ENTITY_TYPES.register(GingerbreadPersonEntity.ENTITY_ID,
-                () -> EntityType.Builder.of(GingerbreadPersonEntity::new, EntityClassification.AMBIENT)
+        gingerbreadManObject = RegistryHandler.ENTITY_TYPES.register(GingerbreadManEntity.ENTITY_ID,
+                () -> EntityType.Builder.of(GingerbreadManEntity::new, EntityClassification.AMBIENT)
                         .sized(0.8f, 2.0f)
-                        .build(GingerbreadPersonEntity.ENTITY_ID)
+                        .build(GingerbreadManEntity.ENTITY_ID)
         );
     }
 

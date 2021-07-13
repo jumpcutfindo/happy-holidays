@@ -27,8 +27,6 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 
 public class GingerbreadPersonEntity extends CreatureEntity {
-    public static final String ENTITY_ID = "gingerbread_man";
-
     public GingerbreadPersonEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
     }
