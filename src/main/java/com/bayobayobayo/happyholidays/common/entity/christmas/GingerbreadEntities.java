@@ -35,7 +35,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 public class GingerbreadEntities implements ChristmasEntities {
     private static final int SPAWN_PROBABILITY = 300;
     private static final int MIN_SPAWN_COUNT = 2;
-    private static final int MAX_SPAWN_COUNT = 6;
+    private static final int MAX_SPAWN_COUNT = 5;
 
     private RegistryObject<EntityType<GingerbreadManEntity>> gingerbreadManObject;
 
@@ -88,6 +88,6 @@ public class GingerbreadEntities implements ChristmasEntities {
     }
 
     private static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, IWorld world, SpawnReason spawnReason, BlockPos pos, Random rand) {
-        return world.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK) && world.getRawBrightness(pos,0) > 8;
+        return world.getRawBrightness(pos,0) > 8;
     }
 }

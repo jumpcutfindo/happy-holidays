@@ -58,11 +58,6 @@ public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatab
         return SoundEvents.GENERIC_DEATH;
     }
 
-    @Override
-    protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
-    }
-
     public void setLeader() {
         isLeader = true;
     }
