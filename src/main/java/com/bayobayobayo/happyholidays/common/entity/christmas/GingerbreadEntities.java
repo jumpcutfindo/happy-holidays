@@ -1,30 +1,19 @@
 package com.bayobayobayo.happyholidays.common.entity.christmas;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import com.bayobayobayo.happyholidays.client.entity.GingerbreadPersonEntityRenderer;
 import com.bayobayobayo.happyholidays.common.RegistryHandler;
-import com.google.common.collect.ImmutableList;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.monster.PatrollerEntity;
-import net.minecraft.entity.passive.SquidEntity;
-import net.minecraft.util.RegistryKey;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IServerWorld;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeManager;
-import net.minecraft.world.biome.BiomeRegistry;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.MobSpawnInfo;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;

@@ -59,7 +59,7 @@ public class OrnamentBlock extends ChristmasBlock {
             HappyHolidaysUtils.createShape(6.0, 0.0, 4.0, 10.0, 6.0, 0.0)
     );
 
-    private VoxelShape normalShape, hangingShape, wallShape;
+    public VoxelShape normalShape, hangingShape, wallShape;
 
     public OrnamentBlock(String blockId) {
         super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
