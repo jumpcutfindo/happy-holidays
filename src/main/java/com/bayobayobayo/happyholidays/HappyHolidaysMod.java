@@ -4,7 +4,9 @@ import java.util.List;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -56,13 +58,25 @@ public class HappyHolidaysMod {
         });
     }
 
-    private void setEntityAttributes(final EntityAttributeCreationEvent event) {
+    public void setEntityAttributes(final EntityAttributeCreationEvent event) {
         List<ModuleHandler> handlers = ModuleHandler.getHandlers();
         for (ModuleHandler handler : handlers) {
             HappyHolidaysEntities[] entities = handler.getEntities();
 
             for (HappyHolidaysEntities entitySet : entities) {
                 entitySet.createAttributes(event);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void registerEntitySpawns(final BiomeLoadingEvent event) {
+        List<ModuleHandler> handlers = ModuleHandler.getHandlers();
+        for (ModuleHandler handler : handlers) {
+            HappyHolidaysEntities[] entities = handler.getEntities();
+
+            for (HappyHolidaysEntities entitySet : entities) {
+                entitySet.configureEntitySpawning(event);
             }
         }
     }

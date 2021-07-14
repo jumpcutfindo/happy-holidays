@@ -1,34 +1,48 @@
 package com.bayobayobayo.happyholidays.common.entity.christmas;
 
-import com.bayobayobayo.happyholidays.HappyHolidaysMod;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import com.bayobayobayo.happyholidays.client.entity.GingerbreadPersonEntityRenderer;
 import com.bayobayobayo.happyholidays.common.RegistryHandler;
+import com.google.common.collect.ImmutableList;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.world.World;
+import net.minecraft.entity.monster.PatrollerEntity;
+import net.minecraft.entity.passive.SquidEntity;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IServerWorld;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeManager;
+import net.minecraft.world.biome.BiomeRegistry;
+import net.minecraft.world.biome.Biomes;
+import net.minecraft.world.biome.MobSpawnInfo;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class GingerbreadEntities implements ChristmasEntities {
+    private static final int SPAWN_PROBABILITY = 300;
+    private static final int MIN_SPAWN_COUNT = 2;
+    private static final int MAX_SPAWN_COUNT = 6;
 
     private RegistryObject<EntityType<GingerbreadManEntity>> gingerbreadManObject;
 
     public GingerbreadEntities() {
     }
 
+    @Override
     public void createAttributes(EntityAttributeCreationEvent event) {
         event.put(gingerbreadManObject.get(),
                 MobEntity.createMobAttributes()
@@ -49,9 +63,31 @@ public class GingerbreadEntities implements ChristmasEntities {
 
     @Override
     public void configureEntities() {
+        // Register entity rendering
         RenderingRegistry.registerEntityRenderingHandler(
                 gingerbreadManObject.get(),
                 GingerbreadPersonEntityRenderer::new
         );
+
+        // Register spawning rules
+        EntitySpawnPlacementRegistry.register(
+                gingerbreadManObject.get(),
+                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
+                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                GingerbreadEntities::checkGingerbreadSpawnRules
+        );
+    }
+
+    @Override
+    public void configureEntitySpawning(BiomeLoadingEvent event) {
+        // Register spawning biomes
+        if (event.getCategory() != Biome.Category.NETHER || event.getCategory() != Biome.Category.OCEAN || event.getCategory() != Biome.Category.THEEND) {
+            event.getSpawns().addSpawn(EntityClassification.CREATURE,
+                    new MobSpawnInfo.Spawners(gingerbreadManObject.get(), SPAWN_PROBABILITY, MIN_SPAWN_COUNT, MAX_SPAWN_COUNT));
+        }
+    }
+
+    private static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, IWorld world, SpawnReason spawnReason, BlockPos pos, Random rand) {
+        return world.getBlockState(pos.below()).is(Blocks.GRASS_BLOCK) && world.getRawBrightness(pos,0) > 8;
     }
 }

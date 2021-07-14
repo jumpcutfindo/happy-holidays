@@ -28,12 +28,12 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
 
-    private final boolean isLeader;
+    private boolean isLeader;
 
     public GingerbreadPersonEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
 
-        isLeader = getRandom().nextBoolean();
+        isLeader = false;
     }
 
     @Override
@@ -61,6 +61,10 @@ public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatab
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
         this.playSound(SoundEvents.COW_STEP, 0.15F, 1.0F);
+    }
+
+    public void setLeader() {
+        isLeader = true;
     }
 
     public boolean isLeader() {
@@ -103,11 +107,12 @@ public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatab
             if (this.gingerbreadPerson.isLeader()) {
                 return false;
             } else {
-                List<GingerbreadPersonEntity> list =
-                        this.gingerbreadPerson.level.getEntitiesOfClass(GingerbreadPersonEntity.class,
-                                this.gingerbreadPerson.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
+                List<GingerbreadPersonEntity> list = getSurroundingGingerbreadPeople();
 
-                if (list.isEmpty()) return false;
+                if (canBeLeader()) {
+                    this.gingerbreadPerson.setLeader();
+                    return false;
+                }
 
                 for (GingerbreadPersonEntity entity : list) {
                     if (entity.isLeader()) {
@@ -123,11 +128,30 @@ public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatab
         @Override
         public boolean canContinueToUse() {
             if (!this.leader.isAlive()) {
+                if (canBeLeader()) {
+                    this.gingerbreadPerson.setLeader();
+                }
                 return false;
             } else {
                 double d0 = this.gingerbreadPerson.distanceToSqr(this.leader);
                 return !(d0 < 9.0D) && !(d0 > 256.0D);
             }
+        }
+
+        private boolean canBeLeader() {
+            List<GingerbreadPersonEntity> entitiesAround = getSurroundingGingerbreadPeople();
+            if (entitiesAround.isEmpty()) return true;
+
+            for (GingerbreadPersonEntity entity : entitiesAround) {
+                if (entity.isLeader()) return false;
+            }
+
+            return true;
+        }
+
+        private List<GingerbreadPersonEntity> getSurroundingGingerbreadPeople() {
+            return this.gingerbreadPerson.level.getEntitiesOfClass(GingerbreadPersonEntity.class,
+                            this.gingerbreadPerson.getBoundingBox().inflate(8.0D, 4.0D, 8.0D));
         }
 
         @Override
