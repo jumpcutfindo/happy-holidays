@@ -23,4 +23,6 @@ public class GingerbreadPersonEntityRenderer extends MobRenderer<GingerbreadPers
     public ResourceLocation getTextureLocation(GingerbreadPersonEntity entity) {
         return TEXTURE_LOCATION;
     }
+
+
 }
