@@ -1,0 +1,70 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.gingerbread_man",
+				"texture_width": 48,
+				"texture_height": 48,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "man",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "legs",
+					"parent": "man",
+					"pivot": [10, 19.5, 0.5],
+					"cubes": [
+						{"origin": [1, 0, 0], "size": [5, 8, 1], "uv": [0, 24]},
+						{"origin": [-6, 0, 0], "size": [5, 8, 1], "uv": [12, 24]}
+					]
+				},
+				{
+					"name": "arms",
+					"parent": "man",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-14, 17, 0], "size": [8, 5, 1], "uv": [26, 9]},
+						{"origin": [6, 17, 0], "size": [8, 5, 1], "uv": [26, 15]}
+					]
+				},
+				{
+					"name": "head",
+					"parent": "man",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-3, 22, 0], "size": [6, 8, 1], "uv": [6, 0]},
+						{"origin": [3, 22, 0], "size": [2, 7, 1], "uv": [20, 0]},
+						{"origin": [-5, 22, 0], "size": [2, 7, 1], "uv": [0, 0]},
+						{"origin": [-0.5, 19, -0.5], "size": [1, 1, 1], "uv": [26, 6]},
+						{"origin": [-0.5, 15, -0.5], "size": [1, 1, 1], "uv": [30, 6]},
+						{"origin": [-0.5, 11, -0.5], "size": [1, 1, 1], "uv": [34, 6]}
+					]
+				},
+				{
+					"name": "face",
+					"parent": "head",
+					"pivot": [0, -2, 0],
+					"cubes": [
+						{"origin": [2, 25.75, -0.5], "size": [1, 1, 1], "uv": [26, 2]},
+						{"origin": [-2.75, 25.75, -0.5], "size": [1, 1, 1], "uv": [26, 0]},
+						{"origin": [-3.25, 24, -0.5], "size": [6.75, 1, 1], "uv": [26, 4]}
+					]
+				},
+				{
+					"name": "body",
+					"parent": "man",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-6, 8, 0], "size": [12, 14, 1], "uv": [0, 9]}
+					]
+				}
+			]
+		}
+	]
+}
