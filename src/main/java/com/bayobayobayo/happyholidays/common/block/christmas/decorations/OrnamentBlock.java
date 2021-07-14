@@ -49,19 +49,21 @@ public class OrnamentBlock extends ChristmasBlock {
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ItemGroup.TAB_DECORATIONS);
 
-    private static final VoxelShape NORMAL_SHAPE = VoxelShapes.or(
-            HappyHolidaysUtils.createShape(6.0, 0.0, 6.0, 10.0, 5.0, 10.0)
-    );
-    private static final VoxelShape HANGING_SHAPE = VoxelShapes.or(
-            HappyHolidaysUtils.createShape(6.0, 9.5, 6.0, 10.0, 16.0, 10.0)
-    );
-    private static final VoxelShape WALL_SHAPE = VoxelShapes.or(
+    public static final VoxelShape[] BAUBLE_SHAPES = new VoxelShape[] {
+            HappyHolidaysUtils.createShape(6.0, 0.0, 6.0, 10.0, 5.0, 10.0),
+            HappyHolidaysUtils.createShape(6.0, 9.5, 6.0, 10.0, 16.0, 10.0),
             HappyHolidaysUtils.createShape(6.0, 0.0, 4.0, 10.0, 6.0, 0.0)
-    );
+    };
+
+    public static final VoxelShape[] BIG_BAUBLE_SHAPES = new VoxelShape[] {
+            HappyHolidaysUtils.createShape(4.0, 0.0, 4.0, 12.0, 8.0, 12.0),
+            HappyHolidaysUtils.createShape(4.0, 3.75, 4.0, 12.0, 11.75, 12.0),
+            HappyHolidaysUtils.createShape(4.0, 0.0, 0.0, 12.0, 11.75, 8.0)
+    };
 
     public VoxelShape normalShape, hangingShape, wallShape;
 
-    public OrnamentBlock(String blockId) {
+    public OrnamentBlock(String blockId, VoxelShape[] ornamentShapes) {
         super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
 
         this.registerDefaultState(this.getStateDefinition().any()
@@ -69,9 +71,9 @@ public class OrnamentBlock extends ChristmasBlock {
                 .setValue(FACING, Direction.NORTH)
         );
 
-        this.normalShape = NORMAL_SHAPE;
-        this.hangingShape = HANGING_SHAPE;
-        this.wallShape = WALL_SHAPE;
+        this.normalShape = ornamentShapes[0];
+        this.hangingShape = ornamentShapes[1];
+        this.wallShape = ornamentShapes[2];
     }
 
     @Override

@@ -4,6 +4,6 @@ public class YellowBallOrnamentBlock extends OrnamentBlock{
     private static final String BLOCK_ID = "yellow_ball_ornament_block";
 
     public YellowBallOrnamentBlock() {
-        super(BLOCK_ID);
+        super(BLOCK_ID, BAUBLE_SHAPES);
     }
 }

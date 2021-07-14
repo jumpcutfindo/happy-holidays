@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 16],
 	"textures": {
-		"0": "happyholidays:blocks/big_red_ball_ornament_block",
-		"particle": "happyholidays:blocks/big_red_ball_ornament_block"
+		"0": "happyholidays:blocks/big_blue_ball_ornament_block",
+		"particle": "happyholidays:blocks/big_blue_ball_ornament_block"
 	},
 	"elements": [
 		{

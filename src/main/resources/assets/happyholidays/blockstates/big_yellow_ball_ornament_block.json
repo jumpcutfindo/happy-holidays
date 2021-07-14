@@ -1,0 +1,25 @@
+{
+    "variants": {
+        "face=ceiling": {
+            "model": "happyholidays:block/big_yellow_ball_ornament_block_hanging"
+        },
+        "face=floor": {
+            "model": "happyholidays:block/big_yellow_ball_ornament_block"
+        },
+        "face=wall,facing=east": {
+            "model": "happyholidays:block/big_yellow_ball_ornament_block_side",
+            "y": 90
+        },
+        "face=wall,facing=north": {
+            "model": "happyholidays:block/big_yellow_ball_ornament_block_side"
+        },
+        "face=wall,facing=south": {
+            "model": "happyholidays:block/big_yellow_ball_ornament_block_side",
+            "y": 180
+        },
+        "face=wall,facing=west": {
+            "model": "happyholidays:block/big_yellow_ball_ornament_block_side",
+            "y": 270
+        }
+    }
+}
