@@ -2,6 +2,7 @@ package com.bayobayobayo.happyholidays.common.handlers;
 
 import java.util.HashMap;
 
+import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.block.HappyHolidaysBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.WildPresentBlock;
@@ -31,6 +32,7 @@ import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.RawGinge
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.fml.RegistryObject;
 

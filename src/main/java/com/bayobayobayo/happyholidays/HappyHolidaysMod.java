@@ -2,6 +2,8 @@ package com.bayobayobayo.happyholidays;
 
 import java.util.List;
 
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -18,13 +20,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.bayobayobayo.happyholidays.common.RegistryHandler;
+import com.bayobayobayo.happyholidays.common.block.christmas.WildPresentBlock;
 import com.bayobayobayo.happyholidays.common.entity.HappyHolidaysEntities;
 import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(HappyHolidaysMod.MOD_ID)
 public class HappyHolidaysMod {
-
     public static final String MOD_ID = "happyholidays";
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -42,6 +44,8 @@ public class HappyHolidaysMod {
         RegistryHandler.BLOCKS.register(bus);
         RegistryHandler.ITEMS.register(bus);
         RegistryHandler.ENTITY_TYPES.register(bus);
+
+        // Initialise mod
 
         // Register holiday modules
         ModuleHandler.registerModules();
@@ -84,4 +88,15 @@ public class HappyHolidaysMod {
     private void onClientLoaded(final FMLClientSetupEvent event) {
     }
 
+
+    public static class HappyHolidaysGroup extends ItemGroup {
+        public HappyHolidaysGroup(String label) {
+            super(label);
+        }
+
+        @Override
+        public ItemStack makeIcon() {
+            return ModuleHandler.CHRISTMAS_HANDLER.getRegisteredBlock(WildPresentBlock.BLOCK_ID).get().asItem().getDefaultInstance();
+        }
+    }
 }

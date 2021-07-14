@@ -1,5 +1,6 @@
 package com.bayobayobayo.happyholidays.common.item.christmas.gingerbread;
 
+import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 
 import net.minecraft.item.Food;
@@ -14,7 +15,7 @@ public class GingerbreadCookieItem extends ChristmasItem {
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                .tab(ItemGroup.TAB_FOOD)
+                .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP)
                 .food(new Food.Builder()
                         .nutrition(2)
                         .effect(() -> new EffectInstance(Effects.MOVEMENT_SPEED, 100, 1), 0.5f)

@@ -1,6 +1,9 @@
 package com.bayobayobayo.happyholidays.common.block.christmas;
 
+import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.RegistryHandler;
+import com.bayobayobayo.happyholidays.common.handlers.ChristmasHandler;
+import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.block.AbstractBlock;
@@ -19,7 +22,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 
 public class WildPresentBlock extends ChristmasBlock {
-    private static final String BLOCK_ID = "wild_present_block";
+    public static final String BLOCK_ID = "wild_present_block";
 
     private static final Properties BLOCK_PROPERTIES =
             AbstractBlock.Properties
@@ -30,7 +33,7 @@ public class WildPresentBlock extends ChristmasBlock {
                     .noOcclusion();
 
     private static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(ItemGroup.TAB_DECORATIONS);
+            new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
     private static final VoxelShape SHAPE = VoxelShapes.or(
             HappyHolidaysUtils.createShape(2.0, 0.0, 2.0, 14.0, 8.0, 14.0),

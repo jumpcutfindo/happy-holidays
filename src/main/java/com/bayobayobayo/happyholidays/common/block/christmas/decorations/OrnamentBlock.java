@@ -3,6 +3,7 @@ package com.bayobayobayo.happyholidays.common.block.christmas.decorations;
 import javax.annotation.Nullable;
 
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.block.AbstractBlock;
@@ -47,7 +48,7 @@ public class OrnamentBlock extends ChristmasBlock {
                     .noCollission();
 
     private static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(ItemGroup.TAB_DECORATIONS);
+            new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
     public static final VoxelShape[] BAUBLE_SHAPES = new VoxelShape[] {
             HappyHolidaysUtils.createShape(6.0, 0.0, 6.0, 10.0, 5.0, 10.0),
