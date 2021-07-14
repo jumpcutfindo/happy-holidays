@@ -6,7 +6,10 @@ import com.bayobayobayo.happyholidays.common.block.HappyHolidaysBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.WildPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BigBlueBallOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BigGoldBallOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BigGreenBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BigRedBallOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BigSilverBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BigYellowBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BlueBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.GoldBallOrnamentBlock;
@@ -53,6 +56,9 @@ public class ChristmasHandler implements ModuleHandler {
                 new BigRedBallOrnamentBlock(),
                 new BigBlueBallOrnamentBlock(),
                 new BigYellowBallOrnamentBlock(),
+                new BigGreenBallOrnamentBlock(),
+                new BigSilverBallOrnamentBlock(),
+                new BigGoldBallOrnamentBlock(),
 
                 new RawGingerbreadBlock(),
                 new GingerbreadBlock(),
