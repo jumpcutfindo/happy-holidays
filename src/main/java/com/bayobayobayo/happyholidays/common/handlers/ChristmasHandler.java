@@ -2,7 +2,6 @@ package com.bayobayobayo.happyholidays.common.handlers;
 
 import java.util.HashMap;
 
-import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.block.HappyHolidaysBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.WildPresentBlock;
@@ -24,16 +23,16 @@ import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.SoggyGi
 import com.bayobayobayo.happyholidays.common.entity.HappyHolidaysEntities;
 import com.bayobayobayo.happyholidays.common.entity.christmas.ChristmasEntities;
 import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadEntities;
+import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadManEntity;
+import com.bayobayobayo.happyholidays.common.entity.christmas.SoggyGingerbreadManEntity;
 import com.bayobayobayo.happyholidays.common.item.HappyHolidaysItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.GingerbreadCookieItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.fml.RegistryObject;
 
 
@@ -44,6 +43,7 @@ public class ChristmasHandler implements ModuleHandler {
 
     HashMap<String, ChristmasBlock> christmasBlockMap;
     HashMap<String, ChristmasItem> christmasItemMap;
+    HashMap<String, ChristmasEntities> christmasEntitiesMap;
 
     public ChristmasHandler(){
         christmasBlocks = new ChristmasBlock[] {
@@ -78,6 +78,7 @@ public class ChristmasHandler implements ModuleHandler {
 
         christmasBlockMap = new HashMap<>();
         christmasItemMap = new HashMap<>();
+        christmasEntitiesMap = new HashMap<>();
     }
 
     @Override
@@ -100,6 +101,7 @@ public class ChristmasHandler implements ModuleHandler {
     public void registerEntities() {
         for (ChristmasEntities entities : christmasEntities) {
             entities.registerEntities();
+            christmasEntitiesMap.put(entities.getId(), entities);
         }
     }
 
@@ -138,7 +140,17 @@ public class ChristmasHandler implements ModuleHandler {
     }
 
     @Override
+    public HappyHolidaysEntities getSpecificEntities(String entitiesId) {
+        return christmasEntitiesMap.get(entitiesId);
+    }
+
+    @Override
     public RegistryObject<Block> getRegisteredBlock(String blockId) {
         return christmasBlockMap.get(blockId).getRegisteredBlock();
+    }
+
+    @Override
+    public RegistryObject<Item> getRegisteredItem(String itemId) {
+        return christmasItemMap.get(itemId).getRegisteredItem();
     }
 }

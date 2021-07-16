@@ -5,6 +5,7 @@ import java.util.Random;
 import com.bayobayobayo.happyholidays.client.entity.GingerbreadPersonEntityRenderer;
 import com.bayobayobayo.happyholidays.common.RegistryHandler;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EntityType;
@@ -22,11 +23,14 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class GingerbreadEntities implements ChristmasEntities {
+    public static final String GINGERBREAD_ENTITIES_ID = "gingerbread_entities";
+
     private static final int SPAWN_PROBABILITY = 300;
     private static final int MIN_SPAWN_COUNT = 2;
     private static final int MAX_SPAWN_COUNT = 5;
 
     private RegistryObject<EntityType<GingerbreadManEntity>> gingerbreadManObject;
+    private RegistryObject<EntityType<SoggyGingerbreadManEntity>> soggyGingerbreadManObject;
 
     public GingerbreadEntities() {
     }
@@ -39,6 +43,13 @@ public class GingerbreadEntities implements ChristmasEntities {
                 .add(Attributes.MOVEMENT_SPEED, 0.23D)
                 .build()
         );
+
+        event.put(soggyGingerbreadManObject.get(),
+                MobEntity.createMobAttributes()
+                .add(Attributes.MAX_HEALTH, 10.0f)
+                .add(Attributes.MOVEMENT_SPEED, 0.18D)
+                .build()
+        );
     }
 
     @Override
@@ -48,6 +59,12 @@ public class GingerbreadEntities implements ChristmasEntities {
                         .sized(0.8f, 2.0f)
                         .build(GingerbreadManEntity.ENTITY_ID)
         );
+
+        soggyGingerbreadManObject = RegistryHandler.ENTITY_TYPES.register(SoggyGingerbreadManEntity.ENTITY_ID,
+                () -> EntityType.Builder.of(SoggyGingerbreadManEntity::new, EntityClassification.AMBIENT)
+                        .sized(0.8f, 2.0f)
+                        .build(SoggyGingerbreadManEntity.ENTITY_ID)
+        );
     }
 
     @Override
@@ -55,6 +72,11 @@ public class GingerbreadEntities implements ChristmasEntities {
         // Register entity rendering
         RenderingRegistry.registerEntityRenderingHandler(
                 gingerbreadManObject.get(),
+                GingerbreadPersonEntityRenderer::new
+        );
+
+        RenderingRegistry.registerEntityRenderingHandler(
+                soggyGingerbreadManObject.get(),
                 GingerbreadPersonEntityRenderer::new
         );
 
@@ -78,5 +100,17 @@ public class GingerbreadEntities implements ChristmasEntities {
 
     private static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, IWorld world, SpawnReason spawnReason, BlockPos pos, Random rand) {
         return world.getRawBrightness(pos,0) > 8;
+    }
+
+    public String getId() {
+        return GINGERBREAD_ENTITIES_ID;
+    }
+
+    public RegistryObject<EntityType<GingerbreadManEntity>> getGingerbreadManObject() {
+        return gingerbreadManObject;
+    }
+
+    public RegistryObject<EntityType<SoggyGingerbreadManEntity>> getSoggyGingerbreadManObject() {
+        return soggyGingerbreadManObject;
     }
 }

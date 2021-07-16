@@ -22,5 +22,8 @@
     "item.happyholidays.raw_gingerbread": "Gingerbread Dough",
     "item.happyholidays.gingerbread_cookie": "Gingerbread Cookie",
 
-    "entity.happyholidays.gingerbread_man": "Gingerbread Man"
+    "entity.happyholidays.gingerbread_man": "Gingerbread Man",
+    "entity.happyholidays.soggy_gingerbread_man": "Soggy Gingerbread Man",
+
+    "itemGroup.happyholidaystab": "Happy Holidays"
 }

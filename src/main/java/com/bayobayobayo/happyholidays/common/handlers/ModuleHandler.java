@@ -5,14 +5,14 @@ import java.util.List;
 import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.block.HappyHolidaysBlock;
 import com.bayobayobayo.happyholidays.common.entity.HappyHolidaysEntities;
+import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadManEntity;
 import com.bayobayobayo.happyholidays.common.item.HappyHolidaysItem;
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.fml.RegistryObject;
 
 public interface ModuleHandler {
@@ -46,5 +46,8 @@ public interface ModuleHandler {
     HappyHolidaysItem[] getItems();
     HappyHolidaysEntities[] getEntities();
 
+    HappyHolidaysEntities getSpecificEntities(String entitiesId);
+
     RegistryObject<Block> getRegisteredBlock(String blockId);
+    RegistryObject<Item> getRegisteredItem(String itemId);
 }

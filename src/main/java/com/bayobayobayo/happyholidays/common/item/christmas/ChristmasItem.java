@@ -36,7 +36,7 @@ public class ChristmasItem extends Item implements HappyHolidaysItem {
     }
 
     @Override
-    public RegistryObject<? extends Item> getRegisteredItem() {
-        return registeredItem != null ? registeredItem : registerItem();
+    public RegistryObject<Item> getRegisteredItem() {
+        return registeredItem;
     }
 }

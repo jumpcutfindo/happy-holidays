@@ -2,7 +2,6 @@ package com.bayobayobayo.happyholidays.common.entity.christmas;
 
 import java.util.List;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
@@ -15,7 +14,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -64,6 +62,10 @@ public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatab
 
     public boolean isLeader() {
         return isLeader;
+    }
+
+    public boolean fireImmune() {
+        return true;
     }
 
     /*
