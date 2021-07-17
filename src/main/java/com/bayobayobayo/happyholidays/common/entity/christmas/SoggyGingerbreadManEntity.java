@@ -22,7 +22,7 @@ public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
     public SoggyGingerbreadManEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
 
-        timeLeftToDry = 100.0f;
+        timeLeftToDry = 300.0f;
     }
 
     @Override

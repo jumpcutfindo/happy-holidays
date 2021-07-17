@@ -4,7 +4,10 @@ import java.util.HashMap;
 
 import com.bayobayobayo.happyholidays.common.block.HappyHolidaysBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.bayobayobayo.happyholidays.common.block.christmas.WildPresentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.presents.PresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BigBlueBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BigGoldBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.BigGreenBallOrnamentBlock;
@@ -23,15 +26,12 @@ import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.SoggyGi
 import com.bayobayobayo.happyholidays.common.entity.HappyHolidaysEntities;
 import com.bayobayobayo.happyholidays.common.entity.christmas.ChristmasEntities;
 import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadEntities;
-import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadManEntity;
-import com.bayobayobayo.happyholidays.common.entity.christmas.SoggyGingerbreadManEntity;
 import com.bayobayobayo.happyholidays.common.item.HappyHolidaysItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.GingerbreadCookieItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
@@ -47,7 +47,10 @@ public class ChristmasHandler implements ModuleHandler {
 
     public ChristmasHandler(){
         christmasBlocks = new ChristmasBlock[] {
-                new WildPresentBlock(),
+                new BabyPresentBlock(),
+                new AdultPresentBlock(),
+                new ElderPresentBlock(),
+
                 new RedBallOrnamentBlock(),
                 new BlueBallOrnamentBlock(),
                 new YellowBallOrnamentBlock(),

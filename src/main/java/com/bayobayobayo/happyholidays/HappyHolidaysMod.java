@@ -9,7 +9,6 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -20,7 +19,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.bayobayobayo.happyholidays.common.RegistryHandler;
-import com.bayobayobayo.happyholidays.common.block.christmas.WildPresentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.presents.PresentBlock;
 import com.bayobayobayo.happyholidays.common.entity.HappyHolidaysEntities;
 import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 
@@ -96,7 +96,7 @@ public class HappyHolidaysMod {
 
         @Override
         public ItemStack makeIcon() {
-            return ModuleHandler.CHRISTMAS_HANDLER.getRegisteredBlock(WildPresentBlock.BLOCK_ID).get().asItem().getDefaultInstance();
+            return ModuleHandler.CHRISTMAS_HANDLER.getRegisteredBlock(ElderPresentBlock.BLOCK_ID).get().asItem().getDefaultInstance();
         }
     }
 }

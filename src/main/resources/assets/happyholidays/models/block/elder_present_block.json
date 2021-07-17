@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"ambientocclusion": false,
 	"textures": {
-		"0": "happyholidays:blocks/wild_present_block",
-		"particle": "happyholidays:blocks/wild_present_block"
+		"0": "happyholidays:blocks/elder_present_block",
+		"particle": "happyholidays:blocks/elder_present_block"
 	},
 	"elements": [
 		{

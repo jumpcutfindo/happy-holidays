@@ -65,7 +65,7 @@ public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatab
     }
 
     public boolean fireImmune() {
-        return true;
+        return false;
     }
 
     /*
