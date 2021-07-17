@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "facing=east": {
+            "model": "happyholidays:block/red_tinsel_block",
+            "y": 90
+        },
+        "facing=north": {
+            "model": "happyholidays:block/red_tinsel_block"
+        },
+        "facing=south": {
+            "model": "happyholidays:block/red_tinsel_block",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "happyholidays:block/red_tinsel_block",
+            "y": 270
+        }
+    }
+}

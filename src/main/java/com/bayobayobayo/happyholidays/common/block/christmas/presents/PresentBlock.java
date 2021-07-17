@@ -46,14 +46,10 @@ public class PresentBlock extends ChristmasBlock {
 
     public static final float GROWTH_SPEED = 3.0f;
 
-    private String blockId;
     private VoxelShape shape;
-
 
     public PresentBlock(String blockId, VoxelShape shape) {
         super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
-
-        this.blockId = blockId;
         this.shape = shape;
     }
 
