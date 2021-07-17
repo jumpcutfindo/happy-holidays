@@ -7,7 +7,16 @@ import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
+import net.minecraft.client.particle.Particle;
+import net.minecraft.entity.EntityPredicate;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.particles.BlockParticleData;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -46,6 +55,10 @@ public class AdultPresentBlock extends PresentBlock {
 
         if (isGrow) {
             world.setBlock(blockPos, nextBlockState, 2);
+            world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundEvents.WOOL_BREAK,
+                    SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.sendParticles(ParticleTypes.CLOUD, blockPos.getX() + random.nextDouble(), blockPos.getY() + random.nextDouble(),
+                    blockPos.getZ() + random.nextDouble(), 1, 0D, 0D, 0D, 0.0D);
             net.minecraftforge.common.ForgeHooks.onCropsGrowPost(world, blockPos, blockState);
         }
     }
