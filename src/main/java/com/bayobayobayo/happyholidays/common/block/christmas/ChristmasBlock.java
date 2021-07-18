@@ -2,6 +2,8 @@ package com.bayobayobayo.happyholidays.common.block.christmas;
 
 import com.bayobayobayo.happyholidays.common.RegistryHandler;
 import com.bayobayobayo.happyholidays.common.block.HappyHolidaysBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.TinselBlock;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -56,5 +58,9 @@ public class ChristmasBlock extends Block implements HappyHolidaysBlock {
     @Override
     public void configureBlock() {
         // Default left empty since we don't want the block to do anything
+    }
+
+    public static boolean isDecorationBlock(Block block) {
+        return (block instanceof TinselBlock || block instanceof OrnamentBlock);
     }
 }
