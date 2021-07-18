@@ -33,7 +33,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class TinselBlock extends ChristmasBlock {
+public class ConnectedOrnamentBlock extends ChristmasBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final EnumProperty<WallDecorationShape> WALL_SHAPE = EnumProperty.create("decoration_shape",
             WallDecorationShape.class);
@@ -54,7 +54,7 @@ public class TinselBlock extends ChristmasBlock {
             HappyHolidaysUtils.createShape(0.0, 0.0, 0.0, 16.0, 16.0 ,1.0)
     );
 
-    public TinselBlock(String blockId) {
+    public ConnectedOrnamentBlock(String blockId) {
         super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
 
         this.registerDefaultState(this.getStateDefinition().any()
