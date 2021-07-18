@@ -1,5 +1,6 @@
-package com.bayobayobayo.happyholidays.common.block.christmas.decorations;
+package com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball;
 
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
 import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 
 public class BigRedBallOrnamentBlock extends OrnamentBlock {
