@@ -4,7 +4,12 @@ import java.util.HashMap;
 
 import com.bayobayobayo.happyholidays.common.block.HappyHolidaysBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.BlueTinselBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GoldTinselBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GreenTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.RedTinselBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.SilverTinselBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.YellowTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
@@ -66,6 +71,11 @@ public class ChristmasHandler implements ModuleHandler {
                 new BigGoldBallOrnamentBlock(),
 
                 new RedTinselBlock(),
+                new BlueTinselBlock(),
+                new YellowTinselBlock(),
+                new GreenTinselBlock(),
+                new SilverTinselBlock(),
+                new GoldTinselBlock(),
 
                 new RawGingerbreadBlock(),
                 new GingerbreadBlock(),
