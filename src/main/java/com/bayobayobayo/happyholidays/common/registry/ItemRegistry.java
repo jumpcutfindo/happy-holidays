@@ -22,6 +22,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornamen
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.GingerbreadBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.RawGingerbreadBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.SoggyGingerbreadBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
@@ -138,4 +139,8 @@ public class ItemRegistry {
     public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_BLOCK_ITEM =
             ITEMS.register(SoggyGingerbreadBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.SOGGY_GINGERBREAD_BLOCK.get(),
                     SoggyGingerbreadBlock.ITEM_PROPERITES));
+
+    public static final RegistryObject<BlockItem> CHRISTMAS_STAR_BLOCK_ITEM =
+            ITEMS.register(ChristmasStarBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.CHRISTMAS_STAR_BLOCK.get(),
+                    ChristmasStarBlock.ITEM_PROPERTIES));
 }
