@@ -1,12 +1,9 @@
 package com.bayobayobayo.happyholidays.common.entity.christmas;
 
-import com.bayobayobayo.happyholidays.common.handlers.ChristmasHandler;
-import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.registry.EntityRegistry;
 
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.entity.monster.ZombieVillagerEntity;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
@@ -26,10 +23,7 @@ public class GingerbreadManEntity extends GingerbreadPersonEntity {
     }
 
     private void convertToSoggy() {
-        GingerbreadEntities gingerbreadEntities =
-                (GingerbreadEntities) ModuleHandler.CHRISTMAS_HANDLER.getSpecificEntities(GingerbreadEntities.GINGERBREAD_ENTITIES_ID);
-
-        this.convertTo(gingerbreadEntities.getSoggyGingerbreadManObject().get(), true);
+        this.convertTo(EntityRegistry.SOGGY_GINGERBREAD_MAN.get(), true);
         this.playSound(SoundEvents.GENERIC_SPLASH, 1.0F, 1.0F);
     }
 }

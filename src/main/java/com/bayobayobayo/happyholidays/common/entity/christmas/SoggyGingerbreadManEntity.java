@@ -1,6 +1,6 @@
 package com.bayobayobayo.happyholidays.common.entity.christmas;
 
-import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.registry.EntityRegistry;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -78,10 +78,7 @@ public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
     }
 
     private void convertToDry() {
-        GingerbreadEntities gingerbreadEntities =
-                (GingerbreadEntities) ModuleHandler.CHRISTMAS_HANDLER.getSpecificEntities(GingerbreadEntities.GINGERBREAD_ENTITIES_ID);
-
-        this.convertTo(gingerbreadEntities.getGingerbreadManObject().get(), true);
+        this.convertTo(EntityRegistry.GINGERBREAD_MAN.get(), true);
         this.playSound(SoundEvents.FIRE_EXTINGUISH, 1.0F, 1.0F);
 
         this.dropFromLootTable(DamageSource.DROWN, true);

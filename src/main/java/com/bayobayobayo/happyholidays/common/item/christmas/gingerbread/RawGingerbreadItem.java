@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
 public class RawGingerbreadItem extends ChristmasItem {
-    private static final String ITEM_ID = "raw_gingerbread";
+    public static final String ITEM_ID = "raw_gingerbread";
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()

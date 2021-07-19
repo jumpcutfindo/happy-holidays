@@ -5,8 +5,6 @@ import net.minecraftforge.fml.RegistryObject;
 
 public interface HappyHolidaysItem {
     Item.Properties getProperties();
-    String getItemId();
-    RegistryObject<? extends Item> getRegisteredItem();
 
-    RegistryObject<? extends Item> registerItem();
+    void configureItem();
 }

@@ -2,7 +2,7 @@ package com.bayobayobayo.happyholidays.common.block.christmas.decorations;
 
 import javax.annotation.Nullable;
 
-import com.bayobayobayo.happyholidays.common.RegistryHandler;
+import com.bayobayobayo.happyholidays.common.registry.RegistryHandler;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
@@ -47,7 +47,7 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
                 .noOcclusion()
                 .noCollission();
 
-    private static final Item.Properties ITEM_PROPERTIES =
+    public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
     private static final VoxelShape SHAPE = VoxelShapes.or(
@@ -64,15 +64,8 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
     }
 
     @Override
-    public void registerBlock() {
-        blockRegistryObject = RegistryHandler.BLOCKS.register(blockId, () -> this);
-        blockItemRegistryObject = RegistryHandler.ITEMS.register(
-                blockId, () -> new BlockItem(blockRegistryObject.get(), ITEM_PROPERTIES));
-    }
-
-    @Override
     public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(blockRegistryObject.get(), RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(this, RenderType.translucent());
     }
 
     @Nullable

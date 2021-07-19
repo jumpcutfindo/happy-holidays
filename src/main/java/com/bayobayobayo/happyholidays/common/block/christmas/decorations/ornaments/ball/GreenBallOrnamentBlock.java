@@ -3,7 +3,7 @@ package com.bayobayobayo.happyholidays.common.block.christmas.decorations.orname
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
 
 public class GreenBallOrnamentBlock extends OrnamentBlock {
-    private static final String BLOCK_ID = "green_ball_ornament_block";
+    public static final String BLOCK_ID = "green_ball_ornament_block";
 
     public GreenBallOrnamentBlock() {
         super(BLOCK_ID, BAUBLE_SHAPES);

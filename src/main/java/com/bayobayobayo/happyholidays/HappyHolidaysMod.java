@@ -1,6 +1,14 @@
 package com.bayobayobayo.happyholidays;
 
-import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.bayobayobayo.happyholidays.client.entity.GingerbreadPersonEntityRenderer;
+import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadEntities;
+import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
+import com.bayobayobayo.happyholidays.common.registry.EntityRegistry;
+import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -9,20 +17,12 @@ import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import software.bernie.geckolib3.GeckoLib;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.bayobayobayo.happyholidays.common.RegistryHandler;
-import com.bayobayobayo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
-import com.bayobayobayo.happyholidays.common.block.christmas.presents.PresentBlock;
-import com.bayobayobayo.happyholidays.common.entity.HappyHolidaysEntities;
-import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(HappyHolidaysMod.MOD_ID)
@@ -35,57 +35,35 @@ public class HappyHolidaysMod {
 
         // Register the setup method for modloading
         bus.addListener(this::setup);
+        bus.addListener(this::clientSetup);
         bus.addListener(this::setEntityAttributes);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
         // Register registries
-        RegistryHandler.BLOCKS.register(bus);
-        RegistryHandler.ITEMS.register(bus);
-        RegistryHandler.ENTITY_TYPES.register(bus);
-
-        // Initialise mod
-
-        // Register holiday modules
-        ModuleHandler.registerModules();
-
-        // Client-related loading
-        bus.addListener(this::onClientLoaded);
+        EntityRegistry.ENTITY_TYPES.register(bus);
+        BlockRegistry.BLOCKS.register(bus);
+        ItemRegistry.ITEMS.register(bus);
 
         GeckoLib.initialize();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            ModuleHandler.configureModules();
-        });
+        event.enqueueWork(ModuleHandler::preInit);
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event) {
+        ModuleHandler.onClientSetup();
     }
 
     public void setEntityAttributes(final EntityAttributeCreationEvent event) {
-        List<ModuleHandler> handlers = ModuleHandler.getHandlers();
-        for (ModuleHandler handler : handlers) {
-            HappyHolidaysEntities[] entities = handler.getEntities();
-
-            for (HappyHolidaysEntities entitySet : entities) {
-                entitySet.createAttributes(event);
-            }
-        }
+        GingerbreadEntities.createAttributes(event);
     }
 
     @SubscribeEvent
     public void registerEntitySpawns(final BiomeLoadingEvent event) {
-        List<ModuleHandler> handlers = ModuleHandler.getHandlers();
-        for (ModuleHandler handler : handlers) {
-            HappyHolidaysEntities[] entities = handler.getEntities();
-
-            for (HappyHolidaysEntities entitySet : entities) {
-                entitySet.configureEntitySpawning(event);
-            }
-        }
-    }
-
-    private void onClientLoaded(final FMLClientSetupEvent event) {
+        GingerbreadEntities.configureEntitySpawning(event);
     }
 
 
@@ -96,7 +74,7 @@ public class HappyHolidaysMod {
 
         @Override
         public ItemStack makeIcon() {
-            return ModuleHandler.CHRISTMAS_HANDLER.getRegisteredBlock(ElderPresentBlock.BLOCK_ID).get().asItem().getDefaultInstance();
+            return BlockRegistry.ELDER_PRESENT_BLOCK.get().asItem().getDefaultInstance();
         }
     }
 }

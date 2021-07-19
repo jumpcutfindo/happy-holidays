@@ -2,9 +2,10 @@ package com.bayobayobayo.happyholidays.common.block.christmas.presents;
 
 import java.util.Random;
 
-import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
 import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.Direction;
@@ -31,8 +32,7 @@ public class BabyPresentBlock extends PresentBlock {
     @Override
     public void configureBlock() {
         super.configureBlock();
-        this.nextBlockState =
-                ModuleHandler.CHRISTMAS_HANDLER.getRegisteredBlock(AdultPresentBlock.BLOCK_ID).get().defaultBlockState();
+        this.nextBlockState = BlockRegistry.ADULT_PRESENT_BLOCK.get().defaultBlockState();
     }
 
     @Override

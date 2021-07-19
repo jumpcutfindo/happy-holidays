@@ -38,7 +38,7 @@ public class OrnamentBlock extends ChristmasBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final EnumProperty<AttachFace> ATTACH_FACE = BlockStateProperties.ATTACH_FACE;
 
-    private static final Properties BLOCK_PROPERTIES =
+    public static final Properties BLOCK_PROPERTIES =
             AbstractBlock.Properties
                     .of(Material.DECORATION)
                     .harvestLevel(-1)
@@ -47,7 +47,7 @@ public class OrnamentBlock extends ChristmasBlock {
                     .noOcclusion()
                     .noCollission();
 
-    private static final Item.Properties ITEM_PROPERTIES =
+    public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
     public static final VoxelShape[] BAUBLE_SHAPES = new VoxelShape[] {
@@ -79,7 +79,7 @@ public class OrnamentBlock extends ChristmasBlock {
 
     @Override
     public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(blockRegistryObject.get(), RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(this, RenderType.translucent());
     }
 
     @Nullable

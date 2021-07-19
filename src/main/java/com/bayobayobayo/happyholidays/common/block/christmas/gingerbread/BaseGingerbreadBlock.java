@@ -10,14 +10,14 @@ import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.ToolType;
 
 public class BaseGingerbreadBlock extends ChristmasBlock {
-    private static final AbstractBlock.Properties BLOCK_PROPERTIES =
+    public static final AbstractBlock.Properties BLOCK_PROPERTIES =
             AbstractBlock.Properties
                     .of(Material.SNOW)
                     .strength(0.5f)
                     .sound(SoundType.FUNGUS)
                     .harvestTool(ToolType.HOE);
 
-    private static final Item.Properties ITEM_PROPERITES =
+    public static final Item.Properties ITEM_PROPERITES =
             new Item.Properties().tab(ItemGroup.TAB_DECORATIONS);
 
     public BaseGingerbreadBlock(String blockId) {

@@ -2,21 +2,15 @@ package com.bayobayobayo.happyholidays.common.block.christmas.presents;
 
 import java.util.Random;
 
-import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
 import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.CropsBlock;
-import net.minecraft.client.particle.Particle;
-import net.minecraft.entity.EntityPredicate;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.particles.BlockParticleData;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -38,8 +32,7 @@ public class AdultPresentBlock extends PresentBlock {
     @Override
     public void configureBlock() {
         super.configureBlock();
-        this.nextBlockState =
-                ModuleHandler.CHRISTMAS_HANDLER.getRegisteredBlock(ElderPresentBlock.BLOCK_ID).get().defaultBlockState();
+        this.nextBlockState = BlockRegistry.ELDER_PRESENT_BLOCK.get().defaultBlockState();
     }
 
     @Override

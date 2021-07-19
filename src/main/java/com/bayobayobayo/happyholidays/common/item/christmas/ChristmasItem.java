@@ -1,6 +1,6 @@
 package com.bayobayobayo.happyholidays.common.item.christmas;
 
-import com.bayobayobayo.happyholidays.common.RegistryHandler;
+import com.bayobayobayo.happyholidays.common.registry.RegistryHandler;
 import com.bayobayobayo.happyholidays.common.item.HappyHolidaysItem;
 
 import net.minecraft.item.Item;
@@ -25,18 +25,6 @@ public class ChristmasItem extends Item implements HappyHolidaysItem {
     }
 
     @Override
-    public String getItemId() {
-        return itemId;
-    }
-
-    @Override
-    public RegistryObject<? extends Item> registerItem() {
-        if (registeredItem == null) registeredItem = RegistryHandler.ITEMS.register(itemId, () -> this);
-        return registeredItem;
-    }
-
-    @Override
-    public RegistryObject<Item> getRegisteredItem() {
-        return registeredItem;
+    public void configureItem() {
     }
 }

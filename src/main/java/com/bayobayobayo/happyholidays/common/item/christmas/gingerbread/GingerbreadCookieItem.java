@@ -11,7 +11,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
 public class GingerbreadCookieItem extends ChristmasItem {
-    private static final String ITEM_ID = "gingerbread_cookie";
+    public static final String ITEM_ID = "gingerbread_cookie";
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
