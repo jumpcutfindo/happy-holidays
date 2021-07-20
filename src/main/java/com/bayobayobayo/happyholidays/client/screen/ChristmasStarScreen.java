@@ -6,17 +6,22 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.client.gui.screen.inventory.FurnaceScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 public class ChristmasStarScreen extends ContainerScreen<ChristmasStarContainer> {
     private static final ResourceLocation CHRISTMAS_STAR_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
-            "textures/gui/container/christmas_star_block");
+            "textures/gui/container/christmas_star_block.png");
 
     public ChristmasStarScreen(ChristmasStarContainer screenContainer, PlayerInventory playerInv,
                                ITextComponent title) {
         super(screenContainer, playerInv, title);
+        this.leftPos = 0;
+        this.topPos = 0;
+        this.imageHeight = 201;
+        this.imageWidth = 175;
     }
 
     @Override
@@ -34,25 +39,5 @@ public class ChristmasStarScreen extends ContainerScreen<ChristmasStarContainer>
         int x = (this.width - this.getXSize()) / 2;
         int y = (this.height - this.getYSize()) / 2;
         this.blit(matrixStack, x, y, 0, 0, this.getXSize(), this.getYSize());
-    }
-
-    @Override
-    public int getGuiLeft() {
-        return 0;
-    }
-
-    @Override
-    public int getGuiTop() {
-        return 0;
-    }
-
-    @Override
-    public int getXSize() {
-        return 175;
-    }
-
-    @Override
-    public int getYSize() {
-        return 201;
     }
 }

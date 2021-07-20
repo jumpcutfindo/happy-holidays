@@ -13,6 +13,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.inventory.container.FurnaceContainer;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
@@ -34,14 +35,16 @@ public class ChristmasStarContainer extends Container {
         this.container = playerInv;
 
         canInteractWithCallable = IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos());
-        // Tile entity
-        this.addSlot(new Slot((IInventory) tileEntity, 0, 80, 35));
-
+        // Christmas block slots
+        float spacing = ((176 - (18 * (float) ChristmasStarTileEntity.SLOTS)) / (float) (ChristmasStarTileEntity.SLOTS + 1));
+        for (int i = 0; i < ChristmasStarTileEntity.SLOTS; i++) {
+            this.addSlot(new Slot(tileEntity, i, (int) (spacing + (18 + spacing) * i), 35));
+        }
 
         // Main player inventory
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
-                this.addSlot(new Slot(playerInv, col * row * 9 + 9, 8 + col * 18, 166 - (4 - row) * 18 - 10));
+                this.addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 166 - (4 - row) * 18 - 10));
             }
         }
 
@@ -65,6 +68,24 @@ public class ChristmasStarContainer extends Container {
         }
 
         throw new IllegalStateException("Incorrect tile entity!");
+    }
+
+    public ItemStack quickMoveStack(PlayerEntity playerEntity, int playerSlot) {
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(playerSlot);
+        if (slot != null && slot.hasItem()) {
+            ItemStack itemstack1 = slot.getItem();
+            itemstack = itemstack1.copy();
+
+
+        }
+
+        return itemstack;
+    }
+
+    public void removed(PlayerEntity p_75134_1_) {
+        super.removed(p_75134_1_);
+        this.container.stopOpen(p_75134_1_);
     }
 
     @Override
