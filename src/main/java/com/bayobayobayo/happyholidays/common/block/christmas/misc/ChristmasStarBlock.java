@@ -14,6 +14,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -31,7 +32,7 @@ public class ChristmasStarBlock extends ChristmasBlock {
             AbstractBlock.Properties
                     .of(Material.DECORATION)
                     .harvestLevel(-1)
-                    .strength(0.1f)
+                    .strength(0.25f)
                     .sound(SoundType.GLASS)
                     .noOcclusion()
                     .noCollission();
@@ -64,6 +65,15 @@ public class ChristmasStarBlock extends ChristmasBlock {
                 NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (ChristmasStarTileEntity) te, blockPos);
             }
             return ActionResultType.CONSUME;
+        }
+    }
+
+    @Override
+    public void playerWillDestroy(World world, BlockPos blockPos, BlockState blockState,
+                                  PlayerEntity playerEntity) {
+        TileEntity te = world.getBlockEntity(blockPos);
+        if (te instanceof ChristmasStarTileEntity) {
+            InventoryHelper.dropContents(world, blockPos, (ChristmasStarTileEntity) te);
         }
     }
 }

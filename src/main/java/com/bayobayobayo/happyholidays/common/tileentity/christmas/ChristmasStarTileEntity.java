@@ -148,7 +148,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
         super.save(nbt);
 
         ItemStackHelper.saveAllItems(nbt, this.items);
-        
+
         nbt.putInt("CurrentTier", this.currentTier);
         nbt.putInt("CurrentPoints", this.currentPoints);
 
