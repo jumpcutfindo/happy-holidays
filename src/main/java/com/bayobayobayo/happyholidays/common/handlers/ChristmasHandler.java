@@ -48,6 +48,8 @@ public class ChristmasHandler implements ModuleHandler {
                 BlockRegistry.GINGERBREAD_BLOCK.get(),
                 BlockRegistry.RAW_GINGERBREAD_BLOCK.get(),
                 BlockRegistry.SOGGY_GINGERBREAD_BLOCK.get(),
+
+                BlockRegistry.CHRISTMAS_STAR_BLOCK.get()
         };
 
         christmasItems = new ChristmasItem[] {

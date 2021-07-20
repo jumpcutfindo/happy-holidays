@@ -1,0 +1,19 @@
+{
+    "variants": {
+        "christmas_star_tier=tier_1": {
+            "model": "happyholidays:block/christmas_star_block_tier_1"
+        },
+        "christmas_star_tier=tier_2": {
+            "model": "happyholidays:block/christmas_star_block_tier_2"
+        },
+        "christmas_star_tier=tier_3": {
+            "model": "happyholidays:block/christmas_star_block_tier_3"
+        },
+        "christmas_star_tier=tier_4": {
+            "model": "happyholidays:block/christmas_star_block_tier_4"
+        },
+        "christmas_star_tier=tier_5": {
+            "model": "happyholidays:block/christmas_star_block_tier_5"
+        }
+    }
+}

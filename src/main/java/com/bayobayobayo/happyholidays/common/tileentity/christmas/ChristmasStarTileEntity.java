@@ -2,13 +2,17 @@ package com.bayobayobayo.happyholidays.common.tileentity.christmas;
 
 import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
 import com.bayobayobayo.happyholidays.common.container.christmas.ChristmasStarContainer;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
+import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
 import com.bayobayobayo.happyholidays.common.registry.TileEntityRegistry;
 
 import net.minecraft.block.BeaconBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.NoteBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -17,6 +21,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.properties.NoteBlockInstrument;
 import net.minecraft.tileentity.BeaconTileEntity;
 import net.minecraft.tileentity.FurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -25,8 +30,11 @@ import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.event.world.NoteBlockEvent;
 
 public class ChristmasStarTileEntity extends LockableTileEntity implements ChristmasTileEntity, ITickableTileEntity {
     public static final String TILE_ENTITY_ID = "christmas_star_block";
@@ -186,15 +194,33 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
 
         // Update tier
         if (this.currentPoints <= 20) {
-            this.currentTier = 0;
+            changeTier(0);
         } else if (this.currentPoints <= 40) {
-            this.currentTier = 1;
+            changeTier(1);
         } else if (this.currentPoints <= 60) {
-            this.currentTier = 2;
+            changeTier(2);
         } else if (this.currentPoints <= 80) {
-            this.currentTier = 3;
+            changeTier(3);
         } else {
-            this.currentTier = 4;
+            changeTier(4);
+        }
+    }
+
+    private void changeTier(int newTier) {
+        int oldTier = this.currentTier;
+        this.currentTier = newTier;
+
+        if (oldTier != newTier && this.level != null) {
+            ChristmasStarTier starTier = newTier == 0 ? ChristmasStarTier.TIER_1
+                    : newTier == 1 ? ChristmasStarTier.TIER_2
+                    : newTier == 2 ? ChristmasStarTier.TIER_3
+                    : newTier == 3 ? ChristmasStarTier.TIER_4
+                    : ChristmasStarTier.TIER_5;
+
+            this.level.setBlock(this.worldPosition, this.getBlockState().setValue(ChristmasStarBlock.STAR_TIER,
+                    starTier), 0);
+            this.level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(),
+                    this.worldPosition.getZ(), SoundEvents.NOTE_BLOCK_BELL, SoundCategory.BLOCKS, 1.0F, 1.0F + newTier);
         }
     }
 }
