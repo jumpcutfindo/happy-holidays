@@ -16,5 +16,6 @@ public class ContainerTypeRegistry {
 
     public static final RegistryObject<ContainerType<ChristmasStarContainer>> CHRISTMAS_STAR_CONTAINER =
             CONTAINER_TYPE.register(ChristmasStarContainer.CONTAINER_ID,
-                    () -> IForgeContainerType.create(ChristmasStarContainer::new));
+                    () -> IForgeContainerType.create(ChristmasStarContainer::new)
+            );
 }

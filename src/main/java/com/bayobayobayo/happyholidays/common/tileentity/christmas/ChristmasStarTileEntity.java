@@ -37,7 +37,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
     private int currentTier;
     private int currentPoints;
 
-    protected final IIntArray dataAccess = new IIntArray() {
+    public final IIntArray dataAccess = new IIntArray() {
         @Override
         public int get(int code) {
             switch (code) {
@@ -105,7 +105,6 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
 
     @Override
     public ItemStack removeItem(int start, int end) {
-        System.out.printf("Christmas Points: %d | Christmas Tier: %d%n", this.currentPoints, this.currentTier);
         return ItemStackHelper.removeItem(this.items, start, end);
     }
 
@@ -147,6 +146,9 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
     @Override
     public CompoundNBT save(CompoundNBT nbt) {
         super.save(nbt);
+
+        ItemStackHelper.saveAllItems(nbt, this.items);
+        
         nbt.putInt("CurrentTier", this.currentTier);
         nbt.putInt("CurrentPoints", this.currentPoints);
 
@@ -177,9 +179,10 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
         }
 
         // Checks uniqueness
-        newPoints += items.stream().map(ItemStack::getItem).distinct().count() == SLOTS ? 20 : 0;
+        newPoints += items.stream().map(ItemStack::getItem).distinct().count() == SLOTS
+                && !items.contains(ItemStack.EMPTY) ? 20 : 0;
 
-        this.currentPoints = Math.min(newPoints, 100);
+        this.currentPoints = Math.min(newPoints, MAX_POINTS);
 
         // Update tier
         if (this.currentPoints <= 20) {

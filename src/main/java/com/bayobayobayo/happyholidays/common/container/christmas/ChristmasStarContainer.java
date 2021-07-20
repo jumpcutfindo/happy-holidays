@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 import com.bayobayobayo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.bayobayobayo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
+import net.minecraft.client.gui.screen.inventory.FurnaceScreen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -18,7 +19,10 @@ import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ChristmasStarContainer extends Container {
     public static final String CONTAINER_ID = "christmas_star_block";
@@ -27,6 +31,8 @@ public class ChristmasStarContainer extends Container {
     private final IWorldPosCallable canInteractWithCallable;
     private final IInventory container;
 
+    private final IIntArray data;
+
     public ChristmasStarContainer(final int windowId, final PlayerInventory playerInv,
                                   final ChristmasStarTileEntity tileEntity) {
         super(ContainerTypeRegistry.CHRISTMAS_STAR_CONTAINER.get(), windowId);
@@ -34,11 +40,14 @@ public class ChristmasStarContainer extends Container {
         this.tileEntity = tileEntity;
         this.container = playerInv;
 
+        this.data = tileEntity.dataAccess;
+        this.addDataSlots(this.tileEntity.dataAccess);
+
         canInteractWithCallable = IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos());
         // Christmas block slots
         float spacing = ((176 - (18 * (float) ChristmasStarTileEntity.SLOTS)) / (float) (ChristmasStarTileEntity.SLOTS + 1));
         for (int i = 0; i < ChristmasStarTileEntity.SLOTS; i++) {
-            this.addSlot(new Slot(tileEntity, i, (int) (spacing + (18 + spacing) * i), 35));
+            this.addSlot(new Slot(tileEntity, i, (int) (spacing + (18 + spacing) * i), 25));
         }
 
         // Main player inventory
@@ -103,13 +112,15 @@ public class ChristmasStarContainer extends Container {
                 return ItemStack.EMPTY;
             }
 
-
             slot.onTake(playerEntity, itemstack1);
         }
 
         return itemstack;
     }
 
+
+
+    @Override
     public void removed(PlayerEntity p_75134_1_) {
         super.removed(p_75134_1_);
         this.container.stopOpen(p_75134_1_);
@@ -120,5 +131,13 @@ public class ChristmasStarContainer extends Container {
         return this.container.stillValid(playerEntity);
     }
 
-    // TODO: transferStackInSlot method for quick transfer item?
+    @OnlyIn(Dist.CLIENT)
+    public int getCurrentPoints() {
+        return this.data.get(1);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getCurrentTier() {
+        return this.data.get(0) + 1;
+    }
 }

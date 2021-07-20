@@ -9,6 +9,7 @@ import com.bayobayobayo.happyholidays.common.tileentity.christmas.ChristmasStarT
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ContainerBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
@@ -56,13 +57,13 @@ public class ChristmasStarBlock extends ChristmasBlock {
     @Override
     public ActionResultType use(BlockState blockState, World world, BlockPos blockPos,
                                 PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
-        if (!world.isClientSide()) {
+        if (world.isClientSide()) return ActionResultType.SUCCESS;
+        else {
             TileEntity te = world.getBlockEntity(blockPos);
             if (te instanceof ChristmasStarTileEntity) {
                 NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (ChristmasStarTileEntity) te, blockPos);
             }
+            return ActionResultType.CONSUME;
         }
-
-        return super.use(blockState, world, blockPos, playerEntity, hand, rayTraceResult);
     }
 }
