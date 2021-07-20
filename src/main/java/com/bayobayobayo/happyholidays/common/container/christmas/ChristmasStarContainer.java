@@ -70,14 +70,41 @@ public class ChristmasStarContainer extends Container {
         throw new IllegalStateException("Incorrect tile entity!");
     }
 
-    public ItemStack quickMoveStack(PlayerEntity playerEntity, int playerSlot) {
+    @Override
+    public ItemStack quickMoveStack(PlayerEntity playerEntity, int selectedSlot) {
         ItemStack itemstack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(playerSlot);
+        Slot slot = this.slots.get(selectedSlot);
         if (slot != null && slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
 
+            // Checks if the items are in the slots for the christmas star
+            if (selectedSlot == 0 || selectedSlot == 1 || selectedSlot == 2 || selectedSlot == 3) {
+                if (!this.moveItemStackTo(itemstack1, 4, 40, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.moveItemStackTo(itemstack1, 0, 4, false)) {
+                if (selectedSlot < 31) {
+                    if (!this.moveItemStackTo(itemstack1, 31, 40, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (selectedSlot < 40 && !this.moveItemStackTo(itemstack1, 4, 31, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
 
+            if (itemstack1.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+
+            if (itemstack1.getCount() == itemstack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+
+            slot.onTake(playerEntity, itemstack1);
         }
 
         return itemstack;
