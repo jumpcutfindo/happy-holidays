@@ -1,6 +1,5 @@
 package com.bayobayobayo.happyholidays.common.item.christmas;
 
-import com.bayobayobayo.happyholidays.common.registry.RegistryHandler;
 import com.bayobayobayo.happyholidays.common.item.HappyHolidaysItem;
 
 import net.minecraft.item.Item;

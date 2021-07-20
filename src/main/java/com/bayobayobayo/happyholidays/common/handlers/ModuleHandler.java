@@ -20,9 +20,11 @@ public interface ModuleHandler {
 
     static void onClientSetup() {
         CHRISTMAS_HANDLER.configureEntities();
+        CHRISTMAS_HANDLER.configureContainers();
     }
 
     void configureBlocks();
     void configureItems();
     void configureEntities();
+    void configureContainers();
 }

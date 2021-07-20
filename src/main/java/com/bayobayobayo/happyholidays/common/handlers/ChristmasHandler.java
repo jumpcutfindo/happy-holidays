@@ -1,10 +1,14 @@
 package com.bayobayobayo.happyholidays.common.handlers;
 
+import com.bayobayobayo.happyholidays.client.screen.ChristmasStarScreen;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadEntities;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
+import com.bayobayobayo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
+
+import net.minecraft.client.gui.ScreenManager;
 
 public class ChristmasHandler implements ModuleHandler {
     private ChristmasBlock[] christmasBlocks;
@@ -69,5 +73,10 @@ public class ChristmasHandler implements ModuleHandler {
     @Override
     public void configureEntities() {
         GingerbreadEntities.configureEntities();
+    }
+
+    @Override
+    public void configureContainers() {
+        ScreenManager.register(ContainerTypeRegistry.CHRISTMAS_STAR_CONTAINER.get(), ChristmasStarScreen::new);
     }
 }

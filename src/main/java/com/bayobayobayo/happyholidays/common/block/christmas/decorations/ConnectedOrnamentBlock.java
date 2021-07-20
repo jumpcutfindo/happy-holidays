@@ -2,7 +2,6 @@ package com.bayobayobayo.happyholidays.common.block.christmas.decorations;
 
 import javax.annotation.Nullable;
 
-import com.bayobayobayo.happyholidays.common.registry.RegistryHandler;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
@@ -15,7 +14,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.state.DirectionProperty;

@@ -1,11 +1,6 @@
 package com.bayobayobayo.happyholidays.common.tileentity.christmas;
 
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
+import com.bayobayobayo.happyholidays.common.tileentity.HappyHolidaysTileEntity;
 
-public class ChristmasTileEntity extends TileEntity {
-
-    public ChristmasTileEntity(TileEntityType<?> tileEntityType) {
-        super(tileEntityType);
-    }
+public interface ChristmasTileEntity extends HappyHolidaysTileEntity {
 }

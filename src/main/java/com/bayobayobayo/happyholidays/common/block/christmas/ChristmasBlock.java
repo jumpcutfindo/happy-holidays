@@ -1,6 +1,5 @@
 package com.bayobayobayo.happyholidays.common.block.christmas;
 
-import com.bayobayobayo.happyholidays.common.registry.RegistryHandler;
 import com.bayobayobayo.happyholidays.common.block.HappyHolidaysBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ConnectedOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
