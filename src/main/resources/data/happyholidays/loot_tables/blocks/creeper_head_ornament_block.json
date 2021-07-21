@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "minecraft:item",
-                    "name": "happyholidays:creeper_ornament_block"
+                    "name": "happyholidays:creeper_head_ornament_block"
                 }
             ],
             "conditions": [

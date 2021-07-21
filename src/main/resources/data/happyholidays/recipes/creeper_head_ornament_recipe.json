@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "R"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:string"
+        },
+        "R": {
+            "item": "minecraft:creeper_head"
+        }
+    },
+    "result": {
+        "item": "happyholidays:creeper_head_ornament_block",
+        "count": 1
+    }
+}

@@ -9,11 +9,11 @@
             "item": "minecraft:string"
         },
         "R": {
-            "item": "minecraft:creeper_head"
+            "item": "minecraft:zombie_head"
         }
     },
     "result": {
-        "item": "happyholidays:creeper_ornament_block",
+        "item": "happyholidays:zombie_head_ornament_block",
         "count": 1
     }
 }

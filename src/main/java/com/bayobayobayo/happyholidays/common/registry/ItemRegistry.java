@@ -13,7 +13,10 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornamen
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.RedBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.SilverBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.YellowBallOrnamentBlock;
-import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.CreeperOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.CreeperHeadOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.SkeletonHeadOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.WitherSkeletonHeadOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.ZombieHeadOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.BlueTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GoldTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GreenTinselBlock;
@@ -27,12 +30,10 @@ import com.bayobayobayo.happyholidays.common.block.christmas.misc.ChristmasStarB
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
-import com.bayobayobayo.happyholidays.common.block.christmas.presents.PresentBlock;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.GingerbreadCookieItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
@@ -111,9 +112,18 @@ public class ItemRegistry {
                     () -> new BlockItem(BlockRegistry.BIG_SILVER_BALL_ORNAMENT_BLOCK.get(),
                             BigSilverBallOrnamentBlock.ITEM_PROPERTIES));
 
-    public static final RegistryObject<BlockItem> CREEPER_ORNAMENT_BLOCK_ITEM =
-            ITEMS.register(CreeperOrnamentBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.CREEPER_ORNAMENT_BLOCK.get(),
-                    CreeperOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> CREEPER_HEAD_ORNAMENT_BLOCK_ITEM =
+            ITEMS.register(CreeperHeadOrnamentBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.CREEPER_HEAD_ORNAMENT_BLOCK.get(),
+                    CreeperHeadOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> SKELETON_HEAD_ORNAMENT_BLOCK_ITEM =
+            ITEMS.register(SkeletonHeadOrnamentBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.SKELETON_HEAD_ORNAMENT_BLOCK.get(),
+                    SkeletonHeadOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> WITHER_SKELETON_HEAD_ORNAMENT_BLOCK_ITEM =
+            ITEMS.register(WitherSkeletonHeadOrnamentBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.WITHER_SKELETON_HEAD_ORNAMENT_BLOCK.get(),
+                    WitherSkeletonHeadOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> ZOMBIE_HEAD_ORNAMENT_BLOCK_ITEM =
+            ITEMS.register(ZombieHeadOrnamentBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.ZOMBIE_HEAD_ORNAMENT_BLOCK.get(),
+                    ZombieHeadOrnamentBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<BlockItem> RED_TINSEL_BLOCK_ITEM =
             ITEMS.register(RedTinselBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.RED_TINSEL_BLOCK.get(),

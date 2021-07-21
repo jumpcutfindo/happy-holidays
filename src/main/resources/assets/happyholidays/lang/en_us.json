@@ -24,10 +24,10 @@
     "block.happyholidays.silver_tinsel_block": "Silver Tinsel",
     "block.happyholidays.gold_tinsel_block": "Gold Tinsel",
 
-    "block.happyholidays.creeper_ornament_block": "Creeper Ornament",
-    "block.happyholidays.skeleton_ornament_block": "Skeleton Ornament",
-    "block.happyholidays.wither_skeleton_ornament_block": "Wither Skeleton Ornament",
-    "block.happyholidays.zombie_ornament_block": "Zombie Ornament",
+    "block.happyholidays.creeper_head_ornament_block": "Creeper Head Ornament",
+    "block.happyholidays.skeleton_head_ornament_block": "Skeleton Head Ornament",
+    "block.happyholidays.wither_skeleton_head_ornament_block": "Wither Skeleton Head Ornament",
+    "block.happyholidays.zombie_head_ornament_block": "Zombie Head Ornament",
 
     "block.happyholidays.raw_gingerbread_block": "Block of Gingerbread Dough",
     "block.happyholidays.gingerbread_block": "Block of Gingerbread",
