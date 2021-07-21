@@ -3,9 +3,10 @@ package com.bayobayobayo.happyholidays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.bayobayobayo.happyholidays.client.entity.GingerbreadPersonEntityRenderer;
-import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadEntities;
-import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.handlers.AttributeHandler;
+import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.handlers.RendererHandler;
+import com.bayobayobayo.happyholidays.common.handlers.SpawningHandler;
 import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
 import com.bayobayobayo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.bayobayobayo.happyholidays.common.registry.EntityRegistry;
@@ -15,11 +16,9 @@ import com.bayobayobayo.happyholidays.common.registry.TileEntityRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -38,7 +37,7 @@ public class HappyHolidaysMod {
         // Register the setup method for modloading
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
-        bus.addListener(this::setEntityAttributes);
+        bus.addListener(AttributeHandler::handleEntityAttributeStuff);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -59,15 +58,13 @@ public class HappyHolidaysMod {
 
     private void clientSetup(final FMLClientSetupEvent event) {
         ModuleHandler.onClientSetup();
-    }
-
-    public void setEntityAttributes(final EntityAttributeCreationEvent event) {
-        GingerbreadEntities.createAttributes(event);
+        RendererHandler.handleRenderStuff();
+        SpawningHandler.handleEntityPlacementStuff();
     }
 
     @SubscribeEvent
     public void registerEntitySpawns(final BiomeLoadingEvent event) {
-        GingerbreadEntities.configureEntitySpawning(event);
+        SpawningHandler.handleEntitySpawningStuff(event);
     }
 
 

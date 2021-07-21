@@ -1,10 +1,9 @@
 package com.bayobayobayo.happyholidays.common.item.christmas.gingerbread;
 
-import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 
 public class RawGingerbreadItem extends ChristmasItem {
     public static final String ITEM_ID = "raw_gingerbread";

@@ -1,8 +1,7 @@
-package com.bayobayobayo.happyholidays.common.handlers;
+package com.bayobayobayo.happyholidays.common.handlers.modules;
 
 import com.bayobayobayo.happyholidays.client.screen.ChristmasStarScreen;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadEntities;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
 import com.bayobayobayo.happyholidays.common.registry.ContainerTypeRegistry;
@@ -80,7 +79,6 @@ public class ChristmasHandler implements ModuleHandler {
 
     @Override
     public void configureEntities() {
-        GingerbreadEntities.configureEntities();
     }
 
     @Override

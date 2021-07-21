@@ -1,9 +1,11 @@
 package com.bayobayobayo.happyholidays.common.entity.christmas;
 
 import java.util.List;
+import java.util.Random;
 
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
@@ -14,6 +16,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -168,5 +172,10 @@ public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatab
                 this.gingerbreadPerson.getNavigation().moveTo(this.leader, 1.0D);
             }
         }
+    }
+
+    public static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, IWorld world,
+                                                 SpawnReason spawnReason, BlockPos pos, Random rand) {
+        return world.getRawBrightness(pos,0) > 8;
     }
 }

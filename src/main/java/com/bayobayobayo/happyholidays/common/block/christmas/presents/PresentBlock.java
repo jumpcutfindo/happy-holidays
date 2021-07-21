@@ -1,7 +1,7 @@
 package com.bayobayobayo.happyholidays.common.block.christmas.presents;
 
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.BlockState;

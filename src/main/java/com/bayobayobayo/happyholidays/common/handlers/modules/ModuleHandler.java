@@ -1,9 +1,6 @@
-package com.bayobayobayo.happyholidays.common.handlers;
-
-import java.util.List;
+package com.bayobayobayo.happyholidays.common.handlers.modules;
 
 import com.bayobayobayo.happyholidays.HappyHolidaysMod;
-import com.google.common.collect.ImmutableList;
 
 import net.minecraft.item.ItemGroup;
 

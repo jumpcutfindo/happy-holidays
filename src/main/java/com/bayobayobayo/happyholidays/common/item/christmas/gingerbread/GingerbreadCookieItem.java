@@ -1,12 +1,10 @@
 package com.bayobayobayo.happyholidays.common.item.christmas.gingerbread;
 
-import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 
 import net.minecraft.item.Food;
-import net.minecraft.item.Foods;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 

@@ -1,13 +1,9 @@
 package com.bayobayobayo.happyholidays.common.block.christmas.misc;
 
-import java.util.Random;
-
 import javax.annotation.Nullable;
 
-import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.bayobayobayo.happyholidays.common.block.christmas.decorations.WallDecorationShape;
-import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.registry.TileEntityRegistry;
 import com.bayobayobayo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
@@ -15,8 +11,6 @@ import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ContainerBlock;
-import net.minecraft.block.FurnaceBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
@@ -39,9 +33,6 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class ChristmasStarBlock extends ChristmasBlock {
