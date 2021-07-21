@@ -1,4 +1,4 @@
-package com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel;
+package com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.lights;
 
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ConnectedOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
@@ -9,21 +9,22 @@ import net.minecraft.block.material.Material;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 
-public class TinselBlock extends ConnectedOrnamentBlock {
-    private static final VoxelShape TINSEL_SHAPE = VoxelShapes.or(
+public class ChristmasLightBlock extends ConnectedOrnamentBlock {
+    private static final VoxelShape CHRISTMAS_LIGHT_SHAPE = VoxelShapes.or(
             HappyHolidaysUtils.createShape(0.0, 0.0, 0.0, 16.0, 16.0 ,1.0)
     );
 
     private static final Properties BLOCK_PROPERTIES =
             AbstractBlock.Properties
-                    .of(Material.WOOL)
+                    .of(Material.GLASS)
                     .harvestLevel(-1)
                     .strength(0.1f)
-                    .sound(SoundType.WOOL)
+                    .sound(SoundType.GLASS)
                     .noOcclusion()
-                    .noCollission();
+                    .noCollission()
+                    .lightLevel((blockState) -> 14);
 
-    public TinselBlock(String blockId) {
-        super(blockId, BLOCK_PROPERTIES, TINSEL_SHAPE);
+    public ChristmasLightBlock(String blockId) {
+        super(blockId, BLOCK_PROPERTIES, CHRISTMAS_LIGHT_SHAPE);
     }
 }

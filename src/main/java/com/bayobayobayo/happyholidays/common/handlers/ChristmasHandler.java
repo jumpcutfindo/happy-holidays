@@ -49,6 +49,8 @@ public class ChristmasHandler implements ModuleHandler {
                 BlockRegistry.GOLD_TINSEL_BLOCK.get(),
                 BlockRegistry.SILVER_TINSEL_BLOCK.get(),
 
+                BlockRegistry.RED_CHRISTMAS_LIGHT_BLOCK.get(),
+
                 BlockRegistry.GINGERBREAD_BLOCK.get(),
                 BlockRegistry.RAW_GINGERBREAD_BLOCK.get(),
                 BlockRegistry.SOGGY_GINGERBREAD_BLOCK.get(),

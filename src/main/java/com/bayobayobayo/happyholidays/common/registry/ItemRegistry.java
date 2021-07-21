@@ -17,6 +17,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornamen
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.SkeletonHeadOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.WitherSkeletonHeadOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.ZombieHeadOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.lights.RedChristmasLightBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.BlueTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GoldTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GreenTinselBlock;
@@ -143,6 +144,10 @@ public class ItemRegistry {
     public static final RegistryObject<BlockItem> SILVER_TINSEL_BLOCK_ITEM =
             ITEMS.register(SilverTinselBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.SILVER_TINSEL_BLOCK.get(),
                     SilverTinselBlock.ITEM_PROPERTIES));
+
+    public static final RegistryObject<BlockItem> RED_CHRISTMAS_LIGHT_BLOCK_ITEM =
+            ITEMS.register(RedChristmasLightBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.RED_CHRISTMAS_LIGHT_BLOCK.get(),
+                    RedChristmasLightBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<BlockItem> RAW_GINGERBREAD_BLOCK_ITEM =
             ITEMS.register(RawGingerbreadBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.RAW_GINGERBREAD_BLOCK.get(),

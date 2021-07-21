@@ -36,22 +36,13 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
     public static final EnumProperty<WallDecorationShape> WALL_SHAPE = EnumProperty.create("decoration_shape",
             WallDecorationShape.class);
 
-    private static final Properties BLOCK_PROPERTIES =
-            AbstractBlock.Properties
-                .of(Material.WOOL)
-                .harvestLevel(-1)
-                .strength(0.1f)
-                .sound(SoundType.WOOL)
-                .noOcclusion()
-                .noCollission();
-
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
     private final VoxelShape shape;
 
-    public ConnectedOrnamentBlock(String blockId, VoxelShape shape) {
-        super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+    public ConnectedOrnamentBlock(String blockId, AbstractBlock.Properties blockProperties, VoxelShape shape) {
+        super(blockId, blockProperties, ITEM_PROPERTIES);
 
         this.shape = shape;
 

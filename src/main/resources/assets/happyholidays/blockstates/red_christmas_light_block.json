@@ -1,0 +1,67 @@
+{
+    "variants": {
+        "facing=east,decoration_shape=straight": {
+            "model": "happyholidays:block/red_christmas_light_block",
+            "y": 90
+        },
+        "facing=north,decoration_shape=straight": {
+            "model": "happyholidays:block/red_christmas_light_block"
+        },
+        "facing=south,decoration_shape=straight": {
+            "model": "happyholidays:block/red_christmas_light_block",
+            "y": 180
+        },
+        "facing=west,decoration_shape=straight": {
+            "model": "happyholidays:block/red_christmas_light_block",
+            "y": 270
+        },
+        "facing=east,decoration_shape=left_face": {
+            "model": "happyholidays:block/red_christmas_light_block_left_face",
+            "y": 90
+        },
+        "facing=north,decoration_shape=left_face": {
+            "model": "happyholidays:block/red_christmas_light_block_left_face"
+        },
+        "facing=south,decoration_shape=left_face": {
+            "model": "happyholidays:block/red_christmas_light_block_left_face",
+            "y": 180
+        },
+        "facing=west,decoration_shape=left_face": {
+            "model": "happyholidays:block/red_christmas_light_block_left_face",
+            "y": 270
+        },
+        "facing=east,decoration_shape=right_face": {
+            "model": "happyholidays:block/red_christmas_light_block_right_face",
+            "y": 90
+        },
+        "facing=north,decoration_shape=right_face": {
+            "model": "happyholidays:block/red_christmas_light_block_right_face"
+        },
+        "facing=south,decoration_shape=right_face": {
+            "model": "happyholidays:block/red_christmas_light_block_right_face",
+            "y": 180
+        },
+        "facing=west,decoration_shape=right_face": {
+            "model": "happyholidays:block/red_christmas_light_block_right_face",
+            "y": 270
+        },
+        "facing=east,decoration_shape=side_face": {
+            "model": "happyholidays:block/red_christmas_light_block_side_face",
+            "y": 90
+        },
+        "facing=north,decoration_shape=side_face": {
+            "model": "happyholidays:block/red_christmas_light_block_side_face"
+        },
+        "facing=south,decoration_shape=side_face": {
+            "model": "happyholidays:block/red_christmas_light_block_side_face",
+            "y": 180
+        },
+        "facing=west,decoration_shape=side_face": {
+            "model": "happyholidays:block/red_christmas_light_block_side_face",
+            "y": 270
+        },
+        "decoration_shape=all_face": {
+            "model": "happyholidays:block/red_christmas_light_block_all_face"
+        }
+    }
+}

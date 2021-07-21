@@ -18,6 +18,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornamen
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.SkeletonHeadOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.WitherSkeletonHeadOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.ZombieHeadOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.lights.RedChristmasLightBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.BlueTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GoldTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GreenTinselBlock;
@@ -97,6 +98,9 @@ public class BlockRegistry {
             BLOCKS.register(GoldTinselBlock.BLOCK_ID, GoldTinselBlock::new);
     public static final RegistryObject<ChristmasBlock> SILVER_TINSEL_BLOCK =
             BLOCKS.register(SilverTinselBlock.BLOCK_ID, SilverTinselBlock::new);
+
+    public static final RegistryObject<ChristmasBlock> RED_CHRISTMAS_LIGHT_BLOCK =
+            BLOCKS.register(RedChristmasLightBlock.BLOCK_ID, RedChristmasLightBlock::new);
 
     public static final RegistryObject<ChristmasBlock> RAW_GINGERBREAD_BLOCK =
             BLOCKS.register(RawGingerbreadBlock.BLOCK_ID, RawGingerbreadBlock::new);
