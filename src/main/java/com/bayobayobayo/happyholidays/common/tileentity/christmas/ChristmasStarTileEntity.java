@@ -2,6 +2,7 @@ package com.bayobayobayo.happyholidays.common.tileentity.christmas;
 
 import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.HeadOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
 import com.bayobayobayo.happyholidays.common.container.christmas.ChristmasStarContainer;
@@ -173,7 +174,8 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
         for (ItemStack itemStack : items) {
             if (itemStack.getItem() instanceof ChristmasItem) newPoints += 5;
             else if (itemStack.getItem() instanceof BlockItem) {
-                if (((BlockItem) itemStack.getItem()).getBlock() instanceof ChristmasBlock) newPoints += 5;
+                if (((BlockItem) itemStack.getItem()).getBlock() instanceof HeadOrnamentBlock) newPoints += 10;
+                else if (((BlockItem) itemStack.getItem()).getBlock() instanceof ChristmasBlock) newPoints += 5;
             }
         }
 
