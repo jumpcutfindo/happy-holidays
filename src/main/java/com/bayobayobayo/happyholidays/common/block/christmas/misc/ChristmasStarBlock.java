@@ -4,11 +4,13 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.WallDecorationShape;
 import com.bayobayobayo.happyholidays.common.handlers.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.registry.TileEntityRegistry;
 import com.bayobayobayo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -31,6 +33,9 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -57,6 +62,11 @@ public class ChristmasStarBlock extends ChristmasBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
+    public static final VoxelShape SHAPE = VoxelShapes.or(
+            HappyHolidaysUtils.createShape(2.0, 0.0, 2.0, 14.0, 1.0, 14.0),
+            HappyHolidaysUtils.createShape(3.0, 1.0, 3.0, 13.0, 16.0, 13.0)
+    );
+
     public ChristmasStarBlock() {
         super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
@@ -66,7 +76,7 @@ public class ChristmasStarBlock extends ChristmasBlock {
 
     @Override
     public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(this, RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(this, RenderType.cutout());
     }
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
@@ -100,6 +110,12 @@ public class ChristmasStarBlock extends ChristmasBlock {
     }
 
     @Override
+    public VoxelShape getShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos,
+                               ISelectionContext context) {
+        return SHAPE;
+    }
+
+    @Override
     public ActionResultType use(BlockState blockState, World world, BlockPos blockPos,
                                 PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
         if (world.isClientSide()) return ActionResultType.SUCCESS;
@@ -120,5 +136,10 @@ public class ChristmasStarBlock extends ChristmasBlock {
         if (te instanceof ChristmasStarTileEntity) {
             InventoryHelper.dropContents(world, blockPos, (ChristmasStarTileEntity) te);
         }
+    }
+
+    @Override
+    public boolean propagatesSkylightDown(BlockState blockState, IBlockReader blockReader, BlockPos blockPos) {
+        return blockState.getFluidState().isEmpty();
     }
 }

@@ -6,26 +6,18 @@ import com.bayobayobayo.happyholidays.common.block.christmas.misc.ChristmasStarB
 import com.bayobayobayo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
 import com.bayobayobayo.happyholidays.common.container.christmas.ChristmasStarContainer;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
-import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
 import com.bayobayobayo.happyholidays.common.registry.TileEntityRegistry;
 
-import net.minecraft.block.BeaconBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.NoteBlock;
+import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.state.properties.NoteBlockInstrument;
-import net.minecraft.tileentity.BeaconTileEntity;
-import net.minecraft.tileentity.FurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.IIntArray;
@@ -34,7 +26,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.event.world.NoteBlockEvent;
 
 public class ChristmasStarTileEntity extends LockableTileEntity implements ChristmasTileEntity, ITickableTileEntity {
     public static final String TILE_ENTITY_ID = "christmas_star_block";
@@ -220,7 +211,8 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
             this.level.setBlock(this.worldPosition, this.getBlockState().setValue(ChristmasStarBlock.STAR_TIER,
                     starTier), 0);
             this.level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(),
-                    this.worldPosition.getZ(), SoundEvents.NOTE_BLOCK_BELL, SoundCategory.BLOCKS, 1.0F, 1.0F + newTier);
+                    this.worldPosition.getZ(), SoundEvents.NOTE_BLOCK_BELL, SoundCategory.BLOCKS, 1.0F,
+                    1.0F + newTier * 0.1F);
         }
     }
 }

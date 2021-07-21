@@ -44,7 +44,7 @@ public class PresentBlock extends ChristmasBlock {
 
     @Override
     public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(this, RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(this, RenderType.cutout());
     }
 
     @Override
