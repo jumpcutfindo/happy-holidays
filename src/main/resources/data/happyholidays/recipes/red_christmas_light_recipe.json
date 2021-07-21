@@ -2,21 +2,21 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         " # ",
-        "RAR"
+        "RGR"
     ],
     "key": {
         "#": {
             "item": "minecraft:string"
         },
         "R": {
-            "item": "minecraft:glass"
+            "item": "minecraft:red_stained_glass"
         },
-        "A": {
-            "item": "minecraft:iron_ingot"
+        "G": {
+            "item": "minecraft:glowstone_dust"
         }
     },
     "result": {
-        "item": "happyholidays:big_silver_ball_ornament_block",
+        "item": "happyholidays:red_christmas_light_block",
         "count": 2
     }
 }

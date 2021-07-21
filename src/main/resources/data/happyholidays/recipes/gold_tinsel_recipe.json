@@ -1,7 +1,7 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        " # ",
+        "###",
         "RAR"
     ],
     "key": {
@@ -9,14 +9,14 @@
             "item": "minecraft:string"
         },
         "R": {
-            "item": "minecraft:glass"
+            "item": "minecraft:white_wool"
         },
         "A": {
-            "item": "minecraft:iron_ingot"
+            "item": "minecraft:gold_ingot"
         }
     },
     "result": {
-        "item": "happyholidays:big_silver_ball_ornament_block",
-        "count": 2
+        "item": "happyholidays:gold_tinsel_block",
+        "count": 4
     }
 }

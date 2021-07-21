@@ -57,7 +57,18 @@ public class ChristmasStarBlock extends ChristmasBlock {
                     .strength(0.25f)
                     .sound(SoundType.GLASS)
                     .noOcclusion()
-                    .noCollission();
+                    .noCollission()
+                    .lightLevel(blockState -> {
+                        ChristmasStarTier tier = blockState.getValue(STAR_TIER);
+                        switch (tier) {
+                        case TIER_1: return 4;
+                        case TIER_2: return 6;
+                        case TIER_3: return 8;
+                        case TIER_4: return 10;
+                        case TIER_5: return 14;
+                        default: return 0;
+                        }
+                    });
 
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);

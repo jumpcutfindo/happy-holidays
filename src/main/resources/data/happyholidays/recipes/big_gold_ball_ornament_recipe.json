@@ -2,14 +2,17 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         " # ",
-        "RRR"
+        "RAR"
     ],
     "key": {
         "#": {
             "item": "minecraft:string"
         },
         "R": {
-            "item": "minecraft:gold_stained_glass"
+            "item": "minecraft:glass"
+        },
+        "A": {
+            "item": "minecraft:gold_ingot"
         }
     },
     "result": {

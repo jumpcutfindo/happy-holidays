@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "RRR"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:string"
+        },
+        "R": {
+            "item": "minecraft:blue_wool"
+        }
+    },
+    "result": {
+        "item": "happyholidays:blue_tinsel_block",
+        "count": 4
+    }
+}
