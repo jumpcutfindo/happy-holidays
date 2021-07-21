@@ -13,6 +13,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornamen
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.RedBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.SilverBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.YellowBallOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.CreeperOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.BlueTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GoldTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GreenTinselBlock;
@@ -85,7 +86,6 @@ public class ItemRegistry {
                     () -> new BlockItem(BlockRegistry.SILVER_BALL_ORNAMENT_BLOCK.get(),
                     SilverBallOrnamentBlock.ITEM_PROPERTIES));
 
-
     public static final RegistryObject<BlockItem> BIG_RED_BALL_ORNAMENT_BLOCK_ITEM =
             ITEMS.register(BigRedBallOrnamentBlock.BLOCK_ID,
                     () -> new BlockItem(BlockRegistry.BIG_RED_BALL_ORNAMENT_BLOCK.get(),
@@ -110,6 +110,10 @@ public class ItemRegistry {
             ITEMS.register(BigSilverBallOrnamentBlock.BLOCK_ID,
                     () -> new BlockItem(BlockRegistry.BIG_SILVER_BALL_ORNAMENT_BLOCK.get(),
                             BigSilverBallOrnamentBlock.ITEM_PROPERTIES));
+
+    public static final RegistryObject<BlockItem> CREEPER_ORNAMENT_BLOCK_ITEM =
+            ITEMS.register(CreeperOrnamentBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.CREEPER_ORNAMENT_BLOCK.get(),
+                    CreeperOrnamentBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<BlockItem> RED_TINSEL_BLOCK_ITEM =
             ITEMS.register(RedTinselBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.RED_TINSEL_BLOCK.get(),

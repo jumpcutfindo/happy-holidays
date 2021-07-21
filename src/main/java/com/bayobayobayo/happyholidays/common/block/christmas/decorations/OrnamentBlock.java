@@ -10,6 +10,7 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SkullBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
@@ -50,8 +51,6 @@ public class OrnamentBlock extends ChristmasBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
-
-
     public VoxelShape normalShape, hangingShape, wallShape;
 
     public OrnamentBlock(String blockId, VoxelShape[] ornamentShapes) {
@@ -69,29 +68,30 @@ public class OrnamentBlock extends ChristmasBlock {
 
     @Override
     public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(this, RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(this, RenderType.cutout());
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         Direction clickedFaceDirection = context.getClickedFace();
         Direction.Axis clickedFaceAxis = clickedFaceDirection.getAxis();
-        BlockPos blockpos = context.getClickedPos();
+        BlockPos blockPos = context.getClickedPos();
         World world = context.getLevel();
 
         BlockState blockState = null;
 
         if (clickedFaceAxis == Direction.Axis.Y) {
             blockState = this.defaultBlockState()
-                    .setValue(ATTACH_FACE, clickedFaceDirection == Direction.UP ? AttachFace.FLOOR : AttachFace.CEILING);
+                    .setValue(ATTACH_FACE, clickedFaceDirection == Direction.UP ? AttachFace.FLOOR : AttachFace.CEILING)
+                    .setValue(FACING, context.getHorizontalDirection());
         } else {
             blockState = this.defaultBlockState()
                     .setValue(ATTACH_FACE, AttachFace.WALL)
                     .setValue(FACING, clickedFaceDirection.getOpposite());
         }
 
-        return canSurvive(blockState, world, blockpos) ? blockState
-                : canSupportCenter(world, blockpos.below(), Direction.UP) ? this.defaultBlockState().setValue(ATTACH_FACE, AttachFace.FLOOR)
+        return canSurvive(blockState, world, blockPos) ? blockState
+                : canSupportCenter(world, blockPos.below(), Direction.UP) ? this.defaultBlockState().setValue(ATTACH_FACE, AttachFace.FLOOR)
                 : null;
     }
 

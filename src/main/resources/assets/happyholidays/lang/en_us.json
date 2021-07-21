@@ -24,6 +24,11 @@
     "block.happyholidays.silver_tinsel_block": "Silver Tinsel",
     "block.happyholidays.gold_tinsel_block": "Gold Tinsel",
 
+    "block.happyholidays.creeper_ornament_block": "Creeper Ornament",
+    "block.happyholidays.skeleton_ornament_block": "Skeleton Ornament",
+    "block.happyholidays.wither_skeleton_ornament_block": "Wither Skeleton Ornament",
+    "block.happyholidays.zombie_ornament_block": "Zombie Ornament",
+
     "block.happyholidays.raw_gingerbread_block": "Block of Gingerbread Dough",
     "block.happyholidays.gingerbread_block": "Block of Gingerbread",
     "block.happyholidays.soggy_gingerbread_block": "Block of Soggy Gingerbread",

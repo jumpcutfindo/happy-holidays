@@ -14,6 +14,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornamen
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.RedBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.SilverBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.YellowBallOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.CreeperOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.BlueTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GoldTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GreenTinselBlock;
@@ -59,7 +60,6 @@ public class BlockRegistry {
     public static final RegistryObject<ChristmasBlock> SILVER_BALL_ORNAMENT_BLOCK =
             BLOCKS.register(SilverBallOrnamentBlock.BLOCK_ID, SilverBallOrnamentBlock::new);
 
-
     public static final RegistryObject<ChristmasBlock> BIG_RED_BALL_ORNAMENT_BLOCK =
             BLOCKS.register(BigRedBallOrnamentBlock.BLOCK_ID, BigRedBallOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> BIG_BLUE_BALL_ORNAMENT_BLOCK =
@@ -72,6 +72,9 @@ public class BlockRegistry {
             BLOCKS.register(BigGoldBallOrnamentBlock.BLOCK_ID, BigGoldBallOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> BIG_SILVER_BALL_ORNAMENT_BLOCK =
             BLOCKS.register(BigSilverBallOrnamentBlock.BLOCK_ID, BigSilverBallOrnamentBlock::new);
+
+    public static final RegistryObject<ChristmasBlock> CREEPER_ORNAMENT_BLOCK =
+            BLOCKS.register(CreeperOrnamentBlock.BLOCK_ID, CreeperOrnamentBlock::new);
 
     public static final RegistryObject<ChristmasBlock> RED_TINSEL_BLOCK =
             BLOCKS.register(RedTinselBlock.BLOCK_ID, RedTinselBlock::new);

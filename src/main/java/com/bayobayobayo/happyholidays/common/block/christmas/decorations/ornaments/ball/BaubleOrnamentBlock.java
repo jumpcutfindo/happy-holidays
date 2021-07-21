@@ -8,7 +8,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 public class BaubleOrnamentBlock extends OrnamentBlock {
     public static final VoxelShape[] BAUBLE_SHAPES = new VoxelShape[] {
             HappyHolidaysUtils.createShape(6.0, 0.0, 6.0, 10.0, 5.0, 10.0),
-            HappyHolidaysUtils.createShape(6.0, 9.5, 6.0, 10.0, 16.0, 10.0),
+            HappyHolidaysUtils.createShape(6.0, 9.5, 6.0, 10.0, 13.5, 10.0),
             HappyHolidaysUtils.createShape(6.0, 0.0, 4.0, 10.0, 6.0, 0.0)
     };
 
