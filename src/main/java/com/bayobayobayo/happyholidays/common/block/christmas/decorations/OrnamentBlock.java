@@ -50,17 +50,7 @@ public class OrnamentBlock extends ChristmasBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
-    public static final VoxelShape[] BAUBLE_SHAPES = new VoxelShape[] {
-            HappyHolidaysUtils.createShape(6.0, 0.0, 6.0, 10.0, 5.0, 10.0),
-            HappyHolidaysUtils.createShape(6.0, 9.5, 6.0, 10.0, 16.0, 10.0),
-            HappyHolidaysUtils.createShape(6.0, 0.0, 4.0, 10.0, 6.0, 0.0)
-    };
 
-    public static final VoxelShape[] BIG_BAUBLE_SHAPES = new VoxelShape[] {
-            HappyHolidaysUtils.createShape(4.0, 0.0, 4.0, 12.0, 8.0, 12.0),
-            HappyHolidaysUtils.createShape(4.0, 3.75, 4.0, 12.0, 11.75, 12.0),
-            HappyHolidaysUtils.createShape(4.0, 0.0, 0.0, 12.0, 11.75, 8.0)
-    };
 
     public VoxelShape normalShape, hangingShape, wallShape;
 

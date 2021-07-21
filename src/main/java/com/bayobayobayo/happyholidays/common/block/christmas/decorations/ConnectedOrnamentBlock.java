@@ -48,12 +48,12 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
-    private static final VoxelShape SHAPE = VoxelShapes.or(
-            HappyHolidaysUtils.createShape(0.0, 0.0, 0.0, 16.0, 16.0 ,1.0)
-    );
+    private final VoxelShape shape;
 
-    public ConnectedOrnamentBlock(String blockId) {
+    public ConnectedOrnamentBlock(String blockId, VoxelShape shape) {
         super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+
+        this.shape = shape;
 
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
@@ -112,13 +112,13 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
         Direction direction = blockState.getValue(FACING);
 
         if (direction == Direction.NORTH) {
-            return SHAPE;
+            return shape;
         } else if (direction == Direction.SOUTH) {
-            return HappyHolidaysUtils.rotateShape(SHAPE, Rotation.CLOCKWISE_180);
+            return HappyHolidaysUtils.rotateShape(shape, Rotation.CLOCKWISE_180);
         } else if (direction == Direction.EAST) {
-            return HappyHolidaysUtils.rotateShape(SHAPE, Rotation.CLOCKWISE_90);
+            return HappyHolidaysUtils.rotateShape(shape, Rotation.CLOCKWISE_90);
         } else {
-            return HappyHolidaysUtils.rotateShape(SHAPE, Rotation.COUNTERCLOCKWISE_90);
+            return HappyHolidaysUtils.rotateShape(shape, Rotation.COUNTERCLOCKWISE_90);
         }
     }
 

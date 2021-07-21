@@ -2,10 +2,10 @@ package com.bayobayobayo.happyholidays.common.block.christmas.decorations.orname
 
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
 
-public class YellowBallOrnamentBlock extends OrnamentBlock {
+public class YellowBallOrnamentBlock extends BaubleOrnamentBlock {
     public static final String BLOCK_ID = "yellow_ball_ornament_block";
 
     public YellowBallOrnamentBlock() {
-        super(BLOCK_ID, BAUBLE_SHAPES);
+        super(BLOCK_ID);
     }
 }
