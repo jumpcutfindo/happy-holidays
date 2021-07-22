@@ -1,0 +1,25 @@
+{
+    "replace": false,
+    "values": [
+        "happyholidays:red_ball_ornament_block",
+        "happyholidays:blue_ball_ornament_block",
+        "happyholidays:yellow_ball_ornament_block",
+        "happyholidays:green_ball_ornament_block",
+        "happyholidays:gold_ball_ornament_block",
+        "happyholidays:silver_ball_ornament_block",
+
+        "happyholidays:big_red_ball_ornament_block",
+        "happyholidays:big_blue_ball_ornament_block",
+        "happyholidays:big_yellow_ball_ornament_block",
+        "happyholidays:big_green_ball_ornament_block",
+        "happyholidays:big_gold_ball_ornament_block",
+        "happyholidays:big_silver_ball_ornament_block",
+
+        "happyholidays:red_tinsel_block",
+        "happyholidays:blue_tinsel_block",
+        "happyholidays:yellow_tinsel_block",
+        "happyholidays:green_tinsel_block",
+        "happyholidays:gold_tinsel_block",
+        "happyholidays:silver_tinsel_block"
+    ]
+}

@@ -9,7 +9,7 @@
                     "children": [
                         {
                             "type": "minecraft:item",
-                            "name": "happyholidays:present_block"
+                            "name": "happyholidays:elder_present_block"
                         }
                     ]
                 }
@@ -39,7 +39,7 @@
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 2
+                            "count": 3
                         }
                     ]
                 }
@@ -68,15 +68,15 @@
             "entries": [
                 {
                     "type": "minecraft:tag",
-                    "weight": 15,
+                    "weight": 10,
                     "name": "happyholidays:basic_ornaments",
                     "expand": true,
                     "functions": [
                         {
                             "function": "minecraft:set_count",
                             "count": {
-                                "min": 2,
-                                "max": 4
+                                "min": 3,
+                                "max": 6
                             }
                         }
                     ]

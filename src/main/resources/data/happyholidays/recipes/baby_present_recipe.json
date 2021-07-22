@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "R#R",
+        "WWW"
+    ],
+    "key": {
+        "#": {
+            "item": "happyholidays:present_scraps"
+        },
+        "R": {
+            "item": "minecraft:string"
+        },
+        "W": {
+            "tag": "minecraft:wool"
+        }
+    },
+    "result": {
+        "item": "happyholidays:baby_present_block",
+        "count": 1
+    }
+}

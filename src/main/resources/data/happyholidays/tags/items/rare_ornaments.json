@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+        "happyholidays:skeleton_head_ornament_block",
+        "happyholidays:creeper_head_ornament_block",
+        "happyholidays:wither_skeleton_head_ornament_block",
+        "happyholidays:zombie_head_ornament_block"
+    ]
+}
