@@ -38,7 +38,9 @@ public class PresentBlock extends ChristmasBlock {
                     .randomTicks();
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties()
+                    .stacksTo(16)
+                    .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
     public static final float GROWTH_PROBABILITY = 1.0f / 512.0f;
 
