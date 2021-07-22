@@ -2,6 +2,8 @@ package com.bayobayobayo.happyholidays.common.registry;
 
 import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigBlueBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigGoldBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigGreenBallOrnamentBlock;
@@ -108,6 +110,11 @@ public class BlockRegistry {
             BLOCKS.register(GingerbreadBlock.BLOCK_ID, GingerbreadBlock::new);
     public static final RegistryObject<ChristmasBlock> SOGGY_GINGERBREAD_BLOCK =
             BLOCKS.register(SoggyGingerbreadBlock.BLOCK_ID, SoggyGingerbreadBlock::new);
+
+    public static final RegistryObject<ChristmasBlock> CANDY_CANE_BLOCK =
+            BLOCKS.register(CandyCaneBlock.BLOCK_ID, CandyCaneBlock::new);
+    public static final RegistryObject<ChristmasBlock> FESTIVE_CANDY_CANE_BLOCK =
+            BLOCKS.register(FestiveCandyCaneBlock.BLOCK_ID, FestiveCandyCaneBlock::new);
 
     public static final RegistryObject<ChristmasBlock> CHRISTMAS_STAR_BLOCK =
             BLOCKS.register(ChristmasStarBlock.BLOCK_ID, ChristmasStarBlock::new);

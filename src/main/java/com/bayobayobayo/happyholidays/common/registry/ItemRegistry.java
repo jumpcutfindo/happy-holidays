@@ -1,6 +1,8 @@
 package com.bayobayobayo.happyholidays.common.registry;
 
 import com.bayobayobayo.happyholidays.HappyHolidaysMod;
+import com.bayobayobayo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigBlueBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigGoldBallOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigGreenBallOrnamentBlock;
@@ -161,6 +163,14 @@ public class ItemRegistry {
     public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_BLOCK_ITEM =
             ITEMS.register(SoggyGingerbreadBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.SOGGY_GINGERBREAD_BLOCK.get(),
                     SoggyGingerbreadBlock.ITEM_PROPERITES));
+
+    public static final RegistryObject<BlockItem> CANDY_CANE_BLOCK_ITEM =
+            ITEMS.register(CandyCaneBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.CANDY_CANE_BLOCK.get(),
+                            CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_BLOCK_ITEM =
+            ITEMS.register(FestiveCandyCaneBlock.BLOCK_ID,
+                    () -> new BlockItem(BlockRegistry.FESTIVE_CANDY_CANE_BLOCK.get(),
+                            FestiveCandyCaneBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<BlockItem> CHRISTMAS_STAR_BLOCK_ITEM =
             ITEMS.register(ChristmasStarBlock.BLOCK_ID, () -> new BlockItem(BlockRegistry.CHRISTMAS_STAR_BLOCK.get(),
