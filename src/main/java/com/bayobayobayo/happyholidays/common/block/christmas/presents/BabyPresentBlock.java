@@ -44,7 +44,7 @@ public class BabyPresentBlock extends PresentBlock {
                 world.getBlockState(blockPos.above()), world, blockPos, blockPos.above());
 
         boolean isGrow = net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world ,blockPos, blockState,
-                random.nextInt((int)(25.0F / GROWTH_SPEED) + 1) == 0);
+                random.nextInt((int)(1.0 / GROWTH_PROBABILITY)) == 0);
 
         if (isGrow) {
             world.setBlock(blockPos, nextBlockState, 2);

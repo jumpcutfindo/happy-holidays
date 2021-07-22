@@ -2,8 +2,10 @@ package com.bayobayobayo.happyholidays;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.net.Priority;
 
 import com.bayobayobayo.happyholidays.common.handlers.AttributeHandler;
+import com.bayobayobayo.happyholidays.common.handlers.GenerationHandler;
 import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.handlers.RendererHandler;
 import com.bayobayobayo.happyholidays.common.handlers.SpawningHandler;
@@ -63,8 +65,9 @@ public class HappyHolidaysMod {
     }
 
     @SubscribeEvent
-    public void registerEntitySpawns(final BiomeLoadingEvent event) {
+    public void onBiomeLoading(final BiomeLoadingEvent event) {
         SpawningHandler.handleEntitySpawningStuff(event);
+        GenerationHandler.handleBlockGenerationStuff(event);
     }
 
 

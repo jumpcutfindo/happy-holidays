@@ -8,9 +8,9 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class GingerbreadManEntity extends GingerbreadPersonEntity {
-    public static final int SPAWN_PROBABILITY = 300;
+    public static final int SPAWN_PROBABILITY = 150;
     public static final int MIN_SPAWN_COUNT = 2;
-    public static final int MAX_SPAWN_COUNT = 5;
+    public static final int MAX_SPAWN_COUNT = 4;
 
     public static final String ENTITY_ID = "gingerbread_man";
 

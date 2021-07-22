@@ -12,6 +12,7 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
 public class SpawningHandler {
+
     public static void handleEntityPlacementStuff() {
         // Register spawning rules
         EntitySpawnPlacementRegistry.register(
