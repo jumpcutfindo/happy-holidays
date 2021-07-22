@@ -43,8 +43,8 @@ public class BabyPresentBlock extends PresentBlock {
         if (!this.canSurvive(blockState, world, blockPos)) this.updateShape(blockState, Direction.UP,
                 world.getBlockState(blockPos.above()), world, blockPos, blockPos.above());
 
-        boolean isGrow = net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world ,blockPos, blockState,
-                random.nextInt((int)(1.0 / GROWTH_PROBABILITY)) == 0);
+        boolean isGrow = PresentBlock.canGrow(world, blockState, blockPos)
+                && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world, blockPos, blockState, random.nextInt((int)(1.0 / GROWTH_PROBABILITY)) == 0);
 
         if (isGrow) {
             world.setBlock(blockPos, nextBlockState, 2);

@@ -68,7 +68,12 @@ public class PresentBlock extends ChristmasBlock {
 
     @Override
     public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
-        // TODO: Fix survivability logic?
         return true;
+    }
+
+    public static boolean canGrow(IWorld world, BlockState blockState, BlockPos blockPos) {
+        return !world.getBlockState(blockPos.above()).is(BlockTags.LEAVES)
+                && !world.getBlockState(blockPos.above().above()).is(BlockTags.LEAVES)
+                && !world.getBlockState(blockPos.above().above().above()).is(BlockTags.LEAVES);
     }
 }
