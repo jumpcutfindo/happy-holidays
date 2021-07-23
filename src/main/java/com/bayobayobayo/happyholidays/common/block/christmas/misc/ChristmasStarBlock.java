@@ -11,6 +11,7 @@ import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.SkullBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
@@ -18,15 +19,22 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
+import net.minecraft.loot.functions.FillPlayerHead;
 import net.minecraft.state.EnumProperty;
+import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -38,6 +46,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class ChristmasStarBlock extends ChristmasBlock {
     public static final EnumProperty<ChristmasStarTier> STAR_TIER = EnumProperty.create("christmas_star_tier",
             ChristmasStarTier.class);
+    public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
 
     public static final String BLOCK_ID = "christmas_star_block";
 
@@ -65,24 +74,24 @@ public class ChristmasStarBlock extends ChristmasBlock {
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
     public static final VoxelShape SHAPE = VoxelShapes.or(
-            HappyHolidaysUtils.createShape(2.0, 0.0, 2.0, 14.0, 1.0, 14.0),
-            HappyHolidaysUtils.createShape(3.0, 1.0, 3.0, 13.0, 16.0, 13.0)
+            Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 16.0)
     );
 
     public ChristmasStarBlock() {
         super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(STAR_TIER, ChristmasStarTier.TIER_1)
+                .setValue(ROTATION, 0)
         );
     }
 
     @Override
     public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(this, RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(this, RenderType.cutoutMipped());
     }
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(STAR_TIER);
+        stateBuilder.add(STAR_TIER, ROTATION);
     }
 
     @Override
@@ -97,16 +106,39 @@ public class ChristmasStarBlock extends ChristmasBlock {
     }
 
     @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        return this.defaultBlockState()
+                .setValue(STAR_TIER, ChristmasStarTier.TIER_1)
+                .setValue(ROTATION, MathHelper.floor((double) (context.getRotation() * 16.0F / 360.0F) + 0.5D) & 15);
+    }
+
+    @Override
+    public BlockState rotate(BlockState p_185499_1_, Rotation p_185499_2_) {
+        return p_185499_1_.setValue(ROTATION, p_185499_2_.rotate(p_185499_1_.getValue(ROTATION), 16));
+    }
+
+    @Override
+    public BlockState mirror(BlockState p_185471_1_, Mirror p_185471_2_) {
+        return p_185471_1_.setValue(ROTATION, p_185471_2_.mirror(p_185471_1_.getValue(ROTATION), 16));
+    }
+
+    @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
                                   IWorld world, BlockPos pos1, BlockPos pos2) {
         ChristmasStarTier tier = blockState.getValue(STAR_TIER);
+        int rotation = blockState.getValue(ROTATION);
 
         switch (tier) {
-        case TIER_1: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_1);
-        case TIER_2: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_2);
-        case TIER_3: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_3);
-        case TIER_4: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_4);
-        case TIER_5: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_5);
+        case TIER_1: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_1).setValue(ROTATION,
+                rotation);
+        case TIER_2: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_2).setValue(ROTATION,
+                rotation);
+        case TIER_3: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_3).setValue(ROTATION,
+                rotation);
+        case TIER_4: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_4).setValue(ROTATION,
+                rotation);
+        case TIER_5: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_5).setValue(ROTATION,
+                rotation);
         default: return this.defaultBlockState();
         }
     }
