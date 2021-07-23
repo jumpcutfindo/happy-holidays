@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "RGR",
+        " A "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:string"
+        },
+        "R": {
+            "item": "minecraft:glass"
+        },
+        "G": {
+            "item": "minecraft:glowstone_dust"
+        },
+        "A": {
+            "item": "minecraft:gold_ingot"
+        }
+    },
+    "result": {
+        "item": "happyholidays:gold_christmas_light_block",
+        "count": 2
+    }
+}

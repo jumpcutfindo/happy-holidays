@@ -20,6 +20,13 @@
         "happyholidays:yellow_tinsel_block",
         "happyholidays:green_tinsel_block",
         "happyholidays:gold_tinsel_block",
-        "happyholidays:silver_tinsel_block"
+        "happyholidays:silver_tinsel_block",
+
+        "happyholidays:red_christmas_light_block",
+        "happyholidays:blue_christmas_light_block",
+        "happyholidays:yellow_christmas_light_block",
+        "happyholidays:green_christmas_light_block",
+        "happyholidays:gold_christmas_light_block",
+        "happyholidays:silver_christmas_light_block"
     ]
 }
