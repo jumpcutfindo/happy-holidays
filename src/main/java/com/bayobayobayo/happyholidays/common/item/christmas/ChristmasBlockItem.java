@@ -7,8 +7,9 @@ import javax.annotation.Nullable;
 
 import com.bayobayobayo.happyholidays.common.item.HappyHolidaysItem;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -16,32 +17,22 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.RegistryObject;
 
-public class ChristmasItem extends Item implements HappyHolidaysItem {
-    private final String itemId;
-    private final Item.Properties properties;
+public class ChristmasBlockItem extends BlockItem implements HappyHolidaysItem {
+    public Block block;
+    public Properties properties;
 
     public ChristmasRarity christmasRarity;
     public List<String> tooltipDescriptions;
 
-    public ChristmasItem(String itemId, Item.Properties properties) {
-        super(properties);
+    public ChristmasBlockItem(Block block, Properties properties) {
+        super(block, properties);
 
-        this.itemId = itemId;
+        this.block = block;
         this.properties = properties;
 
         this.christmasRarity = ChristmasRarity.COMMON;
         this.tooltipDescriptions = new ArrayList<>();
-    }
-
-    @Override
-    public Item.Properties getProperties() {
-        return properties;
-    }
-
-    @Override
-    public void configureItem() {
     }
 
     @Override
@@ -63,5 +54,22 @@ public class ChristmasItem extends Item implements HappyHolidaysItem {
         for (String description : tooltipDescriptions) {
             textComponents.add(new StringTextComponent(description));
         }
+    }
+
+    @Override
+    public Properties getProperties() {
+        return properties;
+    }
+
+    @Override
+    public void configureItem() {
+    }
+
+    public void setChristmasRarity(ChristmasRarity rarity) {
+        this.christmasRarity = rarity;
+    }
+
+    public void setTooltipDescriptions(List<String> tooltipDescriptions) {
+        this.tooltipDescriptions = tooltipDescriptions;
     }
 }

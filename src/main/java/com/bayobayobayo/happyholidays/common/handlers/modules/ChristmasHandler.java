@@ -2,7 +2,9 @@ package com.bayobayobayo.happyholidays.common.handlers.modules;
 
 import com.bayobayobayo.happyholidays.client.screen.ChristmasStarScreen;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
 import com.bayobayobayo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
