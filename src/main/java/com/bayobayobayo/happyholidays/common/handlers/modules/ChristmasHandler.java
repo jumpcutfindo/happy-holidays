@@ -65,7 +65,8 @@ public class ChristmasHandler implements ModuleHandler {
                 ItemRegistry.GINGERBREAD_COOKIE.get(),
                 ItemRegistry.PRESENT_SCRAPS.get(),
                 ItemRegistry.CANDY_CANE.get(),
-                ItemRegistry.FESTIVE_CANDY_CANE.get()
+                ItemRegistry.FESTIVE_CANDY_CANE.get(),
+                ItemRegistry.ENCHANTED_CANDY_CANE.get()
         };
     }
 
