@@ -7,7 +7,7 @@
 	},
 	"elements": [
 		{
-			"name": "Chain 1",
+			"name": "chain_1",
 			"from": [8, 4.10293, -0.15031],
 			"to": [8, 6.10293, 0.84969],
 			"rotation": {"angle": -45, "axis": "x", "origin": [8, 5.35293, 0.59969]},
@@ -21,7 +21,7 @@
 			}
 		},
 		{
-			"name": "Chain 2",
+			"name": "chain_2",
 			"from": [7.5, 4.10293, 0.34969],
 			"to": [8.5, 6.10293, 0.34969],
 			"rotation": {"angle": -45, "axis": "x", "origin": [8, 5.35293, 0.59969]},
@@ -35,7 +35,7 @@
 			}
 		},
 		{
-			"name": "Top 1",
+			"name": "top_1",
 			"from": [6.75, 4.25, -0.25],
 			"to": [9.25, 4.75, 2.25],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 4.5, 2]},
@@ -49,7 +49,7 @@
 			}
 		},
 		{
-			"name": "Top 2",
+			"name": "top_2",
 			"from": [7.25, 4.75, 0.25],
 			"to": [8.75, 5.25, 1.75],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 4.5, 2]},
@@ -63,17 +63,17 @@
 			}
 		},
 		{
-			"name": "Ornament Bottom",
+			"name": "ornament_bottom",
 			"from": [6, 0, 0],
 			"to": [10, 4, 4],
 			"rotation": {"angle": -22.5, "axis": "x", "origin": [8, 2, 2]},
 			"faces": {
-				"north": {"uv": [8, 0, 16, 16], "texture": "#0"},
-				"east": {"uv": [8, 0, 16, 16], "texture": "#0"},
-				"south": {"uv": [8, 0, 16, 16], "texture": "#0"},
-				"west": {"uv": [8, 0, 16, 16], "texture": "#0"},
-				"up": {"uv": [8, 0, 16, 16], "rotation": 270, "texture": "#0"},
-				"down": {"uv": [8, 0, 12, 4], "rotation": 90, "texture": "#0"}
+				"north": {"uv": [12, 6, 14, 10], "texture": "#0"},
+				"east": {"uv": [10, 10, 12, 14], "texture": "#0"},
+				"south": {"uv": [8, 6, 10, 10], "texture": "#0"},
+				"west": {"uv": [10, 2, 12, 6], "texture": "#0"},
+				"up": {"uv": [14, 6, 16, 10], "rotation": 270, "texture": "#0"},
+				"down": {"uv": [10, 6, 12, 10], "rotation": 90, "texture": "#0"}
 			}
 		}
 	],

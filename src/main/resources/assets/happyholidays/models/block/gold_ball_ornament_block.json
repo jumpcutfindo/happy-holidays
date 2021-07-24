@@ -7,7 +7,7 @@
 	},
 	"elements": [
 		{
-			"name": "Top 1",
+			"name": "top_1",
 			"from": [6.75, 4, 6.75],
 			"to": [9.25, 4.5, 9.25],
 			"faces": {
@@ -20,7 +20,7 @@
 			}
 		},
 		{
-			"name": "Top 2",
+			"name": "top_2",
 			"from": [7.25, 4.5, 7.25],
 			"to": [8.75, 5, 8.75],
 			"faces": {
@@ -33,16 +33,16 @@
 			}
 		},
 		{
-			"name": "Ornament Bottom",
+			"name": "ornament_bottom",
 			"from": [6, 0, 6],
 			"to": [10, 4, 10],
 			"faces": {
-				"north": {"uv": [8, 0, 16, 16], "texture": "#0"},
-				"east": {"uv": [8, 0, 16, 16], "texture": "#0"},
-				"south": {"uv": [8, 0, 16, 16], "texture": "#0"},
-				"west": {"uv": [8, 0, 16, 16], "texture": "#0"},
-				"up": {"uv": [8, 0, 16, 16], "texture": "#0"},
-				"down": {"uv": [8, 0, 12, 4], "texture": "#0"}
+				"north": {"uv": [12, 6, 14, 10], "texture": "#0"},
+				"east": {"uv": [10, 10, 12, 14], "texture": "#0"},
+				"south": {"uv": [8, 6, 10, 10], "texture": "#0"},
+				"west": {"uv": [10, 2, 12, 6], "texture": "#0"},
+				"up": {"uv": [14, 6, 16, 10], "texture": "#0"},
+				"down": {"uv": [10, 6, 12, 10], "texture": "#0"}
 			}
 		}
 	],
