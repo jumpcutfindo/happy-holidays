@@ -89,6 +89,7 @@ public class ChristmasStarBlock extends ChristmasBlock {
     public void configureBlock() {
         RenderTypeLookup.setRenderLayer(this, RenderType.cutoutMipped());
     }
+
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
         stateBuilder.add(STAR_TIER, ROTATION);
