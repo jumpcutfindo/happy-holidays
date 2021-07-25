@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:porkchop"
+        },
+        {
+            "item": "minecraft:bone"
+        }
+    ],
+    "result": {
+        "item": "happyholidays:christmas_ham_block",
+        "count": 1
+    }
+}

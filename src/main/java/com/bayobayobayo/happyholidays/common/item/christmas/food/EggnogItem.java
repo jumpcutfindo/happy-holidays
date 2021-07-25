@@ -21,6 +21,7 @@ public class EggnogItem extends ChristmasFoodItem {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP)
+                    .stacksTo(16)
                     .food(new Food.Builder()
                             .nutrition(4)
                             .saturationMod(0.2f)

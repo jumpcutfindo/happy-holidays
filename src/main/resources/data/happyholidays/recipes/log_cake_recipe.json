@@ -1,0 +1,31 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "AHA",
+        "BEB",
+        "CGC"
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:milk_bucket"
+        },
+        "B": {
+            "item": "minecraft:sugar"
+        },
+        "C": {
+            "item": "minecraft:wheat"
+        },
+        "E": {
+            "item": "minecraft:egg"
+        },
+        "G": {
+            "item": "minecraft:cocoa_beans"
+        },
+        "H": {
+            "item": "happyholidays:holly"
+        }
+    },
+    "result": {
+        "item": "happyholidays:log_cake_block"
+    }
+}

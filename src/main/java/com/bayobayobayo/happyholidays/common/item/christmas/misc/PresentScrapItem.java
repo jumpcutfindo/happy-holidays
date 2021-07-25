@@ -1,6 +1,7 @@
-package com.bayobayobayo.happyholidays.common.item.christmas;
+package com.bayobayobayo.happyholidays.common.item.christmas.misc;
 
 import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
+import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 
 import net.minecraft.item.Item;
 
