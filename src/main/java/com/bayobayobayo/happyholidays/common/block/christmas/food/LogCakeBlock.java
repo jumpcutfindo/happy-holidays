@@ -2,7 +2,6 @@ package com.bayobayobayo.happyholidays.common.block.christmas.food;
 
 import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -30,18 +29,18 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class MilkAndCookiesBlock extends ChristmasFoodBlock {
-    public static final int MAX_BITES = 2;
+public class LogCakeBlock extends ChristmasFoodBlock {
+    public static final int MAX_BITES = 3;
     public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, MAX_BITES);
 
-    public static final String BLOCK_ID = "milk_and_cookies_block";
+    public static final String BLOCK_ID = "log_cake_block";
 
     public static final Properties BLOCK_PROPERTIES =
-            AbstractBlock.Properties
-                    .of(Material.GLASS)
+            Properties
+                    .of(Material.WOOL)
                     .harvestLevel(-1)
                     .strength(0.25f)
-                    .sound(SoundType.GLASS)
+                    .sound(SoundType.WOOL)
                     .noOcclusion()
                     .randomTicks();
 
@@ -50,9 +49,9 @@ public class MilkAndCookiesBlock extends ChristmasFoodBlock {
                     .stacksTo(4)
                     .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
-    public static final VoxelShape SHAPE = Block.box(3.5, 0.0, 3.5, 12.5, 7.0, 12.5);
+    public static final VoxelShape SHAPE = Block.box(1.0, 0.0, 3.0, 15.5, 6.0, 13.0);
 
-    public MilkAndCookiesBlock() {
+    public LogCakeBlock() {
         super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)

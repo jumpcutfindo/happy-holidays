@@ -65,6 +65,7 @@ public class ChristmasHandler implements ModuleHandler {
                 BlockRegistry.FESTIVE_CANDY_CANE_BLOCK.get(),
 
                 BlockRegistry.MILK_AND_COOKIES_BLOCK.get(),
+                BlockRegistry.LOG_CAKE_BLOCK.get(),
 
                 BlockRegistry.CHRISTMAS_STAR_BLOCK.get()
         };
@@ -79,8 +80,7 @@ public class ChristmasHandler implements ModuleHandler {
 
                 ItemRegistry.EGGNOG.get(),
                 ItemRegistry.CHRISTMAS_HAM.get(),
-                ItemRegistry.CHRISTMAS_PUDDING.get(),
-                ItemRegistry.LOG_CAKE.get()
+                ItemRegistry.CHRISTMAS_PUDDING.get()
         };
     }
 
