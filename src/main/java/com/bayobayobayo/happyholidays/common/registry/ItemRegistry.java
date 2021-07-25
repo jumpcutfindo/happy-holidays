@@ -45,6 +45,10 @@ import com.bayobayobayo.happyholidays.common.item.christmas.block.HeadOrnamentBl
 import com.bayobayobayo.happyholidays.common.item.christmas.candy.CandyCaneItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.candy.EnchantedCandyCaneItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.candy.FestiveCandyCaneItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.food.ChristmasHamItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.food.ChristmasPuddingItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.food.EggnogItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.food.LogCakeItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.GingerbreadCookieItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
 
@@ -73,6 +77,14 @@ public class ItemRegistry {
     public static final RegistryObject<ChristmasItem> ENCHANTED_CANDY_CANE =
             ITEMS.register(EnchantedCandyCaneItem.ITEM_ID, EnchantedCandyCaneItem::new);
 
+    public static final RegistryObject<ChristmasItem> EGGNOG =
+            ITEMS.register(EggnogItem.ITEM_ID, EggnogItem::new);
+    public static final RegistryObject<ChristmasItem> CHRISTMAS_HAM =
+            ITEMS.register(ChristmasHamItem.ITEM_ID, ChristmasHamItem::new);
+    public static final RegistryObject<ChristmasItem> CHRISTMAS_PUDDING =
+            ITEMS.register(ChristmasPuddingItem.ITEM_ID, ChristmasPuddingItem::new);
+    public static final RegistryObject<ChristmasItem> LOG_CAKE =
+            ITEMS.register(LogCakeItem.ITEM_ID, LogCakeItem::new);
 
     public static final RegistryObject<ChristmasBlockItem> BABY_PRESENT_BLOCK_ITEM =
             ITEMS.register(BabyPresentBlock.BLOCK_ID,
