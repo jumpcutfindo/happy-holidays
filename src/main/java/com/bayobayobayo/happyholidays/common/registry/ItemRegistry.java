@@ -31,6 +31,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornamen
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.RedTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.SilverTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.YellowTinselBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.food.LogCakeBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.food.MilkAndCookiesBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.GingerbreadBlock;
@@ -47,7 +48,6 @@ import com.bayobayobayo.happyholidays.common.item.christmas.block.HeadOrnamentBl
 import com.bayobayobayo.happyholidays.common.item.christmas.candy.CandyCaneItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.candy.EnchantedCandyCaneItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.candy.FestiveCandyCaneItem;
-import com.bayobayobayo.happyholidays.common.item.christmas.food.ChristmasHamItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.food.ChristmasPuddingItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.food.EggnogItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.GingerbreadCookieItem;
@@ -80,8 +80,6 @@ public class ItemRegistry {
 
     public static final RegistryObject<ChristmasItem> EGGNOG =
             ITEMS.register(EggnogItem.ITEM_ID, EggnogItem::new);
-    public static final RegistryObject<ChristmasItem> CHRISTMAS_HAM =
-            ITEMS.register(ChristmasHamItem.ITEM_ID, ChristmasHamItem::new);
     public static final RegistryObject<ChristmasItem> CHRISTMAS_PUDDING =
             ITEMS.register(ChristmasPuddingItem.ITEM_ID, ChristmasPuddingItem::new);
 
@@ -246,4 +244,8 @@ public class ItemRegistry {
             ITEMS.register(LogCakeBlock.BLOCK_ID,
                     () -> new ChristmasBlockItem(BlockRegistry.LOG_CAKE_BLOCK.get(),
                             LogCakeBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> CHRISTMAS_HAM_BLOCK_ITEM =
+            ITEMS.register(ChristmasHamBlock.BLOCK_ID,
+                    () -> new ChristmasBlockItem(BlockRegistry.CHRISTMAS_HAM_BLOCK.get(),
+                            ChristmasHamBlock.ITEM_PROPERTIES));
 }

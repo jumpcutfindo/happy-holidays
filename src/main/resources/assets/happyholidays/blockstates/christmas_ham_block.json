@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "bites=3": { "model": "happyholidays:block/christmas_ham_block_three_bites" },
+        "bites=2": { "model": "happyholidays:block/christmas_ham_block_two_bites" },
+        "bites=1": { "model": "happyholidays:block/christmas_ham_block_one_bite" },
+        "bites=0": { "model": "happyholidays:block/christmas_ham_block" }
+    }
+}

@@ -32,6 +32,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornamen
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.RedTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.SilverTinselBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.YellowTinselBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.food.LogCakeBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.food.MilkAndCookiesBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.GingerbreadBlock;
@@ -140,4 +141,6 @@ public class BlockRegistry {
             BLOCKS.register(MilkAndCookiesBlock.BLOCK_ID, MilkAndCookiesBlock::new);
     public static final RegistryObject<ChristmasBlock> LOG_CAKE_BLOCK =
             BLOCKS.register(LogCakeBlock.BLOCK_ID, LogCakeBlock::new);
+    public static final RegistryObject<ChristmasBlock> CHRISTMAS_HAM_BLOCK =
+            BLOCKS.register(ChristmasHamBlock.BLOCK_ID, ChristmasHamBlock::new);
 }
