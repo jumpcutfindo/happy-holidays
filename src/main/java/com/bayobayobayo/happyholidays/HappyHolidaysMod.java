@@ -13,6 +13,7 @@ import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
 import com.bayobayobayo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.bayobayobayo.happyholidays.common.registry.EntityRegistry;
 import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
+import com.bayobayobayo.happyholidays.common.registry.SoundRegistry;
 import com.bayobayobayo.happyholidays.common.registry.TileEntityRegistry;
 
 import net.minecraft.item.ItemGroup;
@@ -50,6 +51,7 @@ public class HappyHolidaysMod {
         ItemRegistry.ITEMS.register(bus);
         TileEntityRegistry.TILE_ENTITY_TYPE.register(bus);
         ContainerTypeRegistry.CONTAINER_TYPE.register(bus);
+        SoundRegistry.SOUNDS.register(bus);
 
         GeckoLib.initialize();
     }

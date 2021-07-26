@@ -39,6 +39,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.Gingerb
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.RawGingerbreadBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.SoggyGingerbreadBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
@@ -50,10 +51,10 @@ import com.bayobayobayo.happyholidays.common.item.christmas.block.HeadOrnamentBl
 import com.bayobayobayo.happyholidays.common.item.christmas.candy.CandyCaneItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.candy.EnchantedCandyCaneItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.candy.FestiveCandyCaneItem;
-import com.bayobayobayo.happyholidays.common.item.christmas.food.ChristmasPuddingItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.food.EggnogItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.GingerbreadCookieItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.music.SheetMusicItem;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
@@ -74,6 +75,8 @@ public class ItemRegistry {
             ITEMS.register(PresentScrapItem.ITEM_ID, PresentScrapItem::new);
     public static final RegistryObject<ChristmasItem> HOLLY =
             ITEMS.register(HollyItem.ITEM_ID, HollyItem::new);
+    public static final RegistryObject<ChristmasItem> SHEET_MUSIC =
+            ITEMS.register(SheetMusicItem.ITEM_ID, SheetMusicItem::new);
 
     public static final RegistryObject<ChristmasItem> CANDY_CANE =
             ITEMS.register(CandyCaneItem.ITEM_ID, CandyCaneItem::new);
@@ -237,6 +240,10 @@ public class ItemRegistry {
             ITEMS.register(ChristmasStarBlock.BLOCK_ID,
                     () -> new ChristmasBlockItem(BlockRegistry.CHRISTMAS_STAR_BLOCK.get(),
                             ChristmasStarBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> MUSIC_BOX_BLOCK_ITEM =
+            ITEMS.register(MusicBoxBlock.BLOCK_ID,
+                    () -> new ChristmasBlockItem(BlockRegistry.MUSIC_BOX_BLOCK.get(),
+                            MusicBoxBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> MILK_AND_COOKIES_BLOCK_ITEM =
             ITEMS.register(MilkAndCookiesBlock.BLOCK_ID,

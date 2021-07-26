@@ -1,0 +1,12 @@
+{
+    "item.christmas_music_silent_night": {
+        "category": "item",
+        "subtitle": "item.christmas_music_silent_night.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_silent_night",
+                "stream": true
+            }
+        ]
+    }
+}
