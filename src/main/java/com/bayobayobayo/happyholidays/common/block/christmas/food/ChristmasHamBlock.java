@@ -49,7 +49,7 @@ public class ChristmasHamBlock extends ChristmasFoodBlock {
                     .stacksTo(4)
                     .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
-    public static final VoxelShape SHAPE = Block.box(1.0, 0.0, 3.0, 13.0, 10.0, 13.0);
+    public static final VoxelShape SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 10.0, 15.0);
 
     public ChristmasHamBlock() {
         super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
@@ -60,7 +60,7 @@ public class ChristmasHamBlock extends ChristmasFoodBlock {
 
     @Override
     public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(this, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(this, RenderType.translucent());
     }
 
     @Override
@@ -105,7 +105,7 @@ public class ChristmasHamBlock extends ChristmasFoodBlock {
         if (!playerEntity.canEat(false)) {
             return ActionResultType.PASS;
         } else {
-            playerEntity.getFoodData().eat(4, 0.4F);
+            playerEntity.getFoodData().eat(2, 0.2F);
             int i = blockState.getValue(BITES);
             if (i < MAX_BITES) {
                 world.setBlock(blockPos, blockState.setValue(BITES, i + 1), 3);
