@@ -4,6 +4,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.Connect
 import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -11,7 +12,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 
 public class TinselBlock extends ConnectedOrnamentBlock {
     private static final VoxelShape TINSEL_SHAPE = VoxelShapes.or(
-            HappyHolidaysUtils.createShape(0.0, 0.0, 0.0, 16.0, 16.0 ,1.0)
+            Block.box(0.0, 0.0, 0.0, 16.0, 16.0 ,1.0)
     );
 
     private static final Properties BLOCK_PROPERTIES =

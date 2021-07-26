@@ -19,8 +19,8 @@ import net.minecraft.world.server.ServerWorld;
 public class AdultPresentBlock extends PresentBlock {
     public static final String BLOCK_ID = "present_block";
     public static final VoxelShape SHAPE = VoxelShapes.or(
-            HappyHolidaysUtils.createShape(3.5, 0.0, 3.5, 12.5, 6.0, 12.5),
-            HappyHolidaysUtils.createShape(2.5, 6.0, 2.5, 13.5, 8.0, 13.5)
+            Block.box(3.5, 0.0, 3.5, 12.5, 6.0, 12.5),
+            Block.box(2.5, 6.0, 2.5, 13.5, 8.0, 13.5)
     );
 
     private BlockState nextBlockState;

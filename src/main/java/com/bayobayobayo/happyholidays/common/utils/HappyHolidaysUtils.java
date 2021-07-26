@@ -7,21 +7,6 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 
 public class HappyHolidaysUtils {
-    private static final double BOUNDING_BOX_UNIT = 1.0 / 16.0;
-
-    public static VoxelShape createShape(double xMin, double yMin, double zMin, double xMax, double yMax,
-                                         double zMax) {
-        return VoxelShapes.create(new AxisAlignedBB(
-                BOUNDING_BOX_UNIT * xMin,
-                BOUNDING_BOX_UNIT * yMin,
-                BOUNDING_BOX_UNIT * zMin,
-                BOUNDING_BOX_UNIT * xMax,
-                BOUNDING_BOX_UNIT * yMax,
-                BOUNDING_BOX_UNIT * zMax
-            )
-        );
-    }
-
     public static VoxelShape rotateShape(final VoxelShape shape, final Rotation rotationDir) {
         double x1 = shape.bounds().minX, x2 = shape.bounds().maxX;
         final double y1 = shape.bounds().minY, y2 = shape.bounds().maxY;
