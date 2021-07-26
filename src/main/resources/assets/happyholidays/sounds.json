@@ -1,10 +1,160 @@
 {
+    "item.christmas_music_angels_on_high": {
+        "category": "item",
+        "subtitle": "item.christmas_music_angels_on_high.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_angels_on_high",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_carol_of_the_bells": {
+        "category": "item",
+        "subtitle": "item.christmas_music_carol_of_the_bells.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_carol_of_the_bells",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_deck_the_halls": {
+        "category": "item",
+        "subtitle": "item.christmas_music_deck_the_halls.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_deck_the_halls",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_frosty_the_snowman": {
+        "category": "item",
+        "subtitle": "item.christmas_music_frosty_the_snowman.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_frosty_the_snowman",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_god_rest_gentlemen": {
+        "category": "item",
+        "subtitle": "item.christmas_music_god_rest_gentlemen.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_god_rest_gentlemen",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_here_comes_santa": {
+        "category": "item",
+        "subtitle": "item.christmas_music_here_comes_santa.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_here_comes_santa",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_jingle_bell_rock": {
+        "category": "item",
+        "subtitle": "item.christmas_music_jingle_bell_rock.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_jingle_bell_rock",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_jingle_bells": {
+        "category": "item",
+        "subtitle": "item.christmas_music_jingle_bells.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_jingle_bells",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_joy_to_the_world": {
+        "category": "item",
+        "subtitle": "item.christmas_music_joy_to_the_world.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_joy_to_the_world",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_rudolph": {
+        "category": "item",
+        "subtitle": "item.christmas_music_rudolph.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_rudolph",
+                "stream": true
+            }
+        ]
+    },
     "item.christmas_music_silent_night": {
         "category": "item",
         "subtitle": "item.christmas_music_silent_night.sub",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_silent_night",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_the_first_noel": {
+        "category": "item",
+        "subtitle": "item.christmas_music_the_first_noel.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_the_first_noel",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_sleigh_ride": {
+        "category": "item",
+        "subtitle": "item.christmas_music_sleigh_ride.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_sleigh_ride",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_we_three_kings": {
+        "category": "item",
+        "subtitle": "item.christmas_music_we_three_kings.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_we_three_kings",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_we_wish_you": {
+        "category": "item",
+        "subtitle": "item.christmas_music_we_wish_you.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_we_wish_you",
+                "stream": true
+            }
+        ]
+    },
+    "item.christmas_music_white_christmas": {
+        "category": "item",
+        "subtitle": "item.christmas_music_white_christmas.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_music_white_christmas",
                 "stream": true
             }
         ]

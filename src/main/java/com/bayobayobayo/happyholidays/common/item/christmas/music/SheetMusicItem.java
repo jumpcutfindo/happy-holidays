@@ -9,6 +9,7 @@ import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
+import com.bayobayobayo.happyholidays.common.sound.christmas.MusicBoxSound;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -28,15 +29,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class SheetMusicItem extends ChristmasItem {
-    public static final String ITEM_ID = "christmas_sheet_music";
-
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP)
                     .stacksTo(1);
 
+    public ChristmasMusic music;
+
     public SheetMusicItem(String itemId) {
-        super(ITEM_ID, ITEM_PROPERTIES);
+        super(itemId, ITEM_PROPERTIES);
 
         this.christmasRarity = ChristmasRarity.RARE;
     }
@@ -70,4 +71,11 @@ public class SheetMusicItem extends ChristmasItem {
         return new TranslationTextComponent(this.getDescriptionId() + ".desc");
     }
 
+    public ChristmasMusic getMusic() {
+        return this.music;
+    }
+
+    public static MusicBoxSound createMusicBoxSound(ChristmasMusic music, BlockPos pos) {
+        return new MusicBoxSound(ChristmasMusic.getSound(music), pos);
+    }
 }

@@ -1,5 +1,7 @@
 package com.bayobayobayo.happyholidays.common.tileentity.christmas;
 
+import com.bayobayobayo.happyholidays.common.item.christmas.music.ChristmasMusic;
+import com.bayobayobayo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.bayobayobayo.happyholidays.common.registry.TileEntityRegistry;
 import com.bayobayobayo.happyholidays.common.sound.christmas.MusicBoxSound;
 
@@ -72,6 +74,10 @@ public class MusicBoxTileEntity extends TileEntity implements ChristmasTileEntit
 
         nbtTag.putBoolean("PlayMusic", !this.getSheetMusic().isEmpty());
 
+        if (this.sheetMusic.getItem() instanceof SheetMusicItem) {
+            nbtTag.putInt("SheetMusicId", ((SheetMusicItem) this.sheetMusic.getItem()).getMusic().getId());
+        }
+
         return new SUpdateTileEntityPacket(getBlockPos(), -1, nbtTag);
     }
 
@@ -80,7 +86,9 @@ public class MusicBoxTileEntity extends TileEntity implements ChristmasTileEntit
         CompoundNBT nbtTag = pkt.getTag();
 
         if (nbtTag.getBoolean("PlayMusic")) {
-            currentMusic = new MusicBoxSound(this.worldPosition);
+            int id = nbtTag.getInt("SheetMusicId");
+
+            currentMusic = SheetMusicItem.createMusicBoxSound(ChristmasMusic.getMusic(id), this.worldPosition);
             Minecraft.getInstance().getSoundManager().play(currentMusic);
         } else {
             if (currentMusic != null) {
