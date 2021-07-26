@@ -29,11 +29,11 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class ChristmasHamBlock extends ChristmasFoodBlock {
-    public static final int MAX_BITES = 4;
+public class ChristmasPuddingBlock extends ChristmasFoodBlock {
+    public static final int MAX_BITES = 3;
     public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, MAX_BITES - 1);
 
-    public static final String BLOCK_ID = "christmas_ham_block";
+    public static final String BLOCK_ID = "christmas_pudding_block";
 
     public static final Properties BLOCK_PROPERTIES =
             Properties
@@ -51,7 +51,7 @@ public class ChristmasHamBlock extends ChristmasFoodBlock {
 
     public static final VoxelShape SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 10.0, 15.0);
 
-    public ChristmasHamBlock() {
+    public ChristmasPuddingBlock() {
         super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)

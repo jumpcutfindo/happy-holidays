@@ -30,8 +30,8 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 public class LogCakeBlock extends ChristmasFoodBlock {
-    public static final int MAX_BITES = 3;
-    public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, MAX_BITES);
+    public static final int MAX_BITES = 4;
+    public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, MAX_BITES - 1);
 
     public static final String BLOCK_ID = "log_cake_block";
 
@@ -107,7 +107,7 @@ public class LogCakeBlock extends ChristmasFoodBlock {
         } else {
             playerEntity.getFoodData().eat(2, 0.2F);
             int i = blockState.getValue(BITES);
-            if (i < MAX_BITES) {
+            if (i < MAX_BITES - 1) {
                 world.setBlock(blockPos, blockState.setValue(BITES, i + 1), 3);
                 world.playSound(null, blockPos, SoundEvents.GENERIC_EAT, SoundCategory.PLAYERS, 0.0f, 0.0f);
             } else {

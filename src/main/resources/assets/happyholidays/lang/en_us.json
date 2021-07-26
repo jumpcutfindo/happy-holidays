@@ -49,6 +49,7 @@
     "block.happyholidays.milk_and_cookies_block": "Milk and Cookies",
     "block.happyholidays.log_cake_block": "Log Cake",
     "block.happyholidays.christmas_ham_block": "Christmas Ham",
+    "block.happyholidays.christmas_pudding_block": "Christmas Pudding",
 
     "item.happyholidays.raw_gingerbread": "Gingerbread Dough",
     "item.happyholidays.gingerbread_cookie": "Gingerbread Cookie",
@@ -61,7 +62,6 @@
     "item.happyholidays.holly": "Holly",
 
     "item.happyholidays.eggnog": "Eggnog",
-    "item.happyholidays.christmas_pudding": "Christmas Pudding",
 
     "entity.happyholidays.gingerbread_man": "Gingerbread Man",
     "entity.happyholidays.soggy_gingerbread_man": "Soggy Gingerbread Man",

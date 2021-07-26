@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "bites=2": { "model": "happyholidays:block/christmas_pudding_block_two_bites" },
+        "bites=1": { "model": "happyholidays:block/christmas_pudding_block_one_bite" },
+        "bites=0": { "model": "happyholidays:block/christmas_pudding_block" }
+    }
+}
