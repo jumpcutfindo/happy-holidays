@@ -5,22 +5,18 @@ import javax.annotation.Nullable;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasContainerBlock;
 import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.registry.TileEntityRegistry;
-import com.bayobayobayo.happyholidays.common.sound.christmas.MusicBoxSound;
-import com.bayobayobayo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 import com.bayobayobayo.happyholidays.common.tileentity.christmas.MusicBoxTileEntity;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.item.minecart.MinecartEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -28,7 +24,6 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -149,5 +144,10 @@ public class MusicBoxBlock extends ChristmasContainerBlock {
             MusicBoxTileEntity musicBoxTileEntity = (MusicBoxTileEntity) tileEntity;
             musicBoxTileEntity.stopMusic();
         }
+    }
+
+    @Override
+    public BlockRenderType getRenderShape(BlockState blockState) {
+        return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 }

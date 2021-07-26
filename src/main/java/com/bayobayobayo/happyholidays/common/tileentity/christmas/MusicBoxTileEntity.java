@@ -5,6 +5,7 @@ import com.bayobayobayo.happyholidays.common.item.christmas.music.SheetMusicItem
 import com.bayobayobayo.happyholidays.common.registry.TileEntityRegistry;
 import com.bayobayobayo.happyholidays.common.sound.christmas.MusicBoxSound;
 
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.IClearable;
@@ -14,12 +15,21 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.controller.AnimationController;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
+import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class MusicBoxTileEntity extends TileEntity implements ChristmasTileEntity, IClearable {
+public class MusicBoxTileEntity extends TileEntity implements ChristmasTileEntity, IClearable, IAnimatable {
     public static final String TILE_ENTITY_ID = "music_box_block";
 
     private ItemStack sheetMusic = ItemStack.EMPTY;
     private MusicBoxSound currentMusic = null;
+
+    private AnimationFactory factory = new AnimationFactory(this);
 
     public MusicBoxTileEntity(TileEntityType<?> tileEntityType) {
         super(tileEntityType);
@@ -103,5 +113,26 @@ public class MusicBoxTileEntity extends TileEntity implements ChristmasTileEntit
             currentMusic.stopTrack();
             currentMusic = null;
         }
+    }
+
+    /*
+        Handle animation stuff
+     */
+    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (this.currentMusic != null) event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.playing", true));
+        else {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.idle", true));
+        }
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return this.factory;
     }
 }
