@@ -19,6 +19,8 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -71,6 +73,7 @@ public class SantaElfBellItem extends ChristmasItem {
             world.addFreshEntity(santaElfEntity);
 
             world.addParticle(ParticleTypes.LARGE_SMOKE, spawnX, spawnY, spawnZ, 0.0F, 0.0F, 0.0F);
+            world.playSound(null, posAhead, SoundEvents.EGG_THROW, SoundCategory.NEUTRAL, 1.0F, 1.0F);
         }
 
         return stack;
