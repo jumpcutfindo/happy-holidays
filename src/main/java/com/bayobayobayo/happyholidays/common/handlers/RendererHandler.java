@@ -2,6 +2,7 @@ package com.bayobayobayo.happyholidays.common.handlers;
 
 import com.bayobayobayo.happyholidays.client.block.MusicBoxRenderer;
 import com.bayobayobayo.happyholidays.client.entity.GingerbreadPersonEntityRenderer;
+import com.bayobayobayo.happyholidays.client.entity.SantaElfEntityRenderer;
 import com.bayobayobayo.happyholidays.common.registry.EntityRegistry;
 import com.bayobayobayo.happyholidays.common.registry.TileEntityRegistry;
 
@@ -19,6 +20,11 @@ public class RendererHandler {
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityRegistry.SOGGY_GINGERBREAD_MAN.get(),
                 GingerbreadPersonEntityRenderer::new
+        );
+
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityRegistry.SANTA_ELF.get(),
+                SantaElfEntityRenderer::new
         );
 
 

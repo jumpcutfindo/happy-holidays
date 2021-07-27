@@ -7,6 +7,9 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.DamageSource;
@@ -16,6 +19,12 @@ import net.minecraft.world.World;
 
 public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
     public static final String ENTITY_ID = "soggy_gingerbread_man";
+
+    public static final AttributeModifierMap ENTITY_ATTRIBUTES =
+            MobEntity.createMobAttributes()
+                    .add(Attributes.MAX_HEALTH, 10.0f)
+                    .add(Attributes.MOVEMENT_SPEED, 0.18D)
+                    .build();
 
     private float timeLeftToDry;
 

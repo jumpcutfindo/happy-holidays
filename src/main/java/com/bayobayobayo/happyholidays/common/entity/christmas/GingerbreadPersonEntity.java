@@ -85,7 +85,7 @@ public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatab
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
+        data.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override
@@ -93,7 +93,12 @@ public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatab
         return factory;
     }
 
-    private class FollowGingerbreadLeaderGoal extends Goal {
+    public static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, IWorld world,
+                                                     SpawnReason spawnReason, BlockPos pos, Random rand) {
+        return world.getRawBrightness(pos,0) > 8;
+    }
+
+    private static class FollowGingerbreadLeaderGoal extends Goal {
         private GingerbreadPersonEntity gingerbreadPerson;
         private GingerbreadPersonEntity leader;
 
@@ -172,10 +177,5 @@ public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatab
                 this.gingerbreadPerson.getNavigation().moveTo(this.leader, 1.0D);
             }
         }
-    }
-
-    public static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, IWorld world,
-                                                 SpawnReason spawnReason, BlockPos pos, Random rand) {
-        return world.getRawBrightness(pos,0) > 8;
     }
 }

@@ -4,6 +4,9 @@ import com.bayobayobayo.happyholidays.common.registry.EntityRegistry;
 
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
@@ -13,6 +16,12 @@ public class GingerbreadManEntity extends GingerbreadPersonEntity {
     public static final int MAX_SPAWN_COUNT = 4;
 
     public static final String ENTITY_ID = "gingerbread_man";
+
+    public static final AttributeModifierMap ENTITY_ATTRIBUTES =
+            MobEntity.createMobAttributes()
+                    .add(Attributes.MAX_HEALTH, 10.0f)
+                    .add(Attributes.MOVEMENT_SPEED, 0.23D)
+                    .build();
 
     public GingerbreadManEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
