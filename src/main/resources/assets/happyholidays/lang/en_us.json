@@ -97,6 +97,23 @@
     "item.happyholidays.christmas_sheet_music_we_wish_you.desc": "We Wish You A Merry Christmas",
     "item.happyholidays.christmas_sheet_music_white_christmas.desc": "White Christmas",
 
+    "item.happyholidays.christmas_sheet_music_angels_on_high.now_playing": "Now Playing - Angels We Have Heard on High",
+    "item.happyholidays.christmas_sheet_music_carol_of_the_bells.now_playing": "Now Playing - Carol of the Bells",
+    "item.happyholidays.christmas_sheet_music_deck_the_halls.now_playing": "Now Playing - Deck the Halls",
+    "item.happyholidays.christmas_sheet_music_frosty_the_snowman.now_playing": "Now Playing - Frosty the Snowman",
+    "item.happyholidays.christmas_sheet_music_god_rest_gentlemen.now_playing": "Now Playing - God Rest Ye Merry Gentlemen",
+    "item.happyholidays.christmas_sheet_music_here_comes_santa.now_playing": "Now Playing - Here Comes Santa Claus",
+    "item.happyholidays.christmas_sheet_music_jingle_bell_rock.now_playing": "Now Playing - Jingle Bell Rock",
+    "item.happyholidays.christmas_sheet_music_jingle_bells.now_playing": "Now Playing - Jingle Bells",
+    "item.happyholidays.christmas_sheet_music_joy_to_the_world.now_playing": "Now Playing - Joy to the World",
+    "item.happyholidays.christmas_sheet_music_rudolph.now_playing": "Now Playing - Rudolph the Red-Nosed Reindeer",
+    "item.happyholidays.christmas_sheet_music_silent_night.now_playing": "Now Playing - Silent Night",
+    "item.happyholidays.christmas_sheet_music_sleigh_ride.now_playing": "Now Playing - Sleigh Ride",
+    "item.happyholidays.christmas_sheet_music_the_first_noel.now_playing": "Now Playing - The First Noel",
+    "item.happyholidays.christmas_sheet_music_we_three_kings.now_playing": "Now Playing - We Three Kings",
+    "item.happyholidays.christmas_sheet_music_we_wish_you.now_playing": "Now Playing - We Wish You A Merry Christmas",
+    "item.happyholidays.christmas_sheet_music_white_christmas.now_playing": "Now Playing - White Christmas",
+
     "item.happyholidays.christmas_sheet_music_angels_on_high.sub": "Angels We Have Heard on High plays",
     "item.happyholidays.christmas_sheet_music_carol_of_the_bells.sub": "Carol of the Bells plays",
     "item.happyholidays.christmas_sheet_music_deck_the_halls.sub": "Deck the Halls plays",
@@ -121,6 +138,9 @@
     "entity.happyholidays.gingerbread_man": "Gingerbread Man",
     "entity.happyholidays.soggy_gingerbread_man": "Soggy Gingerbread Man",
     "entity.happyholidays.santa_elf": "Santa's Elf",
+    "entity.happyholidays.santa_elf_arrival.sub": "Santa's Elf arrives",
 
-    "itemGroup.happyholidaystab": "Happy Holidays"
+    "itemGroup.happyholidaystab": "Happy Holidays",
+
+    "chat.happyholidays.christmas.santa_elf_bell.not_ready": "Santa's Elf is not available yet!"
 }

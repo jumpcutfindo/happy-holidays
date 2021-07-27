@@ -33,6 +33,10 @@ public class SoundRegistry {
             "item.santa_elf_bell", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
                     "item.santa_elf_bell"))
     );
+    public static final RegistryObject<SoundEvent> SANTA_ELF_ARRIVAL = SOUNDS.register(
+            "entity.santa_elf_arrival", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_elf_arrival"))
+    );
 
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_ANGELS_ON_HIGH = SOUNDS.register(
             AngelsOnHighSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,

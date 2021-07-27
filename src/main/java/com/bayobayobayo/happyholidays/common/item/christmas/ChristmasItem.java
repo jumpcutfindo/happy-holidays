@@ -19,8 +19,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.RegistryObject;
 
 public class ChristmasItem extends Item implements HappyHolidaysItem {
-    private final String itemId;
-    private final Item.Properties properties;
+    public final String itemId;
+    public final Item.Properties properties;
 
     public ChristmasRarity christmasRarity;
     public List<String> tooltipDescriptions;

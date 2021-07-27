@@ -18,15 +18,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.item.MusicDiscItem;
 import net.minecraft.tileentity.JukeboxTileEntity;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.server.command.TextComponentHelper;
 
 public class SheetMusicItem extends ChristmasItem {
     private static final Item.Properties ITEM_PROPERTIES =
@@ -53,6 +56,13 @@ public class SheetMusicItem extends ChristmasItem {
             if (!world.isClientSide) {
                 ((MusicBoxBlock) BlockRegistry.MUSIC_BOX_BLOCK.get()).setSheetMusic(world, blockpos, blockstate, itemstack);
                 itemstack.shrink(1);
+            }
+
+            if (itemUseContext.getPlayer() != null) {
+                TextComponent chatComponent = new TranslationTextComponent("item.happyholidays." + this.itemId +
+                        ".now_playing");
+                chatComponent.withStyle(TextFormatting.AQUA);
+                itemUseContext.getPlayer().displayClientMessage(chatComponent, true);
             }
 
             return ActionResultType.sidedSuccess(world.isClientSide);
