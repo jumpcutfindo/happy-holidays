@@ -2,7 +2,7 @@ package com.bayobayobayo.happyholidays.common.registry;
 
 import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadManEntity;
-import com.bayobayobayo.happyholidays.common.entity.christmas.SantaElfEntity;
+import com.bayobayobayo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
 import com.bayobayobayo.happyholidays.common.entity.christmas.SoggyGingerbreadManEntity;
 
 import net.minecraft.entity.EntityClassification;

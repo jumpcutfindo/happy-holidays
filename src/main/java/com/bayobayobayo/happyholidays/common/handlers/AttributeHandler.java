@@ -1,12 +1,10 @@
 package com.bayobayobayo.happyholidays.common.handlers;
 
 import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadManEntity;
-import com.bayobayobayo.happyholidays.common.entity.christmas.SantaElfEntity;
+import com.bayobayobayo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
 import com.bayobayobayo.happyholidays.common.entity.christmas.SoggyGingerbreadManEntity;
 import com.bayobayobayo.happyholidays.common.registry.EntityRegistry;
 
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 
 public class AttributeHandler {

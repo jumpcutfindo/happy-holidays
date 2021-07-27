@@ -1,6 +1,10 @@
 package com.bayobayobayo.happyholidays.common.item.christmas.misc;
 
-import com.bayobayobayo.happyholidays.common.entity.christmas.SantaElfEntity;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import com.bayobayobayo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
 import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasRarity;
@@ -9,22 +13,21 @@ import com.bayobayobayo.happyholidays.common.registry.SoundRegistry;
 import com.bayobayobayo.happyholidays.common.sound.christmas.SantaBellSound;
 import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
 import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -64,8 +67,9 @@ public class SantaElfBellItem extends ChristmasItem {
             player.playSound(SoundRegistry.SANTA_ELF_BELL.get(), 1.0F, 1.0F);
             return ActionResult.sidedSuccess(player.getItemInHand(hand), world.isClientSide());
         } else {
-            TextComponent chatComponent = new TranslationTextComponent("chat.happyholidays.christmas.santa_elf_bell"
-                    + ".not_ready");
+            long timeRemaining = nbt.getLong("NextUseTime") - world.getGameTime();
+            IFormattableTextComponent chatComponent =
+                    new TranslationTextComponent("chat.happyholidays." + ITEM_ID + ".not_ready", timeRemaining / 20);
             chatComponent.withStyle(TextFormatting.RED);
             player.displayClientMessage(chatComponent, true);
             return ActionResult.fail(player.getItemInHand(hand));
@@ -101,23 +105,29 @@ public class SantaElfBellItem extends ChristmasItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack itemStack, World world, Entity entity, int i,
-                              boolean b) {
-        super.inventoryTick(itemStack, world, entity, i, b);
-
-        if (entity instanceof PlayerEntity) {
-            PlayerEntity playerEntity = (PlayerEntity) entity;
-
-            CompoundNBT nbt = itemStack.getTag();
-            if (nbt != null) {
-                long nextUseTime = nbt.getLong("NextUseTime");
-                itemStack.setDamageValue((int) (Math.min(ITEM_COOLDOWN, nextUseTime - world.getGameTime())));
-            }
-        }
+    public int getUseDuration(ItemStack stack) {
+        return ITEM_USE_DURATION;
     }
 
     @Override
-    public int getUseDuration(ItemStack stack) {
-        return ITEM_USE_DURATION;
+    public boolean isFoil(ItemStack p_77636_1_) {
+        return true;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack itemStack, @Nullable World world, List<ITextComponent> textComponents, ITooltipFlag tooltipFlag) {
+        CompoundNBT nbt = itemStack.getTag();
+
+        if (nbt != null && world != null) {
+            long timeRemaining = nbt.getLong("NextUseTime") - world.getGameTime();
+
+            if (timeRemaining > 0) {
+                IFormattableTextComponent textComponent =
+                        new TranslationTextComponent("item.happyholidays."+ ITEM_ID +".cooldown")
+                                .append(String.format("%ds", timeRemaining / 20));
+                textComponent.withStyle(TextFormatting.GRAY);
+                textComponents.add(textComponent);
+            }
+        }
     }
 }

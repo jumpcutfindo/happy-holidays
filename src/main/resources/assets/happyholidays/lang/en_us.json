@@ -132,6 +132,7 @@
     "item.happyholidays.christmas_sheet_music_white_christmas.sub": "White Christmas plays",
 
     "item.happyholidays.santa_elf_bell.sub": "Santa's Elf Bell rings",
+    "item.happyholidays.santa_elf_bell.cooldown": "Cooldown left: ",
 
     "item.happyholidays.eggnog": "Eggnog",
 
@@ -142,5 +143,5 @@
 
     "itemGroup.happyholidaystab": "Happy Holidays",
 
-    "chat.happyholidays.christmas.santa_elf_bell.not_ready": "Santa's Elf is not available yet!"
+    "chat.happyholidays.santa_elf_bell.not_ready": "Santa's Elf is not available yet (%ss left)"
 }

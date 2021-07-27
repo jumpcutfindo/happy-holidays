@@ -1,7 +1,7 @@
 package com.bayobayobayo.happyholidays.client.entity.model;
 
 import com.bayobayobayo.happyholidays.HappyHolidaysMod;
-import com.bayobayobayo.happyholidays.common.entity.christmas.SantaElfEntity;
+import com.bayobayobayo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
 
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
