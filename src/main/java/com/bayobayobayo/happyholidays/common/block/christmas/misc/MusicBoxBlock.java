@@ -42,8 +42,7 @@ public class MusicBoxBlock extends ChristmasContainerBlock {
                     .harvestLevel(-1)
                     .strength(0.25f)
                     .sound(SoundType.GLASS)
-                    .noOcclusion()
-                    .noCollission();
+                    .noOcclusion();
 
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
@@ -144,10 +143,5 @@ public class MusicBoxBlock extends ChristmasContainerBlock {
             MusicBoxTileEntity musicBoxTileEntity = (MusicBoxTileEntity) tileEntity;
             musicBoxTileEntity.stopMusic();
         }
-    }
-
-    @Override
-    public BlockRenderType getRenderShape(BlockState blockState) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 }

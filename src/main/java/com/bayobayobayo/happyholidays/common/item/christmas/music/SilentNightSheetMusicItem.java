@@ -4,6 +4,8 @@ public class SilentNightSheetMusicItem extends SheetMusicItem {
     public static final String ITEM_ID = "christmas_sheet_music_silent_night";
     public static final String SOUND_ID = "item.christmas_music_silent_night";
 
+    public static final int LENGTH = 2037;
+
     public SilentNightSheetMusicItem() {
         super(ITEM_ID);
 

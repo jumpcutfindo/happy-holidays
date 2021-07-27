@@ -57,4 +57,25 @@ public enum ChristmasMusic {
         default: return SoundRegistry.CHRISTMAS_MUSIC_WHITE_CHRISTMAS.get();
         }
     }
+
+    public static int getSoundDuration(ChristmasMusic music) {
+        switch (music) {
+        case ANGELS_ON_HIGH: return AngelsOnHighSheetMusicItem.LENGTH;
+        case CAROL_OF_THE_BELLS: return CarolOfBellsSheetMusicItem.LENGTH;
+        case DECK_THE_HALLS: return DeckTheHallsSheetMusicItem.LENGTH;
+        case FROSTY_THE_SNOWMAN: return FrostySnowmanSheetMusicItem.LENGTH;
+        case GOD_REST_GENTLEMEN: return GodRestGentlemenSheetMusicItem.LENGTH;
+        case HERE_COMES_SANTA: return HereComesSantaSheetMusicItem.LENGTH;
+        case JINGLE_BELL_ROCK: return JingleBellRockSheetMusicItem.LENGTH;
+        case JINGLE_BELLS: return JingleBellsSheetMusicItem.LENGTH;
+        case JOY_TO_THE_WORLD: return JoyToTheWorldSheetMusicItem.LENGTH;
+        case RUDOLPH: return RudolphSheetMusicItem.LENGTH;
+        case SILENT_NIGHT: return SilentNightSheetMusicItem.LENGTH;
+        case SLEIGH_RIDE: return SleighRideSheetMusicItem.LENGTH;
+        case THE_FIRST_NOEL: return TheFirstNoelSheetMusicItem.LENGTH;
+        case WE_THREE_KINGS: return WeThreeKingsSheetMusicItem.LENGTH;
+        case WE_WISH_YOU: return WeWishYouSheetMusicItem.LENGTH;
+        default: return WhiteChristmasSheetMusicItem.LENGTH;
+        }
+    }
 }

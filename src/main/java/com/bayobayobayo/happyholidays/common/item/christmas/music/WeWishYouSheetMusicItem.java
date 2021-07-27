@@ -4,6 +4,8 @@ public class WeWishYouSheetMusicItem extends SheetMusicItem {
     public static final String ITEM_ID = "christmas_sheet_music_we_wish_you";
     public static final String SOUND_ID = "item.christmas_music_we_wish_you";
 
+    public static final int LENGTH = 1977;
+
     public WeWishYouSheetMusicItem() {
         super(ITEM_ID);
 

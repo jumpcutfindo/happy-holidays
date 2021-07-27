@@ -32,7 +32,7 @@ public class SheetMusicItem extends ChristmasItem {
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP)
-                    .stacksTo(1);
+                    .stacksTo(16);
 
     public ChristmasMusic music;
 
@@ -76,6 +76,6 @@ public class SheetMusicItem extends ChristmasItem {
     }
 
     public static MusicBoxSound createMusicBoxSound(ChristmasMusic music, BlockPos pos) {
-        return new MusicBoxSound(ChristmasMusic.getSound(music), pos);
+        return new MusicBoxSound(ChristmasMusic.getSound(music), ChristmasMusic.getSoundDuration(music), pos);
     }
 }

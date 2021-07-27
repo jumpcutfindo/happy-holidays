@@ -8,6 +8,7 @@ import com.bayobayobayo.happyholidays.common.sound.christmas.MusicBoxSound;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.SoundSource;
 import net.minecraft.inventory.IClearable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -61,7 +62,10 @@ public class MusicBoxTileEntity extends TileEntity implements ChristmasTileEntit
     }
 
     public void setSheetMusic(ItemStack itemStack, boolean isPlayerAction) {
-        this.sheetMusic = itemStack;
+        ItemStack itemStackCopy = itemStack.copy();
+        itemStackCopy.setCount(1);
+
+        this.sheetMusic = itemStackCopy;
         this.setChanged();
 
         if (this.level != null && this.level.isClientSide() && !isPlayerAction) {
@@ -119,7 +123,8 @@ public class MusicBoxTileEntity extends TileEntity implements ChristmasTileEntit
         Handle animation stuff
      */
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (this.currentMusic != null) event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.playing", true));
+        if (this.currentMusic != null && !this.currentMusic.isStopped()) event.getController().setAnimation(new AnimationBuilder().addAnimation(
+                "animation.model.playing", true));
         else {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.idle", true));
         }

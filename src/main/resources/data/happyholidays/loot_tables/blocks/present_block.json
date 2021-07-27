@@ -83,6 +83,18 @@
                 },
                 {
                     "type": "minecraft:tag",
+                    "weight": 15,
+                    "name": "happyholidays:sheet_music",
+                    "expand": true,
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:tag",
                     "weight": 5,
                     "name": "happyholidays:rare_ornaments",
                     "expand": true,

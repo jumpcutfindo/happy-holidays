@@ -49,7 +49,7 @@ public class ChristmasPuddingBlock extends ChristmasFoodBlock {
                     .stacksTo(4)
                     .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
-    public static final VoxelShape SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 10.0, 15.0);
+    public static final VoxelShape SHAPE = Block.box(2.5, 0.0, 2.5, 13.5, 8.0, 13.5);
 
     public ChristmasPuddingBlock() {
         super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);

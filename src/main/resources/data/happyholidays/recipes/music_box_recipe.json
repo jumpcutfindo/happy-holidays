@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#Jg",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:glass"
+        },
+        "J": {
+            "item": "minecraft:jukebox"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        }
+    },
+    "result": {
+        "item": "happyholidays:music_box_block",
+        "count": 1
+    }
+}
