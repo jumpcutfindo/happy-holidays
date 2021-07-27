@@ -61,6 +61,7 @@
 
     "item.happyholidays.present_scraps": "Present Scraps",
     "item.happyholidays.holly": "Holly",
+    "item.happyholidays.santa_elf_bell": "Santa's Elf Bell",
 
     "item.happyholidays.christmas_sheet_music_angels_on_high": "Sheet Music",
     "item.happyholidays.christmas_sheet_music_carol_of_the_bells": "Sheet Music",
@@ -79,7 +80,7 @@
     "item.happyholidays.christmas_sheet_music_we_wish_you": "Sheet Music",
     "item.happyholidays.christmas_sheet_music_white_christmas": "Sheet Music",
 
-    "item.happyholidays.christmas_sheet_music_angels_on_high.desc": "Angels on High",
+    "item.happyholidays.christmas_sheet_music_angels_on_high.desc": "Angels We Have Heard on High",
     "item.happyholidays.christmas_sheet_music_carol_of_the_bells.desc": "Carol of the Bells",
     "item.happyholidays.christmas_sheet_music_deck_the_halls.desc": "Deck the Halls",
     "item.happyholidays.christmas_sheet_music_frosty_the_snowman.desc": "Frosty the Snowman",
@@ -96,7 +97,7 @@
     "item.happyholidays.christmas_sheet_music_we_wish_you.desc": "We Wish You A Merry Christmas",
     "item.happyholidays.christmas_sheet_music_white_christmas.desc": "White Christmas",
 
-    "item.happyholidays.christmas_sheet_music_angels_on_high.sub": "Angels on High plays",
+    "item.happyholidays.christmas_sheet_music_angels_on_high.sub": "Angels We Have Heard on High plays",
     "item.happyholidays.christmas_sheet_music_carol_of_the_bells.sub": "Carol of the Bells plays",
     "item.happyholidays.christmas_sheet_music_deck_the_halls.sub": "Deck the Halls plays",
     "item.happyholidays.christmas_sheet_music_frosty_the_snowman.sub": "Frosty the Snowman plays",
@@ -112,6 +113,8 @@
     "item.happyholidays.christmas_sheet_music_we_three_kings.sub": "We Three Kings plays",
     "item.happyholidays.christmas_sheet_music_we_wish_you.sub": "We Wish You A Merry Christmas plays",
     "item.happyholidays.christmas_sheet_music_white_christmas.sub": "White Christmas plays",
+
+    "item.happyholidays.santa_elf_bell.sub": "Santa's Elf Bell rings",
 
     "item.happyholidays.eggnog": "Eggnog",
 

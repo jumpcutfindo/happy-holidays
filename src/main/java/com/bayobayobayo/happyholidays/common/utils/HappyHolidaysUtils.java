@@ -3,6 +3,7 @@ package com.bayobayobayo.happyholidays.common.utils;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 
@@ -32,5 +33,20 @@ public class HappyHolidaysUtils {
         }
 
         return VoxelShapes.box(x1, y1, z1, x2, y2, z2);
+    }
+
+    public static BlockPos getPosInFront(Direction facingDirection, BlockPos pos, double offset) {
+        BlockPos resultPos = pos;
+        if (facingDirection == Direction.NORTH || facingDirection == Direction.UP || facingDirection == Direction.DOWN) {
+            for (int i = 0; i < offset; i++) resultPos = resultPos.north();
+        } else if (facingDirection == Direction.SOUTH) {
+            for (int i = 0; i < offset; i++) resultPos = resultPos.south();
+        } else if (facingDirection == Direction.EAST) {
+            for (int i = 0; i < offset; i++) resultPos = resultPos.east();
+        } else {
+            for (int i = 0; i < offset; i++) resultPos = resultPos.west();
+        }
+
+        return resultPos;
     }
 }

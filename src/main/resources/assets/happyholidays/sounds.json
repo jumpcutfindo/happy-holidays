@@ -1,7 +1,7 @@
 {
     "item.christmas_music_angels_on_high": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_angels_on_high.sub",
+        "subtitle": "Angels We Have Heard on High plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_angels_on_high",
@@ -11,7 +11,7 @@
     },
     "item.christmas_music_carol_of_the_bells": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_carol_of_the_bells.sub",
+        "subtitle": "Carol of the Bells plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_carol_of_the_bells",
@@ -21,7 +21,7 @@
     },
     "item.christmas_music_deck_the_halls": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_deck_the_halls.sub",
+        "subtitle": "Deck the Halls plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_deck_the_halls",
@@ -31,7 +31,7 @@
     },
     "item.christmas_music_frosty_the_snowman": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_frosty_the_snowman.sub",
+        "subtitle": "Frosty the Snowman plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_frosty_the_snowman",
@@ -41,7 +41,7 @@
     },
     "item.christmas_music_god_rest_gentlemen": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_god_rest_gentlemen.sub",
+        "subtitle": "God Rest Ye Merry Gentlemen plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_god_rest_gentlemen",
@@ -51,7 +51,7 @@
     },
     "item.christmas_music_here_comes_santa": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_here_comes_santa.sub",
+        "subtitle": "Here Comes Santa Claus plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_here_comes_santa",
@@ -61,7 +61,7 @@
     },
     "item.christmas_music_jingle_bell_rock": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_jingle_bell_rock.sub",
+        "subtitle": "Jingle Bell Rock plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_jingle_bell_rock",
@@ -71,7 +71,7 @@
     },
     "item.christmas_music_jingle_bells": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_jingle_bells.sub",
+        "subtitle": "Jingle Bells plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_jingle_bells",
@@ -81,7 +81,7 @@
     },
     "item.christmas_music_joy_to_the_world": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_joy_to_the_world.sub",
+        "subtitle": "Joy to the World plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_joy_to_the_world",
@@ -91,7 +91,7 @@
     },
     "item.christmas_music_rudolph": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_rudolph.sub",
+        "subtitle": "Rudolph the Red-Nosed Reindeer plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_rudolph",
@@ -101,7 +101,7 @@
     },
     "item.christmas_music_silent_night": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_silent_night.sub",
+        "subtitle": "Silent Night plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_silent_night",
@@ -111,7 +111,7 @@
     },
     "item.christmas_music_the_first_noel": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_the_first_noel.sub",
+        "subtitle": "The First Noel plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_the_first_noel",
@@ -121,7 +121,7 @@
     },
     "item.christmas_music_sleigh_ride": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_sleigh_ride.sub",
+        "subtitle": "Sleigh Ride plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_sleigh_ride",
@@ -131,7 +131,7 @@
     },
     "item.christmas_music_we_three_kings": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_we_three_kings.sub",
+        "subtitle": "We Three Kings plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_we_three_kings",
@@ -141,7 +141,7 @@
     },
     "item.christmas_music_we_wish_you": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_we_wish_you.sub",
+        "subtitle": "We Wish You A Merry Christmas plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_we_wish_you",
@@ -151,12 +151,22 @@
     },
     "item.christmas_music_white_christmas": {
         "category": "item",
-        "subtitle": "item.happyholidays.christmas_music_white_christmas.sub",
+        "subtitle": "White Christmas plays",
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_music_white_christmas",
                 "stream": true
             }
         ]
-    }
+    },
+    "item.santa_elf_bell": {
+    "category": "item",
+    "subtitle": "item.happyholidays.santa_elf_bell.sub",
+    "sounds": [
+        {
+            "name": "happyholidays:item/santa_elf_bell",
+            "stream": true
+        }
+    ]
+}
 }
