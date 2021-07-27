@@ -3,18 +3,11 @@ package com.bayobayobayo.happyholidays.common.entity.christmas.elf;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 import javax.annotation.Nullable;
 
-import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
-import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
 import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Sets;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.block.Block;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
@@ -23,16 +16,13 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.LookAtCustomerGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.merchant.IMerchant;
-import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
-import net.minecraft.entity.merchant.villager.WanderingTraderEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -40,6 +30,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.MerchantOffers;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -62,6 +54,7 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
                     .add(Attributes.MAX_HEALTH, 20.0f)
                     .add(Attributes.MOVEMENT_SPEED, 0.27D)
                     .build();
+    public static final int DEFAULT_DESPAWN_DELAY = 24000;
 
     private final Inventory inventory = new Inventory(8);
 
@@ -72,8 +65,12 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
     @Nullable
     protected MerchantOffers offers;
 
+    private int despawnDelay;
+
     public SantaElfEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
+
+        this.despawnDelay = DEFAULT_DESPAWN_DELAY;
     }
 
     @Override
@@ -274,26 +271,32 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
         }
     }
 
-    protected void addOffersFromItemListings(MerchantOffers merchantOffers, VillagerTrades.ITrade[] trades, int maxTrades) {
-        Set<Integer> set = Sets.newHashSet();
-        if (trades.length > maxTrades) {
-            while (set.size() < maxTrades) {
-                set.add(this.random.nextInt(trades.length));
-            }
-        } else {
-            for (int i = 0; i < trades.length; ++i) {
-                set.add(i);
-            }
-        }
+    @Override
+    public void addAdditionalSaveData(CompoundNBT nbt) {
+        super.addAdditionalSaveData(nbt);
+        nbt.putInt("DespawnDelay", this.despawnDelay);
 
-        for (Integer integer : set) {
-            VillagerTrades.ITrade villagertrades$itrade = trades[integer];
-            MerchantOffer merchantoffer = villagertrades$itrade.getOffer(this, this.random);
-            if (merchantoffer != null) {
-                merchantOffers.add(merchantoffer);
-            }
-        }
+    }
 
+    @Override
+    public void readAdditionalSaveData(CompoundNBT nbt) {
+        super.readAdditionalSaveData(nbt);
+        if (nbt.contains("DespawnDelay", 99)) {
+            this.despawnDelay = nbt.getInt("DespawnDelay");
+        }
+    }
+
+    public void aiStep() {
+        super.aiStep();
+        if (!this.level.isClientSide) {
+            this.maybeDespawn();
+        }
+    }
+
+    private void maybeDespawn() {
+        if (this.despawnDelay > 0 && !this.isTrading() && --this.despawnDelay == 0) {
+            this.remove();
+        }
     }
 
     private static class TradeWithPlayerGoal extends Goal {
