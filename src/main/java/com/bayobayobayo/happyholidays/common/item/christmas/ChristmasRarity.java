@@ -6,7 +6,9 @@ import net.minecraft.util.text.TextFormatting;
 public enum ChristmasRarity {
     COMMON(TextFormatting.WHITE),
     RARE(TextFormatting.AQUA),
-    LEGENDARY(TextFormatting.GOLD);
+    LEGENDARY(TextFormatting.GOLD),
+
+    UNIQUE(TextFormatting.GREEN);
 
     public final TextFormatting color;
 

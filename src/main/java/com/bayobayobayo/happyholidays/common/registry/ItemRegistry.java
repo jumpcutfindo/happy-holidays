@@ -55,6 +55,7 @@ import com.bayobayobayo.happyholidays.common.item.christmas.food.EggnogItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.GingerbreadCookieItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.misc.SantaElfBellItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.misc.ToyPartsRequestItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.music.AngelsOnHighSheetMusicItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.music.CarolOfBellsSheetMusicItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.music.DeckTheHallsSheetMusicItem;
@@ -94,6 +95,8 @@ public class ItemRegistry {
             ITEMS.register(HollyItem.ITEM_ID, HollyItem::new);
     public static final RegistryObject<ChristmasItem> SANTA_ELF_BELL =
             ITEMS.register(SantaElfBellItem.ITEM_ID, SantaElfBellItem::new);
+    public static final RegistryObject<ChristmasItem> TOY_PARTS_REQUEST =
+            ITEMS.register(ToyPartsRequestItem.ITEM_ID, ToyPartsRequestItem::new);
 
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_ANGELS_ON_HIGH =
             ITEMS.register(AngelsOnHighSheetMusicItem.ITEM_ID, AngelsOnHighSheetMusicItem::new);

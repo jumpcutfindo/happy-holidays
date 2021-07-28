@@ -3,9 +3,11 @@ package com.bayobayobayo.happyholidays.common.entity.christmas.elf;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 import javax.annotation.Nullable;
 
+import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.block.Block;
@@ -21,17 +23,16 @@ import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.MerchantOffers;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -56,8 +57,6 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
                     .build();
     public static final int DEFAULT_DESPAWN_DELAY = 24000;
 
-    private final Inventory inventory = new Inventory(8);
-
     private AnimationFactory factory = new AnimationFactory(this);
 
     @Nullable
@@ -66,11 +65,19 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
     protected MerchantOffers offers;
 
     private int despawnDelay;
+    private SantaElfRequest santaElfRequest;
+    private int santaElfRequestOfferIndex = -1;
+
+    private int requestItemCooldown = 0;
+    private int requestPaperCooldown = 0;
+    private boolean isRequestOutdated = false;
 
     public SantaElfEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
 
         this.despawnDelay = DEFAULT_DESPAWN_DELAY;
+
+        if (this.santaElfRequest == null) this.santaElfRequest = SantaElfRequest.createRandomRequest();
     }
 
     @Override
@@ -78,11 +85,14 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
         super.registerGoals();
 
         this.goalSelector.addGoal(0, new TradeWithPlayerGoal(this));
-        this.goalSelector.addGoal(0, new LookAtCustomerGoal(this));
-        this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(1, new PickupRequestedItemGoal(this));
+        this.goalSelector.addGoal(1, new SwapToyPartsRequestGoal(this));
+        this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
+        this.goalSelector.addGoal(3, new SwimGoal(this));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
+
     }
 
     @Override
@@ -256,6 +266,13 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
             if (merchantOffer != null) merchantOffers.add(merchantOffer);
         }
 
+        // Add Santa's Elf Request
+        SantaElfEntity.ItemsForEmeraldsTrade santaElfRequestTrade =
+                new SantaElfEntity.ItemsForEmeraldsTrade(this.santaElfRequest.getRequestPaper(), 1,1, 1, 2);
+        MerchantOffer santaElfRequestOffer = santaElfRequestTrade.getOffer(this, this.random);
+        if (santaElfRequestOffer != null) merchantOffers.add(santaElfRequestOffer);
+        this.santaElfRequestOfferIndex = merchantOffers.indexOf(santaElfRequestOffer);
+
         // Sometimes appears trades
         if (this.random.nextBoolean()) {
             int randInt = this.random.nextInt(SantaElfTrades.SOMETIMES_APPEAR_TRADES.length);
@@ -271,11 +288,57 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
         }
     }
 
+    public SantaElfRequest getRequest() {
+        return this.santaElfRequest;
+    }
+
+    public boolean handleRequestItemOnGround(ItemEntity itemEntity) {
+        SantaElfRequest.SingleElfRequest completedRequest =
+                this.getRequest().tryFulfilRequest(itemEntity.getItem());
+
+        if (completedRequest != null) {
+            this.pickUpSomeItems(itemEntity, completedRequest.getNumberOfItems());
+            this.requestItemCooldown = 40;
+            this.isRequestOutdated = true;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean handleRequestPaperOnGround(ItemEntity itemEntity) {
+        if (this.isRequestOutdated) {
+            this.take(itemEntity, itemEntity.getItem().getCount());
+            this.throwItem(this.getRequest().getRequestPaper());
+
+            this.requestPaperCooldown = 40;
+            this.isRequestOutdated = false;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isReadyToTakeRequestItem() {
+        return this.requestItemCooldown <= 0;
+    }
+
+    public boolean isReadyToTakeRequestPaper() {
+        return this.requestPaperCooldown <= 0;
+    }
+
+    public MerchantOffer getSantaElfRequestOffer() {
+        return this.santaElfRequestOfferIndex == -1 ? null : this.offers.get(this.santaElfRequestOfferIndex);
+    }
+
     @Override
     public void addAdditionalSaveData(CompoundNBT nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.putInt("DespawnDelay", this.despawnDelay);
-
+        nbt.put("SantaElfRequest", this.santaElfRequest.createTag());
+        nbt.put("MerchantOffers", this.getOffers().createTag());
     }
 
     @Override
@@ -284,6 +347,14 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
         if (nbt.contains("DespawnDelay", 99)) {
             this.despawnDelay = nbt.getInt("DespawnDelay");
         }
+
+        if (nbt.contains("SantaElfRequest", 10)) {
+            this.santaElfRequest = SantaElfRequest.fromTag(nbt.getCompound("SantaElfRequest"));
+        }
+
+        if (nbt.contains("MerchantOffers", 10)) {
+            this.offers = new MerchantOffers(nbt.getCompound("MerchantOffers"));
+        }
     }
 
     public void aiStep() {
@@ -291,12 +362,31 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
         if (!this.level.isClientSide) {
             this.maybeDespawn();
         }
+
+        if (--requestItemCooldown > 0);
+        if (--requestPaperCooldown > 0);
     }
 
     private void maybeDespawn() {
         if (this.despawnDelay > 0 && !this.isTrading() && --this.despawnDelay == 0) {
             this.remove();
         }
+    }
+
+    public void pickUpSomeItems(ItemEntity itemEntity, int itemsToPickUpCount) {
+        ItemStack itemStack = itemEntity.getItem();
+        this.onItemPickup(itemEntity);
+        this.take(itemEntity, itemStack.getCount());
+
+        if (!(itemsToPickUpCount >= itemStack.getCount())) {
+            ItemStack itemStackCopy = itemStack.copy();
+            itemStackCopy.setCount(itemStack.getCount() - itemsToPickUpCount);
+            this.throwItem(itemStackCopy);
+        }
+    }
+
+    public void throwItem(ItemStack itemStack) {
+        this.level.addFreshEntity(new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), itemStack));
     }
 
     private static class TradeWithPlayerGoal extends Goal {
@@ -351,6 +441,90 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
                 return true;
             } else {
                 return false;
+            }
+        }
+    }
+
+    private static class PickupRequestedItemGoal extends Goal {
+        private SantaElfEntity santaElfEntity;
+        private ItemEntity targetedEntity;
+
+        public PickupRequestedItemGoal(SantaElfEntity santaElfEntity) {
+            this.santaElfEntity = santaElfEntity;
+        }
+
+        @Override
+        public boolean canUse() {
+            MerchantOffer requestOffer = santaElfEntity.getSantaElfRequestOffer();
+            if (requestOffer == null || !requestOffer.isOutOfStock()) return false;
+
+            SantaElfRequest request = this.santaElfEntity.getRequest();
+            if (request.isCompleted()) return false;
+
+            List<ItemEntity> nearbyEntities = this.santaElfEntity.level.getEntitiesOfClass(ItemEntity.class,
+                    this.santaElfEntity.getBoundingBox().inflate(4.0D, 4.0D, 4.0D));
+
+            if (nearbyEntities.size() != 0) {
+                for (ItemEntity entity : nearbyEntities) {
+                    if (this.santaElfEntity.getRequest().isInRequest(entity.getItem())) {
+                        targetedEntity = entity;
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        @Override
+        public void tick() {
+            if (targetedEntity != null || !targetedEntity.isAlive()) {
+                this.santaElfEntity.getNavigation().moveTo(targetedEntity, 1.0f);
+
+                if (this.santaElfEntity.isReadyToTakeRequestItem() && targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
+                    if(this.santaElfEntity.handleRequestItemOnGround(this.targetedEntity)) {
+                        this.targetedEntity.remove();
+                    }
+                }
+            }
+        }
+    }
+
+    private static class SwapToyPartsRequestGoal extends Goal {
+        private SantaElfEntity santaElfEntity;
+        private ItemEntity targetedEntity;
+
+        public SwapToyPartsRequestGoal(SantaElfEntity santaElfEntity) {
+            this.santaElfEntity = santaElfEntity;
+        }
+
+        @Override
+        public boolean canUse() {
+            List<ItemEntity> nearbyEntities = this.santaElfEntity.level.getEntitiesOfClass(ItemEntity.class,
+                    this.santaElfEntity.getBoundingBox().inflate(4.0D, 4.0D, 4.0D));
+
+            if (nearbyEntities.size() != 0) {
+                for (ItemEntity entity : nearbyEntities) {
+                    if (ItemStack.isSame(entity.getItem(), ItemRegistry.TOY_PARTS_REQUEST.get().getDefaultInstance())) {
+                        targetedEntity = entity;
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        @Override
+        public void tick() {
+            if (targetedEntity != null || !targetedEntity.isAlive()) {
+                this.santaElfEntity.getNavigation().moveTo(targetedEntity, 1.0f);
+
+                if (this.santaElfEntity.isReadyToTakeRequestPaper() && targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
+                    if (this.santaElfEntity.handleRequestPaperOnGround(targetedEntity)) {
+                        targetedEntity.remove();
+                    }
+                }
             }
         }
     }
@@ -410,7 +584,9 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
         }
 
         public MerchantOffer getOffer(Entity p_221182_1_, Random p_221182_2_) {
-            return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), new ItemStack(this.itemStack.getItem(), this.numberOfItems), this.maxUses, this.villagerXp, this.priceMultiplier);
+            ItemStack offerStack = new ItemStack(this.itemStack.getItem(), this.numberOfItems);
+            offerStack.setTag(this.itemStack.getTag());
+            return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), offerStack, this.maxUses, this.villagerXp, this.priceMultiplier);
         }
     }
 }
