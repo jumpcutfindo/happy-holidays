@@ -69,7 +69,8 @@ public class SantaElfBellItem extends ChristmasItem {
         } else {
             long timeRemaining = nbt.getLong("NextUseTime") - world.getGameTime();
             IFormattableTextComponent chatComponent =
-                    new TranslationTextComponent("chat.happyholidays." + ITEM_ID + ".not_ready", timeRemaining / 20);
+                    new TranslationTextComponent("chat.happyholidays." + ITEM_ID + ".not_ready",
+                            HappyHolidaysUtils.convertTicksToString(timeRemaining));
             chatComponent.withStyle(TextFormatting.RED);
             player.displayClientMessage(chatComponent, true);
             return ActionResult.fail(player.getItemInHand(hand));
@@ -123,8 +124,10 @@ public class SantaElfBellItem extends ChristmasItem {
 
             if (timeRemaining > 0) {
                 IFormattableTextComponent textComponent =
-                        new TranslationTextComponent("item.happyholidays."+ ITEM_ID +".cooldown")
-                                .append(String.format("%ds", timeRemaining / 20));
+                        new TranslationTextComponent(
+                                "item.happyholidays."+ ITEM_ID +".cooldown",
+                                HappyHolidaysUtils.convertTicksToString(timeRemaining)
+                        );
                 textComponent.withStyle(TextFormatting.GRAY);
                 textComponents.add(textComponent);
             }

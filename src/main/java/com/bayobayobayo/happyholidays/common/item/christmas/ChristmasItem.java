@@ -53,6 +53,8 @@ public class ChristmasItem extends Item implements HappyHolidaysItem {
             return name.withStyle(ChristmasRarity.RARE.color);
         case LEGENDARY:
             return name.withStyle(ChristmasRarity.LEGENDARY.color);
+        case UNIQUE:
+            return name.withStyle(ChristmasRarity.UNIQUE.color);
         default:
             return name.withStyle(ChristmasRarity.COMMON.color);
         }

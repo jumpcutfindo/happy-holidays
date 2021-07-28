@@ -8,6 +8,7 @@ import com.bayobayobayo.happyholidays.common.entity.christmas.elf.SantaElfReques
 import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasRarity;
+import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
@@ -17,6 +18,7 @@ import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class ToyPartsRequestItem extends ChristmasItem {
@@ -41,10 +43,23 @@ public class ToyPartsRequestItem extends ChristmasItem {
 
             for (SantaElfRequest.SingleElfRequest request : santaElfRequest.getRequestedItems()) {
                 IFormattableTextComponent formattableTextComponent = new StringTextComponent(request.toString());
-                if (request.isCompleted()) formattableTextComponent =
-                        formattableTextComponent.withStyle(TextFormatting.STRIKETHROUGH);
+                if (request.isCompleted()) formattableTextComponent.withStyle(TextFormatting.STRIKETHROUGH);
 
                 textComponents.add(formattableTextComponent.withStyle(TextFormatting.GRAY));
+            }
+
+            long timeRemaining = santaElfRequest.getExpiryTime() - world.getGameTime();
+
+            if (timeRemaining > 0) {
+                textComponents.add(new StringTextComponent(""));
+
+                IFormattableTextComponent expiryTextComponent = new TranslationTextComponent(
+                        "item.happyholidays.toy_parts_request.expires_in",
+                        HappyHolidaysUtils.convertTicksToString(timeRemaining)
+                );
+                expiryTextComponent.withStyle(TextFormatting.GRAY);
+
+                textComponents.add(expiryTextComponent);
             }
         }
     }

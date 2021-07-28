@@ -13,8 +13,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.ByteArrayNBT;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.nbt.LongNBT;
 
 public class SantaElfRequest {
+    public static final long DEFAULT_EXPIRY = 24000;
+
     public static final int TOTAL_NO_OF_ITEMS = 4;
     public static final int NO_OF_UNIQUE_BASIC_ITEMS = 4;
 
@@ -28,9 +31,9 @@ public class SantaElfRequest {
             Blocks.STONE.asItem()
     };
 
-
     public Random random;
     public List<SingleElfRequest> requestedItemsList;
+    private long expiryTime;
 
     private SantaElfRequest() {
         this.random = new Random();
@@ -113,6 +116,8 @@ public class SantaElfRequest {
             }
         }
 
+        santaElfRequest.setExpiryTime(nbt.getLong("ExpiryTime"));
+
         return santaElfRequest;
     }
 
@@ -134,13 +139,23 @@ public class SantaElfRequest {
 
         nbt.put("SingleRequests", singleRequestsNBT);
         nbt.put("RequestsCompleted", completedRequestNBT);
+        nbt.put("ExpiryTime", LongNBT.valueOf(expiryTime));
 
         return nbt;
     }
 
-    public static SantaElfRequest createRandomRequest() {
+    private void setExpiryTime(long expiryTime) {
+        this.expiryTime = expiryTime;
+    }
+
+    public long getExpiryTime() {
+        return this.expiryTime;
+    }
+
+    public static SantaElfRequest createRandomRequest(long gameTime) {
         SantaElfRequest request = new SantaElfRequest();
         request.generateRequest();
+        request.setExpiryTime(gameTime + DEFAULT_EXPIRY);
 
         return request;
     }

@@ -178,5 +178,35 @@
                 "stream": true
             }
         ]
+    },
+    "entity.santa_elf_yes": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_elf_yes.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_elf_yes",
+                "stream": true
+            }
+        ]
+    },
+    "entity.santa_elf_no": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_elf_yes.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_elf_no",
+                "stream": true
+            }
+        ]
+    },
+    "entity.santa_elf_request_single_success": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_elf_request_single_success.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_elf_arrival_single_success",
+                "stream": true
+            }
+        ]
     }
 }

@@ -133,7 +133,8 @@
     "item.happyholidays.christmas_sheet_music_white_christmas.sub": "White Christmas plays",
 
     "item.happyholidays.santa_elf_bell.sub": "Santa's Elf Bell rings",
-    "item.happyholidays.santa_elf_bell.cooldown": "Cooldown left: ",
+    "item.happyholidays.santa_elf_bell.cooldown": "Cooldown left: %s",
+    "item.happyholidays.toy_parts_request.expires_in": "Expires in: %s",
 
     "item.happyholidays.eggnog": "Eggnog",
 
@@ -141,8 +142,11 @@
     "entity.happyholidays.soggy_gingerbread_man": "Soggy Gingerbread Man",
     "entity.happyholidays.santa_elf": "Santa's Elf",
     "entity.happyholidays.santa_elf_arrival.sub": "Santa's Elf arrives",
+    "entity.happyholidays.santa_elf_yes.sub": "Santa's Elf approves",
+    "entity.happyholidays.santa_elf_no.sub": "Santa's Elf disapproves",
+    "entity.happyholidays.santa_elf_request_single_success.sub": "Santa's Elf accepts item happily",
 
     "itemGroup.happyholidaystab": "Happy Holidays",
 
-    "chat.happyholidays.santa_elf_bell.not_ready": "Santa's Elf is not available yet (%ss left)"
+    "chat.happyholidays.santa_elf_bell.not_ready": "Santa's Elf is not available yet (%s left)"
 }

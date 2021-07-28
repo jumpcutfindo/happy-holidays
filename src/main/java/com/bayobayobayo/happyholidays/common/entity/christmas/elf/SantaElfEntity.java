@@ -8,6 +8,7 @@ import java.util.concurrent.Semaphore;
 import javax.annotation.Nullable;
 
 import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
+import com.bayobayobayo.happyholidays.common.registry.SoundRegistry;
 import com.google.common.collect.ImmutableList;
 
 import net.minecraft.block.Block;
@@ -77,7 +78,7 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
 
         this.despawnDelay = DEFAULT_DESPAWN_DELAY;
 
-        if (this.santaElfRequest == null) this.santaElfRequest = SantaElfRequest.createRandomRequest();
+        if (this.santaElfRequest == null) this.santaElfRequest = SantaElfRequest.createRandomRequest(this.level.getGameTime());
     }
 
     @Override
@@ -178,11 +179,11 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
     }
 
     public SoundEvent getNotifyTradeSound() {
-        return SoundEvents.VILLAGER_YES;
+        return SoundRegistry.SANTA_ELF_YES.get();
     }
 
     protected SoundEvent getTradeUpdatedSound(boolean b) {
-        return b ? SoundEvents.VILLAGER_YES : SoundEvents.VILLAGER_NO;
+        return b ? SoundRegistry.SANTA_ELF_YES.get() : SoundRegistry.SANTA_ELF_NO.get();
     }
 
     @Override
@@ -298,6 +299,8 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
 
         if (completedRequest != null) {
             this.pickUpSomeItems(itemEntity, completedRequest.getNumberOfItems());
+            this.playSound(SoundRegistry.SANTA_ELF_REQUEST_SINGLE_SUCCESS.get(), 1.0f, 1.0f);
+
             this.requestItemCooldown = 40;
             this.isRequestOutdated = true;
 
