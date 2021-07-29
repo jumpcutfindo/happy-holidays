@@ -90,6 +90,6 @@ public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
         this.convertTo(EntityRegistry.GINGERBREAD_MAN.get(), true);
         this.playSound(SoundEvents.FIRE_EXTINGUISH, 1.0F, 1.0F);
 
-        this.dropFromLootTable(DamageSource.DROWN, true);
+        this.dropFromLootTable(DamageSource.GENERIC, true);
     }
 }

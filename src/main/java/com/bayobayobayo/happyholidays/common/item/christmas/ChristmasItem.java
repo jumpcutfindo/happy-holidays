@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.bayobayobayo.happyholidays.common.item.HappyHolidaysItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.music.SheetMusicItem;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
@@ -65,5 +66,9 @@ public class ChristmasItem extends Item implements HappyHolidaysItem {
         for (String description : tooltipDescriptions) {
             textComponents.add(new StringTextComponent(description));
         }
+    }
+
+    public static boolean isSheetMusicItem(ItemStack itemStack) {
+        return itemStack.getItem() instanceof SheetMusicItem;
     }
 }

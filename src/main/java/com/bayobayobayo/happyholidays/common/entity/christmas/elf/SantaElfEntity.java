@@ -3,13 +3,15 @@ package com.bayobayobayo.happyholidays.common.entity.christmas.elf;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Semaphore;
 
 import javax.annotation.Nullable;
 
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
+import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
 import com.bayobayobayo.happyholidays.common.registry.SoundRegistry;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.CreatureEntity;
@@ -28,19 +30,30 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.merchant.IMerchant;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.FireworkRocketEntity;
+import net.minecraft.item.DyeItem;
+import net.minecraft.item.FireworkRocketItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
 import net.minecraft.item.MerchantOffers;
+import net.minecraft.item.crafting.FireworkRocketRecipe;
+import net.minecraft.item.crafting.FireworkStarRecipe;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameterSets;
+import net.minecraft.loot.LootTable;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -58,6 +71,8 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
                     .build();
     public static final int DEFAULT_DESPAWN_DELAY = 24000;
 
+    private static final ResourceLocation SANTA_ELF_REQUEST_LOOT_TABLE = new ResourceLocation("happyholidays:entities/santa_elf_request");
+
     private AnimationFactory factory = new AnimationFactory(this);
 
     @Nullable
@@ -71,6 +86,7 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
 
     private int requestItemCooldown = 0;
     private int requestPaperCooldown = 0;
+    private boolean isRewardThrown = false;
     private boolean isRequestOutdated = false;
 
     public SantaElfEntity(EntityType<? extends CreatureEntity> entityType, World world) {
@@ -78,7 +94,8 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
 
         this.despawnDelay = DEFAULT_DESPAWN_DELAY;
 
-        if (this.santaElfRequest == null) this.santaElfRequest = SantaElfRequest.createRandomRequest(this.level.getGameTime());
+        if (this.santaElfRequest == null) this.santaElfRequest =
+                SantaElfRequests.createRandomRequest(this.level.getGameTime());
     }
 
     @Override
@@ -293,35 +310,38 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
         return this.santaElfRequest;
     }
 
-    public boolean handleRequestItemOnGround(ItemEntity itemEntity) {
+    public void handleRequestItemOnGround(ItemEntity itemEntity) {
         SantaElfRequest.SingleElfRequest completedRequest =
                 this.getRequest().tryFulfilRequest(itemEntity.getItem());
 
         if (completedRequest != null) {
             this.pickUpSomeItems(itemEntity, completedRequest.getNumberOfItems());
-            this.playSound(SoundRegistry.SANTA_ELF_REQUEST_SINGLE_SUCCESS.get(), 1.0f, 1.0f);
+            this.level.playSound(null, this.getX(), this.getY(), this.getZ(),
+                    SoundRegistry.SANTA_ELF_REQUEST_SINGLE_SUCCESS.get(), SoundCategory.VOICE, 1.0f, 1.0f);
 
             this.requestItemCooldown = 40;
             this.isRequestOutdated = true;
 
-            return true;
+            itemEntity.remove();
         }
-
-        return false;
     }
 
-    public boolean handleRequestPaperOnGround(ItemEntity itemEntity) {
-        if (this.isRequestOutdated) {
+    public void handleRequestPaperOnGround(ItemEntity itemEntity) {
+        if (!this.isRewardThrown && this.santaElfRequest.isCompleted()) {
             this.take(itemEntity, itemEntity.getItem().getCount());
-            this.throwItem(this.getRequest().getRequestPaper());
+            this.throwRequestRewards();
+
+            this.isRewardThrown = true;
+            itemEntity.remove();
+        } else if (this.isRequestOutdated && !this.santaElfRequest.isCompleted()) {
+            this.take(itemEntity, itemEntity.getItem().getCount());
+            this.spawnAtLocation(this.getRequest().getRequestPaper());
 
             this.requestPaperCooldown = 40;
             this.isRequestOutdated = false;
 
-            return true;
+            itemEntity.remove();
         }
-
-        return false;
     }
 
     public boolean isReadyToTakeRequestItem() {
@@ -336,12 +356,57 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
         return this.santaElfRequestOfferIndex == -1 ? null : this.offers.get(this.santaElfRequestOfferIndex);
     }
 
+    public void throwRequestRewards() {
+        LootTable lootTable = this.level.getServer().getLootTables().get(SANTA_ELF_REQUEST_LOOT_TABLE);
+        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
+
+        lootTable.getRandomItems(ctx).forEach(itemStack -> {
+            if (ChristmasBlockItem.isBasicOrnamentItem(itemStack)) {
+                itemStack.setCount((this.random.nextInt(36 - 12) + 1) + 12);
+            } else if (ChristmasBlockItem.isRareOrnamentItem(itemStack)) {
+                itemStack.setCount((this.random.nextInt(8 - 4) + 1) + 4);
+            } else if (ItemStack.isSame(itemStack, ItemRegistry.PRESENT_SCRAPS.get().getDefaultInstance())) {
+                itemStack.setCount((this.random.nextInt(18 - 12) + 1) + 12);
+            }
+
+            this.spawnAtLocation(itemStack);
+        });
+
+        this.level.playSound(null, this.getX(), this.getY(), this.getZ(),
+                SoundRegistry.SANTA_ELF_REQUEST_COMPLETE.get(), SoundCategory.VOICE, 1.0f, 1.0f);
+
+        // Creating effects
+        this.level.addFreshEntity(new FireworkRocketEntity(this.level, null, this.getX(), this.getY(), this.getZ(),
+                this.createCelebratoryFireworks()));
+
+        this.level.addFreshEntity(new ExperienceOrbEntity(this.level, this.getX(), this.getY(), this.getZ(), 36));
+    }
+
+    private ItemStack createCelebratoryFireworks() {
+        ItemStack fireworkStack = Items.FIREWORK_ROCKET.getDefaultInstance();
+        CompoundNBT fireworkNBT = new CompoundNBT();
+        fireworkNBT.putBoolean("Flight", true);
+        CompoundNBT explosionsNBT = new CompoundNBT();
+        explosionsNBT.putBoolean("Type", true);
+
+        List<Integer> colorList = Lists.newArrayList();
+        colorList.add(((DyeItem) Items.GREEN_DYE).getDyeColor().getFireworkColor());
+        colorList.add(((DyeItem) Items.RED_DYE).getDyeColor().getFireworkColor());
+        explosionsNBT.putIntArray("Colors", colorList);
+
+        fireworkStack.getOrCreateTag().put("Fireworks", fireworkNBT);
+
+        return fireworkStack;
+    }
+
     @Override
     public void addAdditionalSaveData(CompoundNBT nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.putInt("DespawnDelay", this.despawnDelay);
         nbt.put("SantaElfRequest", this.santaElfRequest.createTag());
         nbt.put("MerchantOffers", this.getOffers().createTag());
+        nbt.putBoolean("IsRequestOutdated", this.isRequestOutdated);
+        nbt.putBoolean("IsRewardThrown", this.isRewardThrown);
     }
 
     @Override
@@ -358,6 +423,9 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
         if (nbt.contains("MerchantOffers", 10)) {
             this.offers = new MerchantOffers(nbt.getCompound("MerchantOffers"));
         }
+
+        this.isRequestOutdated = nbt.getBoolean("IsRequestOutdated");
+        this.isRewardThrown = nbt.getBoolean("IsRewardThrown");
     }
 
     public void aiStep() {
@@ -384,12 +452,8 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
         if (!(itemsToPickUpCount >= itemStack.getCount())) {
             ItemStack itemStackCopy = itemStack.copy();
             itemStackCopy.setCount(itemStack.getCount() - itemsToPickUpCount);
-            this.throwItem(itemStackCopy);
+            this.spawnAtLocation(itemStackCopy);
         }
-    }
-
-    public void throwItem(ItemStack itemStack) {
-        this.level.addFreshEntity(new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), itemStack));
     }
 
     private static class TradeWithPlayerGoal extends Goal {
@@ -485,9 +549,7 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
                 this.santaElfEntity.getNavigation().moveTo(targetedEntity, 1.0f);
 
                 if (this.santaElfEntity.isReadyToTakeRequestItem() && targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
-                    if(this.santaElfEntity.handleRequestItemOnGround(this.targetedEntity)) {
-                        this.targetedEntity.remove();
-                    }
+                    this.santaElfEntity.handleRequestItemOnGround(this.targetedEntity);
                 }
             }
         }
@@ -503,6 +565,8 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
 
         @Override
         public boolean canUse() {
+            if (this.santaElfEntity.isRewardThrown) return false;
+
             List<ItemEntity> nearbyEntities = this.santaElfEntity.level.getEntitiesOfClass(ItemEntity.class,
                     this.santaElfEntity.getBoundingBox().inflate(4.0D, 4.0D, 4.0D));
 
@@ -524,9 +588,7 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
                 this.santaElfEntity.getNavigation().moveTo(targetedEntity, 1.0f);
 
                 if (this.santaElfEntity.isReadyToTakeRequestPaper() && targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
-                    if (this.santaElfEntity.handleRequestPaperOnGround(targetedEntity)) {
-                        targetedEntity.remove();
-                    }
+                    this.santaElfEntity.handleRequestPaperOnGround(targetedEntity);
                 }
             }
         }

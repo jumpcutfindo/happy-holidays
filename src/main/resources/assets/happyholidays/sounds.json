@@ -204,7 +204,17 @@
         "subtitle": "entity.happyholidays.santa_elf_request_single_success.sub",
         "sounds": [
             {
-                "name": "happyholidays:entity/santa_elf_arrival_single_success",
+                "name": "happyholidays:entity/santa_elf_request_single_success",
+                "stream": true
+            }
+        ]
+    },
+    "entity.santa_elf_request_complete": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_elf_request_complete.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_elf_request_complete",
                 "stream": true
             }
         ]

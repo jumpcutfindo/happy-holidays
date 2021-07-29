@@ -13,6 +13,7 @@ import com.bayobayobayo.happyholidays.common.utils.HappyHolidaysUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.MusicDiscItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;

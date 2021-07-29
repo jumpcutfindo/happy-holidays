@@ -10,50 +10,21 @@ import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.MusicDiscItem;
 import net.minecraft.nbt.ByteArrayNBT;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.LongNBT;
 
 public class SantaElfRequest {
-    public static final long DEFAULT_EXPIRY = 24000;
-
-    public static final int TOTAL_NO_OF_ITEMS = 4;
-    public static final int NO_OF_UNIQUE_BASIC_ITEMS = 4;
-
-    public static final int MIN_BASIC_REQUESTABLE_ITEMS = 4;
-    public static final int MAX_BASIC_REQUESTABLE_ITEMS = 8;
-    public static final Item[] BASIC_REQUESTABLE_ITEMS = new Item[] {
-            Blocks.DIRT.asItem(),
-            Blocks.DIORITE.asItem(),
-            Blocks.ANDESITE.asItem(),
-            Blocks.GRANITE.asItem(),
-            Blocks.STONE.asItem()
-    };
-
     public Random random;
     public List<SingleElfRequest> requestedItemsList;
     private long expiryTime;
 
-    private SantaElfRequest() {
+    SantaElfRequest() {
         this.random = new Random();
 
         this.requestedItemsList = new ArrayList<>();
-    }
-
-    private void generateRequest() {
-        for (int i = 0; i < NO_OF_UNIQUE_BASIC_ITEMS; i++) {
-            Item randomItem = BASIC_REQUESTABLE_ITEMS[this.random.nextInt(BASIC_REQUESTABLE_ITEMS.length)];
-            int randomAmount =
-                    random.nextInt((MAX_BASIC_REQUESTABLE_ITEMS - MIN_BASIC_REQUESTABLE_ITEMS) + 1)
-                            + MIN_BASIC_REQUESTABLE_ITEMS;
-
-            ItemStack itemStack = randomItem.getDefaultInstance();
-            itemStack.setCount(randomAmount);
-
-            SingleElfRequest singleElfRequest = new SingleElfRequest(itemStack);
-            this.requestedItemsList.add(singleElfRequest);
-        }
     }
 
     public SingleElfRequest tryFulfilRequest(ItemStack stack) {
@@ -95,7 +66,7 @@ public class SantaElfRequest {
         return requestedItemsList;
     }
 
-    private void addEntry(ItemStack itemStack, boolean isCompleted) {
+    void addEntry(ItemStack itemStack, boolean isCompleted) {
         SingleElfRequest singleElfRequest = new SingleElfRequest(itemStack);
         if (isCompleted) singleElfRequest.setCompleted();
 
@@ -144,20 +115,12 @@ public class SantaElfRequest {
         return nbt;
     }
 
-    private void setExpiryTime(long expiryTime) {
+    void setExpiryTime(long expiryTime) {
         this.expiryTime = expiryTime;
     }
 
     public long getExpiryTime() {
         return this.expiryTime;
-    }
-
-    public static SantaElfRequest createRandomRequest(long gameTime) {
-        SantaElfRequest request = new SantaElfRequest();
-        request.generateRequest();
-        request.setExpiryTime(gameTime + DEFAULT_EXPIRY);
-
-        return request;
     }
 
     public class SingleElfRequest {
@@ -195,9 +158,13 @@ public class SantaElfRequest {
 
         @Override
         public String toString() {
-            String itemName = this.requestedItems.getDisplayName().getString();
-
-            return String.format("%d\u00d7 %s", this.requestedItems.getCount(), itemName.substring(1, itemName.length() - 1));
+            if (this.requestedItems.getItem() instanceof MusicDiscItem) {
+                String itemName = ((MusicDiscItem) this.requestedItems.getItem()).getDisplayName().getString();
+                return String.format("%d\u00d7 Music Disc [%s]", this.requestedItems.getCount(), itemName);
+            } else {
+                String itemName = this.requestedItems.getDisplayName().getString();
+                return String.format("%d\u00d7 %s", this.requestedItems.getCount(), itemName.substring(1, itemName.length() - 1));
+            }
         }
     }
 }
