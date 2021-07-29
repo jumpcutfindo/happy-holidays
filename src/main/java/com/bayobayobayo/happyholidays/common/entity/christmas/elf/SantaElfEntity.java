@@ -44,6 +44,7 @@ import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootTable;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -385,14 +386,20 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
     private ItemStack createCelebratoryFireworks() {
         ItemStack fireworkStack = Items.FIREWORK_ROCKET.getDefaultInstance();
         CompoundNBT fireworkNBT = new CompoundNBT();
-        fireworkNBT.putBoolean("Flight", true);
+
+        fireworkNBT.putInt("Flight", 2);
+
         CompoundNBT explosionsNBT = new CompoundNBT();
-        explosionsNBT.putBoolean("Type", true);
+        explosionsNBT.putByte("Type", (byte) 0);
 
         List<Integer> colorList = Lists.newArrayList();
         colorList.add(((DyeItem) Items.GREEN_DYE).getDyeColor().getFireworkColor());
         colorList.add(((DyeItem) Items.RED_DYE).getDyeColor().getFireworkColor());
         explosionsNBT.putIntArray("Colors", colorList);
+
+        ListNBT listWrapper = new ListNBT();
+        listWrapper.add(explosionsNBT);
+        fireworkNBT.put("Explosions", listWrapper);
 
         fireworkStack.getOrCreateTag().put("Fireworks", fireworkNBT);
 
