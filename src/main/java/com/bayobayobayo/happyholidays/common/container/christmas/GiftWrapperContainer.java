@@ -12,6 +12,9 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.DyeItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
@@ -36,18 +39,18 @@ public class GiftWrapperContainer extends Container {
         canInteractWithCallable = IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos());
 
         // Other slots
-        stringSlot = this.addSlot(new Slot(playerInv, 36, 16, 16));
-        paperSlot = this.addSlot(new Slot(playerInv, 37, 16, 41));
-        dyeSlot = this.addSlot(new Slot(playerInv, 38, 16, 66));
+        stringSlot = this.addSlot(new Slot(tileEntity, 0, 16, 16));
+        paperSlot = this.addSlot(new Slot(tileEntity, 1, 16, 41));
+        dyeSlot = this.addSlot(new Slot(tileEntity, 2, 16, 66));
 
         giftItemSlots = Lists.newArrayList();
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 3; j++) {
-                giftItemSlots.add(this.addSlot(new Slot(playerInv, 39 + (i + 1) * j, 51 + j * 18, 32 + i * 18)));
+                giftItemSlots.add(this.addSlot(new Slot(tileEntity, 3 + (i * 3) + j, 51 + j * 18, 32 + i * 18)));
             }
         }
 
-        resultSlot = this.addSlot(new Slot(playerInv, 40, 140, 40));
+        resultSlot = this.addSlot(new Slot(tileEntity, 9, 140, 40));
 
         // Main player inventory
         for (int row = 0; row < 3; row++) {
@@ -87,5 +90,57 @@ public class GiftWrapperContainer extends Container {
         }
 
         throw new IllegalStateException("Incorrect tile entity!");
+    }
+
+    @Override
+    public ItemStack quickMoveStack(PlayerEntity playerEntity, int selectedSlot) {
+        ItemStack itemStack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(selectedSlot);
+
+        if (slot != null && slot.hasItem()) {
+            ItemStack itemStack1 = slot.getItem();
+            itemStack = itemStack1.copy();
+            if (slot.equals(stringSlot) || slot.equals(paperSlot) || slot.equals(dyeSlot) || giftItemSlots.contains(slot) || slot.equals(resultSlot)) {
+                if (!this.moveItemStackTo(itemStack1, 10, 46, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else {
+                if (ItemStack.isSame(itemStack1, Items.STRING.getDefaultInstance())) {
+                    if (!this.moveItemStackTo(itemStack1, stringSlot.getSlotIndex(), stringSlot.getSlotIndex() + 1,
+                            false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (ItemStack.isSame(itemStack1, Items.PAPER.getDefaultInstance())) {
+                    if (!this.moveItemStackTo(itemStack1, paperSlot.getSlotIndex(), paperSlot.getSlotIndex() + 1,
+                            false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (itemStack1.getItem() instanceof DyeItem) {
+                    if (!this.moveItemStackTo(itemStack1, dyeSlot.getSlotIndex(), dyeSlot.getSlotIndex() + 1,
+                            false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else {
+                    if (!this.moveItemStackTo(itemStack1, giftItemSlots.get(0).getSlotIndex(), giftItemSlots.size(),
+                            false)) {
+                        return ItemStack.EMPTY;
+                    }
+                }
+            }
+
+            if (itemStack1.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+
+            if (itemStack1.getCount() == itemStack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(playerEntity, itemStack1);
+        }
+
+        return ItemStack.EMPTY;
     }
 }
