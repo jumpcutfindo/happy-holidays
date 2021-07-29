@@ -67,18 +67,6 @@ public class ChristmasStarContainer extends Container {
         this(windowId, playerInv, ChristmasStarContainer.getTileEntity(playerInv, data));
     }
 
-    private static ChristmasStarTileEntity getTileEntity(final PlayerInventory playerInv, final PacketBuffer data) {
-        Objects.requireNonNull(playerInv, "Player inventory cannot be null");
-        Objects.requireNonNull(data, "Packet buffer cannot be null");
-
-        final TileEntity te = playerInv.player.getCommandSenderWorld().getBlockEntity(data.readBlockPos());
-        if (te instanceof ChristmasStarTileEntity) {
-            return (ChristmasStarTileEntity) te;
-        }
-
-        throw new IllegalStateException("Incorrect tile entity!");
-    }
-
     @Override
     public ItemStack quickMoveStack(PlayerEntity playerEntity, int selectedSlot) {
         ItemStack itemstack = ItemStack.EMPTY;
@@ -118,8 +106,6 @@ public class ChristmasStarContainer extends Container {
         return itemstack;
     }
 
-
-
     @Override
     public void removed(PlayerEntity p_75134_1_) {
         super.removed(p_75134_1_);
@@ -139,5 +125,17 @@ public class ChristmasStarContainer extends Container {
     @OnlyIn(Dist.CLIENT)
     public int getCurrentTier() {
         return this.data.get(0) + 1;
+    }
+
+    private static ChristmasStarTileEntity getTileEntity(final PlayerInventory playerInv, final PacketBuffer data) {
+        Objects.requireNonNull(playerInv, "Player inventory cannot be null");
+        Objects.requireNonNull(data, "Packet buffer cannot be null");
+
+        final TileEntity te = playerInv.player.getCommandSenderWorld().getBlockEntity(data.readBlockPos());
+        if (te instanceof ChristmasStarTileEntity) {
+            return (ChristmasStarTileEntity) te;
+        }
+
+        throw new IllegalStateException("Incorrect tile entity!");
     }
 }

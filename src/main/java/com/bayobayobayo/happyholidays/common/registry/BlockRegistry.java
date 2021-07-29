@@ -37,6 +37,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.food.ChristmasHamBl
 import com.bayobayobayo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.food.LogCakeBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.food.MilkAndCookiesBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.gifts.GiftWrapperBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.GingerbreadBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.RawGingerbreadBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.gingerbread.SoggyGingerbreadBlock;
@@ -141,6 +142,8 @@ public class BlockRegistry {
             BLOCKS.register(ChristmasStarBlock.BLOCK_ID, ChristmasStarBlock::new);
     public static final RegistryObject<ChristmasContainerBlock> MUSIC_BOX_BLOCK =
             BLOCKS.register(MusicBoxBlock.BLOCK_ID, MusicBoxBlock::new);
+    public static final RegistryObject<ChristmasBlock> GIFT_WRAPPER_BLOCK =
+            BLOCKS.register(GiftWrapperBlock.BLOCK_ID, GiftWrapperBlock::new);
 
     public static final RegistryObject<ChristmasBlock> MILK_AND_COOKIES_BLOCK =
             BLOCKS.register(MilkAndCookiesBlock.BLOCK_ID, MilkAndCookiesBlock::new);

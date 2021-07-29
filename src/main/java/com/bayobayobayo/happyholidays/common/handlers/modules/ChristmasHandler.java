@@ -1,7 +1,9 @@
 package com.bayobayobayo.happyholidays.common.handlers.modules;
 
 import com.bayobayobayo.happyholidays.client.screen.ChristmasStarScreen;
+import com.bayobayobayo.happyholidays.client.screen.GiftWrapperScreen;
 import com.bayobayobayo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.bayobayobayo.happyholidays.common.container.christmas.GiftWrapperContainer;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasRarity;
@@ -103,5 +105,6 @@ public class ChristmasHandler implements ModuleHandler {
     @Override
     public void configureContainers() {
         ScreenManager.register(ContainerTypeRegistry.CHRISTMAS_STAR_CONTAINER.get(), ChristmasStarScreen::new);
+        ScreenManager.register(ContainerTypeRegistry.GIFT_WRAPPER_CONTAINER.get(), GiftWrapperScreen::new);
     }
 }

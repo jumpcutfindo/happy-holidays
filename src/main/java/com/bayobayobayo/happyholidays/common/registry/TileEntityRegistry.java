@@ -4,6 +4,7 @@ import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.bayobayobayo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 import com.bayobayobayo.happyholidays.common.tileentity.christmas.ChristmasTileEntity;
+import com.bayobayobayo.happyholidays.common.tileentity.christmas.GiftWrapperTileEntity;
 import com.bayobayobayo.happyholidays.common.tileentity.christmas.MusicBoxTileEntity;
 
 import net.minecraft.tileentity.TileEntity;
@@ -32,4 +33,13 @@ public class TileEntityRegistry {
                             BlockRegistry.MUSIC_BOX_BLOCK.get()
                     ).build(null)
             );
+    public static final RegistryObject<TileEntityType<GiftWrapperTileEntity>> GIFT_WRAPPER_ENTITY_TYPE =
+            TILE_ENTITY_TYPE.register(
+                    GiftWrapperTileEntity.TILE_ENTITY_ID,
+                    () -> TileEntityType.Builder.of(
+                            GiftWrapperTileEntity::new,
+                            BlockRegistry.GIFT_WRAPPER_BLOCK.get()
+                    ).build(null)
+            );
+
 }
