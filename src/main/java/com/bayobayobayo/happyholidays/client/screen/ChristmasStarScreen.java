@@ -31,6 +31,7 @@ public class ChristmasStarScreen extends ContainerScreen<ChristmasStarContainer>
         this.renderBg(matrixStack, partialTicks, mouseX, mouseY);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
         this.renderComponentHoverEffect(matrixStack, null, mouseX, mouseY);
+        this.renderTooltip(matrixStack, mouseX, mouseY);
     }
 
     @Override

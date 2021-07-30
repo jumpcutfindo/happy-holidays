@@ -64,6 +64,14 @@
     "item.happyholidays.santa_elf_bell": "Santa's Elf Bell",
     "item.happyholidays.toy_parts_request": "Toy Parts Request",
 
+    "item.happyholidays.red_christmas_gift_item": "Red Christmas Gift",
+    "item.happyholidays.blue_christmas_gift_item": "Blue Christmas Gift",
+    "item.happyholidays.yellow_christmas_gift_item": "Yellow Christmas Gift",
+    "item.happyholidays.green_christmas_gift_item": "Green Christmas Gift",
+    "item.happyholidays.gold_christmas_gift_item": "Gold Christmas Gift",
+    "item.happyholidays.silver_christmas_gift_item": "Silver Christmas Gift",
+    "item.happyholidays.christmas_gift_item.desc": "Wrapped by %s",
+
     "item.happyholidays.christmas_sheet_music_angels_on_high": "Sheet Music",
     "item.happyholidays.christmas_sheet_music_carol_of_the_bells": "Sheet Music",
     "item.happyholidays.christmas_sheet_music_deck_the_halls": "Sheet Music",

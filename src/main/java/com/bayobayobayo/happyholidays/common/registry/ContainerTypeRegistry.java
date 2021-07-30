@@ -2,10 +2,9 @@ package com.bayobayobayo.happyholidays.common.registry;
 
 import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.container.christmas.ChristmasStarContainer;
-import com.bayobayobayo.happyholidays.common.container.christmas.GiftWrapperContainer;
+import com.bayobayobayo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
 
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

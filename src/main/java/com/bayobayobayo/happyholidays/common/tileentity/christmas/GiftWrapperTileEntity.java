@@ -1,15 +1,19 @@
 package com.bayobayobayo.happyholidays.common.tileentity.christmas;
 
 import com.bayobayobayo.happyholidays.HappyHolidaysMod;
-import com.bayobayobayo.happyholidays.common.container.christmas.GiftWrapperContainer;
+import com.bayobayobayo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
+import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
 import com.bayobayobayo.happyholidays.common.registry.TileEntityRegistry;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -21,7 +25,18 @@ public class GiftWrapperTileEntity extends LockableTileEntity implements Christm
     public static final String TILE_ENTITY_ID = "gift_wrapper_block";
     public static final int SLOTS = 10;
 
+    public static final int STRING_SLOT_INDEX = 0;
+    public static final int PAPER_SLOT_INDEX = 1;
+    public static final int DYE_SLOT_INDEX = 2;
+
+    public static final int GIFT_ITEMS_SLOT_INDEX_START = 3;
+    public static final int GIFT_ITEMS_SLOT_INDEX_END = 8;
+
+    public static final int RESULT_SLOT_INDEX = 9;
+
     protected NonNullList<ItemStack> items = NonNullList.withSize(SLOTS, ItemStack.EMPTY);
+
+    private GiftWrapperContainer container;
 
     protected GiftWrapperTileEntity(TileEntityType<?> p_i48285_1_) {
         super(p_i48285_1_);
@@ -38,7 +53,8 @@ public class GiftWrapperTileEntity extends LockableTileEntity implements Christm
 
     @Override
     protected Container createMenu(int id, PlayerInventory playerInv) {
-        return new GiftWrapperContainer(id, playerInv, this);
+        this.container = new GiftWrapperContainer(id, playerInv, this);
+        return this.container;
     }
 
     @Override
@@ -57,8 +73,9 @@ public class GiftWrapperTileEntity extends LockableTileEntity implements Christm
     }
 
     @Override
-    public ItemStack removeItem(int start, int end) {
-        return ItemStackHelper.removeItem(this.items, start, end);
+    public ItemStack removeItem(int start, int count) {
+        if (!this.level.isClientSide()) this.container.slotsChanged(this);
+        return ItemStackHelper.removeItem(this.items, start, count);
     }
 
     @Override
@@ -69,6 +86,7 @@ public class GiftWrapperTileEntity extends LockableTileEntity implements Christm
     @Override
     public void setItem(int index, ItemStack itemStack) {
         this.items.set(index, itemStack);
+        if (!this.level.isClientSide() && index != RESULT_SLOT_INDEX)  this.container.slotsChanged(this);
     }
 
     @Override
@@ -100,5 +118,46 @@ public class GiftWrapperTileEntity extends LockableTileEntity implements Christm
         ItemStackHelper.saveAllItems(nbt, this.items);
 
         return nbt;
+    }
+
+    public static ItemStack assembleGift(PlayerEntity playerEntity, IInventory giftWrapperInv) {
+        NonNullList<ItemStack> giftItems = NonNullList.withSize(6, ItemStack.EMPTY);
+        for (int i = GIFT_ITEMS_SLOT_INDEX_START; i <= GIFT_ITEMS_SLOT_INDEX_END; i++) {
+            giftItems.set(i - GIFT_ITEMS_SLOT_INDEX_START, giftWrapperInv.getItem(i));
+        }
+
+        CompoundNBT giftItemsNBT = new CompoundNBT();
+        ItemStackHelper.saveAllItems(giftItemsNBT, giftItems);
+
+        ItemStack giftStack = ItemStack.EMPTY;
+        if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.RED_DYE.getDefaultInstance())) {
+            giftStack = ItemRegistry.RED_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.BLUE_DYE.getDefaultInstance())) {
+            giftStack = ItemRegistry.BLUE_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.YELLOW_DYE.getDefaultInstance())) {
+            giftStack = ItemRegistry.YELLOW_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.GREEN_DYE.getDefaultInstance())) {
+            giftStack = ItemRegistry.GREEN_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.GOLD_INGOT.getDefaultInstance())) {
+            giftStack = ItemRegistry.GOLD_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+        } else {
+            giftStack = ItemRegistry.SILVER_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+        }
+
+        CompoundNBT giftTag = giftStack.getOrCreateTag();
+
+        giftTag.put("Gifts", giftItemsNBT);
+        giftTag.putString("WrappedBy", playerEntity.getDisplayName().getString());
+
+        return giftStack;
+    }
+
+    public static boolean isValidColourModifier(ItemStack itemStack) {
+        return ItemStack.isSame(itemStack, Items.RED_DYE.getDefaultInstance())
+                || ItemStack.isSame(itemStack, Items.BLUE_DYE.getDefaultInstance())
+                || ItemStack.isSame(itemStack, Items.YELLOW_DYE.getDefaultInstance())
+                || ItemStack.isSame(itemStack, Items.GREEN_DYE.getDefaultInstance())
+                || ItemStack.isSame(itemStack, Items.IRON_INGOT.getDefaultInstance())
+                || ItemStack.isSame(itemStack, Items.GOLD_INGOT.getDefaultInstance());
     }
 }

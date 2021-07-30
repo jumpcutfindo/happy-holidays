@@ -1,8 +1,7 @@
 package com.bayobayobayo.happyholidays.client.screen;
 
 import com.bayobayobayo.happyholidays.HappyHolidaysMod;
-import com.bayobayobayo.happyholidays.common.container.christmas.GiftWrapperContainer;
-import com.bayobayobayo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.bayobayobayo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -21,7 +20,7 @@ public class GiftWrapperScreen extends ContainerScreen<GiftWrapperContainer> {
         this.leftPos = 0;
         this.topPos = 0;
         this.imageWidth = 176;
-        this.imageHeight = 181;
+        this.imageHeight = 189;
 
         this.inventoryLabelX = 8;
         this.inventoryLabelY = this.imageHeight - 94;
@@ -33,6 +32,7 @@ public class GiftWrapperScreen extends ContainerScreen<GiftWrapperContainer> {
         this.renderBg(matrixStack, partialTicks, mouseX, mouseY);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
         this.renderComponentHoverEffect(matrixStack, null, mouseX, mouseY);
+        this.renderTooltip(matrixStack, mouseX, mouseY);
     }
 
     @Override

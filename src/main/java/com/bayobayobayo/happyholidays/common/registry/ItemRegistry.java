@@ -46,6 +46,13 @@ import com.bayobayobayo.happyholidays.common.block.christmas.presents.BabyPresen
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.gifts.BlueChristmasGiftItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.gifts.GoldChristmasGiftItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.gifts.GreenChristmasGiftItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.gifts.RedChristmasGiftItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.gifts.SilverChristmasGiftItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.gifts.YellowChristmasGiftItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.misc.HollyItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.misc.PresentScrapItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.block.HeadOrnamentBlockItem;
@@ -141,6 +148,19 @@ public class ItemRegistry {
 
     public static final RegistryObject<ChristmasItem> EGGNOG =
             ITEMS.register(EggnogItem.ITEM_ID, EggnogItem::new);
+
+    public static final RegistryObject<ChristmasItem> RED_CHRISTMAS_GIFT_ITEM =
+            ITEMS.register(RedChristmasGiftItem.ITEM_ID, RedChristmasGiftItem::new);
+    public static final RegistryObject<ChristmasItem> BLUE_CHRISTMAS_GIFT_ITEM =
+            ITEMS.register(BlueChristmasGiftItem.ITEM_ID, BlueChristmasGiftItem::new);
+    public static final RegistryObject<ChristmasItem> YELLOW_CHRISTMAS_GIFT_ITEM =
+            ITEMS.register(YellowChristmasGiftItem.ITEM_ID, YellowChristmasGiftItem::new);
+    public static final RegistryObject<ChristmasItem> GREEN_CHRISTMAS_GIFT_ITEM =
+            ITEMS.register(GreenChristmasGiftItem.ITEM_ID, GreenChristmasGiftItem::new);
+    public static final RegistryObject<ChristmasItem> GOLD_CHRISTMAS_GIFT_ITEM =
+            ITEMS.register(GoldChristmasGiftItem.ITEM_ID, GoldChristmasGiftItem::new);
+    public static final RegistryObject<ChristmasItem> SILVER_CHRISTMAS_GIFT_ITEM =
+            ITEMS.register(SilverChristmasGiftItem.ITEM_ID, SilverChristmasGiftItem::new);
 
     public static final RegistryObject<ChristmasBlockItem> BABY_PRESENT_BLOCK_ITEM =
             ITEMS.register(BabyPresentBlock.BLOCK_ID,

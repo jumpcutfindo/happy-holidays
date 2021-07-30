@@ -1,30 +1,39 @@
-package com.bayobayobayo.happyholidays.common.container.christmas;
+package com.bayobayobayo.happyholidays.common.container.christmas.gifts;
 
 import java.util.List;
 import java.util.Objects;
 
+import com.bayobayobayo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
 import com.bayobayobayo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.bayobayobayo.happyholidays.common.tileentity.christmas.GiftWrapperTileEntity;
 import com.google.common.collect.Lists;
 
+import net.minecraft.client.gui.screen.inventory.AbstractFurnaceScreen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.inventory.container.WorkbenchContainer;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.network.play.server.SSetSlotPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IWorldPosCallable;
+import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
 
 public class GiftWrapperContainer extends Container {
     public static final String CONTAINER_ID = "gift_wrapper_block";
 
     public final GiftWrapperTileEntity tileEntity;
     private final IWorldPosCallable canInteractWithCallable;
-    private final IInventory container;
+
+    private final PlayerInventory playerInv;
 
     public Slot stringSlot, paperSlot, dyeSlot, resultSlot;
     public List<Slot> giftItemSlots;
@@ -34,7 +43,7 @@ public class GiftWrapperContainer extends Container {
         super(ContainerTypeRegistry.GIFT_WRAPPER_CONTAINER.get(), windowId);
 
         this.tileEntity = tileEntity;
-        this.container = playerInv;
+        this.playerInv = playerInv;
 
         canInteractWithCallable = IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos());
 
@@ -50,18 +59,18 @@ public class GiftWrapperContainer extends Container {
             }
         }
 
-        resultSlot = this.addSlot(new Slot(tileEntity, 9, 140, 40));
+        resultSlot = this.addSlot(new GiftWrapperResultSlot(tileEntity, 9, 140, 40));
 
         // Main player inventory
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
-                this.addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 181 - (4 - row) * 18 - 10));
+                this.addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 189 - (4 - row) * 18 - 10));
             }
         }
 
         // Player hot bar
         for (int col = 0; col < 9; col++) {
-            this.addSlot(new Slot(playerInv, col, 8 + col * 18, 157));
+            this.addSlot(new Slot(playerInv, col, 8 + col * 18, 165));
         }
     }
 
@@ -72,12 +81,53 @@ public class GiftWrapperContainer extends Container {
     @Override
     public void removed(PlayerEntity p_75134_1_) {
         super.removed(p_75134_1_);
-        this.container.stopOpen(p_75134_1_);
+        this.playerInv.stopOpen(p_75134_1_);
+    }
+
+    public static void handleSlotsChanged(int containerId, World world, PlayerEntity playerEntity,
+                               IInventory playerInv, IInventory giftWrapperInv) {
+        if (!world.isClientSide) {
+            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) playerEntity;
+            ItemStack itemStack = ItemStack.EMPTY;
+
+            if (checkAllItemsPresent(giftWrapperInv)) {
+                itemStack = GiftWrapperTileEntity.assembleGift(playerEntity, giftWrapperInv);
+            }
+
+            giftWrapperInv.setItem(GiftWrapperTileEntity.RESULT_SLOT_INDEX, itemStack);
+            giftWrapperInv.setChanged();
+
+            serverPlayer.connection.send(new SSetSlotPacket(containerId, GiftWrapperTileEntity.RESULT_SLOT_INDEX, itemStack));
+        }
+    }
+
+    public static boolean checkAllItemsPresent(IInventory giftWrapperInv) {
+        ItemStack stringItems = giftWrapperInv.getItem(GiftWrapperTileEntity.STRING_SLOT_INDEX);
+        ItemStack paperItems = giftWrapperInv.getItem(GiftWrapperTileEntity.PAPER_SLOT_INDEX);
+        ItemStack dyeItems = giftWrapperInv.getItem(GiftWrapperTileEntity.DYE_SLOT_INDEX);
+
+        if (ItemStack.isSame(stringItems, Items.STRING.getDefaultInstance()) && stringItems.getCount() >= 2
+                && ItemStack.isSame(paperItems, Items.PAPER.getDefaultInstance()) && paperItems.getCount() >= 4
+                && GiftWrapperTileEntity.isValidColourModifier(dyeItems)
+        ) {
+            for (int i = GiftWrapperTileEntity.GIFT_ITEMS_SLOT_INDEX_START; i <= GiftWrapperTileEntity.GIFT_ITEMS_SLOT_INDEX_END; i++) {
+                if (!giftWrapperInv.getItem(i).isEmpty() && !(giftWrapperInv.getItem(i).getItem() instanceof ChristmasGiftItem)) return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public void slotsChanged(IInventory inventory) {
+        this.canInteractWithCallable.execute((world, blockPos) -> {
+            handleSlotsChanged(this.containerId, world, this.playerInv.player, this.playerInv, this.tileEntity);
+        });
     }
 
     @Override
     public boolean stillValid(PlayerEntity playerEntity) {
-        return this.container.stillValid(playerEntity);
+        return this.playerInv.stillValid(playerEntity);
     }
 
     private static GiftWrapperTileEntity getTileEntity(final PlayerInventory playerInv, final PacketBuffer data) {

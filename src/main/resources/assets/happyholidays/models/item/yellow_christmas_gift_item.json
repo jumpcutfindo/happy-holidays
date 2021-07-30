@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "happyholidays:items/yellow_christmas_gift_item"
+    }
+}
