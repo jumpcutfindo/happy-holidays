@@ -133,12 +133,12 @@
 			"from": [3, 4, 1],
 			"to": [11, 12, 15],
 			"faces": {
-				"north": {"uv": [8, 0, 15, 4], "texture": "#0"},
+				"north": {"uv": [8, 0, 15, 4], "rotation": 90, "texture": "#0"},
 				"east": {"uv": [8, 0, 15, 4], "texture": "#0"},
 				"south": {"uv": [8, 0, 15, 4], "texture": "#0"},
 				"west": {"uv": [8, 0, 15, 4], "texture": "#0"},
-				"up": {"uv": [8, 0, 15, 4], "texture": "#0"},
-				"down": {"uv": [8, 0, 15, 4], "texture": "#0"}
+				"up": {"uv": [8, 0, 15, 4], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [8, 0, 15, 4], "rotation": 90, "texture": "#0"}
 			}
 		},
 		{

@@ -165,7 +165,7 @@ public class GiftWrapperContainer extends Container {
                             false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (itemStack1.getItem() instanceof DyeItem) {
+                } else if (GiftWrapperTileEntity.isValidColourModifier(itemStack)) {
                     if (!this.moveItemStackTo(itemStack1, dyeSlot.getSlotIndex(), dyeSlot.getSlotIndex() + 1,
                             false)) {
                         return ItemStack.EMPTY;
