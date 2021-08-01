@@ -171,7 +171,7 @@ public class GiftWrapperContainer extends Container {
                         return ItemStack.EMPTY;
                     }
                 } else {
-                    if (!this.moveItemStackTo(itemStack1, giftItemSlots.get(0).getSlotIndex(), giftItemSlots.size(),
+                    if (!this.moveItemStackTo(itemStack1, 3, 3 + giftItemSlots.size(),
                             false)) {
                         return ItemStack.EMPTY;
                     }

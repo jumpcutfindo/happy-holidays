@@ -169,6 +169,16 @@
             }
         ]
     },
+    "item.christmas_gift_box_shake": {
+        "category": "item",
+        "subtitle": "item.christmas_gift_box_shake.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/christmas_gift_box_shake",
+                "stream": true
+            }
+        ]
+    },
     "entity.santa_elf_arrival": {
         "category": "entity",
         "subtitle": "entity.happyholidays.santa_elf_arrival.sub",

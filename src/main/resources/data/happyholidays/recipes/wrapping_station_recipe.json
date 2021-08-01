@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "PSP",
+        "###",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "tag": "minecraft:planks"
+        },
+        "P": {
+            "item": "minecraft:paper"
+        },
+        "S": {
+            "item": "minecraft:string"
+        }
+    },
+    "result": {
+        "item": "happyholidays:gift_wrapper_block",
+        "count": 1
+    }
+}
