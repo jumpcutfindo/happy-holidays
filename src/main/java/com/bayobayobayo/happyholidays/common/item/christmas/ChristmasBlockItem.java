@@ -79,27 +79,4 @@ public class ChristmasBlockItem extends BlockItem implements HappyHolidaysItem {
     public void setTooltipDescriptions(List<String> tooltipDescriptions) {
         this.tooltipDescriptions = tooltipDescriptions;
     }
-
-    public static boolean isBasicOrnamentItem(ItemStack item) {
-        if (item.getItem() instanceof ChristmasBlockItem) {
-            ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
-
-            return blockItem.getBlock() instanceof BaubleOrnamentBlock
-                    || blockItem.getBlock() instanceof BigBaubleOrnamentBlock
-                    || blockItem.getBlock() instanceof ChristmasLightBlock
-                    || blockItem.getBlock() instanceof TinselBlock;
-        }
-
-        return false;
-    }
-
-    public static boolean isRareOrnamentItem(ItemStack item) {
-        if (item.getItem() instanceof ChristmasBlockItem) {
-            ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
-
-            return blockItem.getBlock() instanceof HeadOrnamentBlock;
-        }
-
-        return false;
-    }
 }

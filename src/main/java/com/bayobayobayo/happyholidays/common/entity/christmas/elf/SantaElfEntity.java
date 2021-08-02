@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasBlockItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
 import com.bayobayobayo.happyholidays.common.registry.SoundRegistry;
 import com.google.common.collect.ImmutableList;
@@ -362,9 +363,9 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
         LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
 
         lootTable.getRandomItems(ctx).forEach(itemStack -> {
-            if (ChristmasBlockItem.isBasicOrnamentItem(itemStack)) {
+            if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(36 - 12) + 1) + 12);
-            } else if (ChristmasBlockItem.isRareOrnamentItem(itemStack)) {
+            } else if (ChristmasItem.isRareOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(8 - 4) + 1) + 4);
             } else if (ItemStack.isSame(itemStack, ItemRegistry.PRESENT_SCRAPS.get().getDefaultInstance())) {
                 itemStack.setCount((this.random.nextInt(18 - 12) + 1) + 12);

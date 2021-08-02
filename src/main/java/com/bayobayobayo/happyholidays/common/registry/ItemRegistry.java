@@ -46,6 +46,8 @@ import com.bayobayobayo.happyholidays.common.block.christmas.presents.BabyPresen
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.food.ChristmasFoodBlockItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gifts.BlueChristmasGiftItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gifts.GoldChristmasGiftItem;
@@ -139,14 +141,14 @@ public class ItemRegistry {
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_WHITE_CHRISTMAS =
             ITEMS.register(WhiteChristmasSheetMusicItem.ITEM_ID, WhiteChristmasSheetMusicItem::new);
 
-    public static final RegistryObject<ChristmasItem> CANDY_CANE =
+    public static final RegistryObject<ChristmasFoodItem> CANDY_CANE =
             ITEMS.register(CandyCaneItem.ITEM_ID, CandyCaneItem::new);
-    public static final RegistryObject<ChristmasItem> FESTIVE_CANDY_CANE =
+    public static final RegistryObject<ChristmasFoodItem> FESTIVE_CANDY_CANE =
             ITEMS.register(FestiveCandyCaneItem.ITEM_ID, FestiveCandyCaneItem::new);
     public static final RegistryObject<ChristmasItem> ENCHANTED_CANDY_CANE =
             ITEMS.register(EnchantedCandyCaneItem.ITEM_ID, EnchantedCandyCaneItem::new);
 
-    public static final RegistryObject<ChristmasItem> EGGNOG =
+    public static final RegistryObject<ChristmasFoodItem> EGGNOG =
             ITEMS.register(EggnogItem.ITEM_ID, EggnogItem::new);
 
     public static final RegistryObject<ChristmasItem> RED_CHRISTMAS_GIFT_ITEM =
@@ -323,20 +325,20 @@ public class ItemRegistry {
                     () -> new ChristmasBlockItem(BlockRegistry.GIFT_WRAPPER_BLOCK.get(),
                             GiftWrapperBlock.ITEM_PROPERTIES));
 
-    public static final RegistryObject<ChristmasBlockItem> MILK_AND_COOKIES_BLOCK_ITEM =
+    public static final RegistryObject<ChristmasFoodBlockItem> MILK_AND_COOKIES_BLOCK_ITEM =
             ITEMS.register(MilkAndCookiesBlock.BLOCK_ID,
-                    () -> new ChristmasBlockItem(BlockRegistry.MILK_AND_COOKIES_BLOCK.get(),
+                    () -> new ChristmasFoodBlockItem(BlockRegistry.MILK_AND_COOKIES_BLOCK.get(),
                             MilkAndCookiesBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> LOG_CAKE_BLOCK_ITEM =
+    public static final RegistryObject<ChristmasFoodBlockItem> LOG_CAKE_BLOCK_ITEM =
             ITEMS.register(LogCakeBlock.BLOCK_ID,
-                    () -> new ChristmasBlockItem(BlockRegistry.LOG_CAKE_BLOCK.get(),
+                    () -> new ChristmasFoodBlockItem(BlockRegistry.LOG_CAKE_BLOCK.get(),
                             LogCakeBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CHRISTMAS_HAM_BLOCK_ITEM =
+    public static final RegistryObject<ChristmasFoodBlockItem> CHRISTMAS_HAM_BLOCK_ITEM =
             ITEMS.register(ChristmasHamBlock.BLOCK_ID,
-                    () -> new ChristmasBlockItem(BlockRegistry.CHRISTMAS_HAM_BLOCK.get(),
+                    () -> new ChristmasFoodBlockItem(BlockRegistry.CHRISTMAS_HAM_BLOCK.get(),
                             ChristmasHamBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CHRISTMAS_PUDDING_BLOCK_ITEM =
+    public static final RegistryObject<ChristmasFoodBlockItem> CHRISTMAS_PUDDING_BLOCK_ITEM =
             ITEMS.register(ChristmasPuddingBlock.BLOCK_ID,
-                () -> new ChristmasBlockItem(BlockRegistry.CHRISTMAS_PUDDING_BLOCK.get(),
+                () -> new ChristmasFoodBlockItem(BlockRegistry.CHRISTMAS_PUDDING_BLOCK.get(),
                     ChristmasPuddingBlock.ITEM_PROPERTIES));
 }

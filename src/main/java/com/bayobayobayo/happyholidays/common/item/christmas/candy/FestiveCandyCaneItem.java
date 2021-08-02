@@ -2,12 +2,13 @@ package com.bayobayobayo.happyholidays.common.item.christmas.candy;
 
 import com.bayobayobayo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 
 import net.minecraft.item.Food;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
-public class FestiveCandyCaneItem extends ChristmasItem {
+public class FestiveCandyCaneItem extends ChristmasFoodItem {
     public static final String ITEM_ID = "festive_candy_cane";
 
     private static final Properties ITEM_PROPERTIES =

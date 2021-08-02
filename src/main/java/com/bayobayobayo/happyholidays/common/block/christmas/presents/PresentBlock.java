@@ -34,7 +34,6 @@ public class PresentBlock extends ChristmasBlock {
                     .harvestLevel(-1)
                     .strength(0.25f)
                     .sound(SoundType.WOOL)
-                    .noOcclusion()
                     .randomTicks();
 
     public static final Item.Properties ITEM_PROPERTIES =
