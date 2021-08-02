@@ -63,6 +63,22 @@ public class SoundRegistry {
                     "entity.santa_elf_request_complete"))
     );
 
+    public static final RegistryObject<SoundEvent> GRINCH_PASSIVE = SOUNDS.register(
+            "entity.grinch_passive",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.grinch_passive"))
+    );
+    public static final RegistryObject<SoundEvent> GRINCH_HURT = SOUNDS.register(
+            "entity.grinch_hurt",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.grinch_hurt"))
+    );
+    public static final RegistryObject<SoundEvent> GRINCH_BREAK_BOX = SOUNDS.register(
+            "entity.grinch_break_box",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.grinch_break_box"))
+    );
+
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_ANGELS_ON_HIGH = SOUNDS.register(
             AngelsOnHighSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
                     AngelsOnHighSheetMusicItem.SOUND_ID))

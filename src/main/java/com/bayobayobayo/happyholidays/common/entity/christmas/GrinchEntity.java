@@ -2,12 +2,15 @@ package com.bayobayobayo.happyholidays.common.entity.christmas;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.PresentBlock;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
 import com.bayobayobayo.happyholidays.common.registry.BlockRegistry;
 import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
+import com.bayobayobayo.happyholidays.common.registry.SoundRegistry;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.CreatureEntity;
@@ -23,6 +26,7 @@ import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
@@ -36,6 +40,7 @@ import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -66,6 +71,7 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
     private static final int BREAK_PRESENT_ANIM_DURATION = 80;
     private static final int BREAK_PRESENT_INTERVAL = 100;
     private static final float AVOID_PLAYER_RADIUS = 4.0f;
+    private static final int GRINCH_TIME_TO_DESPAWN = 200;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -76,7 +82,7 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
     private boolean hasReceivedGift = false;
     private boolean isHappyWithGift = false;
 
-    private int despawnTimer = 200;
+    private int despawnTimer = GRINCH_TIME_TO_DESPAWN;
     private boolean isReadyToDespawn = false;
 
     public GrinchEntity(EntityType<? extends CreatureEntity> entityType, World world) {
@@ -117,8 +123,13 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
     }
 
     @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundRegistry.GRINCH_PASSIVE.get();
+    }
+
+    @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.GENERIC_HURT;
+        return SoundRegistry.GRINCH_HURT.get();
     }
 
     @Override
@@ -156,6 +167,8 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
         }
 
         this.level.destroyBlock(targetPresentBlock, false);
+        this.level.playSound(null, targetPresentBlock, SoundRegistry.GRINCH_BREAK_BOX.get(), SoundCategory.NEUTRAL,
+                1.0f, 1.0f);
     }
 
     public void handleGiftOnGround(ItemEntity itemEntity) {
@@ -253,7 +266,7 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
                     this.getRandomZ(1.0D), 1, d0, d1, d2, 0.0D);
         }
 
-        if (this.isReadyToDespawn && --despawnTimer == 0) {
+        if (this.isReadyToDespawn && --despawnTimer <= 0) {
             this.remove();
         }
     }
@@ -279,7 +292,10 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
         this.hasReceivedGift = nbt.getBoolean("HasReceivedGift");
 
         this.isReadyToDespawn = nbt.getBoolean("IsReadyToDespawn");
-        this.despawnTimer = nbt.getInt("DespawnTimer");
+
+        int tempDespawnTimer = nbt.getInt("DespawnTimer");
+        if (tempDespawnTimer == 0) this.despawnTimer = GrinchEntity.GRINCH_TIME_TO_DESPAWN;
+        else this.despawnTimer = tempDespawnTimer;
     }
 
     @Override

@@ -228,5 +228,35 @@
                 "stream": true
             }
         ]
+    },
+    "entity.grinch_passive": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.grinch_passive.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/grinch_passive",
+                "stream": true
+            }
+        ]
+    },
+    "entity.grinch_hurt": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.grinch_hurt.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/grinch_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "entity.grinch_break_box": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.grinch_break_box.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/grinch_break_box",
+                "stream": true
+            }
+        ]
     }
 }
