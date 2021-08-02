@@ -2,10 +2,10 @@
     "replace": false,
     "values": [
         "happyholidays:eggnog",
-        "happyholidays:christmas_pudding",
-        "happyholidays:christmas_ham",
-        "happyholidays:milk_and_cookies",
-        "happyholidays:log_cake",
+        "happyholidays:christmas_pudding_block",
+        "happyholidays:christmas_ham_block",
+        "happyholidays:milk_and_cookies_block",
+        "happyholidays:log_cake_block",
         "happyholidays:gingerbread_cookie",
         "happyholidays:candy_cane",
         "happyholidays:festive_candy_cane"

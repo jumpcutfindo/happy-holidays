@@ -85,7 +85,9 @@ public class ChristmasItem extends Item implements HappyHolidaysItem {
                 || itemStack.getItem() instanceof ChristmasFoodBlockItem;
     }
 
-
+    public static boolean isLargeFoodItem(ItemStack itemStack) {
+        return itemStack.getItem() instanceof ChristmasFoodBlockItem;
+    }
 
     public static boolean isBasicOrnamentItem(ItemStack item) {
         if (item.getItem() instanceof ChristmasBlockItem) {

@@ -32,6 +32,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -64,8 +65,7 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
 
     private static final int BREAK_PRESENT_ANIM_DURATION = 80;
     private static final int BREAK_PRESENT_INTERVAL = 100;
-    private static final int GRINCH_SCARED_OF_PLAYER_INTERVAL = 150;
-    private static final float AVOID_PLAYER_RADIUS = 8.0f;
+    private static final float AVOID_PLAYER_RADIUS = 4.0f;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -74,6 +74,7 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
     private int presentBreakingProgress = -1;
 
     private boolean hasReceivedGift = false;
+    private boolean isHappyWithGift = false;
 
     private int despawnTimer = 200;
     private boolean isReadyToDespawn = false;
@@ -167,6 +168,7 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
             if (itemTag != null && itemTag.contains("Gifts")) {
                 // Grinch has happily received gift
                 this.hasReceivedGift = true;
+                this.isHappyWithGift = true;
 
                 // Drop loot & items (including all the scraps gathered)
                 this.throwAppeasementRewards();
@@ -184,6 +186,8 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
                 this.isReadyToDespawn = true;
             } else {
                 // Grinch got an empty gift >:(
+                this.isHappyWithGift = false;
+
                 for (int i = 0; i < 5; i++) {
                     double d0 = this.random.nextGaussian() * 0.02D;
                     double d1 = this.random.nextGaussian() * 0.02D;
@@ -219,7 +223,11 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
             } else if (ItemStack.isSame(itemStack, ItemRegistry.PRESENT_SCRAPS.get().getDefaultInstance())) {
                 itemStack.setCount((this.random.nextInt(18 - 12) + 1) + 12);
             } else if (ChristmasItem.isFoodItem(itemStack)) {
-                itemStack.setCount((this.random.nextInt(4 - 2) + 1) + 2);
+                if (ChristmasItem.isLargeFoodItem(itemStack)) {
+                    itemStack.setCount((this.random.nextInt(4 - 2) + 1) + 2);
+                } else {
+                    itemStack.setCount((this.random.nextInt(16 - 12) + 1) + 12);
+                }
             }
 
             this.spawnAtLocation(itemStack);
@@ -234,7 +242,20 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
             this.presentBreakingProgress = this.entityData.get(BREAK_ANIM_PROGRESS);
         }
 
-        if (this.isReadyToDespawn && --despawnTimer == 0) this.remove();
+        if (this.isReadyToDespawn && this.tickCount % 3 == 0) {
+            double d0 = this.random.nextGaussian() * 0.02D;
+            double d1 = this.random.nextGaussian() * 0.02D;
+            double d2 = this.random.nextGaussian() * 0.02D;
+            BasicParticleType particleType = isHappyWithGift ? ParticleTypes.HEART : ParticleTypes.ANGRY_VILLAGER;
+
+            ((ServerWorld) this.level).sendParticles(particleType, this.getRandomX(1.0D),
+                    this.getRandomY() + 0.5D,
+                    this.getRandomZ(1.0D), 1, d0, d1, d2, 0.0D);
+        }
+
+        if (this.isReadyToDespawn && --despawnTimer == 0) {
+            this.remove();
+        }
     }
 
     @Override
@@ -243,14 +264,22 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
 
         nbt.putIntArray("PresentsBroken", this.presentsBrokenCount);
         nbt.putBoolean("HasReceivedGift", this.hasReceivedGift);
+        nbt.putBoolean("IsReadyToDespawn", this.isReadyToDespawn);
+        nbt.putInt("DespawnTimer", this.despawnTimer);
     }
 
     @Override
     public void readAdditionalSaveData(CompoundNBT nbt) {
         super.readAdditionalSaveData(nbt);
 
-        this.presentsBrokenCount = nbt.getIntArray("PresentsBroken");
+        int[] tempArray = nbt.getIntArray("PresentsBroken");
+        if (tempArray.length == 3) this.presentsBrokenCount = tempArray;
+        else this.presentsBrokenCount = new int[] { 0, 0, 0 };
+
         this.hasReceivedGift = nbt.getBoolean("HasReceivedGift");
+
+        this.isReadyToDespawn = nbt.getBoolean("IsReadyToDespawn");
+        this.despawnTimer = nbt.getInt("DespawnTimer");
     }
 
     @Override
