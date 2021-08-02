@@ -1,6 +1,7 @@
 package com.bayobayobayo.happyholidays.common.entity.christmas;
 
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.PresentBlock;
+import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.CreatureEntity;
@@ -13,7 +14,12 @@ import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -43,7 +49,7 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
                     .build();
 
     private static final int BREAK_ANIM_DURATION = 80;
-    private static final int NEXT_BREAK_DELAY = 300;
+    private static final int NEXT_BREAK_DELAY = 0;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -52,8 +58,12 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
     private BlockPos targetPresentBlockPos = null;
     private boolean isBreakingPresent = false;
 
+    private int presentsBrokenCount = 0;
+
     public GrinchEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
+
+        this.presentsBrokenCount = this.getPersistentData().getInt("PresentsBroken");
     }
 
     protected void defineSynchedData() {
@@ -119,8 +129,24 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
                 this.level.destroyBlock(targetPresentBlockPos, false);
                 this.isBreakingPresent = false;
                 this.targetPresentBlockPos = null;
+                this.presentsBrokenCount++;
             }
         }
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundNBT nbt) {
+        super.addAdditionalSaveData(nbt);
+
+        nbt.putInt("PresentsBroken", this.presentsBrokenCount);
+    }
+
+    @Override
+    protected void dropCustomDeathLoot(DamageSource p_213333_1_, int p_213333_2_, boolean p_213333_3_) {
+        ItemStack scraps = ItemRegistry.PRESENT_SCRAPS.get().getDefaultInstance();
+        scraps.setCount(this.presentsBrokenCount);
+
+        this.level.addFreshEntity(new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), scraps));
     }
 
     private <E extends GrinchEntity> PlayState predicate(AnimationEvent<E> event) {
