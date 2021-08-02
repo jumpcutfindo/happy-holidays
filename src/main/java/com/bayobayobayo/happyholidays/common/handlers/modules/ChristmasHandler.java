@@ -9,6 +9,7 @@ import com.bayobayobayo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.bayobayobayo.happyholidays.common.registry.ItemRegistry;
 
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 
 public class ChristmasHandler implements ModuleHandler {
     private ChristmasBlock[] christmasBlocks;
@@ -93,10 +94,6 @@ public class ChristmasHandler implements ModuleHandler {
         for (ChristmasItem item : christmasItems) {
             item.configureItem();
         }
-    }
-
-    @Override
-    public void configureEntities() {
     }
 
     @Override

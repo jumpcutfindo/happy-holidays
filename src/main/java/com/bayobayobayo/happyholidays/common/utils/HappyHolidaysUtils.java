@@ -1,11 +1,13 @@
 package com.bayobayobayo.happyholidays.common.utils;
 
+import net.minecraft.block.Block;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.World;
 
 public class HappyHolidaysUtils {
     public static VoxelShape rotateShape(final VoxelShape shape, final Rotation rotationDir) {
@@ -54,5 +56,20 @@ public class HappyHolidaysUtils {
         long seconds = ticks / 20;
 
         return String.format("%dm %ds", seconds / 60, seconds % 60);
+    }
+
+    public static BlockPos findBlockInRadius(World world, BlockPos currPos, Block block, int radius) {
+        BlockPos startPos = currPos.offset(-radius, -radius, -radius);
+
+        for (int x = 0; x < radius * 2; x++) {
+            for (int y = 0; y < radius * 2; y++) {
+                for (int z = 0; z < radius * 2; z++) {
+                    BlockPos checkingPos = startPos.offset(x, y, z);
+                    if (world.getBlockState(checkingPos).getBlock().is(block)) return checkingPos;
+                }
+            }
+        }
+
+        return null;
     }
 }

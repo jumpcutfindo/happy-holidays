@@ -2,6 +2,7 @@ package com.bayobayobayo.happyholidays.common.registry;
 
 import com.bayobayobayo.happyholidays.HappyHolidaysMod;
 import com.bayobayobayo.happyholidays.common.entity.christmas.GingerbreadManEntity;
+import com.bayobayobayo.happyholidays.common.entity.christmas.GrinchEntity;
 import com.bayobayobayo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
 import com.bayobayobayo.happyholidays.common.entity.christmas.SoggyGingerbreadManEntity;
 
@@ -36,5 +37,12 @@ public class EntityRegistry {
                     () -> EntityType.Builder.of(SantaElfEntity::new, EntityClassification.AMBIENT)
                             .sized(0.8f, 22.0f / 16.0f)
                             .build(SantaElfEntity.ENTITY_ID)
+            );
+
+    public static final RegistryObject<EntityType<GrinchEntity>> GRINCH =
+            ENTITY_TYPES.register(GrinchEntity.ENTITY_ID,
+                    () -> EntityType.Builder.of(GrinchEntity::new, EntityClassification.AMBIENT)
+                            .sized(0.5f, 34.0f / 16.0f)
+                            .build(GrinchEntity.ENTITY_ID)
             );
 }
