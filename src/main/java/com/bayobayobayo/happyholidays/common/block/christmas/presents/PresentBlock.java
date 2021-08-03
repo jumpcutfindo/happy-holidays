@@ -44,7 +44,7 @@ public class PresentBlock extends ChristmasBlock {
                     .stacksTo(16)
                     .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
-    public static final float GROWTH_PROBABILITY = 1.0f / 256.0f;
+    public static final float GROWTH_PROBABILITY = 1.0f / 128.0f;
 
     private VoxelShape shape;
 
