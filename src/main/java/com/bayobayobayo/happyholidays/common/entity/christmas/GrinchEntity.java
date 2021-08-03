@@ -279,6 +279,7 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
         nbt.putBoolean("HasReceivedGift", this.hasReceivedGift);
         nbt.putBoolean("IsReadyToDespawn", this.isReadyToDespawn);
         nbt.putInt("DespawnTimer", this.despawnTimer);
+        nbt.putBoolean("IsHappyWithGift", this.isHappyWithGift);
     }
 
     @Override
@@ -296,6 +297,8 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
         int tempDespawnTimer = nbt.getInt("DespawnTimer");
         if (tempDespawnTimer == 0) this.despawnTimer = GrinchEntity.GRINCH_TIME_TO_DESPAWN;
         else this.despawnTimer = tempDespawnTimer;
+
+        this.isHappyWithGift = nbt.getBoolean("IsHappyWithGift");
     }
 
     @Override
