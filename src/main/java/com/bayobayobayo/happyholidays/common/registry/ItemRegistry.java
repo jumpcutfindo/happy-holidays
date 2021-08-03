@@ -19,6 +19,9 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornamen
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.SkeletonHeadOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.WitherSkeletonHeadOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.ZombieHeadOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.BabyPresentOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.ElderPresentOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.PresentOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.lights.BlueChristmasLightBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.lights.GoldChristmasLightBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.lights.GreenChristmasLightBlock;
@@ -46,6 +49,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.presents.BabyPresen
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
+import com.bayobayobayo.happyholidays.common.item.christmas.block.LegendaryOrnamentBlockItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.food.ChristmasFoodBlockItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.gifts.BlueChristmasGiftItem;
@@ -245,11 +249,13 @@ public class ItemRegistry {
                     ZombieHeadOrnamentBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> RED_TINSEL_BLOCK_ITEM =
-            ITEMS.register(RedTinselBlock.BLOCK_ID, () -> new ChristmasBlockItem(BlockRegistry.RED_TINSEL_BLOCK.get(),
-                    RedTinselBlock.ITEM_PROPERTIES));
+            ITEMS.register(RedTinselBlock.BLOCK_ID,
+                    () -> new ChristmasBlockItem(BlockRegistry.RED_TINSEL_BLOCK.get(),
+                            RedTinselBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> BLUE_TINSEL_BLOCK_ITEM =
-            ITEMS.register(BlueTinselBlock.BLOCK_ID, () -> new ChristmasBlockItem(BlockRegistry.BLUE_TINSEL_BLOCK.get(),
-                    BlueTinselBlock.ITEM_PROPERTIES));
+            ITEMS.register(BlueTinselBlock.BLOCK_ID,
+                    () -> new ChristmasBlockItem(BlockRegistry.BLUE_TINSEL_BLOCK.get(),
+                            BlueTinselBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> YELLOW_TINSEL_BLOCK_ITEM =
             ITEMS.register(YellowTinselBlock.BLOCK_ID,
                     () -> new ChristmasBlockItem(BlockRegistry.YELLOW_TINSEL_BLOCK.get(),
@@ -259,8 +265,9 @@ public class ItemRegistry {
                     () -> new ChristmasBlockItem(BlockRegistry.GREEN_TINSEL_BLOCK.get(),
                             GreenTinselBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> GOLD_TINSEL_BLOCK_ITEM =
-            ITEMS.register(GoldTinselBlock.BLOCK_ID, () -> new ChristmasBlockItem(BlockRegistry.GOLD_TINSEL_BLOCK.get(),
-                    GoldTinselBlock.ITEM_PROPERTIES));
+            ITEMS.register(GoldTinselBlock.BLOCK_ID,
+                    () -> new ChristmasBlockItem(BlockRegistry.GOLD_TINSEL_BLOCK.get(),
+                            GoldTinselBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> SILVER_TINSEL_BLOCK_ITEM =
             ITEMS.register(SilverTinselBlock.BLOCK_ID,
                     () -> new ChristmasBlockItem(BlockRegistry.SILVER_TINSEL_BLOCK.get(),
@@ -290,6 +297,19 @@ public class ItemRegistry {
             ITEMS.register(SilverChristmasLightBlock.BLOCK_ID,
                     () -> new ChristmasBlockItem(BlockRegistry.SILVER_CHRISTMAS_LIGHT_BLOCK.get(),
                             SilverChristmasLightBlock.ITEM_PROPERTIES));
+
+    public static final RegistryObject<ChristmasBlockItem> BABY_PRESENT_ORNAMENT_BLOCK_ITEM =
+            ITEMS.register(BabyPresentOrnamentBlock.BLOCK_ID,
+                    () -> new LegendaryOrnamentBlockItem(BlockRegistry.BABY_PRESENT_ORNAMENT_BLOCK.get(),
+                            BabyPresentOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> PRESENT_ORNAMENT_BLOCK_ITEM =
+            ITEMS.register(PresentOrnamentBlock.BLOCK_ID,
+                    () -> new LegendaryOrnamentBlockItem(BlockRegistry.PRESENT_ORNAMENT_BLOCK.get(),
+                            PresentOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ELDER_PRESENT_ORNAMENT_BLOCK_ITEM =
+            ITEMS.register(ElderPresentOrnamentBlock.BLOCK_ID,
+                    () -> new LegendaryOrnamentBlockItem(BlockRegistry.ELDER_PRESENT_ORNAMENT_BLOCK.get(),
+                            ElderPresentOrnamentBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> RAW_GINGERBREAD_BLOCK_ITEM =
             ITEMS.register(RawGingerbreadBlock.BLOCK_ID,

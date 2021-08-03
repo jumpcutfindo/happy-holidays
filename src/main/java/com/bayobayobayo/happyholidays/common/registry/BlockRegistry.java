@@ -21,6 +21,9 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornamen
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.SkeletonHeadOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.WitherSkeletonHeadOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.head.ZombieHeadOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.BabyPresentOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.ElderPresentOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.PresentOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.lights.BlueChristmasLightBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.lights.GoldChristmasLightBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.lights.GreenChristmasLightBlock;
@@ -125,6 +128,13 @@ public class BlockRegistry {
             BLOCKS.register(GoldChristmasLightBlock.BLOCK_ID, GoldChristmasLightBlock::new);
     public static final RegistryObject<ChristmasBlock> SILVER_CHRISTMAS_LIGHT_BLOCK =
             BLOCKS.register(SilverChristmasLightBlock.BLOCK_ID, SilverChristmasLightBlock::new);
+
+    public static final RegistryObject<ChristmasBlock> BABY_PRESENT_ORNAMENT_BLOCK =
+            BLOCKS.register(BabyPresentOrnamentBlock.BLOCK_ID, BabyPresentOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> PRESENT_ORNAMENT_BLOCK =
+            BLOCKS.register(PresentOrnamentBlock.BLOCK_ID, PresentOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ELDER_PRESENT_ORNAMENT_BLOCK =
+            BLOCKS.register(ElderPresentOrnamentBlock.BLOCK_ID, ElderPresentOrnamentBlock::new);
 
     public static final RegistryObject<ChristmasBlock> RAW_GINGERBREAD_BLOCK =
             BLOCKS.register(RawGingerbreadBlock.BLOCK_ID, RawGingerbreadBlock::new);

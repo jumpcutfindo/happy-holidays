@@ -31,6 +31,10 @@
     "block.happyholidays.gold_christmas_light_block": "Gold Christmas Lights",
     "block.happyholidays.silver_christmas_light_block": "Silver Christmas Lights",
 
+    "block.happyholidays.baby_present_ornament_block": "Baby Present Ornament",
+    "block.happyholidays.present_ornament_block": "Present Ornament",
+    "block.happyholidays.elder_present_ornament_block": "Elder Present Ornament",
+
     "block.happyholidays.creeper_head_ornament_block": "Creeper Head Ornament",
     "block.happyholidays.skeleton_head_ornament_block": "Skeleton Skull Ornament",
     "block.happyholidays.wither_skeleton_head_ornament_block": "Wither Skeleton Skull Ornament",

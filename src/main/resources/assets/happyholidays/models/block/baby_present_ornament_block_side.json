@@ -1,0 +1,135 @@
+{
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"texture_size": [32, 16],
+	"textures": {
+		"particle": "happyholidays:blocks/baby_present_ornament_block",
+		"1_0": "happyholidays:blocks/baby_present_ornament_block"
+	},
+	"elements": [
+		{
+			"name": "string",
+			"from": [8, 7.8, -0.4],
+			"to": [8, 9.4, 2.2],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 9.6, 2]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 0], "rotation": 270, "texture": "#1_0"},
+				"east": {"uv": [6, 6, 8, 11], "rotation": 270, "texture": "#1_0"},
+				"south": {"uv": [0, 0, 0, 0], "rotation": 270, "texture": "#1_0"},
+				"west": {"uv": [6, 6, 8, 11], "rotation": 270, "texture": "#1_0"},
+				"up": {"uv": [0, 0, 0, 0], "texture": "#1_0"},
+				"down": {"uv": [0, 0, 0, 0], "rotation": 180, "texture": "#1_0"}
+			}
+		},
+		{
+			"name": "string",
+			"from": [7, 8.6, -0.4],
+			"to": [9, 8.6, 2.6],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 9.6, 2]},
+			"faces": {
+				"north": {"uv": [0, 0, 1, 0], "rotation": 180, "texture": "#1_0"},
+				"east": {"uv": [0, 0, 0, 1], "rotation": 90, "texture": "#1_0"},
+				"south": {"uv": [0, 0, 1, 0], "texture": "#1_0"},
+				"west": {"uv": [0, 0, 0, 1], "rotation": 270, "texture": "#1_0"},
+				"up": {"uv": [6, 6, 8, 11], "rotation": 270, "texture": "#1_0"},
+				"down": {"uv": [6, 6, 8, 11], "rotation": 270, "texture": "#1_0"}
+			}
+		},
+		{
+			"name": "cover",
+			"from": [5.5, 7.75, -0.5],
+			"to": [10.5, 8.75, 4.5],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [7.98483, 8.125, 2.01517]},
+			"faces": {
+				"north": {"uv": [0, 14, 5, 16], "texture": "#1_0"},
+				"east": {"uv": [0, 14, 5, 16], "texture": "#1_0"},
+				"south": {"uv": [0, 14, 5, 16], "texture": "#1_0"},
+				"west": {"uv": [0, 14, 5, 16], "texture": "#1_0"},
+				"up": {"uv": [0, 0, 5, 10], "texture": "#1_0"},
+				"down": {"uv": [0, 0, 5, 10], "texture": "#1_0"}
+			}
+		},
+		{
+			"name": "bottom",
+			"from": [6, 4.75, 0],
+			"to": [10, 7.75, 4],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [7.98483, 8.125, 2.01517]},
+			"faces": {
+				"north": {"uv": [5, 0, 9, 6], "texture": "#1_0"},
+				"east": {"uv": [5, 0, 9, 6], "texture": "#1_0"},
+				"south": {"uv": [5, 0, 9, 6], "texture": "#1_0"},
+				"west": {"uv": [5, 0, 9, 6], "texture": "#1_0"},
+				"up": {"uv": [9, 0, 13, 8], "texture": "#1_0"},
+				"down": {"uv": [9, 0, 13, 8], "texture": "#1_0"}
+			}
+		},
+		{
+			"name": "ribbon",
+			"from": [5.46339, 8.5, 2.01517],
+			"to": [10.46339, 9.5, 2.01517],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [7.98483, 8.125, 2.01517]},
+			"faces": {
+				"north": {"uv": [5, 14, 9, 16], "texture": "#1_0"},
+				"east": {"uv": [0, 0, 0, 1], "texture": "#missing"},
+				"south": {"uv": [5, 14, 9, 16], "texture": "#1_0"},
+				"west": {"uv": [0, 0, 0, 1], "texture": "#missing"},
+				"up": {"uv": [0, 0, 5, 0], "texture": "#missing"},
+				"down": {"uv": [0, 0, 5, 0], "texture": "#missing"}
+			}
+		},
+		{
+			"name": "ribbon",
+			"from": [7.96339, 8.5, -0.48483],
+			"to": [7.96339, 9.5, 4.51517],
+			"rotation": {"angle": -22.5, "axis": "x", "origin": [7.98483, 8.125, 2.01517]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 1], "texture": "#1_0"},
+				"east": {"uv": [5, 14, 9, 16], "texture": "#1_0"},
+				"south": {"uv": [0, 0, 0, 1], "texture": "#1_0"},
+				"west": {"uv": [5, 14, 9, 16], "texture": "#1_0"},
+				"up": {"uv": [0, 0, 5, 0], "rotation": 270, "texture": "#1_0"},
+				"down": {"uv": [0, 0, 5, 0], "rotation": 90, "texture": "#1_0"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, 4, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, 4, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_righthand": {
+			"translation": [0, 4.5, 0]
+		},
+		"firstperson_lefthand": {
+			"translation": [0, 4.5, 0]
+		},
+		"ground": {
+			"translation": [0, 4.75, 0]
+		},
+		"gui": {
+			"rotation": [30, 45, 0],
+			"translation": [0, 4, 0]
+		},
+		"fixed": {
+			"translation": [0, 4, 0]
+		}
+	},
+	"groups": [
+		{
+			"name": "string",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [0, 1]
+		},
+		{
+			"name": "baby_present_ornament_block",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [2, 3, 4, 5]
+		}
+	]
+}

@@ -42,6 +42,7 @@ public class ChristmasHandler implements ModuleHandler {
                 BlockRegistry.CREEPER_HEAD_ORNAMENT_BLOCK.get(),
                 BlockRegistry.SKELETON_HEAD_ORNAMENT_BLOCK.get(),
                 BlockRegistry.WITHER_SKELETON_HEAD_ORNAMENT_BLOCK.get(),
+                BlockRegistry.ZOMBIE_HEAD_ORNAMENT_BLOCK.get(),
 
                 BlockRegistry.RED_TINSEL_BLOCK.get(),
                 BlockRegistry.BLUE_TINSEL_BLOCK.get(),
@@ -56,6 +57,10 @@ public class ChristmasHandler implements ModuleHandler {
                 BlockRegistry.GREEN_CHRISTMAS_LIGHT_BLOCK.get(),
                 BlockRegistry.GOLD_CHRISTMAS_LIGHT_BLOCK.get(),
                 BlockRegistry.SILVER_CHRISTMAS_LIGHT_BLOCK.get(),
+
+                BlockRegistry.BABY_PRESENT_ORNAMENT_BLOCK.get(),
+                BlockRegistry.PRESENT_ORNAMENT_BLOCK.get(),
+                BlockRegistry.ELDER_PRESENT_ORNAMENT_BLOCK.get(),
 
                 BlockRegistry.GINGERBREAD_BLOCK.get(),
                 BlockRegistry.RAW_GINGERBREAD_BLOCK.get(),
