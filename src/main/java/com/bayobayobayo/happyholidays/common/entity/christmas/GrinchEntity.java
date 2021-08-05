@@ -218,7 +218,6 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
     }
 
     public void throwAppeasementRewards() {
-        // TODO: Add grinch ornament
         this.level.addFreshEntity(new ExperienceOrbEntity(this.level, this.getX(), this.getY(), this.getZ(), 50));
         ItemStack scraps = ItemRegistry.PRESENT_SCRAPS.get().getDefaultInstance();
 
