@@ -51,6 +51,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.stockings.StockingBlock;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.ChristmasItem;
 import com.bayobayobayo.happyholidays.common.item.christmas.block.LegendaryOrnamentBlockItem;
@@ -364,6 +365,11 @@ public class ItemRegistry {
             ITEMS.register(GiftWrapperBlock.BLOCK_ID,
                     () -> new ChristmasBlockItem(BlockRegistry.GIFT_WRAPPER_BLOCK.get(),
                             GiftWrapperBlock.ITEM_PROPERTIES));
+
+    public static final RegistryObject<ChristmasBlockItem> STOCKING_BLOCK_ITEM =
+            ITEMS.register(StockingBlock.BLOCK_ID,
+                    () -> new ChristmasBlockItem(BlockRegistry.STOCKING_BLOCK.get(),
+                            StockingBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasFoodBlockItem> MILK_AND_COOKIES_BLOCK_ITEM =
             ITEMS.register(MilkAndCookiesBlock.BLOCK_ID,

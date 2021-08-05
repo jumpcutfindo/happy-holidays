@@ -53,6 +53,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.stockings.StockingBlock;
 
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
@@ -166,6 +167,9 @@ public class BlockRegistry {
             BLOCKS.register(MusicBoxBlock.BLOCK_ID, MusicBoxBlock::new);
     public static final RegistryObject<ChristmasBlock> GIFT_WRAPPER_BLOCK =
             BLOCKS.register(GiftWrapperBlock.BLOCK_ID, GiftWrapperBlock::new);
+
+    public static final RegistryObject<ChristmasBlock> STOCKING_BLOCK =
+            BLOCKS.register(StockingBlock.BLOCK_ID, StockingBlock::new);
 
     public static final RegistryObject<ChristmasBlock> MILK_AND_COOKIES_BLOCK =
             BLOCKS.register(MilkAndCookiesBlock.BLOCK_ID, MilkAndCookiesBlock::new);

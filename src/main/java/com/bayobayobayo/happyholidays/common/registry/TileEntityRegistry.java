@@ -6,7 +6,9 @@ import com.bayobayobayo.happyholidays.common.tileentity.christmas.ChristmasStarT
 import com.bayobayobayo.happyholidays.common.tileentity.christmas.ChristmasTileEntity;
 import com.bayobayobayo.happyholidays.common.tileentity.christmas.GiftWrapperTileEntity;
 import com.bayobayobayo.happyholidays.common.tileentity.christmas.MusicBoxTileEntity;
+import com.bayobayobayo.happyholidays.common.tileentity.christmas.StockingTileEntity;
 
+import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
@@ -39,6 +41,14 @@ public class TileEntityRegistry {
                     () -> TileEntityType.Builder.of(
                             GiftWrapperTileEntity::new,
                             BlockRegistry.GIFT_WRAPPER_BLOCK.get()
+                    ).build(null)
+            );
+    public static final RegistryObject<TileEntityType<StockingTileEntity>> STOCKING_ENTITY_TYPE =
+            TILE_ENTITY_TYPE.register(
+                    StockingTileEntity.TILE_ENTITY_ID,
+                    () -> TileEntityType.Builder.of(
+                            StockingTileEntity::new,
+                            BlockRegistry.STOCKING_BLOCK.get()
                     ).build(null)
             );
 
