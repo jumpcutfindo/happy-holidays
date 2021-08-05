@@ -23,6 +23,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornamen
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.CandyCaneOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.ElderPresentOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.GingerbreadManOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.GrinchOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.PresentOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.SantaElfOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.lights.BlueChristmasLightBlock;
@@ -325,6 +326,10 @@ public class ItemRegistry {
             ITEMS.register(GingerbreadManOrnamentBlock.BLOCK_ID,
                     () -> new LegendaryOrnamentBlockItem(BlockRegistry.GINGERBREAD_MAN_ORNAMENT_BLOCK.get(),
                             GingerbreadManOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> GRINCH_ORNAMENT_BLOCK =
+            ITEMS.register(GrinchOrnamentBlock.BLOCK_ID,
+                    () -> new LegendaryOrnamentBlockItem(BlockRegistry.GRINCH_ORNAMENT_BLOCK.get(),
+                            GrinchOrnamentBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> RAW_GINGERBREAD_BLOCK_ITEM =
             ITEMS.register(RawGingerbreadBlock.BLOCK_ID,

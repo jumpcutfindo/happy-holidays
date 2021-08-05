@@ -1,0 +1,91 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 32],
+	"textures": {
+		"0": "happyholidays:blocks/grinch_ornament_block",
+		"particle": "happyholidays:blocks/grinch_ornament_block"
+	},
+	"elements": [
+		{
+			"name": "string",
+			"from": [8, 13, 7],
+			"to": [8, 16, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 14.75, 8]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 0], "texture": "#0"},
+				"east": {"uv": [5.75, 13.5, 6.75, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 0, 0], "texture": "#0"},
+				"west": {"uv": [5.75, 13.5, 6.75, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 0, 0], "rotation": 90, "texture": "#0"},
+				"down": {"uv": [0, 0, 0, 0], "rotation": 270, "texture": "#0"}
+			}
+		},
+		{
+			"name": "string",
+			"from": [7, 13, 8],
+			"to": [9, 16, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 14.75, 8]},
+			"faces": {
+				"north": {"uv": [5.75, 13.5, 6.75, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 0, 1], "texture": "#0"},
+				"south": {"uv": [5.75, 13.5, 6.75, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 0, 1], "texture": "#0"},
+				"up": {"uv": [0, 0, 0.5, 0], "texture": "#0"},
+				"down": {"uv": [0, 0, 0.5, 0], "texture": "#0"}
+			}
+		},
+		{
+			"from": [4, 7.75, 3],
+			"to": [12, 13.75, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 3.75, 0]},
+			"faces": {
+				"north": {"uv": [7.75, 0, 9.75, 3], "texture": "#0"},
+				"east": {"uv": [5, 0, 7.5, 3], "texture": "#0"},
+				"south": {"uv": [2.75, 0, 4.75, 3], "texture": "#0"},
+				"west": {"uv": [0, 0, 2.5, 3], "texture": "#0"},
+				"up": {"uv": [5.25, 5, 7.25, 10], "texture": "#0"},
+				"down": {"uv": [7.75, 5, 9.75, 10], "texture": "#0"}
+			}
+		},
+		{
+			"from": [3, 3.75, 3],
+			"to": [13, 7.75, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 3.75, 0]},
+			"faces": {
+				"north": {"uv": [7.5, 3, 10, 5], "texture": "#0"},
+				"east": {"uv": [5, 3, 7.5, 5], "texture": "#0"},
+				"south": {"uv": [2.5, 3, 5, 5], "texture": "#0"},
+				"west": {"uv": [0, 3, 2.5, 5], "texture": "#0"},
+				"up": {"uv": [2.5, 5, 5, 10], "texture": "#0"},
+				"down": {"uv": [0, 5, 2.5, 10], "texture": "#0"}
+			}
+		},
+		{
+			"from": [6, 13.25, 8],
+			"to": [10, 17.25, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 14.25, 8]},
+			"faces": {
+				"north": {"uv": [3.25, 14, 4.25, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 0, 3.5], "texture": "#0"},
+				"south": {"uv": [0.75, 14, 1.75, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 0, 3.5], "texture": "#0"},
+				"up": {"uv": [0, 0, 1, 0], "texture": "#0"},
+				"down": {"uv": [0, 0, 1, 0], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "string",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [0, 1]
+		},
+		{
+			"name": "grinch_head",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [2, 3, 4]
+		}
+	]
+}
