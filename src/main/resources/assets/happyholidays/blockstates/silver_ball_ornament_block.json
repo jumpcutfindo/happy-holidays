@@ -8,18 +8,18 @@
         },
         "face=wall,facing=east": {
             "model": "happyholidays:block/silver_ball_ornament_block_side",
-            "y": 90
+            "y": 270
         },
         "face=wall,facing=north": {
-            "model": "happyholidays:block/silver_ball_ornament_block_side"
-        },
-        "face=wall,facing=south": {
             "model": "happyholidays:block/silver_ball_ornament_block_side",
             "y": 180
         },
+        "face=wall,facing=south": {
+            "model": "happyholidays:block/silver_ball_ornament_block_side"
+        },
         "face=wall,facing=west": {
             "model": "happyholidays:block/silver_ball_ornament_block_side",
-            "y": 270
+            "y": 90
         }
     }
 }

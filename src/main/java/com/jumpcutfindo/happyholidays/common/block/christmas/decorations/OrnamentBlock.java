@@ -33,7 +33,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 public class OrnamentBlock extends ChristmasBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.FACING;
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<AttachFace> ATTACH_FACE = BlockStateProperties.ATTACH_FACE;
 
     public static final Properties BLOCK_PROPERTIES =
@@ -80,11 +80,11 @@ public class OrnamentBlock extends ChristmasBlock {
         if (clickedFaceAxis == Direction.Axis.Y) {
             blockState = this.defaultBlockState()
                     .setValue(ATTACH_FACE, clickedFaceDirection == Direction.UP ? AttachFace.FLOOR : AttachFace.CEILING)
-                    .setValue(FACING, context.getHorizontalDirection());
+                    .setValue(FACING, context.getHorizontalDirection().getOpposite());
         } else {
             blockState = this.defaultBlockState()
                     .setValue(ATTACH_FACE, AttachFace.WALL)
-                    .setValue(FACING, clickedFaceDirection.getOpposite());
+                    .setValue(FACING, clickedFaceDirection);
         }
 
         return canSurvive(blockState, world, blockPos) ? blockState
@@ -107,13 +107,14 @@ public class OrnamentBlock extends ChristmasBlock {
         } else if (attachFace == AttachFace.CEILING) {
             return hangingShape;
         } else {
-            if (direction == Direction.NORTH) {
+            if (direction == Direction.SOUTH) {
                 return wallShape;
-            } else if (direction == Direction.SOUTH) {
+            } else if (direction == Direction.NORTH) {
                 return HappyHolidaysUtils.rotateShape(wallShape, Rotation.CLOCKWISE_180);
-            } else if (direction == Direction.EAST) {
+            } else if (direction == Direction.WEST) {
                 return HappyHolidaysUtils.rotateShape(wallShape, Rotation.CLOCKWISE_90);
             } else {
+                // Direction.EAST
                 return HappyHolidaysUtils.rotateShape(wallShape, Rotation.COUNTERCLOCKWISE_90);
             }
         }
@@ -127,14 +128,14 @@ public class OrnamentBlock extends ChristmasBlock {
 
     @Override
     public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
-        Direction direction = blockState.getValue(FACING);
+        Direction facingDirection = blockState.getValue(FACING);
         AttachFace attachFace = blockState.getValue(ATTACH_FACE);
 
         return attachFace == AttachFace.FLOOR ? !world.getBlockState(position.below()).isAir()
                 : attachFace == AttachFace.CEILING ? world.getBlockState(position.above()).is(BlockTags.LEAVES)
-                : direction == Direction.NORTH ? world.getBlockState(position.north()).is(BlockTags.LEAVES)
-                : direction == Direction.SOUTH ? world.getBlockState(position.south()).is(BlockTags.LEAVES)
-                : direction == Direction.EAST ? world.getBlockState(position.east()).is(BlockTags.LEAVES)
-                : direction == Direction.WEST && world.getBlockState(position.west()).is(BlockTags.LEAVES);
+                : facingDirection == Direction.NORTH ? world.getBlockState(position.south()).is(BlockTags.LEAVES)
+                : facingDirection == Direction.SOUTH ? world.getBlockState(position.north()).is(BlockTags.LEAVES)
+                : facingDirection == Direction.EAST ? world.getBlockState(position.west()).is(BlockTags.LEAVES)
+                : facingDirection == Direction.WEST && world.getBlockState(position.east()).is(BlockTags.LEAVES);
     }
 }

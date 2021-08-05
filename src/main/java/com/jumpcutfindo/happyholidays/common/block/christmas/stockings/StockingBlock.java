@@ -82,13 +82,14 @@ public class StockingBlock extends ChristmasBlock {
                                ISelectionContext context) {
         Direction direction = blockState.getValue(FACING);
 
-        if (direction == Direction.NORTH) {
+        if (direction == Direction.SOUTH) {
             return SHAPE;
-        } else if (direction == Direction.SOUTH) {
+        } else if (direction == Direction.NORTH) {
             return HappyHolidaysUtils.rotateShape(SHAPE, Rotation.CLOCKWISE_180);
-        } else if (direction == Direction.EAST) {
+        } else if (direction == Direction.WEST) {
             return HappyHolidaysUtils.rotateShape(SHAPE, Rotation.CLOCKWISE_90);
         } else {
+            // Direction.EAST
             return HappyHolidaysUtils.rotateShape(SHAPE, Rotation.COUNTERCLOCKWISE_90);
         }
     }
@@ -98,13 +99,13 @@ public class StockingBlock extends ChristmasBlock {
         Direction clickedFaceDirection = context.getClickedFace();
 
         return this.defaultBlockState()
-                .setValue(FACING, clickedFaceDirection.getOpposite())
+                .setValue(FACING, clickedFaceDirection)
                 .setValue(FILLED, false);
     }
 
     @Override
     public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
-        Direction direction = blockState.getValue(FACING);
+        Direction direction = blockState.getValue(FACING).getOpposite();
 
         return direction == Direction.NORTH ? !(world.getBlockState(position.north()).isAir())
                 : direction == Direction.SOUTH ? !(world.getBlockState(position.south()).isAir())

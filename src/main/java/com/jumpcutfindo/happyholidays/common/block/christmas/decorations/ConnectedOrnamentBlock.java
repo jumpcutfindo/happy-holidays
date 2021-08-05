@@ -29,7 +29,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 public class ConnectedOrnamentBlock extends ChristmasBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.FACING;
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<WallDecorationShape> WALL_SHAPE = EnumProperty.create("decoration_shape",
             WallDecorationShape.class);
 
@@ -58,26 +58,26 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         Direction clickedFaceDirection = context.getClickedFace();
         BlockPos clickedPos = context.getClickedPos();
-        World level = context.getLevel();
+        World world = context.getLevel();
 
         BlockState leftBlock = null, rightBlock = null, oppositeBlock = null;
         if (clickedFaceDirection.getAxis().isHorizontal()) {
-            if (clickedFaceDirection.getOpposite() == Direction.NORTH) {
-                leftBlock = level.getBlockState(clickedPos.east());
-                rightBlock = level.getBlockState(clickedPos.west());
-                oppositeBlock = level.getBlockState(clickedPos.south());
-            } else if (clickedFaceDirection.getOpposite() == Direction.SOUTH) {
-                leftBlock = level.getBlockState(clickedPos.west());
-                rightBlock = level.getBlockState(clickedPos.east());
-                oppositeBlock = level.getBlockState(clickedPos.north());
-            } else if (clickedFaceDirection.getOpposite() == Direction.EAST) {
-                leftBlock = level.getBlockState(clickedPos.south());
-                rightBlock = level.getBlockState(clickedPos.north());
-                oppositeBlock = level.getBlockState(clickedPos.west());
+            if (clickedFaceDirection == Direction.NORTH) {
+                leftBlock = world.getBlockState(clickedPos.west());
+                rightBlock = world.getBlockState(clickedPos.east());
+                oppositeBlock = world.getBlockState(clickedPos.north());
+            } else if (clickedFaceDirection == Direction.SOUTH) {
+                leftBlock = world.getBlockState(clickedPos.east());
+                rightBlock = world.getBlockState(clickedPos.west());
+                oppositeBlock = world.getBlockState(clickedPos.south());
+            } else if (clickedFaceDirection == Direction.EAST) {
+                leftBlock = world.getBlockState(clickedPos.north());
+                rightBlock = world.getBlockState(clickedPos.south());
+                oppositeBlock = world.getBlockState(clickedPos.east());
             } else {
-                leftBlock = level.getBlockState(clickedPos.north());
-                rightBlock = level.getBlockState(clickedPos.south());
-                oppositeBlock = level.getBlockState(clickedPos.east());
+                leftBlock = world.getBlockState(clickedPos.south());
+                rightBlock = world.getBlockState(clickedPos.north());
+                oppositeBlock = world.getBlockState(clickedPos.west());
             }
         } else {
             // Do not allow placement if placed on a vertical face
@@ -85,7 +85,7 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
         }
 
         return this.defaultBlockState()
-                .setValue(FACING, clickedFaceDirection.getOpposite())
+                .setValue(FACING, clickedFaceDirection)
                 .setValue(WALL_SHAPE, getWallShapeState(leftBlock, rightBlock, oppositeBlock));
     }
 
@@ -99,13 +99,14 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
                                ISelectionContext context) {
         Direction direction = blockState.getValue(FACING);
 
-        if (direction == Direction.NORTH) {
+        if (direction == Direction.SOUTH) {
             return shape;
-        } else if (direction == Direction.SOUTH) {
+        } else if (direction == Direction.NORTH) {
             return HappyHolidaysUtils.rotateShape(shape, Rotation.CLOCKWISE_180);
-        } else if (direction == Direction.EAST) {
+        } else if (direction == Direction.WEST) {
             return HappyHolidaysUtils.rotateShape(shape, Rotation.CLOCKWISE_90);
         } else {
+            // Direction.EAST
             return HappyHolidaysUtils.rotateShape(shape, Rotation.COUNTERCLOCKWISE_90);
         }
     }
@@ -123,21 +124,21 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
         BlockState leftBlock = null, rightBlock = null, oppositeBlock = null;
 
         if (facingDirection == Direction.NORTH) {
-            leftBlock = world.getBlockState(pos1.east());
-            rightBlock = world.getBlockState(pos1.west());
-            oppositeBlock = world.getBlockState(pos1.south());
-        } else if (facingDirection == Direction.SOUTH) {
             leftBlock = world.getBlockState(pos1.west());
             rightBlock = world.getBlockState(pos1.east());
             oppositeBlock = world.getBlockState(pos1.north());
+        } else if (facingDirection == Direction.SOUTH) {
+            leftBlock = world.getBlockState(pos1.east());
+            rightBlock = world.getBlockState(pos1.west());
+            oppositeBlock = world.getBlockState(pos1.south());
         } else if (facingDirection == Direction.EAST) {
-            leftBlock = world.getBlockState(pos1.south());
-            rightBlock = world.getBlockState(pos1.north());
-            oppositeBlock = world.getBlockState(pos1.west());
-        } else {
             leftBlock = world.getBlockState(pos1.north());
             rightBlock = world.getBlockState(pos1.south());
             oppositeBlock = world.getBlockState(pos1.east());
+        } else {
+            leftBlock = world.getBlockState(pos1.south());
+            rightBlock = world.getBlockState(pos1.north());
+            oppositeBlock = world.getBlockState(pos1.west());
         }
 
         return this.defaultBlockState()
@@ -147,7 +148,7 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
 
     @Override
     public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
-        Direction direction = blockState.getValue(FACING);
+        Direction direction = blockState.getValue(FACING).getOpposite();
 
         return direction == Direction.NORTH ? !(world.getBlockState(position.north()).isAir() || ChristmasBlock.isDecorationBlock(world.getBlockState(position.north()).getBlock()))
                 : direction == Direction.SOUTH ? !(world.getBlockState(position.south()).isAir() || ChristmasBlock.isDecorationBlock(world.getBlockState(position.south()).getBlock()))
