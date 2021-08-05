@@ -24,6 +24,7 @@ import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornamen
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.BabyPresentOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.CandyCaneOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.ElderPresentOrnamentBlock;
+import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.GingerbreadManOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.PresentOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.legendary.SantaElfOrnamentBlock;
 import com.bayobayobayo.happyholidays.common.block.christmas.decorations.ornaments.lights.BlueChristmasLightBlock;
@@ -141,6 +142,8 @@ public class BlockRegistry {
             BLOCKS.register(CandyCaneOrnamentBlock.BLOCK_ID, CandyCaneOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> SANTA_ELF_ORNAMENT_BLOCK =
             BLOCKS.register(SantaElfOrnamentBlock.BLOCK_ID, SantaElfOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> GINGERBREAD_MAN_ORNAMENT_BLOCK =
+            BLOCKS.register(GingerbreadManOrnamentBlock.BLOCK_ID, GingerbreadManOrnamentBlock::new);
 
     public static final RegistryObject<ChristmasBlock> RAW_GINGERBREAD_BLOCK =
             BLOCKS.register(RawGingerbreadBlock.BLOCK_ID, RawGingerbreadBlock::new);

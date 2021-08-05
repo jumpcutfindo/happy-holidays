@@ -36,8 +36,8 @@
                         {
                             "function": "minecraft:set_count",
                             "count": {
-                                "min": 2,
-                                "max": 4
+                                "min": 1,
+                                "max": 2
                             }
                         }
                     ]
@@ -51,6 +51,27 @@
                     "condition": "minecraft:random_chance_with_looting",
                     "chance": 0.025,
                     "looting_multiplier": 0.01
+                }
+            ]
+        },
+        {
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "happyholidays:gingerbread_man_ornament_block",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": 1
+                        }
+                    ]
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:random_chance",
+                    "chance": 0.005
                 }
             ]
         }

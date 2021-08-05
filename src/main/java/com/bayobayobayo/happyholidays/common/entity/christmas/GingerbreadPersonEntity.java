@@ -13,7 +13,11 @@ import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameterSets;
+import net.minecraft.loot.LootTable;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -28,6 +32,9 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatable {
+    private static final ResourceLocation GINGERBREAD_CONVERSION_LOOT_TABLE = new ResourceLocation("happyholidays"
+            + ":entities/gingerbread_conversion");
+
     private AnimationFactory factory = new AnimationFactory(this);
 
     private boolean isLeader;
@@ -70,6 +77,13 @@ public class GingerbreadPersonEntity extends CreatureEntity implements IAnimatab
 
     public boolean fireImmune() {
         return false;
+    }
+
+    public void dropConversionLoot() {
+        LootTable lootTable = this.level.getServer().getLootTables().get(GINGERBREAD_CONVERSION_LOOT_TABLE);
+        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
+
+        lootTable.getRandomItems(ctx).forEach(this::spawnAtLocation);
     }
 
     /*
