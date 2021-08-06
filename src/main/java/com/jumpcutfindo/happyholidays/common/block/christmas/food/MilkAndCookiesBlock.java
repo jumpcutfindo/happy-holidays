@@ -56,28 +56,19 @@ public class MilkAndCookiesBlock extends ChristmasFoodBlock {
         super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)
-        );
-    }
-
-    @Override
-    public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(this, RenderType.cutoutMipped());
+                .setValue(FACING, Direction.NORTH));
     }
 
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(BITES);
+        stateBuilder.add(BITES, FACING);
     }
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return this.defaultBlockState()
-                .setValue(BITES, 0);
-    }
-
-    @Override
-    public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1, IWorld world, BlockPos blockPos, BlockPos blockPos1) {
-        return direction == Direction.DOWN && !blockState.canSurvive(world, blockPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(blockState, direction, blockState1, world, blockPos, blockPos1);
+                .setValue(BITES, 0)
+                .setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override
@@ -117,10 +108,5 @@ public class MilkAndCookiesBlock extends ChristmasFoodBlock {
 
             return ActionResultType.SUCCESS;
         }
-    }
-
-    @Override
-    public boolean canSurvive(BlockState p_196260_1_, IWorldReader p_196260_2_, BlockPos p_196260_3_) {
-        return p_196260_2_.getBlockState(p_196260_3_.below()).getMaterial().isSolid();
     }
 }

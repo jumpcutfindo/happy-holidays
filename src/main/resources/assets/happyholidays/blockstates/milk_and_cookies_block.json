@@ -1,7 +1,67 @@
 {
     "variants": {
-        "bites=2": { "model": "happyholidays:block/milk_and_cookies_block_two_bites" },
-        "bites=1": { "model": "happyholidays:block/milk_and_cookies_block_one_bite" },
-        "bites=0": { "model": "happyholidays:block/milk_and_cookies_block" }
+        "bites=2,facing=up": {
+            "model": "happyholidays:block/milk_and_cookies_block_two_bites"
+        },
+        "bites=2,facing=down": {
+            "model": "happyholidays:block/milk_and_cookies_block_two_bites"
+        },
+        "bites=2,facing=east": {
+            "model": "happyholidays:block/milk_and_cookies_block_two_bites",
+            "y": 270
+        },
+        "bites=2,facing=north": {
+            "model": "happyholidays:block/milk_and_cookies_block_two_bites",
+            "y": 180
+        },
+        "bites=2,facing=south": {
+            "model": "happyholidays:block/milk_and_cookies_block_two_bites"
+        },
+        "bites=2,facing=west": {
+            "model": "happyholidays:block/milk_and_cookies_block_two_bites",
+            "y": 90
+        },
+        "bites=1,facing=up": {
+            "model": "happyholidays:block/milk_and_cookies_block_one_bite"
+        },
+        "bites=1,facing=down": {
+            "model": "happyholidays:block/milk_and_cookies_block_one_bite"
+        },
+        "bites=1,facing=east": {
+            "model": "happyholidays:block/milk_and_cookies_block_one_bite",
+            "y": 270
+        },
+        "bites=1,facing=north": {
+            "model": "happyholidays:block/milk_and_cookies_block_one_bite",
+            "y": 180
+        },
+        "bites=1,facing=south": {
+            "model": "happyholidays:block/milk_and_cookies_block_one_bite"
+        },
+        "bites=1,facing=west": {
+            "model": "happyholidays:block/milk_and_cookies_block_one_bite",
+            "y": 90
+        },
+        "bites=0,facing=up": {
+            "model": "happyholidays:block/milk_and_cookies_block"
+        },
+        "bites=0,facing=down": {
+            "model": "happyholidays:block/milk_and_cookies_block"
+        },
+        "bites=0,facing=east": {
+            "model": "happyholidays:block/milk_and_cookies_block",
+            "y": 270
+        },
+        "bites=0,facing=north": {
+            "model": "happyholidays:block/milk_and_cookies_block",
+            "y": 180
+        },
+        "bites=0,facing=south": {
+            "model": "happyholidays:block/milk_and_cookies_block"
+        },
+        "bites=0,facing=west": {
+            "model": "happyholidays:block/milk_and_cookies_block",
+            "y": 90
+        }
     }
 }
