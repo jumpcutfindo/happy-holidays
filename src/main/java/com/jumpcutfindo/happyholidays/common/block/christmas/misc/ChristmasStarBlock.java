@@ -43,7 +43,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class ChristmasStarBlock extends ChristmasBlock {
     public static final EnumProperty<ChristmasStarTier> STAR_TIER = EnumProperty.create("christmas_star_tier",
             ChristmasStarTier.class);
-    public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
+    public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
     public static final String BLOCK_ID = "christmas_star_block";
 
@@ -78,7 +78,7 @@ public class ChristmasStarBlock extends ChristmasBlock {
         super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(STAR_TIER, ChristmasStarTier.TIER_1)
-                .setValue(ROTATION, 0)
+                .setValue(HORIZONTAL_AXIS, Direction.Axis.X)
         );
     }
 
@@ -89,7 +89,7 @@ public class ChristmasStarBlock extends ChristmasBlock {
 
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(STAR_TIER, ROTATION);
+        stateBuilder.add(STAR_TIER, HORIZONTAL_AXIS);
     }
 
     @Override
@@ -107,36 +107,26 @@ public class ChristmasStarBlock extends ChristmasBlock {
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return this.defaultBlockState()
                 .setValue(STAR_TIER, ChristmasStarTier.TIER_1)
-                .setValue(ROTATION, MathHelper.floor((double) (context.getRotation() * 16.0F / 360.0F) + 0.5D) & 15);
-    }
-
-    @Override
-    public BlockState rotate(BlockState p_185499_1_, Rotation p_185499_2_) {
-        return p_185499_1_.setValue(ROTATION, p_185499_2_.rotate(p_185499_1_.getValue(ROTATION), 16));
-    }
-
-    @Override
-    public BlockState mirror(BlockState p_185471_1_, Mirror p_185471_2_) {
-        return p_185471_1_.setValue(ROTATION, p_185471_2_.mirror(p_185471_1_.getValue(ROTATION), 16));
+                .setValue(HORIZONTAL_AXIS, context.getHorizontalDirection().getAxis());
     }
 
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
                                   IWorld world, BlockPos pos1, BlockPos pos2) {
         ChristmasStarTier tier = blockState.getValue(STAR_TIER);
-        int rotation = blockState.getValue(ROTATION);
+        Direction.Axis axis = blockState.getValue(HORIZONTAL_AXIS);
 
         switch (tier) {
-        case TIER_1: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_1).setValue(ROTATION,
-                rotation);
-        case TIER_2: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_2).setValue(ROTATION,
-                rotation);
-        case TIER_3: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_3).setValue(ROTATION,
-                rotation);
-        case TIER_4: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_4).setValue(ROTATION,
-                rotation);
-        case TIER_5: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_5).setValue(ROTATION,
-                rotation);
+        case TIER_1: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_1).setValue(HORIZONTAL_AXIS,
+                axis);
+        case TIER_2: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_2).setValue(HORIZONTAL_AXIS,
+                axis);
+        case TIER_3: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_3).setValue(HORIZONTAL_AXIS,
+                axis);
+        case TIER_4: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_4).setValue(HORIZONTAL_AXIS,
+                axis);
+        case TIER_5: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_5).setValue(HORIZONTAL_AXIS,
+                axis);
         default: return this.defaultBlockState();
         }
     }
