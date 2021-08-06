@@ -1,6 +1,3 @@
 {
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "happyholidays:items/gift_wrapper_block"
-    }
+    "parent": "happyholidays:block/gift_wrapper_block"
 }
