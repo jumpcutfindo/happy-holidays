@@ -1,10 +1,34 @@
 {
     "variants": {
-        "face=ceiling": {
+        "face=ceiling,facing=east": {
+            "model": "happyholidays:block/candy_cane_ornament_block_hanging",
+            "y": 270
+        },
+        "face=ceiling,facing=north": {
+            "model": "happyholidays:block/candy_cane_ornament_block_hanging",
+            "y": 180
+        },
+        "face=ceiling,facing=south": {
             "model": "happyholidays:block/candy_cane_ornament_block_hanging"
         },
-        "face=floor": {
+        "face=ceiling,facing=west": {
+            "model": "happyholidays:block/candy_cane_ornament_block_hanging",
+            "y": 90
+        },
+        "face=floor,facing=east": {
+            "model": "happyholidays:block/candy_cane_ornament_block",
+            "y": 270
+        },
+        "face=floor,facing=north": {
+            "model": "happyholidays:block/candy_cane_ornament_block",
+            "y": 180
+        },
+        "face=floor,facing=south": {
             "model": "happyholidays:block/candy_cane_ornament_block"
+        },
+        "face=floor,facing=west": {
+            "model": "happyholidays:block/candy_cane_ornament_block",
+            "y": 90
         },
         "face=wall,facing=east": {
             "model": "happyholidays:block/candy_cane_ornament_block_side",

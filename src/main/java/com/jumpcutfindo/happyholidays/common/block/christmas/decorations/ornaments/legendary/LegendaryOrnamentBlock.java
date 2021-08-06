@@ -5,7 +5,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.Ornamen
 import net.minecraft.util.math.shapes.VoxelShape;
 
 public class LegendaryOrnamentBlock extends OrnamentBlock {
-    public LegendaryOrnamentBlock(String blockId, VoxelShape[] ornamentShapes) {
+    public LegendaryOrnamentBlock(String blockId, VoxelShape[][] ornamentShapes) {
         super(blockId, ornamentShapes);
     }
 }

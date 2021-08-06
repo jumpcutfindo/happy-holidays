@@ -1,7 +1,11 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 import javax.annotation.Nullable;
 
+import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
@@ -27,6 +31,7 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -48,9 +53,9 @@ public class OrnamentBlock extends ChristmasBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
-    public VoxelShape normalShape, hangingShape, wallShape;
+    public VoxelShape[] normalShape, hangingShape, wallShape;
 
-    public OrnamentBlock(String blockId, VoxelShape[] ornamentShapes) {
+    public OrnamentBlock(String blockId, VoxelShape[][] ornamentShapes) {
         super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
 
         this.registerDefaultState(this.getStateDefinition().any()
@@ -102,21 +107,37 @@ public class OrnamentBlock extends ChristmasBlock {
         Direction direction = blockState.getValue(FACING);
         AttachFace attachFace = blockState.getValue(ATTACH_FACE);
 
+        VoxelShape[] resultShapes = null;
+
         if (attachFace == AttachFace.FLOOR) {
-            return normalShape;
+            resultShapes = Arrays.copyOf(normalShape, normalShape.length);
         } else if (attachFace == AttachFace.CEILING) {
-            return hangingShape;
+            resultShapes = Arrays.copyOf(hangingShape, hangingShape.length);
         } else {
-            if (direction == Direction.SOUTH) {
-                return wallShape;
-            } else if (direction == Direction.NORTH) {
-                return HappyHolidaysUtils.rotateShape(wallShape, Rotation.CLOCKWISE_180);
-            } else if (direction == Direction.WEST) {
-                return HappyHolidaysUtils.rotateShape(wallShape, Rotation.CLOCKWISE_90);
-            } else {
-                // Direction.EAST
-                return HappyHolidaysUtils.rotateShape(wallShape, Rotation.COUNTERCLOCKWISE_90);
+            resultShapes = Arrays.copyOf(wallShape, wallShape.length);
+        }
+
+        if (direction == Direction.SOUTH) {
+            return HappyHolidaysUtils.combineShapes(resultShapes);
+        } else if (direction == Direction.NORTH) {
+            for (int i = 0; i < resultShapes.length; i++) {
+                resultShapes[i] = HappyHolidaysUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_180);
             }
+
+            return HappyHolidaysUtils.combineShapes(resultShapes);
+        } else if (direction == Direction.WEST) {
+            for (int i = 0; i < resultShapes.length; i++) {
+                resultShapes[i] = HappyHolidaysUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_90);
+            }
+
+            return HappyHolidaysUtils.combineShapes(resultShapes);
+        } else {
+            // Direction.EAST
+            for (int i = 0; i < resultShapes.length; i++) {
+                resultShapes[i] = HappyHolidaysUtils.rotateShape(resultShapes[i], Rotation.COUNTERCLOCKWISE_90);
+            }
+
+            return HappyHolidaysUtils.combineShapes(resultShapes);
         }
     }
 

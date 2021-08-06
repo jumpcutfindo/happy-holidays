@@ -5,6 +5,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.World;
@@ -35,6 +36,16 @@ public class HappyHolidaysUtils {
         }
 
         return VoxelShapes.box(x1, y1, z1, x2, y2, z2);
+    }
+
+    public static VoxelShape combineShapes(VoxelShape[] voxelShapes) {
+        VoxelShape result = VoxelShapes.empty();
+
+        for (VoxelShape shape : voxelShapes) {
+            result = VoxelShapes.join(result, shape, IBooleanFunction.OR);
+        }
+
+        return result;
     }
 
     public static BlockPos getPosInFront(Direction facingDirection, BlockPos pos, double offset) {
