@@ -113,7 +113,7 @@ public class StockingBlock extends ChristmasBlock {
 
     @Override
     public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
-        Direction direction = blockState.getValue(FACING);
+        Direction direction = blockState.getValue(FACING).getOpposite();
 
         return direction == Direction.NORTH ? !(world.getBlockState(position.north()).isAir())
                 : direction == Direction.SOUTH ? !(world.getBlockState(position.south()).isAir())
