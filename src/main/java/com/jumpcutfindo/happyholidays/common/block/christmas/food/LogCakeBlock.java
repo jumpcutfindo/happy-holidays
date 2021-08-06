@@ -49,10 +49,10 @@ public class LogCakeBlock extends ChristmasFoodBlock {
                     .stacksTo(4)
                     .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
-    public static final VoxelShape SHAPE = Block.box(1.0, 0.0, 3.0, 15.5, 6.0, 13.0);
+    public static final VoxelShape[] SHAPE = { Block.box(1.0, 0.0, 3.0, 15.0, 6.0, 13.0) };
 
     public LogCakeBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES, SHAPE);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)
                 .setValue(FACING, Direction.NORTH));
@@ -68,12 +68,6 @@ public class LogCakeBlock extends ChristmasFoodBlock {
         return this.defaultBlockState()
                 .setValue(BITES, 0)
                 .setValue(FACING, context.getHorizontalDirection().getOpposite());
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos,
-                               ISelectionContext context) {
-        return SHAPE;
     }
 
     @Override

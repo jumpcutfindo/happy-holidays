@@ -53,7 +53,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.stockings.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
 
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;

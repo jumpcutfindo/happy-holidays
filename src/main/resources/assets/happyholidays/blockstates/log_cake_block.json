@@ -1,11 +1,5 @@
 {
     "variants": {
-        "bites=3,facing=up": {
-            "model": "happyholidays:block/log_cake_block_three_bites"
-        },
-        "bites=3,facing=down": {
-            "model": "happyholidays:block/log_cake_block_three_bites"
-        },
         "bites=3,facing=east": {
             "model": "happyholidays:block/log_cake_block_three_bites",
             "y": 270
@@ -20,12 +14,6 @@
         "bites=3,facing=west": {
             "model": "happyholidays:block/log_cake_block_three_bites",
             "y": 90
-        },
-        "bites=2,facing=up": {
-            "model": "happyholidays:block/log_cake_block_two_bites"
-        },
-        "bites=2,facing=down": {
-            "model": "happyholidays:block/log_cake_block_two_bites"
         },
         "bites=2,facing=east": {
             "model": "happyholidays:block/log_cake_block_two_bites",
@@ -42,12 +30,6 @@
             "model": "happyholidays:block/log_cake_block_two_bites",
             "y": 90
         },
-        "bites=1,facing=up": {
-            "model": "happyholidays:block/log_cake_block_one_bite"
-        },
-        "bites=1,facing=down": {
-            "model": "happyholidays:block/log_cake_block_one_bite"
-        },
         "bites=1,facing=east": {
             "model": "happyholidays:block/log_cake_block_one_bite",
             "y": 270
@@ -62,12 +44,6 @@
         "bites=1,facing=west": {
             "model": "happyholidays:block/log_cake_block_one_bite",
             "y": 90
-        },
-        "bites=0,facing=up": {
-            "model": "happyholidays:block/log_cake_block"
-        },
-        "bites=0,facing=down": {
-            "model": "happyholidays:block/log_cake_block"
         },
         "bites=0,facing=east": {
             "model": "happyholidays:block/log_cake_block",

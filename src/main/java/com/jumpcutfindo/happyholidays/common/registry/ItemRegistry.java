@@ -51,7 +51,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.stockings.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.block.LegendaryOrnamentBlockItem;

@@ -49,10 +49,10 @@ public class ChristmasHamBlock extends ChristmasFoodBlock {
                     .stacksTo(4)
                     .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
-    public static final VoxelShape SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 10.0, 15.0);
+    public static final VoxelShape[] SHAPE = { Block.box(1.0, 0.0, 1.0, 15.0, 10.0, 15.0) };
 
     public ChristmasHamBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES, SHAPE);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)
                 .setValue(FACING, Direction.NORTH));
@@ -68,12 +68,6 @@ public class ChristmasHamBlock extends ChristmasFoodBlock {
         return this.defaultBlockState()
                 .setValue(BITES, 0)
                 .setValue(FACING, context.getHorizontalDirection().getOpposite());
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos,
-                               ISelectionContext context) {
-        return SHAPE;
     }
 
     @Override

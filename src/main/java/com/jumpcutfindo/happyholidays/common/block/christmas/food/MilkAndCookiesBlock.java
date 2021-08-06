@@ -50,10 +50,10 @@ public class MilkAndCookiesBlock extends ChristmasFoodBlock {
                     .stacksTo(4)
                     .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
-    public static final VoxelShape SHAPE = Block.box(3.5, 0.0, 3.5, 12.5, 7.0, 12.5);
+    public static final VoxelShape[] SHAPE = { Block.box(3.5, 0.0, 3.5, 12.5, 7.0, 12.5) };
 
     public MilkAndCookiesBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES, SHAPE);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)
                 .setValue(FACING, Direction.NORTH));
@@ -69,12 +69,6 @@ public class MilkAndCookiesBlock extends ChristmasFoodBlock {
         return this.defaultBlockState()
                 .setValue(BITES, 0)
                 .setValue(FACING, context.getHorizontalDirection().getOpposite());
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos,
-                               ISelectionContext context) {
-        return SHAPE;
     }
 
     @Override

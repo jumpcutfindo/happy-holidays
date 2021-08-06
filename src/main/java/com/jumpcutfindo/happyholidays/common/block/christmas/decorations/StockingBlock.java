@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.block.christmas.stockings;
+package com.jumpcutfindo.happyholidays.common.block.christmas.decorations;
 
 import java.util.Random;
 
@@ -25,9 +25,7 @@ import net.minecraft.item.Item;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -44,7 +42,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 public class StockingBlock extends ChristmasBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.FACING;
+    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty FILLED = BooleanProperty.create("filled");
 
     public static final String BLOCK_ID = "stocking_block";
