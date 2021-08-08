@@ -29,7 +29,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 
 public class ChristmasStarTileEntity extends LockableTileEntity implements ChristmasTileEntity, ITickableTileEntity {
     public static final String TILE_ENTITY_ID = "christmas_star_block";
-    public static final int SLOTS = 4;
+    public static final int SLOTS = 6;
 
     public static final int MAX_POINTS = 100;
 
@@ -185,16 +185,18 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
         this.currentPoints = Math.min(newPoints, MAX_POINTS);
 
         // Update tier
-        if (this.currentPoints <= 20) {
+        if (this.currentPoints == 0) {
             changeTier(0);
-        } else if (this.currentPoints <= 40) {
+        } else if (this.currentPoints <= 20) {
             changeTier(1);
-        } else if (this.currentPoints <= 60) {
+        } else if (this.currentPoints <= 40) {
             changeTier(2);
-        } else if (this.currentPoints <= 80) {
+        } else if (this.currentPoints <= 60) {
             changeTier(3);
-        } else {
+        } else if (this.currentPoints <= 80) {
             changeTier(4);
+        } else {
+            changeTier(5);
         }
     }
 
@@ -203,10 +205,11 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
         this.currentTier = newTier;
 
         if (oldTier != newTier && this.level != null) {
-            ChristmasStarTier starTier = newTier == 0 ? ChristmasStarTier.TIER_1
-                    : newTier == 1 ? ChristmasStarTier.TIER_2
-                    : newTier == 2 ? ChristmasStarTier.TIER_3
-                    : newTier == 3 ? ChristmasStarTier.TIER_4
+            ChristmasStarTier starTier = newTier == 0 ? ChristmasStarTier.TIER_0
+                    : newTier == 1 ? ChristmasStarTier.TIER_1
+                    : newTier == 2 ? ChristmasStarTier.TIER_2
+                    : newTier == 3 ? ChristmasStarTier.TIER_3
+                    : newTier == 4 ? ChristmasStarTier.TIER_4
                     : ChristmasStarTier.TIER_5;
 
             this.level.setBlock(this.worldPosition, this.getBlockState().setValue(ChristmasStarBlock.STAR_TIER,

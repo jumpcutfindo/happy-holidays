@@ -1,5 +1,12 @@
 {
     "variants": {
+        "christmas_star_tier=tier_0,axis=x": {
+            "model": "happyholidays:block/christmas_star_block_tier_0",
+            "y": 90
+        },
+        "christmas_star_tier=tier_0,axis=z": {
+            "model": "happyholidays:block/christmas_star_block_tier_0"
+        },
         "christmas_star_tier=tier_1,axis=x": {
             "model": "happyholidays:block/christmas_star_block_tier_1",
             "y": 90

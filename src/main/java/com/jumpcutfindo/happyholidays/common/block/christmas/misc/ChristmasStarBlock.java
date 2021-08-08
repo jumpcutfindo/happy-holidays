@@ -77,14 +77,14 @@ public class ChristmasStarBlock extends ChristmasBlock {
     public ChristmasStarBlock() {
         super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
-                .setValue(STAR_TIER, ChristmasStarTier.TIER_1)
+                .setValue(STAR_TIER, ChristmasStarTier.TIER_0)
                 .setValue(HORIZONTAL_AXIS, Direction.Axis.X)
         );
     }
 
     @Override
     public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(this, RenderType.cutoutMipped());
+        RenderTypeLookup.setRenderLayer(this, RenderType.cutout());
     }
 
     @Override
@@ -106,7 +106,7 @@ public class ChristmasStarBlock extends ChristmasBlock {
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         return this.defaultBlockState()
-                .setValue(STAR_TIER, ChristmasStarTier.TIER_1)
+                .setValue(STAR_TIER, ChristmasStarTier.TIER_0)
                 .setValue(HORIZONTAL_AXIS, context.getHorizontalDirection().getAxis());
     }
 
@@ -127,7 +127,8 @@ public class ChristmasStarBlock extends ChristmasBlock {
                 axis);
         case TIER_5: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_5).setValue(HORIZONTAL_AXIS,
                 axis);
-        default: return this.defaultBlockState();
+        default: return this.defaultBlockState().setValue(STAR_TIER, ChristmasStarTier.TIER_0).setValue(HORIZONTAL_AXIS,
+                axis);
         }
     }
 
