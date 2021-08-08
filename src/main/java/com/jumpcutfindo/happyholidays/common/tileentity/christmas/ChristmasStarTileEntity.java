@@ -5,7 +5,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.HeadOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
-import com.jumpcutfindo.happyholidays.common.container.christmas.ChristmasStarContainer;
+import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 
@@ -164,23 +164,21 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
      * 0. Trash tier - any basic item gives zero points.
      * 1. Basic tier - any basic Christmas items / ornaments / blocks will give 5 points each
      * 2. Pro tier - any rare Christmas ornaments
-     *
-     * Uniqueness: +20 points
      */
     private void updatePoints() {
         // Checks basic item points
         int newPoints = 0;
-        for (ItemStack itemStack : items) {
-            if (itemStack.getItem() instanceof ChristmasItem) newPoints += 5;
-            else if (itemStack.getItem() instanceof BlockItem) {
-                if (((BlockItem) itemStack.getItem()).getBlock() instanceof HeadOrnamentBlock) newPoints += 10;
-                else if (((BlockItem) itemStack.getItem()).getBlock() instanceof ChristmasBlock) newPoints += 5;
+        for (int i = 0; i < 5; i++) {
+            ItemStack itemStack = this.items.get(i);
+
+            if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
+                newPoints += 5;
+            } else if (ChristmasItem.isRareOrnamentItem(itemStack)) {
+                newPoints += 10;
+            } else if (ChristmasItem.isLegendaryOrnamentItem(itemStack)) {
+                newPoints += 20;
             }
         }
-
-        // Checks uniqueness
-        newPoints += items.stream().map(ItemStack::getItem).distinct().count() == SLOTS
-                && !items.contains(ItemStack.EMPTY) ? 20 : 0;
 
         this.currentPoints = Math.min(newPoints, MAX_POINTS);
 

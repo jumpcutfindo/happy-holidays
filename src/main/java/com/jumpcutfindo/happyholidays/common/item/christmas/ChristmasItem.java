@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ball.BaubleOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigBaubleOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.HeadOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.LegendaryOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.ChristmasLightBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.TinselBlock;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysItem;
@@ -87,6 +88,10 @@ public class ChristmasItem extends Item implements HappyHolidaysItem {
         return itemStack.getItem() instanceof ChristmasFoodBlockItem;
     }
 
+    public static boolean isOrnamentItem(ItemStack item) {
+        return isBasicOrnamentItem(item) || isRareOrnamentItem(item) || isLegendaryOrnamentItem(item);
+    }
+
     public static boolean isBasicOrnamentItem(ItemStack item) {
         if (item.getItem() instanceof ChristmasBlockItem) {
             ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
@@ -105,6 +110,16 @@ public class ChristmasItem extends Item implements HappyHolidaysItem {
             ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
 
             return blockItem.getBlock() instanceof HeadOrnamentBlock;
+        }
+
+        return false;
+    }
+
+    public static boolean isLegendaryOrnamentItem(ItemStack item) {
+        if (item.getItem() instanceof ChristmasBlockItem) {
+            ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
+
+            return blockItem.getBlock() instanceof LegendaryOrnamentBlock;
         }
 
         return false;

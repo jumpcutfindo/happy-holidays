@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.registry;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.container.christmas.ChristmasStarContainer;
+import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
 import com.jumpcutfindo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
 
 import net.minecraft.inventory.container.ContainerType;

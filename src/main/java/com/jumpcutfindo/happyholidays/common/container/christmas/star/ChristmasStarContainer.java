@@ -1,7 +1,10 @@
-package com.jumpcutfindo.happyholidays.common.container.christmas;
+package com.jumpcutfindo.happyholidays.common.container.christmas.star;
 
+import java.util.List;
 import java.util.Objects;
 
+import com.google.common.collect.Lists;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
@@ -27,6 +30,9 @@ public class ChristmasStarContainer extends Container {
 
     private final IIntArray data;
 
+    private List<Slot> ornamentSlots;
+    private Slot bonusSlot;
+
     public ChristmasStarContainer(final int windowId, final PlayerInventory playerInv,
                                   final ChristmasStarTileEntity tileEntity) {
         super(ContainerTypeRegistry.CHRISTMAS_STAR_CONTAINER.get(), windowId);
@@ -38,22 +44,30 @@ public class ChristmasStarContainer extends Container {
         this.addDataSlots(this.tileEntity.dataAccess);
 
         canInteractWithCallable = IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos());
-        // Christmas block slots
-        float spacing = ((176 - (18 * (float) ChristmasStarTileEntity.SLOTS)) / (float) (ChristmasStarTileEntity.SLOTS + 1));
-        for (int i = 0; i < ChristmasStarTileEntity.SLOTS; i++) {
-            this.addSlot(new Slot(tileEntity, i, (int) (spacing + (18 + spacing) * i), 25));
-        }
+
+        // Christmas ornament slots (5 slots)
+        this.ornamentSlots = Lists.newArrayList(
+                this.addSlot(new Slot(tileEntity, 0, 80, 15)),
+                this.addSlot(new Slot(tileEntity, 1, 48, 43)),
+                this.addSlot(new Slot(tileEntity, 2, 112, 43)),
+                this.addSlot(new Slot(tileEntity, 3, 58, 77)),
+                this.addSlot(new Slot(tileEntity, 4, 102, 77))
+        );
+
+        // Special slot
+        // TODO: Add handling for special slot
+        this.bonusSlot = this.addSlot(new Slot(tileEntity, 5, 152, 77));
 
         // Main player inventory
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
-                this.addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 166 - (4 - row) * 18 - 10));
+                this.addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 190 - (4 - row) * 18 - 10));
             }
         }
 
         // Player hot bar
         for (int col = 0; col < 9; col++) {
-            this.addSlot(new Slot(playerInv, col, 8 + col * 18, 142));
+            this.addSlot(new Slot(playerInv, col, 8 + col * 18, 166));
         }
     }
 
@@ -69,19 +83,21 @@ public class ChristmasStarContainer extends Container {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
 
-            // Checks if the items are in the slots for the christmas star
-            if (selectedSlot == 0 || selectedSlot == 1 || selectedSlot == 2 || selectedSlot == 3) {
-                if (!this.moveItemStackTo(itemstack1, 4, 40, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (!this.moveItemStackTo(itemstack1, 0, 4, false)) {
-                if (selectedSlot < 31) {
-                    if (!this.moveItemStackTo(itemstack1, 31, 40, false)) {
+            // Checks if the items are in the slots for the Christmas star
+            for (Slot ornamentSlot : ornamentSlots) {
+                if (slot.equals(ornamentSlot)) {
+                    if (!this.moveItemStackTo(itemstack1, 6, 42, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (selectedSlot < 40 && !this.moveItemStackTo(itemstack1, 4, 31, false)) {
+                }
+            }
+
+            if (ChristmasItem.isOrnamentItem(itemstack)) {
+                if (!this.moveItemStackTo(itemstack1, 0, 5, false)) {
                     return ItemStack.EMPTY;
                 }
+            } else if (selectedSlot < 40 && !this.moveItemStackTo(itemstack1, 4, 31, false)) {
+                return ItemStack.EMPTY;
             }
 
             if (itemstack1.isEmpty()) {
@@ -118,7 +134,7 @@ public class ChristmasStarContainer extends Container {
 
     @OnlyIn(Dist.CLIENT)
     public int getCurrentTier() {
-        return this.data.get(0) + 1;
+        return this.data.get(0);
     }
 
     private static ChristmasStarTileEntity getTileEntity(final PlayerInventory playerInv, final PacketBuffer data) {

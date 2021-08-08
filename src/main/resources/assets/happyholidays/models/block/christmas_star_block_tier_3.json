@@ -3,7 +3,7 @@
 	"texture_size": [192, 64],
 	"textures": {
 		"0": "happyholidays:blocks/christmas_star_block",
-		"particle": "happyholidays:blocks/christmas_star_block"
+		"particle": "minecraft:block/glass"
 	},
 	"elements": [
 		{
