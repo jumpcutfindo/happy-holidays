@@ -10,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.handlers.RendererHandler;
 import com.jumpcutfindo.happyholidays.common.handlers.SpawningHandler;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
@@ -51,6 +52,7 @@ public class HappyHolidaysMod {
         TileEntityRegistry.TILE_ENTITY_TYPE.register(bus);
         ContainerTypeRegistry.CONTAINER_TYPE.register(bus);
         SoundRegistry.SOUNDS.register(bus);
+        EffectRegistry.EFFECTS.register(bus);
 
         GeckoLib.initialize();
     }
