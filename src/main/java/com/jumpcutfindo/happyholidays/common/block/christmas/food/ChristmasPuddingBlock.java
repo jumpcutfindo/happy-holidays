@@ -31,6 +31,9 @@ import net.minecraft.world.World;
 
 public class ChristmasPuddingBlock extends ChristmasFoodBlock {
     public static final int MAX_BITES = 3;
+    public static final int NUTRITION = 2;
+    public static final float SATURATION = 0.2F;
+
     public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, MAX_BITES - 1);
 
     public static final String BLOCK_ID = "christmas_pudding_block";
@@ -52,7 +55,7 @@ public class ChristmasPuddingBlock extends ChristmasFoodBlock {
     public static final VoxelShape[] SHAPE = { Block.box(2.5, 0.0, 2.5, 13.5, 8.0, 13.5) };
 
     public ChristmasPuddingBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES, SHAPE);
+        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES, SHAPE, NUTRITION, SATURATION);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)
                 .setValue(FACING, Direction.NORTH));
@@ -90,7 +93,7 @@ public class ChristmasPuddingBlock extends ChristmasFoodBlock {
         if (!playerEntity.canEat(false)) {
             return ActionResultType.PASS;
         } else {
-            playerEntity.getFoodData().eat(2, 0.2F);
+            playerEntity.getFoodData().eat(NUTRITION, SATURATION);
             int i = blockState.getValue(BITES);
             if (i < MAX_BITES - 1) {
                 world.setBlock(blockPos, blockState.setValue(BITES, i + 1), 3);

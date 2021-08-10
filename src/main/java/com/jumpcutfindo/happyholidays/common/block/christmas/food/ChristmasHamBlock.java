@@ -4,11 +4,8 @@ import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
@@ -22,15 +19,15 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 public class ChristmasHamBlock extends ChristmasFoodBlock {
     public static final int MAX_BITES = 4;
+    public static final int NUTRITION = 2;
+    public static final float SATURATION = 0.2F;
+
     public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, MAX_BITES - 1);
 
     public static final String BLOCK_ID = "christmas_ham_block";
@@ -52,7 +49,7 @@ public class ChristmasHamBlock extends ChristmasFoodBlock {
     public static final VoxelShape[] SHAPE = { Block.box(1.0, 0.0, 1.0, 15.0, 10.0, 15.0) };
 
     public ChristmasHamBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES, SHAPE);
+        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES, SHAPE, NUTRITION, SATURATION);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)
                 .setValue(FACING, Direction.NORTH));
@@ -90,7 +87,7 @@ public class ChristmasHamBlock extends ChristmasFoodBlock {
         if (!playerEntity.canEat(false)) {
             return ActionResultType.PASS;
         } else {
-            playerEntity.getFoodData().eat(2, 0.2F);
+            playerEntity.getFoodData().eat(NUTRITION, SATURATION);
             int i = blockState.getValue(BITES);
             if (i < MAX_BITES - 1) {
                 world.setBlock(blockPos, blockState.setValue(BITES, i + 1), 3);

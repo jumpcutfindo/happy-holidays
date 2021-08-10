@@ -5,6 +5,7 @@ import java.util.Arrays;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.renderer.RenderType;
@@ -26,9 +27,16 @@ public class ChristmasFoodBlock extends ChristmasBlock {
     
     private VoxelShape[] shape;
 
-    public ChristmasFoodBlock(String blockId, Properties properties, Item.Properties itemProperties, VoxelShape[] shape) {
+    private final int nutrition;
+    private final float saturation;
+
+    public ChristmasFoodBlock(String blockId, Properties properties, Item.Properties itemProperties,
+                              VoxelShape[] shape, int nutrition, float saturation) {
         super(blockId, properties, itemProperties);
         this.shape = shape;
+
+        this.nutrition = nutrition;
+        this.saturation = saturation;
     }
 
     @Override
@@ -77,5 +85,17 @@ public class ChristmasFoodBlock extends ChristmasBlock {
     @Override
     public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
         return world.getBlockState(position.below()).getMaterial().isSolid();
+    }
+
+    public int getNutrition() {
+        return nutrition;
+    }
+
+    public float getSaturation() {
+        return saturation;
+    }
+
+    public static boolean isChristmasFoodBlock(Block block) {
+        return block instanceof ChristmasFoodBlock;
     }
 }
