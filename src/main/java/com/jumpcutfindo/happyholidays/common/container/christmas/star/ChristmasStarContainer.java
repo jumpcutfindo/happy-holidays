@@ -8,6 +8,7 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -20,6 +21,7 @@ import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.Tags;
 
 public class ChristmasStarContainer extends Container {
     public static final String CONTAINER_ID = "christmas_star_block";
@@ -47,11 +49,11 @@ public class ChristmasStarContainer extends Container {
 
         // Christmas ornament slots (5 slots)
         this.ornamentSlots = Lists.newArrayList(
-                this.addSlot(new Slot(tileEntity, 0, 80, 15)),
-                this.addSlot(new Slot(tileEntity, 1, 48, 43)),
-                this.addSlot(new Slot(tileEntity, 2, 112, 43)),
-                this.addSlot(new Slot(tileEntity, 3, 58, 77)),
-                this.addSlot(new Slot(tileEntity, 4, 102, 77))
+                this.addSlot(new ChristmasStarSlot(tileEntity, 0, 80, 15)),
+                this.addSlot(new ChristmasStarSlot(tileEntity, 1, 48, 43)),
+                this.addSlot(new ChristmasStarSlot(tileEntity, 2, 112, 43)),
+                this.addSlot(new ChristmasStarSlot(tileEntity, 3, 58, 77)),
+                this.addSlot(new ChristmasStarSlot(tileEntity, 4, 102, 77))
         );
 
         // Special slot
@@ -91,12 +93,28 @@ public class ChristmasStarContainer extends Container {
                 }
             }
 
-            if (ChristmasItem.isOrnamentItem(itemstack)) {
-                if (!this.moveItemStackTo(itemstack1, 0, 5, false)) {
+            // Checks if the items are in the bonus slot
+            if (slot.equals(bonusSlot)) {
+                if (!this.moveItemStackTo(itemstack1, 6, 42, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (selectedSlot < 40 && !this.moveItemStackTo(itemstack1, 4, 31, false)) {
-                return ItemStack.EMPTY;
+            }
+
+            // Handle the remaining slots
+            if (ChristmasItem.isOrnamentItem(itemstack1)) {
+                if (!this.moveItemStackTo(itemstack1,this.ornamentSlots.get(0).getSlotIndex(),
+                        this.ornamentSlots.get(this.ornamentSlots.size() - 1).getSlotIndex() + 1,
+                        false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+
+            // TODO: Replace with Santa Bonus Item
+            if (ItemStack.isSame(itemstack1, Blocks.DIRT.asItem().getDefaultInstance())) {
+                if (!this.moveItemStackTo(itemstack1, this.bonusSlot.getSlotIndex(), this.bonusSlot.getSlotIndex() + 1
+                        , false)) {
+                    return ItemStack.EMPTY;
+                }
             }
 
             if (itemstack1.isEmpty()) {
