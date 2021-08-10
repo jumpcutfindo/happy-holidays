@@ -55,8 +55,7 @@ public class ChristmasStarContainer extends Container {
         );
 
         // Special slot
-        // TODO: Add handling for special slot
-        this.bonusSlot = this.addSlot(new Slot(tileEntity, 5, 152, 77));
+        this.bonusSlot = this.addSlot(new ChristmasStarBonusSlot(tileEntity, 5, 152, 77));
 
         // Main player inventory
         for (int row = 0; row < 3; row++) {

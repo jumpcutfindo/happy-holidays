@@ -196,7 +196,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
         return currentTier;
     }
 
-    public boolean isBonus() {
+    public boolean isBonusActive() {
         return !this.items.get(BONUS_SLOT_INDEX).isEmpty();
     }
 
