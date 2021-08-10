@@ -8,6 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 public class HappyHolidaysUtils {
@@ -69,7 +70,7 @@ public class HappyHolidaysUtils {
         return String.format("%dm %ds", seconds / 60, seconds % 60);
     }
 
-    public static BlockPos findBlockInRadius(World world, BlockPos currPos, Block block, int radius) {
+    public static BlockPos findBlockInRadius(IWorld world, BlockPos currPos, Block block, int radius) {
         BlockPos startPos = currPos.offset(-radius, -radius, -radius);
 
         for (int x = 0; x < radius * 2; x++) {

@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas;
 
 import java.util.List;
+import java.util.Random;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
@@ -8,11 +9,13 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftI
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
@@ -40,6 +43,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -64,10 +68,13 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
     private static final ResourceLocation GRINCH_APPEASEMENT_LOOT_TABLE = new ResourceLocation("happyholidays:entities"
             + "/grinch_appeasement");
 
+    public static final int SPAWN_PROBABILITY = 600;
+
     private static final int BREAK_PRESENT_ANIM_DURATION = 80;
     private static final int BREAK_PRESENT_INTERVAL = 100;
     private static final float AVOID_PLAYER_RADIUS = 4.0f;
     private static final int GRINCH_TIME_TO_DESPAWN = 200;
+    private static final int PRESENT_SEARCH_RADIUS = 8;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -242,6 +249,13 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
         });
     }
 
+    public static boolean checkGrinchSpawnRules(EntityType<? extends GrinchEntity> entity, IWorld world,
+                                             SpawnReason spawnReason, BlockPos pos, Random rand) {
+        return HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.BABY_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
+                    || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ADULT_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
+                    || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ELDER_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null;
+    }
+
     @Override
     public void aiStep() {
         super.aiStep();
@@ -328,8 +342,6 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
     }
 
     private static class BreakPresentsGoal extends Goal {
-        private static final int SEARCH_RADIUS = 4;
-
         private static final float MOVE_TO_PRESENT_SPEED = 0.8f;
 
         private final GrinchEntity grinchEntity;
@@ -363,10 +375,10 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
 
                 // Do a spiral search from mob's current position
                 // x and y represent the offset from mob's current position
-                for (int y = (int) this.grinchEntity.getY(); y <  this.grinchEntity.getY() + SEARCH_RADIUS; y++) {
+                for (int y = (int) this.grinchEntity.getY(); y <  this.grinchEntity.getY() + PRESENT_SEARCH_RADIUS; y++) {
                     if (isFound) break;
 
-                    int X = SEARCH_RADIUS * 2, Z = SEARCH_RADIUS * 2;
+                    int X = PRESENT_SEARCH_RADIUS * 2, Z = PRESENT_SEARCH_RADIUS * 2;
                     int x = 0, z = 0, dx = 0, dz = -1;
                     int t = Math.max(X, Z);
                     int maxI = t * t;
