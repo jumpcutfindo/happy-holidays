@@ -7,7 +7,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.tileentity.FurnaceTileEntity;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.common.crafting.ConditionalRecipe;
 
 public class BaseGingerbreadBlock extends ChristmasBlock {
     public static final AbstractBlock.Properties BLOCK_PROPERTIES =
@@ -22,5 +24,6 @@ public class BaseGingerbreadBlock extends ChristmasBlock {
 
     public BaseGingerbreadBlock(String blockId) {
         super(blockId, BLOCK_PROPERTIES, ITEM_PROPERITES);
+        FurnaceTileEntity f = new FurnaceTileEntity();
     }
 }

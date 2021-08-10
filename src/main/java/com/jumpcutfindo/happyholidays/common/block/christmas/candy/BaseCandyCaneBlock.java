@@ -56,7 +56,7 @@ public class BaseCandyCaneBlock extends ChristmasBlock {
         if (!world.isClientSide()) {
             LootContext.Builder lootContextBuilder =
                     (new LootContext.Builder((ServerWorld) world)).withRandom(world.random).withParameter(LootParameters.ORIGIN,
-                            Vector3d.atCenterOf(blockPos)).withParameter(LootParameters.TOOL, ItemStack.EMPTY).withOptionalParameter(LootParameters.BLOCK_ENTITY, tileEntity);
+                            Vector3d.atCenterOf(blockPos)).withParameter(LootParameters.TOOL, playerEntity.getMainHandItem()).withOptionalParameter(LootParameters.BLOCK_ENTITY, tileEntity);
 
             List<ItemStack> drops = this.getCustomDrops(blockState, blockPos, lootContextBuilder);
             for (ItemStack drop : drops) popResource(world, blockPos, drop);

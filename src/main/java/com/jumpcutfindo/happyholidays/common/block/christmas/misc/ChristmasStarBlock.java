@@ -72,7 +72,7 @@ public class ChristmasStarBlock extends ChristmasBlock {
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
     public static final VoxelShape SHAPE = VoxelShapes.or(
-            Block.box(0.0, 0.0, 0.0, 16.0, 16.0, 16.0)
+            Block.box(4.5, 0.0, 4.5, 11.5, 16.0, 11.5)
     );
 
     public ChristmasStarBlock() {

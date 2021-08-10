@@ -11,12 +11,14 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornamen
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.LegendaryOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.ChristmasLightBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.TinselBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -123,5 +125,9 @@ public class ChristmasItem extends Item implements HappyHolidaysItem {
         }
 
         return false;
+    }
+
+    public static boolean isPresentItem(ItemStack item) {
+        return item.getItem() instanceof BlockItem && ((BlockItem) item.getItem()).getBlock() instanceof PresentBlock;
     }
 }
