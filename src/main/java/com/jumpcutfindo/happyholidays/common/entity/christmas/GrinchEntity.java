@@ -7,6 +7,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlo
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
@@ -54,7 +55,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class GrinchEntity extends CreatureEntity implements IAnimatable {
+public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     public static final DataParameter<Integer> BREAK_ANIM_PROGRESS = EntityDataManager.defineId(GrinchEntity.class,
             DataSerializers.INT);
 
@@ -358,6 +359,7 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
         @Override
         public boolean canUse() {
             if (grinchEntity.hasReceivedGift) return false;
+            if (this.grinchEntity.getEffect(EffectRegistry.DEBUFF_OF_CHRISTMAS_EFFECT.get()) != null) return false;
 
             if (!grinchEntity.isPlayerAround()) return true;
             else {
@@ -371,12 +373,12 @@ public class GrinchEntity extends CreatureEntity implements IAnimatable {
         @Override
         public void tick() {
             if (targetPresentBlockPos == null && timeLeftToNextSearch == 0) {
-                BlockPos startPos = this.grinchEntity.blockPosition().offset(0, -4, 0);
+                BlockPos startPos = this.grinchEntity.blockPosition();
                 boolean isFound = false;
 
                 // Do a spiral search from mob's current position
-                // x and y represent the offset from mob's current position
-                for (int y = (int) this.grinchEntity.getY(); y <  this.grinchEntity.getY() + PRESENT_SEARCH_RADIUS; y++) {
+                // x and z represent the offset from mob's current position
+                for (int y = (-PRESENT_SEARCH_RADIUS / 2); y < (PRESENT_SEARCH_RADIUS / 2); y++) {
                     if (isFound) break;
 
                     int X = PRESENT_SEARCH_RADIUS * 2, Z = PRESENT_SEARCH_RADIUS * 2;

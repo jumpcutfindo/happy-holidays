@@ -167,6 +167,7 @@
     "entity.happyholidays.santa_elf_no.sub": "Santa's Elf disapproves",
     "entity.happyholidays.santa_elf_request_single_success.sub": "Santa's Elf accepts item happily",
 
+    "entity.happyholidays.grinch": "Grinch",
     "entity.happyholidays.grinch_passive.sub": "Grinch laughs wickedly",
     "entity.happyholidays.grinch_hurt.sub": "Grinch hurts",
     "entity.happyholidays.grinch_break_box.sub": "Grinch breaks a present",
@@ -175,5 +176,6 @@
 
     "chat.happyholidays.santa_elf_bell.not_ready": "Santa's Elf is not available yet (%s left)",
 
-    "effect.happyholidays.spirit_of_christmas": "Christmas Spirit"
+    "effect.happyholidays.spirit_of_christmas": "Christmas Spirit",
+    "effect.happyholidays.debuff_of_christmas": "Christmas Debuff"
 }

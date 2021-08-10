@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.registry;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.effect.christmas.DebuffOfChristmasEffect;
 import com.jumpcutfindo.happyholidays.common.effect.christmas.SpiritOfChristmasEffect;
 
 import net.minecraft.entity.EntityType;
@@ -17,4 +18,7 @@ public class EffectRegistry {
 
     public static final RegistryObject<Effect> SPIRIT_OF_CHRISTMAS_EFFECT =
             EFFECTS.register(SpiritOfChristmasEffect.EFFECT_ID, SpiritOfChristmasEffect::new);
+
+    public static final RegistryObject<Effect> DEBUFF_OF_CHRISTMAS_EFFECT =
+            EFFECTS.register(DebuffOfChristmasEffect.EFFECT_ID, DebuffOfChristmasEffect::new);
 }

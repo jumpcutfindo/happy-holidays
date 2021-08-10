@@ -20,7 +20,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
-public class GiftWrapperTileEntity extends LockableTileEntity implements ChristmasTileEntity {
+public class GiftWrapperTileEntity extends LockableTileEntity implements IChristmasTileEntity {
     public static final String TILE_ENTITY_ID = "gift_wrapper_block";
     public static final int SLOTS = 10;
 

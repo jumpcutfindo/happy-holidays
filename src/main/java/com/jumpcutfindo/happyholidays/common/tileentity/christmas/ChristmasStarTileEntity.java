@@ -4,11 +4,10 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.HeadOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
@@ -18,11 +17,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.tileentity.BeaconTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -33,11 +30,12 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
-public class ChristmasStarTileEntity extends LockableTileEntity implements ChristmasTileEntity, ITickableTileEntity {
+public class ChristmasStarTileEntity extends LockableTileEntity implements IChristmasTileEntity, ITickableTileEntity {
     public static final String TILE_ENTITY_ID = "christmas_star_block";
     public static final int SLOTS = 6;
 
@@ -175,6 +173,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
     public void tick() {
         if (!this.level.isClientSide() && this.level.getGameTime() % 80L == 0L) {
             this.applyPlayerEffects();
+            this.applyEntityEffects();
         }
 
         this.updatePoints();
@@ -189,6 +188,20 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
                 playerEntity.addEffect(new EffectInstance(EffectRegistry.SPIRIT_OF_CHRISTMAS_EFFECT.get(),
                         200, this.currentTier - 1, true, true));
             }
+        }
+    }
+
+    public void applyEntityEffects() {
+        if (!this.level.isClientSide() && this.currentTier > 0) {
+            AxisAlignedBB axisAlignedBB = new AxisAlignedBB(this.worldPosition).inflate(ENTITY_EFFECT_RADIUS[this.currentTier]);
+
+            List<ChristmasEntity> christmasEntities = this.level.getEntitiesOfClass(ChristmasEntity.class, axisAlignedBB);
+
+            for (ChristmasEntity entity : christmasEntities) {
+                entity.addEffect(new EffectInstance(EffectRegistry.DEBUFF_OF_CHRISTMAS_EFFECT.get(), 200,
+                        this.currentTier - 1, true, true));
+            }
+
         }
     }
 
@@ -267,11 +280,22 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
         }
     }
 
-    public static ChristmasStarTileEntity getNearestStar(World world, BlockPos blockPos) {
+    public static ChristmasStarTileEntity getNearestStarToBlock(World world, BlockPos blockPos) {
         int radius = ChristmasStarTileEntity.BLOCK_EFFECT_RADIUS[MAX_RADIUS_INDEX];
 
         for (TileEntity tileEntity : world.blockEntityList) {
             if (tileEntity instanceof ChristmasStarTileEntity && new AxisAlignedBB(tileEntity.getBlockPos()).inflate(radius).contains(blockPos.getX(), blockPos.getY(), blockPos.getZ()))
+                return (ChristmasStarTileEntity) tileEntity;
+        }
+
+        return null;
+    }
+
+    public static ChristmasStarTileEntity getNearestStarToEntity(World world, Vector3d vector3d) {
+        int radius = ChristmasStarTileEntity.ENTITY_EFFECT_RADIUS[MAX_RADIUS_INDEX];
+
+        for (TileEntity tileEntity : world.blockEntityList) {
+            if (tileEntity instanceof ChristmasStarTileEntity && new AxisAlignedBB(tileEntity.getBlockPos()).inflate(radius).contains(vector3d))
                 return (ChristmasStarTileEntity) tileEntity;
         }
 

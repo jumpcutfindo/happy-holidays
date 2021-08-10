@@ -6,11 +6,14 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
+import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.CreatureEntity;
@@ -41,6 +44,7 @@ import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootTable;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
@@ -58,7 +62,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerchant {
+public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMerchant {
     public static final String ENTITY_ID = "santa_elf";
     public static final AttributeModifierMap ENTITY_ATTRIBUTES =
             MobEntity.createMobAttributes()
@@ -143,6 +147,28 @@ public class SantaElfEntity extends CreatureEntity implements IAnimatable, IMerc
             return ActionResultType.sidedSuccess(this.level.isClientSide);
         } else {
             if (!this.level.isClientSide) {
+                // Set prices based on debuff placed on elf
+                EffectInstance christmasDebuff = this.getEffect(EffectRegistry.DEBUFF_OF_CHRISTMAS_EFFECT.get());
+                if (christmasDebuff != null) {
+                    this.offers = null;
+                    this.getOffers();
+
+                    double modifier;
+
+                    ChristmasStarTileEntity starTileEntity =
+                            ChristmasStarTileEntity.getNearestStarToEntity(this.level, this.position());
+                    if (starTileEntity != null && starTileEntity.isBonusActive()) {
+                        modifier = 0.8D;
+                    } else {
+                        modifier = 0.1D * (double) (christmasDebuff.getAmplifier() + 1);
+                    }
+
+                    for (MerchantOffer merchantOffer : offers) {
+                        int j = (int) Math.floor(modifier * (double) merchantOffer.getBaseCostA().getCount());
+                        merchantOffer.addToSpecialPriceDiff(-Math.max(j, 1));
+                    }
+                }
+
                 this.setTradingPlayer(playerEntity);
                 this.openTradingScreen(playerEntity, this.getDisplayName(), 1);
             }

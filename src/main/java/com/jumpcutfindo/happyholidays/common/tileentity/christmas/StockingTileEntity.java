@@ -23,7 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.server.ServerWorld;
 
-public class StockingTileEntity extends TileEntity implements ChristmasTileEntity {
+public class StockingTileEntity extends TileEntity implements IChristmasTileEntity {
     public static final String TILE_ENTITY_ID = "stocking_block";
 
     private static final ResourceLocation STOCKING_PRESENTS_LOOT_TABLE = new ResourceLocation("happyholidays"

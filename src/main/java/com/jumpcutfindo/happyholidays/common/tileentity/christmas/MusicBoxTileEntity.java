@@ -22,7 +22,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class MusicBoxTileEntity extends TileEntity implements ChristmasTileEntity, IClearable, IAnimatable {
+public class MusicBoxTileEntity extends TileEntity implements IChristmasTileEntity, IClearable, IAnimatable {
     public static final String TILE_ENTITY_ID = "music_box_block";
 
     private ItemStack sheetMusic = ItemStack.EMPTY;
