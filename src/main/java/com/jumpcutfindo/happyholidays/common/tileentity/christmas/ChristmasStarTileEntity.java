@@ -25,21 +25,27 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.tileentity.BeaconTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 
 public class ChristmasStarTileEntity extends LockableTileEntity implements ChristmasTileEntity, ITickableTileEntity {
     public static final String TILE_ENTITY_ID = "christmas_star_block";
     public static final int SLOTS = 6;
 
+    public static final int BONUS_SLOT_INDEX = 5;
+
     public static final int MAX_POINTS = 100;
 
+    public static final int MAX_RADIUS_INDEX = 5;
     public static final int[] PLAYER_EFFECT_RADIUS = { 0, 8, 16, 24, 32, 40 };
     public static final int[] ENTITY_EFFECT_RADIUS = { 0, 8, 16, 24, 32, 40 };
     public static final int[] BLOCK_EFFECT_RADIUS = { 0, 4, 8, 12, 16, 20 };
@@ -170,7 +176,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
         if (!this.level.isClientSide() && this.level.getGameTime() % 80L == 0L) {
             this.applyPlayerEffects();
         }
-        
+
         this.updatePoints();
     }
 
@@ -184,6 +190,14 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
                         200, this.currentTier - 1, true, true));
             }
         }
+    }
+
+    public int getCurrentTier() {
+        return currentTier;
+    }
+
+    public boolean isBonus() {
+        return !this.items.get(BONUS_SLOT_INDEX).isEmpty();
     }
 
     /**
@@ -251,5 +265,16 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
                     this.worldPosition.getZ(), SoundEvents.NOTE_BLOCK_BELL, SoundCategory.BLOCKS, 1.0F,
                     1.0F + newTier * 0.1F);
         }
+    }
+
+    public static ChristmasStarTileEntity getNearestStar(World world, BlockPos blockPos) {
+        int radius = ChristmasStarTileEntity.BLOCK_EFFECT_RADIUS[MAX_RADIUS_INDEX];
+
+        for (TileEntity tileEntity : world.blockEntityList) {
+            if (tileEntity instanceof ChristmasStarTileEntity && new AxisAlignedBB(tileEntity.getBlockPos()).inflate(radius).contains(blockPos.getX(), blockPos.getY(), blockPos.getZ()))
+                return (ChristmasStarTileEntity) tileEntity;
+        }
+
+        return null;
     }
 }

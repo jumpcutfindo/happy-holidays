@@ -42,7 +42,7 @@ public class AdultPresentBlock extends PresentBlock {
                 world.getBlockState(blockPos.above()), world, blockPos, blockPos.above());
 
         boolean isGrow = canGrow(world, blockState, blockPos)
-            && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world ,blockPos, blockState, random.nextInt((int)(1.0 / GROWTH_PROBABILITY)) == 0);
+            && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world ,blockPos, blockState, random.nextInt((int)(1.0 / this.getGrowthProbability(world, blockPos))) == 0);
 
         if (isGrow) {
             world.setBlock(blockPos, nextBlockState, 2);

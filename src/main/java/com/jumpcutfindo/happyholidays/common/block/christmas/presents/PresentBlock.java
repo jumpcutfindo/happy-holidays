@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.presents;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
+import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -20,6 +21,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
 
 public class PresentBlock extends ChristmasBlock {
     public static final Properties BLOCK_PROPERTIES =
@@ -76,6 +78,16 @@ public class PresentBlock extends ChristmasBlock {
     @Override
     public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
         return true;
+    }
+
+    public float getGrowthProbability(World world, BlockPos pos) {
+        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getNearestStar(world, pos);
+
+        if (starTileEntity == null) {
+            return GROWTH_PROBABILITY;
+        } else {
+            return GROWTH_PROBABILITY + GROWTH_PROBABILITY * starTileEntity.getCurrentTier() * 0.2f;
+        }
     }
 
     public static boolean canGrow(IWorld world, BlockState blockState, BlockPos blockPos) {
