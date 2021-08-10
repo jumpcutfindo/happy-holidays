@@ -1,5 +1,8 @@
 package com.jumpcutfindo.happyholidays.common.tileentity.christmas;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.HeadOrnamentBlock;
@@ -7,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarB
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
+import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 
 import net.minecraft.block.BlockState;
@@ -17,6 +21,8 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.tileentity.BeaconTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -24,6 +30,7 @@ import net.minecraft.util.IIntArray;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
@@ -32,6 +39,10 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
     public static final int SLOTS = 6;
 
     public static final int MAX_POINTS = 100;
+
+    public static final int[] PLAYER_EFFECT_RADIUS = { 0, 8, 16, 24, 32, 40 };
+    public static final int[] ENTITY_EFFECT_RADIUS = { 0, 8, 16, 24, 32, 40 };
+    public static final int[] BLOCK_EFFECT_RADIUS = { 0, 4, 8, 12, 16, 20 };
 
     private int currentTier;
     private int currentPoints;
@@ -156,7 +167,23 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
 
     @Override
     public void tick() {
-        updatePoints();
+        if (!this.level.isClientSide() && this.level.getGameTime() % 80L == 0L) {
+            this.applyPlayerEffects();
+        }
+        
+        this.updatePoints();
+    }
+
+    public void applyPlayerEffects() {
+        if (!this.level.isClientSide() && this.currentTier > 0) {
+            AxisAlignedBB axisAlignedBB = new AxisAlignedBB(this.worldPosition).inflate(PLAYER_EFFECT_RADIUS[this.currentTier]);
+            List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, axisAlignedBB);
+
+            for (PlayerEntity playerEntity : playerList) {
+                playerEntity.addEffect(new EffectInstance(EffectRegistry.SPIRIT_OF_CHRISTMAS_EFFECT.get(),
+                        200, this.currentTier - 1, true, true));
+            }
+        }
     }
 
     /**
@@ -168,8 +195,16 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements Chris
     private void updatePoints() {
         // Checks basic item points
         int newPoints = 0;
+        List<ItemStack> itemStackList = Lists.newArrayList();
         for (int i = 0; i < 5; i++) {
             ItemStack itemStack = this.items.get(i);
+
+            if (itemStackList.stream().anyMatch(itemStack1 -> ItemStack.isSame(itemStack, itemStack1))) {
+                // Checks if the new item added is unique (avoid double counting)
+                continue;
+            } else {
+                itemStackList.add(itemStack);
+            }
 
             if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
                 newPoints += 5;
