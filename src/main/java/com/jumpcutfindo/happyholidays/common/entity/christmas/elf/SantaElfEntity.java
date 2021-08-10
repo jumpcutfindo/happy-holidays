@@ -150,9 +150,6 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
                 // Set prices based on debuff placed on elf
                 EffectInstance christmasDebuff = this.getEffect(EffectRegistry.DEBUFF_OF_CHRISTMAS_EFFECT.get());
                 if (christmasDebuff != null) {
-                    this.offers = null;
-                    this.getOffers();
-
                     double modifier;
 
                     ChristmasStarTileEntity starTileEntity =
@@ -164,6 +161,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
                     }
 
                     for (MerchantOffer merchantOffer : offers) {
+                        merchantOffer.setSpecialPriceDiff(0);
                         int j = (int) Math.floor(modifier * (double) merchantOffer.getBaseCostA().getCount());
                         merchantOffer.addToSpecialPriceDiff(-Math.max(j, 1));
                     }
@@ -382,6 +380,19 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         LootTable lootTable = this.level.getServer().getLootTables().get(SANTA_ELF_REQUEST_LOOT_TABLE);
         LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
 
+        double modifier;
+        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getNearestStarToEntity(this.level,
+                this.position());
+        if (starTileEntity != null) {
+            if (starTileEntity.isBonusActive()) {
+                modifier = 2.0D;
+            } else {
+                modifier = 1.0D + (starTileEntity.getCurrentTier() * 0.1D);
+            }
+        } else {
+            modifier = 1.0D;
+        }
+
         lootTable.getRandomItems(ctx).forEach(itemStack -> {
             if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(36 - 12) + 1) + 12);
@@ -390,6 +401,9 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
             } else if (ItemStack.isSame(itemStack, ItemRegistry.PRESENT_SCRAPS.get().getDefaultInstance())) {
                 itemStack.setCount((this.random.nextInt(18 - 12) + 1) + 12);
             }
+
+            // Apply modifier
+            itemStack.setCount((int) (itemStack.getCount() * modifier));
 
             this.spawnAtLocation(itemStack);
         });

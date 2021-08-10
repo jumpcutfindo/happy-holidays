@@ -3,6 +3,9 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas;
 import java.util.List;
 import java.util.Random;
 
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
+import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -83,7 +86,28 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
         LootTable lootTable = this.level.getServer().getLootTables().get(GINGERBREAD_CONVERSION_LOOT_TABLE);
         LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
 
-        lootTable.getRandomItems(ctx).forEach(this::spawnAtLocation);
+        lootTable.getRandomItems(ctx).forEach(itemStack -> {
+            double modifier;
+            ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getNearestStarToEntity(this.level,
+                    this.position());
+            if (starTileEntity != null) {
+                if (starTileEntity.isBonusActive()) {
+                    modifier = 2.0D;
+                } else {
+                    modifier = 1.0D + (starTileEntity.getCurrentTier() * 0.1D);
+                }
+            } else {
+                modifier = 1.0D;
+            }
+
+            if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
+                itemStack.setCount((this.random.nextInt(2 - 1) + 1) + 1);
+            }
+
+            itemStack.setCount((int) (itemStack.getCount() * modifier));
+
+            this.spawnAtLocation(itemStack);
+        });
     }
 
     /*

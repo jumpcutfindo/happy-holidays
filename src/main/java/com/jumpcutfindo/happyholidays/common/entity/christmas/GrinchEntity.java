@@ -10,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.block.Blocks;
@@ -28,7 +29,13 @@ import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.AxeItem;
+import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.PickaxeItem;
+import net.minecraft.item.ShovelItem;
+import net.minecraft.item.SwordItem;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootTable;
@@ -232,6 +239,19 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
         LootTable lootTable = this.level.getServer().getLootTables().get(GRINCH_APPEASEMENT_LOOT_TABLE);
         LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
 
+        double modifier;
+        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getNearestStarToEntity(this.level,
+                this.position());
+        if (starTileEntity != null) {
+            if (starTileEntity.isBonusActive()) {
+                modifier = 2.0D;
+            } else {
+                modifier = 1.0D + (starTileEntity.getCurrentTier() * 0.1D);
+            }
+        } else {
+            modifier = 1.0D;
+        }
+
         lootTable.getRandomItems(ctx).forEach(itemStack -> {
             if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(36 - 12) + 1) + 12);
@@ -245,6 +265,16 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                 } else {
                     itemStack.setCount((this.random.nextInt(16 - 12) + 1) + 12);
                 }
+            }
+
+            // Apply modifier
+            if (!(itemStack.getItem() instanceof SwordItem)
+                    && !(itemStack.getItem() instanceof HoeItem)
+                    && !(itemStack.getItem() instanceof AxeItem)
+                    && !(itemStack.getItem() instanceof PickaxeItem)
+                    && !(itemStack.getItem() instanceof ShovelItem)
+            ) {
+                itemStack.setCount((int) (itemStack.getCount() * modifier));
             }
 
             this.spawnAtLocation(itemStack);
