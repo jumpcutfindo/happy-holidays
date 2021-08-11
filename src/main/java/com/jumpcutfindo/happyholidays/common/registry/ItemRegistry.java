@@ -64,6 +64,7 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.GreenChristmas
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.RedChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.SilverChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.YellowChristmasGiftItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.misc.EnchantedSantaHatItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.MistletoeAndHollyItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PresentScrapItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.block.HeadOrnamentBlockItem;
@@ -74,6 +75,7 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.food.EggnogItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gingerbread.GingerbreadCookieItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SantaElfBellItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SantaHatItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.ToyPartsRequestItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.AngelsOnHighSheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.CarolOfBellsSheetMusicItem;
@@ -115,6 +117,11 @@ public class ItemRegistry {
             ITEMS.register(SantaElfBellItem.ITEM_ID, SantaElfBellItem::new);
     public static final RegistryObject<ChristmasItem> TOY_PARTS_REQUEST =
             ITEMS.register(ToyPartsRequestItem.ITEM_ID, ToyPartsRequestItem::new);
+
+    public static final RegistryObject<ChristmasItem> SANTA_HAT =
+            ITEMS.register(SantaHatItem.ITEM_ID, SantaHatItem::new);
+    public static final RegistryObject<ChristmasItem> ENCHANTED_SANTA_HAT =
+            ITEMS.register(EnchantedSantaHatItem.ITEM_ID, EnchantedSantaHatItem::new);
 
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_ANGELS_ON_HIGH =
             ITEMS.register(AngelsOnHighSheetMusicItem.ITEM_ID, AngelsOnHighSheetMusicItem::new);
@@ -373,7 +380,6 @@ public class ItemRegistry {
             ITEMS.register(ChristmasWreathBlock.BLOCK_ID,
                     () -> new ChristmasBlockItem(BlockRegistry.CHRISTMAS_WREATH_BLOCK.get(),
                             ChristmasWreathBlock.ITEM_PROPERTIES));
-
 
     public static final RegistryObject<ChristmasFoodBlockItem> MILK_AND_COOKIES_BLOCK_ITEM =
             ITEMS.register(MilkAndCookiesBlock.BLOCK_ID,
