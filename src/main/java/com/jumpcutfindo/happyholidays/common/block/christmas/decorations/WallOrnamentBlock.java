@@ -10,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
@@ -18,32 +19,28 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 
 public class WallOrnamentBlock extends ChristmasBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final Properties BLOCK_PROPERTIES =
-            AbstractBlock.Properties
-                    .of(Material.WOOL)
-                    .harvestLevel(-1)
-                    .strength(0.1f)
-                    .sound(SoundType.WOOL)
-                    .noOcclusion()
-                    .noCollission();
 
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
 
     private final VoxelShape shape;
 
-    public WallOrnamentBlock(String blockId, VoxelShape shape) {
-        super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+    public WallOrnamentBlock(String blockId, Properties properties, VoxelShape shape) {
+        super(blockId, properties, ITEM_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
         );
@@ -84,5 +81,28 @@ public class WallOrnamentBlock extends ChristmasBlock {
 
         return this.defaultBlockState()
                 .setValue(FACING, clickedFaceDirection);
+    }
+
+    @Override
+    public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
+                                  IWorld world, BlockPos pos1, BlockPos pos2) {
+        return this.canSurvive(blockState, world, pos1) ? blockState : Blocks.AIR.defaultBlockState();
+    }
+
+    @Override
+    public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
+        Direction facingDirection = blockState.getValue(FACING);
+
+        BlockState onBlockState = facingDirection == Direction.NORTH ? world.getBlockState(position.south())
+                : facingDirection == Direction.SOUTH ? world.getBlockState(position.north())
+                : facingDirection == Direction.EAST ? world.getBlockState(position.west())
+                : facingDirection == Direction.WEST ? world.getBlockState(position.east()) : null;
+
+
+        if (onBlockState != null) {
+            return !onBlockState.is(Blocks.AIR) && !(onBlockState.getBlock() instanceof OrnamentBlock || onBlockState.getBlock() instanceof WallOrnamentBlock);
+        }
+
+        return false;
     }
 }

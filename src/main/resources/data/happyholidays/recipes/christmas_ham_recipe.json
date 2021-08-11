@@ -2,7 +2,7 @@
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
         {
-            "item": "happyholidays:holly"
+            "item": "happyholidays:mistletoe_and_holly"
         },
         {
             "item": "minecraft:cooked_porkchop"

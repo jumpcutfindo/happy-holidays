@@ -47,10 +47,19 @@ public class StockingBlock extends WallOrnamentBlock {
 
     public static final String BLOCK_ID = "stocking_block";
 
+    public static final Properties BLOCK_PROPERTIES =
+            AbstractBlock.Properties
+                    .of(Material.WOOL)
+                    .harvestLevel(-1)
+                    .strength(0.1f)
+                    .sound(SoundType.WOOL)
+                    .noOcclusion()
+                    .noCollission();
+
     public static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0 ,16.0, 16.0,0.5);
 
     public StockingBlock() {
-        super(BLOCK_ID, SHAPE);
+        super(BLOCK_ID, BLOCK_PROPERTIES, SHAPE);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(FILLED, false)
@@ -72,16 +81,6 @@ public class StockingBlock extends WallOrnamentBlock {
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
                                   IWorld world, BlockPos pos1, BlockPos pos2) {
         return this.canSurvive(blockState, world, pos1) ? blockState : Blocks.AIR.defaultBlockState();
-    }
-
-    @Override
-    public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
-        Direction direction = blockState.getValue(FACING).getOpposite();
-
-        return direction == Direction.NORTH ? !(world.getBlockState(position.north()).isAir())
-                : direction == Direction.SOUTH ? !(world.getBlockState(position.south()).isAir())
-                : direction == Direction.EAST ? !(world.getBlockState(position.east()).isAir())
-                : direction == Direction.WEST && !(world.getBlockState(position.west()).isAir());
     }
 
     @Override

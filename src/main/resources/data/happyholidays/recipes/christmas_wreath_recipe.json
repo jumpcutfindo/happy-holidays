@@ -2,22 +2,19 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         "#C#",
-        "O O",
-        "#O#"
+        "C C",
+        "#C#"
     ],
     "key": {
         "#": {
             "item": "minecraft:string"
         },
         "C": {
-            "item": "happyholidays:holly"
-        },
-        "O": {
-            "tag": "minecraft:leaves"
+            "item": "happyholidays:mistletoe_and_holly"
         }
     },
     "result": {
         "item": "happyholidays:christmas_wreath_block",
-        "count": 1
+        "count": 4
     }
 }

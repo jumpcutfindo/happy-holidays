@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "happyholidays:items/holly"
+        "layer0": "happyholidays:items/mistletoe_and_holly"
     }
 }
