@@ -2,9 +2,11 @@ package com.jumpcutfindo.happyholidays.common.tileentity.christmas;
 
 import java.util.Random;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.wall.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Items;
@@ -84,19 +86,9 @@ public class StockingTileEntity extends TileEntity implements IChristmasTileEnti
                 .withParameter(LootParameters.TOOL, Items.WOODEN_HOE.getDefaultInstance())
                 .create(LootParameterSets.BLOCK);
 
-        BlockPos spawnPos = StockingBlock.getItemSpawnPos(this.getBlockState(), this.getBlockPos());
-
         lootTable.getRandomItems(ctx)
                 .forEach(itemStack -> {
-                    ItemEntity itemEntity = new ItemEntity(
-                            this.level,
-                            spawnPos.getX() + 0.5D,
-                            spawnPos.getY() + 0.2D,
-                            spawnPos.getZ() + 0.5D,
-                            itemStack
-                    );
-                    itemEntity.setDefaultPickUpDelay();
-                    this.level.addFreshEntity(itemEntity);
+                    Block.popResource(this.level, this.getBlockPos(), itemStack);
                 });
 
         this.isEmpty = true;

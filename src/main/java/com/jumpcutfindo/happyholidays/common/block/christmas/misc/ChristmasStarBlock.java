@@ -52,7 +52,7 @@ public class ChristmasStarBlock extends ChristmasBlock {
             AbstractBlock.Properties
                     .of(Material.DECORATION)
                     .harvestLevel(-1)
-                    .strength(0.25f)
+                    .strength(1.0f)
                     .sound(SoundType.GLASS)
                     .noOcclusion()
                     .noCollission()

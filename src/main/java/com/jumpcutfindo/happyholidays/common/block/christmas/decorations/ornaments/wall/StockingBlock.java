@@ -1,10 +1,11 @@
-package com.jumpcutfindo.happyholidays.common.block.christmas.decorations;
+package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.wall;
 
 import java.util.Random;
 
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
@@ -41,28 +42,15 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class StockingBlock extends ChristmasBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+public class StockingBlock extends WallOrnamentBlock {
     public static final BooleanProperty FILLED = BooleanProperty.create("filled");
 
     public static final String BLOCK_ID = "stocking_block";
 
-    public static final Properties BLOCK_PROPERTIES =
-            AbstractBlock.Properties
-                    .of(Material.WOOL)
-                    .harvestLevel(-1)
-                    .strength(0.1f)
-                    .sound(SoundType.WOOL)
-                    .noOcclusion()
-                    .noCollission();
-
-    public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
-
-    public static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0 ,16.0, 16.0,1.0);
+    public static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0 ,16.0, 16.0,0.5);
 
     public StockingBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+        super(BLOCK_ID, SHAPE);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(FILLED, false)
@@ -70,39 +58,14 @@ public class StockingBlock extends ChristmasBlock {
     }
 
     @Override
-    public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(this, RenderType.translucent());
-    }
-
-    @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(FACING, FILLED);
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos,
-                               ISelectionContext context) {
-        Direction direction = blockState.getValue(FACING);
-
-        if (direction == Direction.SOUTH) {
-            return SHAPE;
-        } else if (direction == Direction.NORTH) {
-            return HappyHolidaysUtils.rotateShape(SHAPE, Rotation.CLOCKWISE_180);
-        } else if (direction == Direction.WEST) {
-            return HappyHolidaysUtils.rotateShape(SHAPE, Rotation.CLOCKWISE_90);
-        } else {
-            // Direction.EAST
-            return HappyHolidaysUtils.rotateShape(SHAPE, Rotation.COUNTERCLOCKWISE_90);
-        }
+        super.createBlockStateDefinition(stateBuilder);
+        stateBuilder.add(FILLED);
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        Direction clickedFaceDirection = context.getClickedFace();
-
-        return this.defaultBlockState()
-                .setValue(FACING, clickedFaceDirection)
-                .setValue(FILLED, false);
+        return super.getStateForPlacement(context).setValue(FILLED, false);
     }
 
     @Override
@@ -136,18 +99,6 @@ public class StockingBlock extends ChristmasBlock {
         }
 
         return ActionResultType.sidedSuccess(world.isClientSide());
-    }
-
-    public static BlockPos getItemSpawnPos(BlockState blockState, BlockPos blockPos) {
-        Direction facingDirection = blockState.getValue(FACING).getOpposite();
-
-        switch (facingDirection) {
-        case NORTH: return blockPos.north();
-        case SOUTH: return blockPos.south();
-        case EAST: return blockPos.east();
-        case WEST: return blockPos.west();
-        default: return blockPos.above();
-        }
     }
 
     @Override

@@ -38,6 +38,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornamen
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.RedTinselBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.SilverTinselBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.YellowTinselBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.wall.ChristmasWreathBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
@@ -51,7 +52,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.wall.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.block.LegendaryOrnamentBlockItem;
@@ -368,6 +369,11 @@ public class ItemRegistry {
             ITEMS.register(StockingBlock.BLOCK_ID,
                     () -> new ChristmasBlockItem(BlockRegistry.STOCKING_BLOCK.get(),
                             StockingBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> CHIRSTMAS_WREATH_BLOCK_ITEM =
+            ITEMS.register(ChristmasWreathBlock.BLOCK_ID,
+                    () -> new ChristmasBlockItem(BlockRegistry.CHRISTMAS_WREATH_BLOCK.get(),
+                            ChristmasWreathBlock.ITEM_PROPERTIES));
+
 
     public static final RegistryObject<ChristmasFoodBlockItem> MILK_AND_COOKIES_BLOCK_ITEM =
             ITEMS.register(MilkAndCookiesBlock.BLOCK_ID,

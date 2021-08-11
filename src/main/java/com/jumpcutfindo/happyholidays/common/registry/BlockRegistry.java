@@ -40,6 +40,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornamen
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.RedTinselBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.SilverTinselBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.YellowTinselBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.wall.ChristmasWreathBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
@@ -53,7 +54,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.wall.StockingBlock;
 
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
@@ -170,6 +171,8 @@ public class BlockRegistry {
 
     public static final RegistryObject<ChristmasBlock> STOCKING_BLOCK =
             BLOCKS.register(StockingBlock.BLOCK_ID, StockingBlock::new);
+    public static final RegistryObject<ChristmasBlock> CHRISTMAS_WREATH_BLOCK =
+            BLOCKS.register(ChristmasWreathBlock.BLOCK_ID, ChristmasWreathBlock::new);
 
     public static final RegistryObject<ChristmasBlock> MILK_AND_COOKIES_BLOCK =
             BLOCKS.register(MilkAndCookiesBlock.BLOCK_ID, MilkAndCookiesBlock::new);
