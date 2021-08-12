@@ -1,10 +1,20 @@
 {
     "block.christmas_star_block_place": {
         "category": "block",
-        "subtitle": "",
+        "subtitle": "block.happyholidays.christmas_star_block.block_place_in_radius",
         "sounds": [
             {
                 "name": "happyholidays:block/christmas_star_block_place",
+                "stream": true
+            }
+        ]
+    },
+    "block.christmas_star_effect_apply": {
+        "category": "block",
+        "subtitle": "block.happyholidays.christmas_star_block.effect_apply",
+        "sounds": [
+            {
+                "name": "happyholidays:block/christmas_star_effect_apply",
                 "stream": true
             }
         ]

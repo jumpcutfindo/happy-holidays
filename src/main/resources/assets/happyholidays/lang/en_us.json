@@ -52,6 +52,8 @@
     "block.happyholidays.festive_candy_cane_block": "Festive Candy Cane Block",
 
     "block.happyholidays.christmas_star_block": "Christmas Star",
+    "block.happyholidays.christmas_star_block.block_place_in_radius": "Christmas block placed",
+    "block.happyholidays.christmas_star_block.effect_apply": "Christmas Spirit received",
     "container.happyholidays.christmas_star_block": "Christmas Star",
     "block.happyholidays.music_box_block": "Music Box",
     "block.happyholidays.gift_wrapper_block": "Wrapping Station",

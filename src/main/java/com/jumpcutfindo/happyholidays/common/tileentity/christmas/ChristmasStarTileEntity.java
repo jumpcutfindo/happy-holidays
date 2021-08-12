@@ -10,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasS
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 
 import net.minecraft.block.BlockState;
@@ -20,6 +21,7 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -34,6 +36,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class ChristmasStarTileEntity extends LockableTileEntity implements IChristmasTileEntity, ITickableTileEntity {
     public static final String TILE_ENTITY_ID = "christmas_star_block";
@@ -185,6 +188,12 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
             List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, axisAlignedBB);
 
             for (PlayerEntity playerEntity : playerList) {
+                if (playerEntity.getEffect(EffectRegistry.SPIRIT_OF_CHRISTMAS_EFFECT.get()) == null) {
+                    // Fresh application of effect, play sound
+                    ((ServerWorld) this.level).playSound(null, playerEntity.blockPosition(),
+                            SoundRegistry.CHRISTMAS_STAR_EFFECT_APPLY.get(), SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                }
+
                 playerEntity.addEffect(new EffectInstance(EffectRegistry.SPIRIT_OF_CHRISTMAS_EFFECT.get(),
                         200, this.currentTier - 1, true, true));
             }
