@@ -40,6 +40,6 @@ public class ChristmasBlock extends Block implements HappyHolidaysBlock {
     }
 
     public static boolean isInfluencedByStar(Block block) {
-        return block instanceof PresentBlock || block instanceof BaseGingerbreadBlock || block instanceof BaseCandyCaneBlock;
+        return block instanceof PresentBlock || block instanceof BaseCandyCaneBlock;
     }
 }

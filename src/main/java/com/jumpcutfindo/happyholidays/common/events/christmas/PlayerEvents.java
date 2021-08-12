@@ -1,18 +1,22 @@
 package com.jumpcutfindo.happyholidays.common.events.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasFoodBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particles.BasicParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -47,6 +51,35 @@ public class PlayerEvents {
                     );
                 }
 
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
+        if (event.getEntity() instanceof PlayerEntity && ChristmasBlock.isInfluencedByStar(event.getPlacedBlock().getBlock())) {
+            PlayerEntity playerEntity = (PlayerEntity) event.getEntity();
+            ChristmasStarTileEntity starTileEntity =
+                    ChristmasStarTileEntity.getNearestStarToBlock(playerEntity.level, event.getPos());
+
+            if (starTileEntity != null && starTileEntity.isBlockAffected(event.getPos())) {
+                // Block is under influence of a star
+                BlockPos placedBlockPos = event.getBlockSnapshot().getPos();
+                BasicParticleType particleType = ParticleTypes.POOF;
+
+                for (int i = 0; i < 3; i++) {
+                    double d0 = (double)(playerEntity.getRandom().nextFloat() * 0.5F) + 0.25D;
+                    double d1 = (double)(playerEntity.getRandom().nextFloat() * 0.5F) + 0.25D;
+                    double d2 = (double)(playerEntity.getRandom().nextFloat() * 0.5F) + 0.25D;
+
+                    ((ServerWorld) playerEntity.level).sendParticles(particleType,
+                            placedBlockPos.getX() + d0,
+                            placedBlockPos.getY() + d1,
+                            placedBlockPos.getZ() + d2, 1, d0, d1, d2, 0.0D);
+                }
+
+                ((ServerWorld) playerEntity.level).playSound(null, event.getPos(), SoundRegistry.CHRISTMAS_STAR_BLOCK_PLACE.get(),
+                        SoundCategory.NEUTRAL, 1.0f, 1.0f);
             }
         }
     }
