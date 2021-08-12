@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 
@@ -27,7 +27,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class ChristmasGiftItem extends ChristmasItem {
-    public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
+    public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public static final int ITEM_USE_DURATION = 35;
 

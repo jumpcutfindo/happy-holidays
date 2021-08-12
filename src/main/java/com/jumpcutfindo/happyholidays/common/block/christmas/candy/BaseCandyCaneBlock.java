@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
@@ -40,7 +40,7 @@ public class BaseCandyCaneBlock extends ChristmasBlock {
             .harvestTool(ToolType.PICKAXE);
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public static final double ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE = 0.005D;
 

@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.misc;
 
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 
 public class MistletoeAndHollyItem extends ChristmasItem {
@@ -8,7 +8,7 @@ public class MistletoeAndHollyItem extends ChristmasItem {
 
     private static final Properties ITEM_PROPERTIES =
             new Properties()
-                    .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public MistletoeAndHollyItem() {
         super(ITEM_ID, ITEM_PROPERTIES);

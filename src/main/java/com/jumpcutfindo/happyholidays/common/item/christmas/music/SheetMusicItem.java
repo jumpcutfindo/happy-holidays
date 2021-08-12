@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
@@ -30,7 +30,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class SheetMusicItem extends ChristmasItem {
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                    .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP)
+                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP)
                     .stacksTo(16);
 
     public ChristmasMusic music;

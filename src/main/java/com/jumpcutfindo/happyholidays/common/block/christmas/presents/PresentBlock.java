@@ -5,8 +5,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
@@ -55,7 +55,7 @@ public class PresentBlock extends ChristmasBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .stacksTo(16)
-                    .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public static final float GROWTH_PROBABILITY = 1.0f / 64.0f;
 

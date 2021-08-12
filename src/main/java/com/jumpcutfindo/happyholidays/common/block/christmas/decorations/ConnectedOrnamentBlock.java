@@ -2,8 +2,8 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.decorations;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.block.AbstractBlock;
@@ -34,7 +34,7 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
             WallDecorationShape.class);
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     private final VoxelShape shape;
 

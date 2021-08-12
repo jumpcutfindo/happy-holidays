@@ -1,14 +1,11 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.food;
 
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
@@ -22,11 +19,8 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 public class ChristmasPuddingBlock extends ChristmasFoodBlock {
@@ -50,7 +44,7 @@ public class ChristmasPuddingBlock extends ChristmasFoodBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .stacksTo(4)
-                    .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public static final VoxelShape[] SHAPE = { Block.box(2.5, 0.0, 2.5, 13.5, 8.0, 13.5) };
 

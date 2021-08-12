@@ -1,5 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.handlers;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.GingerbreadManEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.GrinchEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
@@ -7,8 +8,12 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.SoggyGingerbreadMa
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class AttributeHandler {
+    @SubscribeEvent
     public static void handleEntityAttributeStuff(final EntityAttributeCreationEvent event) {
         event.put(EntityRegistry.GINGERBREAD_MAN.get(), GingerbreadManEntity.ENTITY_ATTRIBUTES);
         event.put(EntityRegistry.SOGGY_GINGERBREAD_MAN.get(), SoggyGingerbreadManEntity.ENTITY_ATTRIBUTES);

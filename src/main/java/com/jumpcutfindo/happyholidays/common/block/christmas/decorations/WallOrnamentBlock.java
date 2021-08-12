@@ -2,26 +2,20 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.decorations;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -35,7 +29,7 @@ public class WallOrnamentBlock extends ChristmasBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     private final VoxelShape shape;
 

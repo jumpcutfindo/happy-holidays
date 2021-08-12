@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
@@ -39,7 +39,7 @@ public class SantaElfBellItem extends ChristmasItem {
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                    .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP)
+                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP)
                     .stacksTo(1)
                     .defaultDurability(ITEM_COOLDOWN);
 

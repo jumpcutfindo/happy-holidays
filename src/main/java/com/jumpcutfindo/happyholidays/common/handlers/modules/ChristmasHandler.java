@@ -1,5 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.handlers.modules;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.ChristmasStarScreen;
 import com.jumpcutfindo.happyholidays.client.screen.GiftWrapperScreen;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
@@ -9,16 +10,17 @@ import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-public class ChristmasHandler implements ModuleHandler {
-    private ChristmasBlock[] christmasBlocks;
-    private ChristmasItem[] christmasItems;
+@Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class ChristmasHandler {
+    private static ChristmasBlock[] christmasBlocks;
+    private static ChristmasItem[] christmasItems;
 
-
-    public ChristmasHandler() {
-    }
-
-    public void initialise() {
+    @SubscribeEvent
+    public static void initialise(FMLCommonSetupEvent event) {
         christmasBlocks = new ChristmasBlock[] {
                 BlockRegistry.BABY_PRESENT_BLOCK.get(),
                 BlockRegistry.ADULT_PRESENT_BLOCK.get(),
@@ -91,25 +93,20 @@ public class ChristmasHandler implements ModuleHandler {
 
                 ItemRegistry.EGGNOG.get()
         };
+
+        configureBlocks();
+        configureItems();
     }
 
-    @Override
-    public void configureBlocks() {
+    public static void configureBlocks() {
         for (ChristmasBlock block : christmasBlocks) {
             block.configureBlock();
         }
     }
 
-    @Override
-    public void configureItems() {
+    public static void configureItems() {
         for (ChristmasItem item : christmasItems) {
             item.configureItem();
         }
-    }
-
-    @Override
-    public void configureContainers() {
-        ScreenManager.register(ContainerTypeRegistry.CHRISTMAS_STAR_CONTAINER.get(), ChristmasStarScreen::new);
-        ScreenManager.register(ContainerTypeRegistry.GIFT_WRAPPER_CONTAINER.get(), GiftWrapperScreen::new);
     }
 }

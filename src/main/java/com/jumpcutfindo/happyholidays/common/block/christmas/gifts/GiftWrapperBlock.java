@@ -2,8 +2,8 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.gifts;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.GiftWrapperTileEntity;
 
@@ -49,7 +49,7 @@ public class GiftWrapperBlock extends ChristmasBlock {
                     .noOcclusion();
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public static final VoxelShape SHAPE = VoxelShapes.or(
             Block.box(2.0, 0.0, 2.0, 14.0, 2.0, 14.0),

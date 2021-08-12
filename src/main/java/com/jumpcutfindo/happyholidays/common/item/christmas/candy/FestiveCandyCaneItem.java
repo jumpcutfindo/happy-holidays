@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.candy;
 
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 
 import net.minecraft.item.Food;
@@ -18,7 +18,7 @@ public class FestiveCandyCaneItem extends ChristmasFoodItem {
                             .saturationMod(0.1f)
                             .alwaysEat()
                             .build())
-                    .tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public FestiveCandyCaneItem() {
         super(ITEM_ID, ITEM_PROPERTIES);

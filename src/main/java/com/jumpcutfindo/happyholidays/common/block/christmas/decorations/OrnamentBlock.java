@@ -1,13 +1,11 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import javax.annotation.Nullable;
 
-import com.google.common.collect.Lists;
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.block.AbstractBlock;
@@ -31,7 +29,6 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -51,7 +48,7 @@ public class OrnamentBlock extends ChristmasBlock {
                     .noCollission();
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public VoxelShape[] normalShape, hangingShape, wallShape;
 

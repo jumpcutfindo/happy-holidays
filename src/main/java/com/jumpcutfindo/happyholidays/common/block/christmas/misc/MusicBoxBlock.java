@@ -2,8 +2,8 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.misc;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasContainerBlock;
-import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.MusicBoxTileEntity;
 
@@ -44,7 +44,7 @@ public class MusicBoxBlock extends ChristmasContainerBlock {
                     .noOcclusion();
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(ModuleHandler.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public MusicBoxTileEntity musicBoxTileEntity;
 
