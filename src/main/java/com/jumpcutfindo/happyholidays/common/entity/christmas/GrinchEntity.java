@@ -413,7 +413,10 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
         @Override
         public boolean canUse() {
             if (grinchEntity.hasReceivedGift) return false;
-            if (this.grinchEntity.getEffect(EffectRegistry.DEBUFF_OF_CHRISTMAS_EFFECT.get()) != null) return false;
+            if (this.grinchEntity.getEffect(EffectRegistry.DEBUFF_OF_CHRISTMAS_EFFECT.get()) != null) {
+                this.targetPresentBlockPos = null;
+                return false;
+            }
 
             if (!grinchEntity.isPlayerAround()) return true;
             else {
