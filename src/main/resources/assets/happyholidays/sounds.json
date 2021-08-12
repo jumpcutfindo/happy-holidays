@@ -199,6 +199,26 @@
             }
         ]
     },
+    "entity.gingerbread_person_passive": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.gingerbread_person_passive.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/gingerbread_person_passive",
+                "stream": true
+            }
+        ]
+    },
+    "entity.gingerbread_person_hurt": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.gingerbread_person_hurt.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/gingerbread_person_hurt",
+                "stream": true
+            }
+        ]
+    },
     "entity.santa_elf_arrival": {
         "category": "entity",
         "subtitle": "entity.happyholidays.santa_elf_arrival.sub",

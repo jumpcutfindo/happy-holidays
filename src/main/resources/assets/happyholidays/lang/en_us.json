@@ -165,6 +165,8 @@
 
     "entity.happyholidays.gingerbread_man": "Gingerbread Man",
     "entity.happyholidays.soggy_gingerbread_man": "Soggy Gingerbread Man",
+    "entity.happyholidays.gingerbread_person_passive.sub": "Gingerbread Man crumbles",
+    "entity.happyholidays.gingerbread_person_hurt.sub": "Gingerbread Man hurts",
 
     "entity.happyholidays.santa_elf": "Santa's Elf",
     "entity.happyholidays.santa_elf_arrival.sub": "Santa's Elf arrives",

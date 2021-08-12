@@ -47,6 +47,15 @@ public class SoundRegistry {
                     "item.christmas_gift_box_shake"))
     );
 
+    public static final RegistryObject<SoundEvent> GINGERBREAD_PERSON_PASSIVE = SOUNDS.register(
+            "entity.gingerbread_person_passive", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.gingerbread_person_passive"))
+    );
+    public static final RegistryObject<SoundEvent> GINGERBREAD_PERSON_HURT = SOUNDS.register(
+            "entity.gingerbread_person_hurt", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.gingerbread_person_hurt"))
+    );
+
     public static final RegistryObject<SoundEvent> SANTA_ELF_ARRIVAL = SOUNDS.register(
             "entity.santa_elf_arrival", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
                     "entity.santa_elf_arrival"))

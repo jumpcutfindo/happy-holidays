@@ -3,7 +3,10 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
+import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
 import net.minecraft.entity.CreatureEntity;
@@ -61,13 +64,18 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
     }
 
     @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundRegistry.GINGERBREAD_PERSON_PASSIVE.get();
+    }
+
+    @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.GENERIC_HURT;
+        return SoundRegistry.GINGERBREAD_PERSON_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.GENERIC_DEATH;
+        return SoundRegistry.GINGERBREAD_PERSON_HURT.get();
     }
 
     public void setLeader() {
