@@ -106,18 +106,6 @@
                     ]
                 },
                 {
-                    "type": "minecraft:tag",
-                    "weight": 2,
-                    "name": "happyholidays:legendary_ornaments",
-                    "expand": true,
-                    "functions": [
-                        {
-                            "function": "minecraft:set_count",
-                            "count": 1
-                        }
-                    ]
-                },
-                {
                     "type": "minecraft:item",
                     "weight": 10,
                     "name": "minecraft:coal",
