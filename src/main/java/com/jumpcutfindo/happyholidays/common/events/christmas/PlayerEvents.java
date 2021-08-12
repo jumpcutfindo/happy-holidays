@@ -4,6 +4,7 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
@@ -65,17 +66,19 @@ public class PlayerEvents {
             if (starTileEntity != null && starTileEntity.isBlockAffected(event.getPos())) {
                 // Block is under influence of a star
                 BlockPos placedBlockPos = event.getBlockSnapshot().getPos();
-                BasicParticleType particleType = ParticleTypes.POOF;
 
-                for (int i = 0; i < 3; i++) {
-                    double d0 = (double)(playerEntity.getRandom().nextFloat() * 0.5F) + 0.25D;
-                    double d1 = (double)(playerEntity.getRandom().nextFloat() * 0.5F) + 0.25D;
-                    double d2 = (double)(playerEntity.getRandom().nextFloat() * 0.5F) + 0.25D;
+                for (int i = 0; i < 4; i++) {
+                    double d0 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
+                    double d1 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
+                    double d2 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
+
+                    BasicParticleType particleType =
+                            playerEntity.getRandom().nextBoolean() ? ParticleRegistry.CHRISTMAS_RED_PARTICLE.get() : ParticleRegistry.CHRISTMAS_GREEN_PARTICLE.get();
 
                     ((ServerWorld) playerEntity.level).sendParticles(particleType,
-                            placedBlockPos.getX() + d0,
-                            placedBlockPos.getY() + d1,
-                            placedBlockPos.getZ() + d2, 1, d0, d1, d2, 0.0D);
+                            placedBlockPos.getX() + 0.5D,
+                            placedBlockPos.getY() + 0.5D,
+                            placedBlockPos.getZ() + 0.5D, 1, d0, d1, d2, 0.0D);
                 }
 
                 ((ServerWorld) playerEntity.level).playSound(null, event.getPos(), SoundRegistry.CHRISTMAS_STAR_BLOCK_PLACE.get(),

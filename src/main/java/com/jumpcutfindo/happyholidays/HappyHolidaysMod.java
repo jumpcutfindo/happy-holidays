@@ -8,11 +8,13 @@ import com.jumpcutfindo.happyholidays.common.handlers.GenerationHandler;
 import com.jumpcutfindo.happyholidays.common.handlers.modules.ModuleHandler;
 import com.jumpcutfindo.happyholidays.common.handlers.RendererHandler;
 import com.jumpcutfindo.happyholidays.common.handlers.SpawningHandler;
+import com.jumpcutfindo.happyholidays.common.handlers.modules.ParticleHandler;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 
@@ -42,6 +44,7 @@ public class HappyHolidaysMod {
         bus.addListener(this::setup);
         bus.addListener(this::clientSetup);
         bus.addListener(AttributeHandler::handleEntityAttributeStuff);
+        bus.addListener(ParticleHandler::registerParticles);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -54,6 +57,7 @@ public class HappyHolidaysMod {
         ContainerTypeRegistry.CONTAINER_TYPE.register(bus);
         SoundRegistry.SOUNDS.register(bus);
         EffectRegistry.EFFECTS.register(bus);
+        ParticleRegistry.PARTICLES.register(bus);
 
         GeckoLib.initialize();
         GeckoLibMod.DISABLE_IN_DEV = true;
