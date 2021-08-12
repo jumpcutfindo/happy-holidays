@@ -229,6 +229,26 @@
             }
         ]
     },
+    "entity.santa_elf_passive": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_elf_passive.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_elf_passive",
+                "stream": true
+            }
+        ]
+    },
+    "entity.santa_elf_hurt": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_elf_hurt.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_elf_hurt",
+                "stream": true
+            }
+        ]
+    },
     "entity.santa_elf_yes": {
         "category": "entity",
         "subtitle": "entity.happyholidays.santa_elf_yes.sub",

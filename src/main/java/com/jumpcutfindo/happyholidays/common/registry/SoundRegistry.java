@@ -60,6 +60,14 @@ public class SoundRegistry {
             "entity.santa_elf_arrival", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
                     "entity.santa_elf_arrival"))
     );
+    public static final RegistryObject<SoundEvent> SANTA_ELF_PASSIVE = SOUNDS.register(
+            "entity.santa_elf_passive", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_elf_passive"))
+    );
+    public static final RegistryObject<SoundEvent> SANTA_ELF_HURT = SOUNDS.register(
+            "entity.santa_elf_hurt", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_elf_hurt"))
+    );
     public static final RegistryObject<SoundEvent> SANTA_ELF_YES = SOUNDS.register(
             "entity.santa_elf_yes",
             () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,

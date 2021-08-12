@@ -117,13 +117,18 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
     }
 
     @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundRegistry.SANTA_ELF_PASSIVE.get();
+    }
+
+    @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.GENERIC_HURT;
+        return SoundRegistry.SANTA_ELF_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.GENERIC_DEATH;
+        return SoundRegistry.SANTA_ELF_HURT.get();
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {

@@ -170,6 +170,8 @@
 
     "entity.happyholidays.santa_elf": "Santa's Elf",
     "entity.happyholidays.santa_elf_arrival.sub": "Santa's Elf arrives",
+    "entity.happyholidays.santa_elf_passive.sub": "Santa's Elf jingles",
+    "entity.happyholidays.santa_elf_hurt.sub": "Santa's Elf hurts",
     "entity.happyholidays.santa_elf_yes.sub": "Santa's Elf approves",
     "entity.happyholidays.santa_elf_no.sub": "Santa's Elf disapproves",
     "entity.happyholidays.santa_elf_request_single_success.sub": "Santa's Elf accepts item happily",
