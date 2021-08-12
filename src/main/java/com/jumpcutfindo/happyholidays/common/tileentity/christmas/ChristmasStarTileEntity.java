@@ -213,6 +213,10 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         return !this.items.get(BONUS_SLOT_INDEX).isEmpty();
     }
 
+    public boolean isBlockAffected(BlockPos pos) {
+        return new AxisAlignedBB(this.getBlockPos()).inflate(BLOCK_EFFECT_RADIUS[this.currentTier]).contains(pos.getX(), pos.getY(), pos.getZ());
+    }
+
     /**
      * Updates points and tiers. Items are split into a few tiers:
      * 0. Trash tier - any basic item gives zero points.

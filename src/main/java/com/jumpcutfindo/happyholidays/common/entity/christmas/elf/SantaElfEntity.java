@@ -44,6 +44,8 @@ import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootTable;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.particles.BasicParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
@@ -54,6 +56,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -482,8 +485,30 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
 
     private void maybeDespawn() {
         if (this.despawnDelay > 0 && !this.isTrading() && --this.despawnDelay == 0) {
-            this.remove();
+            this.despawnElf();
         }
+    }
+
+    public void despawnElf() {
+        if (!this.level.isClientSide()) {
+            ServerWorld serverWorld = (ServerWorld) this.level;
+
+            // Spawn poof particles on disappear
+            BasicParticleType particleType = ParticleTypes.POOF;
+            for (int i = 0; i < 5; i++) {
+                double d0 = this.random.nextGaussian() * 0.02D;
+                double d1 = this.random.nextGaussian() * 0.02D;
+                double d2 = this.random.nextGaussian() * 0.02D;
+                serverWorld.sendParticles(particleType, this.getRandomX(1.0D),
+                        this.getRandomY() + 0.5D,
+                        this.getRandomZ(1.0D), 1, d0, d1, d2, 0.0D);
+            }
+
+            serverWorld.playSound(null, this.blockPosition(), SoundRegistry.SANTA_ELF_DESPAWN.get(),
+                    SoundCategory.NEUTRAL, 1.0f, 1.0f);
+        }
+
+        this.remove();
     }
 
     public void pickUpSomeItems(ItemEntity itemEntity, int itemsToPickUpCount) {

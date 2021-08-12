@@ -169,11 +169,13 @@
     "entity.happyholidays.santa_elf_yes.sub": "Santa's Elf approves",
     "entity.happyholidays.santa_elf_no.sub": "Santa's Elf disapproves",
     "entity.happyholidays.santa_elf_request_single_success.sub": "Santa's Elf accepts item happily",
+    "entity.happyholidays.santa_elf_despawn.sub": "Santa Elf disappears",
 
     "entity.happyholidays.grinch": "Grinch",
     "entity.happyholidays.grinch_passive.sub": "Grinch laughs wickedly",
     "entity.happyholidays.grinch_hurt.sub": "Grinch hurts",
     "entity.happyholidays.grinch_break_box.sub": "Grinch breaks a present",
+    "entity.happyholidays.grinch_despawn.sub": "Grinch disappears",
 
     "itemGroup.happyholidaystab": "Happy Holidays",
 

@@ -1,4 +1,14 @@
 {
+    "block.christmas_star_block_place": {
+        "category": "block",
+        "subtitle": "",
+        "sounds": [
+            {
+                "name": "happyholidays:block/christmas_star_block_place",
+                "stream": true
+            }
+        ]
+    },
     "item.christmas_music_angels_on_high": {
         "category": "item",
         "subtitle": "Angels We Have Heard on High",
@@ -229,6 +239,16 @@
             }
         ]
     },
+    "entity.santa_elf_despawn": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_elf_despawn.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/christmas_entity_disappear",
+                "stream": true
+            }
+        ]
+    },
     "entity.grinch_passive": {
         "category": "entity",
         "subtitle": "entity.happyholidays.grinch_passive.sub",
@@ -255,6 +275,16 @@
         "sounds": [
             {
                 "name": "happyholidays:entity/grinch_break_box",
+                "stream": true
+            }
+        ]
+    },
+    "entity.grinch_despawn": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.grinch_despawn.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/christmas_entity_disappear",
                 "stream": true
             }
         ]

@@ -28,6 +28,11 @@ public class SoundRegistry {
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS,
             HappyHolidaysMod.MOD_ID);
 
+    public static final RegistryObject<SoundEvent> CHRISTMAS_STAR_BLOCK_PLACE = SOUNDS.register(
+            "block.christmas_star_block_place", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "block.christmas_star_block_place"))
+    );
+
     public static final RegistryObject<SoundEvent> SANTA_ELF_BELL = SOUNDS.register(
             "item.santa_elf_bell", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
                     "item.santa_elf_bell"))
@@ -61,6 +66,11 @@ public class SoundRegistry {
             () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
                     "entity.santa_elf_request_complete"))
     );
+    public static final RegistryObject<SoundEvent> SANTA_ELF_DESPAWN = SOUNDS.register(
+            "entity.santa_elf_despawn",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_elf_despawn"))
+    );
 
     public static final RegistryObject<SoundEvent> GRINCH_PASSIVE = SOUNDS.register(
             "entity.grinch_passive",
@@ -76,6 +86,11 @@ public class SoundRegistry {
             "entity.grinch_break_box",
             () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
                     "entity.grinch_break_box"))
+    );
+    public static final RegistryObject<SoundEvent> GRINCH_DESPAWN = SOUNDS.register(
+            "entity.grinch_despawn",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                            "entity.grinch_despawn"))
     );
 
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_ANGELS_ON_HIGH = SOUNDS.register(

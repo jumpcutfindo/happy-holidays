@@ -281,12 +281,29 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
         });
     }
 
-    public static boolean checkGrinchSpawnRules(EntityType<? extends GrinchEntity> entity, IWorld world,
-                                             SpawnReason spawnReason, BlockPos pos, Random rand) {
-        return HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.BABY_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
-                    || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ADULT_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
-                    || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ELDER_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null;
+    public void despawnGrinch() {
+        if (!this.level.isClientSide()) {
+            ServerWorld serverWorld = (ServerWorld) this.level;
+
+            // Spawn poof particles on disappear
+            BasicParticleType particleType = ParticleTypes.POOF;
+            for (int i = 0; i < 5; i++) {
+                double d0 = this.random.nextGaussian() * 0.02D;
+                double d1 = this.random.nextGaussian() * 0.02D;
+                double d2 = this.random.nextGaussian() * 0.02D;
+                serverWorld.sendParticles(particleType, this.getRandomX(1.0D),
+                        this.getRandomY() + 0.5D,
+                        this.getRandomZ(1.0D), 1, d0, d1, d2, 0.0D);
+            }
+
+            serverWorld.playSound(null, this.blockPosition(), SoundRegistry.GRINCH_DESPAWN.get(),
+                    SoundCategory.NEUTRAL, 1.0f, 1.0f);
+
+        }
+
+        this.remove();
     }
+
 
     @Override
     public void aiStep() {
@@ -308,7 +325,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
         }
 
         if (this.isReadyToDespawn && --despawnTimer <= 0) {
-            this.remove();
+            this.despawnGrinch();
         }
     }
 
@@ -371,6 +388,13 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
+    }
+
+    public static boolean checkGrinchSpawnRules(EntityType<? extends GrinchEntity> entity, IWorld world,
+                                                SpawnReason spawnReason, BlockPos pos, Random rand) {
+        return HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.BABY_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
+                || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ADULT_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
+                || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ELDER_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null;
     }
 
     private static class BreakPresentsGoal extends Goal {
