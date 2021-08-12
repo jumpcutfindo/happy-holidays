@@ -32,7 +32,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.PickaxeItem;
 import net.minecraft.item.ShovelItem;
 import net.minecraft.item.SwordItem;
@@ -81,9 +80,11 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
     private static final int BREAK_PRESENT_ANIM_DURATION = 80;
     private static final int BREAK_PRESENT_INTERVAL = 100;
-    private static final float AVOID_PLAYER_RADIUS = 4.0f;
+    private static final float AVOID_PLAYER_RADIUS = 6.0f;
     private static final int GRINCH_TIME_TO_DESPAWN = 200;
     private static final int PRESENT_SEARCH_RADIUS = 8;
+
+    private static final double APPEASEMENT_ORNAMENT_DROP_BASE_CHANCE = 0.2d;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -252,6 +253,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
             modifier = 1.0D;
         }
 
+        // Drop random items
         lootTable.getRandomItems(ctx).forEach(itemStack -> {
             if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(36 - 12) + 1) + 12);
@@ -279,6 +281,13 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
             this.spawnAtLocation(itemStack);
         });
+
+        // Drop ornament block
+        double ornamentDropChance = APPEASEMENT_ORNAMENT_DROP_BASE_CHANCE * modifier;
+        if (ornamentDropChance < this.random.nextDouble()) {
+            ItemStack grinchOrnamentItem = ItemRegistry.GRINCH_ORNAMENT_BLOCK.get().getDefaultInstance();
+            this.spawnAtLocation(grinchOrnamentItem);
+        }
     }
 
     public void despawnGrinch() {

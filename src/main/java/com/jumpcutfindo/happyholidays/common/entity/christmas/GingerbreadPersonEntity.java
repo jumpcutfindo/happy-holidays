@@ -3,9 +3,8 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas;
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
+import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
@@ -19,13 +18,13 @@ import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootTable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -40,6 +39,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimatable {
     private static final ResourceLocation GINGERBREAD_CONVERSION_LOOT_TABLE = new ResourceLocation("happyholidays"
             + ":entities/gingerbread_conversion");
+    private static final double CONVERSION_ORNAMENT_DROP_BASE_CHANCE = 0.01D;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -94,20 +94,21 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
         LootTable lootTable = this.level.getServer().getLootTables().get(GINGERBREAD_CONVERSION_LOOT_TABLE);
         LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
 
-        lootTable.getRandomItems(ctx).forEach(itemStack -> {
-            double modifier;
-            ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getNearestStarToEntity(this.level,
-                    this.position());
-            if (starTileEntity != null) {
-                if (starTileEntity.isBonusActive()) {
-                    modifier = 2.0D;
-                } else {
-                    modifier = 1.0D + (starTileEntity.getCurrentTier() * 0.1D);
-                }
+        double modifier;
+        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getNearestStarToEntity(this.level,
+                this.position());
+        if (starTileEntity != null) {
+            if (starTileEntity.isBonusActive()) {
+                modifier = 2.0D;
             } else {
-                modifier = 1.0D;
+                modifier = 1.0D + (starTileEntity.getCurrentTier() * 0.1D);
             }
+        } else {
+            modifier = 1.0D;
+        }
 
+        // Drop random items
+        lootTable.getRandomItems(ctx).forEach(itemStack -> {
             if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(2 - 1) + 1) + 1);
             }
@@ -116,6 +117,13 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
 
             this.spawnAtLocation(itemStack);
         });
+
+        // Drop ornament block
+        double ornamentDropChance = CONVERSION_ORNAMENT_DROP_BASE_CHANCE * modifier;
+        if (ornamentDropChance < this.random.nextDouble()) {
+            ItemStack gingerbreadOrnamentItem = ItemRegistry.GINGERBREAD_MAN_ORNAMENT_BLOCK.get().getDefaultInstance();
+            this.spawnAtLocation(gingerbreadOrnamentItem);
+        }
     }
 
     /*

@@ -54,7 +54,6 @@ import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -75,6 +74,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
     public static final int DEFAULT_DESPAWN_DELAY = 24000;
 
     private static final ResourceLocation SANTA_ELF_REQUEST_LOOT_TABLE = new ResourceLocation("happyholidays:entities/santa_elf_request");
+    private static final double REQUEST_ORNAMENT_DROP_BASE_CHANCE = 0.2d;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -401,6 +401,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
             modifier = 1.0D;
         }
 
+        // Drop random items
         lootTable.getRandomItems(ctx).forEach(itemStack -> {
             if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(36 - 12) + 1) + 12);
@@ -415,6 +416,13 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
 
             this.spawnAtLocation(itemStack);
         });
+
+        // Drop ornament block
+        double ornamentDropChance = REQUEST_ORNAMENT_DROP_BASE_CHANCE * modifier;
+        if (ornamentDropChance < this.random.nextDouble()) {
+            ItemStack elfOrnamentItem = ItemRegistry.SANTA_ELF_ORNAMENT_BLOCK.get().getDefaultInstance();
+            this.spawnAtLocation(elfOrnamentItem);
+        }
 
         this.level.playSound(null, this.getX(), this.getY(), this.getZ(),
                 SoundRegistry.SANTA_ELF_REQUEST_COMPLETE.get(), SoundCategory.VOICE, 1.0f, 1.0f);
