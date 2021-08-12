@@ -73,7 +73,7 @@ public class BaseCandyCaneBlock extends ChristmasBlock {
             ServerWorld serverWorld = lootContext.getLevel();
             LootTable lootTable = serverWorld.getServer().getLootTables().get(resourceLocation);
 
-            ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getNearestStarToBlock(serverWorld, blockPos);
+            ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingBlock(serverWorld, blockPos);
             List<ItemStack> drops = lootTable.getRandomItems(lootContext);
 
             // Normal candy cane drop

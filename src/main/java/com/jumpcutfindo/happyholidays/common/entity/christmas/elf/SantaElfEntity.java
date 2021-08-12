@@ -158,19 +158,19 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
                 // Set prices based on debuff placed on elf
                 EffectInstance christmasDebuff = this.getEffect(EffectRegistry.DEBUFF_OF_CHRISTMAS_EFFECT.get());
                 if (christmasDebuff != null) {
-                    double modifier;
+                    double discount;
 
                     ChristmasStarTileEntity starTileEntity =
-                            ChristmasStarTileEntity.getNearestStarToEntity(this.level, this.position());
+                            ChristmasStarTileEntity.getStarInfluencingEntity(this.level, this.position());
                     if (starTileEntity != null && starTileEntity.isBonusActive()) {
-                        modifier = 0.8D;
+                        discount = 0.8D;
                     } else {
-                        modifier = 0.1D * (double) (christmasDebuff.getAmplifier() + 1);
+                        discount = 0.1D * (double) (christmasDebuff.getAmplifier() + 1);
                     }
 
                     for (MerchantOffer merchantOffer : offers) {
                         merchantOffer.setSpecialPriceDiff(0);
-                        int j = (int) Math.floor(modifier * (double) merchantOffer.getBaseCostA().getCount());
+                        int j = (int) Math.floor(discount * (double) merchantOffer.getBaseCostA().getCount());
                         merchantOffer.addToSpecialPriceDiff(-Math.max(j, 1));
                     }
                 }
@@ -389,7 +389,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
 
         double modifier;
-        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getNearestStarToEntity(this.level,
+        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingEntity(this.level,
                 this.position());
         if (starTileEntity != null) {
             if (starTileEntity.isBonusActive()) {

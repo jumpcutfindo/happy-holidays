@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.tileentity.christmas;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
@@ -222,7 +223,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         return !this.items.get(BONUS_SLOT_INDEX).isEmpty();
     }
 
-    public boolean isBlockAffected(BlockPos pos) {
+    public boolean isPosAffected(BlockPos pos) {
         return new AxisAlignedBB(this.getBlockPos()).inflate(BLOCK_EFFECT_RADIUS[this.currentTier]).contains(pos.getX(), pos.getY(), pos.getZ());
     }
 
@@ -293,25 +294,67 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         }
     }
 
-    public static ChristmasStarTileEntity getNearestStarToBlock(World world, BlockPos blockPos) {
-        int radius = ChristmasStarTileEntity.BLOCK_EFFECT_RADIUS[MAX_RADIUS_INDEX];
+    public static ChristmasStarTileEntity getStarInfluencingBlock(World world, BlockPos blockPos) {
+        // Find all blocks that could possibly affect the block at blockPos
+        int maxRadius = BLOCK_EFFECT_RADIUS[MAX_RADIUS_INDEX];
+        AxisAlignedBB blockBoundingBox = new AxisAlignedBB(blockPos).inflate(maxRadius);
+        List<TileEntity> tileEntityList = world.blockEntityList
+                .stream().filter(tileEntity -> tileEntity instanceof ChristmasStarTileEntity
+                        && blockBoundingBox.contains(tileEntity.getBlockPos().getX(),
+                        tileEntity.getBlockPos().getY(),
+                        tileEntity.getBlockPos().getZ()))
+                .collect(Collectors.toList());
 
-        for (TileEntity tileEntity : world.blockEntityList) {
-            if (tileEntity instanceof ChristmasStarTileEntity && new AxisAlignedBB(tileEntity.getBlockPos()).inflate(radius).contains(blockPos.getX(), blockPos.getY(), blockPos.getZ()))
-                return (ChristmasStarTileEntity) tileEntity;
+        // Iterate through the list and figure out the highest level
+        ChristmasStarTileEntity influencingTileEntity = null;
+        for (TileEntity tileEntity : tileEntityList) {
+            if (tileEntity instanceof ChristmasStarTileEntity) {
+                ChristmasStarTileEntity christmasStarTileEntity = (ChristmasStarTileEntity) tileEntity;
+                int effectRadius = BLOCK_EFFECT_RADIUS[christmasStarTileEntity.getCurrentTier()];
+                AxisAlignedBB effectBoundingBox = new AxisAlignedBB(tileEntity.getBlockPos()).inflate(effectRadius);
+
+                // Check whether the tile entity being considered can influence the block, and whether it is at a higher
+                // tier compared to the current tile entity
+                if (effectBoundingBox.contains(blockPos.getX(), blockPos.getY(), blockPos.getZ())) {
+                    if (influencingTileEntity == null || christmasStarTileEntity.getCurrentTier() > influencingTileEntity.getCurrentTier()) {
+                        influencingTileEntity = christmasStarTileEntity;
+                    }
+                }
+            }
         }
 
-        return null;
+        return influencingTileEntity;
     }
 
-    public static ChristmasStarTileEntity getNearestStarToEntity(World world, Vector3d vector3d) {
-        int radius = ChristmasStarTileEntity.ENTITY_EFFECT_RADIUS[MAX_RADIUS_INDEX];
+    public static ChristmasStarTileEntity getStarInfluencingEntity(World world, Vector3d vector3d) {
+        // Find all blocks that could possibly affect the block at blockPos
+        int maxRadius = ENTITY_EFFECT_RADIUS[MAX_RADIUS_INDEX];
+        AxisAlignedBB blockBoundingBox = new AxisAlignedBB(new BlockPos(vector3d)).inflate(maxRadius);
+        List<TileEntity> tileEntityList = world.blockEntityList
+                .stream().filter(tileEntity -> tileEntity instanceof ChristmasStarTileEntity
+                        && blockBoundingBox.contains(tileEntity.getBlockPos().getX(),
+                        tileEntity.getBlockPos().getY(),
+                        tileEntity.getBlockPos().getZ()))
+                .collect(Collectors.toList());
 
-        for (TileEntity tileEntity : world.blockEntityList) {
-            if (tileEntity instanceof ChristmasStarTileEntity && new AxisAlignedBB(tileEntity.getBlockPos()).inflate(radius).contains(vector3d))
-                return (ChristmasStarTileEntity) tileEntity;
+        // Iterate through the list and figure out the highest level
+        ChristmasStarTileEntity influencingTileEntity = null;
+        for (TileEntity tileEntity : tileEntityList) {
+            if (tileEntity instanceof ChristmasStarTileEntity) {
+                ChristmasStarTileEntity christmasStarTileEntity = (ChristmasStarTileEntity) tileEntity;
+                int effectRadius = ENTITY_EFFECT_RADIUS[christmasStarTileEntity.getCurrentTier()];
+                AxisAlignedBB effectBoundingBox = new AxisAlignedBB(tileEntity.getBlockPos()).inflate(effectRadius);
+
+                // Check whether the tile entity being considered can influence the block, and whether it is at a higher
+                // tier compared to the current tile entity
+                if (effectBoundingBox.contains(vector3d)) {
+                    if (influencingTileEntity == null || christmasStarTileEntity.getCurrentTier() > influencingTileEntity.getCurrentTier()) {
+                        influencingTileEntity = christmasStarTileEntity;
+                    }
+                }
+            }
         }
 
-        return null;
+        return influencingTileEntity;
     }
 }

@@ -48,8 +48,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -147,7 +147,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.GENERIC_DEATH;
+        return SoundRegistry.GRINCH_HURT.get();
     }
 
     public boolean isPlayerAround() {
@@ -241,7 +241,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
         LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
 
         double modifier;
-        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getNearestStarToEntity(this.level,
+        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingEntity(this.level,
                 this.position());
         if (starTileEntity != null) {
             if (starTileEntity.isBonusActive()) {
@@ -424,14 +424,15 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
             if (grinchEntity.hasReceivedGift) return false;
             if (this.grinchEntity.getEffect(EffectRegistry.DEBUFF_OF_CHRISTMAS_EFFECT.get()) != null) {
                 this.targetPresentBlockPos = null;
+                this.resetPresentBreaking();
+
                 return false;
             }
 
             if (!grinchEntity.isPlayerAround()) return true;
             else {
-                this.presentBreakingProgress = 80;
-                this.grinchEntity.updatePresentBreaking(-1);
-
+                this.targetPresentBlockPos = null;
+                this.resetPresentBreaking();
                 return false;
             }
         }
@@ -456,10 +457,17 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                         if ((-X/2 <= x) && (x <= X/2) && (-Z/2 <= z) && (z <= Z/2)) {
                             BlockPos currPos = startPos.offset(x, y, z);
                             if (this.grinchEntity.level.getBlockState(currPos).getBlock() instanceof PresentBlock) {
-                                this.targetPresentBlockPos = currPos;
-                                this.presentBreakingProgress = GrinchEntity.BREAK_PRESENT_ANIM_DURATION;
-                                isFound = true;
-                                break;
+                                // Check for entity instead of block, since we consider the Grinch's AOE instead of
+                                // the block's AOE for the block breaking functionality
+                                if (ChristmasStarTileEntity.getStarInfluencingEntity(this.grinchEntity.level,
+                                        new Vector3d(currPos.getX(), currPos.getY(), currPos.getZ())) != null) {
+                                    continue;
+                                } else {
+                                    this.targetPresentBlockPos = currPos;
+                                    this.presentBreakingProgress = GrinchEntity.BREAK_PRESENT_ANIM_DURATION;
+                                    isFound = true;
+                                    break;
+                                }
                             }
                         }
 
@@ -471,7 +479,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                 }
             } else {
                 if (this.targetPresentBlockPos != null) {
-                    if (this.grinchEntity.level.getBlockState(targetPresentBlockPos).is(Blocks.AIR)) {
+                    if (this.grinchEntity.level.isEmptyBlock(targetPresentBlockPos)) {
                         this.targetPresentBlockPos = null;
                         grinchEntity.updatePresentBreaking(-1);
                         this.timeLeftToNextSearch = 100;
@@ -508,6 +516,11 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
             }
 
             if (timeLeftToNextSearch > 0) timeLeftToNextSearch--;
+        }
+
+        private void resetPresentBreaking() {
+            this.presentBreakingProgress = 80;
+            this.grinchEntity.updatePresentBreaking(-1);
         }
     }
 

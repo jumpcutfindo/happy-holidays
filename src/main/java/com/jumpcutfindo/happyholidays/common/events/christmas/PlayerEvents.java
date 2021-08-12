@@ -11,7 +11,6 @@ import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarT
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -61,13 +60,15 @@ public class PlayerEvents {
         if (event.getEntity() instanceof PlayerEntity && ChristmasBlock.isInfluencedByStar(event.getPlacedBlock().getBlock())) {
             PlayerEntity playerEntity = (PlayerEntity) event.getEntity();
             ChristmasStarTileEntity starTileEntity =
-                    ChristmasStarTileEntity.getNearestStarToBlock(playerEntity.level, event.getPos());
+                    ChristmasStarTileEntity.getStarInfluencingBlock(playerEntity.level, event.getPos());
 
-            if (starTileEntity != null && starTileEntity.isBlockAffected(event.getPos())) {
+            if (starTileEntity != null && starTileEntity.isPosAffected(event.getPos())) {
                 // Block is under influence of a star
                 BlockPos placedBlockPos = event.getBlockSnapshot().getPos();
 
-                for (int i = 0; i < 4; i++) {
+                int particleCount = starTileEntity.getCurrentTier() + (starTileEntity.isBonusActive() ? 1 : 0);
+
+                for (int i = 0; i < starTileEntity.getCurrentTier(); i++) {
                     double d0 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
                     double d1 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
                     double d2 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;

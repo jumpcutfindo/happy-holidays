@@ -95,7 +95,7 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
         LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
 
         double modifier;
-        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getNearestStarToEntity(this.level,
+        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingEntity(this.level,
                 this.position());
         if (starTileEntity != null) {
             if (starTileEntity.isBonusActive()) {

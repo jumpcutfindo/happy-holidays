@@ -101,7 +101,7 @@ public class PresentBlock extends ChristmasBlock {
     }
 
     public float getGrowthProbability(World world, BlockPos pos) {
-        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getNearestStarToBlock(world, pos);
+        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingBlock(world, pos);
 
         if (starTileEntity == null) {
             return GROWTH_PROBABILITY;
@@ -137,7 +137,7 @@ public class PresentBlock extends ChristmasBlock {
             ServerWorld serverWorld = lootContext.getLevel();
             LootTable lootTable = serverWorld.getServer().getLootTables().get(resourceLocation);
 
-            ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getNearestStarToBlock(serverWorld, blockPos);
+            ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingBlock(serverWorld, blockPos);
             List<ItemStack> drops = lootTable.getRandomItems(lootContext);
 
             // Normal processing of drops (in lieu of item tag bug)
