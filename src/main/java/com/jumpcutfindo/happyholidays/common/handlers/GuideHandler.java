@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
@@ -44,14 +45,17 @@ public class GuideHandler {
 
     public static final String[] GUIDE_CODES = { "christmas" };
 
-    public static List<Guide> GUIDES;
+    public static Map<String, Guide> GUIDES;
+
+    public static String CURRENT_LANGUAGE_CODE;
 
     @SubscribeEvent
     public static void registerGuides(@Nullable FMLClientSetupEvent event) {
         HappyHolidaysMod.LOGGER.debug("Attempting to register guides for Happy Holidays...");
-        GUIDES = Lists.newArrayList();
+        GUIDES = Maps.newHashMap();
 
         Language language = Minecraft.getInstance().getLanguageManager().getSelected();
+        CURRENT_LANGUAGE_CODE = language.getCode();
         IResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
 
         for (String guideCode : GUIDE_CODES) {
@@ -77,10 +81,22 @@ public class GuideHandler {
                 InputStream inputStream = resource.getInputStream();
                 Guide guide = new Gson().fromJson(new InputStreamReader(inputStream), Guide.class);
 
-                GUIDES.add(guide);
+                GUIDES.put(guideCode, guide);
             }
         }
 
         HappyHolidaysMod.LOGGER.debug(String.format("Registered %d guides for Happy Holidays!", GUIDES.size()));
+    }
+
+    public static Guide getGuide(String code) {
+        updateGuides();
+
+        return GUIDES.get(code);
+    }
+
+    public static void updateGuides() {
+        if (!Minecraft.getInstance().getLanguageManager().getSelected().getCode().equals(CURRENT_LANGUAGE_CODE)) {
+            registerGuides(null);
+        }
     }
 }
