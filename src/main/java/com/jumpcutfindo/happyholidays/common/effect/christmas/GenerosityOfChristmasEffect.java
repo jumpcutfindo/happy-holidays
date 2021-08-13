@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.common.effect.christmas;
 
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;
+import net.minecraftforge.common.crafting.CraftingHelper;
 
 public class GenerosityOfChristmasEffect extends Effect {
     public static final String EFFECT_ID = "generosity_of_christmas";

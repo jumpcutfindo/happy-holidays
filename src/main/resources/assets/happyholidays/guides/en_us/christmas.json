@@ -1,0 +1,18 @@
+{
+    "id": "christmas",
+    "title": "Happy Holidays - Christmas",
+    "description": "A guide to Happy Holidays - Christmas",
+    "chapters": [
+        {
+            "title": "Chapter Title",
+            "description": "This is a description of a Chapter.",
+            "sections": [
+                {
+                    "title": "Section Title",
+                    "caption": "This is a caption of a Section.",
+                    "content": "Hello world!"
+                }
+            ]
+        }
+    ]
+}

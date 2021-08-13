@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.jumpcutfindo.happyholidays.common.handlers.GuideHandler;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
@@ -25,7 +26,7 @@ import software.bernie.geckolib3.GeckoLib;
 @Mod(HappyHolidaysMod.MOD_ID)
 public class HappyHolidaysMod {
     public static final String MOD_ID = "happyholidays";
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
     public static final ItemGroup HAPPY_HOLIDAYS_GROUP = new HappyHolidaysMod.HappyHolidaysGroup("happyholidaystab");
 
