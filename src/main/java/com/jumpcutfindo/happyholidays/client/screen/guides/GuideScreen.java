@@ -8,6 +8,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.DialogTexts;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.screen.ReadBookScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.gui.widget.button.ChangePageButton;
@@ -19,9 +21,22 @@ public class GuideScreen extends Screen {
     private static final ResourceLocation GUIDE_BOOK_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
             "textures/gui/guide/guide_book.png");
 
-    private final Guide guide;
+    public static final int PAGE_LEFT_X_START = 12;
+    public static final int PAGE_LEFT_X_END = 157;
 
-    private int bgWidth, bgHeight, textureWidth, textureHeight;
+    public static final int PAGE_RIGHT_X_START = 180;
+    public static final int PAGE_RIGHT_X_END = 325;
+
+    public static final int PAGE_Y_START = 12;
+    public static final int PAGE_Y_END = 188;
+
+    public static final int PAGE_WIDTH = 145;
+    public static final int PAGE_HEIGHT = 176;
+
+    private final Guide guide;
+    private final GuideProcessor guideProcessor;
+
+    public final int bgWidth, bgHeight, textureWidth, textureHeight;
 
     private int currentPage;
     private ChangePageButton forwardButton;
@@ -30,6 +45,7 @@ public class GuideScreen extends Screen {
     public GuideScreen(Guide guide) {
         super(new StringTextComponent("Guide Book"));
         this.guide = guide;
+        this.guideProcessor = new GuideProcessor(this, guide);
 
         this.bgWidth = 337;
         this.bgHeight = 200;
@@ -51,18 +67,20 @@ public class GuideScreen extends Screen {
 
         this.minecraft.getTextureManager().bind(GUIDE_BOOK_GUI);
 
+        // Draw background and buttons
         int x = (this.width - this.bgWidth) / 2;
         int y = (this.height - this.bgHeight) / 2;
 
         blit(matrixStack, x, y, 0, 0, this.bgWidth, this.bgHeight, this.textureWidth, this.textureHeight);
 
-        int count = 0;
-        for (Section section : guide.getChapters().get(0).getSections()) {
-            this.font.draw(matrixStack, section.content, x, y + count * 20, 4210752);
-            count++;
-        }
-
         super.render(matrixStack, p_230430_2_, p_230430_3_, p_230430_4_);
+
+        // Draw content
+        this.guideProcessor.draw(matrixStack);
+    }
+
+    public FontRenderer getFontRenderer() {
+        return this.font;
     }
 
     protected void pageBack() {
@@ -85,7 +103,7 @@ public class GuideScreen extends Screen {
         int x = (this.width - this.bgWidth) / 2;
         int y = (this.height - this.bgHeight) / 2;
 
-        this.addButton(new GuideCloseButton(x + 315, y + 4, 18, 18, DialogTexts.GUI_DONE, (p_214161_1_) -> {
+        this.addButton(new GuideCloseButton(x + 342, y - 22, 18, 18, DialogTexts.GUI_DONE, (p_214161_1_) -> {
             this.minecraft.setScreen((Screen)null);
         }));
     }
