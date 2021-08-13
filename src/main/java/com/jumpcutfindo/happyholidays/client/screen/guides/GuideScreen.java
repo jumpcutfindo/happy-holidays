@@ -103,7 +103,7 @@ public class GuideScreen extends Screen {
         int x = (this.width - this.bgWidth) / 2;
         int y = (this.height - this.bgHeight) / 2;
 
-        this.addButton(new GuideCloseButton(x + 342, y - 22, 18, 18, DialogTexts.GUI_DONE, (p_214161_1_) -> {
+        this.addButton(new GuideCloseButton(x + 338 - 9, y - 9, 18, 18, DialogTexts.GUI_DONE, (p_214161_1_) -> {
             this.minecraft.setScreen((Screen)null);
         }));
     }

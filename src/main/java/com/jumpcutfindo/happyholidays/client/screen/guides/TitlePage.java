@@ -33,7 +33,8 @@ public class TitlePage implements IPage {
         int y = (guideScreen.height - guideScreen.bgHeight) / 2;
 
         // Draw logo
-        GuideScreen.blit(matrixStack, x + GuideScreen.PAGE_LEFT_X_START, y + 40, LOGO_TEXTURE_X, LOGO_TEXTURE_Y, LOGO_WIDTH, LOGO_HEIGHT,
+        GuideScreen.blit(matrixStack, x + GuideScreen.PAGE_LEFT_X_START + 4, y + 40, LOGO_TEXTURE_X, LOGO_TEXTURE_Y,
+                LOGO_WIDTH, LOGO_HEIGHT,
                 guideScreen.textureWidth, guideScreen.textureHeight);
 
         // Draw subtext
