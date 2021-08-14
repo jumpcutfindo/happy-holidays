@@ -8,28 +8,59 @@
             "description": "This is a description of a Chapter.",
             "sections": [
                 {
+                    "type": "text",
                     "title": "Section Title",
-                    "caption": "This is a caption of a Section.",
-                    "content": "Hello world!"
+                    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo mollis lectus. Suspendisse potenti. Vestibulum feugiat felis ut est pharetra consectetur. Donec feugiat fringilla leo, ac hendrerit orci facilisis ac. Etiam cursus volutpat ante, ut imperdiet ipsum hendrerit ac. Mauris nec metus ac lectus viverra porttitor. Proin dui leo, feugiat nec mattis eget, feugiat at tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam hendrerit iaculis libero, sed vestibulum sapien."
                 },
                 {
+                    "type": "text",
                     "title": "Section Title",
-                    "caption": "This is a caption of a Section.",
-                    "content": "Hello world!"
+                    "content": "Aliquam facilisis tortor eu mauris faucibus gravida. Etiam ligula sapien, tincidunt eu bibendum at, elementum in nisi. Integer sit amet ipsum condimentum, luctus tellus ac, bibendum tellus. Aliquam venenatis, nulla id consequat vehicula, mauris ante laoreet ante, pulvinar auctor velit metus nec felis. Vivamus ornare nulla at faucibus placerat. Fusce eu volutpat est, at laoreet quam. Nulla facilisi. Donec tincidunt nunc metus, id commodo lacus ultrices a."
                 },
                 {
+                    "type": "text",
                     "title": "Section Title",
-                    "caption": "This is a caption of a Section.",
-                    "content": "Hello world!"
+                    "content": "Aliquam elementum pellentesque dui, in mattis felis scelerisque eu. Proin cursus dui vitae nunc mattis, quis sollicitudin nulla bibendum. Nulla facilisi. Fusce ante nisl, gravida at gravida vitae, vehicula vel est. Morbi id eros sed nulla viverra porttitor. Curabitur ut dolor dui. Pellentesque dignissim massa nec dolor tristique cursus. Donec vel sagittis leo. Pellentesque ultricies mauris quis tellus faucibus, tempor porttitor erat feugiat. Integer ut volutpat odio, ultricies congue nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque imperdiet est a maximus imperdiet. Suspendisse eget rutrum velit."
                 },
                 {
+                    "type": "text",
                     "title": "Section Title",
-                    "caption": "This is a caption of a Section.",
-                    "content": "Hello world!"
+                    "content": "Maecenas eget justo sed velit gravida laoreet. Duis tempor dolor urna, a commodo leo ullamcorper non. In at aliquet eros. Fusce iaculis lobortis lacus sit amet congue. Curabitur ullamcorper iaculis metus, in vulputate sem. Sed ultricies ac felis vitae sodales. Ut quis imperdiet tellus. Quisque at egestas ex. Cras luctus accumsan lacinia. Aenean molestie ullamcorper quam sed scelerisque. Vestibulum nec tempor magna. Nullam mollis arcu ac diam pellentesque vestibulum. Vestibulum eleifend ac purus id gravida. Suspendisse tempus turpis et velit ultrices, vel tincidunt odio semper. Quisque lacus risus, tristique eget scelerisque vitae, pretium non turpis. Donec eu vulputate massa."
                 },
                 {
+                    "type": "text",
                     "title": "Section Title",
-                    "caption": "This is a caption of a Section.",
+                    "content": "Hello world!"
+                }
+            ]
+        },
+        {
+            "title": "Chapter Title 2",
+            "description": "This is a description of a Chapter.",
+            "sections": [
+                {
+                    "type": "text",
+                    "title": "Section Title",
+                    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo mollis lectus. Suspendisse potenti. Vestibulum feugiat felis ut est pharetra consectetur. Donec feugiat fringilla leo, ac hendrerit orci facilisis ac. Etiam cursus volutpat ante, ut imperdiet ipsum hendrerit ac. Mauris nec metus ac lectus viverra porttitor. Proin dui leo, feugiat nec mattis eget, feugiat at tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam hendrerit iaculis libero, sed vestibulum sapien."
+                },
+                {
+                    "type": "text",
+                    "title": "Section Title",
+                    "content": "Aliquam facilisis tortor eu mauris faucibus gravida. Etiam ligula sapien, tincidunt eu bibendum at, elementum in nisi. Integer sit amet ipsum condimentum, luctus tellus ac, bibendum tellus. Aliquam venenatis, nulla id consequat vehicula, mauris ante laoreet ante, pulvinar auctor velit metus nec felis. Vivamus ornare nulla at faucibus placerat. Fusce eu volutpat est, at laoreet quam. Nulla facilisi. Donec tincidunt nunc metus, id commodo lacus ultrices a."
+                },
+                {
+                    "type": "text",
+                    "title": "Section Title",
+                    "content": "Aliquam elementum pellentesque dui, in mattis felis scelerisque eu. Proin cursus dui vitae nunc mattis, quis sollicitudin nulla bibendum. Nulla facilisi. Fusce ante nisl, gravida at gravida vitae, vehicula vel est. Morbi id eros sed nulla viverra porttitor. Curabitur ut dolor dui. Pellentesque dignissim massa nec dolor tristique cursus. Donec vel sagittis leo. Pellentesque ultricies mauris quis tellus faucibus, tempor porttitor erat feugiat. Integer ut volutpat odio, ultricies congue nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque imperdiet est a maximus imperdiet. Suspendisse eget rutrum velit."
+                },
+                {
+                    "type": "text",
+                    "title": "Section Title",
+                    "content": "Maecenas eget justo sed velit gravida laoreet. Duis tempor dolor urna, a commodo leo ullamcorper non. In at aliquet eros. Fusce iaculis lobortis lacus sit amet congue. Curabitur ullamcorper iaculis metus, in vulputate sem. Sed ultricies ac felis vitae sodales. Ut quis imperdiet tellus. Quisque at egestas ex. Cras luctus accumsan lacinia. Aenean molestie ullamcorper quam sed scelerisque. Vestibulum nec tempor magna. Nullam mollis arcu ac diam pellentesque vestibulum. Vestibulum eleifend ac purus id gravida. Suspendisse tempus turpis et velit ultrices, vel tincidunt odio semper. Quisque lacus risus, tristique eget scelerisque vitae, pretium non turpis. Donec eu vulputate massa."
+                },
+                {
+                    "type": "text",
+                    "title": "Section Title",
                     "content": "Hello world!"
                 }
             ]

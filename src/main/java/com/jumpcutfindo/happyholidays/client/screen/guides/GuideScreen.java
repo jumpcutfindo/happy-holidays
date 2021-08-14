@@ -34,18 +34,16 @@ public class GuideScreen extends Screen {
     public static final int PAGE_HEIGHT = 176;
 
     private final Guide guide;
-    private final GuideProcessor guideProcessor;
+    private GuideProcessor guideProcessor;
 
     public final int bgWidth, bgHeight, textureWidth, textureHeight;
 
-    private int currentPage;
     private ChangePageButton forwardButton;
     private ChangePageButton backButton;
 
     public GuideScreen(Guide guide) {
         super(new StringTextComponent("Guide Book"));
         this.guide = guide;
-        this.guideProcessor = new GuideProcessor(this, guide);
 
         this.bgWidth = 337;
         this.bgHeight = 200;
@@ -56,6 +54,8 @@ public class GuideScreen extends Screen {
 
     @Override
     protected void init() {
+        this.guideProcessor = new GuideProcessor(this, guide);
+
         this.createMenuControls();
         this.createPageControlButtons();
     }
@@ -84,18 +84,12 @@ public class GuideScreen extends Screen {
     }
 
     protected void pageBack() {
-        if (this.currentPage > 0) {
-            --this.currentPage;
-        }
-
+        guideProcessor.pageBack();
         this.updateButtonVisibility();
     }
 
     protected void pageForward() {
-        if (this.currentPage < this.getNumPages() - 1) {
-            ++this.currentPage;
-        }
-
+        guideProcessor.pageForward();
         this.updateButtonVisibility();
     }
 
@@ -120,12 +114,8 @@ public class GuideScreen extends Screen {
     }
 
     private void updateButtonVisibility() {
-        this.forwardButton.visible = this.currentPage < this.getNumPages() - 1;
-        this.backButton.visible = this.currentPage > 0;
-    }
-
-    private int getNumPages() {
-        return 5;
+        this.forwardButton.visible = guideProcessor.getCurrentPageIndex() < guideProcessor.getNumPages() - 1;
+        this.backButton.visible = guideProcessor.getCurrentPageIndex() > 0;
     }
 
     public class GuideCloseButton extends Button {
