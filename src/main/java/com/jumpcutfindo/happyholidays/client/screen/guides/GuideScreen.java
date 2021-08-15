@@ -40,6 +40,7 @@ public class GuideScreen extends Screen {
 
     private ChangePageButton forwardButton;
     private ChangePageButton backButton;
+    private ChangePageButton tableOfContentsButton;
 
     public GuideScreen(Guide guide) {
         super(new StringTextComponent("Guide Book"));
@@ -93,6 +94,11 @@ public class GuideScreen extends Screen {
         this.updateButtonVisibility();
     }
 
+    protected void pageTableOfContents() {
+        guideProcessor.setCurrentPage(1, false);
+        this.updateButtonVisibility();
+    }
+
     protected void createMenuControls() {
         int x = (this.width - this.bgWidth) / 2;
         int y = (this.height - this.bgHeight) / 2;
@@ -106,16 +112,20 @@ public class GuideScreen extends Screen {
         int x = (this.width - this.bgWidth) / 2;
         int y = (this.height - this.bgHeight) / 2;
 
-        this.forwardButton = this.addButton(new GuideChangePageButton(x + 302, y + 182, true,
+        this.forwardButton = this.addButton(new GuideChangePageButton(x + 306, y + 192, true,
                 (p_214159_1_) -> this.pageForward(), true));
-        this.backButton = this.addButton(new GuideChangePageButton(x + 275, y + 182, false,
+        this.backButton = this.addButton(new GuideChangePageButton(x + 279, y + 192, false,
                 (p_214158_1_) -> this.pageBack(), true));
+        this.tableOfContentsButton = this.addButton(new GuideTableOfContentsButton(x + 256, y + 189, true,
+                (p_onPress_1_) -> this.pageTableOfContents(), true));
         this.updateButtonVisibility();
     }
 
     private void updateButtonVisibility() {
         this.forwardButton.visible = guideProcessor.getCurrentPageIndex() < guideProcessor.getNumPages() - 1;
         this.backButton.visible = guideProcessor.getCurrentPageIndex() > 0;
+
+        this.tableOfContentsButton.visible = !guideProcessor.isTablePage() || !guideProcessor.isTitlePage();
     }
 
     @Override
@@ -191,6 +201,30 @@ public class GuideScreen extends Screen {
             }
 
             blit(p_230431_1_, this.x, this.y, i, j, 23, 13, textureWidth, textureHeight);
+        }
+    }
+
+    public class GuideTableOfContentsButton extends ChangePageButton {
+        private final boolean playTurnSound;
+
+        public GuideTableOfContentsButton(int p_i51079_1_, int p_i51079_2_, boolean p_i51079_3_,
+                                     IPressable p_i51079_4_,
+                                     boolean p_i51079_5_) {
+            super(p_i51079_1_, p_i51079_2_, p_i51079_3_, p_i51079_4_, p_i51079_5_);
+
+            this.playTurnSound = p_i51079_5_;
+        }
+
+        public void renderButton(MatrixStack p_230431_1_, int p_230431_2_, int p_230431_3_, float p_230431_4_) {
+            RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+            Minecraft.getInstance().getTextureManager().bind(GuideScreen.GUIDE_BOOK_GUI);
+            int i = 338;
+            int j = 44;
+            if (this.isHovered()) {
+                i += 19;
+            }
+
+            blit(p_230431_1_, this.x, this.y, i, j, 19, 18, textureWidth, textureHeight);
         }
     }
 }

@@ -253,6 +253,10 @@ public class GuideProcessor {
         return tocPages.contains(this.currentPage);
     }
 
+    public boolean isTitlePage() {
+        return titlePage.equals(this.currentPage);
+    }
+
     public Style getClickedComponentStyleAt(double mouseX, double mouseY) {
         IPageLine line = currentPage.getLineAtPos(mouseX, mouseY);
 
