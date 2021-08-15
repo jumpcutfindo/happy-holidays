@@ -106,7 +106,7 @@ public class GuideProcessor {
                     chapterProcessors.add(new ImageLine(guideScreen, imageSection));
 
                     // Add buffer to accommodate image
-                    for (int i = 0; i < imageSection.getHeight() / 9 + 1; i++) {
+                    for (int i = 0; i < imageSection.getHeight() / 9; i++) {
                         chapterProcessors.add(new TextLine(guideScreen, IReorderingProcessor.EMPTY));
                     }
                 }
