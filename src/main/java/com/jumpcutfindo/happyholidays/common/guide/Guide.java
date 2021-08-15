@@ -10,6 +10,8 @@ public class Guide {
     public final String title;
     public final String description;
 
+    public String tableOfContentsTitle;
+
     public List<Chapter> chapters;
 
     public Guide(String id, String title, String description) {
@@ -34,6 +36,10 @@ public class Guide {
 
     public List<Chapter> getChapters() {
         return chapters;
+    }
+
+    public String getTableOfContentsTitle() {
+        return tableOfContentsTitle;
     }
 
     @Override

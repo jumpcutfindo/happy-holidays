@@ -14,6 +14,8 @@ import net.minecraft.client.gui.widget.button.ChangePageButton;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.event.ClickEvent;
 
 public class GuideScreen extends Screen {
     private static final ResourceLocation GUIDE_BOOK_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
@@ -114,6 +116,36 @@ public class GuideScreen extends Screen {
     private void updateButtonVisibility() {
         this.forwardButton.visible = guideProcessor.getCurrentPageIndex() < guideProcessor.getNumPages() - 1;
         this.backButton.visible = guideProcessor.getCurrentPageIndex() > 0;
+    }
+
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int value) {
+        if (value == 0 && guideProcessor.isTablePage()) {
+            Style style = guideProcessor.getClickedComponentStyleAt(mouseX, mouseY);
+            if (style != null && this.handleComponentClicked(style)) {
+                return true;
+            }
+        }
+
+        return super.mouseClicked(mouseX, mouseY, value);
+    }
+
+    public boolean handleComponentClicked(Style p_230455_1_) {
+        ClickEvent clickevent = p_230455_1_.getClickEvent();
+        if (clickevent == null) {
+            return false;
+        } else if (clickevent.getAction() == ClickEvent.Action.CHANGE_PAGE) {
+            String s = clickevent.getValue();
+
+            try {
+                int i = Integer.parseInt(s) - 1;
+                return guideProcessor.setCurrentPage(i, true);
+            } catch (Exception exception) {
+                return false;
+            }
+        }
+
+        return false;
     }
 
     public class GuideCloseButton extends Button {

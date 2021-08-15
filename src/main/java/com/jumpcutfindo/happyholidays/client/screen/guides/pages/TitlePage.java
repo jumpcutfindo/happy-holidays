@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
+import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -55,5 +56,10 @@ public class TitlePage implements IPage {
             font.draw(matrixStack, processor, x + GuideScreen.PAGE_RIGHT_X_START,
                     y + GuideScreen.PAGE_Y_START + (i * 9), 4210752);
         }
+    }
+
+    @Override
+    public IPageLine getLineAtPos(double x, double y) {
+        return null;
     }
 }

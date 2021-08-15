@@ -14,6 +14,10 @@ public class TextLine implements IPageLine {
         this.processor = processor;
     }
 
+    public IReorderingProcessor getProcessor() {
+        return processor;
+    }
+
     @Override
     public void draw(MatrixStack matrixStack, int xPos, int yPos) {
         guideScreen.getFontRenderer().draw(matrixStack, processor, xPos, yPos, 4210752);
