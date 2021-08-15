@@ -6,11 +6,26 @@
         {
             "title": "Chapter Title",
             "description": "This is a description of a Chapter.",
+            "image": {
+                "source": "guides/images.png",
+                "x": 0,
+                "y": 0,
+                "width": 216,
+                "height": 36
+            },
             "sections": [
                 {
                     "type": "text",
                     "title": "Section Title",
                     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo mollis lectus. Suspendisse potenti. Vestibulum feugiat felis ut est pharetra consectetur. Donec feugiat fringilla leo, ac hendrerit orci facilisis ac. Etiam cursus volutpat ante, ut imperdiet ipsum hendrerit ac. Mauris nec metus ac lectus viverra porttitor. Proin dui leo, feugiat nec mattis eget, feugiat at tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam hendrerit iaculis libero, sed vestibulum sapien."
+                },
+                {
+                    "type": "image",
+                    "source": "guides/images.png",
+                    "x": 0,
+                    "y": 0,
+                    "width": 216,
+                    "height": 36
                 },
                 {
                     "type": "text",

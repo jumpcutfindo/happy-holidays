@@ -1,8 +1,9 @@
-package com.jumpcutfindo.happyholidays.client.screen.guides;
+package com.jumpcutfindo.happyholidays.client.screen.guides.pages;
 
 import java.util.Collections;
 import java.util.List;
 
+import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
 import com.mojang.blaze3d.matrix.MatrixStack;
 

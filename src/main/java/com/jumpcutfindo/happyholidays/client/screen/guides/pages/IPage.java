@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.client.screen.guides;
+package com.jumpcutfindo.happyholidays.client.screen.guides.pages;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 
