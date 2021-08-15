@@ -245,7 +245,6 @@ public class GuideProcessor {
                 return true;
             }
         }
-
         return false;
     }
 

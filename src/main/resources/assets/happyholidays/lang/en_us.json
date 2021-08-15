@@ -190,5 +190,10 @@
     "chat.happyholidays.christmas_star.bonus_still_active": "You need to remove the bonus item first!",
 
     "effect.happyholidays.spirit_of_christmas": "Christmas Spirit",
-    "effect.happyholidays.generosity_of_christmas": "Christmas Generosity"
+    "effect.happyholidays.generosity_of_christmas": "Christmas Generosity",
+
+    "guide.happyholidays.close_button.tooltip": "Close Guide",
+    "guide.happyholidays.forward_button.tooltip": "Next Page",
+    "guide.happyholidays.backward_button.tooltip": "Previous Page",
+    "guide.happyholidays.table_of_contents_button.tooltip": "Table of Contents"
 }

@@ -1,5 +1,9 @@
 package com.jumpcutfindo.happyholidays.client.screen.guides;
 
+import java.util.List;
+import java.util.Optional;
+
+import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -8,18 +12,26 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.DialogTexts;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.IBidiTooltip;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.gui.widget.button.ChangePageButton;
+import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.event.ClickEvent;
+import net.minecraftforge.fml.client.gui.GuiUtils;
 
 public class GuideScreen extends Screen {
-    private static final ResourceLocation GUIDE_BOOK_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
+    private static final ResourceLocation DEFAULT_BOOK_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
             "textures/gui/guide/guide_book.png");
+    private static final ResourceLocation CHRISTMAS_GUIDE_BOOK_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
+            "textures/gui/guide/christmas_guide_book.png");
 
     public static final int PAGE_LEFT_X_START = 12;
     public static final int PAGE_LEFT_X_END = 157;
@@ -38,6 +50,8 @@ public class GuideScreen extends Screen {
 
     public final int bgWidth, bgHeight, textureWidth, textureHeight;
 
+    public final ResourceLocation guideBookGUI;
+
     private ChangePageButton forwardButton;
     private ChangePageButton backButton;
     private ChangePageButton tableOfContentsButton;
@@ -51,6 +65,12 @@ public class GuideScreen extends Screen {
 
         this.textureWidth = 512;
         this.textureHeight = 512;
+
+        if (this.guide.getId().equals("christmas")) {
+            this.guideBookGUI = CHRISTMAS_GUIDE_BOOK_GUI;
+        } else {
+            this.guideBookGUI = DEFAULT_BOOK_GUI;
+        }
     }
 
     @Override
@@ -66,7 +86,7 @@ public class GuideScreen extends Screen {
         this.renderBackground(matrixStack);
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        this.minecraft.getTextureManager().bind(GUIDE_BOOK_GUI);
+        this.minecraft.getTextureManager().bind(this.guideBookGUI);
 
         // Draw background and buttons
         int x = (this.width - this.bgWidth) / 2;
@@ -112,11 +132,11 @@ public class GuideScreen extends Screen {
         int x = (this.width - this.bgWidth) / 2;
         int y = (this.height - this.bgHeight) / 2;
 
-        this.forwardButton = this.addButton(new GuideChangePageButton(x + 306, y + 192, true,
+        this.forwardButton = this.addButton(new GuideChangePageButton(x + 306, y + 198, true,
                 (p_214159_1_) -> this.pageForward(), true));
-        this.backButton = this.addButton(new GuideChangePageButton(x + 279, y + 192, false,
+        this.backButton = this.addButton(new GuideChangePageButton(x + 281, y + 198, false,
                 (p_214158_1_) -> this.pageBack(), true));
-        this.tableOfContentsButton = this.addButton(new GuideTableOfContentsButton(x + 256, y + 189, true,
+        this.tableOfContentsButton = this.addButton(new GuideTableOfContentsButton(x + 259, y + 195, true,
                 (p_onPress_1_) -> this.pageTableOfContents(), true));
         this.updateButtonVisibility();
     }
@@ -125,7 +145,7 @@ public class GuideScreen extends Screen {
         this.forwardButton.visible = guideProcessor.getCurrentPageIndex() < guideProcessor.getNumPages() - 1;
         this.backButton.visible = guideProcessor.getCurrentPageIndex() > 0;
 
-        this.tableOfContentsButton.visible = !guideProcessor.isTablePage() || !guideProcessor.isTitlePage();
+        this.tableOfContentsButton.visible = !guideProcessor.isTablePage() && !guideProcessor.isTitlePage();
     }
 
     @Override
@@ -133,6 +153,7 @@ public class GuideScreen extends Screen {
         if (value == 0 && guideProcessor.isTablePage()) {
             Style style = guideProcessor.getClickedComponentStyleAt(mouseX, mouseY);
             if (style != null && this.handleComponentClicked(style)) {
+                this.updateButtonVisibility();
                 return true;
             }
         }
@@ -158,23 +179,36 @@ public class GuideScreen extends Screen {
         return false;
     }
 
+    public void drawTooltip(MatrixStack matrixStack, ITextComponent textComponent,  int mouseX, int mouseY) {
+        GuiUtils.drawHoveringText(matrixStack,
+                Lists.newArrayList(textComponent),
+                mouseX, mouseY,
+                GuideScreen.this.width, GuideScreen.this.height,
+                -1,
+                GuideScreen.this.font);
+    }
+
     public class GuideCloseButton extends Button {
+        private static final String CLOSE_BUTTON_TOOLTIP = "guide.happyholidays.close_button.tooltip";
         public GuideCloseButton(int p_i232255_1_, int p_i232255_2_, int p_i232255_3_,
                                 int p_i232255_4_, ITextComponent p_i232255_5_, IPressable p_i232255_6_) {
             super(p_i232255_1_, p_i232255_2_, p_i232255_3_, p_i232255_4_, p_i232255_5_, p_i232255_6_);
         }
 
-        public void renderButton(MatrixStack p_230431_1_, int p_230431_2_, int p_230431_3_, float p_230431_4_) {
+        public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float p_230431_4_) {
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-            Minecraft.getInstance().getTextureManager().bind(GuideScreen.GUIDE_BOOK_GUI);
+            Minecraft.getInstance().getTextureManager().bind(guideBookGUI);
             int i = 338;
             int j = 26;
 
-            blit(p_230431_1_, this.x, this.y, i, j, 18, 18, textureWidth, textureHeight);
+            blit(matrixStack, this.x, this.y, i, j, 18, 18, textureWidth, textureHeight);
         }
     }
 
     public class GuideChangePageButton extends ChangePageButton {
+        private static final String FORWARD_BUTTON_TOOLTIP = "guide.happyholidays.forward_button.tooltip";
+        private static final String BACKWARD_BUTTON_TOOLTIP = "guide.happyholidays.backward_button.tooltip";
+
         private final boolean isForward;
         private final boolean playTurnSound;
 
@@ -187,9 +221,9 @@ public class GuideScreen extends Screen {
             this.playTurnSound = p_i51079_5_;
         }
 
-        public void renderButton(MatrixStack p_230431_1_, int p_230431_2_, int p_230431_3_, float p_230431_4_) {
+        public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float p_230431_4_) {
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-            Minecraft.getInstance().getTextureManager().bind(GuideScreen.GUIDE_BOOK_GUI);
+            Minecraft.getInstance().getTextureManager().bind(guideBookGUI);
             int i = 338;
             int j = 0;
             if (this.isHovered()) {
@@ -200,11 +234,13 @@ public class GuideScreen extends Screen {
                 j += 13;
             }
 
-            blit(p_230431_1_, this.x, this.y, i, j, 23, 13, textureWidth, textureHeight);
+            blit(matrixStack, this.x, this.y, i, j, 23, 13, textureWidth, textureHeight);
         }
     }
 
     public class GuideTableOfContentsButton extends ChangePageButton {
+        private static final String TABLE_OF_CONTENTS_TOOLTIP = "guide.happyholidays.table_of_contents_button.tooltip";
+
         private final boolean playTurnSound;
 
         public GuideTableOfContentsButton(int p_i51079_1_, int p_i51079_2_, boolean p_i51079_3_,
@@ -215,16 +251,16 @@ public class GuideScreen extends Screen {
             this.playTurnSound = p_i51079_5_;
         }
 
-        public void renderButton(MatrixStack p_230431_1_, int p_230431_2_, int p_230431_3_, float p_230431_4_) {
+        public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float p_230431_4_) {
             RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-            Minecraft.getInstance().getTextureManager().bind(GuideScreen.GUIDE_BOOK_GUI);
+            Minecraft.getInstance().getTextureManager().bind(guideBookGUI);
             int i = 338;
             int j = 44;
             if (this.isHovered()) {
                 i += 19;
             }
 
-            blit(p_230431_1_, this.x, this.y, i, j, 19, 18, textureWidth, textureHeight);
+            blit(matrixStack, this.x, this.y, i, j, 19, 18, textureWidth, textureHeight);
         }
     }
 }
