@@ -4,7 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.StockingTileEntity;
@@ -32,7 +32,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class StockingBlock extends WallOrnamentBlock {
+public class StockingBlock extends WallDecorationBlock {
     public static final BooleanProperty FILLED = BooleanProperty.create("filled");
 
     public static final String BLOCK_ID = "stocking_block";

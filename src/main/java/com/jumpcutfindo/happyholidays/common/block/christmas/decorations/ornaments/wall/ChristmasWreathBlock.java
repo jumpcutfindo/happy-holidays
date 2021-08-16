@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.wall;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallDecorationBlock;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -8,7 +8,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.shapes.VoxelShape;
 
-public class ChristmasWreathBlock extends WallOrnamentBlock {
+public class ChristmasWreathBlock extends WallDecorationBlock {
     public static final String BLOCK_ID = "christmas_wreath_block";
 
     public static final Properties BLOCK_PROPERTIES =

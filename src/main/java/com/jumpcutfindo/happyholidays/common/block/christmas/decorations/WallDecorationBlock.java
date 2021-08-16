@@ -9,6 +9,7 @@ import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.VineBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItemUseContext;
@@ -25,7 +26,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
-public class WallOrnamentBlock extends ChristmasBlock {
+public class WallDecorationBlock extends ChristmasBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public static final Item.Properties ITEM_PROPERTIES =
@@ -33,7 +34,7 @@ public class WallOrnamentBlock extends ChristmasBlock {
 
     private final VoxelShape shape;
 
-    public WallOrnamentBlock(String blockId, Properties properties, VoxelShape shape) {
+    public WallDecorationBlock(String blockId, Properties properties, VoxelShape shape) {
         super(blockId, properties, ITEM_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
@@ -72,9 +73,11 @@ public class WallOrnamentBlock extends ChristmasBlock {
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         Direction clickedFaceDirection = context.getClickedFace();
-
-        return this.defaultBlockState()
-                .setValue(FACING, clickedFaceDirection);
+        if (clickedFaceDirection == Direction.UP || clickedFaceDirection == Direction.DOWN) {
+            return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        } else {
+            return this.defaultBlockState().setValue(FACING, clickedFaceDirection);
+        }
     }
 
     @Override
@@ -94,7 +97,7 @@ public class WallOrnamentBlock extends ChristmasBlock {
 
 
         if (onBlockState != null) {
-            return !onBlockState.is(Blocks.AIR) && !(onBlockState.getBlock() instanceof OrnamentBlock || onBlockState.getBlock() instanceof WallOrnamentBlock);
+            return !onBlockState.is(Blocks.AIR) && !(onBlockState.getBlock() instanceof OrnamentBlock || onBlockState.getBlock() instanceof WallDecorationBlock);
         }
 
         return false;
