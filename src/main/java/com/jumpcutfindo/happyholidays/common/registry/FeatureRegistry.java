@@ -19,5 +19,5 @@ public class FeatureRegistry {
                     .build();
 
     public static final ConfiguredFeature<?, ?> PATCH_WILD_PRESENT =
-            Feature.RANDOM_PATCH.configured(WILD_PRESENT_GENERATION_CONFIG).chance(32);
+            Feature.RANDOM_PATCH.configured(WILD_PRESENT_GENERATION_CONFIG).chance(96);
 }

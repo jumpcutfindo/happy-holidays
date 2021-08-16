@@ -90,7 +90,6 @@ public class SantaElfTrades {
                     new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.PRESENT_SCRAPS.get().asItem(), 12, 1, 8, 2)
             };
 
-    // TODO: Add elf item
     public static final VillagerTrades.ITrade[] ALWAYS_APPEAR_TRADES =
             new VillagerTrades.ITrade[] {
                     new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.SANTA_ELF_BELL.get().asItem(), 64, 1, 1, 8)

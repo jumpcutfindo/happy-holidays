@@ -5,7 +5,9 @@ import java.util.Objects;
 
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
+import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
 import net.minecraft.block.Blocks;
@@ -109,8 +111,7 @@ public class ChristmasStarContainer extends Container {
                 }
             }
 
-            // TODO: Replace with Santa Bonus Item
-            if (ItemStack.isSame(itemstack1, Blocks.DIRT.asItem().getDefaultInstance())) {
+            if (ItemStack.isSame(itemstack1, ItemRegistry.ENCHANTED_SANTA_HAT.get().getDefaultInstance())) {
                 if (!this.moveItemStackTo(itemstack1, this.bonusSlot.getSlotIndex(), this.bonusSlot.getSlotIndex() + 1
                         , false)) {
                     return ItemStack.EMPTY;

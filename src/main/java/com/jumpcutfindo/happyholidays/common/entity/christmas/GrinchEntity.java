@@ -75,7 +75,6 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     private static final ResourceLocation GRINCH_APPEASEMENT_LOOT_TABLE = new ResourceLocation("happyholidays:entities"
             + "/grinch_appeasement");
 
-    // TODO: Tweak this value accordingly
     public static final int SPAWN_PROBABILITY = 600;
 
     private static final int BREAK_PRESENT_ANIM_DURATION = 80;
@@ -401,9 +400,14 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
     public static boolean checkGrinchSpawnRules(EntityType<? extends GrinchEntity> entity, IWorld world,
                                                 SpawnReason spawnReason, BlockPos pos, Random rand) {
-        return HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.BABY_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
-                || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ADULT_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
-                || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ELDER_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null;
+        if (spawnReason == SpawnReason.CHUNK_GENERATION) return false;
+        try {
+            return HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.BABY_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
+                    || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ADULT_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
+                    || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ELDER_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private static class BreakPresentsGoal extends Goal {

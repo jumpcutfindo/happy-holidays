@@ -13,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.TorchBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -149,11 +150,19 @@ public class OrnamentBlock extends ChristmasBlock {
         Direction facingDirection = blockState.getValue(FACING);
         AttachFace attachFace = blockState.getValue(ATTACH_FACE);
 
-        return attachFace == AttachFace.FLOOR ? !world.getBlockState(position.below()).isAir()
+        Direction connectedDirection = facingDirection.getOpposite();
+
+        boolean canSupportCentre = attachFace == AttachFace.FLOOR ? Block.canSupportCenter(world, position.relative(Direction.DOWN), Direction.UP)
+                : attachFace == AttachFace.CEILING ? Block.canSupportCenter(world, position.relative(Direction.UP), Direction.DOWN)
+                : Block.canSupportCenter(world, position.relative(connectedDirection), connectedDirection.getOpposite());
+
+        boolean isLeaves = attachFace == AttachFace.FLOOR ? !world.getBlockState(position.below()).isAir()
                 : attachFace == AttachFace.CEILING ? world.getBlockState(position.above()).is(BlockTags.LEAVES)
                 : facingDirection == Direction.NORTH ? world.getBlockState(position.south()).is(BlockTags.LEAVES)
                 : facingDirection == Direction.SOUTH ? world.getBlockState(position.north()).is(BlockTags.LEAVES)
                 : facingDirection == Direction.EAST ? world.getBlockState(position.west()).is(BlockTags.LEAVES)
                 : facingDirection == Direction.WEST && world.getBlockState(position.east()).is(BlockTags.LEAVES);
+
+        return canSupportCentre || isLeaves;
     }
 }
