@@ -148,12 +148,19 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
 
     @Override
     public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
-        Direction direction = blockState.getValue(FACING).getOpposite();
+        Direction facingDirection = blockState.getValue(FACING);
 
-        return direction == Direction.NORTH ? !(world.getBlockState(position.north()).isAir() || ChristmasBlock.isDecorationBlock(world.getBlockState(position.north()).getBlock()))
-                : direction == Direction.SOUTH ? !(world.getBlockState(position.south()).isAir() || ChristmasBlock.isDecorationBlock(world.getBlockState(position.south()).getBlock()))
-                : direction == Direction.EAST ? !(world.getBlockState(position.east()).isAir()  || ChristmasBlock.isDecorationBlock(world.getBlockState(position.east()).getBlock()))
-                : direction == Direction.WEST && !(world.getBlockState(position.west()).isAir() || ChristmasBlock.isDecorationBlock(world.getBlockState(position.west()).getBlock()));
+        BlockState onBlockState = facingDirection == Direction.NORTH ? world.getBlockState(position.south())
+                : facingDirection == Direction.SOUTH ? world.getBlockState(position.north())
+                : facingDirection == Direction.EAST ? world.getBlockState(position.west())
+                : facingDirection == Direction.WEST ? world.getBlockState(position.east()) : null;
+
+
+        if (onBlockState != null) {
+            return onBlockState.isFaceSturdy(world, position, facingDirection);
+        }
+
+        return false;
     }
 
     private WallDecorationShape getWallShapeState(BlockState leftBlock, BlockState rightBlock, BlockState oppositeBlock) {

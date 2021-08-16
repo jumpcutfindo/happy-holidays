@@ -55,8 +55,8 @@ public class SheetMusicItem extends ChristmasItem {
             }
 
             if (itemUseContext.getPlayer() != null) {
-                TextComponent chatComponent = new TranslationTextComponent("item.happyholidays." + this.itemId +
-                        ".now_playing");
+                TextComponent chatComponent = new TranslationTextComponent("block.happyholidays.music_box"
+                        + ".now_playing", (new TranslationTextComponent(this.getDescriptionId() + ".desc")));
                 chatComponent.withStyle(TextFormatting.AQUA);
                 itemUseContext.getPlayer().displayClientMessage(chatComponent, true);
             }

@@ -156,13 +156,13 @@ public class OrnamentBlock extends ChristmasBlock {
                 : attachFace == AttachFace.CEILING ? Block.canSupportCenter(world, position.relative(Direction.UP), Direction.DOWN)
                 : Block.canSupportCenter(world, position.relative(connectedDirection), connectedDirection.getOpposite());
 
-        boolean isLeaves = attachFace == AttachFace.FLOOR ? !world.getBlockState(position.below()).isAir()
-                : attachFace == AttachFace.CEILING ? world.getBlockState(position.above()).is(BlockTags.LEAVES)
-                : facingDirection == Direction.NORTH ? world.getBlockState(position.south()).is(BlockTags.LEAVES)
-                : facingDirection == Direction.SOUTH ? world.getBlockState(position.north()).is(BlockTags.LEAVES)
-                : facingDirection == Direction.EAST ? world.getBlockState(position.west()).is(BlockTags.LEAVES)
-                : facingDirection == Direction.WEST && world.getBlockState(position.east()).is(BlockTags.LEAVES);
+        BlockState onBlockState = facingDirection == Direction.NORTH ? world.getBlockState(position.south())
+                : facingDirection == Direction.SOUTH ? world.getBlockState(position.north())
+                : facingDirection == Direction.EAST ? world.getBlockState(position.west())
+                : facingDirection == Direction.WEST ? world.getBlockState(position.east()) : null;
 
-        return canSupportCentre || isLeaves;
+        boolean canSupportHanging = onBlockState != null && onBlockState.isFaceSturdy(world, position, facingDirection);
+
+        return canSupportCentre || canSupportHanging;
     }
 }

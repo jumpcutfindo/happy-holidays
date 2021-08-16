@@ -97,7 +97,7 @@ public class WallDecorationBlock extends ChristmasBlock {
 
 
         if (onBlockState != null) {
-            return !onBlockState.is(Blocks.AIR) && !(onBlockState.getBlock() instanceof OrnamentBlock || onBlockState.getBlock() instanceof WallDecorationBlock);
+            return onBlockState.isFaceSturdy(world, position, facingDirection);
         }
 
         return false;
