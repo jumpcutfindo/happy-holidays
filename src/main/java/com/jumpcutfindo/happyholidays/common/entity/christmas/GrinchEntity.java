@@ -283,7 +283,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
         // Drop ornament block
         double ornamentDropChance = APPEASEMENT_ORNAMENT_DROP_BASE_CHANCE * modifier;
-        if (ornamentDropChance < this.random.nextDouble()) {
+        if (ornamentDropChance > this.random.nextDouble()) {
             ItemStack grinchOrnamentItem = ItemRegistry.GRINCH_ORNAMENT_BLOCK.get().getDefaultInstance();
             this.spawnAtLocation(grinchOrnamentItem);
         }

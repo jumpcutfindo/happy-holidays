@@ -39,7 +39,7 @@ Are you ready to fight what comes with the holidays?
 Happy Holidays is a mod specifically designed to replicate real life holidays, but with its own unique Minecraft twist.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.examplemod]] #optional
+[[dependencies.happyholidays]] #optional
     # the modid of the dependency
     modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
@@ -51,10 +51,17 @@ Happy Holidays is a mod specifically designed to replicate real life holidays, b
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
-[[dependencies.examplemod]]
+[[dependencies.happyholidays]]
     modId="minecraft"
     mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="[1.16.5,1.17)"
     ordering="NONE"
+    side="BOTH"
+[[dependencies.happyholidays]]
+    modId="geckolib"
+    mandatory=false # may need to change this
+    # This version range declares a minimum of the current minecraft version up to but not including the next major version
+    versionRange="[3.0.0,)"
+    ordering="BEFORE"
     side="BOTH"
