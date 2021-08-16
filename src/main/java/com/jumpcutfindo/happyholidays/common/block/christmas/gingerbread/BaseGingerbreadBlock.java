@@ -1,5 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 
 import net.minecraft.block.AbstractBlock;
@@ -20,7 +21,7 @@ public class BaseGingerbreadBlock extends ChristmasBlock {
                     .harvestTool(ToolType.HOE);
 
     public static final Item.Properties ITEM_PROPERITES =
-            new Item.Properties().tab(ItemGroup.TAB_DECORATIONS);
+            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public BaseGingerbreadBlock(String blockId) {
         super(blockId, BLOCK_PROPERTIES, ITEM_PROPERITES);
