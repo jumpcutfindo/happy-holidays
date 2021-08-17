@@ -16,34 +16,34 @@
             "y": 90
         },
         "facing=east,decoration_shape=left_face": {
-            "model": "happyholidays:block/yellow_tinsel_block_left_face",
-            "y": 270
+            "model": "happyholidays:block/yellow_tinsel_block_left_face"
         },
         "facing=north,decoration_shape=left_face": {
             "model": "happyholidays:block/yellow_tinsel_block_left_face",
-            "y": 180
+            "y": 270
         },
         "facing=south,decoration_shape=left_face": {
-            "model": "happyholidays:block/yellow_tinsel_block_left_face"
-        },
-        "facing=west,decoration_shape=left_face": {
             "model": "happyholidays:block/yellow_tinsel_block_left_face",
             "y": 90
         },
-        "facing=east,decoration_shape=right_face": {
-            "model": "happyholidays:block/yellow_tinsel_block_right_face",
-            "y": 270
+        "facing=west,decoration_shape=left_face": {
+            "model": "happyholidays:block/yellow_tinsel_block_left_face",
+            "y": 180
         },
-        "facing=north,decoration_shape=right_face": {
+        "facing=east,decoration_shape=right_face": {
             "model": "happyholidays:block/yellow_tinsel_block_right_face",
             "y": 180
         },
-        "facing=south,decoration_shape=right_face": {
-            "model": "happyholidays:block/yellow_tinsel_block_right_face"
-        },
-        "facing=west,decoration_shape=right_face": {
+        "facing=north,decoration_shape=right_face": {
             "model": "happyholidays:block/yellow_tinsel_block_right_face",
             "y": 90
+        },
+        "facing=south,decoration_shape=right_face": {
+            "model": "happyholidays:block/yellow_tinsel_block_right_face",
+            "y": 270
+        },
+        "facing=west,decoration_shape=right_face": {
+            "model": "happyholidays:block/yellow_tinsel_block_right_face"
         },
         "facing=east,decoration_shape=side_face": {
             "model": "happyholidays:block/yellow_tinsel_block_side_face",

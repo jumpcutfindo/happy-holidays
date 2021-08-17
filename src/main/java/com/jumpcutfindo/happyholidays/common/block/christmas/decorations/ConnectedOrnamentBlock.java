@@ -60,33 +60,14 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
         BlockPos clickedPos = context.getClickedPos();
         World world = context.getLevel();
 
-        BlockState leftBlock = null, rightBlock = null, oppositeBlock = null;
         if (!clickedFaceDirection.getAxis().isHorizontal()) {
             // If clicked face is vertical, we change it to horizontal
             clickedFaceDirection = context.getHorizontalDirection().getOpposite();
         }
 
-        if (clickedFaceDirection == Direction.NORTH) {
-            leftBlock = world.getBlockState(clickedPos.west());
-            rightBlock = world.getBlockState(clickedPos.east());
-            oppositeBlock = world.getBlockState(clickedPos.north());
-        } else if (clickedFaceDirection == Direction.SOUTH) {
-            leftBlock = world.getBlockState(clickedPos.east());
-            rightBlock = world.getBlockState(clickedPos.west());
-            oppositeBlock = world.getBlockState(clickedPos.south());
-        } else if (clickedFaceDirection == Direction.EAST) {
-            leftBlock = world.getBlockState(clickedPos.north());
-            rightBlock = world.getBlockState(clickedPos.south());
-            oppositeBlock = world.getBlockState(clickedPos.east());
-        } else {
-            leftBlock = world.getBlockState(clickedPos.south());
-            rightBlock = world.getBlockState(clickedPos.north());
-            oppositeBlock = world.getBlockState(clickedPos.west());
-        }
-
         return this.defaultBlockState()
                 .setValue(FACING, clickedFaceDirection)
-                .setValue(WALL_SHAPE, getWallShapeState(leftBlock, rightBlock, oppositeBlock));
+                .setValue(WALL_SHAPE, getWallShapeState(world, clickedPos, clickedFaceDirection));
     }
 
     @Override
@@ -121,29 +102,10 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
         if (!this.canSurvive(blockState, world, pos1)) return Blocks.AIR.defaultBlockState();
 
         // Since block can survive, check if there are any updates to the state to be made
-        BlockState leftBlock = null, rightBlock = null, oppositeBlock = null;
-
-        if (facingDirection == Direction.NORTH) {
-            leftBlock = world.getBlockState(pos1.west());
-            rightBlock = world.getBlockState(pos1.east());
-            oppositeBlock = world.getBlockState(pos1.north());
-        } else if (facingDirection == Direction.SOUTH) {
-            leftBlock = world.getBlockState(pos1.east());
-            rightBlock = world.getBlockState(pos1.west());
-            oppositeBlock = world.getBlockState(pos1.south());
-        } else if (facingDirection == Direction.EAST) {
-            leftBlock = world.getBlockState(pos1.north());
-            rightBlock = world.getBlockState(pos1.south());
-            oppositeBlock = world.getBlockState(pos1.east());
-        } else {
-            leftBlock = world.getBlockState(pos1.south());
-            rightBlock = world.getBlockState(pos1.north());
-            oppositeBlock = world.getBlockState(pos1.west());
-        }
 
         return this.defaultBlockState()
                 .setValue(FACING, facingDirection)
-                .setValue(WALL_SHAPE, getWallShapeState(leftBlock, rightBlock, oppositeBlock));
+                .setValue(WALL_SHAPE, getWallShapeState(world, pos1, facingDirection));
     }
 
     @Override
@@ -163,19 +125,56 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
         return false;
     }
 
-    private WallDecorationShape getWallShapeState(BlockState leftBlock, BlockState rightBlock, BlockState oppositeBlock) {
-        boolean isLeftAir = leftBlock.isAir() || ChristmasBlock.isDecorationBlock(leftBlock.getBlock());
-        boolean isRightAir = rightBlock.isAir() || ChristmasBlock.isDecorationBlock(rightBlock.getBlock());;
-        boolean isOppositeAir = oppositeBlock.isAir() || ChristmasBlock.isDecorationBlock(oppositeBlock.getBlock());;
+    private WallDecorationShape getWallShapeState(IWorld world, BlockPos blockPos, Direction facingDirection) {
+        BlockPos leftPos, rightPos, oppPos;
+        Direction leftDir, rightDir, oppDir;
 
-        if (!isLeftAir && !isRightAir && !isOppositeAir) {
+        if (facingDirection == Direction.NORTH) {
+            leftPos = blockPos.west();
+            rightPos = blockPos.east();
+            oppPos = blockPos.north();
+
+            leftDir = Direction.WEST;
+            rightDir = Direction.EAST;
+            oppDir = Direction.NORTH;
+        } else if (facingDirection == Direction.SOUTH) {
+            leftPos = blockPos.east();
+            rightPos = blockPos.west();
+            oppPos = blockPos.south();
+
+            leftDir = Direction.EAST;
+            rightDir = Direction.WEST;
+            oppDir = Direction.SOUTH;
+        } else if (facingDirection == Direction.EAST) {
+            leftPos = blockPos.north();
+            rightPos = blockPos.south();
+            oppPos = blockPos.east();
+
+            leftDir = Direction.NORTH;
+            rightDir = Direction.SOUTH;
+            oppDir = Direction.EAST;
+        } else {
+            leftPos = blockPos.south();
+            rightPos = blockPos.north();
+            oppPos = blockPos.west();
+
+            leftDir = Direction.SOUTH;
+            rightDir = Direction.NORTH;
+            oppDir = Direction.WEST;
+        }
+
+        boolean isLeftSupportive = world.getBlockState(leftPos).isFaceSturdy(world, leftPos, leftDir);
+        boolean isRightSupportive = world.getBlockState(rightPos).isFaceSturdy(world, rightPos, rightDir);
+        boolean isOppositeSupportive = world.getBlockState(oppPos).isFaceSturdy(world, oppPos, oppDir);
+
+        if (isLeftSupportive && isRightSupportive && isOppositeSupportive) {
             return WallDecorationShape.ALL_FACE;
-        } else if (!isLeftAir && !isRightAir) {
+        } else if (isLeftSupportive && isRightSupportive) {
             return WallDecorationShape.SIDE_FACE;
-        } else if (!isLeftAir) {
-            return WallDecorationShape.RIGHT_FACE;
-        } else if (!isRightAir) {
+        } else if (isLeftSupportive) {
             return WallDecorationShape.LEFT_FACE;
+        } else if (isRightSupportive) {
+            return WallDecorationShape.RIGHT_FACE;
         } else {
             return WallDecorationShape.STRAIGHT;
         }
