@@ -29,6 +29,13 @@
                     "height": 36
                 },
                 {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:red_ball_ornament_block",
+                        "happyholidays:blue_ball_ornament_block"
+                    ]
+                },
+                {
                     "type": "text",
                     "title": "Section Title",
                     "content": "Aliquam facilisis tortor eu mauris faucibus gravida. Etiam ligula sapien, tincidunt eu bibendum at, elementum in nisi. Integer sit amet ipsum condimentum, luctus tellus ac, bibendum tellus. Aliquam venenatis, nulla id consequat vehicula, mauris ante laoreet ante, pulvinar auctor velit metus nec felis. Vivamus ornare nulla at faucibus placerat. Fusce eu volutpat est, at laoreet quam. Nulla facilisi. Donec tincidunt nunc metus, id commodo lacus ultrices a."

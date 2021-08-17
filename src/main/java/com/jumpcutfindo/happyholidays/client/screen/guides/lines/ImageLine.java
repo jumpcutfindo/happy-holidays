@@ -19,17 +19,16 @@ public class ImageLine implements IPageLine {
         this.image = image;
     }
 
-    public ImageSection getImage() {
-        return image;
-    }
-
     @Override
     public void draw(MatrixStack matrixStack, int xPos, int yPos) {
         Minecraft.getInstance().getTextureManager().bind(image.getSource());
 
+        // Centre image
+        int centeredX = xPos + GuideScreen.PAGE_WIDTH / 2 - image.getWidth() / 2;
+
         float scale = image.getScale();
 
-        AbstractGui.blit(matrixStack, xPos, yPos, image.getX(), image.getY(), image.getWidth(),
+        AbstractGui.blit(matrixStack, centeredX, yPos, image.getX(), image.getY(), image.getWidth(),
                 image.getHeight(),
                 (int) (IMAGES_WIDTH * scale), (int) (IMAGES_HEIGHT * scale));
     }

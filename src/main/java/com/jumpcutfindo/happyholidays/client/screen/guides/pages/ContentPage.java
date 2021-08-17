@@ -6,6 +6,7 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ImageLine;
+import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ItemLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.TextLine;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -34,33 +35,13 @@ public class ContentPage implements IPage {
 
         for (int i = 0; i < leftPageProcessors.size(); i ++) {
             IPageLine pageLine = this.leftPageProcessors.get(i);
-
-            if (pageLine instanceof TextLine) {
-                pageLine.draw(matrixStack, x + GuideScreen.PAGE_LEFT_X_START, y + GuideScreen.PAGE_Y_START + (i * 9));
-            } else {
-                ImageLine imageLine = (ImageLine) pageLine;
-                pageLine.draw(
-                        matrixStack,
-                        x + GuideScreen.PAGE_LEFT_X_START + GuideScreen.PAGE_WIDTH / 2 - imageLine.getImage().getWidth() / 2,
-                        y + GuideScreen.PAGE_Y_START + (i * 9)
-                );
-            }
+            pageLine.draw(matrixStack, x + GuideScreen.PAGE_LEFT_X_START, y + GuideScreen.PAGE_Y_START + (i * 9));
         }
 
         // Draw text of right page
         for (int i = 0; i < rightPageProcessors.size(); i ++) {
             IPageLine pageLine = this.rightPageProcessors.get(i);
-
-            if (pageLine instanceof TextLine) {
-                pageLine.draw(matrixStack, x + GuideScreen.PAGE_RIGHT_X_START, y + GuideScreen.PAGE_Y_START + (i * 9));
-            } else {
-                ImageLine imageLine = (ImageLine) pageLine;
-                pageLine.draw(
-                        matrixStack,
-                        x + GuideScreen.PAGE_RIGHT_X_START + GuideScreen.PAGE_WIDTH / 2 - imageLine.getImage().getWidth() / 2,
-                        y + GuideScreen.PAGE_Y_START + (i * 9)
-                );
-            }
+            pageLine.draw(matrixStack, x + GuideScreen.PAGE_RIGHT_X_START, y + GuideScreen.PAGE_Y_START + (i * 9));
         }
     }
 

@@ -8,6 +8,7 @@ import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.text.ITextProperties;
@@ -33,6 +34,8 @@ public class TitlePage implements IPage {
     public void draw(MatrixStack matrixStack) {
         int x = (guideScreen.width - guideScreen.bgWidth) / 2;
         int y = (guideScreen.height - guideScreen.bgHeight) / 2;
+
+        guideScreen.getMinecraft().getTextureManager().bind(guideScreen.guideBookGUI);
 
         // Draw logo
         GuideScreen.blit(matrixStack, x + GuideScreen.PAGE_LEFT_X_START + 4, y + 40, LOGO_TEXTURE_X, LOGO_TEXTURE_Y,

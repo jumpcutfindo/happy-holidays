@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
+import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 
@@ -14,9 +15,17 @@ import net.minecraft.client.gui.DialogTexts;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.IBidiTooltip;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.screen.inventory.InventoryScreen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.gui.widget.button.ChangePageButton;
 import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.client.renderer.tileentity.CampfireTileEntityRenderer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.item.crafting.RecipeBook;
+import net.minecraft.item.crafting.RecipeItemHelper;
+import net.minecraft.item.crafting.RecipeManager;
+import net.minecraft.resources.IFutureReloadListener;
 import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -25,12 +34,13 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.util.text.event.ClickEvent;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fml.client.gui.GuiUtils;
 
 public class GuideScreen extends Screen {
-    private static final ResourceLocation DEFAULT_BOOK_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
+    public static final ResourceLocation DEFAULT_BOOK_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
             "textures/gui/guide/guide_book.png");
-    private static final ResourceLocation CHRISTMAS_GUIDE_BOOK_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
+    public static final ResourceLocation CHRISTMAS_GUIDE_BOOK_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
             "textures/gui/guide/christmas_guide_book.png");
 
     public static final int PAGE_LEFT_X_START = 12;
@@ -56,6 +66,8 @@ public class GuideScreen extends Screen {
     private ChangePageButton backButton;
     private ChangePageButton tableOfContentsButton;
 
+    private RecipeManager recipeManager;
+
     public GuideScreen(Guide guide) {
         super(new StringTextComponent("Guide Book"));
         this.guide = guide;
@@ -79,6 +91,8 @@ public class GuideScreen extends Screen {
 
         this.createMenuControls();
         this.createPageControlButtons();
+
+        this.recipeManager = this.minecraft != null ? this.minecraft.level.getRecipeManager() : null;
     }
 
     @Override
@@ -95,13 +109,23 @@ public class GuideScreen extends Screen {
         blit(matrixStack, x, y, 0, 0, this.bgWidth, this.bgHeight, this.textureWidth, this.textureHeight);
 
         super.render(matrixStack, p_230430_2_, p_230430_3_, p_230430_4_);
+        // itemRenderer.renderGuiItem(ItemRegistry.ADULT_PRESENT_BLOCK_ITEM.get().getDefaultInstance(), x + 10, y + 10);
 
         // Draw content
         this.guideProcessor.draw(matrixStack);
     }
 
+    @Override
+    protected void renderTooltip(MatrixStack p_230457_1_, ItemStack p_230457_2_, int p_230457_3_, int p_230457_4_) {
+        super.renderTooltip(p_230457_1_, p_230457_2_, p_230457_3_, p_230457_4_);
+    }
+
     public FontRenderer getFontRenderer() {
         return this.font;
+    }
+
+    public ItemRenderer getItemRenderer() {
+        return this.itemRenderer;
     }
 
     protected void pageBack() {

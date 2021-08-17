@@ -1,5 +1,6 @@
 package com.jumpcutfindo.happyholidays.client.screen.guides;
 
+import java.awt.Image;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -8,6 +9,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ImageLine;
+import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ItemLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.TextLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.pages.ContentPage;
 import com.jumpcutfindo.happyholidays.client.screen.guides.pages.IPage;
@@ -16,6 +18,7 @@ import com.jumpcutfindo.happyholidays.common.guide.Chapter;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ISection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ImageSection;
+import com.jumpcutfindo.happyholidays.common.guide.sections.ItemSection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.TextSection;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -96,22 +99,24 @@ public class GuideProcessor {
 
             int sectionCount = 1;
             for (ISection section : chapter.getSections()) {
+                if (section == null) continue;
+
                 if (section instanceof TextSection) {
                     TextSection textSection = (TextSection) section;
 
-                    // Section numbering
-                    String sectionTitle = String.format("%d.%d. %s", chapterCount, sectionCount, textSection.getTitle());
-
-                    // Section title
-                    chapterProcessors.addAll(font.split(ITextProperties.of(sectionTitle,
-                            Style.EMPTY.applyFormat(TextFormatting.ITALIC)), GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
+                    // Section numbering and title
+                    if (textSection.getTitle() != null) {
+                        String sectionTitle = String.format("%d.%d. %s", chapterCount, sectionCount, textSection.getTitle());
+                        chapterProcessors.addAll(font.split(ITextProperties.of(sectionTitle,
+                                Style.EMPTY.applyFormat(TextFormatting.ITALIC)), GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
+                    }
 
                     chapterProcessors.addAll(font.split(ITextProperties.of(textSection.getContent()),
                             GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
 
                     chapterProcessors.add(new TextLine(guideScreen, IReorderingProcessor.EMPTY));
                     sectionCount++;
-                } else {
+                } else if (section instanceof ImageSection){
                     // Image sections will simply just display the image
                     ImageSection imageSection = ((ImageSection) section).scale(IMAGE_SCALE_VALUE);
 
@@ -119,6 +124,14 @@ public class GuideProcessor {
 
                     // Add empty lines as buffer to accommodate image
                     for (int i = 0; i < imageSection.getHeight() / 9; i++) {
+                        chapterProcessors.add(new TextLine(guideScreen, IReorderingProcessor.EMPTY));
+                    }
+                } else if (section instanceof ItemSection) {
+                    ItemSection itemSection = ((ItemSection) section);
+                    chapterProcessors.add(new ItemLine(guideScreen, itemSection));
+
+                    // Add empty lines as buffer to accommodate items
+                    for (int i = 0; i < 2; i++) {
                         chapterProcessors.add(new TextLine(guideScreen, IReorderingProcessor.EMPTY));
                     }
                 }
