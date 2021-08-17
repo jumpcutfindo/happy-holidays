@@ -22,7 +22,7 @@
                 {
                     "type": "minecraft:tag",
                     "weight": 5,
-                    "name": "happyholidays:sheet_music",
+                    "name": "happyholidays:christmas_sheet_music",
                     "expand": true,
                     "functions": [
                         {
@@ -48,7 +48,7 @@
                 {
                     "type": "minecraft:tag",
                     "weight": 5,
-                    "name": "happyholidays:rare_ornaments",
+                    "name": "happyholidays:christmas_rare_ornaments",
                     "expand": true,
                     "functions": [
                         {
@@ -62,7 +62,7 @@
                 },
                 {
                     "type": "minecraft:tag",
-                    "name": "happyholidays:basic_ornaments",
+                    "name": "happyholidays:christmas_basic_ornaments",
                     "weight": 1,
                     "expand": true,
                     "functions": [
