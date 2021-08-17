@@ -9,7 +9,7 @@
                     "children": [
                         {
                             "type": "minecraft:item",
-                            "name": "happyholidays:present_block"
+                            "name": "happyholidays:adult_present_block"
                         }
                     ]
                 }

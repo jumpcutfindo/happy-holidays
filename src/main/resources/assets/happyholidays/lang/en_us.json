@@ -1,6 +1,6 @@
 {
     "block.happyholidays.baby_present_block": "Baby Present",
-    "block.happyholidays.present_block": "Present",
+    "block.happyholidays.adult_present_block": "Adult Present",
     "block.happyholidays.elder_present_block": "Elder Present",
 
     "block.happyholidays.red_ball_ornament_block": "Red Bauble",
@@ -41,7 +41,7 @@
     "block.happyholidays.christmas_wreath_block": "Christmas Wreath",
 
     "block.happyholidays.baby_present_ornament_block": "Baby Present Ornament",
-    "block.happyholidays.present_ornament_block": "Present Ornament",
+    "block.happyholidays.adult_present_ornament_block": "Adult Present Ornament",
     "block.happyholidays.elder_present_ornament_block": "Elder Present Ornament",
     "block.happyholidays.candy_cane_ornament_block": "Candy Cane Ornament",
     "block.happyholidays.santa_elf_ornament_block": "Santa Elf Ornament",

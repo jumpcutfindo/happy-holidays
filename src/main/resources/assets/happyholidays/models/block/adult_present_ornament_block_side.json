@@ -3,8 +3,8 @@
 	"ambientocclusion": false,
 	"texture_size": [32, 16],
 	"textures": {
-		"particle": "happyholidays:blocks/present_ornament_block",
-		"1_0": "happyholidays:blocks/present_ornament_block"
+		"particle": "happyholidays:blocks/adult_present_ornament_block",
+		"1_0": "happyholidays:blocks/adult_present_ornament_block"
 	},
 	"elements": [
 		{
@@ -122,7 +122,7 @@
 			"children": [0, 1]
 		},
 		{
-			"name": "present_ornament_block",
+			"name": "adult_present_ornament_block",
 			"origin": [8, 8, 8],
 			"color": 0,
 			"children": [2, 3, 4, 5]

@@ -32,7 +32,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornamen
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.ElderPresentOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.GingerbreadManOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.GrinchOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.PresentOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.AdultPresentOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.SantaElfOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.BlueChristmasLightBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.GoldChristmasLightBlock;
@@ -60,7 +60,6 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.StockingBlock;
 
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
@@ -159,8 +158,8 @@ public class BlockRegistry {
 
     public static final RegistryObject<ChristmasBlock> BABY_PRESENT_ORNAMENT_BLOCK =
             BLOCKS.register(BabyPresentOrnamentBlock.BLOCK_ID, BabyPresentOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> PRESENT_ORNAMENT_BLOCK =
-            BLOCKS.register(PresentOrnamentBlock.BLOCK_ID, PresentOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ADULT_PRESENT_ORNAMENT_BLOCK =
+            BLOCKS.register(AdultPresentOrnamentBlock.BLOCK_ID, AdultPresentOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> ELDER_PRESENT_ORNAMENT_BLOCK =
             BLOCKS.register(ElderPresentOrnamentBlock.BLOCK_ID, ElderPresentOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> CANDY_CANE_ORNAMENT_BLOCK =

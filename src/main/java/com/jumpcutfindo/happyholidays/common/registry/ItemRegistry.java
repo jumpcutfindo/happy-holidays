@@ -30,7 +30,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornamen
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.ElderPresentOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.GingerbreadManOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.GrinchOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.PresentOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.AdultPresentOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.SantaElfOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.BlueChristmasLightBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.GoldChristmasLightBlock;
@@ -58,7 +58,6 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.block.LegendaryOrnamentBlockItem;
@@ -352,10 +351,10 @@ public class ItemRegistry {
             ITEMS.register(BabyPresentOrnamentBlock.BLOCK_ID,
                     () -> new LegendaryOrnamentBlockItem(BlockRegistry.BABY_PRESENT_ORNAMENT_BLOCK.get(),
                             BabyPresentOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> PRESENT_ORNAMENT_BLOCK_ITEM =
-            ITEMS.register(PresentOrnamentBlock.BLOCK_ID,
-                    () -> new LegendaryOrnamentBlockItem(BlockRegistry.PRESENT_ORNAMENT_BLOCK.get(),
-                            PresentOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ADULT_PRESENT_ORNAMENT_BLOCK_ITEM =
+            ITEMS.register(AdultPresentOrnamentBlock.BLOCK_ID,
+                    () -> new LegendaryOrnamentBlockItem(BlockRegistry.ADULT_PRESENT_ORNAMENT_BLOCK.get(),
+                            AdultPresentOrnamentBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> ELDER_PRESENT_ORNAMENT_BLOCK_ITEM =
             ITEMS.register(ElderPresentOrnamentBlock.BLOCK_ID,
                     () -> new LegendaryOrnamentBlockItem(BlockRegistry.ELDER_PRESENT_ORNAMENT_BLOCK.get(),

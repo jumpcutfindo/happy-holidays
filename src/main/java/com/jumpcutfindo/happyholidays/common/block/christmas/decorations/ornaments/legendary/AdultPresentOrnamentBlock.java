@@ -4,8 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 
-public class PresentOrnamentBlock extends LegendaryOrnamentBlock {
-    public static final String BLOCK_ID = "present_ornament_block";
+public class AdultPresentOrnamentBlock extends LegendaryOrnamentBlock {
+    public static final String BLOCK_ID = "adult_present_ornament_block";
 
     public static final VoxelShape[][] ORNAMENT_SHAPES = {
             {
@@ -19,7 +19,7 @@ public class PresentOrnamentBlock extends LegendaryOrnamentBlock {
             { Block.box(5.0, 0.0, 0.0, 11.0, 5.0, 4.5) }
     };
 
-    public PresentOrnamentBlock() {
+    public AdultPresentOrnamentBlock() {
         super(BLOCK_ID, ORNAMENT_SHAPES);
     }
 }

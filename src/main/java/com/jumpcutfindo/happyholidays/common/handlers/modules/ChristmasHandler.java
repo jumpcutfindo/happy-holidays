@@ -1,15 +1,11 @@
 package com.jumpcutfindo.happyholidays.common.handlers.modules;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.client.screen.ChristmasStarScreen;
-import com.jumpcutfindo.happyholidays.client.screen.GiftWrapperScreen;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 
-import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -60,7 +56,7 @@ public class ChristmasHandler {
                 BlockRegistry.SILVER_CHRISTMAS_LIGHT_BLOCK.get(),
 
                 BlockRegistry.BABY_PRESENT_ORNAMENT_BLOCK.get(),
-                BlockRegistry.PRESENT_ORNAMENT_BLOCK.get(),
+                BlockRegistry.ADULT_PRESENT_ORNAMENT_BLOCK.get(),
                 BlockRegistry.ELDER_PRESENT_ORNAMENT_BLOCK.get(),
                 BlockRegistry.CANDY_CANE_ORNAMENT_BLOCK.get(),
                 BlockRegistry.SANTA_ELF_ORNAMENT_BLOCK.get(),

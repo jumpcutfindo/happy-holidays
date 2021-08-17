@@ -15,7 +15,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.server.ServerWorld;
 
 public class AdultPresentBlock extends PresentBlock {
-    public static final String BLOCK_ID = "present_block";
+    public static final String BLOCK_ID = "adult_present_block";
     public static final VoxelShape SHAPE = VoxelShapes.or(
             box(3.5, 0.0, 3.5, 12.5, 6.0, 12.5),
             box(2.5, 6.0, 2.5, 13.5, 8.0, 13.5)
