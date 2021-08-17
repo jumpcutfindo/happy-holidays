@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
+import com.jumpcutfindo.happyholidays.client.screen.guides.lines.EmptyLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ImageLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ItemLine;
@@ -50,21 +51,33 @@ public class ContentPage implements IPage {
         int screenX = (int) (x - (guideScreen.width - guideScreen.bgWidth) / 2.0D);
         int screenY = (int) (y - (guideScreen.height - guideScreen.bgHeight) / 2.0D);
 
+        List<IPageLine> processors = null;
+
         if (screenY > GuideScreen.PAGE_Y_START && screenY <= GuideScreen.PAGE_Y_END) {
             if (screenX > GuideScreen.PAGE_LEFT_X_START && screenX <= GuideScreen.PAGE_LEFT_X_END) {
-                int clickedIndex = (screenY - GuideScreen.PAGE_Y_START) / 9;
-                if (clickedIndex < leftPageProcessors.size()) {
-                    return leftPageProcessors.get(clickedIndex);
-                } else {
-                    HappyHolidaysMod.LOGGER.debug("Unable to get clicked item on left page");
-                }
+                // Left page
+                processors = leftPageProcessors;
             } else if (screenX > GuideScreen.PAGE_RIGHT_X_START && screenX <= GuideScreen.PAGE_RIGHT_X_END) {
-                int clickedIndex = (screenY - GuideScreen.PAGE_Y_START) / 9;
-                if (clickedIndex < rightPageProcessors.size()) {
-                    return rightPageProcessors.get(clickedIndex);
-                } else {
-                    HappyHolidaysMod.LOGGER.debug("Unable to get clicked item on right page");
+                processors = rightPageProcessors;
+            }
+        }
+
+        if (processors == null) return null;
+
+        int clickedIndex = (screenY - GuideScreen.PAGE_Y_START) / 9;
+        if (clickedIndex < processors.size()) {
+            IPageLine line = processors.get(clickedIndex);
+            // We want to get the original line being hovered that had buffer added for it
+            if (line instanceof EmptyLine && ((EmptyLine) line).getType() == EmptyLine.Type.BUFFER) {
+                IPageLine currLine = line;
+                int curr = clickedIndex;
+                while (clickedIndex > 0 && currLine instanceof EmptyLine) {
+                    currLine = processors.get(curr--);
                 }
+
+                return currLine;
+            } else {
+                return line;
             }
         }
 

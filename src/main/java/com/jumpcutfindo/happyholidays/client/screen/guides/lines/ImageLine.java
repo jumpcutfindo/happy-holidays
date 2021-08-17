@@ -14,6 +14,8 @@ public class ImageLine implements IPageLine {
     private final GuideScreen guideScreen;
     private final ImageSection image;
 
+    private boolean isHovered;
+
     public ImageLine(GuideScreen guideScreen, ImageSection image) {
         this.guideScreen = guideScreen;
         this.image = image;
@@ -28,8 +30,11 @@ public class ImageLine implements IPageLine {
 
         float scale = image.getScale();
 
-        AbstractGui.blit(matrixStack, centeredX, yPos, image.getX(), image.getY(), image.getWidth(),
-                image.getHeight(),
-                (int) (IMAGES_WIDTH * scale), (int) (IMAGES_HEIGHT * scale));
+        GuideScreen.blit(matrixStack, centeredX, yPos, image.getX(), image.getY(), image.getWidth(), image.getHeight(), (int) (IMAGES_WIDTH * scale), (int) (IMAGES_HEIGHT * scale));
+    }
+
+    @Override
+    public void setHovered(boolean isHovered) {
+        this.isHovered = isHovered;
     }
 }

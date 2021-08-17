@@ -16,6 +16,17 @@
             },
             "sections": [
                 {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:red_ball_ornament_block",
+                        "happyholidays:blue_ball_ornament_block",
+                        "happyholidays:blue_ball_ornament_block",
+                        "happyholidays:blue_ball_ornament_block",
+                        "happyholidays:blue_ball_ornament_block",
+                        "happyholidays:blue_ball_ornament_block"
+                    ]
+                },
+                {
                     "type": "text",
                     "title": "Section Title",
                     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo mollis lectus. Suspendisse potenti. Vestibulum feugiat felis ut est pharetra consectetur. Donec feugiat fringilla leo, ac hendrerit orci facilisis ac. Etiam cursus volutpat ante, ut imperdiet ipsum hendrerit ac. Mauris nec metus ac lectus viverra porttitor. Proin dui leo, feugiat nec mattis eget, feugiat at tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam hendrerit iaculis libero, sed vestibulum sapien."

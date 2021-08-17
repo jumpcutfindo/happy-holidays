@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
+import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ItemLine;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.mojang.blaze3d.matrix.MatrixStack;
@@ -12,6 +14,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.DialogTexts;
+import net.minecraft.client.gui.DisplayEffectsScreen;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.IBidiTooltip;
 import net.minecraft.client.gui.screen.Screen;
@@ -68,6 +71,10 @@ public class GuideScreen extends Screen {
 
     private RecipeManager recipeManager;
 
+    private IPageLine hoveredLine;
+
+    public double mouseX, mouseY;
+
     public GuideScreen(Guide guide) {
         super(new StringTextComponent("Guide Book"));
         this.guide = guide;
@@ -113,11 +120,6 @@ public class GuideScreen extends Screen {
 
         // Draw content
         this.guideProcessor.draw(matrixStack);
-    }
-
-    @Override
-    protected void renderTooltip(MatrixStack p_230457_1_, ItemStack p_230457_2_, int p_230457_3_, int p_230457_4_) {
-        super.renderTooltip(p_230457_1_, p_230457_2_, p_230457_3_, p_230457_4_);
     }
 
     public FontRenderer getFontRenderer() {
@@ -170,6 +172,29 @@ public class GuideScreen extends Screen {
         this.backButton.visible = guideProcessor.getCurrentPageIndex() > 0;
 
         this.tableOfContentsButton.visible = !guideProcessor.isTablePage() && !guideProcessor.isTitlePage();
+    }
+
+    private void setMousePos(double mouseX, double mouseY) {
+        this.mouseX = mouseX;
+        this.mouseY = mouseY;
+    }
+
+    @Override
+    public void mouseMoved(double mouseX, double mouseY) {
+        this.setMousePos(mouseX, mouseY);
+        IPageLine pageLine = guideProcessor.getLineAt(mouseX, mouseY);
+
+        if (pageLine != null) {
+            if (this.hoveredLine == null) {
+                this.hoveredLine = pageLine;
+                pageLine.setHovered(true);
+            } else if (!this.hoveredLine.equals(pageLine)) {
+                this.hoveredLine.setHovered(false);
+
+                this.hoveredLine = pageLine;
+                pageLine.setHovered(true);
+            }
+        }
     }
 
     @Override
@@ -226,6 +251,10 @@ public class GuideScreen extends Screen {
             int j = 26;
 
             blit(matrixStack, this.x, this.y, i, j, 18, 18, textureWidth, textureHeight);
+
+            if (this.isHovered) {
+                drawTooltip(matrixStack, new TranslationTextComponent(CLOSE_BUTTON_TOOLTIP), mouseX, mouseY);
+            }
         }
     }
 
@@ -259,6 +288,14 @@ public class GuideScreen extends Screen {
             }
 
             blit(matrixStack, this.x, this.y, i, j, 23, 13, textureWidth, textureHeight);
+
+            if (this.isHovered) {
+                if (this.isForward) {
+                    drawTooltip(matrixStack, new TranslationTextComponent(FORWARD_BUTTON_TOOLTIP), mouseX, mouseY);
+                } else {
+                    drawTooltip(matrixStack, new TranslationTextComponent(BACKWARD_BUTTON_TOOLTIP), mouseX, mouseY);
+                }
+            }
         }
     }
 
@@ -285,6 +322,10 @@ public class GuideScreen extends Screen {
             }
 
             blit(matrixStack, this.x, this.y, i, j, 19, 18, textureWidth, textureHeight);
+
+            if (this.isHovered) {
+                drawTooltip(matrixStack, new TranslationTextComponent(TABLE_OF_CONTENTS_TOOLTIP), mouseX, mouseY);
+            }
         }
     }
 }

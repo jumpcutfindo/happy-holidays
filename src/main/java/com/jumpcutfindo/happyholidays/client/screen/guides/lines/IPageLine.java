@@ -4,4 +4,5 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 
 public interface IPageLine {
     void draw(MatrixStack matrixStack, int xPos, int yPos);
+    void setHovered(boolean isHovered);
 }

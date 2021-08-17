@@ -1,12 +1,12 @@
 package com.jumpcutfindo.happyholidays.client.screen.guides;
 
-import java.awt.Image;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.jumpcutfindo.happyholidays.client.screen.guides.lines.EmptyLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ImageLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ItemLine;
@@ -23,8 +23,6 @@ import com.jumpcutfindo.happyholidays.common.guide.sections.TextSection;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.screen.ReadBookScreen;
-import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextFormatting;
@@ -65,12 +63,14 @@ public class GuideProcessor {
     }
 
     public void draw(MatrixStack matrixStack) {
-            this.currentPage.draw(matrixStack);
+        this.currentPage.draw(matrixStack);
     }
 
     public void generateContentPages() {
         FontRenderer font = guideScreen.getFontRenderer();
         contentPages = Lists.newArrayList();
+
+        int linesPerPage = GuideScreen.PAGE_HEIGHT / 9;
 
         // Multiple content processors for multiple chapters (we want to leave spacing between one chapter and the next)
         List<List<IPageLine>> contentProcessors = Lists.newArrayList();
@@ -83,7 +83,7 @@ public class GuideProcessor {
             // Chapter title and empty line after
             chapterProcessors.addAll(font.split(ITextProperties.of(chapterTitle,
                     Style.EMPTY.applyFormat(TextFormatting.BOLD)), GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
-            chapterProcessors.add(new TextLine(guideScreen, IReorderingProcessor.EMPTY));
+            chapterProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.SPACING));
 
             // Add attached image below
             if (chapter.getImage() != null) {
@@ -93,7 +93,7 @@ public class GuideProcessor {
 
                 // Add empty lines as buffer to accommodate image
                 for (int i = 0; i < newImage.getHeight() / 9; i++) {
-                    chapterProcessors.add(new TextLine(guideScreen, IReorderingProcessor.EMPTY));
+                    chapterProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.BUFFER));
                 }
             }
 
@@ -114,25 +114,41 @@ public class GuideProcessor {
                     chapterProcessors.addAll(font.split(ITextProperties.of(textSection.getContent()),
                             GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
 
-                    chapterProcessors.add(new TextLine(guideScreen, IReorderingProcessor.EMPTY));
+                    // Spacing
+                    chapterProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.SPACING));
                     sectionCount++;
                 } else if (section instanceof ImageSection){
                     // Image sections will simply just display the image
                     ImageSection imageSection = ((ImageSection) section).scale(IMAGE_SCALE_VALUE);
 
+                    // Check whether there is a need to add spacing to the next page
+                    int imageLines = imageSection.getHeight() / 9;
+                    if (chapterProcessors.size() % linesPerPage < imageLines) {
+                        for (int i = 0; i < imageLines; i++) chapterProcessors.add(new EmptyLine(guideScreen,
+                                EmptyLine.Type.SPACING));
+                    }
+
                     chapterProcessors.add(new ImageLine(guideScreen, imageSection));
 
                     // Add empty lines as buffer to accommodate image
                     for (int i = 0; i < imageSection.getHeight() / 9; i++) {
-                        chapterProcessors.add(new TextLine(guideScreen, IReorderingProcessor.EMPTY));
+                        chapterProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.BUFFER));
                     }
                 } else if (section instanceof ItemSection) {
                     ItemSection itemSection = ((ItemSection) section);
+
+                    // Check whether there is a need to add spacing to the next page
+                    int itemLines = 2;
+                    if (chapterProcessors.size() % linesPerPage < itemLines) {
+                        for (int i = 0; i < itemLines; i++) chapterProcessors.add(new EmptyLine(guideScreen,
+                                EmptyLine.Type.SPACING));
+                    }
+
                     chapterProcessors.add(new ItemLine(guideScreen, itemSection));
 
                     // Add empty lines as buffer to accommodate items
                     for (int i = 0; i < 2; i++) {
-                        chapterProcessors.add(new TextLine(guideScreen, IReorderingProcessor.EMPTY));
+                        chapterProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.BUFFER));
                     }
                 }
             }
@@ -142,17 +158,16 @@ public class GuideProcessor {
             contentProcessors.add(chapterProcessors);
         }
 
-        int linesPerPage = GuideScreen.PAGE_HEIGHT / 9;
-
+        // Assembly of the lines created
         for (int chapter = 0; chapter < contentProcessors.size(); chapter++) {
             List<IPageLine> chapterProcessors = contentProcessors.get(chapter);
             chapterPageMap.put(chapter, contentPages.size() + 1);
 
-            // Add empty lines as buffer
+            // Add empty lines as spacing between this and next chapter
             int processorPages = chapterProcessors.size() / (linesPerPage * 2) + 1;
             final int currProcessorsSize = chapterProcessors.size();
             for (int i = 0; i < (processorPages * (linesPerPage * 2) - currProcessorsSize); i++) {
-                chapterProcessors.add(new TextLine(guideScreen, IReorderingProcessor.EMPTY));
+                chapterProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.SPACING));
             }
 
             for (int i = 0; i < chapterProcessors.size() / (linesPerPage * 2); i++) {
@@ -179,7 +194,7 @@ public class GuideProcessor {
                 tableOfContentsProcessors.addAll(font.split(ITextProperties.of(guide.getTableOfContentsTitle(),
                         Style.EMPTY.applyFormat(TextFormatting.BOLD)), GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
 
-                tableOfContentsProcessors.add(new TextLine(guideScreen, IReorderingProcessor.EMPTY));
+                tableOfContentsProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.SPACING));
             }
 
             Chapter chapter = guide.getChapters().get(i);
@@ -191,11 +206,11 @@ public class GuideProcessor {
 
         int linesPerPage = GuideScreen.PAGE_HEIGHT / 9;
 
-        // Add empty lines as buffer
+        // Add empty lines as spacing
         int processorPages = tableOfContentsProcessors.size() / (linesPerPage * 2) + 1;
         final int currProcessorsSize = tableOfContentsProcessors.size();
         for (int i = 0; i < (processorPages * (linesPerPage * 2) - currProcessorsSize); i++) {
-            tableOfContentsProcessors.add(new TextLine(guideScreen, IReorderingProcessor.EMPTY));
+            tableOfContentsProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.SPACING));
         }
 
         List<IPage> contentPages = Lists.newArrayList();
@@ -267,6 +282,10 @@ public class GuideProcessor {
 
     public boolean isTitlePage() {
         return titlePage.equals(this.currentPage);
+    }
+
+    public IPageLine getLineAt(double mouseX, double mouseY) {
+        return currentPage.getLineAtPos(mouseX, mouseY);
     }
 
     public Style getClickedComponentStyleAt(double mouseX, double mouseY) {
