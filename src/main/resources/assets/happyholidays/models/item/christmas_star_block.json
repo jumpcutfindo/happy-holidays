@@ -1,3 +1,6 @@
 {
-    "parent": "happyholidays:block/christmas_star_block_tier_5"
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "happyholidays:items/christmas_star_block"
+    }
 }
