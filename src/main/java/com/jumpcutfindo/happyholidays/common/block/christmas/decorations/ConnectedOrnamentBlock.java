@@ -61,27 +61,27 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
         World world = context.getLevel();
 
         BlockState leftBlock = null, rightBlock = null, oppositeBlock = null;
-        if (clickedFaceDirection.getAxis().isHorizontal()) {
-            if (clickedFaceDirection == Direction.NORTH) {
-                leftBlock = world.getBlockState(clickedPos.west());
-                rightBlock = world.getBlockState(clickedPos.east());
-                oppositeBlock = world.getBlockState(clickedPos.north());
-            } else if (clickedFaceDirection == Direction.SOUTH) {
-                leftBlock = world.getBlockState(clickedPos.east());
-                rightBlock = world.getBlockState(clickedPos.west());
-                oppositeBlock = world.getBlockState(clickedPos.south());
-            } else if (clickedFaceDirection == Direction.EAST) {
-                leftBlock = world.getBlockState(clickedPos.north());
-                rightBlock = world.getBlockState(clickedPos.south());
-                oppositeBlock = world.getBlockState(clickedPos.east());
-            } else {
-                leftBlock = world.getBlockState(clickedPos.south());
-                rightBlock = world.getBlockState(clickedPos.north());
-                oppositeBlock = world.getBlockState(clickedPos.west());
-            }
+        if (!clickedFaceDirection.getAxis().isHorizontal()) {
+            // If clicked face is vertical, we change it to horizontal
+            clickedFaceDirection = context.getHorizontalDirection().getOpposite();
+        }
+
+        if (clickedFaceDirection == Direction.NORTH) {
+            leftBlock = world.getBlockState(clickedPos.west());
+            rightBlock = world.getBlockState(clickedPos.east());
+            oppositeBlock = world.getBlockState(clickedPos.north());
+        } else if (clickedFaceDirection == Direction.SOUTH) {
+            leftBlock = world.getBlockState(clickedPos.east());
+            rightBlock = world.getBlockState(clickedPos.west());
+            oppositeBlock = world.getBlockState(clickedPos.south());
+        } else if (clickedFaceDirection == Direction.EAST) {
+            leftBlock = world.getBlockState(clickedPos.north());
+            rightBlock = world.getBlockState(clickedPos.south());
+            oppositeBlock = world.getBlockState(clickedPos.east());
         } else {
-            // Do not allow placement if placed on a vertical face
-            return null;
+            leftBlock = world.getBlockState(clickedPos.south());
+            rightBlock = world.getBlockState(clickedPos.north());
+            oppositeBlock = world.getBlockState(clickedPos.west());
         }
 
         return this.defaultBlockState()
