@@ -5,6 +5,12 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasContainerBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.BlueStockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.GoldStockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.GreenStockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.RedStockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.SilverStockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.YellowStockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigBlueBallOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigGoldBallOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigGreenBallOrnamentBlock;
@@ -40,7 +46,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornamen
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.RedTinselBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.SilverTinselBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.YellowTinselBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.wall.ChristmasWreathBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.ChristmasWreathBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
@@ -54,7 +60,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.wall.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.StockingBlock;
 
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
@@ -135,6 +141,22 @@ public class BlockRegistry {
     public static final RegistryObject<ChristmasBlock> SILVER_CHRISTMAS_LIGHT_BLOCK =
             BLOCKS.register(SilverChristmasLightBlock.BLOCK_ID, SilverChristmasLightBlock::new);
 
+    public static final RegistryObject<ChristmasBlock> RED_STOCKING_BLOCK =
+            BLOCKS.register(RedStockingBlock.BLOCK_ID, RedStockingBlock::new);
+    public static final RegistryObject<ChristmasBlock> BLUE_STOCKING_BLOCK =
+            BLOCKS.register(BlueStockingBlock.BLOCK_ID, BlueStockingBlock::new);
+    public static final RegistryObject<ChristmasBlock> YELLOW_STOCKING_BLOCK =
+            BLOCKS.register(YellowStockingBlock.BLOCK_ID, YellowStockingBlock::new);
+    public static final RegistryObject<ChristmasBlock> GREEN_STOCKING_BLOCK =
+            BLOCKS.register(GreenStockingBlock.BLOCK_ID, GreenStockingBlock::new);
+    public static final RegistryObject<ChristmasBlock> GOLD_STOCKING_BLOCK =
+            BLOCKS.register(GoldStockingBlock.BLOCK_ID, GoldStockingBlock::new);
+    public static final RegistryObject<ChristmasBlock> SILVER_STOCKING_BLOCK =
+            BLOCKS.register(SilverStockingBlock.BLOCK_ID, SilverStockingBlock::new);
+
+    public static final RegistryObject<ChristmasBlock> CHRISTMAS_WREATH_BLOCK =
+            BLOCKS.register(ChristmasWreathBlock.BLOCK_ID, ChristmasWreathBlock::new);
+
     public static final RegistryObject<ChristmasBlock> BABY_PRESENT_ORNAMENT_BLOCK =
             BLOCKS.register(BabyPresentOrnamentBlock.BLOCK_ID, BabyPresentOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> PRESENT_ORNAMENT_BLOCK =
@@ -168,11 +190,6 @@ public class BlockRegistry {
             BLOCKS.register(MusicBoxBlock.BLOCK_ID, MusicBoxBlock::new);
     public static final RegistryObject<ChristmasBlock> GIFT_WRAPPER_BLOCK =
             BLOCKS.register(GiftWrapperBlock.BLOCK_ID, GiftWrapperBlock::new);
-
-    public static final RegistryObject<ChristmasBlock> STOCKING_BLOCK =
-            BLOCKS.register(StockingBlock.BLOCK_ID, StockingBlock::new);
-    public static final RegistryObject<ChristmasBlock> CHRISTMAS_WREATH_BLOCK =
-            BLOCKS.register(ChristmasWreathBlock.BLOCK_ID, ChristmasWreathBlock::new);
 
     public static final RegistryObject<ChristmasBlock> MILK_AND_COOKIES_BLOCK =
             BLOCKS.register(MilkAndCookiesBlock.BLOCK_ID, MilkAndCookiesBlock::new);

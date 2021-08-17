@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "W",
+        "R"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:string"
+        },
+        "W": {
+            "item": "minecraft:white_wool"
+        },
+        "R": {
+            "item": "minecraft:blue_wool"
+        }
+    },
+    "result": {
+        "item": "happyholidays:blue_stocking_block",
+        "count": 1
+    }
+}

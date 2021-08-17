@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.wall;
+package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallDecorationBlock;
 

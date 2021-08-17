@@ -44,7 +44,7 @@ public class TileEntityRegistry {
                     StockingTileEntity.TILE_ENTITY_ID,
                     () -> TileEntityType.Builder.of(
                             StockingTileEntity::new,
-                            BlockRegistry.STOCKING_BLOCK.get()
+                            BlockRegistry.RED_STOCKING_BLOCK.get()
                     ).build(null)
             );
 

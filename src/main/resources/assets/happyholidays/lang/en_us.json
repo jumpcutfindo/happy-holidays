@@ -31,6 +31,15 @@
     "block.happyholidays.gold_christmas_light_block": "Gold Christmas Lights",
     "block.happyholidays.silver_christmas_light_block": "Silver Christmas Lights",
 
+    "block.happyholidays.red_stocking_block": "Red Stocking",
+    "block.happyholidays.blue_stocking_block": "Blue Stocking",
+    "block.happyholidays.yellow_stocking_block": "Yellow Stocking",
+    "block.happyholidays.green_stocking_block": "Green Stocking",
+    "block.happyholidays.gold_stocking_block": "Gold Stocking",
+    "block.happyholidays.silver_stocking_block": "Silver Stocking",
+
+    "block.happyholidays.christmas_wreath_block": "Christmas Wreath",
+
     "block.happyholidays.baby_present_ornament_block": "Baby Present Ornament",
     "block.happyholidays.present_ornament_block": "Present Ornament",
     "block.happyholidays.elder_present_ornament_block": "Elder Present Ornament",
@@ -58,9 +67,6 @@
     "block.happyholidays.music_box_block": "Music Box",
     "block.happyholidays.music_box.now_playing": "Now Playing - %s",
     "block.happyholidays.gift_wrapper_block": "Wrapping Station",
-
-    "block.happyholidays.stocking_block": "Stocking",
-    "block.happyholidays.christmas_wreath_block": "Christmas Wreath",
 
     "block.happyholidays.milk_and_cookies_block": "Milk and Cookies",
     "block.happyholidays.log_cake_block": "Log Cake",

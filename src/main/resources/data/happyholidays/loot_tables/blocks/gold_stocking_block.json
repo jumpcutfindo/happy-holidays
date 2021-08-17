@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "minecraft:item",
-                    "name": "happyholidays:stocking_block"
+                    "name": "happyholidays:gold_stocking_block"
                 }
             ],
             "conditions": [

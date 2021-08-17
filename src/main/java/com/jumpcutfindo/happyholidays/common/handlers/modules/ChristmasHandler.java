@@ -74,7 +74,12 @@ public class ChristmasHandler {
                 BlockRegistry.CANDY_CANE_BLOCK.get(),
                 BlockRegistry.FESTIVE_CANDY_CANE_BLOCK.get(),
 
-                BlockRegistry.STOCKING_BLOCK.get(),
+                BlockRegistry.RED_STOCKING_BLOCK.get(),
+                BlockRegistry.BLUE_STOCKING_BLOCK.get(),
+                BlockRegistry.YELLOW_STOCKING_BLOCK.get(),
+                BlockRegistry.GREEN_STOCKING_BLOCK.get(),
+                BlockRegistry.GOLD_STOCKING_BLOCK.get(),
+                BlockRegistry.SILVER_STOCKING_BLOCK.get(),
                 BlockRegistry.CHRISTMAS_WREATH_BLOCK.get(),
 
                 BlockRegistry.MILK_AND_COOKIES_BLOCK.get(),

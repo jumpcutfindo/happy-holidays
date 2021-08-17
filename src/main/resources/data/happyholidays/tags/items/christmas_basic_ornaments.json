@@ -29,7 +29,13 @@
         "happyholidays:gold_christmas_light_block",
         "happyholidays:silver_christmas_light_block",
 
-        "happyholidays:christmas_wreath_block",
-        "happyholidays:stocking_block"
+        "happyholidays:red_stocking_block",
+        "happyholidays:blue_stocking_block",
+        "happyholidays:yellow_stocking_block",
+        "happyholidays:green_stocking_block",
+        "happyholidays:gold_stocking_block",
+        "happyholidays:silver_stocking_block",
+
+        "happyholidays:christmas_wreath_block"
     ]
 }

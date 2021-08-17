@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.wall;
+package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings;
 
 import java.util.Random;
 
@@ -35,8 +35,6 @@ import net.minecraft.world.server.ServerWorld;
 public class StockingBlock extends WallDecorationBlock {
     public static final BooleanProperty FILLED = BooleanProperty.create("filled");
 
-    public static final String BLOCK_ID = "stocking_block";
-
     public static final Properties BLOCK_PROPERTIES =
             AbstractBlock.Properties
                     .of(Material.WOOL)
@@ -48,8 +46,8 @@ public class StockingBlock extends WallDecorationBlock {
 
     public static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0 ,16.0, 16.0,0.5);
 
-    public StockingBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, SHAPE);
+    public StockingBlock(String blockId) {
+        super(blockId, BLOCK_PROPERTIES, SHAPE);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(FILLED, false)
