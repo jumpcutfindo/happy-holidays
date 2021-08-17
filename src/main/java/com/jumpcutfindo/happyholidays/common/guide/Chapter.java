@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ISection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ImageSection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ItemSection;
+import com.jumpcutfindo.happyholidays.common.guide.sections.RecipeSection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.TextSection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.SerializedSection;
 
@@ -46,6 +47,8 @@ public class Chapter {
                             serializedSection.width, serializedSection.height, 1.0f);
                 } else if (serializedSection.type.equals("items")) {
                     return ItemSection.from(serializedSection.items);
+                } else if (serializedSection.type.equals("recipes")) {
+                    return RecipeSection.from(serializedSection.recipes);
                 }
 
                 return null;

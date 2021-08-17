@@ -116,7 +116,6 @@ public class GuideScreen extends Screen {
         blit(matrixStack, x, y, 0, 0, this.bgWidth, this.bgHeight, this.textureWidth, this.textureHeight);
 
         super.render(matrixStack, p_230430_2_, p_230430_3_, p_230430_4_);
-        // itemRenderer.renderGuiItem(ItemRegistry.ADULT_PRESENT_BLOCK_ITEM.get().getDefaultInstance(), x + 10, y + 10);
 
         // Draw content
         this.guideProcessor.draw(matrixStack);

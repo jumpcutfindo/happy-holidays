@@ -17,4 +17,7 @@ public class SerializedSection {
 
     // Content for items section
     public String[] items;
+
+    // Content for recipes section
+    public String[] recipes;
 }

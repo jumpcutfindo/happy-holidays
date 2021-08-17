@@ -10,6 +10,7 @@ import com.jumpcutfindo.happyholidays.client.screen.guides.lines.EmptyLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ImageLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ItemLine;
+import com.jumpcutfindo.happyholidays.client.screen.guides.lines.RecipeLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.TextLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.pages.ContentPage;
 import com.jumpcutfindo.happyholidays.client.screen.guides.pages.IPage;
@@ -19,6 +20,7 @@ import com.jumpcutfindo.happyholidays.common.guide.Guide;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ISection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ImageSection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ItemSection;
+import com.jumpcutfindo.happyholidays.common.guide.sections.RecipeSection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.TextSection;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
@@ -123,7 +125,7 @@ public class GuideProcessor {
 
                     // Check whether there is a need to add spacing to the next page
                     int imageLines = imageSection.getHeight() / 9;
-                    if (chapterProcessors.size() % linesPerPage < imageLines) {
+                    if (chapterProcessors.size() % linesPerPage < imageLines - 1) {
                         for (int i = 0; i < imageLines; i++) chapterProcessors.add(new EmptyLine(guideScreen,
                                 EmptyLine.Type.SPACING));
                     }
@@ -139,7 +141,7 @@ public class GuideProcessor {
 
                     // Check whether there is a need to add spacing to the next page
                     int itemLines = 2;
-                    if (chapterProcessors.size() % linesPerPage < itemLines) {
+                    if (chapterProcessors.size() % linesPerPage < itemLines - 1) {
                         for (int i = 0; i < itemLines; i++) chapterProcessors.add(new EmptyLine(guideScreen,
                                 EmptyLine.Type.SPACING));
                     }
@@ -148,6 +150,22 @@ public class GuideProcessor {
 
                     // Add empty lines as buffer to accommodate items
                     for (int i = 0; i < 2; i++) {
+                        chapterProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.BUFFER));
+                    }
+                } else if (section instanceof RecipeSection) {
+                    RecipeSection recipeSection = (RecipeSection) section;
+
+                    // Check whether there is a need to add spacing to the next page
+                    int itemLines = 6;
+                    if (chapterProcessors.size() % linesPerPage < itemLines - 1) {
+                        for (int i = 0; i < itemLines; i++) chapterProcessors.add(new EmptyLine(guideScreen,
+                                EmptyLine.Type.SPACING));
+                    }
+
+                    chapterProcessors.add(new RecipeLine(guideScreen, recipeSection));
+
+                    // Add empty lines as buffer to accommodate items
+                    for (int i = 0; i < 6; i++) {
                         chapterProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.BUFFER));
                     }
                 }
