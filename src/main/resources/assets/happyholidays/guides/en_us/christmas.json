@@ -456,10 +456,7 @@
                     "type": "items",
                     "items": [
                         "happyholidays:music_box_block",
-                        "happyholidays:christmas_sheet_music_angels_on_high",
-                        "happyholidays:christmas_sheet_music_frosty_the_snowman",
-                        "happyholidays:christmas_sheet_music_god_rest_gentlemen",
-                        "happyholidays:christmas_sheet_music_white_christmas"
+                        "happyholidays:christmas_sheet_music_angels_on_high"
                     ]
                 },
                 {
