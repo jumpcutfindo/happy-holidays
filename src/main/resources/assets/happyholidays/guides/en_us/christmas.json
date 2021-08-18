@@ -5,121 +5,539 @@
     "description": "Happy Holidays introduces Christmas to Minecraft! Don't understand the Grinches, Elves and Gingerbread Men that are now roaming your world? Fret not! This guide will serve as your gateway to all things Christmas in the module, explaining the various blocks, items and mobs that you may encounter throughout your adventure!",
     "chapters": [
         {
-            "title": "Introduction",
+            "title": "Prologue",
             "description": "Introduction to Christmas",
             "image": {
                 "source": "guides/images.png",
                 "x": 0,
                 "y": 0,
-                "width": 216,
-                "height": 36
+                "width": 203,
+                "height": 108
             },
             "sections": [
                 {
-                    "type": "items",
-                    "items": [
-                        "happyholidays:red_ball_ornament_block",
-                        "happyholidays:blue_ball_ornament_block",
-                        "happyholidays:blue_ball_ornament_block",
-                        "happyholidays:blue_ball_ornament_block",
-                        "happyholidays:blue_ball_ornament_block",
-                        "happyholidays:blue_ball_ornament_block"
-                    ]
-                },
-                {
-                    "type": "recipes",
-                    "recipes": [
-                        "happyholidays:big_red_ball_ornament_recipe",
-                        "happyholidays:big_blue_ball_ornament_recipe",
-                        "happyholidays:big_yellow_ball_ornament_recipe",
-                        "happyholidays:big_green_ball_ornament_recipe",
-                        "happyholidays:big_gold_ball_ornament_recipe",
-                        "happyholidays:big_silver_ball_ornament_recipe",
-                        "happyholidays:christmas_ham_recipe"
-                    ]
+                    "type": "text",
+                    "content": "Every year, Christmas in Minecraft has never been a huge deal, and this because there were all the special forces of Santa working in the background to make sure it didn't interrupt your day-to-day mining and crafting. One day however, Santa didn't secure his goods properly when travelling across the Overworld, and it seems that he's littered magic and items all over the Minecraft world! Now, Gingerbread Men roam the Overworld, presents are scattered everywhere, and it seems that Christmas has truly come to Minecraft!"
                 },
                 {
                     "type": "text",
-                    "title": "Section Title",
-                    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo mollis lectus. Suspendisse potenti. Vestibulum feugiat felis ut est pharetra consectetur. Donec feugiat fringilla leo, ac hendrerit orci facilisis ac. Etiam cursus volutpat ante, ut imperdiet ipsum hendrerit ac. Mauris nec metus ac lectus viverra porttitor. Proin dui leo, feugiat nec mattis eget, feugiat at tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam hendrerit iaculis libero, sed vestibulum sapien."
-                },
-                {
-                    "type": "recipes",
-                    "recipes": [
-                        "happyholidays:big_red_ball_ornament_recipe",
-                        "happyholidays:big_blue_ball_ornament_recipe",
-                        "happyholidays:big_yellow_ball_ornament_recipe",
-                        "happyholidays:big_green_ball_ornament_recipe",
-                        "happyholidays:big_gold_ball_ornament_recipe",
-                        "happyholidays:big_silver_ball_ornament_recipe",
-                        "happyholidays:christmas_ham_recipe"
-                    ]
-                },
-                {
-                    "type": "image",
-                    "source": "guides/images.png",
-                    "x": 0,
-                    "y": 0,
-                    "width": 216,
-                    "height": 36
-                },
-                {
-                    "type": "items",
-                    "items": [
-                        "happyholidays:red_ball_ornament_block",
-                        "happyholidays:blue_ball_ornament_block"
-                    ]
+                    "title": "Your Goal",
+                    "content": "Santa, in lieu of this embarrassing event, has enlisted your help in gathering his items. It's your job to gather the various legendary ornaments that are scattered across the world, and fill up the Christmas Star! Once that's done, Santa will come and give you some presents, depending on how good you've been!"
                 },
                 {
                     "type": "text",
-                    "title": "Section Title",
-                    "content": "Aliquam facilisis tortor eu mauris faucibus gravida. Etiam ligula sapien, tincidunt eu bibendum at, elementum in nisi. Integer sit amet ipsum condimentum, luctus tellus ac, bibendum tellus. Aliquam venenatis, nulla id consequat vehicula, mauris ante laoreet ante, pulvinar auctor velit metus nec felis. Vivamus ornare nulla at faucibus placerat. Fusce eu volutpat est, at laoreet quam. Nulla facilisi. Donec tincidunt nunc metus, id commodo lacus ultrices a."
-                },
-                {
-                    "type": "text",
-                    "title": "Section Title",
-                    "content": "Aliquam elementum pellentesque dui, in mattis felis scelerisque eu. Proin cursus dui vitae nunc mattis, quis sollicitudin nulla bibendum. Nulla facilisi. Fusce ante nisl, gravida at gravida vitae, vehicula vel est. Morbi id eros sed nulla viverra porttitor. Curabitur ut dolor dui. Pellentesque dignissim massa nec dolor tristique cursus. Donec vel sagittis leo. Pellentesque ultricies mauris quis tellus faucibus, tempor porttitor erat feugiat. Integer ut volutpat odio, ultricies congue nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque imperdiet est a maximus imperdiet. Suspendisse eget rutrum velit."
-                },
-                {
-                    "type": "text",
-                    "title": "Section Title",
-                    "content": "Maecenas eget justo sed velit gravida laoreet. Duis tempor dolor urna, a commodo leo ullamcorper non. In at aliquet eros. Fusce iaculis lobortis lacus sit amet congue. Curabitur ullamcorper iaculis metus, in vulputate sem. Sed ultricies ac felis vitae sodales. Ut quis imperdiet tellus. Quisque at egestas ex. Cras luctus accumsan lacinia. Aenean molestie ullamcorper quam sed scelerisque. Vestibulum nec tempor magna. Nullam mollis arcu ac diam pellentesque vestibulum. Vestibulum eleifend ac purus id gravida. Suspendisse tempus turpis et velit ultrices, vel tincidunt odio semper. Quisque lacus risus, tristique eget scelerisque vitae, pretium non turpis. Donec eu vulputate massa."
-                },
-                {
-                    "type": "text",
-                    "title": "Section Title",
-                    "content": "Hello world!"
+                    "content": "Santa has given you the recipe for this book to help you in this journey. It's now up to you to save Christmas as best you can!"
                 }
             ]
         },
         {
-            "title": "Chapter Title 2",
-            "description": "This is a description of a Chapter.",
+            "title": "Starting Off",
+            "description": "Starting off with the mod",
             "sections": [
                 {
                     "type": "text",
-                    "title": "Section Title",
-                    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo mollis lectus. Suspendisse potenti. Vestibulum feugiat felis ut est pharetra consectetur. Donec feugiat fringilla leo, ac hendrerit orci facilisis ac. Etiam cursus volutpat ante, ut imperdiet ipsum hendrerit ac. Mauris nec metus ac lectus viverra porttitor. Proin dui leo, feugiat nec mattis eget, feugiat at tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam hendrerit iaculis libero, sed vestibulum sapien."
+                    "content": "Welcome to Christmas! This book will guide you through the content added by the mod to Minecraft! The mod has also added achievements for you to unlock and follow along, so you don't get lost in various components of the holiday!"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:christmas_star_block"
+                    ]
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:baby_present_ornament_block",
+                        "happyholidays:adult_present_ornament_block",
+                        "happyholidays:elder_present_ornament_block",
+                        "happyholidays:candy_cane_ornament_block",
+                        "happyholidays:grinch_ornament_block",
+                        "happyholidays:santa_elf_ornament_block",
+                        "happyholidays:gingerbread_man_ornament_block"
+                    ]
                 },
                 {
                     "type": "text",
-                    "title": "Section Title",
-                    "content": "Aliquam facilisis tortor eu mauris faucibus gravida. Etiam ligula sapien, tincidunt eu bibendum at, elementum in nisi. Integer sit amet ipsum condimentum, luctus tellus ac, bibendum tellus. Aliquam venenatis, nulla id consequat vehicula, mauris ante laoreet ante, pulvinar auctor velit metus nec felis. Vivamus ornare nulla at faucibus placerat. Fusce eu volutpat est, at laoreet quam. Nulla facilisi. Donec tincidunt nunc metus, id commodo lacus ultrices a."
+                    "content": "The ultimate goal of Christmas is for you to fill up the Christmas Star, a craftable block that can be filled up with any kind of ornaments. These ornaments can be gathered from various sources, which will be described in the later portions of this guide."
                 },
                 {
                     "type": "text",
-                    "title": "Section Title",
-                    "content": "Aliquam elementum pellentesque dui, in mattis felis scelerisque eu. Proin cursus dui vitae nunc mattis, quis sollicitudin nulla bibendum. Nulla facilisi. Fusce ante nisl, gravida at gravida vitae, vehicula vel est. Morbi id eros sed nulla viverra porttitor. Curabitur ut dolor dui. Pellentesque dignissim massa nec dolor tristique cursus. Donec vel sagittis leo. Pellentesque ultricies mauris quis tellus faucibus, tempor porttitor erat feugiat. Integer ut volutpat odio, ultricies congue nunc. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque imperdiet est a maximus imperdiet. Suspendisse eget rutrum velit."
+                    "content": "Note that although the Christmas Star does accept any ornaments, the legendary ones give the most bonuses. Depending on the tier of the star, buffs and bonuses will be given to you, the mobs and the blocks around it, so try your best to gather as many kinds as possible!"
+                }
+            ]
+        },
+        {
+            "title": "The Christmas Star",
+            "description": "Christmas Star",
+            "sections": [
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:christmas_star_block"
+                    ]
                 },
                 {
                     "type": "text",
-                    "title": "Section Title",
-                    "content": "Maecenas eget justo sed velit gravida laoreet. Duis tempor dolor urna, a commodo leo ullamcorper non. In at aliquet eros. Fusce iaculis lobortis lacus sit amet congue. Curabitur ullamcorper iaculis metus, in vulputate sem. Sed ultricies ac felis vitae sodales. Ut quis imperdiet tellus. Quisque at egestas ex. Cras luctus accumsan lacinia. Aenean molestie ullamcorper quam sed scelerisque. Vestibulum nec tempor magna. Nullam mollis arcu ac diam pellentesque vestibulum. Vestibulum eleifend ac purus id gravida. Suspendisse tempus turpis et velit ultrices, vel tincidunt odio semper. Quisque lacus risus, tristique eget scelerisque vitae, pretium non turpis. Donec eu vulputate massa."
+                    "content": "When Santa left the task to you, he requested that you call him using this star once your job was done. Only when you get all 5 ornaments will this power be made known to you, and Santa will personally come down to thank you for all that you've done. Beware, as his mood greatly depends on how naughty or nice you've been this season..."
                 },
                 {
                     "type": "text",
-                    "title": "Section Title",
-                    "content": "Hello world!"
+                    "title": "The Star",
+                    "content": "The Christmas Star is a seemingly fragile yet very powerful block that is available to you to craft. Using the magic harvested from legendary ornaments, it is able to bolster your abilities and also influence Christmas blocks and mobs around it."
+                },
+                {
+                    "type": "text",
+                    "title": "Crafting a Star"
+                },
+                {
+                    "type": "recipes",
+                    "recipes": [
+                        "happyholidays:christmas_star_recipe"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Christmas Stars are not cheap; they do require some rarer metals in order to craft and be used."
+                },
+                {
+                    "type": "text",
+                    "title": "Star Power and Tiers"
+                },
+                {
+                    "type": "text",
+                    "content": "Christmas Stars have slots for 5 ornaments, with each ornament giving a different amount of power depending on their rarity. The amount of power corresponds to different tiers, with power level 0 having tier 0 and power level 100 having tier 5, and the other tiers correspond to power levels at intervals of 20."
+                },
+                {
+                    "type": "text",
+                    "content": "At each tier, the range of the star's power and its effectiveness increases. Players get more sturdy and stronger, entities are more likely to give you items you want and even presents seem to be more lucky when broken. Don't disregard how powerful this is; it will help you greatly in the quest of trying to finish collecting the legendary ornaments!"
+                },
+                {
+                    "type": "text",
+                    "title": "Enchanted Santa Hat"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:enchanted_santa_hat"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "At the end of Santa's visit, he will have either willingly or unwillingly given you his hat, which has been specially enchanted (and is what actually grants him the power to enter houses via chimneys even though he's quite large). This can be put into the star itself for even more power, and due to how powerful it is, many of the effects that the star has is doubled!"
+                }
+            ]
+        },
+        {
+            "title": "Ornaments",
+            "description": "Ornament descriptions",
+            "sections": [
+                {
+                    "type": "text",
+                    "content": "Ornaments are blocks that are not only for decoration, but also have a functional use with the Christmas Star."
+                },
+                {
+                    "type": "text",
+                    "title": "Rarities"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:red_ball_ornament_block",
+                        "happyholidays:creeper_head_ornament_block",
+                        "happyholidays:gingerbread_man_ornament_block"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Ornaments come in three distinct rarities that are differentiable by the colour of their name. Common ornaments have a white colored name, rare ornaments have a cyan colored name while legendary ornaments have an orange colored name. How hard it is to get them depends on their tier, for example, common ornaments are easily obtained from most sources while legendary ornaments need you to complete specific tasks to obtain."
+                },
+                {
+                    "type": "text",
+                    "title": "Common Ornaments"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:red_ball_ornament_block",
+                        "happyholidays:big_red_ball_ornament_block",
+                        "happyholidays:red_tinsel_block",
+                        "happyholidays:red_christmas_light_block"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "There are 4 different kinds of basic ornaments: baubles, big baubles, tinsel and christmas lights. These come in 6 unique colours, red, blue, yellow, green, gold and silver. The first four colours involve the use of their respective dyes, while gold and silver ornaments involve the use of iron and gold ingots respectively. An example of the recipe for baubles can be seen here:"
+                },
+                {
+                    "type": "recipes",
+                    "recipes": [
+                        "happyholidays:red_ball_ornament_recipe",
+                        "happyholidays:blue_ball_ornament_recipe",
+                        "happyholidays:yellow_ball_ornament_recipe",
+                        "happyholidays:green_ball_ornament_recipe",
+                        "happyholidays:gold_ball_ornament_recipe",
+                        "happyholidays:silver_ball_ornament_recipe"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Try obtaining the dyes and ingots to see the other recipes!"
+                },
+                {
+                    "type": "text",
+                    "title": "Rare Ornaments"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:creeper_head_ornament_block",
+                        "happyholidays:zombie_head_ornament_block",
+                        "happyholidays:skeleton_head_ornament_block",
+                        "happyholidays:wither_skeleton_head_ornament_block"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Rare ornaments come in the form of mob heads with string attached to them. They give better bonuses than common ornaments when put in the Christmas Star, but aren't as good as legendary ornaments!"
+                },
+                {
+                    "type": "text",
+                    "title": "Legendary Ornaments"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:baby_present_ornament_block",
+                        "happyholidays:adult_present_ornament_block",
+                        "happyholidays:elder_present_ornament_block",
+                        "happyholidays:candy_cane_ornament_block",
+                        "happyholidays:grinch_ornament_block",
+                        "happyholidays:santa_elf_ornament_block",
+                        "happyholidays:gingerbread_man_ornament_block"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Legendary ornaments are the best kinds of ornaments you can get in the mod, but they're also the most difficult to obtain! The later chapters of this guide book details how you would go about obtaining these ornaments."
+                }
+            ]
+        },
+        {
+            "title": "Gingerbread and Gingerbread Men",
+            "description": "Gingerbready chapter",
+            "image": {
+                "source": "guides/images.png",
+                "x": 0,
+                "y": 108,
+                "width": 73,
+                "height": 114
+            },
+            "sections": [
+                {
+                    "type": "text",
+                    "content": "When Santa lost control of his sleigh, he accidentally sprinkled some magic onto the Overworld below as well, causing all these mobs to appear all across the world. One of them was the Gingerbread Man, a friendly, albeit clingy passive mob that likes to roam about the Overworld. They wander about in groups, searching for purpose and trying not to get soggy."
+                },
+                {
+                    "type": "text",
+                    "title": "Sogginess",
+                    "content": "Gingerbread Men are not exactly very sturdy fellows. Even a touch of water will cause them to turn soggy, and they can't really do anything about it! However, you can dry them off by placing them near a fire source, and they'll eventually dry up. Who knows, they might even give you some items as a reward, even a legendary ornament, maybe?"
+                },
+                {
+                    "type": "text",
+                    "title": "Gingerbread Dough"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:raw_gingerbread",
+                        "happyholidays:gingerbread_cookie"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Gingerbread Men will drop their dough when attacked, or as a gift to players who have aided them. These pieces of dough can be crafted into Blocks of Gingerbread Dough, or cooked directly to obtain Gingerbread Cookies."
+                },
+                {
+                    "type": "text",
+                    "title": "Gingerbread Blocks"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:raw_gingerbread_block",
+                        "happyholidays:gingerbread_block",
+                        "happyholidays:soggy_gingerbread_block"
+                    ]
+                }, 
+                {
+                    "type": "text",
+                    "content": "Gingerbread Blocks are relatively sturdy blocks that can be used for building, although they have the same weakness as their mob counterparts: water. Blocks of Gingerbread Dough can be cooked to obtain Blocks of Gingerbread. Blocks of Soggy Gingerbread can also be reheated to dry them."
+                }
+            ]
+        },
+        {
+            "title": "Candy Canes and their Uses",
+            "description": "Candy cane descriptions",
+            "sections": [
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:candy_cane_block",
+                        "happyholidays:festive_candy_cane_block",
+                        "happyholidays:candy_cane",
+                        "happyholidays:festive_candy_cane"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Candy Canes were another item that fell off Santa's sleigh during the incident. They are tasty, craftable blocks that crumble into candy cane when broken. They also sometimes like to drop enchanted candy canes that have special uses!"
+                },
+                {
+                    "type": "text",
+                    "title": "Enchanted Candy Canes"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:enchanted_candy_cane",
+                        "happyholidays:candy_cane_ornament_block",
+                        "happyholidays:santa_elf_bell"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Enchanted Candy Canes are a special, enchanted item that drop when candy cane blocks are destroyed. They have various uses: they can be crafted into a legendary ornament with a piece of string, or can be put together with a bell to summon one of Santa's elves!"
+                }
+            ]
+        },
+        {
+            "title": "Presents and the Grinch",
+            "description": "Presents!",
+            "sections": [
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:baby_present_block",
+                        "happyholidays:adult_present_block",
+                        "happyholidays:elder_present_block"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "As the sleigh tossed and turned, the many presents that Santa was carrying scattered across the Minecraft world, littering the entire landscape. These presents can be found in any Overworld biome. Presents come in small groups (similar to pumpkins), and have three stages of growth: baby, adult and elder."
+                },
+                {
+                    "type": "text",
+                    "content": "As long as they don't have anything directly above them, these presents are able to grow and in the process are able to hold more items for players to gather. These presents hold ornaments, sheet music amongst other items that were bound for the North Pole. They might even have higher chances to give better goodies, such as their legendary ornament!"
+                },
+                {
+                    "type": "text",
+                    "title": "Present Scraps"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:present_scraps"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Presents are very easily broken, and as a result breaking them causes them to tear apart into scraps. These scraps can be put together again to create a baby present that's ready to be grown once again! Larger presents will drop more scraps when broken!"
+                },
+                {
+                    "type": "text",
+                    "title": "The Grinch"
+                },
+                {
+                    "type": "image",
+                    "source": "guides/images.png",
+                    "x": 73,
+                    "y": 108,
+                    "width": 37,
+                    "height": 114
+                },
+                {
+                    "type": "text",
+                    "content": "The Grinch has been lurking in the Overworld of Minecraft, but hasn't seen a need to come out, until now! You'd better do your best to protect your presents; the Grinch will take any opportunity he gets to sneak up on them and break them to ruin Christmas! He's scared of players, so being around him will cause him to run away and stop anything he might be doing."
+                },
+                {
+                    "type": "text",
+                    "content": "Although, the Grinch hasn't really seen the beauty of Christmas yet. Maybe wrapping a gift for him might not be such a bad thing..."
+                }
+            ]
+        },
+        {
+            "title": "Santa's Elf and his Requests",
+            "description": "About Santa's Elf",
+            "image": {
+                "source": "guides/images.png",
+                "x": 110,
+                "y": 108,
+                "width": 59,
+                "height": 114
+            },
+            "sections": [
+                {
+                    "type": "text",
+                    "content": "Santa's Elves have always stayed in the North Pole, toiling away in his workshop to prepare presents for the rest of the world. However, due to the incident, it seems that they don't have enough materials to carry out their job! They've dispatched a few of them down to the world of Minecraft to gather whatever materials they can, attempting to earn money to recoup their losses."
+                },
+                {
+                    "type": "text",
+                    "title": "Calling for an Elf"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:santa_elf_bell"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Santa's Elves don't really have time to muddle about though; they do still have a job to do back at the North Pole. However, whenever you want to speak to one, be it to buy ornaments, sheet music or food, they'll be there in an instant! You can call one down by ringing the Santa's Elf Bell, craftable using an Enchanted Candy Cane and a bell."
+                },
+                {
+                    "type": "recipes",
+                    "recipes": [
+                        "happyholidays:santa_elf_bell_recipe"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "title": "Toy Parts Request"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:toy_parts_request"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Santa's Elves also do need your help in getting some of the items they need; they bring along with them a 'Toy Part Request', which is a list of items they need for building some of the toys in the North Pole. They're kind of in a hurry though, so they'll need you to complete it before they leave!"
+                },
+                {
+                    "type": "text",
+                    "content": "They aren't that stingy though; they know that this isn't a very easy job to do, and as such have brought along Christmas goodies and enchanted tools to reward you when you're done! They may even give you a special legendary ornament!"
+                }
+            ]
+        },
+        {
+            "title": "Gift Wrapping and Giving",
+            "description": "Gift Wrapping and Giving",
+            "sections": [
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:gift_wrapper_block",
+                        "happyholidays:red_christmas_gift_item",
+                        "happyholidays:blue_christmas_gift_item",
+                        "happyholidays:yellow_christmas_gift_item",
+                        "happyholidays:green_christmas_gift_item",
+                        "happyholidays:gold_christmas_gift_item",
+                        "happyholidays:silver_christmas_gift_item"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Where's the fun in Christmas if you can't give others some goodies for them to enjoy? Using a gift wrapper, you'll be able to wrap anything your heart desires and give it to others. Shake the gift fully to find out what others have given you!"
+                },
+                {
+                    "type": "text",
+                    "title": "Giving the Grinch a Gift",
+                    "content": "Other players aren't the only ones who need a gift this Christmas! The Grinch is one grouchy dude; giving him a gift might lighten him up a little and he might even give you something in return!"
+                }
+            ]
+        },
+        {
+            "title": "Music Box and Sheet Music",
+            "description": "The Music Box",
+            "sections": [
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:music_box_block",
+                        "happyholidays:christmas_sheet_music_angels_on_high",
+                        "happyholidays:christmas_sheet_music_frosty_the_snowman",
+                        "happyholidays:christmas_sheet_music_god_rest_gentlemen",
+                        "happyholidays:christmas_sheet_music_white_christmas"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Along with all the ornaments and goodies Santa dropped was the Music Box. The Music Box allows you to play Christmas music, and can be easily crafted following this recipe:"
+                },
+                {
+                    "type": "recipes",
+                    "recipes": [
+                        "happyholidays:music_box_recipe"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Similar to how jukeboxes take CDs, a music box will take in sheet music and play the music that is written on it. These pieces of sheet music can be easily obtained from all the Christmas related sources!"
+                },
+                {
+                    "type": "text",
+                    "content": "There are a total of 16 pieces of sheet music that have been scattered in Minecraft; can you collect all of them?"
+                }
+            ]
+        },
+        {
+            "title": "Stockings and Christmas Wreaths",
+            "description": "Stockings and Christmas Wreaths",
+            "sections": [
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:red_stocking_block",
+                        "happyholidays:blue_stocking_block",
+                        "happyholidays:yellow_stocking_block",
+                        "happyholidays:green_stocking_block",
+                        "happyholidays:gold_stocking_block",
+                        "happyholidays:silver_stocking_block"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Alongside the other ornaments are some non-ornament ornament-like items, such as Christmas stockings! These stockings are placeable on solid walls, and during the night they have a chance to be filled up with random goodies!"
+                },
+                {
+                    "type": "text",
+                    "content": "You might want to try placing them near Santa's favourite snack, Milk and Cookies. They say that it gets him to come more often..."
+                },
+                {
+                    "type": "text",
+                    "title": "Christmas Wreaths"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:christmas_wreath_block"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Christmas Wreaths are another ornament-like block (but not an ornament) that can be placed on surfaces for decoration! They can be crafted using the following recipe:"
+                },
+                {
+                    "type": "recipes",
+                    "recipes": [
+                        "happyholidays:christmas_wreath_recipe"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Closing Notes",
+            "description": "Closing notes",
+            "sections": [
+                {
+                    "type": "text",
+                    "content": "This guide should serve as a good starter for a lot of the content that has been added for Christmas. Hopefully you do enjoy everything that has been added here!"
+                },
+                {
+                    "type": "text",
+                    "content": "Special thanks to E, who has always been supportive of the development of this mod and its various features. She was a big help in the ideation and features within this Christmas edition."
                 }
             ]
         }

@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.item.crafting.ShapedRecipe;
 
 public class RecipeLine implements IPageLine {
     public static final int ITEM_WIDTH = 18;
@@ -55,20 +56,26 @@ public class RecipeLine implements IPageLine {
         ItemRenderer itemRenderer = guideScreen.getItemRenderer();
         IRecipe recipe = recipes.get(this.recipeIndex);
 
-        boolean stop = false;
-        for (int j = 0; j < 3; j ++) {
-            if (stop) break;
-            for (int h = 0; h < 3; h ++) {
-                if ((j * 3 + h) > recipe.getIngredients().size() - 1) {
-                    stop = true;
-                    break;
-                }
+        // Default width and height
+        int width = 3;
+        int height = 3;
 
-                Ingredient ingredient = (Ingredient) recipe.getIngredients().get(j * 3 + h);
+        if (recipe instanceof ShapedRecipe) {
+            width = ((ShapedRecipe) recipe).getWidth();
+            height = ((ShapedRecipe) recipe).getHeight();
+        }
+
+        for (int i = 0; i < height; i ++) {
+            for (int j = 0; j < width; j ++) {
+                int currIndex = i * width + j;
+
+                if (currIndex >= recipe.getIngredients().size()) break;
+
+                Ingredient ingredient = (Ingredient) recipe.getIngredients().get(currIndex);
                 ItemStack[] itemStacks = ingredient.getItems();
-                if (itemStacks == null || itemStacks.length == 0) {
-                } else itemRenderer.renderGuiItem(itemStacks[0], baseX + h * ITEM_WIDTH + 1,
-                        baseY + j * ITEM_HEIGHT + 1);
+                if (itemStacks.length > 0) {
+                    itemRenderer.renderGuiItem(itemStacks[0], baseX + j * ITEM_WIDTH + 1,baseY + i * ITEM_HEIGHT + 1);
+                }
             }
         }
 
@@ -114,9 +121,19 @@ public class RecipeLine implements IPageLine {
                     int i = lineX / 18;
                     int j = lineY / 18;
 
-                    if (j * 3 + i < 0 || j * 3 + i > recipe.getIngredients().size() - 1) return null;
+                    // Default width and height
+                    int width = 3;
+                    int height = 3;
+
+                    if (recipe instanceof ShapedRecipe) {
+                        width = ((ShapedRecipe) recipe).getWidth();
+                        height = ((ShapedRecipe) recipe).getHeight();
+                    }
+
+                    int currIndex = j * width + i;
+                    if (currIndex < 0 || currIndex > recipe.getIngredients().size() - 1) return null;
                     else {
-                        Ingredient ingredient = (Ingredient) recipe.getIngredients().get(j * 3 + i);
+                        Ingredient ingredient = (Ingredient) recipe.getIngredients().get(currIndex);
                         ItemStack[] itemStacks = ingredient.getItems();
                         if (itemStacks == null || itemStacks.length == 0) {
                         } else return itemStacks[0];
@@ -138,9 +155,19 @@ public class RecipeLine implements IPageLine {
                     int i = lineX / 18;
                     int j = lineY / 18;
 
-                    if (j * 3 + i < 0 || j * 3 + i > recipe.getIngredients().size() - 1) return null;
+                    // Default width and height
+                    int width = 3;
+                    int height = 3;
+
+                    if (recipe instanceof ShapedRecipe) {
+                        width = ((ShapedRecipe) recipe).getWidth();
+                        height = ((ShapedRecipe) recipe).getHeight();
+                    }
+
+                    int currIndex = j * width + i;
+                    if (currIndex < 0 || currIndex > recipe.getIngredients().size() - 1) return null;
                     else {
-                        Ingredient ingredient = (Ingredient) recipe.getIngredients().get(j * 3 + i);
+                        Ingredient ingredient = (Ingredient) recipe.getIngredients().get(currIndex);
                         ItemStack[] itemStacks = ingredient.getItems();
                         if (itemStacks == null || itemStacks.length == 0) {
                         } else return itemStacks[0];

@@ -111,25 +111,31 @@ public class GuideProcessor {
                         String sectionTitle = String.format("%d.%d. %s", chapterCount, sectionCount, textSection.getTitle());
                         chapterProcessors.addAll(font.split(ITextProperties.of(sectionTitle,
                                 Style.EMPTY.applyFormat(TextFormatting.ITALIC)), GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
+
+                        sectionCount++;
                     }
 
-                    chapterProcessors.addAll(font.split(ITextProperties.of(textSection.getContent()),
-                            GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
+                    if (textSection.getContent() != null) {
+                        chapterProcessors.addAll(font.split(ITextProperties.of(textSection.getContent()),
+                                GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
+                    }
 
                     // Spacing
                     chapterProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.SPACING));
-                    sectionCount++;
                 } else if (section instanceof ImageSection){
                     // Image sections will simply just display the image
                     ImageSection imageSection = ((ImageSection) section).scale(IMAGE_SCALE_VALUE);
 
                     // Check whether there is a need to add spacing to the next page
                     int imageLines = imageSection.getHeight() / 9;
-                    if (chapterProcessors.size() % linesPerPage < imageLines - 1) {
-                        for (int i = 0; i < imageLines; i++) chapterProcessors.add(new EmptyLine(guideScreen,
+                    int linesRemaining = (linesPerPage - chapterProcessors.size() % linesPerPage);
+
+                    if (linesRemaining < imageLines) {
+                        for (int i = 0; i < linesRemaining; i++) chapterProcessors.add(new EmptyLine(guideScreen,
                                 EmptyLine.Type.SPACING));
                     }
 
+                    // Add image
                     chapterProcessors.add(new ImageLine(guideScreen, imageSection));
 
                     // Add empty lines as buffer to accommodate image
@@ -147,10 +153,11 @@ public class GuideProcessor {
                                 EmptyLine.Type.SPACING));
                     }
 
+                    // Add item line
                     chapterProcessors.add(new ItemLine(guideScreen, itemSection));
 
                     // Add empty lines as buffer to accommodate items
-                    for (int i = 0; i < 2; i++) {
+                    for (int i = 0; i < itemLines; i++) {
                         chapterProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.BUFFER));
                     }
                 } else if (section instanceof RecipeSection) {
@@ -164,10 +171,11 @@ public class GuideProcessor {
                                 EmptyLine.Type.SPACING));
                     }
 
+                    // Add recipe line
                     chapterProcessors.add(new RecipeLine(guideScreen, recipeSection));
 
                     // Add empty lines as buffer to accommodate items
-                    for (int i = 0; i < 6; i++) {
+                    for (int i = 0; i < itemLines; i++) {
                         chapterProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.BUFFER));
                     }
                 }
