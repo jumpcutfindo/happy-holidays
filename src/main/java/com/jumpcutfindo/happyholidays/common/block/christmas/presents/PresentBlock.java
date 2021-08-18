@@ -118,15 +118,18 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
 
     @Nullable
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
-        FluidState fluidstate = p_196258_1_.getLevel().getFluidState(p_196258_1_.getClickedPos());
-        boolean flag = fluidstate.getType() == Fluids.WATER;
-        return super.getStateForPlacement(p_196258_1_).setValue(WATERLOGGED, flag);
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        boolean isWaterlogged = fluidstate.getType() == Fluids.WATER;
+
+        BlockState blockState = this.defaultBlockState().setValue(WATERLOGGED, isWaterlogged);
+
+        return canSurvive(blockState, context.getLevel(), context.getClickedPos()) ? blockState : null;
     }
 
     @Override
     public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
-        return true;
+        return canSupportCenter(world, position.relative(Direction.DOWN), Direction.UP);
     }
 
     @Override
