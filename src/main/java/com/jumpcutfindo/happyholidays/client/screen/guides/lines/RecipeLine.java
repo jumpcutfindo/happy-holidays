@@ -25,6 +25,7 @@ public class RecipeLine implements IPageLine {
     private int internalTimer;
 
     private boolean isHovered;
+    private int xPos, yPos;
 
     public RecipeLine(GuideScreen guideScreen, RecipeSection recipeSection) {
         this.guideScreen = guideScreen;
@@ -39,6 +40,9 @@ public class RecipeLine implements IPageLine {
 
         int baseX = xPos + 16;
         int baseY = yPos - 1;
+
+        this.xPos = baseX;
+        this.yPos = baseY;
 
         // Draw backgrounds
         Minecraft.getInstance().getTextureManager().bind(guideScreen.guideBookGUI);
@@ -69,6 +73,8 @@ public class RecipeLine implements IPageLine {
         }
 
         itemRenderer.renderGuiItem(recipe.getResultItem(), baseX + 97, baseY + 19);
+
+        this.drawTooltip(matrixStack);
     }
 
     private void nextRecipe() {
@@ -82,6 +88,73 @@ public class RecipeLine implements IPageLine {
             }
         }
 
+    }
+
+    public void drawTooltip(MatrixStack matrixStack) {
+        if (this.isHovered) {
+            ItemStack itemStack = getItemAtPos(guideScreen.mouseX, guideScreen.mouseY);
+
+            if (itemStack != null) guideScreen.drawTooltip(matrixStack, itemStack.getHoverName(), (int) guideScreen.mouseX, (int) guideScreen.mouseY);
+        }
+    }
+
+    public ItemStack getItemAtPos(double x, double y) {
+        int screenX = (int) (x - (guideScreen.width - guideScreen.bgWidth) / 2.0D);
+        int screenY = (int) (y - (guideScreen.height - guideScreen.bgHeight) / 2.0D);
+
+        if (screenY > GuideScreen.PAGE_Y_START && screenY <= GuideScreen.PAGE_Y_END) {
+            if (screenX > GuideScreen.PAGE_LEFT_X_START && screenX <= GuideScreen.PAGE_LEFT_X_END) {
+                // Left page
+                int lineX = (int) x - this.xPos;
+                int lineY = (int) y - this.yPos;
+
+                if (lineX <= 54 && lineY <= 54) {
+                    // Within range of crafting table grid
+                    IRecipe recipe = recipeSection.getRecipes().get(this.recipeIndex);
+                    int i = lineX / 18;
+                    int j = lineY / 18;
+
+                    if (j * 3 + i < 0 || j * 3 + i > recipe.getIngredients().size() - 1) return null;
+                    else {
+                        Ingredient ingredient = (Ingredient) recipe.getIngredients().get(j * 3 + i);
+                        ItemStack[] itemStacks = ingredient.getItems();
+                        if (itemStacks == null || itemStacks.length == 0) {
+                        } else return itemStacks[0];
+                    }
+                } else if (lineX >= 97 && lineX <= 97 + 18 && lineY <= 54 && lineY >= 18) {
+                    // Within range of result item grid
+                    IRecipe recipe = recipeSection.getRecipes().get(this.recipeIndex);
+
+                    return recipe.getResultItem();
+                }
+            } else if (screenX > GuideScreen.PAGE_RIGHT_X_START && screenX <= GuideScreen.PAGE_RIGHT_X_END) {
+                // Right page
+                int lineX = (int) x - this.xPos;
+                int lineY = (int) y - this.yPos;
+
+                if (lineX <= 54 && lineY <= 54) {
+                    // Within range of crafting table grid
+                    IRecipe recipe = recipeSection.getRecipes().get(this.recipeIndex);
+                    int i = lineX / 18;
+                    int j = lineY / 18;
+
+                    if (j * 3 + i < 0 || j * 3 + i > recipe.getIngredients().size() - 1) return null;
+                    else {
+                        Ingredient ingredient = (Ingredient) recipe.getIngredients().get(j * 3 + i);
+                        ItemStack[] itemStacks = ingredient.getItems();
+                        if (itemStacks == null || itemStacks.length == 0) {
+                        } else return itemStacks[0];
+                    }
+                } else if (lineX >= 97 && lineX <= 97 + 18 && lineY <= 36 && lineY >= 18) {
+                    // Within range of result item grid
+                    IRecipe recipe = recipeSection.getRecipes().get(this.recipeIndex);
+
+                    return recipe.getResultItem();
+                }
+            }
+        }
+
+        return null;
     }
 
     @Override

@@ -141,8 +141,9 @@ public class GuideProcessor {
 
                     // Check whether there is a need to add spacing to the next page
                     int itemLines = 2;
-                    if (chapterProcessors.size() % linesPerPage < itemLines - 1) {
-                        for (int i = 0; i < itemLines; i++) chapterProcessors.add(new EmptyLine(guideScreen,
+                    int linesRemaining = (linesPerPage - chapterProcessors.size() % linesPerPage);
+                    if (linesRemaining < itemLines) {
+                        for (int i = 0; i < linesRemaining; i++) chapterProcessors.add(new EmptyLine(guideScreen,
                                 EmptyLine.Type.SPACING));
                     }
 
@@ -157,8 +158,9 @@ public class GuideProcessor {
 
                     // Check whether there is a need to add spacing to the next page
                     int itemLines = 6;
-                    if (chapterProcessors.size() % linesPerPage < itemLines - 1) {
-                        for (int i = 0; i < itemLines; i++) chapterProcessors.add(new EmptyLine(guideScreen,
+                    int linesRemaining = (linesPerPage - chapterProcessors.size() % linesPerPage);
+                    if (linesRemaining < itemLines) {
+                        for (int i = 0; i < linesRemaining; i++) chapterProcessors.add(new EmptyLine(guideScreen,
                                 EmptyLine.Type.SPACING));
                     }
 
