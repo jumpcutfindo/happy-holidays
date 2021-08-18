@@ -16,11 +16,15 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
@@ -28,6 +32,10 @@ import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
+import net.minecraft.pathfinding.PathType;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tileentity.TileEntity;
@@ -43,7 +51,9 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class PresentBlock extends ChristmasBlock {
+public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
     public static final Properties BLOCK_PROPERTIES =
             AbstractBlock.Properties
                     .of(Material.WOOL)
@@ -64,6 +74,13 @@ public class PresentBlock extends ChristmasBlock {
     public PresentBlock(String blockId, VoxelShape shape) {
         super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
         this.shape = shape;
+
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
+        p_206840_1_.add(WATERLOGGED);
     }
 
     @Override
@@ -92,12 +109,34 @@ public class PresentBlock extends ChristmasBlock {
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
                                   IWorld world, BlockPos pos1, BlockPos pos2) {
+        if (blockState.getValue(WATERLOGGED)) {
+            world.getLiquidTicks().scheduleTick(pos1, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+        }
+
         return this.canSurvive(blockState, world, pos1) ? blockState : Blocks.AIR.defaultBlockState();
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext p_196258_1_) {
+        FluidState fluidstate = p_196258_1_.getLevel().getFluidState(p_196258_1_.getClickedPos());
+        boolean flag = fluidstate.getType() == Fluids.WATER;
+        return super.getStateForPlacement(p_196258_1_).setValue(WATERLOGGED, flag);
     }
 
     @Override
     public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
         return true;
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState p_204507_1_) {
+        return p_204507_1_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_204507_1_);
+    }
+
+    @Override
+    public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
+        return false;
     }
 
     public float getGrowthProbability(World world, BlockPos pos) {

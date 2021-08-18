@@ -12,13 +12,17 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.TorchBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -35,7 +39,8 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
-public class OrnamentBlock extends ChristmasBlock {
+public class OrnamentBlock extends ChristmasBlock implements IWaterLoggable {
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<AttachFace> ATTACH_FACE = BlockStateProperties.ATTACH_FACE;
 
@@ -59,6 +64,7 @@ public class OrnamentBlock extends ChristmasBlock {
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(ATTACH_FACE, AttachFace.FLOOR)
                 .setValue(FACING, Direction.NORTH)
+                .setValue(WATERLOGGED, false)
         );
 
         this.normalShape = ornamentShapes[0];
@@ -78,25 +84,28 @@ public class OrnamentBlock extends ChristmasBlock {
         BlockPos blockPos = context.getClickedPos();
         World world = context.getLevel();
 
-        BlockState blockState = null;
+        AttachFace attachFace;
+        Direction facing;
 
         if (clickedFaceAxis == Direction.Axis.Y) {
-            blockState = this.defaultBlockState()
-                    .setValue(ATTACH_FACE, clickedFaceDirection == Direction.UP ? AttachFace.FLOOR : AttachFace.CEILING)
-                    .setValue(FACING, context.getHorizontalDirection().getOpposite());
+            attachFace = clickedFaceDirection == Direction.UP ? AttachFace.FLOOR : AttachFace.CEILING;
+            facing = context.getHorizontalDirection().getOpposite();
         } else {
-            blockState = this.defaultBlockState()
-                    .setValue(ATTACH_FACE, AttachFace.WALL)
-                    .setValue(FACING, clickedFaceDirection);
+            attachFace = AttachFace.WALL;
+            facing = clickedFaceDirection;
         }
 
-        return canSurvive(blockState, world, blockPos) ? blockState
-                : canSupportCenter(world, blockPos.below(), Direction.UP) ? this.defaultBlockState().setValue(ATTACH_FACE, AttachFace.FLOOR)
-                : null;
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        boolean isWaterlogged = fluidstate.getType() == Fluids.WATER;
+
+        BlockState blockState =
+                this.defaultBlockState().setValue(FACING, facing).setValue(ATTACH_FACE, attachFace).setValue(WATERLOGGED, isWaterlogged);
+
+        return canSurvive(blockState, world, blockPos) ? blockState : null;
     }
 
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(ATTACH_FACE, FACING);
+        stateBuilder.add(ATTACH_FACE, FACING, WATERLOGGED);
     }
 
     @Override
@@ -142,7 +151,16 @@ public class OrnamentBlock extends ChristmasBlock {
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
                                   IWorld world, BlockPos pos1, BlockPos pos2) {
+        if (blockState.getValue(WATERLOGGED)) {
+            world.getLiquidTicks().scheduleTick(pos1, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+        }
+
         return this.canSurvive(blockState, world, pos1) ? blockState : Blocks.AIR.defaultBlockState();
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState p_204507_1_) {
+        return p_204507_1_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_204507_1_);
     }
 
     @Override

@@ -10,11 +10,15 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
@@ -32,7 +36,8 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.Tags;
 
-public class ConnectedOrnamentBlock extends ChristmasBlock {
+public class ConnectedOrnamentBlock extends ChristmasBlock implements IWaterLoggable {
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<WallDecorationShape> WALL_SHAPE = EnumProperty.create("decoration_shape",
             WallDecorationShape.class);
@@ -50,6 +55,7 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WALL_SHAPE, WallDecorationShape.STRAIGHT)
+                .setValue(WATERLOGGED, false)
         );
     }
 
@@ -69,14 +75,18 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
             clickedFaceDirection = context.getHorizontalDirection().getOpposite();
         }
 
+        FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
+        boolean isWaterlogged = fluidstate.getType() == Fluids.WATER;
+
         return this.defaultBlockState()
                 .setValue(FACING, clickedFaceDirection)
-                .setValue(WALL_SHAPE, getWallShapeState(world, clickedPos, clickedFaceDirection));
+                .setValue(WALL_SHAPE, getWallShapeState(world, clickedPos, clickedFaceDirection))
+                .setValue(WATERLOGGED, isWaterlogged);
     }
 
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(WALL_SHAPE, FACING);
+        stateBuilder.add(WALL_SHAPE, FACING, WATERLOGGED);
     }
 
     @Override
@@ -99,17 +109,24 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
                                   IWorld world, BlockPos pos1, BlockPos pos2) {
+        if (blockState.getValue(WATERLOGGED)) {
+            world.getLiquidTicks().scheduleTick(pos1, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+        }
+
         // Remember facing direction, we don't want to change this
         Direction facingDirection = blockState.getValue(FACING);
 
         // Break the block if the block cannot survive
         if (!this.canSurvive(blockState, world, pos1)) return Blocks.AIR.defaultBlockState();
 
-        // Since block can survive, check if there are any updates to the state to be made
-
-        return this.defaultBlockState()
+        return blockState
                 .setValue(FACING, facingDirection)
                 .setValue(WALL_SHAPE, getWallShapeState(world, pos1, facingDirection));
+    }
+
+    @Override
+    public FluidState getFluidState(BlockState p_204507_1_) {
+        return p_204507_1_.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(p_204507_1_);
     }
 
     @Override
