@@ -10,6 +10,7 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItemUseContext;
@@ -18,6 +19,8 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -27,6 +30,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.Tags;
 
 public class ConnectedOrnamentBlock extends ChristmasBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -119,7 +123,7 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
 
 
         if (onBlockState != null) {
-            return onBlockState.isFaceSturdy(world, position, facingDirection);
+            return onBlockState.isFaceSturdy(world, position, facingDirection) || onBlockState.getBlock().is(BlockTags.LEAVES);
         }
 
         return false;
@@ -163,9 +167,12 @@ public class ConnectedOrnamentBlock extends ChristmasBlock {
             oppDir = Direction.WEST;
         }
 
-        boolean isLeftSupportive = world.getBlockState(leftPos).isFaceSturdy(world, leftPos, leftDir);
-        boolean isRightSupportive = world.getBlockState(rightPos).isFaceSturdy(world, rightPos, rightDir);
-        boolean isOppositeSupportive = world.getBlockState(oppPos).isFaceSturdy(world, oppPos, oppDir);
+        boolean isLeftSupportive =
+                world.getBlockState(leftPos).isFaceSturdy(world, leftPos, leftDir) || world.getBlockState(leftPos).is(BlockTags.LEAVES);
+        boolean isRightSupportive =
+                world.getBlockState(rightPos).isFaceSturdy(world, rightPos, rightDir) || world.getBlockState(rightPos).is(BlockTags.LEAVES);
+        boolean isOppositeSupportive =
+                world.getBlockState(oppPos).isFaceSturdy(world, oppPos, oppDir) || world.getBlockState(oppPos).is(BlockTags.LEAVES);
 
         if (isLeftSupportive && isRightSupportive && isOppositeSupportive) {
             return WallDecorationShape.ALL_FACE;

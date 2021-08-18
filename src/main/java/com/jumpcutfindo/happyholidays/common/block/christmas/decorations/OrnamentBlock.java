@@ -163,6 +163,8 @@ public class OrnamentBlock extends ChristmasBlock {
 
         boolean canSupportHanging = onBlockState != null && onBlockState.isFaceSturdy(world, position, facingDirection);
 
-        return canSupportCentre || canSupportHanging;
+        boolean isLeaves = onBlockState != null && onBlockState.is(BlockTags.LEAVES);
+
+        return canSupportCentre || canSupportHanging || isLeaves;
     }
 }

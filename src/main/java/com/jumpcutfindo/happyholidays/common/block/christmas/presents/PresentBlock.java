@@ -167,6 +167,7 @@ public class PresentBlock extends ChristmasBlock {
     }
 
     public static boolean canGrow(IWorld world, BlockState blockState, BlockPos blockPos) {
-        return !blockState.isFaceSturdy(world, blockPos, Direction.UP);
+        return !world.getBlockState(blockPos.above()).is(BlockTags.LEAVES) && !blockState.isFaceSturdy(world, blockPos,
+                Direction.UP);
     }
 }
