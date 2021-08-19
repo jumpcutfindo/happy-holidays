@@ -8,6 +8,8 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
+import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
@@ -357,7 +359,14 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
     public void handleRequestPaperOnGround(ItemEntity itemEntity) {
         if (!this.isRewardThrown && this.santaElfRequest.isCompleted()) {
             this.take(itemEntity, itemEntity.getItem().getCount());
+
+            // Reward the player for completing request
             this.throwRequestRewards();
+
+            // Add to naughty / nice meter
+            if (itemEntity.getThrower() != null) {
+                NaughtyNiceMeter.evaluateAction(this.level.getPlayerByUUID(itemEntity.getThrower()), NaughtyNiceAction.HELP_SANTA_ELF_EVENT);
+            }
 
             this.isRewardThrown = true;
             itemEntity.remove();

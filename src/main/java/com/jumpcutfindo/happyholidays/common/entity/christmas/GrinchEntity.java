@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
+import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
+import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
@@ -197,6 +199,11 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
                 // Drop loot & items (including all the scraps gathered)
                 this.throwAppeasementRewards();
+
+                // Add to naughty / nice meter
+                if (itemEntity.getThrower() != null) {
+                    NaughtyNiceMeter.evaluateAction(this.level.getPlayerByUUID(itemEntity.getThrower()), NaughtyNiceAction.APPEASE_GRINCH_EVENT);
+                }
 
                 for (int i = 0; i < 5; i++) {
                     double d0 = this.random.nextGaussian() * 0.02D;

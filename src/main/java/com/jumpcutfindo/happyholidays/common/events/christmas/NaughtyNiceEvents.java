@@ -7,6 +7,7 @@ import java.util.UUID;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNiceHandler;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.INaughtyNiceHandler;
+import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceProvider;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
@@ -68,24 +69,12 @@ public class NaughtyNiceEvents {
             PlayerEntity player = (PlayerEntity) event.getSource().getEntity();
             LivingEntity killedEntity = event.getEntityLiving();
 
-            Optional<INaughtyNiceHandler> naughtyNiceOptional =
-                    player.getCapability(CapabilityNaughtyNiceHandler.NAUGHTY_NICE_CAPABILITY).resolve();
-
-            if (naughtyNiceOptional.isPresent())  {
-                INaughtyNiceHandler naughtyNiceHandler = naughtyNiceOptional.get();
-
-                if (killedEntity.getClassification(false) != EntityClassification.MONSTER) {
-                    // Killed a non-hostile mob, give naughty points
-                    if (killedEntity instanceof SantaElfEntity) naughtyNiceHandler.addNaughty(NAUGHTY_KILL_SANTA_ELF_POINTS);
-                    else naughtyNiceHandler.addNaughty(NAUGHTY_KILL_PASSIVE_MOB_POINTS);
-                    player.sendMessage(new StringTextComponent(String.format("You've gained naughty points! Current "
-                            + "meter value: %d", naughtyNiceHandler.getValue())).withStyle(TextFormatting.RED), UUID.randomUUID());
-                } else {
-                    naughtyNiceHandler.addNice(NICE_KILL_HOSTILE_MOB_POINTS);
-                    player.sendMessage(new StringTextComponent(String.format("You've gained nice points! Current "
-                            + "meter value: %d", naughtyNiceHandler.getValue())).withStyle(TextFormatting.AQUA),
-                            UUID.randomUUID());
-                }
+            if (killedEntity.getClassification(false) != EntityClassification.MONSTER) {
+                // Killed a non-hostile mob, give naughty points
+                if (killedEntity instanceof SantaElfEntity) NaughtyNiceMeter.evaluateAction(player, NaughtyNiceAction.KILL_SANTA_ELF_EVENT);
+                else NaughtyNiceMeter.evaluateAction(player, NaughtyNiceAction.KILL_PASSIVE_MOB_EVENT);
+            } else {
+                NaughtyNiceMeter.evaluateAction(player, NaughtyNiceAction.KILL_HOSTILE_MOB_EVENT);
             }
         }
     }
