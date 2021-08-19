@@ -8,19 +8,20 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.items.CapabilityItemHandler;
 
 public class CapabilityNaughtyNiceHandler {
     @CapabilityInject(INaughtyNiceHandler.class)
     public static Capability<INaughtyNiceHandler> NAUGHTY_NICE_CAPABILITY = null;
 
     public static void register() {
-        CapabilityManager.INSTANCE.register(INaughtyNiceHandler.class, new DefaultNaughtyNiceHandlerStorage<>(), NaughtyNiceMeter::new);
+        CapabilityManager.INSTANCE.register(INaughtyNiceHandler.class, new DefaultNaughtyNiceHandlerStorage(), NaughtyNiceMeter::new);
     }
 
-    private static class DefaultNaughtyNiceHandlerStorage<T extends INaughtyNiceHandler> implements Capability.IStorage<T> {
+    private static class DefaultNaughtyNiceHandlerStorage implements Capability.IStorage<INaughtyNiceHandler> {
         @Nullable
         @Override
-        public INBT writeNBT(Capability<T> capability, T instance, Direction side) {
+        public INBT writeNBT(Capability<INaughtyNiceHandler> capability, INaughtyNiceHandler instance, Direction side) {
             if (!(instance instanceof NaughtyNiceMeter))
                 throw new RuntimeException("Cannot serialize to an instance that isn't the default implementation");
 
@@ -31,7 +32,7 @@ public class CapabilityNaughtyNiceHandler {
         }
 
         @Override
-        public void readNBT(Capability<T> capability, T instance, Direction side, INBT nbt) {
+        public void readNBT(Capability<INaughtyNiceHandler> capability, INaughtyNiceHandler instance, Direction side, INBT nbt) {
             if (!(instance instanceof NaughtyNiceMeter))
                 throw new RuntimeException("Cannot serialize to an instance that isn't the default implementation");
 
