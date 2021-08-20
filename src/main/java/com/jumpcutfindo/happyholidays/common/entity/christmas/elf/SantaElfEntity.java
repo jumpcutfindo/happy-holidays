@@ -275,7 +275,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         );
 
         for (VillagerTrades.ITrade[] trades : tradesList) {
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 1; i++) {
                 int randInt = this.random.nextInt(trades.length);
 
                 VillagerTrades.ITrade randomTrade = trades[randInt];

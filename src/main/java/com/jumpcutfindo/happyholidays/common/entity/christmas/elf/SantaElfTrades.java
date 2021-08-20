@@ -92,6 +92,7 @@ public class SantaElfTrades {
 
     public static final VillagerTrades.ITrade[] ALWAYS_APPEAR_TRADES =
             new VillagerTrades.ITrade[] {
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.SANTA_LIST_BLOCK.get().asItem(), 4, 1, 1, 4),
                     new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.SANTA_ELF_BELL.get().asItem(), 64, 1, 1, 8)
             };
 }
