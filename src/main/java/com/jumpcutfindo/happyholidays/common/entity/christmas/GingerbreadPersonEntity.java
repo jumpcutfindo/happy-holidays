@@ -126,6 +126,11 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
         }
     }
 
+    @Override
+    public boolean removeWhenFarAway(double p_213397_1_) {
+        return false;
+    }
+
     /*
         Animation related methods
      */

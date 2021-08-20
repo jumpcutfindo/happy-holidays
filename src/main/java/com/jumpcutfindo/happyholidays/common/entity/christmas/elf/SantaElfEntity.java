@@ -467,6 +467,11 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
     }
 
     @Override
+    public boolean removeWhenFarAway(double p_213397_1_) {
+        return false;
+    }
+
+    @Override
     public void addAdditionalSaveData(CompoundNBT nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.putInt("DespawnDelay", this.despawnDelay);

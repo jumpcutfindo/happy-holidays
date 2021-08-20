@@ -77,7 +77,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     private static final ResourceLocation GRINCH_APPEASEMENT_LOOT_TABLE = new ResourceLocation("happyholidays:entities"
             + "/grinch_appeasement");
 
-    public static final int SPAWN_PROBABILITY = 600;
+    public static final int SPAWN_WEIGHT = 50;
 
     private static final int BREAK_PRESENT_ANIM_DURATION = 80;
     private static final int BREAK_PRESENT_INTERVAL = 100;
@@ -409,9 +409,14 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                                                 SpawnReason spawnReason, BlockPos pos, Random rand) {
         if (spawnReason == SpawnReason.CHUNK_GENERATION) return false;
         try {
-            return HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.BABY_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
+            boolean isPresentBlockNear = HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.BABY_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
                     || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ADULT_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
                     || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ELDER_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null;
+
+            boolean isNight = false;
+            if (!world.isClientSide()) isNight = ((ServerWorld) world).isNight();
+
+            return isPresentBlockNear && isNight;
         } catch (Exception e) {
             return false;
         }
