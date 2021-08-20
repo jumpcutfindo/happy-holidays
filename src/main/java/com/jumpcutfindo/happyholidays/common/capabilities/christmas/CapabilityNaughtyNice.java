@@ -10,7 +10,7 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.items.CapabilityItemHandler;
 
-public class CapabilityNaughtyNiceHandler {
+public class CapabilityNaughtyNice {
     @CapabilityInject(INaughtyNiceHandler.class)
     public static Capability<INaughtyNiceHandler> NAUGHTY_NICE_CAPABILITY = null;
 

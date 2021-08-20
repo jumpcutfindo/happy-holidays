@@ -25,17 +25,17 @@ public class NaughtyNiceProvider implements ICapabilitySerializable<CompoundNBT>
 
     @Override
     public CompoundNBT serializeNBT() {
-        if (CapabilityNaughtyNiceHandler.NAUGHTY_NICE_CAPABILITY == null) {
+        if (CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY == null) {
             return new CompoundNBT();
         } else {
-            return (CompoundNBT) CapabilityNaughtyNiceHandler.NAUGHTY_NICE_CAPABILITY.writeNBT(meter, null);
+            return (CompoundNBT) CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY.writeNBT(meter, null);
         }
     }
 
     @Override
     public void deserializeNBT(CompoundNBT nbt) {
-        if (CapabilityNaughtyNiceHandler.NAUGHTY_NICE_CAPABILITY != null) {
-            CapabilityNaughtyNiceHandler.NAUGHTY_NICE_CAPABILITY.readNBT(meter, null, nbt);
+        if (CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY != null) {
+            CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY.readNBT(meter, null, nbt);
         }
     }
 }

@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.registry;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.SantaListBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.BlueStockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.GoldStockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.GreenStockingBlock;
@@ -346,6 +347,10 @@ public class ItemRegistry {
             ITEMS.register(ChristmasWreathBlock.BLOCK_ID,
                     () -> new ChristmasBlockItem(BlockRegistry.CHRISTMAS_WREATH_BLOCK.get(),
                             ChristmasWreathBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> SANTA_LIST_BLOCK_ITEM =
+            ITEMS.register(SantaListBlock.BLOCK_ID,
+                    () -> new ChristmasBlockItem(BlockRegistry.SANTA_LIST_BLOCK.get(),
+                            SantaListBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> BABY_PRESENT_ORNAMENT_BLOCK_ITEM =
             ITEMS.register(BabyPresentOrnamentBlock.BLOCK_ID,

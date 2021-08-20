@@ -2,27 +2,19 @@ package com.jumpcutfindo.happyholidays.common.events.christmas;
 
 
 import java.util.Optional;
-import java.util.UUID;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNiceHandler;
+import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.INaughtyNiceHandler;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
-import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceProvider;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
-import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.tags.EntityTypeTags;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -46,17 +38,16 @@ public class NaughtyNiceEvents {
             PlayerEntity newPlayer = event.getPlayer();
 
             Optional<INaughtyNiceHandler> oldCapability =
-                    originalPlayer.getCapability(CapabilityNaughtyNiceHandler.NAUGHTY_NICE_CAPABILITY).resolve();
+                    originalPlayer.getCapability(CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY).resolve();
 
             if (oldCapability.isPresent()) {
                 Optional<INaughtyNiceHandler> newCapability =
-                        newPlayer.getCapability(CapabilityNaughtyNiceHandler.NAUGHTY_NICE_CAPABILITY).resolve();
+                        newPlayer.getCapability(CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY).resolve();
 
                 if (newCapability.isPresent()) {
-                    INaughtyNiceHandler naughtyNiceHandler = newCapability.get();
+                    NaughtyNiceMeter naughtyNiceMeter = (NaughtyNiceMeter) newCapability.get();
 
-                    naughtyNiceHandler.addNaughty(oldCapability.get().getNaughty());
-                    naughtyNiceHandler.addNice(oldCapability.get().getNice());
+                    naughtyNiceMeter.setValue(oldCapability.get().getValue());
                 }
             }
 

@@ -9,53 +9,69 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 public class NaughtyNiceMeter implements INaughtyNiceHandler {
-    private int naughty, nice;
+    public static final int VALUE_NICE_MAX = 200;
+    public static final int VALUE_NICE_MIN = 10;
+    public static final int VALUE_NAUGHTY_MIN = -10;
+    public static final int VALUE_NAUGHTY_MAX = -200;
+
+    private int value;
 
     @Override
     public int getValue() {
-        return nice - naughty;
+        return value;
     }
 
     @Override
     public void addNaughty(int value) {
-        naughty += value;
+        addValue(-value);
     }
 
     @Override
     public void addNice(int value) {
-        nice += value;
+        addValue(value);
     }
 
-    @Override
-    public int getNaughty() {
-        return naughty;
+    private void addValue(int actualValue) {
+        this.value += actualValue;
+        if (this.value <= VALUE_NAUGHTY_MAX) this.value = VALUE_NAUGHTY_MAX;
+        if (this.value >= VALUE_NICE_MAX) this.value = VALUE_NICE_MAX;
     }
 
-    @Override
-    public int getNice() {
-        return nice;
+    public void setValue(int value) {
+        this.value = value;
     }
 
     @Override
     public boolean isNaughty() {
-        return naughty > nice;
+        return value <= VALUE_NAUGHTY_MIN;
     }
 
     @Override
     public boolean isNice() {
-        return nice > naughty;
+        return value >= VALUE_NICE_MIN;
+    }
+
+    @Override
+    public boolean isNeutral() {
+        return value > VALUE_NAUGHTY_MIN && value < VALUE_NICE_MIN;
+    }
+
+    public boolean isMaxNice() {
+        return value == VALUE_NICE_MAX;
+    }
+
+    public boolean isMaxNaughty() {
+        return value == VALUE_NAUGHTY_MAX;
     }
 
     public CompoundNBT writeToNBT(CompoundNBT nbt) {
-        nbt.putInt("NaughtyValue", this.getNaughty());
-        nbt.putInt("NiceValue", this.getNice());
+        nbt.putInt("NaughtyNiceValue", this.getValue());
 
         return nbt;
     }
 
     public NaughtyNiceMeter readFromNBT(CompoundNBT nbt) {
-        this.naughty = nbt.getInt("NaughtyValue");
-        this.nice = nbt.getInt("NiceValue");
+        this.value = nbt.getInt("NaughtyNiceValue");
 
         return this;
     }
@@ -64,7 +80,7 @@ public class NaughtyNiceMeter implements INaughtyNiceHandler {
         if (playerEntity == null) return;
 
         Optional<INaughtyNiceHandler> naughtyNiceCapability =
-                playerEntity.getCapability(CapabilityNaughtyNiceHandler.NAUGHTY_NICE_CAPABILITY).resolve();
+                playerEntity.getCapability(CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY).resolve();
 
         if (naughtyNiceCapability.isPresent()) {
             INaughtyNiceHandler naughtyNiceMeter = naughtyNiceCapability.get();

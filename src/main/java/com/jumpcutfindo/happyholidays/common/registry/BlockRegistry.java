@@ -5,6 +5,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasContainerBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.SantaListBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.BlueStockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.GoldStockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.GreenStockingBlock;
@@ -155,6 +156,8 @@ public class BlockRegistry {
 
     public static final RegistryObject<ChristmasBlock> CHRISTMAS_WREATH_BLOCK =
             BLOCKS.register(ChristmasWreathBlock.BLOCK_ID, ChristmasWreathBlock::new);
+    public static final RegistryObject<ChristmasBlock> SANTA_LIST_BLOCK =
+            BLOCKS.register(SantaListBlock.BLOCK_ID, SantaListBlock::new);
 
     public static final RegistryObject<ChristmasBlock> BABY_PRESENT_ORNAMENT_BLOCK =
             BLOCKS.register(BabyPresentOrnamentBlock.BLOCK_ID, BabyPresentOrnamentBlock::new);
