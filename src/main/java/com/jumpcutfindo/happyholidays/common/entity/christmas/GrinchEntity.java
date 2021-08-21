@@ -74,6 +74,9 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                     .add(Attributes.MOVEMENT_SPEED, 0.21D)
                     .build();
 
+    public static final float ENTITY_BOX_SIZE = 0.5f;
+    public static final float ENTITY_BOX_HEIGHT = 34.0f / 16.0f;
+
     private static final ResourceLocation GRINCH_APPEASEMENT_LOOT_TABLE = new ResourceLocation("happyholidays:entities"
             + "/grinch_appeasement");
 

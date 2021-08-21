@@ -73,6 +73,10 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
                     .add(Attributes.MAX_HEALTH, 20.0f)
                     .add(Attributes.MOVEMENT_SPEED, 0.27D)
                     .build();
+
+    public static final float ENTITY_BOX_SIZE = 0.8f;
+    public static final float ENTITY_BOX_HEIGHT = 22.0f / 16.0f;
+
     public static final int DEFAULT_DESPAWN_DELAY = 24000;
 
     private static final ResourceLocation SANTA_ELF_REQUEST_LOOT_TABLE = new ResourceLocation("happyholidays:entities/santa_elf_request");

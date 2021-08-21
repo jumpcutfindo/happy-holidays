@@ -37,6 +37,9 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimatable {
+    public static final float ENTITY_BOX_SIZE = 0.8f;
+    public static final float ENTITY_BOX_HEIGHT = 2.0f;
+
     private static final ResourceLocation GINGERBREAD_CONVERSION_LOOT_TABLE = new ResourceLocation("happyholidays"
             + ":entities/gingerbread_conversion");
     private static final double CONVERSION_ORNAMENT_DROP_BASE_CHANCE = 0.01D;

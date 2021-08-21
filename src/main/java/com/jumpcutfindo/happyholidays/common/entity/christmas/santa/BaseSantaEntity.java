@@ -26,6 +26,9 @@ public class BaseSantaEntity extends ChristmasEntity implements IAnimatable {
                     .add(Attributes.ATTACK_KNOCKBACK, 2.0D)
                     .build();
 
+    public static final float ENTITY_BOX_SIZE = 18.0f / 16.0f;
+    public static final float ENTITY_BOX_HEIGHT = 56.0f / 16.0f;
+
     public BaseSantaEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
     }
