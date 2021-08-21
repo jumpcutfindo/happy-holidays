@@ -5,6 +5,9 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.GingerbreadManEnti
 import com.jumpcutfindo.happyholidays.common.entity.christmas.GrinchEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.SoggyGingerbreadManEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.AngrySantaEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.HappySantaEntity;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -44,5 +47,19 @@ public class EntityRegistry {
                     () -> EntityType.Builder.of(GrinchEntity::new, EntityClassification.AMBIENT)
                             .sized(0.5f, 34.0f / 16.0f)
                             .build(GrinchEntity.ENTITY_ID)
+            );
+
+    public static final RegistryObject<EntityType<HappySantaEntity>> HAPPY_SANTA =
+            ENTITY_TYPES.register(HappySantaEntity.ENTITY_ID,
+                    () -> EntityType.Builder.of(HappySantaEntity::new, EntityClassification.MISC)
+                            .sized(18.0f / 16.0f, 56.0f / 16.0f)
+                            .build(HappySantaEntity.ENTITY_ID)
+            );
+
+    public static final RegistryObject<EntityType<AngrySantaEntity>> ANGRY_SANTA =
+            ENTITY_TYPES.register(AngrySantaEntity.ENTITY_ID,
+                    () -> EntityType.Builder.of(AngrySantaEntity::new, EntityClassification.MISC)
+                            .sized(18.0f / 16.0f, 56.0f / 16.0f)
+                            .build(AngrySantaEntity.ENTITY_ID)
             );
 }

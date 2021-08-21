@@ -5,6 +5,7 @@ import com.jumpcutfindo.happyholidays.client.block.MusicBoxRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.GingerbreadPersonEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.GrinchEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.SantaElfEntityRenderer;
+import com.jumpcutfindo.happyholidays.client.entity.SantaEntityRenderer;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 
@@ -37,6 +38,16 @@ public class RendererHandler {
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityRegistry.GRINCH.get(),
                 GrinchEntityRenderer::new
+        );
+
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityRegistry.HAPPY_SANTA.get(),
+                SantaEntityRenderer::new
+        );
+
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityRegistry.ANGRY_SANTA.get(),
+                SantaEntityRenderer::new
         );
 
         ClientRegistry.bindTileEntityRenderer(TileEntityRegistry.MUSIC_BOX_ENTITY_TYPE.get(), MusicBoxRenderer::new);
