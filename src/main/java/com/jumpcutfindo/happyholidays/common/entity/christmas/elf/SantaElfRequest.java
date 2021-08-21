@@ -160,8 +160,8 @@ public class SantaElfRequest {
                 String itemName = ((MusicDiscItem) this.requestedItems.getItem()).getDisplayName().getString();
                 return String.format("%d\u00d7 Music Disc [%s]", this.requestedItems.getCount(), itemName);
             } else {
-                String itemName = this.requestedItems.getDisplayName().getString();
-                return String.format("%d\u00d7 %s", this.requestedItems.getCount(), itemName.substring(1, itemName.length() - 1));
+                String itemName = this.requestedItems.getHoverName().getString();
+                return String.format("%d\u00d7 %s", this.requestedItems.getCount(), itemName);
             }
         }
     }
