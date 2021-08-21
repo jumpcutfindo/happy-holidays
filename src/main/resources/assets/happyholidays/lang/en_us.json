@@ -155,6 +155,10 @@
     "item.happyholidays.santa_elf_bell.cooldown": "Cooldown left: %s",
     "item.happyholidays.toy_parts_request.expires_in": "Expires in: %s",
 
+    "item.happyholidays.santa.basic_gift": "Basic Santa's Gift",
+    "item.happyholidays.santa.rare_gift": "Rare Santa's Gift",
+    "item.happyholidays.santa.legendary_gift": "Legendary Santa's Gift",
+
     "entity.happyholidays.gingerbread_man": "Gingerbread Man",
     "entity.happyholidays.soggy_gingerbread_man": "Soggy Gingerbread Man",
     "entity.happyholidays.gingerbread_person_passive.sub": "Gingerbread Man crumbles",
@@ -174,6 +178,8 @@
     "entity.happyholidays.grinch_hurt.sub": "Grinch hurts",
     "entity.happyholidays.grinch_break_box.sub": "Grinch breaks a present",
     "entity.happyholidays.grinch_despawn.sub": "Grinch disappears",
+
+    "entity.happyholidays.happy_santa": "Happy Santa",
 
     "itemGroup.happyholidaystab": "Happy Holidays",
 

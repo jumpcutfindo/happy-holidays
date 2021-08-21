@@ -14,14 +14,19 @@ import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameterSets;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -39,6 +44,10 @@ public class HappySantaEntity extends BaseSantaEntity {
     public static final int GIFT_LIFESPAN = 160;
     public static final int GIFT_SPAWN_INTERVAL_MIN = 5;
     public static final int GIFT_SPAWN_INTERVAL_MAX = 10;
+
+    public static final double BASIC_GIFT_SPAWN_CHANCE = 0.70;
+    public static final double RARE_GIFT_SPAWN_CHANCE = 0.25;
+    public static final double LEGENDARY_GIFT_SPAWN_CHANCE = 0.05;
 
     private BlockPos summoningPos = null;
     private boolean hasSummonedGifts = false;
@@ -95,6 +104,8 @@ public class HappySantaEntity extends BaseSantaEntity {
     }
 
     public void summonGift() {
+        if (this.level.isClientSide()) return;
+
         int randomX = this.random.nextInt(GIFT_SUMMON_RADIUS) * (this.random.nextBoolean() ? 1 : -1);
         int randomY = this.random.nextInt(GIFT_SUMMON_HEIGHT);
         int randomZ = this.random.nextInt(GIFT_SUMMON_RADIUS) * (this.random.nextBoolean() ? 1 : -1);
@@ -112,9 +123,20 @@ public class HappySantaEntity extends BaseSantaEntity {
         // Unable to summon a gift at this position, so we just stop the process
         if (!this.level.getBlockState(randomPos).is(Blocks.AIR)) return;
 
-        // TODO: Add loot table retrieval and wrapping of gift
+        ItemStack giftItem = ItemStack.EMPTY;
+        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
+
+        double giftChance = this.random.nextDouble();
+        if (giftChance < LEGENDARY_GIFT_SPAWN_CHANCE) {
+            giftItem = SantaGifts.generateGift(SantaGiftType.LEGENDARY, this, (ServerWorld) this.level, ctx);
+        } else if (giftChance < RARE_GIFT_SPAWN_CHANCE) {
+            giftItem = SantaGifts.generateGift(SantaGiftType.RARE, this, (ServerWorld) this.level, ctx);
+        } else {
+            giftItem = SantaGifts.generateGift(SantaGiftType.BASIC, this, (ServerWorld) this.level, ctx);
+        }
+
         // TODO: Add particle effects and playing of sound where gift spawns
-        ItemEntity giftEntity = new ItemEntity(this.level, randomPos.getX(), randomPos.getY(), randomPos.getZ(), Items.DIRT.getDefaultInstance());
+        ItemEntity giftEntity = new ItemEntity(this.level, randomPos.getX(), randomPos.getY(), randomPos.getZ(), giftItem);
         giftEntity.lifespan = GIFT_LIFESPAN;
 
         this.level.addFreshEntity(giftEntity);
