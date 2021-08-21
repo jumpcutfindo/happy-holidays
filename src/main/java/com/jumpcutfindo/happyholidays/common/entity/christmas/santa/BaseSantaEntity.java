@@ -33,7 +33,7 @@ public class BaseSantaEntity extends ChristmasEntity implements IAnimatable {
         super(entityType, world);
     }
 
-    private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
+    public <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
     {
         if (event.isMoving()) event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.walk", true));
         else event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.idle", true));
