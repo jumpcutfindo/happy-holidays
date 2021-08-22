@@ -5,21 +5,16 @@ import java.util.List;
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 
-import net.minecraft.block.AnvilBlock;
-import net.minecraft.client.gui.screen.inventory.AnvilScreen;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootTable;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.server.ServerWorld;
 
 public class SantaGifts {

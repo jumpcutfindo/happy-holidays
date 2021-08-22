@@ -1,12 +1,16 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.santa;
 
-import com.jumpcutfindo.happyholidays.common.entity.christmas.GingerbreadPersonEntity;
+import javax.annotation.Nullable;
+
+import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaSummonSound;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -15,15 +19,17 @@ import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.BasicParticleType;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
@@ -45,14 +51,17 @@ public class HappySantaEntity extends BaseSantaEntity {
     public static final int GIFT_SPAWN_INTERVAL_MIN = 5;
     public static final int GIFT_SPAWN_INTERVAL_MAX = 10;
 
-    public static final double BASIC_GIFT_SPAWN_CHANCE = 0.70;
-    public static final double RARE_GIFT_SPAWN_CHANCE = 0.25;
-    public static final double LEGENDARY_GIFT_SPAWN_CHANCE = 0.05;
+    // Gift spawn thresholds. Basic = 75%, Rare = 20% and Legendary = 5%
+    public static final double BASIC_GIFT_SPAWN_CHANCE_THRESHOLD = 1.0;
+    public static final double RARE_GIFT_SPAWN_CHANCE_THRESHOLD = 0.25;
+    public static final double LEGENDARY_GIFT_SPAWN_CHANCE_THRESHOLD = 0.05;
 
     private BlockPos summoningPos = null;
     private boolean hasSummonedGifts = false;
     private boolean isSummoning = false;
     private int giftsRemaining = -1;
+
+    private SantaSummonSound summonSound;
 
     public HappySantaEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
@@ -92,6 +101,9 @@ public class HappySantaEntity extends BaseSantaEntity {
         this.entityData.set(IS_SUMMONING, true);
 
         if (this.summoningPos == null) this.summoningPos = this.blockPosition();
+
+        this.summonSound = new SantaSummonSound(this.blockPosition());
+        Minecraft.getInstance().getSoundManager().play(this.summonSound);
     }
 
     public void stopDropParty() {
@@ -101,6 +113,8 @@ public class HappySantaEntity extends BaseSantaEntity {
         this.hasSummonedGifts = true;
 
         this.summoningPos = null;
+
+        if (this.summonSound != null) this.summonSound.stopTrack();
     }
 
     public void summonGift() {
@@ -123,25 +137,60 @@ public class HappySantaEntity extends BaseSantaEntity {
         // Unable to summon a gift at this position, so we just stop the process
         if (!this.level.getBlockState(randomPos).is(Blocks.AIR)) return;
 
+        // Create a gift to be spawned
         ItemStack giftItem = ItemStack.EMPTY;
         LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
 
+        BasicParticleType particleType = null;
+
         double giftChance = this.random.nextDouble();
-        if (giftChance < LEGENDARY_GIFT_SPAWN_CHANCE) {
+        if (giftChance < LEGENDARY_GIFT_SPAWN_CHANCE_THRESHOLD) {
             giftItem = SantaGifts.generateGift(SantaGiftType.LEGENDARY, this, (ServerWorld) this.level, ctx);
-        } else if (giftChance < RARE_GIFT_SPAWN_CHANCE) {
+            particleType = ParticleRegistry.CHRISTMAS_GOLD_PARTICLE.get();
+        } else if (giftChance < RARE_GIFT_SPAWN_CHANCE_THRESHOLD) {
             giftItem = SantaGifts.generateGift(SantaGiftType.RARE, this, (ServerWorld) this.level, ctx);
+            particleType = ParticleRegistry.CHRISTMAS_GREEN_PARTICLE.get();
         } else {
             giftItem = SantaGifts.generateGift(SantaGiftType.BASIC, this, (ServerWorld) this.level, ctx);
+            particleType = ParticleRegistry.CHRISTMAS_BLUE_PARTICLE.get();
         }
 
-        // TODO: Add particle effects and playing of sound where gift spawns
         ItemEntity giftEntity = new ItemEntity(this.level, randomPos.getX(), randomPos.getY(), randomPos.getZ(), giftItem);
         giftEntity.lifespan = GIFT_LIFESPAN;
 
+        for (int i = 0; i < 3; i++) {
+            double d0 = this.random.nextGaussian() * 0.02D;
+            double d1 = this.random.nextGaussian() * 0.02D;
+            double d2 = this.random.nextGaussian() * 0.02D;
+            ((ServerWorld) this.level).sendParticles(particleType,
+                    randomPos.getX() + this.random.nextDouble(),
+                    randomPos.getY() + this.random.nextDouble(),
+                    randomPos.getZ() + this.random.nextDouble(),
+                    1, d0, d1, d2,
+                    0.0D
+            );
+        }
+
         this.level.addFreshEntity(giftEntity);
+        this.level.playSound(null, randomPos.getX(), randomPos.getY(),
+                randomPos.getZ(), SoundRegistry.SANTA_ITEM_APPEAR.get(), SoundCategory.NEUTRAL, 1.0f, 1.0f);
 
         this.giftsRemaining--;
+    }
+
+    public void createSummoningParticle() {
+        double d0 = (double)(this.random.nextFloat() * 0.1F) + 0.25D;
+        double d1 = (double)(this.random.nextFloat() * 0.1F) + 0.25D;
+        double d2 = (double)(this.random.nextFloat() * 0.1F) + 0.25D;
+
+        BasicParticleType particleType =
+                this.random.nextBoolean() ? ParticleRegistry.CHRISTMAS_RED_PARTICLE.get() : ParticleRegistry.CHRISTMAS_GREEN_PARTICLE.get();
+
+        ((ServerWorld) this.level).sendParticles(particleType,
+                this.getX() + d0,
+                this.getY() + d1 + 1.0D,
+                this.getZ() + d2,
+                2, d0, d1, d2, 0.0D);
     }
 
     @Override
@@ -166,7 +215,15 @@ public class HappySantaEntity extends BaseSantaEntity {
 
         if (this.level.isClientSide()) {
             this.isSummoning = this.entityData.get(IS_SUMMONING);
+        } else {
+            if (this.isSummoning) createSummoningParticle();
         }
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return SoundRegistry.SANTA_PASSIVE.get();
     }
 
     @Override

@@ -180,6 +180,9 @@
     "entity.happyholidays.grinch_despawn.sub": "Grinch disappears",
 
     "entity.happyholidays.happy_santa": "Happy Santa",
+    "entity.happyholidays.santa_passive.sub": "Santa chortles",
+    "entity.happyholidays.santa_summoning.sub": "Santa summons gifts",
+    "entity.happyholidays.santa_item_appear.sub": "Santa's Gift appears",
 
     "itemGroup.happyholidaystab": "Happy Holidays",
 

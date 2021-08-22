@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 public class ChristmasGiftItem extends ChristmasItem {
     public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
-    public static final int ITEM_USE_DURATION = 35;
+    public static final int ITEM_USE_DURATION = 30;
 
     public ChristmasGiftItem(String itemId) {
         super(itemId, ITEM_PROPERTIES);

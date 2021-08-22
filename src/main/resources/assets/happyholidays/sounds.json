@@ -338,5 +338,35 @@
                 "stream": true
             }
         ]
+    },
+    "entity.santa_passive": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_passive.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_passive",
+                "stream": true
+            }
+        ]
+    },
+    "entity.santa_summoning": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_summoning.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_summoning",
+                "stream": true
+            }
+        ]
+    },
+    "entity.santa_item_appear": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_item_appear.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_item_appear",
+                "stream": true
+            }
+        ]
     }
 }

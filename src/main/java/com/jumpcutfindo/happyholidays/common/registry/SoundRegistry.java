@@ -111,7 +111,23 @@ public class SoundRegistry {
     public static final RegistryObject<SoundEvent> GRINCH_DESPAWN = SOUNDS.register(
             "entity.grinch_despawn",
             () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                            "entity.grinch_despawn"))
+                    "entity.grinch_despawn"))
+    );
+
+    public static final RegistryObject<SoundEvent> SANTA_PASSIVE = SOUNDS.register(
+            "entity.santa_passive",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_passive"))
+    );
+    public static final RegistryObject<SoundEvent> SANTA_SUMMONING = SOUNDS.register(
+            "entity.santa_summoning",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_summoning"))
+    );
+    public static final RegistryObject<SoundEvent> SANTA_ITEM_APPEAR = SOUNDS.register(
+            "entity.santa_item_appear",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_item_appear"))
     );
 
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_ANGELS_ON_HIGH = SOUNDS.register(
