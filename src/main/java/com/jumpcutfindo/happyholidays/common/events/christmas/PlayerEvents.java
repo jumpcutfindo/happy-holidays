@@ -74,7 +74,7 @@ public class PlayerEvents {
                     double d2 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
 
                     BasicParticleType particleType =
-                            playerEntity.getRandom().nextBoolean() ? ParticleRegistry.CHRISTMAS_RED_PARTICLE.get() : ParticleRegistry.CHRISTMAS_GREEN_PARTICLE.get();
+                            playerEntity.getRandom().nextBoolean() ? ParticleRegistry.CHRISTMAS_MEDIUM_RED_PARTICLE.get() : ParticleRegistry.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get();
 
                     ((ServerWorld) playerEntity.level).sendParticles(particleType,
                             placedBlockPos.getX() + 0.5D,

@@ -1,12 +1,20 @@
 package com.jumpcutfindo.happyholidays.common.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasBlueMediumParticle;
-import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasGoldMediumParticle;
-import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasGreenMediumParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumBlueParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumGoldParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumGreenParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumParticle;
-import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasRedMediumParticle;
-import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasSilverMediumParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumRedParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumSilverParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumYellowParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallBlueParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallGoldParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallGreenParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallRedParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallSilverParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallYellowParticle;
 import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
 
 import net.minecraft.client.Minecraft;
@@ -19,15 +27,30 @@ public class ParticleHandler {
 
     @SubscribeEvent
     public static void registerParticles(ParticleFactoryRegisterEvent event) {
-        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_GREEN_PARTICLE.get(),
-                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasGreenMediumParticle.COLOR));
-        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_RED_PARTICLE.get(),
-                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasRedMediumParticle.COLOR));
-        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_GOLD_PARTICLE.get(),
-                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasGoldMediumParticle.COLOR));
-        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_SILVER_PARTICLE.get(),
-                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasSilverMediumParticle.COLOR));
-        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_BLUE_PARTICLE.get(),
-                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasBlueMediumParticle.COLOR));
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_MEDIUM_RED_PARTICLE.get(),
+                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasMediumRedParticle.COLOR));
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_MEDIUM_BLUE_PARTICLE.get(),
+                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasMediumBlueParticle.COLOR));
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_MEDIUM_YELLOW_PARTICLE.get(),
+                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasMediumYellowParticle.COLOR));
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get(),
+                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasMediumGreenParticle.COLOR));
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_MEDIUM_GOLD_PARTICLE.get(),
+                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasMediumGoldParticle.COLOR));
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_MEDIUM_SILVER_PARTICLE.get(),
+                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasMediumSilverParticle.COLOR));
+
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_SMALL_RED_PARTICLE.get(),
+                (sprites) -> new ChristmasSmallParticle.Factory(sprites, ChristmasSmallRedParticle.COLOR));
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_SMALL_BLUE_PARTICLE.get(),
+                (sprites) -> new ChristmasSmallParticle.Factory(sprites, ChristmasSmallBlueParticle.COLOR));
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_SMALL_YELLOW_PARTICLE.get(),
+                (sprites) -> new ChristmasSmallParticle.Factory(sprites, ChristmasSmallYellowParticle.COLOR));
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_SMALL_GREEN_PARTICLE.get(),
+                (sprites) -> new ChristmasSmallParticle.Factory(sprites, ChristmasSmallGreenParticle.COLOR));
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_SMALL_GOLD_PARTICLE.get(),
+                (sprites) -> new ChristmasSmallParticle.Factory(sprites, ChristmasSmallGoldParticle.COLOR));
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_SMALL_SILVER_PARTICLE.get(),
+                (sprites) -> new ChristmasSmallParticle.Factory(sprites, ChristmasSmallSilverParticle.COLOR));
     }
 }
