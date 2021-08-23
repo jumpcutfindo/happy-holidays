@@ -8,6 +8,9 @@ import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.Christmas
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumRedParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumSilverParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumYellowParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.santa.SantaGreenSpawnParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.santa.SantaRedSpawnParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.santa.SantaSpawnParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallBlueParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallGoldParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallGreenParticle;
@@ -21,6 +24,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import software.bernie.shadowed.eliotlash.mclib.math.functions.limit.Min;
 
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ParticleHandler {
@@ -52,5 +56,10 @@ public class ParticleHandler {
                 (sprites) -> new ChristmasSmallParticle.Factory(sprites, ChristmasSmallGoldParticle.COLOR));
         Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_SMALL_SILVER_PARTICLE.get(),
                 (sprites) -> new ChristmasSmallParticle.Factory(sprites, ChristmasSmallSilverParticle.COLOR));
+
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get(),
+                (sprites) -> new SantaSpawnParticle.Factory(sprites, SantaRedSpawnParticle.COLOR));
+        Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get(),
+                (sprites) -> new SantaSpawnParticle.Factory(sprites, SantaGreenSpawnParticle.COLOR));
     }
 }

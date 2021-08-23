@@ -21,9 +21,9 @@ public class ChristmasParticle extends SpriteTexturedParticle {
                                    IAnimatedSprite sprites) {
         super(world, xCoord, yCoord, zCoord);
         this.sprites = sprites;
-        this.xd = xSpeed + (Math.random() * 2.0D - 1.0D) * (double)0.2F;
-        this.yd = ySpeed + (Math.random() * 2.0D) * (double)0.2F;
-        this.zd = zSpeed + (Math.random() * 2.0D - 1.0D) * (double)0.2F;
+        this.xd = xSpeed + (Math.random() * 2.0D - 1.0D) * (double) 0.2F;
+        this.yd = ySpeed + (Math.random() * 2.0D) * (double) 0.2F;
+        this.zd = zSpeed + (Math.random() * 2.0D - 1.0D) * (double) 0.2F;
 
         this.color = color;
 

@@ -17,8 +17,7 @@ public class ChristmasMediumParticle extends ChristmasParticle {
     public ChristmasMediumParticle(ClientWorld world,
                                    double xCoord, double yCoord, double zCoord,
                                    double xSpeed, double ySpeed, double zSpeed,
-                                   int color,
-                                   IAnimatedSprite sprites) {
+                                   int color, IAnimatedSprite sprites) {
         super(world, xCoord, yCoord, zCoord, xSpeed, ySpeed, zSpeed, color, sprites);
     }
 

@@ -7,6 +7,8 @@ import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.Christmas
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumRedParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumSilverParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumYellowParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.santa.SantaGreenSpawnParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.santa.SantaRedSpawnParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallBlueParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallGoldParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallGreenParticle;
@@ -49,4 +51,9 @@ public class ParticleRegistry {
             PARTICLES.register(ChristmasSmallGoldParticle.PARTICLE_ID, () -> new BasicParticleType(true));
     public static final RegistryObject<BasicParticleType> CHRISTMAS_SMALL_SILVER_PARTICLE =
             PARTICLES.register(ChristmasSmallSilverParticle.PARTICLE_ID, () -> new BasicParticleType(true));
+
+    public static final RegistryObject<BasicParticleType> CHRISTMAS_SANTA_RED_SPAWN_PARTICLE =
+            PARTICLES.register(SantaRedSpawnParticle.PARTICLE_ID, () -> new BasicParticleType(true));
+    public static final RegistryObject<BasicParticleType> CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE =
+            PARTICLES.register(SantaGreenSpawnParticle.PARTICLE_ID, () -> new BasicParticleType(true));
 }
