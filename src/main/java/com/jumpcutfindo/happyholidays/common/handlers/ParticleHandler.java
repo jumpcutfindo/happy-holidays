@@ -1,10 +1,12 @@
 package com.jumpcutfindo.happyholidays.common.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.particle.christmas.ChristmasBlueParticle;
-import com.jumpcutfindo.happyholidays.common.particle.christmas.ChristmasGoldParticle;
-import com.jumpcutfindo.happyholidays.common.particle.christmas.ChristmasGreenParticle;
-import com.jumpcutfindo.happyholidays.common.particle.christmas.ChristmasSilverParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasBlueMediumParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasGoldMediumParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasGreenMediumParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasRedMediumParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasSilverMediumParticle;
 import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
 
 import net.minecraft.client.Minecraft;
@@ -18,14 +20,14 @@ public class ParticleHandler {
     @SubscribeEvent
     public static void registerParticles(ParticleFactoryRegisterEvent event) {
         Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_GREEN_PARTICLE.get(),
-                ChristmasGreenParticle.Factory::new);
+                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasGreenMediumParticle.COLOR));
         Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_RED_PARTICLE.get(),
-                ChristmasGreenParticle.Factory::new);
+                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasRedMediumParticle.COLOR));
         Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_GOLD_PARTICLE.get(),
-                ChristmasGoldParticle.Factory::new);
+                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasGoldMediumParticle.COLOR));
         Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_SILVER_PARTICLE.get(),
-                ChristmasSilverParticle.Factory::new);
+                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasSilverMediumParticle.COLOR));
         Minecraft.getInstance().particleEngine.register(ParticleRegistry.CHRISTMAS_BLUE_PARTICLE.get(),
-                ChristmasBlueParticle.Factory::new);
+                (sprites) -> new ChristmasMediumParticle.Factory(sprites, ChristmasBlueMediumParticle.COLOR));
     }
 }
