@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"0": "happyholidays:blocks/christmas_pudding_block",
-		"particle": "happyholidays:blocks/christmas_pudding_block"
+		"0": "happyholidays:block/christmas_pudding_block",
+		"particle": "happyholidays:block/christmas_pudding_block"
 	},
 	"elements": [
 		{

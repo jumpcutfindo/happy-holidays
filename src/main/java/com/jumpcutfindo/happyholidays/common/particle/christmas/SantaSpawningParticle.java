@@ -36,3 +36,4 @@ public class SantaSpawningParticle extends SpriteTexturedParticle {
     public IParticleRenderType getRenderType() {
         return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
+}

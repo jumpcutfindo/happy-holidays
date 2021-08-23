@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "happyholidays:blocks/gold_stocking_block",
-		"particle": "happyholidays:blocks/gold_stocking_block"
+		"0": "happyholidays:block/gold_stocking_block",
+		"particle": "happyholidays:block/gold_stocking_block"
 	},
 	"elements": [
 		{

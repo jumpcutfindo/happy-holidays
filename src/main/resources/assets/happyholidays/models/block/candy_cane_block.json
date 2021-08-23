@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "happyholidays:blocks/candy_cane_block"
+        "all": "happyholidays:block/candy_cane_block"
     }
 }

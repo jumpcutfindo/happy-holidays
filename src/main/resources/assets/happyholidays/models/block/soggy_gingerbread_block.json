@@ -1,6 +1,6 @@
 {
     "parent": "block/cube_all",
     "textures": {
-        "all": "happyholidays:blocks/soggy_gingerbread_block"
+        "all": "happyholidays:block/soggy_gingerbread_block"
     }
 }

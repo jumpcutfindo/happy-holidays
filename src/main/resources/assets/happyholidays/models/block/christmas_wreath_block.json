@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "happyholidays:blocks/christmas_wreath_block",
-		"particle": "happyholidays:blocks/christmas_wreath_block"
+		"0": "happyholidays:block/christmas_wreath_block",
+		"particle": "happyholidays:block/christmas_wreath_block"
 	},
 	"elements": [
 		{

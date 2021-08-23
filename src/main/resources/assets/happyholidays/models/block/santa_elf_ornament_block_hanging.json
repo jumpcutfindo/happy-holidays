@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [128, 128],
 	"textures": {
-		"0": "happyholidays:blocks/santa_elf_ornament_block",
-		"particle": "happyholidays:blocks/santa_elf_ornament_block"
+		"0": "happyholidays:block/santa_elf_ornament_block",
+		"particle": "happyholidays:block/santa_elf_ornament_block"
 	},
 	"elements": [
 		{

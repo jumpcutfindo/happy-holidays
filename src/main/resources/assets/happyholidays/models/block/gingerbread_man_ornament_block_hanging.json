@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"particle": "happyholidays:blocks/gingerbread_man_ornament_block",
-		"1_0": "happyholidays:blocks/gingerbread_man_ornament_block"
+		"particle": "happyholidays:block/gingerbread_man_ornament_block",
+		"1_0": "happyholidays:block/gingerbread_man_ornament_block"
 	},
 	"elements": [
 		{
