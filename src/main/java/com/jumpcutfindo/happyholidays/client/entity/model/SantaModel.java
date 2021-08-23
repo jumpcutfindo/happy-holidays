@@ -17,9 +17,9 @@ public class SantaModel<T extends BaseSantaEntity> extends AnimatedGeoModel<Base
     @Override
     public ResourceLocation getTextureLocation(BaseSantaEntity object) {
         if (object instanceof HappySantaEntity) {
-            return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entities/happy_santa.png");
+            return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/happy_santa.png");
         } else {
-            return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entities/angry_santa.png");
+            return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/angry_santa.png");
         }
     }
 

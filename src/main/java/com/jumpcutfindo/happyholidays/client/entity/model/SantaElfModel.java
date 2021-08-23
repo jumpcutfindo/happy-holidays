@@ -14,7 +14,7 @@ public class SantaElfModel<T extends SantaElfEntity> extends AnimatedGeoModel<Sa
 
     @Override
     public ResourceLocation getTextureLocation(SantaElfEntity object) {
-        return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entities/santa_elf.png");
+        return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/santa_elf.png");
     }
 
     @Override

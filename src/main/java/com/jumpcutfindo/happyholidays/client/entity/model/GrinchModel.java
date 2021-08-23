@@ -14,7 +14,7 @@ public class GrinchModel<T extends GrinchEntity> extends AnimatedGeoModel<Grinch
 
     @Override
     public ResourceLocation getTextureLocation(GrinchEntity object) {
-        return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entities/grinch.png");
+        return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/grinch.png");
     }
 
     @Override

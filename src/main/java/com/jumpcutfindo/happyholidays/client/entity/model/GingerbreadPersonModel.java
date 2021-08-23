@@ -16,9 +16,9 @@ public class GingerbreadPersonModel<T extends GingerbreadPersonEntity> extends A
 	@Override
 	public ResourceLocation getTextureLocation(GingerbreadPersonEntity object) {
 		if (object instanceof SoggyGingerbreadManEntity) {
-			return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entities/soggy_gingerbread_man.png");
+			return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/soggy_gingerbread_man.png");
 		} else {
-			return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entities/gingerbread_man.png");
+			return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/gingerbread_man.png");
 		}
 	}
 
