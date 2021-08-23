@@ -10,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
@@ -56,7 +57,10 @@ public class ChristmasGiftItem extends ChristmasItem {
                 ItemStackHelper.loadAllItems(giftsNBT, giftList);
 
                 for (ItemStack giftItem : giftList) {
-                    playerEntity.inventory.add(giftItem);
+                    ItemEntity giftEntity = new ItemEntity(world, playerEntity.getX(), playerEntity.getY(),
+                            playerEntity.getZ(), giftItem);
+                    giftEntity.setDefaultPickUpDelay();
+                    world.addFreshEntity(giftEntity);
                 }
 
                 playerEntity.playSound(SoundEvents.ITEM_PICKUP, 1.0f, 1.0f);
