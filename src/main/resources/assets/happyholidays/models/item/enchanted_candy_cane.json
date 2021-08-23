@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "happyholidays:items/candy_cane"
+        "layer0": "happyholidays:item/candy_cane"
     }
 }

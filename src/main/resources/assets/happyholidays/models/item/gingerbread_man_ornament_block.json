@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "happyholidays:items/gingerbread_man_ornament_block"
+        "layer0": "happyholidays:item/gingerbread_man_ornament_block"
     }
 }

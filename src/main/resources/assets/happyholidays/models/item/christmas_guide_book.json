@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "happyholidays:items/christmas_guide_book"
+        "layer0": "happyholidays:item/christmas_guide_book"
     }
 }

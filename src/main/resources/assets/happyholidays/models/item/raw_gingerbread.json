@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "happyholidays:items/raw_gingerbread"
+        "layer0": "happyholidays:item/raw_gingerbread"
     }
 }

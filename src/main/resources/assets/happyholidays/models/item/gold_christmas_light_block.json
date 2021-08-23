@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "happyholidays:items/gold_christmas_light_block"
+        "layer0": "happyholidays:item/gold_christmas_light_block"
     }
 }
