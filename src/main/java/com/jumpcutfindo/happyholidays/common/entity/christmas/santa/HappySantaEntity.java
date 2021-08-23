@@ -1,5 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.santa;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
@@ -16,8 +18,11 @@ import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.boss.WitherEntity;
+import net.minecraft.entity.boss.dragon.EnderDragonEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
@@ -30,8 +35,11 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -62,6 +70,10 @@ public class HappySantaEntity extends BaseSantaEntity {
     private int giftsRemaining = -1;
 
     private SantaSummonSound summonSound;
+
+    private AxisAlignedBB areaOfEffect;
+    private final ServerBossInfo bossEvent = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(),
+            BossInfo.Color.RED, BossInfo.Overlay.PROGRESS));
 
     public HappySantaEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
@@ -102,8 +114,18 @@ public class HappySantaEntity extends BaseSantaEntity {
 
         if (this.summoningPos == null) this.summoningPos = this.blockPosition();
 
+        // Play summoning sounds
         this.summonSound = new SantaSummonSound(this.blockPosition());
         Minecraft.getInstance().getSoundManager().play(this.summonSound);
+
+        // Show boss bar to all players around the area
+        if (!this.level.isClientSide()) {
+            this.bossEvent.setPercent((float) this.giftsRemaining / (float) (NUM_GIFTS_TO_SUMMON));
+            this.areaOfEffect = new AxisAlignedBB(this.summoningPos).inflate(GIFT_SUMMON_RADIUS);
+
+            List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, this.areaOfEffect);
+            for (PlayerEntity playerEntity : playerList) this.bossEvent.addPlayer((ServerPlayerEntity) playerEntity);
+        }
     }
 
     public void stopDropParty() {
@@ -115,6 +137,8 @@ public class HappySantaEntity extends BaseSantaEntity {
         this.summoningPos = null;
 
         if (this.summonSound != null) this.summonSound.stopTrack();
+
+        this.bossEvent.removeAllPlayers();
     }
 
     public void summonGift() {
@@ -176,6 +200,8 @@ public class HappySantaEntity extends BaseSantaEntity {
                 randomPos.getZ(), SoundRegistry.SANTA_ITEM_APPEAR.get(), SoundCategory.NEUTRAL, 1.0f, 1.0f);
 
         this.giftsRemaining--;
+
+        this.bossEvent.setPercent((float) this.giftsRemaining / (float) (NUM_GIFTS_TO_SUMMON));
     }
 
     public void createSummoningParticle() {
@@ -187,9 +213,9 @@ public class HappySantaEntity extends BaseSantaEntity {
                 this.random.nextBoolean() ? ParticleRegistry.CHRISTMAS_RED_PARTICLE.get() : ParticleRegistry.CHRISTMAS_GREEN_PARTICLE.get();
 
         ((ServerWorld) this.level).sendParticles(particleType,
-                this.getX() + d0,
-                this.getY() + d1 + 1.0D,
-                this.getZ() + d2,
+                this.getX(),
+                this.getY() + d1 + 1.5D,
+                this.getZ(),
                 2, d0, d1, d2, 0.0D);
     }
 
@@ -216,7 +242,24 @@ public class HappySantaEntity extends BaseSantaEntity {
         if (this.level.isClientSide()) {
             this.isSummoning = this.entityData.get(IS_SUMMONING);
         } else {
-            if (this.isSummoning) createSummoningParticle();
+            if (this.isSummoning) {
+                createSummoningParticle();
+
+                if (this.level.getGameTime() % 60L == 0) {
+                    List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, this.areaOfEffect);
+
+                    // Remove players outside the AOE
+                    for (ServerPlayerEntity serverPlayerEntity : this.bossEvent.getPlayers()) {
+                        if (!playerList.contains(serverPlayerEntity)) this.bossEvent.removePlayer(serverPlayerEntity);
+                    }
+
+                    // Add players inside the AOE
+                    for (PlayerEntity playerEntity : playerList) {
+                        ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) playerEntity;
+                        if (!this.bossEvent.getPlayers().contains(serverPlayerEntity)) this.bossEvent.addPlayer((ServerPlayerEntity) playerEntity);
+                    }
+                }
+            }
         }
     }
 
