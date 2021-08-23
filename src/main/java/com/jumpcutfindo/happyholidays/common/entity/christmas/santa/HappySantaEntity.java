@@ -13,6 +13,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -49,7 +50,7 @@ public class HappySantaEntity extends BaseSantaEntity {
 
     public static final String ENTITY_ID = "happy_santa";
 
-    public static final int NUM_GIFTS_TO_SUMMON = 200;
+    public static final int NUM_GIFTS_TO_SUMMON = 150;
     public static final int GIFT_SUMMON_RADIUS = 20;
     public static final int GIFT_SUMMON_HEIGHT = 5;
     public static final int GIFT_LIFESPAN = 160;
@@ -62,6 +63,8 @@ public class HappySantaEntity extends BaseSantaEntity {
     public static final double LEGENDARY_GIFT_SPAWN_CHANCE_THRESHOLD = 0.05;
 
     private BlockPos summoningPos = null;
+
+    private boolean hasStartedSummoningGifts = false;
     private boolean hasSummonedGifts = false;
     private boolean isSummoning = false;
     private int giftsRemaining = -1;
@@ -105,9 +108,12 @@ public class HappySantaEntity extends BaseSantaEntity {
     }
 
     public void startDropParty() {
-        if (this.giftsRemaining != -1) this.giftsRemaining = NUM_GIFTS_TO_SUMMON;
+        if (!this.hasStartedSummoningGifts) this.giftsRemaining = NUM_GIFTS_TO_SUMMON;
+
         this.isSummoning = true;
         this.entityData.set(IS_SUMMONING, true);
+
+        this.hasStartedSummoningGifts = true;
 
         if (this.summoningPos == null) this.summoningPos = this.blockPosition();
 
@@ -224,6 +230,7 @@ public class HappySantaEntity extends BaseSantaEntity {
         super.addAdditionalSaveData(nbt);
 
         nbt.putBoolean("HasSummonedGifts", this.hasSummonedGifts);
+        nbt.putBoolean("HasStartedSummoningGifts", this.hasStartedSummoningGifts);
         nbt.putInt("GiftsRemaining", this.giftsRemaining);
     }
 
@@ -232,7 +239,17 @@ public class HappySantaEntity extends BaseSantaEntity {
         super.readAdditionalSaveData(nbt);
 
         this.hasSummonedGifts = nbt.getBoolean("HasSummonedGifts");
+        this.hasStartedSummoningGifts = nbt.getBoolean("HasStartedSummoningGifts");
         this.giftsRemaining = nbt.getInt("GiftsRemaining");
+    }
+
+    @Override
+    public void die(DamageSource p_70645_1_) {
+        super.die(p_70645_1_);
+
+        this.bossEvent.removeAllPlayers();
+
+        if (this.summonSound != null) this.summonSound.stopTrack();
     }
 
     @Override
