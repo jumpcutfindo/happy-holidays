@@ -9,10 +9,15 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarB
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.HappySantaEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
+import com.jumpcutfindo.happyholidays.server.data.SantaSummonSavedData;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,6 +26,7 @@ import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.particles.BasicParticleType;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -38,6 +44,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.storage.MapData;
+import net.minecraft.world.storage.WorldSavedData;
 
 public class ChristmasStarTileEntity extends LockableTileEntity implements IChristmasTileEntity, ITickableTileEntity {
     public static final String TILE_ENTITY_ID = "christmas_star_block";
@@ -54,6 +62,9 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
 
     private int currentTier;
     private int currentPoints;
+
+    private boolean isSummoningSanta;
+    private int summonSantaProgress;
 
     public final IIntArray dataAccess = new IIntArray() {
         @Override
@@ -175,9 +186,38 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
 
     @Override
     public void tick() {
-        if (!this.level.isClientSide() && this.level.getGameTime() % 80L == 0L) {
-            this.applyPlayerEffects();
-            this.applyEntityEffects();
+        if (this.level != null && !this.level.isClientSide()) {
+
+            if (this.level.getGameTime() % 80L == 0L) {
+                this.applyPlayerEffects();
+                this.applyEntityEffects();
+            }
+
+            if (isSummoningSanta) {
+                double d0 = (Math.random() * 0.1D) + 0.25D;
+                double d1 = (Math.random() * 0.1D) + 0.25D;
+                double d2 = (Math.random() * 0.1D) + 0.25D;
+
+                double d = Math.random();
+                BasicParticleType particleType = d < 0.5 ? ParticleRegistry.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
+                        ParticleRegistry.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get();
+
+                ((ServerWorld) this.level).sendParticles(particleType,
+                        this.getBlockPos().getX() + 0.5D,
+                        this.getBlockPos().getY() + d1 + 1.5D,
+                        this.getBlockPos().getZ() + 0.5D,
+                        2, d0, d1, d2, 0.0D);
+            }
+
+            if (isSummoningSanta && --this.summonSantaProgress <= 0) {
+                // TODO: Add logic for summoning the different santas
+                HappySantaEntity santaEntity = EntityRegistry.HAPPY_SANTA.get().create(this.level);
+                santaEntity.moveTo(this.getBlockPos().getX() + 0.5D, this.getBlockPos().getY() + 1.0D,
+                        this.getBlockPos().getZ());
+
+                this.level.addFreshEntity(santaEntity);
+                this.isSummoningSanta = false;
+            }
         }
 
         this.updatePoints();
@@ -212,6 +252,19 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
                         this.currentTier - 1, true, true));
             }
 
+        }
+    }
+    public void summonSanta() {
+        this.isSummoningSanta = true;
+        this.summonSantaProgress = BaseSantaEntity.SUMMON_SANTA_DURATION;
+
+        if (this.level != null && !this.level.isClientSide()) {
+            ServerWorld serverWorld = (ServerWorld) this.level;
+            SantaSummonSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(SantaSummonSavedData::new,
+                    SantaSummonSavedData.DATA_NAME);
+
+            santaData.setLastSummonTime(this.level.getGameTime());
+            santaData.setDirty();
         }
     }
 

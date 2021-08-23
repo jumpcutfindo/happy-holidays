@@ -155,6 +155,10 @@ public class ChristmasStarContainer extends Container {
         return this.data.get(0);
     }
 
+    public ChristmasStarTileEntity getTileEntity() {
+        return tileEntity;
+    }
+
     private static ChristmasStarTileEntity getTileEntity(final PlayerInventory playerInv, final PacketBuffer data) {
         Objects.requireNonNull(playerInv, "Player inventory cannot be null");
         Objects.requireNonNull(data, "Packet buffer cannot be null");

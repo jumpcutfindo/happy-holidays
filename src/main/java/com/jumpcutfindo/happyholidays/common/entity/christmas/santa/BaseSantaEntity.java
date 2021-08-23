@@ -16,8 +16,6 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class BaseSantaEntity extends ChristmasEntity implements IAnimatable {
-    private AnimationFactory factory = new AnimationFactory(this);
-
     public static final AttributeModifierMap ENTITY_ATTRIBUTES =
             createMobAttributes()
                     .add(Attributes.MAX_HEALTH, 150.0f)
@@ -28,6 +26,11 @@ public class BaseSantaEntity extends ChristmasEntity implements IAnimatable {
 
     public static final float ENTITY_BOX_SIZE = 18.0f / 16.0f;
     public static final float ENTITY_BOX_HEIGHT = 56.0f / 16.0f;
+
+    public static final int SUMMON_SANTA_DURATION = 200;
+
+    private AnimationFactory factory = new AnimationFactory(this);
+
 
     public BaseSantaEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
