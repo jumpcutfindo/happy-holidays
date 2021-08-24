@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.tileentity.christmas;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.Lists;
@@ -44,6 +45,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
@@ -263,13 +265,32 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         santaData.setDirty();
 
         // Summon the appropriate santa
-        BaseSantaEntity santaEntity = this.isGoodSanta ? EntityRegistry.HAPPY_SANTA.get().create(this.level) :
-                EntityRegistry.ANGRY_SANTA.get().create(this.level);
+        BaseSantaEntity santaEntity = null;
+        ITextComponent santaText = null;
+        if (this.isGoodSanta) {
+            santaEntity = EntityRegistry.HAPPY_SANTA.get().create(this.level);
+            santaText =
+                    new TranslationTextComponent("entity.happyholidays.santa_arrival_happy").withStyle(TextFormatting.AQUA);
+        } else {
+            santaEntity = EntityRegistry.ANGRY_SANTA.get().create(this.level);
+            santaText =
+                    new TranslationTextComponent("entity.happyholidays.santa_arrival_angry").withStyle(TextFormatting.RED);
+        }
+
+        List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, this.areaOfEffect);
+
+        ITextComponent finalSantaText = santaText;
+        playerList.forEach(playerEntity -> playerEntity.sendMessage(finalSantaText, UUID.randomUUID()));
+
         santaEntity.moveTo(this.getBlockPos().getX() + 0.5D, this.getBlockPos().getY() + 1.0D,
                 this.getBlockPos().getZ());
 
         this.level.addFreshEntity(santaEntity);
         this.isSummoningSanta = false;
+
+        // Play santa spawn sound
+        this.level.playSound(null, this.getBlockPos(), SoundRegistry.SANTA_SPAWN.get(), SoundCategory.NEUTRAL,
+                1.0f, 1.0f);
 
         this.summonEvent.removeAllPlayers();
     }

@@ -139,6 +139,11 @@ public class SoundRegistry {
             () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
                     "entity.santa_spawning_good"))
     );
+    public static final RegistryObject<SoundEvent> SANTA_SPAWN = SOUNDS.register(
+            "entity.santa_spawn",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_spawn"))
+    );
 
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_ANGELS_ON_HIGH = SOUNDS.register(
             AngelsOnHighSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,

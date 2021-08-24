@@ -188,7 +188,10 @@
     "entity.happyholidays.santa_item_appear.sub": "Santa's Gift appears",
     "entity.happyholidays.santa_spawning_bad.sub": "Santa's bells ring",
     "entity.happyholidays.santa_spawning_good.sub": "Santa's bells ring",
+    "entity.happyholidays.santa_spawn.sub": "Santa arrives",
     "entity.happyholidays.santa_is_coming": "Santa is coming...",
+    "entity.happyholidays.santa_arrival_happy": "Santa has arrived! And he brings along gifts to reward you!",
+    "entity.happyholidays.santa_arrival_angry": "Santa has arrived! And he doesn't look happy to be here...",
 
     "itemGroup.happyholidaystab": "Happy Holidays",
 

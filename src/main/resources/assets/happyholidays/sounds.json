@@ -388,5 +388,15 @@
                 "stream": true
             }
         ]
+    },
+    "entity.santa_spawn": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_spawn.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_spawn",
+                "stream": true
+            }
+        ]
     }
 }
