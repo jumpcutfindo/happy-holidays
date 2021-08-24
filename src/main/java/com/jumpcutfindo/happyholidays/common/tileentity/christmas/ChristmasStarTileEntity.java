@@ -45,7 +45,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.WorldSavedData;
@@ -69,6 +71,11 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
     private boolean isSummoningSanta;
     private boolean isGoodSanta;
     private int summonSantaProgress;
+
+    private AxisAlignedBB areaOfEffect;
+    private final ServerBossInfo summonEvent = (ServerBossInfo) (new ServerBossInfo(new TranslationTextComponent(
+            "entity.happyholidays.santa_is_coming"),
+            BossInfo.Color.WHITE, BossInfo.Overlay.PROGRESS));
 
     public final IIntArray dataAccess = new IIntArray() {
         @Override
@@ -200,24 +207,23 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
     public void summonSanta() {
         if (this.level != null && !this.level.isClientSide()) {
             ServerWorld serverWorld = (ServerWorld) this.level;
-            SantaSummonSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(SantaSummonSavedData::new,
-                    SantaSummonSavedData.DATA_NAME);
 
-            santaData.setLastSummonTime(this.level.getGameTime());
-            santaData.setDirty();
-
-            AxisAlignedBB box = new AxisAlignedBB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
+            this.areaOfEffect = new AxisAlignedBB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
 
             // Reset naughty nice meter of players in radius
             int totalValue = 0, totalPlayers = 0;
             for (ServerPlayerEntity serverPlayerEntity :
-                    serverWorld.getPlayers(playerEntity -> box.contains(playerEntity.position()))) {
+                    serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
                 int value = NaughtyNiceMeter.getMeterValue(serverPlayerEntity);
                 totalValue += value;
 
                 totalPlayers++;
 
                 NaughtyNiceMeter.resetMeter(serverPlayerEntity);
+
+                // Show boss bar to players around
+                this.summonEvent.setPercent((float) this.summonSantaProgress / (float) (BaseSantaEntity.SUMMON_SANTA_DURATION));
+                this.summonEvent.addPlayer(serverPlayerEntity);
             }
 
             // Determine type of santa
@@ -245,6 +251,27 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
             this.isSummoningSanta = true;
             this.summonSantaProgress = BaseSantaEntity.SUMMON_SANTA_DURATION;
         }
+    }
+
+    public void finishSummonSanta() {
+        // Set santa has been summoned
+        ServerWorld serverWorld = (ServerWorld) this.level;
+        SantaSummonSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(SantaSummonSavedData::new,
+                SantaSummonSavedData.DATA_NAME);
+
+        santaData.setLastSummonTime(this.level.getGameTime());
+        santaData.setDirty();
+
+        // Summon the appropriate santa
+        BaseSantaEntity santaEntity = this.isGoodSanta ? EntityRegistry.HAPPY_SANTA.get().create(this.level) :
+                EntityRegistry.ANGRY_SANTA.get().create(this.level);
+        santaEntity.moveTo(this.getBlockPos().getX() + 0.5D, this.getBlockPos().getY() + 1.0D,
+                this.getBlockPos().getZ());
+
+        this.level.addFreshEntity(santaEntity);
+        this.isSummoningSanta = false;
+
+        this.summonEvent.removeAllPlayers();
     }
 
     public int getCurrentTier() {
@@ -349,16 +376,27 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
                         this.getBlockPos().getY() + d1 + 1.5D,
                         this.getBlockPos().getZ() + 0.5D,
                         2, d0, d1, d2, 0.0D);
+
+                if (this.level.getGameTime() % 60L == 0) {
+                    List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, this.areaOfEffect);
+
+                    // Remove players outside the AOE
+                    for (ServerPlayerEntity serverPlayerEntity : this.summonEvent.getPlayers()) {
+                        if (!playerList.contains(serverPlayerEntity)) this.summonEvent.removePlayer(serverPlayerEntity);
+                    }
+
+                    // Add players inside the AOE
+                    for (PlayerEntity playerEntity : playerList) {
+                        ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) playerEntity;
+                        if (!this.summonEvent.getPlayers().contains(serverPlayerEntity)) this.summonEvent.addPlayer((ServerPlayerEntity) playerEntity);
+                    }
+                }
+
+                this.summonEvent.setPercent((float) (BaseSantaEntity.SUMMON_SANTA_DURATION - this.summonSantaProgress) / (float) (BaseSantaEntity.SUMMON_SANTA_DURATION));
             }
 
             if (isSummoningSanta && --this.summonSantaProgress <= 0) {
-                BaseSantaEntity santaEntity = this.isGoodSanta ? EntityRegistry.HAPPY_SANTA.get().create(this.level) :
-                        EntityRegistry.ANGRY_SANTA.get().create(this.level);
-                santaEntity.moveTo(this.getBlockPos().getX() + 0.5D, this.getBlockPos().getY() + 1.0D,
-                        this.getBlockPos().getZ());
-
-                this.level.addFreshEntity(santaEntity);
-                this.isSummoningSanta = false;
+                this.finishSummonSanta();
             }
         }
 

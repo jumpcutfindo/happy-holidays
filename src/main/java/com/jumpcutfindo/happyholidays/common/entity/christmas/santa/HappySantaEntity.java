@@ -124,7 +124,7 @@ public class HappySantaEntity extends BaseSantaEntity {
         // Show boss bar to all players around the area
         if (!this.level.isClientSide()) {
             this.bossEvent.setPercent((float) this.giftsRemaining / (float) (NUM_GIFTS_TO_SUMMON));
-            this.areaOfEffect = new AxisAlignedBB(this.summoningPos).inflate(GIFT_SUMMON_RADIUS);
+            this.areaOfEffect = new AxisAlignedBB(this.summoningPos).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
 
             List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, this.areaOfEffect);
             for (PlayerEntity playerEntity : playerList) this.bossEvent.addPlayer((ServerPlayerEntity) playerEntity);
@@ -246,8 +246,8 @@ public class HappySantaEntity extends BaseSantaEntity {
     @Override
     public void die(DamageSource p_70645_1_) {
         super.die(p_70645_1_);
-
         this.bossEvent.removeAllPlayers();
+        this.isSummoning = false;
 
         if (this.summonSound != null) this.summonSound.stopTrack();
     }
