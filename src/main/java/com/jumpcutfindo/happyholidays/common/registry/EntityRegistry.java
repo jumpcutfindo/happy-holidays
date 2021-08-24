@@ -9,6 +9,7 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.SoggyGingerbreadMa
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.AngrySantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.HappySantaEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SleighEntity;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -62,5 +63,12 @@ public class EntityRegistry {
                     () -> EntityType.Builder.of(AngrySantaEntity::new, EntityClassification.MISC)
                             .sized(BaseSantaEntity.ENTITY_BOX_SIZE, BaseSantaEntity.ENTITY_BOX_HEIGHT)
                             .build(AngrySantaEntity.ENTITY_ID)
+            );
+
+    public static final RegistryObject<EntityType<SleighEntity>> SLEIGH =
+            ENTITY_TYPES.register(SleighEntity.ENTITY_ID,
+                    () -> EntityType.Builder.of(SleighEntity::new, EntityClassification.MISC)
+                            .sized(SleighEntity.ENTITY_BOX_SIZE, SleighEntity.ENTITY_BOX_HEIGHT)
+                            .build(SleighEntity.ENTITY_ID)
             );
 }
