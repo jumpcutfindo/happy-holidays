@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
+import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
@@ -20,8 +21,10 @@ import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 import com.jumpcutfindo.happyholidays.server.data.SantaSummonSavedData;
 
 import net.minecraft.block.BlockState;
+import net.minecraft.client.audio.Sound;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
@@ -64,6 +67,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
     private int currentPoints;
 
     private boolean isSummoningSanta;
+    private boolean isGoodSanta;
     private int summonSantaProgress;
 
     public final IIntArray dataAccess = new IIntArray() {
@@ -161,68 +165,6 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         this.items.clear();
     }
 
-    @Override
-    public void load(BlockState blockState, CompoundNBT nbt) {
-        super.load(blockState, nbt);
-
-        this.items = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.items);
-
-        this.currentTier = nbt.getInt("CurrentTier");
-        this.currentPoints = nbt.getInt("CurrentPoints");
-    }
-
-    @Override
-    public CompoundNBT save(CompoundNBT nbt) {
-        super.save(nbt);
-
-        ItemStackHelper.saveAllItems(nbt, this.items);
-
-        nbt.putInt("CurrentTier", this.currentTier);
-        nbt.putInt("CurrentPoints", this.currentPoints);
-
-        return nbt;
-    }
-
-    @Override
-    public void tick() {
-        if (this.level != null && !this.level.isClientSide()) {
-
-            if (this.level.getGameTime() % 80L == 0L) {
-                this.applyPlayerEffects();
-                this.applyEntityEffects();
-            }
-
-            if (isSummoningSanta) {
-                double d0 = (Math.random() * 0.1D) + 0.25D;
-                double d1 = (Math.random() * 0.1D) + 0.25D;
-                double d2 = (Math.random() * 0.1D) + 0.25D;
-
-                double d = Math.random();
-                BasicParticleType particleType = d < 0.5 ? ParticleRegistry.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
-                        ParticleRegistry.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get();
-
-                ((ServerWorld) this.level).sendParticles(particleType,
-                        this.getBlockPos().getX() + 0.5D,
-                        this.getBlockPos().getY() + d1 + 1.5D,
-                        this.getBlockPos().getZ() + 0.5D,
-                        2, d0, d1, d2, 0.0D);
-            }
-
-            if (isSummoningSanta && --this.summonSantaProgress <= 0) {
-                // TODO: Add logic for summoning the different santas
-                HappySantaEntity santaEntity = EntityRegistry.HAPPY_SANTA.get().create(this.level);
-                santaEntity.moveTo(this.getBlockPos().getX() + 0.5D, this.getBlockPos().getY() + 1.0D,
-                        this.getBlockPos().getZ());
-
-                this.level.addFreshEntity(santaEntity);
-                this.isSummoningSanta = false;
-            }
-        }
-
-        this.updatePoints();
-    }
-
     public void applyPlayerEffects() {
         if (!this.level.isClientSide() && this.currentTier > 0) {
             AxisAlignedBB axisAlignedBB = new AxisAlignedBB(this.worldPosition).inflate(PLAYER_EFFECT_RADIUS[this.currentTier]);
@@ -254,10 +196,8 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
 
         }
     }
-    public void summonSanta() {
-        this.isSummoningSanta = true;
-        this.summonSantaProgress = BaseSantaEntity.SUMMON_SANTA_DURATION;
 
+    public void summonSanta() {
         if (this.level != null && !this.level.isClientSide()) {
             ServerWorld serverWorld = (ServerWorld) this.level;
             SantaSummonSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(SantaSummonSavedData::new,
@@ -265,6 +205,45 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
 
             santaData.setLastSummonTime(this.level.getGameTime());
             santaData.setDirty();
+
+            AxisAlignedBB box = new AxisAlignedBB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
+
+            // Reset naughty nice meter of players in radius
+            int totalValue = 0, totalPlayers = 0;
+            for (ServerPlayerEntity serverPlayerEntity :
+                    serverWorld.getPlayers(playerEntity -> box.contains(playerEntity.position()))) {
+                int value = NaughtyNiceMeter.getMeterValue(serverPlayerEntity);
+                totalValue += value;
+
+                totalPlayers++;
+
+                NaughtyNiceMeter.resetMeter(serverPlayerEntity);
+            }
+
+            // Determine type of santa
+            if (totalPlayers == 0) return;
+
+            int averageValue = totalValue / totalPlayers;
+            if (averageValue >= NaughtyNiceMeter.VALUE_NICE_MIN) {
+                this.isGoodSanta = true;
+            } else if (averageValue <= NaughtyNiceMeter.VALUE_NAUGHTY_MIN) {
+                this.isGoodSanta = false;
+            } else {
+                this.isGoodSanta = Math.random() < 0.5;
+            }
+
+            // Play relevant sound effects
+            if (this.isGoodSanta) {
+                this.level.playSound(null, this.getBlockPos(), SoundRegistry.SANTA_SPAWNING_GOOD.get(),
+                        SoundCategory.NEUTRAL, 1.0f, 1.0f);
+            } else {
+                this.level.playSound(null, this.getBlockPos(), SoundRegistry.SANTA_SPAWNING_BAD.get(),
+                        SoundCategory.NEUTRAL, 1.0f, 1.0f);
+            }
+
+            // Start summoning santa
+            this.isSummoningSanta = true;
+            this.summonSantaProgress = BaseSantaEntity.SUMMON_SANTA_DURATION;
         }
     }
 
@@ -345,6 +324,68 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
                     this.worldPosition.getZ(), SoundEvents.NOTE_BLOCK_BELL, SoundCategory.BLOCKS, 1.0F,
                     1.0F + newTier * 0.1F);
         }
+    }
+
+    @Override
+    public void tick() {
+        if (this.level != null && !this.level.isClientSide()) {
+
+            if (this.level.getGameTime() % 80L == 0L) {
+                this.applyPlayerEffects();
+                this.applyEntityEffects();
+            }
+
+            if (isSummoningSanta) {
+                double d0 = (Math.random() * 0.1D) + 0.25D;
+                double d1 = (Math.random() * 0.1D) + 0.25D;
+                double d2 = (Math.random() * 0.1D) + 0.25D;
+
+                double d = Math.random();
+                BasicParticleType particleType = d < 0.5 ? ParticleRegistry.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
+                        ParticleRegistry.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get();
+
+                ((ServerWorld) this.level).sendParticles(particleType,
+                        this.getBlockPos().getX() + 0.5D,
+                        this.getBlockPos().getY() + d1 + 1.5D,
+                        this.getBlockPos().getZ() + 0.5D,
+                        2, d0, d1, d2, 0.0D);
+            }
+
+            if (isSummoningSanta && --this.summonSantaProgress <= 0) {
+                BaseSantaEntity santaEntity = this.isGoodSanta ? EntityRegistry.HAPPY_SANTA.get().create(this.level) :
+                        EntityRegistry.ANGRY_SANTA.get().create(this.level);
+                santaEntity.moveTo(this.getBlockPos().getX() + 0.5D, this.getBlockPos().getY() + 1.0D,
+                        this.getBlockPos().getZ());
+
+                this.level.addFreshEntity(santaEntity);
+                this.isSummoningSanta = false;
+            }
+        }
+
+        this.updatePoints();
+    }
+
+    @Override
+    public void load(BlockState blockState, CompoundNBT nbt) {
+        super.load(blockState, nbt);
+
+        this.items = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.items);
+
+        this.currentTier = nbt.getInt("CurrentTier");
+        this.currentPoints = nbt.getInt("CurrentPoints");
+    }
+
+    @Override
+    public CompoundNBT save(CompoundNBT nbt) {
+        super.save(nbt);
+
+        ItemStackHelper.saveAllItems(nbt, this.items);
+
+        nbt.putInt("CurrentTier", this.currentTier);
+        nbt.putInt("CurrentPoints", this.currentPoints);
+
+        return nbt;
     }
 
     public static ChristmasStarTileEntity getStarInfluencingBlock(World world, BlockPos blockPos) {

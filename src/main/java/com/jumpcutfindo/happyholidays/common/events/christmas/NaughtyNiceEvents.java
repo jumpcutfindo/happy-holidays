@@ -50,7 +50,6 @@ public class NaughtyNiceEvents {
                     naughtyNiceMeter.setValue(oldCapability.get().getValue());
                 }
             }
-
         }
     }
 

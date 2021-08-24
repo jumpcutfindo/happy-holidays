@@ -29,6 +29,8 @@ public class BaseSantaEntity extends ChristmasEntity implements IAnimatable {
 
     public static final int SUMMON_SANTA_DURATION = 200;
 
+    public static final int NAUGHTY_NICE_CONSIDERATION_RADIUS = 40;
+
     private AnimationFactory factory = new AnimationFactory(this);
 
 

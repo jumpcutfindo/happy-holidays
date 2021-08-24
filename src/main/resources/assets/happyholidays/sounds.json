@@ -368,5 +368,25 @@
                 "stream": true
             }
         ]
+    },
+    "entity.santa_spawning_bad": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_spawning_bad.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_spawning_bad",
+                "stream": true
+            }
+        ]
+    },
+    "entity.santa_spawning_good": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_spawning_good.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_spawning_good",
+                "stream": true
+            }
+        ]
     }
 }

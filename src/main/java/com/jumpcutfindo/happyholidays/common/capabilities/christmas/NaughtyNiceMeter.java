@@ -103,4 +103,30 @@ public class NaughtyNiceMeter implements INaughtyNiceHandler {
             }
         }
     }
+
+    public static int getMeterValue(PlayerEntity playerEntity) {
+        if (playerEntity == null) return 0;
+
+        Optional<INaughtyNiceHandler> naughtyNiceCapability =
+                playerEntity.getCapability(CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY).resolve();
+
+        if (naughtyNiceCapability.isPresent()) {
+            NaughtyNiceMeter naughtyNiceMeter = (NaughtyNiceMeter) naughtyNiceCapability.get();
+            return naughtyNiceMeter.getValue();
+        }
+
+        return 0;
+    }
+
+    public static void resetMeter(PlayerEntity playerEntity) {
+        if (playerEntity == null) return;
+
+        Optional<INaughtyNiceHandler> naughtyNiceCapability =
+                playerEntity.getCapability(CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY).resolve();
+
+        if (naughtyNiceCapability.isPresent()) {
+            NaughtyNiceMeter naughtyNiceMeter = (NaughtyNiceMeter) naughtyNiceCapability.get();
+            naughtyNiceMeter.setValue(0);
+        }
+    }
 }
