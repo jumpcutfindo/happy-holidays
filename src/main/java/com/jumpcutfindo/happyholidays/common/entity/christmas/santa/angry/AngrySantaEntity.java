@@ -1,5 +1,6 @@
-package com.jumpcutfindo.happyholidays.common.entity.christmas.santa;
+package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry;
 
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 
 import net.minecraft.entity.CreatureEntity;
@@ -82,6 +83,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
         SleighEntity sleighEntity = EntityRegistry.SLEIGH.get().create(this.level).setRotation(vector);
         sleighEntity.moveTo(this.position().add(sleighEntity.getForward().multiply(3.0d, 3.0d, 3.0d)));
 
+        // TODO: Change to some santa sound
         this.playSound(SoundEvents.EGG_THROW, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         this.level.addFreshEntity(sleighEntity);
 
@@ -122,44 +124,5 @@ public class AngrySantaEntity extends BaseSantaEntity {
     public void tick() {
         super.tick();
         // TODO: Add random switching of phases
-    }
-
-    public static class SleighAttackGoal extends Goal {
-        private AngrySantaEntity santaEntity;
-
-        private int sleighAttackTimer;
-        private boolean isDiagonal;
-
-        public SleighAttackGoal(AngrySantaEntity santaEntity) {
-            this.santaEntity = santaEntity;
-        }
-
-        @Override
-        public boolean canUse() {
-            return santaEntity.getPhase() == Phase.SLEIGHS;
-        }
-
-        @Override
-        public void start() {
-            this.sleighAttackTimer = AngrySantaEntity.ATTACK_SLEIGH_INTERVAL;
-        }
-
-        @Override
-        public void tick() {
-            if (--sleighAttackTimer <= 0) {
-                if (!isDiagonal) {
-                    this.santaEntity.fireHorizontalSleighs();
-                } else {
-                    this.santaEntity.fireDiagonalSleighs();
-                }
-
-                isDiagonal = !isDiagonal;
-                sleighAttackTimer = AngrySantaEntity.ATTACK_SLEIGH_INTERVAL;
-            }
-        }
-    }
-
-    private enum Phase {
-        SLEIGHS, PRESENTS, TELEPORT;
     }
 }

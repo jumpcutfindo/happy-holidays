@@ -1,9 +1,13 @@
-package com.jumpcutfindo.happyholidays.common.entity.christmas.santa;
+package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGiftType;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGifts;
 import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaSummonSound;
@@ -13,7 +17,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
@@ -30,6 +33,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.BasicParticleType;
+import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -225,6 +229,10 @@ public class HappySantaEntity extends BaseSantaEntity {
                 2, d0, d1, d2, 0.0D);
     }
 
+    public BlockPos getSummoningPos() {
+        return summoningPos;
+    }
+
     @Override
     public void addAdditionalSaveData(CompoundNBT nbt) {
         super.addAdditionalSaveData(nbt);
@@ -296,51 +304,6 @@ public class HappySantaEntity extends BaseSantaEntity {
         else return super.predicate(event);
     }
 
-    public static class SummonGiftsGoal extends Goal {
-        private HappySantaEntity santaEntity;
 
-        private int summonTimer = 0;
-
-        public SummonGiftsGoal(HappySantaEntity santaEntity) {
-            this.santaEntity = santaEntity;
-        }
-
-        @Override
-        public boolean canUse() {
-            return !santaEntity.hasSummonedGifts();
-        }
-
-        @Override
-        public boolean canContinueToUse() {
-            return !santaEntity.hasSummonedGifts();
-        }
-
-        @Override
-        public void tick() {
-            if (!santaEntity.isSummoning()) {
-                santaEntity.startDropParty();
-            }
-
-            if (--summonTimer <= 0) {
-                if (santaEntity.getGiftsRemaining() <= 0) {
-                    santaEntity.stopDropParty();
-                } else {
-                    santaEntity.summonGift();
-                }
-
-                // Reset timer
-                summonTimer = santaEntity.random.nextInt(HappySantaEntity.GIFT_SPAWN_INTERVAL_MAX - HappySantaEntity.GIFT_SPAWN_INTERVAL_MIN) + HappySantaEntity.GIFT_SPAWN_INTERVAL_MIN;
-            }
-
-            if (santaEntity.summoningPos != null) {
-                santaEntity.navigation.moveTo(
-                        santaEntity.summoningPos.getX(),
-                        santaEntity.summoningPos.getY(),
-                        santaEntity.summoningPos.getZ(),
-                        1.0f
-                );
-            }
-        }
-    }
 
 }

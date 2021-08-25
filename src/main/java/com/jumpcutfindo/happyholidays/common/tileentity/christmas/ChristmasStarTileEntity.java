@@ -12,7 +12,7 @@ import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceM
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.HappySantaEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy.HappySantaEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
@@ -22,7 +22,6 @@ import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 import com.jumpcutfindo.happyholidays.server.data.SantaSummonSavedData;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.client.audio.Sound;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -32,7 +31,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -51,8 +49,6 @@ import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.MapData;
-import net.minecraft.world.storage.WorldSavedData;
 
 public class ChristmasStarTileEntity extends LockableTileEntity implements IChristmasTileEntity, ITickableTileEntity {
     public static final String TILE_ENTITY_ID = "christmas_star_block";

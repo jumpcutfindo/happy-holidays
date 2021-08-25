@@ -6,10 +6,10 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.GingerbreadPersonE
 import com.jumpcutfindo.happyholidays.common.entity.christmas.GrinchEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.SoggyGingerbreadManEntity;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.AngrySantaEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.AngrySantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.HappySantaEntity;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SleighEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy.HappySantaEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.SleighEntity;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;

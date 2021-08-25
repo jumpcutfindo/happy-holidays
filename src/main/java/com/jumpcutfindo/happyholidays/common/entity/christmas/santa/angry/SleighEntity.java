@@ -1,14 +1,11 @@
-package com.jumpcutfindo.happyholidays.common.entity.christmas.santa;
+package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry;
 
-import net.minecraft.command.arguments.EntityAnchorArgument;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
