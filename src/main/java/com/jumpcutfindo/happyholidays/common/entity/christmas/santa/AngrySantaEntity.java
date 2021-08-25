@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
+import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
@@ -32,6 +33,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
     protected void registerGoals() {
         super.registerGoals();
 
+        this.goalSelector.addGoal(4, new RandomWalkingGoal(this, 1.0f, 4));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
 
@@ -43,6 +45,11 @@ public class AngrySantaEntity extends BaseSantaEntity {
         super.onAddedToWorld();
 
         this.currentPhase = Phase.SLEIGHS;
+    }
+
+    @Override
+    public boolean isInvulnerableTo(DamageSource dmgSource) {
+        return dmgSource.isExplosion();
     }
 
     public void fireHorizontalSleighs() {
@@ -75,7 +82,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
         SleighEntity sleighEntity = EntityRegistry.SLEIGH.get().create(this.level).setRotation(vector);
         sleighEntity.moveTo(this.position().add(sleighEntity.getForward().multiply(3.0d, 3.0d, 3.0d)));
 
-        this.playSound(SoundEvents.SKELETON_SHOOT, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+        this.playSound(SoundEvents.EGG_THROW, 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         this.level.addFreshEntity(sleighEntity);
 
         for (int i = 0; i < 5; i ++) {

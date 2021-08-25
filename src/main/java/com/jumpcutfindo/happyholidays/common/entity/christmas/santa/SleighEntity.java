@@ -60,6 +60,8 @@ public class SleighEntity extends Entity implements IAnimatable {
         this.noPhysics = false;
     }
 
+
+
     @Override
     public void tick() {
         super.tick();
@@ -69,18 +71,11 @@ public class SleighEntity extends Entity implements IAnimatable {
                 double d4 = this.getX() + (this.lx - this.getX()) / (double)this.lSteps;
                 double d5 = this.getY() + (this.ly - this.getY()) / (double)this.lSteps;
                 double d6 = this.getZ() + (this.lz - this.getZ()) / (double)this.lSteps;
-                double d1 = MathHelper.wrapDegrees(this.lyr - (double)this.yRot);
-                this.yRot = (float)((double)this.yRot + d1 / (double)this.lSteps);
-                this.xRot = (float)((double)this.xRot + (this.lxr - (double)this.xRot) / (double)this.lSteps);
+
                 --this.lSteps;
                 this.setPos(d4, d5, d6);
-                this.setRot(this.yRot, this.xRot);
-
-                this.setYBodyRot(this.yRot);
-                this.setYHeadRot(this.yRot);
             } else {
                 this.reapplyPosition();
-                this.setRot(this.yRot, this.xRot);
             }
         } else {
             this.move(MoverType.SELF, this.getDeltaMovement());
@@ -138,7 +133,7 @@ public class SleighEntity extends Entity implements IAnimatable {
     }
 
     private void explode() {
-        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 2.0F, Explosion.Mode.NONE);
+        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 3.0F, Explosion.Mode.NONE);
         this.remove();
     }
 
@@ -147,9 +142,7 @@ public class SleighEntity extends Entity implements IAnimatable {
         this.lx = p_180426_1_;
         this.ly = p_180426_3_;
         this.lz = p_180426_5_;
-        this.lyr = (double)p_180426_7_;
-        this.lxr = (double)p_180426_8_;
-        this.lSteps = p_180426_9_ + 3;
+        this.lSteps = 4;
         this.setDeltaMovement(this.lxd, this.lyd, this.lzd);
     }
 
