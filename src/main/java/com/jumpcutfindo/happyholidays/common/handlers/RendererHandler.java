@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.common.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.block.MusicBoxRenderer;
+import com.jumpcutfindo.happyholidays.client.entity.ExplosivePresentRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.GingerbreadPersonEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.GrinchEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.SantaElfEntityRenderer;
@@ -54,6 +55,11 @@ public class RendererHandler {
         RenderingRegistry.registerEntityRenderingHandler(
                 EntityRegistry.SLEIGH.get(),
                 SleighRenderer::new
+        );
+
+        RenderingRegistry.registerEntityRenderingHandler(
+                EntityRegistry.EXPLOSIVE_PRESENT.get(),
+                ExplosivePresentRenderer::new
         );
 
         ClientRegistry.bindTileEntityRenderer(TileEntityRegistry.MUSIC_BOX_ENTITY_TYPE.get(), MusicBoxRenderer::new);

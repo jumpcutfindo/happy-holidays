@@ -25,12 +25,6 @@ public class SleighEntity extends Entity implements IAnimatable {
     public static final float ENTITY_BOX_SIZE = 32.0f / 16.0f;
     public static final float ENTITY_BOX_HEIGHT = 12.0f / 16.0f;
 
-    private int lSteps;
-    private double lx;
-    private double ly;
-    private double lz;
-    private double lyr;
-    private double lxr;
     @OnlyIn(Dist.CLIENT)
     private double lxd;
     @OnlyIn(Dist.CLIENT)
@@ -51,32 +45,17 @@ public class SleighEntity extends Entity implements IAnimatable {
 
     @Override
     public void onAddedToWorld() {
+        super.onAddedToWorld();
         this.remainingCharging = AngrySantaEntity.ATTACK_SLEIGH_CHARGE_TIME;
         this.remainingLifespan = AngrySantaEntity.ATTACK_SLEIGH_LIFETIME;
 
         this.noPhysics = false;
     }
 
-
-
     @Override
     public void tick() {
         super.tick();
-
-        if (this.level.isClientSide) {
-            if (this.lSteps > 0) {
-                double d4 = this.getX() + (this.lx - this.getX()) / (double)this.lSteps;
-                double d5 = this.getY() + (this.ly - this.getY()) / (double)this.lSteps;
-                double d6 = this.getZ() + (this.lz - this.getZ()) / (double)this.lSteps;
-
-                --this.lSteps;
-                this.setPos(d4, d5, d6);
-            } else {
-                this.reapplyPosition();
-            }
-        } else {
-            this.move(MoverType.SELF, this.getDeltaMovement());
-        }
+        this.move(MoverType.SELF, this.getDeltaMovement());
 
         if (this.remainingCharging > 0) {
             this.setDeltaMovement(getForward().multiply(0.01D, 0.01D, 0.01D));
@@ -136,10 +115,6 @@ public class SleighEntity extends Entity implements IAnimatable {
 
     @OnlyIn(Dist.CLIENT)
     public void lerpTo(double p_180426_1_, double p_180426_3_, double p_180426_5_, float p_180426_7_, float p_180426_8_, int p_180426_9_, boolean p_180426_10_) {
-        this.lx = p_180426_1_;
-        this.ly = p_180426_3_;
-        this.lz = p_180426_5_;
-        this.lSteps = 4;
         this.setDeltaMovement(this.lxd, this.lyd, this.lzd);
     }
 

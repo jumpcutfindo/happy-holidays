@@ -8,6 +8,7 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity
 import com.jumpcutfindo.happyholidays.common.entity.christmas.SoggyGingerbreadManEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.AngrySantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.ExplosivePresentEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy.HappySantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.SleighEntity;
 
@@ -70,5 +71,13 @@ public class EntityRegistry {
                     () -> EntityType.Builder.of(SleighEntity::new, EntityClassification.MISC)
                             .sized(SleighEntity.ENTITY_BOX_SIZE, SleighEntity.ENTITY_BOX_HEIGHT)
                             .build(SleighEntity.ENTITY_ID)
+            );
+
+    public static final RegistryObject<EntityType<ExplosivePresentEntity>> EXPLOSIVE_PRESENT =
+            ENTITY_TYPES.register(ExplosivePresentEntity.ENTITY_ID,
+                    () -> EntityType.Builder.of(ExplosivePresentEntity::new, EntityClassification.MISC)
+                            .sized(ExplosivePresentEntity.ENTITY_BOX_SIZE, ExplosivePresentEntity.ENTITY_BOX_HEIGHT)
+                            .clientTrackingRange(10)
+                            .build(ExplosivePresentEntity.ENTITY_ID)
             );
 }
