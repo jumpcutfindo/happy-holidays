@@ -39,7 +39,8 @@ public class TeleportGoal extends Goal {
 
             if (playerEntities.size() > 0) {
                 this.targetPosition = playerEntities.get(santaEntity.getRandom().nextInt(playerEntities.size())).position();
-                chargingTimer = AngrySantaEntity.ATTACK_TELEPORT_CHARGE_TIME;
+                chargingTimer =
+                        (int) (AngrySantaEntity.ATTACK_TELEPORT_CHARGE_TIME / santaEntity.getAttackIntervalMultiplier());
                 santaEntity.startTeleportAttack(this.targetPosition);
             }
         }
@@ -48,7 +49,7 @@ public class TeleportGoal extends Goal {
             santaEntity.teleportAttack(targetPosition);
 
             targetPosition = null;
-            attackTimer = AngrySantaEntity.ATTACK_TELEPORT_INTERVAL;
+            attackTimer = (int) (AngrySantaEntity.ATTACK_TELEPORT_INTERVAL / santaEntity.getAttackIntervalMultiplier());
         }
     }
 }

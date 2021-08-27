@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -20,8 +21,11 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -73,6 +77,9 @@ public class AngrySantaEntity extends BaseSantaEntity {
     private boolean isTeleportCharging;
     private Vector3d teleportTarget;
 
+    private final ServerBossInfo bossEvent = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(),
+            BossInfo.Color.RED, BossInfo.Overlay.PROGRESS));
+
     private int hitAnimTimer, sleighAnimTimer, teleportAnimTimer;
 
     public AngrySantaEntity(EntityType<? extends CreatureEntity> entityType, World world) {
@@ -115,6 +122,14 @@ public class AngrySantaEntity extends BaseSantaEntity {
         return dmgSource.isExplosion();
     }
 
+    private void createBossBar() {
+        this.bossEvent.setPercent((float) this.getHealth() / (float) (MAX_HEALTH));
+        AxisAlignedBB areaOfEffect = new AxisAlignedBB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
+
+        List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, areaOfEffect);
+        for (PlayerEntity playerEntity : playerList) this.bossEvent.addPlayer((ServerPlayerEntity) playerEntity);
+    }
+
     public void setPhase(Phase phase) {
         this.currentPhase = phase;
         this.entityData.set(SANTA_PHASE, phase.ordinal());
@@ -127,7 +142,12 @@ public class AngrySantaEntity extends BaseSantaEntity {
     }
 
     public float getAttackIntervalMultiplier() {
-        return Math.min(200.0f / this.getHealth(), 5.0f);
+        int currentHealth = (int) this.getHealth();
+
+        return currentHealth >= 150 ? 1.0f
+                : currentHealth >= 100 ? 1.5f
+                : currentHealth >= 50 ? 2.0f
+                : 2.5f;
     }
 
     public void fireHorizontalSleighs() {
@@ -202,11 +222,11 @@ public class AngrySantaEntity extends BaseSantaEntity {
                 1.0f);
 
         List<PlayerEntity> playerEntities = this.level.getEntitiesOfClass(PlayerEntity.class,
-                this.getBoundingBox().inflate(ATTACK_TELEPORT_DAMAGE_RADIUS));
+                this.getBoundingBox().inflate(ATTACK_TELEPORT_DAMAGE_RADIUS / this.getAttackIntervalMultiplier()));
         this.summonStompParticles(position);
 
         for (PlayerEntity playerEntity : playerEntities) {
-            playerEntity.hurt(DamageSource.mobAttack(this), ATTACK_TELEPORT_DAMAGE);
+            playerEntity.hurt(DamageSource.mobAttack(this), ATTACK_TELEPORT_DAMAGE * this.getAttackIntervalMultiplier());
         }
 
     }
@@ -264,6 +284,24 @@ public class AngrySantaEntity extends BaseSantaEntity {
             if (currentPhase == Phase.PRESENTS && this.level.getGameTime() == 0) {
                 summonPresentsParticles(this.position().add(0.0d, 3.0d, 0.0d));
             }
+
+            if (this.level.getGameTime() % 60L == 0) {
+                if (this.bossEvent == null) this.createBossBar();
+
+                AxisAlignedBB areaOfEffect = new AxisAlignedBB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
+                List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, areaOfEffect);
+
+                // Remove players outside the AOE
+                for (ServerPlayerEntity serverPlayerEntity : this.bossEvent.getPlayers()) {
+                    if (!playerList.contains(serverPlayerEntity)) this.bossEvent.removePlayer(serverPlayerEntity);
+                }
+
+                // Add players inside the AOE
+                for (PlayerEntity playerEntity : playerList) {
+                    ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) playerEntity;
+                    if (!this.bossEvent.getPlayers().contains(serverPlayerEntity)) this.bossEvent.addPlayer((ServerPlayerEntity) playerEntity);
+                }
+            }
         }
     }
 
@@ -318,11 +356,27 @@ public class AngrySantaEntity extends BaseSantaEntity {
     }
 
     @Override
+    public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
+        boolean flag = super.hurt(p_70097_1_, p_70097_2_);
+
+        this.bossEvent.setPercent(this.getHealth() / MAX_HEALTH);
+
+        return flag;
+    }
+
+    @Override
+    public void die(DamageSource p_70645_1_) {
+        super.die(p_70645_1_);
+
+        this.bossEvent.removeAllPlayers();
+    }
+
+    @Override
     public <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (this.hitAnimTimer > 0) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.attack", false));
         } else if (currentPhase == Phase.SLEIGHS && this.sleighAnimTimer > 0) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.summon_sleighs", false));
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.summon_sleighs", true));
         } else if (currentPhase == Phase.TELEPORT && this.teleportAnimTimer > 0) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.teleporting", false));
         } else if (currentPhase == Phase.PRESENTS) {

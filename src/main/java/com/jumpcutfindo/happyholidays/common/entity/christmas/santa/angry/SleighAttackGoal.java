@@ -34,7 +34,8 @@ public class SleighAttackGoal extends Goal {
             }
 
             isDiagonal = !isDiagonal;
-            sleighAttackTimer = AngrySantaEntity.ATTACK_SLEIGH_INTERVAL;
+            sleighAttackTimer =
+                    (int) (AngrySantaEntity.ATTACK_SLEIGH_INTERVAL / santaEntity.getAttackIntervalMultiplier());
         }
     }
 }

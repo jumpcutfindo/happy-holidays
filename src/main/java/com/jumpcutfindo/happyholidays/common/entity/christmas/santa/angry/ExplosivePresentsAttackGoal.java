@@ -34,7 +34,8 @@ public class ExplosivePresentsAttackGoal extends Goal {
         if (--summonTimer <= 0) {
             this.santaEntity.spawnExplosives(playerEntities);
 
-            this.summonTimer = AngrySantaEntity.ATTACK_PRESENTS_INTERVAL;
+            this.summonTimer =
+                    (int) (AngrySantaEntity.ATTACK_PRESENTS_INTERVAL / santaEntity.getAttackIntervalMultiplier());
         }
 
         this.santaEntity.getNavigation().stop();

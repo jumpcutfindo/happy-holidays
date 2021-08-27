@@ -16,9 +16,11 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class BaseSantaEntity extends ChristmasEntity implements IAnimatable {
+    public static final float MAX_HEALTH = 200.0f;
+
     public static final AttributeModifierMap ENTITY_ATTRIBUTES =
             createMobAttributes()
-                    .add(Attributes.MAX_HEALTH, 200.0f)
+                    .add(Attributes.MAX_HEALTH, MAX_HEALTH)
                     .add(Attributes.MOVEMENT_SPEED, 0.30D)
                     .add(Attributes.ATTACK_DAMAGE, 8.0D)
                     .add(Attributes.ATTACK_KNOCKBACK, 2.0D)

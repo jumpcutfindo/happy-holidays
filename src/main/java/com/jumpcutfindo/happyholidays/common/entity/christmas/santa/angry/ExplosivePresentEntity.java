@@ -60,7 +60,7 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable {
     }
 
     private void explode() {
-        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 1.0F, Explosion.Mode.NONE);
+        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 2.5F, Explosion.Mode.NONE);
         this.remove();
     }
 
