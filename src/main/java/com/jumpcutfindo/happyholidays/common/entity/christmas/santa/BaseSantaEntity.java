@@ -18,10 +18,11 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class BaseSantaEntity extends ChristmasEntity implements IAnimatable {
     public static final AttributeModifierMap ENTITY_ATTRIBUTES =
             createMobAttributes()
-                    .add(Attributes.MAX_HEALTH, 150.0f)
-                    .add(Attributes.MOVEMENT_SPEED, 0.23D)
-                    .add(Attributes.ATTACK_DAMAGE, 7.0D)
+                    .add(Attributes.MAX_HEALTH, 200.0f)
+                    .add(Attributes.MOVEMENT_SPEED, 0.30D)
+                    .add(Attributes.ATTACK_DAMAGE, 8.0D)
                     .add(Attributes.ATTACK_KNOCKBACK, 2.0D)
+                    .add(Attributes.ARMOR, 6.0D)
                     .build();
 
     public static final float ENTITY_BOX_SIZE = 18.0f / 16.0f;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
 
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -14,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.particles.BasicParticleType;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
@@ -30,11 +32,14 @@ public class AngrySantaEntity extends BaseSantaEntity {
     public static final DataParameter<Integer> SANTA_PHASE = EntityDataManager.defineId(AngrySantaEntity.class,
             DataSerializers.INT);
 
+    public static final DataParameter<Integer> ATTACK_HIT_ANIM_TIMER = EntityDataManager.defineId(AngrySantaEntity.class, DataSerializers.INT);
+    public static final DataParameter<Integer> ATTACK_SLEIGHS_ANIM_TIMER = EntityDataManager.defineId(AngrySantaEntity.class, DataSerializers.INT);
+    public static final DataParameter<Integer> ATTACK_TELEPORT_ANIM_TIMER = EntityDataManager.defineId(AngrySantaEntity.class, DataSerializers.INT);
+
     public static final String ENTITY_ID = "angry_santa";
 
-    // TODO: Adjust values to appropriate level
-    public static final int ATTACK_PHASE_SWITCH_TIMER_MAX = 100;
-    public static final int ATTACK_PHASE_SWITCH_TIMER_MIN = 30;
+    public static final int ATTACK_PHASE_SWITCH_TIMER_MAX = 200;
+    public static final int ATTACK_PHASE_SWITCH_TIMER_MIN = 80;
 
     public static final int ATTACK_SLEIGH_CHARGE_TIME = 10;
     public static final int ATTACK_SLEIGH_INTERVAL = 40;
@@ -44,11 +49,31 @@ public class AngrySantaEntity extends BaseSantaEntity {
     public static final int ATTACK_PRESENTS_INTERVAL = 30;
 
     public static final int ATTACK_TELEPORT_CHARGE_TIME = 40;
-    public static final int ATTACK_TELEPORT_INTERVAL = 100;
+    public static final int ATTACK_TELEPORT_INTERVAL = 60;
     public static final int ATTACK_TELEPORT_CONSIDERATION_RADIUS = 30;
     public static final float ATTACK_TELEPORT_DAMAGE = 8.0f;
+    public static final int ATTACK_TELEPORT_DAMAGE_RADIUS = 4;
+
+    private static final Vector3d[] HORIZONTALS = {
+            new Vector3d(1.0, 0.0, 0.0),
+            new Vector3d(-1.0, 0.0, 0.0),
+            new Vector3d(0.0, 0.0, 1.0),
+            new Vector3d(0.0, 0.0, -1.0)
+    };
+
+    private static final Vector3d[] DIAGONALS = {
+            new Vector3d(1.0, 0.0, 1.0),
+            new Vector3d(1.0, 0.0, -1.0),
+            new Vector3d(-1.0, 0.0, -1.0),
+            new Vector3d(-1.0, 0.0, 1.0)
+    };
 
     private Phase currentPhase = Phase.SLEIGHS;
+
+    private boolean isTeleportCharging;
+    private Vector3d teleportTarget;
+
+    private int hitAnimTimer, sleighAnimTimer, teleportAnimTimer;
 
     public AngrySantaEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
@@ -73,6 +98,9 @@ public class AngrySantaEntity extends BaseSantaEntity {
         super.defineSynchedData();
 
         this.entityData.define(SANTA_PHASE, Phase.SLEIGHS.ordinal());
+        this.entityData.define(ATTACK_SLEIGHS_ANIM_TIMER, 0);
+        this.entityData.define(ATTACK_TELEPORT_ANIM_TIMER, 0);
+        this.entityData.define(ATTACK_HIT_ANIM_TIMER, 0);
     }
 
     @Override
@@ -98,33 +126,26 @@ public class AngrySantaEntity extends BaseSantaEntity {
         this.entityData.set(SANTA_PHASE, newPhase.ordinal());
     }
 
-    public void fireHorizontalSleighs() {
-        Vector3d[] horizontals = {
-                new Vector3d(1.0, 0.0, 0.0),
-                new Vector3d(-1.0, 0.0, 0.0),
-                new Vector3d(0.0, 0.0, 1.0),
-                new Vector3d(0.0, 0.0, -1.0)
-        };
+    public float getAttackIntervalMultiplier() {
+        return Math.min(200.0f / this.getHealth(), 5.0f);
+    }
 
-        for (Vector3d horizontal : horizontals) {
+    public void fireHorizontalSleighs() {
+        for (Vector3d horizontal : HORIZONTALS) {
             this.fireSleigh(horizontal);
         }
     }
 
     public void fireDiagonalSleighs() {
-        Vector3d[] diagonals = {
-                new Vector3d(1.0, 0.0, 1.0),
-                new Vector3d(1.0, 0.0, -1.0),
-                new Vector3d(-1.0, 0.0, -1.0),
-                new Vector3d(-1.0, 0.0, 1.0)
-        };
-
-        for (Vector3d diagonal : diagonals) {
+        for (Vector3d diagonal : DIAGONALS) {
             this.fireSleigh(diagonal);
         }
     }
 
     public void fireSleigh(Vector3d vector) {
+        this.entityData.set(ATTACK_SLEIGHS_ANIM_TIMER, 20);
+        this.sleighAnimTimer = 20;
+
         SleighEntity sleighEntity = EntityRegistry.SLEIGH.get().create(this.level).setRotation(vector);
         sleighEntity.moveTo(this.position().add(sleighEntity.getForward().multiply(3.0d, 3.0d, 3.0d)));
 
@@ -146,26 +167,43 @@ public class AngrySantaEntity extends BaseSantaEntity {
             if (playerEntity.isAlive()) {
                 Vector3d playerPos = playerEntity.position();
                 ExplosivePresentEntity explosive = EntityRegistry.EXPLOSIVE_PRESENT.get().create(this.level);
+                Vector3d explosivePos = playerPos.add(new Vector3d(0.0d, 2.0d, 0.0d));
 
-                explosive.moveTo(playerPos.add(new Vector3d(0.0d, 4.0d, 0.0d)));
+                explosive.moveTo(explosivePos);
+                for (int i = 0; i < 3; i++) this.summonPresentsParticles(explosivePos);
 
                 this.level.addFreshEntity(explosive);
+
             }
         }
     }
 
+    public void startTeleportAttack(Vector3d target) {
+        this.teleportTarget = target;
+
+        this.entityData.set(ATTACK_TELEPORT_ANIM_TIMER, ATTACK_TELEPORT_CHARGE_TIME);
+        this.teleportAnimTimer = ATTACK_TELEPORT_CHARGE_TIME;
+
+        this.isTeleportCharging = true;
+    }
+
+    public void stopTeleportCharging() {
+        this.isTeleportCharging = false;
+    }
+
     public void teleportAttack(Vector3d position) {
-        // TODO: Charge up animation
+        this.isTeleportCharging = false;
 
         // Teleport to location and stomp the ground
         this.level.playSound(null, this.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.HOSTILE, 1.0f,
                 1.0f);
-        this.teleportTo(position.x, position.y + 3.0D, position.z);
+        this.teleportTo(position.x, position.y + 2.0D, position.z);
         this.level.playSound(null, this.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.HOSTILE, 1.0f,
                 1.0f);
 
         List<PlayerEntity> playerEntities = this.level.getEntitiesOfClass(PlayerEntity.class,
-                this.getBoundingBox().inflate(4.0));
+                this.getBoundingBox().inflate(ATTACK_TELEPORT_DAMAGE_RADIUS));
+        this.summonStompParticles(position);
 
         for (PlayerEntity playerEntity : playerEntities) {
             playerEntity.hurt(DamageSource.mobAttack(this), ATTACK_TELEPORT_DAMAGE);
@@ -175,13 +213,15 @@ public class AngrySantaEntity extends BaseSantaEntity {
 
     @Override
     public void playerTouch(PlayerEntity playerEntity) {
-        if (this.getBoundingBox().intersects(playerEntity.getBoundingBox())) {
-            playerEntity.hurt(DamageSource.GENERIC, playerEntity.getHealth() - 2.0f);
+        if (this.getBoundingBox().inflate(1.0D).intersects(playerEntity.getBoundingBox())) {
+            playerEntity.hurt(DamageSource.GENERIC, 12.0f);
             playerEntity.setDeltaMovement(
-                    this.random.nextDouble(),
                     this.random.nextDouble() * 2.0d,
-                    this.random.nextDouble()
+                    this.random.nextDouble(),
+                    this.random.nextDouble() * 2.0d
             );
+
+            this.hitAnimTimer = 10;
         }
     }
 
@@ -195,15 +235,103 @@ public class AngrySantaEntity extends BaseSantaEntity {
 
         if (this.level.isClientSide()) {
             this.currentPhase = Phase.values()[this.entityData.get(SANTA_PHASE)];
+
+            if (currentPhase == Phase.SLEIGHS) this.sleighAnimTimer = this.entityData.get(ATTACK_SLEIGHS_ANIM_TIMER);
+            if (currentPhase == Phase.TELEPORT) this.teleportAnimTimer = this.entityData.get(ATTACK_TELEPORT_ANIM_TIMER);
+
+            this.hitAnimTimer = this.entityData.get(ATTACK_HIT_ANIM_TIMER);
+        } else {
+            if (sleighAnimTimer > 0) {
+                this.sleighAnimTimer--;
+                this.entityData.set(ATTACK_SLEIGHS_ANIM_TIMER, this.sleighAnimTimer);
+            }
+
+            if (teleportAnimTimer > 0) {
+                this.teleportAnimTimer--;
+                this.entityData.set(ATTACK_TELEPORT_ANIM_TIMER, this.teleportAnimTimer);
+            }
+
+            if (hitAnimTimer > 0) {
+                this.hitAnimTimer--;
+                this.entityData.set(ATTACK_HIT_ANIM_TIMER, this.hitAnimTimer);
+            }
+
+            if (this.isTeleportCharging) {
+                this.summonTeleportationParticles(this.position());
+                this.summonTeleportationParticles(this.teleportTarget);
+            }
+
+            if (currentPhase == Phase.PRESENTS && this.level.getGameTime() == 0) {
+                summonPresentsParticles(this.position().add(0.0d, 3.0d, 0.0d));
+            }
+        }
+    }
+
+    private void summonPresentsParticles(Vector3d pos) {
+        double d0 = (Math.random() * 0.1D) + 0.25D;
+        double d1 = (Math.random() * 0.1D) + 0.25D;
+        double d2 = (Math.random() * 0.1D) + 0.25D;
+
+        BasicParticleType particleType = ParticleTypes.SMOKE;
+
+        ((ServerWorld) this.level).sendParticles(particleType,
+                pos.x,
+                pos.y + d1,
+                pos.z,
+                2, d0, d1, d2, 0.0D);
+    }
+
+    private void summonTeleportationParticles(Vector3d pos) {
+        double d0 = (Math.random() * 0.1D) + 0.25D;
+        double d1 = (Math.random() * 0.1D) + 0.25D;
+        double d2 = (Math.random() * 0.1D) + 0.25D;
+
+        double d = Math.random();
+        BasicParticleType particleType = d < 0.5 ? ParticleRegistry.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
+                ParticleRegistry.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get();
+
+        ((ServerWorld) this.level).sendParticles(particleType,
+                pos.x,
+                pos.y + d1,
+                pos.z,
+                2, d0, d1, d2, 0.0D);
+    }
+
+    private void summonStompParticles(Vector3d pos) {
+        BasicParticleType particleType = ParticleTypes.CLOUD;
+
+        for (int i = 0; i < 25; i++) {
+            double d0 = (Math.random() * ATTACK_TELEPORT_DAMAGE_RADIUS) * (this.random.nextBoolean() ? 1 : -1);
+            double d1 = Math.random() * 1.5D;
+            double d2 = (Math.random() * ATTACK_TELEPORT_DAMAGE_RADIUS) * (this.random.nextBoolean() ? 1 : -1);
+
+            double dv0 = (Math.random() * 0.1D) + 0.25D;
+            double dv1 = (Math.random() * 0.1D) + 0.25D;
+            double dv2 = (Math.random() * 0.1D) + 0.25D;
+
+            ((ServerWorld) this.level).sendParticles(particleType,
+                    pos.x + d0,
+                    pos.y + d1,
+                    pos.z + d2,
+                    2, dv0, dv1, dv2, 0.0D);
         }
     }
 
     @Override
     public <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (currentPhase == Phase.PRESENTS) {
+        if (this.hitAnimTimer > 0) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.attack", false));
+        } else if (currentPhase == Phase.SLEIGHS && this.sleighAnimTimer > 0) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.summon_sleighs", false));
+        } else if (currentPhase == Phase.TELEPORT && this.teleportAnimTimer > 0) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.teleporting", false));
+        } else if (currentPhase == Phase.PRESENTS) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.summon", true));
-        } else if (event.isMoving()) event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.walk", true));
-        else event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.idle", true));
+        } else if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.walk", true));
+        } else {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.idle", true));
+        }
 
         return PlayState.CONTINUE;
     }

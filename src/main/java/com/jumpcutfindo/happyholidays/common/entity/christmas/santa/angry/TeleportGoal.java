@@ -20,17 +20,27 @@ public class TeleportGoal extends Goal {
 
     @Override
     public boolean canUse() {
+        if (santaEntity.getPhase() != Phase.TELEPORT) {
+            this.chargingTimer = 0;
+            this.attackTimer = 0;
+            santaEntity.stopTeleportCharging();
+        }
+
         return santaEntity.getPhase() == Phase.TELEPORT;
     }
 
     @Override
     public void tick() {
-        if (--attackTimer <= 0) {
+        if (chargingTimer > 0) santaEntity.getNavigation().stop();
+
+        if (chargingTimer <= 0 && --attackTimer <= 0) {
             AxisAlignedBB box = new AxisAlignedBB(santaEntity.blockPosition()).inflate(AngrySantaEntity.ATTACK_TELEPORT_CONSIDERATION_RADIUS);
             List<PlayerEntity> playerEntities = santaEntity.level.getEntitiesOfClass(PlayerEntity.class, box);
 
             if (playerEntities.size() > 0) {
                 this.targetPosition = playerEntities.get(santaEntity.getRandom().nextInt(playerEntities.size())).position();
+                chargingTimer = AngrySantaEntity.ATTACK_TELEPORT_CHARGE_TIME;
+                santaEntity.startTeleportAttack(this.targetPosition);
             }
         }
 
@@ -38,7 +48,6 @@ public class TeleportGoal extends Goal {
             santaEntity.teleportAttack(targetPosition);
 
             targetPosition = null;
-            chargingTimer = AngrySantaEntity.ATTACK_TELEPORT_CHARGE_TIME;
             attackTimer = AngrySantaEntity.ATTACK_TELEPORT_INTERVAL;
         }
     }

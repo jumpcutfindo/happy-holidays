@@ -23,10 +23,10 @@ public class PhaseSwitchGoal extends Goal {
                         * (AngrySantaEntity.ATTACK_PHASE_SWITCH_TIMER_MAX - AngrySantaEntity.ATTACK_PHASE_SWITCH_TIMER_MIN))
                     + AngrySantaEntity.ATTACK_PHASE_SWITCH_TIMER_MIN;
 
-            this.santaEntity.setPhase(Phase.PRESENTS);
+            // this.santaEntity.setPhase(Phase.PRESENTS);
 
             // TODO: Enable this once testing and implementation is done
-            // this.santaEntity.changePhaseRandomly();
+             this.santaEntity.changePhaseRandomly();
         }
     }
 }
