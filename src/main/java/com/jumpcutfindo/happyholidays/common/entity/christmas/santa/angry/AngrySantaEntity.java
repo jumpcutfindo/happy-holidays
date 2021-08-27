@@ -7,19 +7,29 @@ import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 
 public class AngrySantaEntity extends BaseSantaEntity {
+    public static final DataParameter<Integer> SANTA_PHASE = EntityDataManager.defineId(AngrySantaEntity.class,
+            DataSerializers.INT);
+
     public static final String ENTITY_ID = "angry_santa";
 
     // TODO: Adjust values to appropriate level
@@ -32,6 +42,11 @@ public class AngrySantaEntity extends BaseSantaEntity {
 
     public static final int ATTACK_PRESENTS_CONSIDERATION_RADIUS = 30;
     public static final int ATTACK_PRESENTS_INTERVAL = 30;
+
+    public static final int ATTACK_TELEPORT_CHARGE_TIME = 40;
+    public static final int ATTACK_TELEPORT_INTERVAL = 100;
+    public static final int ATTACK_TELEPORT_CONSIDERATION_RADIUS = 30;
+    public static final float ATTACK_TELEPORT_DAMAGE = 8.0f;
 
     private Phase currentPhase = Phase.SLEIGHS;
 
@@ -50,6 +65,14 @@ public class AngrySantaEntity extends BaseSantaEntity {
         this.goalSelector.addGoal(0, new PhaseSwitchGoal(this));
         this.goalSelector.addGoal(1, new SleighAttackGoal(this));
         this.goalSelector.addGoal(1, new ExplosivePresentsAttackGoal(this));
+        this.goalSelector.addGoal(1, new TeleportGoal(this));
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+
+        this.entityData.define(SANTA_PHASE, Phase.SLEIGHS.ordinal());
     }
 
     @Override
@@ -66,10 +89,13 @@ public class AngrySantaEntity extends BaseSantaEntity {
 
     public void setPhase(Phase phase) {
         this.currentPhase = phase;
+        this.entityData.set(SANTA_PHASE, phase.ordinal());
     }
 
     public void changePhaseRandomly() {
-        this.currentPhase = Phase.values()[this.random.nextInt(Phase.values().length)];
+        Phase newPhase = Phase.values()[this.random.nextInt(Phase.values().length)];
+        this.currentPhase = newPhase;
+        this.entityData.set(SANTA_PHASE, newPhase.ordinal());
     }
 
     public void fireHorizontalSleighs() {
@@ -128,7 +154,22 @@ public class AngrySantaEntity extends BaseSantaEntity {
         }
     }
 
-    public void teleportRandomly() {
+    public void teleportAttack(Vector3d position) {
+        // TODO: Charge up animation
+
+        // Teleport to location and stomp the ground
+        this.level.playSound(null, this.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.HOSTILE, 1.0f,
+                1.0f);
+        this.teleportTo(position.x, position.y + 3.0D, position.z);
+        this.level.playSound(null, this.blockPosition(), SoundEvents.ENDERMAN_TELEPORT, SoundCategory.HOSTILE, 1.0f,
+                1.0f);
+
+        List<PlayerEntity> playerEntities = this.level.getEntitiesOfClass(PlayerEntity.class,
+                this.getBoundingBox().inflate(4.0));
+
+        for (PlayerEntity playerEntity : playerEntities) {
+            playerEntity.hurt(DamageSource.mobAttack(this), ATTACK_TELEPORT_DAMAGE);
+        }
 
     }
 
@@ -151,6 +192,19 @@ public class AngrySantaEntity extends BaseSantaEntity {
     @Override
     public void tick() {
         super.tick();
-        // TODO: Add random switching of phases
+
+        if (this.level.isClientSide()) {
+            this.currentPhase = Phase.values()[this.entityData.get(SANTA_PHASE)];
+        }
+    }
+
+    @Override
+    public <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
+        if (currentPhase == Phase.PRESENTS) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.summon", true));
+        } else if (event.isMoving()) event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.walk", true));
+        else event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.idle", true));
+
+        return PlayState.CONTINUE;
     }
 }

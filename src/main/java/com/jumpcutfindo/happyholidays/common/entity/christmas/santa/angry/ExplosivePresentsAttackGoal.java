@@ -36,5 +36,7 @@ public class ExplosivePresentsAttackGoal extends Goal {
 
             this.summonTimer = AngrySantaEntity.ATTACK_PRESENTS_INTERVAL;
         }
+
+        this.santaEntity.getNavigation().stop();
     }
 }
