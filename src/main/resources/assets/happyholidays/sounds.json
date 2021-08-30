@@ -349,6 +349,16 @@
             }
         ]
     },
+    "entity.santa_angry_passive": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_angry_passive.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_angry_passive",
+                "stream": true
+            }
+        ]
+    },
     "entity.santa_summoning": {
         "category": "entity",
         "subtitle": "entity.happyholidays.santa_summoning.sub",
@@ -395,6 +405,56 @@
         "sounds": [
             {
                 "name": "happyholidays:entity/santa_spawn",
+                "stream": true
+            }
+        ]
+    },
+    "entity.santa_prepare_teleport": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_prepare_teleport.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_prepare_teleport",
+                "stream": true
+            }
+        ]
+    },
+    "entity.santa_teleport": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_teleport.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_teleport",
+                "stream": true
+            }
+        ]
+    },
+    "entity.santa_summon_sleighs": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_summon_sleighs.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_summon_sleighs",
+                "stream": true
+            }
+        ]
+    },
+    "entity.santa_flick": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_flick.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_flick",
+                "stream": true
+            }
+        ]
+    },
+    "entity.santa_hurt": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.santa_hurt.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/santa_hurt",
                 "stream": true
             }
         ]

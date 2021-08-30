@@ -183,6 +183,7 @@
     "entity.happyholidays.grinch_despawn.sub": "Grinch disappears",
 
     "entity.happyholidays.happy_santa": "Happy Santa",
+    "entity.happyholidays.santa_hurt.sub": "Santa hurts",
     "entity.happyholidays.santa_passive.sub": "Santa chortles",
     "entity.happyholidays.santa_summoning.sub": "Santa summons gifts",
     "entity.happyholidays.santa_item_appear.sub": "Santa's Gift appears",
@@ -192,6 +193,14 @@
     "entity.happyholidays.santa_is_coming": "Santa is coming...",
     "entity.happyholidays.santa_arrival_happy": "Santa has arrived and he's brought along gifts to reward you!",
     "entity.happyholidays.santa_arrival_angry": "Santa has arrived, but he doesn't look happy to be here...",
+
+    "entity.happyholidays.angry_santa": "Angry Santa",
+    "entity.happyholidays.santa_angry_passive.sub": "Santa grunts angrily",
+    "entity.happyholidays.santa_prepare_teleport.sub": "Angry Santa charges up",
+    "entity.happyholidays.santa_teleport.sub": "Angry Santa teleports",
+    "entity.happyholidays.santa_summon_sleighs.sub": "Angry Santa summons sleighs",
+    "entity.happyholidays.santa_flick.sub": "Angry Santa flicks",
+    "entity.happyholidays.sleigh_sliding.sub": "Sleigh skids",
 
     "itemGroup.happyholidaystab": "Happy Holidays",
 

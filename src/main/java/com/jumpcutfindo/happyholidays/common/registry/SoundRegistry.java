@@ -119,6 +119,16 @@ public class SoundRegistry {
             () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
                     "entity.santa_passive"))
     );
+    public static final RegistryObject<SoundEvent> SANTA_ANGRY_PASSIVE = SOUNDS.register(
+            "entity.santa_angry_passive",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_angry_passive"))
+    );
+    public static final RegistryObject<SoundEvent> SANTA_HURT = SOUNDS.register(
+            "entity.santa_hurt",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_hurt"))
+    );
     public static final RegistryObject<SoundEvent> SANTA_SUMMONING = SOUNDS.register(
             "entity.santa_summoning",
             () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
@@ -143,6 +153,26 @@ public class SoundRegistry {
             "entity.santa_spawn",
             () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
                     "entity.santa_spawn"))
+    );
+    public static final RegistryObject<SoundEvent> SANTA_PREPARE_TELEPORT = SOUNDS.register(
+            "entity.santa_prepare_teleport",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_prepare_teleport"))
+    );
+    public static final RegistryObject<SoundEvent> SANTA_TELEPORT = SOUNDS.register(
+            "entity.santa_teleport",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_teleport"))
+    );
+    public static final RegistryObject<SoundEvent> SANTA_SUMMON_SLEIGHS = SOUNDS.register(
+            "entity.santa_summon_sleighs",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_summon_sleighs"))
+    );
+    public static final RegistryObject<SoundEvent> SANTA_FLICK = SOUNDS.register(
+            "entity.santa_flick",
+            () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "entity.santa_flick"))
     );
 
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_ANGELS_ON_HIGH = SOUNDS.register(
