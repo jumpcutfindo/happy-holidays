@@ -54,6 +54,8 @@ public class HappySantaEntity extends BaseSantaEntity {
 
     public static final String ENTITY_ID = "happy_santa";
 
+    public static final int DEFAULT_DESPAWN_DELAY = 12000;
+
     public static final int NUM_GIFTS_TO_SUMMON = 150;
     public static final int GIFT_SUMMON_RADIUS = 20;
     public static final int GIFT_SUMMON_HEIGHT = 5;
@@ -72,6 +74,8 @@ public class HappySantaEntity extends BaseSantaEntity {
     private boolean hasSummonedGifts = false;
     private boolean isSummoning = false;
     private int giftsRemaining = -1;
+
+    private int despawnDelay;
 
     private SantaSummonSound summonSound;
 
@@ -146,6 +150,8 @@ public class HappySantaEntity extends BaseSantaEntity {
         if (this.summonSound != null) this.summonSound.stopTrack();
 
         this.bossEvent.removeAllPlayers();
+
+        this.despawnDelay = DEFAULT_DESPAWN_DELAY;
     }
 
     public void summonGift() {
@@ -240,6 +246,7 @@ public class HappySantaEntity extends BaseSantaEntity {
         nbt.putBoolean("HasSummonedGifts", this.hasSummonedGifts);
         nbt.putBoolean("HasStartedSummoningGifts", this.hasStartedSummoningGifts);
         nbt.putInt("GiftsRemaining", this.giftsRemaining);
+        nbt.putInt("DespawnDelay", this.despawnDelay);
     }
 
     @Override
@@ -249,6 +256,7 @@ public class HappySantaEntity extends BaseSantaEntity {
         this.hasSummonedGifts = nbt.getBoolean("HasSummonedGifts");
         this.hasStartedSummoningGifts = nbt.getBoolean("HasStartedSummoningGifts");
         this.giftsRemaining = nbt.getInt("GiftsRemaining");
+        this.despawnDelay = nbt.getInt("DespawnDelay");
     }
 
     @Override
@@ -284,7 +292,15 @@ public class HappySantaEntity extends BaseSantaEntity {
                         if (!this.bossEvent.getPlayers().contains(serverPlayerEntity)) this.bossEvent.addPlayer((ServerPlayerEntity) playerEntity);
                     }
                 }
+            } else {
+                this.maybeDespawn();
             }
+        }
+    }
+
+    private void maybeDespawn() {
+        if (this.despawnDelay > 0 && --this.despawnDelay == 0) {
+            this.remove();
         }
     }
 
