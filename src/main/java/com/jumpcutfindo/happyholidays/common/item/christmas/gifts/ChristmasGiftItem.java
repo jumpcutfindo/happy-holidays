@@ -65,8 +65,10 @@ public class ChristmasGiftItem extends ChristmasItem {
 
                 playerEntity.playSound(SoundEvents.ITEM_PICKUP, 1.0f, 1.0f);
             }
+
+            stack.shrink(1);
         }
-        return ItemStack.EMPTY;
+        return stack;
     }
 
     @Override
