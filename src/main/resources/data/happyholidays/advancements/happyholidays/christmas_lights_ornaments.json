@@ -1,0 +1,50 @@
+{
+    "parent": "happyholidays:happyholidays/christmas_ornament_start",
+    "display": {
+        "icon": {
+            "item": "happyholidays:red_christmas_light_block"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.christmas_lights_ornaments.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.christmas_lights_ornaments.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "criteria": {
+        "obtain_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "happyholidays:red_christmas_light_block"
+                    },
+                    {
+                        "item": "happyholidays:blue_christmas_light_block"
+                    },
+                    {
+                        "item": "happyholidays:yellow_christmas_light_block"
+                    },
+                    {
+                        "item": "happyholidays:green_christmas_light_block"
+                    },
+                    {
+                        "item": "happyholidays:gold_christmas_light_block"
+                    },
+                    {
+                        "item": "happyholidays:silver_christmas_light_block"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "obtain_items"
+        ]
+    ]
+}

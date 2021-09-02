@@ -1,0 +1,203 @@
+{
+    "parent": "happyholidays:happyholidays/christmas_ornament_start",
+    "display": {
+        "icon": {
+            "item": "happyholidays:big_gold_ball_ornament_block"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.christmas_hoarder.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.christmas_hoarder.description"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "rewards": {
+        "experience": 50
+    },
+    "criteria": {
+        "obtain_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "happyholidays:red_tinsel_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:blue_tinsel_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:yellow_tinsel_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:green_tinsel_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:gold_tinsel_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:silver_tinsel_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:big_red_ball_ornament_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:big_blue_ball_ornament_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:big_yellow_ball_ornament_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:big_green_ball_ornament_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:big_gold_ball_ornament_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:big_silver_ball_ornament_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:red_christmas_light_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:blue_christmas_light_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:yellow_christmas_light_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:green_christmas_light_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:gold_christmas_light_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:silver_christmas_light_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:red_tinsel_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:blue_tinsel_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:yellow_tinsel_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:green_tinsel_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:gold_tinsel_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    },
+                    {
+                        "item": "happyholidays:silver_tinsel_block",
+                        "count": {
+                            "min": 64,
+                            "max": 64
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "obtain_items"
+        ]
+    ]
+}

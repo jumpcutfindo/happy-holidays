@@ -1,0 +1,50 @@
+{
+    "parent": "happyholidays:happyholidays/christmas_ornament_start",
+    "display": {
+        "icon": {
+            "item": "happyholidays:red_tinsel_block"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.christmas_tinsel_ornaments.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.christmas_tinsel_ornaments.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "criteria": {
+        "obtain_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "happyholidays:red_tinsel_block"
+                    },
+                    {
+                        "item": "happyholidays:blue_tinsel_block"
+                    },
+                    {
+                        "item": "happyholidays:yellow_tinsel_block"
+                    },
+                    {
+                        "item": "happyholidays:green_tinsel_block"
+                    },
+                    {
+                        "item": "happyholidays:gold_tinsel_block"
+                    },
+                    {
+                        "item": "happyholidays:silver_tinsel_block"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "obtain_items"
+        ]
+    ]
+}

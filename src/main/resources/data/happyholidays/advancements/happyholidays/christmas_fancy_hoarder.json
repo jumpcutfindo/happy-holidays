@@ -1,0 +1,56 @@
+{
+    "parent": "happyholidays:happyholidays/christmas_ornament_start",
+    "display": {
+        "icon": {
+            "item": "happyholidays:santa_elf_ornament_block"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.christmas_fancy_hoarder.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.christmas_fancy_hoarder.description"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "rewards": {
+        "experience": 150
+    },
+    "criteria": {
+        "obtain_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "happyholidays:santa_elf_ornament_block"
+                    },
+                    {
+                        "item": "happyholidays:grinch_ornament_block"
+                    },
+                    {
+                        "item": "happyholidays:baby_present_ornament_block"
+                    },
+                    {
+                        "item": "happyholidays:adult_present_ornament_block"
+                    },
+                    {
+                        "item": "happyholidays:elder_present_ornament_block"
+                    },
+                    {
+                        "item": "happyholidays:candy_cane_ornament_block"
+                    },
+                    {
+                        "item": "happyholidays:gingerbread_man_ornament_block"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "obtain_items"
+        ]
+    ]
+}

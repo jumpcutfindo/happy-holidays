@@ -237,5 +237,19 @@
     "advancements.happyholidays.christmas_adult_present_ornament.title": "Uncanny Resemblance!",
     "advancements.happyholidays.christmas_adult_present_ornament.description": "Obtain an Adult Present Ornament from an Adult Present",
     "advancements.happyholidays.christmas_elder_present_ornament.title": "Who You Callin' Old Timer?",
-    "advancements.happyholidays.christmas_elder_present_ornament.description": "Obtain an Elder Present Ornament from an Elder Present"
+    "advancements.happyholidays.christmas_elder_present_ornament.description": "Obtain an Elder Present Ornament from an Elder Present",
+    "advancements.happyholidays.christmas_ornament_start.title": "Christmas Handyman",
+    "advancements.happyholidays.christmas_ornament_start.description": "Gather some String, Glass and Wool for ornament crafting",
+    "advancements.happyholidays.christmas_small_ball_ornaments.title": "Crafter of Small Baubles",
+    "advancements.happyholidays.christmas_small_ball_ornaments.description": "Gather one of each Bauble",
+    "advancements.happyholidays.christmas_big_ball_ornaments.title": "Crafter of Big Baubles",
+    "advancements.happyholidays.christmas_big_ball_ornaments.description": "Gather one of each Big Bauble",
+    "advancements.happyholidays.christmas_lights_ornaments.title": "Crafter of Christmas Lights",
+    "advancements.happyholidays.christmas_lights_ornaments.description": "Gather one of each Christmas Light",
+    "advancements.happyholidays.christmas_tinsel_ornaments.title": "Crafter of Tinsels",
+    "advancements.happyholidays.christmas_tinsel_ornaments.description": "Gather one of each Tinsel",
+    "advancements.happyholidays.christmas_hoarder.title": "Hoarder of Ornaments",
+    "advancements.happyholidays.christmas_hoarder.description": "Gather 64 of each craftable ornament",
+    "advancements.happyholidays.christmas_fancy_hoarder.title": "Fancy Hoarder of Ornaments",
+    "advancements.happyholidays.christmas_fancy_hoarder.description": "Gather 1 of each Legendary Ornament"
 }
