@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.santa;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy.HappySantaEntity;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 
 import net.minecraft.inventory.ItemStackHelper;
@@ -19,6 +20,7 @@ import net.minecraft.world.server.ServerWorld;
 
 public class SantaGifts {
     public static final String NAME_HAPPY_SANTA = "entity.happyholidays.happy_santa";
+    public static final String NAME_ANGRY_SANTA = "entity.happyholidays.angry_santa";
 
     public static final String NAME_BASIC_GIFT = "item.happyholidays.santa.basic_gift";
     public static final String NAME_RARE_GIFT ="item.happyholidays.santa.rare_gift";
@@ -76,9 +78,11 @@ public class SantaGifts {
 
         ItemStackHelper.saveAllItems(giftItemsNBT, nonNullList);
 
+        String name = santaEntity instanceof HappySantaEntity ? NAME_HAPPY_SANTA : NAME_ANGRY_SANTA;
+
         CompoundNBT giftTag = giftItem.getOrCreateTag();
         giftTag.put("Gifts", giftItemsNBT);
-        giftTag.putString("WrappedBy", new TranslationTextComponent(NAME_HAPPY_SANTA).getString());
+        giftTag.putString("WrappedBy", new TranslationTextComponent(name).getString());
 
         return giftItem;
     }
