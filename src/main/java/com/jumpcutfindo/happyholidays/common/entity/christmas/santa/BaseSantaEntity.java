@@ -75,4 +75,9 @@ public class BaseSantaEntity extends ChristmasEntity implements IAnimatable {
     protected SoundEvent getDeathSound() {
         return SoundRegistry.SANTA_HURT.get();
     }
+    
+    @Override
+    protected int calculateFallDamage(float p_225508_1_, float p_225508_2_) {
+        return 0;
+    }
 }

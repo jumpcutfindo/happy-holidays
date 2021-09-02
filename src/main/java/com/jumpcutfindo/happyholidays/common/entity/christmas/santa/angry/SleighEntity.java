@@ -68,7 +68,7 @@ public class SleighEntity extends Entity implements IAnimatable {
         }
 
         if (this.isMoving && --this.remainingLifespan <= 0) {
-            this.explode();
+            this.explode(false);
         }
 
         if (!this.isNoGravity() && !this.isOnGround()) {
@@ -89,7 +89,7 @@ public class SleighEntity extends Entity implements IAnimatable {
         super.playerTouch(playerEntity);
 
         if (playerEntity.getBoundingBox().intersects(this.getBoundingBox())) {
-            this.explode();
+            this.explode(true);
         }
     }
 
@@ -108,8 +108,10 @@ public class SleighEntity extends Entity implements IAnimatable {
         return this.yRot % 90.0f != 0.0f;
     }
 
-    private void explode() {
-        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 3.0F, Explosion.Mode.NONE);
+    private void explode(boolean isHitPlayer) {
+        float explosivePower = isHitPlayer ? 3.0F : 1.0F;
+
+        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), explosivePower, Explosion.Mode.NONE);
         this.remove();
     }
 

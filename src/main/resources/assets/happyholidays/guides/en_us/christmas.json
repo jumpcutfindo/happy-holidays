@@ -113,6 +113,18 @@
                 },
                 {
                     "type": "text",
+                    "title": "Summoning Santa"
+                },
+                {
+                    "type": "text",
+                    "content": "Once your star has reached an impressive tier, Santa will be ready to meet you and reward you accordingly. Be warned though: if you haven't been very nice this year, he might come bearing destruction instead of gifts!"
+                },
+                {
+                    "type": "text",
+                    "content": "To summon Santa, simply click the star in the middle of the Christmas Star interface. He will arrive soon after!"
+                },
+                {
+                    "type": "text",
                     "title": "Enchanted Santa Hat"
                 },
                 {
@@ -521,6 +533,96 @@
                     "recipes": [
                         "happyholidays:christmas_wreath_recipe"
                     ]
+                }
+            ]
+        },
+        {
+            "title": "Santa",
+            "description": "All about the jolly(?) man",
+            "sections": [
+                {
+                    "type": "text",
+                    "content": "This last chapter is dedicated to the jolly man. Santa is usually quite a relaxed guy, and tends to stay up north most of the year, planning for the annual Christmas season. Once in awhile however, he'll need to travel across the world to gather some items or meet some important people."
+                },
+                {
+                    "type": "text",
+                    "content": "He's usually more careful and secretive about his presence, but it seems that this time, he's gotten a lot less sneaky!"
+                },
+                {
+                    "type": "text",
+                    "title": "Naughty or Nice"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:santa_list_block"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Santa keeps track of how naughty or nice every Minecrafter has been during the season. He makes it simple: any time you kill an innocent being, you will become slightly naughtier. Any time you kill a being that deserves it, you will become slightly nicer. Helping the Grinch or the Elf will also put you in his good books."
+                },
+                {
+                    "type": "text",
+                    "content": "Be warned though: don't harm his elves, or he'll come at you with a vengeance seen nowhere else!"
+                },
+                {
+                    "type": "text",
+                    "content": "Each player has a naughty-nice meter, and depending on the collective naughtiness and niceness of all players present, it'll determine whether Santa will come happy or angry!"
+                },
+                {
+                    "type": "text",
+                    "title": "Happy Santa"
+                },
+                {
+                    "type": "image",
+                    "source": "guides/images.png",
+                    "x": 170,
+                    "y": 108,
+                    "width": 61,
+                    "height": 146
+                },
+                {
+                    "type": "text",
+                    "content": "Happy Santa is the kind of guy you'd want in the middle of a nice town square, paying a visit to the residents and bringing presents along the way. He comes with a bunch of gifts to reward your excellent help and behaviour!"
+                },
+                {
+                    "type": "text",
+                    "title": "Angry Santa"
+                },
+                {
+                    "type": "image",
+                    "source": "guides/images.png",
+                    "x": 231,
+                    "y": 108,
+                    "width": 61,
+                    "height": 146
+                },
+                {
+                    "type": "text",
+                    "content": "Angry Santa is the kind of guy they would usually lock up. He's been experimenting A LOT with pyrotechnics and explosives, and he does have a slight anger issue, so you may want to be ready to deal with his bad temper..."
+                },
+                {
+                    "type": "text",
+                    "content": "Note: Knocking him out means that he will tend to drop more goodies for you!"
+                },
+                {
+                    "type": "text",
+                    "title": "No Hard Feelings"
+                },
+                {
+                    "type": "text",
+                    "content": "Whichever way it goes, Santa will wake up back in the North Pole at the end, forgetting everything that happened, including your naughtiness or niceness! This means that you have a chance to prove yourself again to Santa!"
+                },
+                {
+                    "type": "item",
+                    "items": [
+                        "happyholidays:enchanted_santa_hat"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Also, don't miss out on the Enchanted Santa Hat that he always carries on him!"
                 }
             ]
         },
