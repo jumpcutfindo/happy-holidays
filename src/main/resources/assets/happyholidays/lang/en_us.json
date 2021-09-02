@@ -220,5 +220,22 @@
     "guide.happyholidays.close_button.tooltip": "Close Guide",
     "guide.happyholidays.forward_button.tooltip": "Next Page",
     "guide.happyholidays.backward_button.tooltip": "Previous Page",
-    "guide.happyholidays.table_of_contents_button.tooltip": "Table of Contents"
+    "guide.happyholidays.table_of_contents_button.tooltip": "Table of Contents",
+
+    "advancements.happyholidays.root.title": "Happy Holidays",
+    "advancements.happyholidays.root.description": "Holiday cheer to everyone!",
+    "advancements.happyholidays.christmas_guide_book.title": "Merry Christmas!",
+    "advancements.happyholidays.christmas_guide_book.description": "Craft a Christmas Guide Book",
+    "advancements.happyholidays.christmas_present_scraps.title": "Scrappy Dappy Christmas",
+    "advancements.happyholidays.christmas_present_scraps.description": "Obtain Present Scraps by breaking a wild present",
+    "advancements.happyholidays.christmas_baby_present.title": "We're Having a Baby... Present?",
+    "advancements.happyholidays.christmas_baby_present.description": "Craft a Baby Present",
+    "advancements.happyholidays.christmas_grow_baby_present.title": "Does It Need a Diaper?",
+    "advancements.happyholidays.christmas_grow_baby_present.description": "Place a Baby Present to grow",
+    "advancements.happyholidays.christmas_baby_present_ornament.title": "Looks Just Like Him!",
+    "advancements.happyholidays.christmas_baby_present_ornament.description": "Obtain a Baby Present Ornament from a Baby Present",
+    "advancements.happyholidays.christmas_adult_present_ornament.title": "Uncanny Resemblance!",
+    "advancements.happyholidays.christmas_adult_present_ornament.description": "Obtain an Adult Present Ornament from an Adult Present",
+    "advancements.happyholidays.christmas_elder_present_ornament.title": "Who You Callin' Old Timer?",
+    "advancements.happyholidays.christmas_elder_present_ornament.description": "Obtain an Elder Present Ornament from an Elder Present"
 }

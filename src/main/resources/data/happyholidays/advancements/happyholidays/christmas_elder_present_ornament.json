@@ -1,0 +1,35 @@
+{
+    "parent": "happyholidays:happyholidays/christmas_grow_baby_present",
+    "display": {
+        "icon": {
+            "item": "happyholidays:elder_present_ornament_block"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.christmas_elder_present_ornament.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.christmas_elder_present_ornament.description"
+        },
+        "frame": "goal",
+        "show_toast": true,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "criteria": {
+        "elder_present": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "happyholidays:elder_present_ornament_block"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "elder_present"
+        ]
+    ]
+}

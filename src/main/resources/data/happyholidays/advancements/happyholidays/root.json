@@ -1,0 +1,38 @@
+{
+    "display": {
+        "icon": {
+            "item": "happyholidays:adult_present_block"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.root.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.root.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": false,
+        "hidden": false,
+        "background": "happyholidays:textures/gui/advancements/backgrounds/happyholidays.png"
+    },
+    "criteria": {
+        "any_item": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:dirt"
+                    },
+                    {
+                        "item": "minecraft:cobblestone"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "any_item"
+        ]
+    ]
+}
