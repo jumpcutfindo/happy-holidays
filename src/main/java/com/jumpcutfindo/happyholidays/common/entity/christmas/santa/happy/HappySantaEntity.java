@@ -278,7 +278,7 @@ public class HappySantaEntity extends BaseSantaEntity {
             if (this.isSummoning) {
                 createSummoningParticle();
 
-                if (this.level.getGameTime() % 60L == 0) {
+                if (this.isAlive() && this.level.getGameTime() % 60L == 0) {
                     List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, this.areaOfEffect);
 
                     // Remove players outside the AOE

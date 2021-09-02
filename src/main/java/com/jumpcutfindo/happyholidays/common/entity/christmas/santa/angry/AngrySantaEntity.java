@@ -315,7 +315,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
             }
 
 
-            if (this.level.getGameTime() % 60L == 0) {
+            if (this.isAlive() && this.level.getGameTime() % 60L == 0) {
                 if (this.bossEvent == null) this.createBossBar();
 
                 AxisAlignedBB areaOfEffect = new AxisAlignedBB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
