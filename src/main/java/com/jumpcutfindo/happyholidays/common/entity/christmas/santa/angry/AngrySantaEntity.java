@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGiftType;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGifts;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
@@ -14,8 +17,12 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.RandomWalkingGoal;
+import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootContext;
+import net.minecraft.loot.LootParameterSets;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -24,7 +31,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
@@ -47,6 +53,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
 
     public static final String ENTITY_ID = "angry_santa";
 
+    // Angry Santa attack variables
     public static final int ATTACK_PHASE_SWITCH_TIMER_MAX = 200;
     public static final int ATTACK_PHASE_SWITCH_TIMER_MIN = 80;
 
@@ -62,6 +69,18 @@ public class AngrySantaEntity extends BaseSantaEntity {
     public static final int ATTACK_TELEPORT_CONSIDERATION_RADIUS = 30;
     public static final float ATTACK_TELEPORT_DAMAGE = 8.0f;
     public static final int ATTACK_TELEPORT_DAMAGE_RADIUS = 4;
+
+    // Rewards for defeating Angry Santa
+    public static final int NUM_LEGENDARY_PRESENTS_MIN = 6;
+    public static final int NUM_LEGENDARY_PRESENTS_MAX = 10;
+    public static final int NUM_RARE_PRESENTS_MIN = 10;
+    public static final int NUM_RARE_PRESENTS_MAX = 16;
+    public static final int NUM_BASIC_PRESENTS_MIN = 12;
+    public static final int NUM_BASIC_PRESENTS_MAX = 20;
+    public static final int AMT_XP_DROP = 4800;
+    public static final int NUM_XP_ORBS_MIN = 32;
+    public static final int NUM_XP_ORBS_MAX = 48;
+
 
     private static final Vector3d[] HORIZONTALS = {
             new Vector3d(1.0, 0.0, 0.0),
@@ -380,6 +399,53 @@ public class AngrySantaEntity extends BaseSantaEntity {
                     pos.z + d2,
                     2, dv0, dv1, dv2, 0.0D);
         }
+    }
+
+    @Override
+    protected void dropCustomDeathLoot(DamageSource p_213333_1_, int p_213333_2_, boolean p_213333_3_) {
+        super.dropCustomDeathLoot(p_213333_1_, p_213333_2_, p_213333_3_);
+
+        // Spawn gifts at this location
+        for (ItemStack gift : this.generateDrops()) this.spawnAtLocation(gift);
+
+        // Spawn XP orbs
+        int numOrbs = this.random.nextInt(NUM_XP_ORBS_MAX - NUM_XP_ORBS_MIN) + NUM_XP_ORBS_MIN;
+
+        for (int i = 0; i < numOrbs; i++) {
+            int xpDrop = ExperienceOrbEntity.getExperienceValue((int) ((1 / (double) numOrbs) * AMT_XP_DROP));
+            this.level.addFreshEntity(new ExperienceOrbEntity(this.level, this.getX(), this.getY(), this.getZ(), xpDrop));
+        }
+    }
+
+    private List<ItemStack> generateDrops() {
+        // Create present drops
+        int numLegendaryPresents =
+                this.random.nextInt(NUM_LEGENDARY_PRESENTS_MAX - NUM_LEGENDARY_PRESENTS_MIN) + NUM_LEGENDARY_PRESENTS_MIN;
+        int numRarePresents =
+                this.random.nextInt(NUM_RARE_PRESENTS_MAX - NUM_RARE_PRESENTS_MIN) + NUM_RARE_PRESENTS_MIN;
+        int numBasicPresents =
+                this.random.nextInt(NUM_BASIC_PRESENTS_MAX - NUM_BASIC_PRESENTS_MIN) + NUM_BASIC_PRESENTS_MIN;
+
+        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
+
+        List<ItemStack> gifts = Lists.newArrayList();
+
+        for (int i = 0; i < numLegendaryPresents; i++) {
+            ItemStack legendaryGift = SantaGifts.generateGift(SantaGiftType.LEGENDARY, this, (ServerWorld) this.level, ctx);
+            gifts.add(legendaryGift);
+        }
+
+        for (int i = 0; i < numRarePresents; i++) {
+            ItemStack rareGift = SantaGifts.generateGift(SantaGiftType.RARE, this, (ServerWorld) this.level, ctx);
+            gifts.add(rareGift);
+        }
+
+        for (int i = 0; i < numBasicPresents; i++) {
+            ItemStack basicGift = SantaGifts.generateGift(SantaGiftType.BASIC, this, (ServerWorld) this.level, ctx);
+            gifts.add(basicGift);
+        }
+
+        return gifts;
     }
 
     @Override
