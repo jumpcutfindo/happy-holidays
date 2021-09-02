@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGiftType;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGifts;
+import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaSummonSound;
@@ -152,6 +153,8 @@ public class HappySantaEntity extends BaseSantaEntity {
         this.bossEvent.removeAllPlayers();
 
         this.despawnDelay = DEFAULT_DESPAWN_DELAY;
+
+        this.spawnAtLocation(ItemRegistry.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
     }
 
     public void summonGift() {

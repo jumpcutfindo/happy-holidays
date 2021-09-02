@@ -9,6 +9,7 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEnt
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGiftType;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGifts;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 
@@ -444,6 +445,8 @@ public class AngrySantaEntity extends BaseSantaEntity {
             ItemStack basicGift = SantaGifts.generateGift(SantaGiftType.BASIC, this, (ServerWorld) this.level, ctx);
             gifts.add(basicGift);
         }
+
+        gifts.add(ItemRegistry.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
 
         return gifts;
     }
