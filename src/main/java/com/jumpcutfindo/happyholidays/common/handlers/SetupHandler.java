@@ -6,7 +6,9 @@ import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNa
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.TriggerRegistry;
 
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -105,6 +107,13 @@ public class SetupHandler {
 
         configureBlocks();
         configureItems();
+    }
+
+    @SubscribeEvent
+    public static void addTriggers(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            TriggerRegistry.registerTriggers();
+        });
     }
 
     public static void configureBlocks() {

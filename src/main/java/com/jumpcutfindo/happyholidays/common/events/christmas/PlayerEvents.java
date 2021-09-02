@@ -3,12 +3,18 @@ package com.jumpcutfindo.happyholidays.common.events.christmas;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
+import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.TriggerRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.potion.EffectInstance;
@@ -16,6 +22,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -84,6 +91,20 @@ public class PlayerEvents {
 
                 ((ServerWorld) playerEntity.level).playSound(null, event.getPos(), SoundRegistry.CHRISTMAS_STAR_BLOCK_PLACE.get(),
                         SoundCategory.NEUTRAL, 1.0f, 1.0f);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onItemInteract(PlayerInteractEvent.RightClickBlock event) {
+        if (event.getEntity() instanceof ServerPlayerEntity) {
+            ServerPlayerEntity playerEntity = (ServerPlayerEntity) event.getEntity();
+            ItemStack itemInHand = playerEntity.getItemInHand(event.getHand());
+            BlockState blockState = playerEntity.level.getBlockState(event.getPos());
+
+            // Trigger music box playing trigger
+            if (itemInHand.getItem() instanceof SheetMusicItem && blockState.is(BlockRegistry.MUSIC_BOX_BLOCK.get())) {
+                TriggerRegistry.CHRISTMAS_PLAY_MUSIC_BOX.trigger(playerEntity);
             }
         }
     }

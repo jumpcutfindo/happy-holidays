@@ -251,5 +251,11 @@
     "advancements.happyholidays.christmas_hoarder.title": "Hoarder of Ornaments",
     "advancements.happyholidays.christmas_hoarder.description": "Gather 64 of each craftable ornament",
     "advancements.happyholidays.christmas_fancy_hoarder.title": "Fancy Hoarder of Ornaments",
-    "advancements.happyholidays.christmas_fancy_hoarder.description": "Gather 1 of each Legendary Ornament"
+    "advancements.happyholidays.christmas_fancy_hoarder.description": "Gather 1 of each Legendary Ornament",
+    "advancements.happyholidays.christmas_musical_tendencies.title": "Musical Tendencies",
+    "advancements.happyholidays.christmas_musical_tendencies.description":"Craft a Music Box",
+    "advancements.happyholidays.christmas_setting_the_mood.title": "Setting the Mood",
+    "advancements.happyholidays.christmas_setting_the_mood.description":"Play some music on the Music Box using a piece of Sheet Music",
+    "advancements.happyholidays.christmas_maestro.title": "Christmas Maestro",
+    "advancements.happyholidays.christmas_maestro.description":"Gather 1 of each piece of Sheet Music"
 }
