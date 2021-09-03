@@ -318,7 +318,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "Enchanted Candy Canes are a special, enchanted item that drop when candy cane blocks are destroyed. They have various uses: they can be crafted into a legendary ornament with a piece of string, or can be put together with a bell to summon one of Santa's elves!"
+                    "content": "Enchanted Candy Canes are a special, enchanted item that may drop when candy cane blocks are destroyed. They have various uses: they can be crafted into a legendary ornament with a piece of string, or can be put together with a bell to summon one of Santa's elves!"
                 }
             ]
         },
@@ -553,12 +553,6 @@
                     "title": "Naughty or Nice"
                 },
                 {
-                    "type": "items",
-                    "items": [
-                        "happyholidays:santa_list_block"
-                    ]
-                },
-                {
                     "type": "text",
                     "content": "Santa keeps track of how naughty or nice every Minecrafter has been during the season. He makes it simple: any time you kill an innocent being, you will become slightly naughtier. Any time you kill a being that deserves it, you will become slightly nicer. Helping the Grinch or the Elf will also put you in his good books."
                 },
@@ -569,6 +563,20 @@
                 {
                     "type": "text",
                     "content": "Each player has a naughty-nice meter, and depending on the collective naughtiness and niceness of all players present, it'll determine whether Santa will come happy or angry!"
+                },
+                {
+                    "type": "text",
+                    "title": "Santa's List"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:santa_list_block"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Santa's Elf has snuck a few copies of Santa's List out from the North Pole to earn some cash on the side; if you'd like, you could get one from him!"
                 },
                 {
                     "type": "text",
