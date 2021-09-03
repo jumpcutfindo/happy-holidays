@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
+import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
@@ -30,6 +31,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 public class SantaElfBellItem extends ChristmasItem {
     public static final String ITEM_ID = "santa_elf_bell";
@@ -98,6 +100,9 @@ public class SantaElfBellItem extends ChristmasItem {
 
             world.addParticle(ParticleTypes.LARGE_SMOKE, spawnX, spawnY, spawnZ, 0.0F, 0.0F, 0.0F);
             world.playSound(null, posAhead, SoundRegistry.SANTA_ELF_ARRIVAL.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+
+            SantaElfEvent.Summon elfSummonEvent = new SantaElfEvent.Summon(playerEntity, santaElfEntity);
+            MinecraftForge.EVENT_BUS.post(elfSummonEvent);
         }
 
         return stack;

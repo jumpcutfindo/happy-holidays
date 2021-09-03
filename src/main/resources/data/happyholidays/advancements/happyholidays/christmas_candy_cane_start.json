@@ -1,0 +1,35 @@
+{
+    "parent": "happyholidays:happyholidays/christmas_start",
+    "display": {
+        "icon": {
+            "item": "happyholidays:candy_cane_block"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.christmas_candy_cane_start.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.christmas_candy_cane_start.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "criteria": {
+        "obtain_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "happyholidays:candy_cane_block"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "obtain_items"
+        ]
+    ]
+}

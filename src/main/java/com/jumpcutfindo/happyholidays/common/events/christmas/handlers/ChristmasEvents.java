@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.events.christmas.handlers;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
+import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
@@ -116,6 +117,21 @@ public class ChristmasEvents {
             TriggerRegistry.CHRISTMAS_GINGERBREAD_MAN_TURN_SOGGY.trigger((ServerPlayerEntity) event.getPlayerEntity());
         } else if (event instanceof GingerbreadConversionEvent.ToDry) {
             TriggerRegistry.CHRISTMAS_GINGERBREAD_MAN_TURN_DRY.trigger((ServerPlayerEntity) event.getPlayerEntity());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onSantaElfInteract(SantaElfEvent event) {
+        if (event instanceof SantaElfEvent.Summon) {
+            TriggerRegistry.CHRISTMAS_SANTA_ELF_SUMMON.trigger((ServerPlayerEntity) event.getPlayerEntity());
+        } else if (event instanceof SantaElfEvent.Trade) {
+            TriggerRegistry.CHRISTMAS_SANTA_ELF_TRADE.trigger((ServerPlayerEntity) event.getPlayerEntity());
+        } else if (event instanceof SantaElfEvent.CompleteRequest) {
+            TriggerRegistry.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST.trigger((ServerPlayerEntity) event.getPlayerEntity());
+
+            if (((SantaElfEvent.CompleteRequest) event).getTimeTaken() <= 6000) {
+                TriggerRegistry.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST_QUICK.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            }
         }
     }
 }

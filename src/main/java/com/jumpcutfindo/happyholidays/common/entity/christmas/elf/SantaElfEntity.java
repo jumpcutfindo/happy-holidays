@@ -11,6 +11,7 @@ import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
@@ -58,6 +59,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.MinecraftForge;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -95,8 +97,10 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
 
     private int requestItemCooldown = 0;
     private int requestPaperCooldown = 0;
+
     private boolean isRewardThrown = false;
     private boolean isRequestOutdated = false;
+    private int timeToCompleteRequest;
 
     public SantaElfEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
@@ -219,6 +223,11 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         merchantOffer.increaseUses();
         this.ambientSoundTime = -this.getAmbientSoundInterval();
         this.rewardTradeXp(merchantOffer);
+
+        if (this.getTradingPlayer() != null) {
+            SantaElfEvent.Trade tradeEvent = new SantaElfEvent.Trade(this.getTradingPlayer(), this);
+            MinecraftForge.EVENT_BUS.post(tradeEvent);
+        }
     }
 
     @Override
@@ -362,6 +371,9 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
 
     public void handleRequestPaperOnGround(ItemEntity itemEntity) {
         if (!this.isRewardThrown && this.santaElfRequest.isCompleted()) {
+            // Set time taken to complete
+            this.timeToCompleteRequest = DEFAULT_DESPAWN_DELAY - this.despawnDelay;
+
             this.take(itemEntity, itemEntity.getItem().getCount());
 
             // Reward the player for completing request
@@ -369,7 +381,12 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
 
             // Add to naughty / nice meter
             if (itemEntity.getThrower() != null) {
-                NaughtyNiceMeter.evaluateAction(this.level.getPlayerByUUID(itemEntity.getThrower()), NaughtyNiceAction.HELP_SANTA_ELF_EVENT);
+                PlayerEntity playerEntity = this.level.getPlayerByUUID(itemEntity.getThrower());
+                NaughtyNiceMeter.evaluateAction(playerEntity, NaughtyNiceAction.HELP_SANTA_ELF_EVENT);
+
+                SantaElfEvent.CompleteRequest completeRequestEvent = new SantaElfEvent.CompleteRequest(playerEntity,
+                        this, this.timeToCompleteRequest);
+                MinecraftForge.EVENT_BUS.post(completeRequestEvent);
             }
 
             this.isRewardThrown = true;
@@ -483,6 +500,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         nbt.put("MerchantOffers", this.getOffers().createTag());
         nbt.putBoolean("IsRequestOutdated", this.isRequestOutdated);
         nbt.putBoolean("IsRewardThrown", this.isRewardThrown);
+        nbt.putInt("TimeToCompleteRequest", this.timeToCompleteRequest);
     }
 
     @Override
@@ -502,6 +520,8 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
 
         this.isRequestOutdated = nbt.getBoolean("IsRequestOutdated");
         this.isRewardThrown = nbt.getBoolean("IsRewardThrown");
+
+        this.timeToCompleteRequest = nbt.getInt("TimeToCompleteRequest");
     }
 
     public void aiStep() {

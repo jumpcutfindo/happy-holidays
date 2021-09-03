@@ -1,0 +1,35 @@
+{
+    "parent": "happyholidays:happyholidays/christmas_santa_elf_request",
+    "display": {
+        "icon": {
+            "item": "happyholidays:santa_elf_ornament_block"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.christmas_santa_elf_ornament.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.christmas_santa_elf_ornament.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "criteria": {
+        "block_get": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "happyholidays:santa_elf_ornament_block"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "block_get"
+        ]
+    ]
+}
