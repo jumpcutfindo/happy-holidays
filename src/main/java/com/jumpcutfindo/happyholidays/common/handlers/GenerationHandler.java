@@ -1,8 +1,8 @@
 package com.jumpcutfindo.happyholidays.common.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.GingerbreadManEntity;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.GrinchEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.GingerbreadManEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.FeatureRegistry;
 

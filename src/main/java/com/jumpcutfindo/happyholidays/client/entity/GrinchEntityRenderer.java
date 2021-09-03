@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.client.entity;
 
 import com.jumpcutfindo.happyholidays.client.entity.model.GrinchModel;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.GrinchEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import software.bernie.geckolib3.renderers.geo.GeoEntityRenderer;

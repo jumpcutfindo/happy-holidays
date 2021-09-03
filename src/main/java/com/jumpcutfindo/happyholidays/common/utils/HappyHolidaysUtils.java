@@ -1,6 +1,9 @@
 package com.jumpcutfindo.happyholidays.common.utils;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -8,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
@@ -83,5 +87,11 @@ public class HappyHolidaysUtils {
         }
 
         return null;
+    }
+
+    public static List<PlayerEntity> findPlayersInRadius(World world, Vector3d pos, double radius) {
+        AxisAlignedBB box = new AxisAlignedBB(new BlockPos(pos)).inflate(radius);
+
+        return world.getEntitiesOfClass(PlayerEntity.class, box);
     }
 }

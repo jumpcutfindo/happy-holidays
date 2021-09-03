@@ -1,8 +1,6 @@
 package com.jumpcutfindo.happyholidays.client.entity;
 
-import com.jumpcutfindo.happyholidays.client.entity.model.GingerbreadPersonModel;
 import com.jumpcutfindo.happyholidays.client.entity.model.SantaModel;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.GingerbreadPersonEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;

@@ -1,8 +1,8 @@
 package com.jumpcutfindo.happyholidays.client.entity.model;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.GingerbreadPersonEntity;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.SoggyGingerbreadManEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.GingerbreadPersonEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.SoggyGingerbreadManEntity;
 
 import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
