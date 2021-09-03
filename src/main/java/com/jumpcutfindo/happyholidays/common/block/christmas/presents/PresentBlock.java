@@ -64,7 +64,7 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
 
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                    .stacksTo(16)
+                    .stacksTo(64)
                     .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public static final float GROWTH_PROBABILITY = 1.0f / 64.0f;
