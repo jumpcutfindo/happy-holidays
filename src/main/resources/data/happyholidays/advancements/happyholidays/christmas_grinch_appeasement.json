@@ -1,0 +1,28 @@
+{
+    "parent": "happyholidays:happyholidays/christmas_grinch_encounter",
+    "display": {
+        "icon": {
+            "item": "happyholidays:grinch_ornament_block"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.christmas_grinch_appeasement.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.christmas_grinch_appeasement.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "criteria": {
+        "appease_grinch": {
+            "trigger": "happyholidays:christmas_grinch_appease"
+        }
+    },
+    "requirements": [
+        [
+            "appease_grinch"
+        ]
+    ]
+}

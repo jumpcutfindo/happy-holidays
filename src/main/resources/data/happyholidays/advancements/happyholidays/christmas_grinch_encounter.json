@@ -1,0 +1,28 @@
+{
+    "parent": "happyholidays:happyholidays/christmas_grow_baby_present",
+    "display": {
+        "icon": {
+            "item": "happyholidays:grinch_ornament_block"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.christmas_grinch_encounter.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.christmas_grinch_encounter.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "criteria": {
+        "encounter_grinch": {
+            "trigger": "happyholidays:christmas_grinch_encounter"
+        }
+    },
+    "requirements": [
+        [
+            "encounter_grinch"
+        ]
+    ]
+}

@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.events.christmas.handlers;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
+import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
@@ -26,6 +27,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -132,6 +134,15 @@ public class ChristmasEvents {
             if (((SantaElfEvent.CompleteRequest) event).getTimeTaken() <= 6000) {
                 TriggerRegistry.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST_QUICK.trigger((ServerPlayerEntity) event.getPlayerEntity());
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onGrinchInteract(GrinchEvent event) {
+        if (event instanceof GrinchEvent.Encounter) {
+            TriggerRegistry.CHRISTMAS_GRINCH_ENCOUNTER.trigger((ServerPlayerEntity) event.getPlayerEntity());
+        } else if (event instanceof GrinchEvent.Appease) {
+            TriggerRegistry.CHRISTMAS_GRINCH_APPEASE.trigger((ServerPlayerEntity) event.getPlayerEntity());
         }
     }
 }

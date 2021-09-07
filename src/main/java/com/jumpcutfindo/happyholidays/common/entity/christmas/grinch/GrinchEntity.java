@@ -7,6 +7,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlo
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
@@ -55,6 +56,7 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.MinecraftForge;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -205,7 +207,11 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
                 // Add to naughty / nice meter
                 if (itemEntity.getThrower() != null) {
-                    NaughtyNiceMeter.evaluateAction(this.level.getPlayerByUUID(itemEntity.getThrower()), NaughtyNiceAction.APPEASE_GRINCH_EVENT);
+                    PlayerEntity thrower = this.level.getPlayerByUUID(itemEntity.getThrower());
+                    NaughtyNiceMeter.evaluateAction(thrower, NaughtyNiceAction.APPEASE_GRINCH_EVENT);
+
+                    // Post event for achievements
+                    MinecraftForge.EVENT_BUS.post(new GrinchEvent.Appease(this, thrower));
                 }
 
                 for (int i = 0; i < 5; i++) {
@@ -240,6 +246,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     }
 
     public void throwAppeasementRewards() {
+
         this.level.addFreshEntity(new ExperienceOrbEntity(this.level, this.getX(), this.getY(), this.getZ(), 50));
         ItemStack scraps = ItemRegistry.PRESENT_SCRAPS.get().getDefaultInstance();
 
@@ -322,7 +329,6 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
         this.remove();
     }
 
-
     @Override
     public void aiStep() {
         super.aiStep();
@@ -344,6 +350,13 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
         if (this.isReadyToDespawn && --despawnTimer <= 0) {
             this.despawnGrinch();
+        }
+
+        if (this.level.getGameTime() % 60L == 0) {
+            List<PlayerEntity> playersAround = HappyHolidaysUtils.findPlayersInRadius(this.level, this.position(),
+                    AVOID_PLAYER_RADIUS);
+
+            for (PlayerEntity playerEntity : playersAround) MinecraftForge.EVENT_BUS.post(new GrinchEvent.Encounter(this, playerEntity));
         }
     }
 
