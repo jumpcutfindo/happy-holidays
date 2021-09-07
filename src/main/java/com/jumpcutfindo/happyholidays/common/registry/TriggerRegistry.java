@@ -21,6 +21,9 @@ public class TriggerRegistry {
     public static final CustomTrigger CHRISTMAS_STAR_MAXED_TIER = new CustomTrigger("christmas_star_maxed_tier");
     public static final CustomTrigger CHRISTMAS_STAR_SUMMON_SANTA = new CustomTrigger("christmas_star_summon_santa");
     public static final CustomTrigger CHRISTMAS_STAR_REACH_BONUS = new CustomTrigger("christmas_star_reach_bonus");
+    public static final CustomTrigger CHRISTMAS_SANTA_DROP_PARTY_COMPLETE = new CustomTrigger("christmas_santa_drop_party_complete");
+    public static final CustomTrigger CHRISTMAS_SANTA_ANGRY_DIE = new CustomTrigger("christmas_santa_angry_die");
+    public static final CustomTrigger CHRISTMAS_SANTA_NO_TOUCHY = new CustomTrigger("christmas_santa_no_touchy");
 
     private static final CustomTrigger[] TRIGGERS = new CustomTrigger[] {
             CHRISTMAS_PLAY_MUSIC_BOX,
@@ -36,7 +39,10 @@ public class TriggerRegistry {
             CHRISTMAS_STAR_PUT_ORNAMENT,
             CHRISTMAS_STAR_MAXED_TIER,
             CHRISTMAS_STAR_SUMMON_SANTA,
-            CHRISTMAS_STAR_REACH_BONUS
+            CHRISTMAS_STAR_REACH_BONUS,
+            CHRISTMAS_SANTA_DROP_PARTY_COMPLETE,
+            CHRISTMAS_SANTA_ANGRY_DIE,
+            CHRISTMAS_SANTA_NO_TOUCHY
     };
 
     public static void registerTriggers() {

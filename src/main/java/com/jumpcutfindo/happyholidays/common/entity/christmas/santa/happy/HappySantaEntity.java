@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGiftType;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGifts;
+import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
@@ -44,6 +45,7 @@ import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.MinecraftForge;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -155,6 +157,17 @@ public class HappySantaEntity extends BaseSantaEntity {
         this.despawnDelay = DEFAULT_DESPAWN_DELAY;
 
         this.spawnAtLocation(ItemRegistry.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
+
+        if (!this.level.isClientSide()) {
+            AxisAlignedBB searchBox =
+                    new AxisAlignedBB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
+            List<PlayerEntity> playerEntities = this.level.getEntitiesOfClass(PlayerEntity.class, searchBox);
+
+            for (PlayerEntity playerEntity : playerEntities) {
+                SantaEvent event = new SantaEvent.CompleteDropParty(this, playerEntity);
+                MinecraftForge.EVENT_BUS.post(event);
+            }
+        }
     }
 
     public void summonGift() {

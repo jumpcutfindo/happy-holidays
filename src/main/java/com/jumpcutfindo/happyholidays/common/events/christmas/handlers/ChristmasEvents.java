@@ -2,10 +2,12 @@ package com.jumpcutfindo.happyholidays.common.events.christmas.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.AngrySantaEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
+import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
@@ -19,7 +21,6 @@ import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarT
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraft.potion.EffectInstance;
@@ -29,7 +30,6 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
-import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -145,6 +145,21 @@ public class ChristmasEvents {
             TriggerRegistry.CHRISTMAS_GRINCH_ENCOUNTER.trigger((ServerPlayerEntity) event.getPlayerEntity());
         } else if (event instanceof GrinchEvent.Appease) {
             TriggerRegistry.CHRISTMAS_GRINCH_APPEASE.trigger((ServerPlayerEntity) event.getPlayerEntity());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onSantaInteract(SantaEvent event) {
+        if (event instanceof SantaEvent.AngryDie) {
+            TriggerRegistry.CHRISTMAS_SANTA_ANGRY_DIE.trigger((ServerPlayerEntity) event.getPlayerEntity());
+
+            AngrySantaEntity angrySantaEntity = (AngrySantaEntity) event.getSantaEntity();
+            if (!angrySantaEntity.isDamagedByPlayer()) {
+                TriggerRegistry.CHRISTMAS_SANTA_NO_TOUCHY.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            }
+
+        } else if (event instanceof SantaEvent.CompleteDropParty) {
+            TriggerRegistry.CHRISTMAS_SANTA_DROP_PARTY_COMPLETE.trigger((ServerPlayerEntity) event.getPlayerEntity());
         }
     }
 

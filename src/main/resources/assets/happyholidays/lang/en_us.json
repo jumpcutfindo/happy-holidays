@@ -316,5 +316,11 @@
     "advancements.happyholidays.christmas_star_summon_santa.title": "Calling the Big Guy",
     "advancements.happyholidays.christmas_star_summon_santa.description": "Summon Santa after reaching tier 5 on the Christmas Star",
     "advancements.happyholidays.christmas_star_hat_magic.title": "Hat Magic",
-    "advancements.happyholidays.christmas_star_hat_magic.description": "Obtain an Enchanted Santa's Hat and reach the bonus tier on the Christmas Star"
+    "advancements.happyholidays.christmas_star_hat_magic.description": "Obtain an Enchanted Santa's Hat and reach the bonus tier on the Christmas Star",
+    "advancements.happyholidays.christmas_santa_drop_party.title": "Drop Party!",
+    "advancements.happyholidays.christmas_santa_drop_party.description": "Receive all the presents that Happy Santa has brought for you",
+    "advancements.happyholidays.christmas_santa_angry_defeat.title": "An Explosive Visit",
+    "advancements.happyholidays.christmas_santa_angry_defeat.description": "Defeat Angry Santa",
+    "advancements.happyholidays.christmas_santa_no_touchy.title": "No Touchy!",
+    "advancements.happyholidays.christmas_santa_no_touchy.description": "Defeat Angry Santa without directly inflicting damage on him"
 }

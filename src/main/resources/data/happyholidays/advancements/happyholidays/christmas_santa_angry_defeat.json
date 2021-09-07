@@ -1,0 +1,28 @@
+{
+    "parent": "happyholidays:happyholidays/christmas_star_summon_santa",
+    "display": {
+        "icon": {
+            "item": "happyholidays:enchanted_santa_hat"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.christmas_santa_angry_defeat.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.christmas_santa_angry_defeat.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "criteria": {
+        "angry_die": {
+            "trigger": "happyholidays:christmas_santa_angry_die"
+        }
+    },
+    "requirements": [
+        [
+            "angry_die"
+        ]
+    ]
+}

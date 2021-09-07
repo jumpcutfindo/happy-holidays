@@ -8,6 +8,7 @@ import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGiftType;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGifts;
+import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
@@ -24,6 +25,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -39,6 +41,7 @@ import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.MinecraftForge;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -106,6 +109,8 @@ public class AngrySantaEntity extends BaseSantaEntity {
             BossInfo.Color.RED, BossInfo.Overlay.PROGRESS));
 
     private int hitAnimTimer, sleighAnimTimer, teleportAnimTimer;
+
+    private boolean isDamagedByPlayer;
 
     public AngrySantaEntity(EntityType<? extends CreatureEntity> entityType, World world) {
         super(entityType, world);
@@ -455,6 +460,10 @@ public class AngrySantaEntity extends BaseSantaEntity {
     public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
         boolean flag = super.hurt(p_70097_1_, p_70097_2_);
 
+        if (p_70097_1_.getEntity() instanceof PlayerEntity) {
+            this.isDamagedByPlayer = true;
+        }
+
         this.bossEvent.setPercent(this.getHealth() / MAX_HEALTH);
 
         return flag;
@@ -464,7 +473,22 @@ public class AngrySantaEntity extends BaseSantaEntity {
     public void die(DamageSource p_70645_1_) {
         super.die(p_70645_1_);
 
+        if (!this.isDamagedByPlayer) {
+            AxisAlignedBB searchBox =
+                    new AxisAlignedBB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
+            List<PlayerEntity> playerEntities = this.level.getEntitiesOfClass(PlayerEntity.class, searchBox);
+
+            for (PlayerEntity playerEntity : playerEntities) {
+                SantaEvent event = new SantaEvent.AngryDie(this, playerEntity);
+                MinecraftForge.EVENT_BUS.post(event);
+            }
+        }
+
         this.bossEvent.removeAllPlayers();
+    }
+
+    public boolean isDamagedByPlayer() {
+        return isDamagedByPlayer;
     }
 
     @Override
@@ -495,5 +519,19 @@ public class AngrySantaEntity extends BaseSantaEntity {
         }
 
         return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundNBT nbt) {
+        super.addAdditionalSaveData(nbt);
+
+        nbt.putBoolean("IsDamagedByPlayer", this.isDamagedByPlayer);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundNBT nbt) {
+        super.readAdditionalSaveData(nbt);
+
+        this.isDamagedByPlayer = nbt.getBoolean("IsDamagedByPlayer");
     }
 }
