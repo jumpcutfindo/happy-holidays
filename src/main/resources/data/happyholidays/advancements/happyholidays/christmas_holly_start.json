@@ -1,0 +1,35 @@
+{
+    "parent": "happyholidays:happyholidays/christmas_start",
+    "display": {
+        "icon": {
+            "item": "happyholidays:mistletoe_and_holly"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.christmas_holly_start.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.christmas_holly_start.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "criteria": {
+        "obtain_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "happyholidays:mistletoe_and_holly"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "obtain_items"
+        ]
+    ]
+}
