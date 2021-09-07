@@ -16,7 +16,7 @@
         "hidden": false
     },
     "criteria": {
-        "block_get": {
+        "ornament_get": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
                 "items": [
