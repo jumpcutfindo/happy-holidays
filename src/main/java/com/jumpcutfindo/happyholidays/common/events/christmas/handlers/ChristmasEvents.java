@@ -5,6 +5,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
+import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
@@ -143,6 +144,13 @@ public class ChristmasEvents {
             TriggerRegistry.CHRISTMAS_GRINCH_ENCOUNTER.trigger((ServerPlayerEntity) event.getPlayerEntity());
         } else if (event instanceof GrinchEvent.Appease) {
             TriggerRegistry.CHRISTMAS_GRINCH_APPEASE.trigger((ServerPlayerEntity) event.getPlayerEntity());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onStockingFill(StockingEvent event) {
+        if (event instanceof StockingEvent.Fill) {
+            TriggerRegistry.CHRISTMAS_STOCKING_FILL.trigger((ServerPlayerEntity) event.getPlayerEntity());
         }
     }
 }

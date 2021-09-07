@@ -1,0 +1,41 @@
+{
+    "parent": "happyholidays:happyholidays/christmas_start",
+    "display": {
+        "icon": {
+            "item": "happyholidays:red_stocking_block"
+        },
+        "title": {
+            "translate": "advancements.happyholidays.christmas_stocking_start.title"
+        },
+        "description": {
+            "translate": "advancements.happyholidays.christmas_stocking_start.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": false,
+        "hidden": false
+    },
+    "criteria": {
+        "obtain_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:string"
+                    },
+                    {
+                        "item": "minecraft:white_wool"
+                    },
+                    {
+                        "item": "minecraft:red_wool"
+                    }
+                ]
+            }
+        }
+    },
+    "requirements": [
+        [
+            "obtain_items"
+        ]
+    ]
+}

@@ -302,5 +302,9 @@
     "advancements.happyholidays.christmas_pudding.title": "Pudding Up With It!",
     "advancements.happyholidays.christmas_pudding.description": "Fill up your inventory with Christmas Pudding (144 pieces)",
     "advancements.happyholidays.christmas_wreath.title": "Wreath Me Alone!",
-    "advancements.happyholidays.christmas_wreath.description": "Craft a Christmas Wreath"
+    "advancements.happyholidays.christmas_wreath.description": "Craft a Christmas Wreath",
+    "advancements.happyholidays.christmas_stocking_start.title": "Stocking Up",
+    "advancements.happyholidays.christmas_stocking_start.description": "Gather some String, and Red Wool for Stocking crafting",
+    "advancements.happyholidays.christmas_stocking_fill.title": "Where'd That Come From?",
+    "advancements.happyholidays.christmas_stocking_fill.description": "Be near a Stocking when it fills up during the night"
 }

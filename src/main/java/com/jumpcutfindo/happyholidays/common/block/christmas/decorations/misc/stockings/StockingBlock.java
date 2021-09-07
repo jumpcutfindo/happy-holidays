@@ -1,10 +1,12 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallDecorationBlock;
+import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.StockingTileEntity;
@@ -24,6 +26,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -31,6 +34,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.MinecraftForge;
 
 public class StockingBlock extends WallDecorationBlock {
     public static final BooleanProperty FILLED = BooleanProperty.create("filled");
@@ -115,6 +119,14 @@ public class StockingBlock extends WallDecorationBlock {
                 int randInt = random.nextInt(100);
                 if (randInt < StockingBlock.getFillChance(world, blockPos)) {
                     stockingTileEntity.fillStocking();
+
+                    AxisAlignedBB searchBox = new AxisAlignedBB(blockPos).inflate(4.0D);
+                    List<PlayerEntity> playersAround = world.getEntitiesOfClass(PlayerEntity.class, searchBox);
+
+                    for (PlayerEntity playerEntity : playersAround) {
+                        StockingEvent fillEvent = new StockingEvent.Fill(blockState, blockPos, playerEntity);
+                        MinecraftForge.EVENT_BUS.post(fillEvent);
+                    }
                 }
             }
 
