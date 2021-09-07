@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.common.container.christmas.star;
 
 import java.util.UUID;
 
+import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
@@ -10,8 +11,11 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ChristmasStarSlot extends Slot {
     private final ChristmasStarTileEntity starTileEntity;
@@ -23,6 +27,23 @@ public class ChristmasStarSlot extends Slot {
 
     @Override
     public boolean mayPlace(ItemStack itemStack) {
+        boolean flag = ChristmasItem.isOrnamentItem(itemStack);
+
+        if (flag) {
+            World level = starTileEntity.getLevel();
+            if (level != null && !level.isClientSide()) {
+                BlockPos blockPos = starTileEntity.getBlockPos();
+
+                PlayerEntity playerEntity = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(),
+                        10.0D, false);
+
+                if (playerEntity != null) {
+                    ChristmasStarEvent event = new ChristmasStarEvent.PutOrnament(starTileEntity, playerEntity);
+                    MinecraftForge.EVENT_BUS.post(event);
+                }
+            }
+        }
+
         return ChristmasItem.isOrnamentItem(itemStack);
     }
 

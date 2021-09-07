@@ -13,6 +13,7 @@ import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasS
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy.HappySantaEntity;
+import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
@@ -49,6 +50,7 @@ import net.minecraft.world.BossInfo;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ChristmasStarTileEntity extends LockableTileEntity implements IChristmasTileEntity, ITickableTileEntity {
     public static final String TILE_ENTITY_ID = "christmas_star_block";
@@ -276,7 +278,13 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, this.areaOfEffect);
 
         ITextComponent finalSantaText = santaText;
-        playerList.forEach(playerEntity -> playerEntity.sendMessage(finalSantaText, UUID.randomUUID()));
+        playerList.forEach(playerEntity -> {
+                playerEntity.sendMessage(finalSantaText, UUID.randomUUID());
+
+                ChristmasStarEvent summonEvent = new ChristmasStarEvent.SummonSanta(this, playerEntity);
+                MinecraftForge.EVENT_BUS.post(summonEvent);
+            }
+        );
 
         santaEntity.moveTo(this.getBlockPos().getX() + 0.5D, this.getBlockPos().getY() + 1.0D,
                 this.getBlockPos().getZ());
@@ -289,6 +297,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
                 1.0f, 1.0f);
 
         this.summonEvent.removeAllPlayers();
+
     }
 
     public int getCurrentTier() {
@@ -367,6 +376,17 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
             this.level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(),
                     this.worldPosition.getZ(), SoundEvents.NOTE_BLOCK_BELL, SoundCategory.BLOCKS, 1.0F,
                     1.0F + newTier * 0.1F);
+        }
+
+        if (oldTier < newTier && !this.level.isClientSide()) {
+            BlockPos blockPos = this.getBlockPos();
+            PlayerEntity playerEntity = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(),
+                    10.0D, false);
+
+            if (playerEntity != null) {
+                ChristmasStarEvent event = new ChristmasStarEvent.IncreaseTier(this, playerEntity);
+                MinecraftForge.EVENT_BUS.post(event);
+            }
         }
     }
 

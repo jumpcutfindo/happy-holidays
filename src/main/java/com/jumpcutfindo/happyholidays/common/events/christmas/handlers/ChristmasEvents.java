@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.common.events.christmas.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
@@ -151,6 +152,23 @@ public class ChristmasEvents {
     public static void onStockingFill(StockingEvent event) {
         if (event instanceof StockingEvent.Fill) {
             TriggerRegistry.CHRISTMAS_STOCKING_FILL.trigger((ServerPlayerEntity) event.getPlayerEntity());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onChristmasStarInteract(ChristmasStarEvent event) {
+        if (event instanceof ChristmasStarEvent.PutOrnament) {
+            TriggerRegistry.CHRISTMAS_STAR_PUT_ORNAMENT.trigger((ServerPlayerEntity) event.getPlayerEntity());
+        } else if (event instanceof ChristmasStarEvent.IncreaseTier) {
+            ChristmasStarEvent.IncreaseTier increaseTierEvent = (ChristmasStarEvent.IncreaseTier) event;
+
+            if (increaseTierEvent.getTier() == 5) {
+                TriggerRegistry.CHRISTMAS_STAR_MAXED_TIER.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            }
+        } else if (event instanceof ChristmasStarEvent.SummonSanta) {
+            TriggerRegistry.CHRISTMAS_STAR_SUMMON_SANTA.trigger((ServerPlayerEntity) event.getPlayerEntity());
+        } else if (event instanceof ChristmasStarEvent.ReachBonus) {
+            TriggerRegistry.CHRISTMAS_STAR_REACH_BONUS.trigger((ServerPlayerEntity) event.getPlayerEntity());
         }
     }
 }

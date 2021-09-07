@@ -306,5 +306,15 @@
     "advancements.happyholidays.christmas_stocking_start.title": "Stocking Up",
     "advancements.happyholidays.christmas_stocking_start.description": "Gather some String, and Red Wool for Stocking crafting",
     "advancements.happyholidays.christmas_stocking_fill.title": "Where'd That Come From?",
-    "advancements.happyholidays.christmas_stocking_fill.description": "Be near a Stocking when it fills up during the night"
+    "advancements.happyholidays.christmas_stocking_fill.description": "Be near a Stocking when it fills up during the night",
+    "advancements.happyholidays.christmas_star_start.title": "Starry Starry Night",
+    "advancements.happyholidays.christmas_star_start.description": "Craft a Christmas Star using Gold Ingots, Iron Blocks and a Smooth Stone Slab",
+    "advancements.happyholidays.christmas_star_put_ornament.title": "Orna-mental!",
+    "advancements.happyholidays.christmas_star_put_ornament.description": "Deposit an ornament into the Christmas Star",
+    "advancements.happyholidays.christmas_star_max_tier.title": "Don't Shed a Tier",
+    "advancements.happyholidays.christmas_star_max_tier.description": "Reach the maximum tier (tier 5) on the Christmas Star",
+    "advancements.happyholidays.christmas_star_summon_santa.title": "Calling the Big Guy",
+    "advancements.happyholidays.christmas_star_summon_santa.description": "Summon Santa after reaching tier 5 on the Christmas Star",
+    "advancements.happyholidays.christmas_star_hat_magic.title": "Hat Magic",
+    "advancements.happyholidays.christmas_star_hat_magic.description": "Obtain an Enchanted Santa's Hat and reach the bonus tier on the Christmas Star"
 }

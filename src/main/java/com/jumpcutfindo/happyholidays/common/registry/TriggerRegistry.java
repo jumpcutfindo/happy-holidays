@@ -17,6 +17,10 @@ public class TriggerRegistry {
     public static final CustomTrigger CHRISTMAS_GRINCH_ENCOUNTER = new CustomTrigger("christmas_grinch_encounter");
     public static final CustomTrigger CHRISTMAS_GRINCH_APPEASE = new CustomTrigger("christmas_grinch_appease");
     public static final CustomTrigger CHRISTMAS_STOCKING_FILL = new CustomTrigger("christmas_stocking_fill");
+    public static final CustomTrigger CHRISTMAS_STAR_PUT_ORNAMENT = new CustomTrigger("christmas_star_put_ornament");
+    public static final CustomTrigger CHRISTMAS_STAR_MAXED_TIER = new CustomTrigger("christmas_star_maxed_tier");
+    public static final CustomTrigger CHRISTMAS_STAR_SUMMON_SANTA = new CustomTrigger("christmas_star_summon_santa");
+    public static final CustomTrigger CHRISTMAS_STAR_REACH_BONUS = new CustomTrigger("christmas_star_reach_bonus");
 
     private static final CustomTrigger[] TRIGGERS = new CustomTrigger[] {
             CHRISTMAS_PLAY_MUSIC_BOX,
@@ -28,7 +32,11 @@ public class TriggerRegistry {
             CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST_QUICK,
             CHRISTMAS_GRINCH_ENCOUNTER,
             CHRISTMAS_GRINCH_APPEASE,
-            CHRISTMAS_STOCKING_FILL
+            CHRISTMAS_STOCKING_FILL,
+            CHRISTMAS_STAR_PUT_ORNAMENT,
+            CHRISTMAS_STAR_MAXED_TIER,
+            CHRISTMAS_STAR_SUMMON_SANTA,
+            CHRISTMAS_STAR_REACH_BONUS
     };
 
     public static void registerTriggers() {
