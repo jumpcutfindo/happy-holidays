@@ -2,13 +2,16 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.presents;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
@@ -41,6 +44,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -211,5 +215,28 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
     public static boolean canGrow(IWorld world, BlockState blockState, BlockPos blockPos) {
         return !world.getBlockState(blockPos.above()).is(BlockTags.LEAVES) && !blockState.isFaceSturdy(world, blockPos,
                 Direction.UP);
+    }
+
+    @Override
+    public void randomTick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
+        super.randomTick(blockState, serverWorld, blockPos, random);
+
+        // Handle Grinch spawning around the present
+        AxisAlignedBB searchBox = new AxisAlignedBB(blockPos).inflate(40.0D);
+        boolean isPlayerInVicinity = serverWorld.getEntitiesOfClass(PlayerEntity.class, searchBox).size() > 0;
+        boolean isGrinchesAround = serverWorld.getEntitiesOfClass(GrinchEntity.class, searchBox).size() > 5;
+
+        if (isPlayerInVicinity && !isGrinchesAround && serverWorld.isNight()) {
+            if (random.nextDouble() <= GrinchEntity.GRINCH_SPAWN_CHANCE) {
+                int randomX = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
+                int randomY = 0;
+                int randomZ = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
+
+                GrinchEntity grinchEntity = EntityRegistry.GRINCH.get().create(serverWorld);
+                grinchEntity.moveTo(blockPos.getX() + randomX, blockPos.getY() + randomY, blockPos.getZ() + randomZ);
+
+                serverWorld.addFreshEntity(grinchEntity);
+            }
+        }
     }
 }

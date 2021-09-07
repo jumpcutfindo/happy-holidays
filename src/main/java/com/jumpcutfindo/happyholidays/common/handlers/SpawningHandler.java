@@ -22,12 +22,5 @@ public class SpawningHandler {
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
                 GingerbreadPersonEntity::checkGingerbreadSpawnRules
         );
-
-        EntitySpawnPlacementRegistry.register(
-                EntityRegistry.GRINCH.get(),
-                EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
-                Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
-                GrinchEntity::checkGrinchSpawnRules
-        );
     }
 }

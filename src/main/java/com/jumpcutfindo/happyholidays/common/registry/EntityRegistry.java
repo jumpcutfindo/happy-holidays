@@ -47,7 +47,7 @@ public class EntityRegistry {
 
     public static final RegistryObject<EntityType<GrinchEntity>> GRINCH =
             ENTITY_TYPES.register(GrinchEntity.ENTITY_ID,
-                    () -> EntityType.Builder.of(GrinchEntity::new, EntityClassification.AMBIENT)
+                    () -> EntityType.Builder.of(GrinchEntity::new, EntityClassification.CREATURE)
                             .sized(GrinchEntity.ENTITY_BOX_SIZE, GrinchEntity.ENTITY_BOX_HEIGHT)
                             .build(GrinchEntity.ENTITY_ID)
             );

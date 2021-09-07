@@ -36,6 +36,7 @@ public class BabyPresentBlock extends PresentBlock {
 
     @Override
     public void randomTick(BlockState blockState, ServerWorld world, BlockPos blockPos, Random random) {
+        super.randomTick(blockState, world, blockPos, random);
         if (!world.isAreaLoaded(blockPos, 1)) return;
 
         // Destroy block if it isn't able to survive

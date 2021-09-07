@@ -51,6 +51,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.IWorld;
@@ -82,13 +83,13 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     private static final ResourceLocation GRINCH_APPEASEMENT_LOOT_TABLE = new ResourceLocation("happyholidays:entities"
             + "/grinch_appeasement");
 
-    public static final int SPAWN_WEIGHT = 50;
+    public static final double GRINCH_SPAWN_CHANCE = 0.2d;
 
     private static final int BREAK_PRESENT_ANIM_DURATION = 80;
     private static final int BREAK_PRESENT_INTERVAL = 100;
     private static final float AVOID_PLAYER_RADIUS = 6.0f;
     private static final int GRINCH_TIME_TO_DESPAWN = 200;
-    private static final int PRESENT_SEARCH_RADIUS = 8;
+    public static final int PRESENT_SEARCH_RADIUS = 8;
 
     private static final double APPEASEMENT_ORNAMENT_DROP_BASE_CHANCE = 0.2d;
 
@@ -352,7 +353,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
             this.despawnGrinch();
         }
 
-        if (this.level.getGameTime() % 60L == 0) {
+        if (!this.level.isClientSide() && this.level.getGameTime() % 60L == 0) {
             List<PlayerEntity> playersAround = HappyHolidaysUtils.findPlayersInRadius(this.level, this.position(),
                     AVOID_PLAYER_RADIUS);
 
@@ -419,23 +420,6 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
-    }
-
-    public static boolean checkGrinchSpawnRules(EntityType<? extends GrinchEntity> entity, IWorld world,
-                                                SpawnReason spawnReason, BlockPos pos, Random rand) {
-        if (spawnReason == SpawnReason.CHUNK_GENERATION) return false;
-        try {
-            boolean isPresentBlockNear = HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.BABY_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
-                    || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ADULT_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null
-                    || HappyHolidaysUtils.findBlockInRadius(world, pos, BlockRegistry.ELDER_PRESENT_BLOCK.get(), PRESENT_SEARCH_RADIUS * 2) != null;
-
-            boolean isNight = false;
-            if (!world.isClientSide()) isNight = ((ServerWorld) world).isNight();
-
-            return isPresentBlockNear && isNight;
-        } catch (Exception e) {
-            return false;
-        }
     }
 
     private static class BreakPresentsGoal extends Goal {

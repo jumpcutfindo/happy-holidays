@@ -35,11 +35,5 @@ public class GenerationHandler {
                             GingerbreadManEntity.SPAWN_WEIGHT, GingerbreadManEntity.MIN_SPAWN_COUNT,
                             GingerbreadManEntity.MAX_SPAWN_COUNT));
         }
-
-        if (event.getCategory() != Biome.Category.OCEAN) {
-            event.getSpawns().addSpawn(EntityClassification.MONSTER,
-                    new MobSpawnInfo.Spawners(EntityRegistry.GRINCH.get(),
-                            GrinchEntity.SPAWN_WEIGHT, 1, 1));
-        }
     }
 }
