@@ -190,15 +190,15 @@ public class ItemRegistry {
 
     public static final RegistryObject<ChristmasBlockItem> BABY_PRESENT_BLOCK_ITEM =
             ITEMS.register(BabyPresentBlock.BLOCK_ID,
-                    () -> new ChristmasBlockItem(BlockRegistry.BABY_PRESENT_BLOCK.get(),
+                    () -> new ChristmasBlockItem(BlockRegistry.BABY_PRESENT.get(),
                     BabyPresentBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> ADULT_PRESENT_BLOCK_ITEM =
             ITEMS.register(AdultPresentBlock.BLOCK_ID,
-                    () -> new ChristmasBlockItem(BlockRegistry.ADULT_PRESENT_BLOCK.get(),
+                    () -> new ChristmasBlockItem(BlockRegistry.ADULT_PRESENT.get(),
                     AdultPresentBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> ELDER_PRESENT_BLOCK_ITEM =
             ITEMS.register(ElderPresentBlock.BLOCK_ID,
-                    () -> new ChristmasBlockItem(BlockRegistry.ELDER_PRESENT_BLOCK.get(),
+                    () -> new ChristmasBlockItem(BlockRegistry.ELDER_PRESENT.get(),
                     ElderPresentBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> RED_BALL_ORNAMENT_BLOCK_ITEM =

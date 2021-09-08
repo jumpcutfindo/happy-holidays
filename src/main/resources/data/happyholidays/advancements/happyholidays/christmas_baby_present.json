@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_present_scraps",
     "display": {
         "icon": {
-            "item": "happyholidays:baby_present_block"
+            "item": "happyholidays:baby_present"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_baby_present.title"
@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:baby_present_block"
+                        "item": "happyholidays:baby_present"
                     }
                 ]
             }

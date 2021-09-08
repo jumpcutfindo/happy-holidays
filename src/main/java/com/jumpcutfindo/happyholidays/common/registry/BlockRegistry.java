@@ -73,11 +73,11 @@ public class BlockRegistry {
             HappyHolidaysMod.MOD_ID
     );
 
-    public static final RegistryObject<ChristmasBlock> BABY_PRESENT_BLOCK =
+    public static final RegistryObject<ChristmasBlock> BABY_PRESENT =
             BLOCKS.register(BabyPresentBlock.BLOCK_ID, BabyPresentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ADULT_PRESENT_BLOCK =
+    public static final RegistryObject<ChristmasBlock> ADULT_PRESENT =
             BLOCKS.register(AdultPresentBlock.BLOCK_ID, AdultPresentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ELDER_PRESENT_BLOCK =
+    public static final RegistryObject<ChristmasBlock> ELDER_PRESENT =
             BLOCKS.register(ElderPresentBlock.BLOCK_ID, ElderPresentBlock::new);
 
     public static final RegistryObject<ChristmasBlock> RED_BALL_ORNAMENT_BLOCK =

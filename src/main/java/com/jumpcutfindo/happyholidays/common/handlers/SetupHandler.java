@@ -25,9 +25,9 @@ public class SetupHandler {
     @SubscribeEvent
     public static void initialise(FMLCommonSetupEvent event) {
         christmasBlocks = new ChristmasBlock[] {
-                BlockRegistry.BABY_PRESENT_BLOCK.get(),
-                BlockRegistry.ADULT_PRESENT_BLOCK.get(),
-                BlockRegistry.ELDER_PRESENT_BLOCK.get(),
+                BlockRegistry.BABY_PRESENT.get(),
+                BlockRegistry.ADULT_PRESENT.get(),
+                BlockRegistry.ELDER_PRESENT.get(),
 
                 BlockRegistry.RED_BALL_ORNAMENT_BLOCK.get(),
                 BlockRegistry.BLUE_BALL_ORNAMENT_BLOCK.get(),

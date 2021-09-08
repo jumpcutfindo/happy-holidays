@@ -329,9 +329,9 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:baby_present_block",
-                        "happyholidays:adult_present_block",
-                        "happyholidays:elder_present_block"
+                        "happyholidays:baby_present",
+                        "happyholidays:adult_present",
+                        "happyholidays:elder_present"
                     ]
                 },
                 {

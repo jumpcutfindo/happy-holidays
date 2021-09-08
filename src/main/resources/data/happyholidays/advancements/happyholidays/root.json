@@ -1,7 +1,7 @@
 {
     "display": {
         "icon": {
-            "item": "happyholidays:adult_present_block"
+            "item": "happyholidays:adult_present"
         },
         "title": {
             "translate": "advancements.happyholidays.root.title"

@@ -1,7 +1,7 @@
 {
-    "block.happyholidays.baby_present_block": "Baby Present",
-    "block.happyholidays.adult_present_block": "Adult Present",
-    "block.happyholidays.elder_present_block": "Elder Present",
+    "block.happyholidays.baby_present": "Baby Present",
+    "block.happyholidays.adult_present": "Adult Present",
+    "block.happyholidays.elder_present": "Elder Present",
 
     "block.happyholidays.red_ball_ornament_block": "Red Bauble",
     "block.happyholidays.blue_ball_ornament_block": "Blue Bauble",
