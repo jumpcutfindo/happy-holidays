@@ -13,6 +13,6 @@ public class BigBaubleOrnamentBlock extends OrnamentBlock {
     };
 
     public BigBaubleOrnamentBlock(String blockId) {
-        super(blockId, BIG_BAUBLE_SHAPES);
+        super(BIG_BAUBLE_SHAPES);
     }
 }

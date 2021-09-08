@@ -24,6 +24,6 @@ public class TinselBlock extends ConnectedOrnamentBlock {
                     .noCollission();
 
     public TinselBlock(String blockId) {
-        super(blockId, BLOCK_PROPERTIES, TINSEL_SHAPE);
+        super(BLOCK_PROPERTIES, TINSEL_SHAPE);
     }
 }

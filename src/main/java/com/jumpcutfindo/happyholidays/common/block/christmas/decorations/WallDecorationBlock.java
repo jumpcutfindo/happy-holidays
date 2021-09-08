@@ -38,8 +38,8 @@ public class WallDecorationBlock extends ChristmasBlock implements IWaterLoggabl
 
     private final VoxelShape shape;
 
-    public WallDecorationBlock(String blockId, Properties properties, VoxelShape shape) {
-        super(blockId, properties, ITEM_PROPERTIES);
+    public WallDecorationBlock(Properties properties, VoxelShape shape) {
+        super(properties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false)

@@ -11,33 +11,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
 public class ChristmasContainerBlock extends ContainerBlock implements IHappyHolidaysBlock {
-
-    public final String blockId;
-
-    private Properties properties;
-    private Item.Properties itemProperties;
-
-    protected ChristmasContainerBlock(String blockId, Properties properties, Item.Properties itemProperties) {
+    protected ChristmasContainerBlock(Properties properties) {
         super(properties);
-
-        this.blockId = blockId;
-        this.properties = properties;
-        this.itemProperties = itemProperties;
-    }
-
-    @Override
-    public String getBlockId() {
-        return blockId;
-    }
-
-    @Override
-    public Item.Properties getItemProperties() {
-        return itemProperties;
-    }
-
-    @Override
-    public AbstractBlock.Properties getProperties() {
-        return properties;
     }
 
     @Override

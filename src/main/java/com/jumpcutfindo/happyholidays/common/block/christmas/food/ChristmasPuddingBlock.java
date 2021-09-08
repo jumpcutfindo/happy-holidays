@@ -49,7 +49,7 @@ public class ChristmasPuddingBlock extends ChristmasFoodBlock {
     public static final VoxelShape[] SHAPE = { Block.box(2.5, 0.0, 2.5, 13.5, 8.0, 13.5) };
 
     public ChristmasPuddingBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES, SHAPE, NUTRITION, SATURATION);
+        super(BLOCK_PROPERTIES, SHAPE, NUTRITION, SATURATION);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)
                 .setValue(FACING, Direction.NORTH));

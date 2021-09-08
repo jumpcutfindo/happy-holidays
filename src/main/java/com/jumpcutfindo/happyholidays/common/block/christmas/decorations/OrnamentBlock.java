@@ -57,8 +57,8 @@ public class OrnamentBlock extends ChristmasBlock implements IWaterLoggable {
 
     public VoxelShape[] normalShape, hangingShape, wallShape;
 
-    public OrnamentBlock(String blockId, VoxelShape[][] ornamentShapes) {
-        super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+    public OrnamentBlock(VoxelShape[][] ornamentShapes) {
+        super(BLOCK_PROPERTIES);
 
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(ATTACH_FACE, AttachFace.FLOOR)

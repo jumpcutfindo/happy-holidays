@@ -51,7 +51,7 @@ public class StockingBlock extends WallDecorationBlock {
     public static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0 ,16.0, 16.0,0.5);
 
     public StockingBlock(String blockId) {
-        super(blockId, BLOCK_PROPERTIES, SHAPE);
+        super(BLOCK_PROPERTIES, SHAPE);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(FILLED, false)

@@ -21,8 +21,8 @@ public class BaseGingerbreadBlock extends ChristmasBlock {
     public static final Item.Properties ITEM_PROPERITES =
             new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
-    public BaseGingerbreadBlock(String blockId) {
-        super(blockId, BLOCK_PROPERTIES, ITEM_PROPERITES);
+    public BaseGingerbreadBlock() {
+        super(BLOCK_PROPERTIES);
         FurnaceTileEntity f = new FurnaceTileEntity();
     }
 }

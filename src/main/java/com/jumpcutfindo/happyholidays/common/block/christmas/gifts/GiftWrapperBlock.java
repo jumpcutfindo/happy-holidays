@@ -58,7 +58,7 @@ public class    GiftWrapperBlock extends ChristmasBlock {
     );
 
     public GiftWrapperBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+        super(BLOCK_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
         );

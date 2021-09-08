@@ -13,6 +13,6 @@ public class HeadOrnamentBlock extends OrnamentBlock {
     };
 
     public HeadOrnamentBlock(String blockId) {
-        super(blockId, HEAD_ORNAMENT_SHAPES);
+        super(HEAD_ORNAMENT_SHAPES);
     }
 }

@@ -12,7 +12,7 @@ public class GingerbreadBlock extends BaseGingerbreadBlock {
     public static final String BLOCK_ID = "gingerbread_block";
 
     public GingerbreadBlock() {
-        super(BLOCK_ID);
+        super();
     }
 
     @Override

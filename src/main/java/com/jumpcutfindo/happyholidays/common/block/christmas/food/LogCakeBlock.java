@@ -49,7 +49,7 @@ public class LogCakeBlock extends ChristmasFoodBlock {
     public static final VoxelShape[] SHAPE = { Block.box(1.0, 0.0, 3.0, 15.0, 6.0, 13.0) };
 
     public LogCakeBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES, SHAPE, NUTRITION, SATURATION);
+        super(BLOCK_PROPERTIES, SHAPE, NUTRITION, SATURATION);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)
                 .setValue(FACING, Direction.NORTH));

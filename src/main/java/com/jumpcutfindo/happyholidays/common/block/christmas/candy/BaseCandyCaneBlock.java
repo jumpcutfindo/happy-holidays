@@ -45,7 +45,7 @@ public class BaseCandyCaneBlock extends ChristmasBlock {
     public static final double ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE = 0.005D;
 
     public BaseCandyCaneBlock(String blockId) {
-        super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+        super(BLOCK_PROPERTIES);
     }
 
     @Override

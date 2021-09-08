@@ -49,7 +49,7 @@ public class ChristmasHamBlock extends ChristmasFoodBlock {
     public static final VoxelShape[] SHAPE = { Block.box(1.0, 0.0, 1.0, 15.0, 10.0, 15.0) };
 
     public ChristmasHamBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES, SHAPE, NUTRITION, SATURATION);
+        super(BLOCK_PROPERTIES, SHAPE, NUTRITION, SATURATION);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)
                 .setValue(FACING, Direction.NORTH));

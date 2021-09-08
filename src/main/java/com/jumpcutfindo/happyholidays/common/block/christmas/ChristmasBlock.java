@@ -8,8 +8,8 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 public class ChristmasBlock extends HappyHolidaysBlock {
-    public ChristmasBlock(String blockId, Properties properties, Item.Properties itemProperties) {
-        super(blockId, properties, itemProperties);
+    public ChristmasBlock(Properties properties) {
+        super(properties);
     }
 
     @Override

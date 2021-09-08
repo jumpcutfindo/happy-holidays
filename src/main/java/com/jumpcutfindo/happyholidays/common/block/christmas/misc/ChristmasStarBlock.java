@@ -71,7 +71,7 @@ public class ChristmasStarBlock extends ChristmasBlock {
     );
 
     public ChristmasStarBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+        super(BLOCK_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(STAR_TIER, ChristmasStarTier.TIER_0)
                 .setValue(HORIZONTAL_AXIS, Direction.Axis.X)

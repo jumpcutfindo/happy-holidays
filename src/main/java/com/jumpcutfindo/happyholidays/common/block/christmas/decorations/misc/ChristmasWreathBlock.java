@@ -23,6 +23,6 @@ public class ChristmasWreathBlock extends WallDecorationBlock {
     public static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0 ,16.0, 16.0,0.5);
 
     public ChristmasWreathBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, SHAPE);
+        super(BLOCK_PROPERTIES, SHAPE);
     }
 }

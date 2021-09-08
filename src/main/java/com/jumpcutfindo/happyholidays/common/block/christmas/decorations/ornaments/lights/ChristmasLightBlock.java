@@ -25,6 +25,6 @@ public class ChristmasLightBlock extends ConnectedOrnamentBlock {
                     .lightLevel((blockState) -> 14);
 
     public ChristmasLightBlock(String blockId) {
-        super(blockId, BLOCK_PROPERTIES, CHRISTMAS_LIGHT_SHAPE);
+        super(BLOCK_PROPERTIES, CHRISTMAS_LIGHT_SHAPE);
     }
 }

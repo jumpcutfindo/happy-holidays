@@ -50,7 +50,7 @@ public class MilkAndCookiesBlock extends ChristmasFoodBlock {
     public static final VoxelShape[] SHAPE = { Block.box(3.5, 0.0, 3.5, 12.5, 7.0, 12.5) };
 
     public MilkAndCookiesBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES, SHAPE, NUTRITION, SATURATION);
+        super(BLOCK_PROPERTIES, SHAPE, NUTRITION, SATURATION);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)
                 .setValue(FACING, Direction.NORTH));

@@ -44,8 +44,8 @@ public class ConnectedOrnamentBlock extends ChristmasBlock implements IWaterLogg
 
     private final VoxelShape shape;
 
-    public ConnectedOrnamentBlock(String blockId, AbstractBlock.Properties blockProperties, VoxelShape shape) {
-        super(blockId, blockProperties, ITEM_PROPERTIES);
+    public ConnectedOrnamentBlock(Properties blockProperties, VoxelShape shape) {
+        super(blockProperties);
 
         this.shape = shape;
 

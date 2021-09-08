@@ -80,7 +80,7 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
     private VoxelShape shape;
 
     public PresentBlock(String blockId, VoxelShape shape) {
-        super(blockId, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+        super(BLOCK_PROPERTIES);
         this.shape = shape;
 
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));

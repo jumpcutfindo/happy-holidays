@@ -8,10 +8,5 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 
 public interface IHappyHolidaysBlock {
-
-    String getBlockId();
-    Item.Properties getItemProperties();
-    Properties getProperties();
-
     void configureBlock();
 }

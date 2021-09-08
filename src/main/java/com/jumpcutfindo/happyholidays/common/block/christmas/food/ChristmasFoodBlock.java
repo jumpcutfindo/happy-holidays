@@ -30,11 +30,10 @@ public class ChristmasFoodBlock extends ChristmasBlock {
     private final int nutrition;
     private final float saturation;
 
-    public ChristmasFoodBlock(String blockId, Properties properties, Item.Properties itemProperties,
-                              VoxelShape[] shape, int nutrition, float saturation) {
-        super(blockId, properties, itemProperties);
-        this.shape = shape;
+    public ChristmasFoodBlock(Properties properties, VoxelShape[] shape, int nutrition, float saturation) {
+        super(properties);
 
+        this.shape = shape;
         this.nutrition = nutrition;
         this.saturation = saturation;
     }

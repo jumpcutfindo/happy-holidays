@@ -49,7 +49,7 @@ public class MusicBoxBlock extends ChristmasContainerBlock {
     public MusicBoxTileEntity musicBoxTileEntity;
 
     public MusicBoxBlock() {
-        super(BLOCK_ID, BLOCK_PROPERTIES, ITEM_PROPERTIES);
+        super(BLOCK_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(HAS_SHEET_MUSIC, false)
         );

@@ -13,6 +13,6 @@ public class BaubleOrnamentBlock extends OrnamentBlock {
     };
 
     public BaubleOrnamentBlock(String blockId) {
-        super(blockId, BAUBLE_SHAPES);
+        super(BAUBLE_SHAPES);
     }
 }
