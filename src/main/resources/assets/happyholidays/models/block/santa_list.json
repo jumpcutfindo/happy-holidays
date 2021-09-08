@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "happyholidays:block/santa_list_block",
-		"particle": "happyholidays:block/santa_list_block"
+		"0": "happyholidays:block/santa_list",
+		"particle": "happyholidays:block/santa_list"
 	},
 	"elements": [
 		{

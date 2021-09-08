@@ -39,7 +39,7 @@
     "block.happyholidays.silver_stocking": "Silver Stocking",
 
     "block.happyholidays.christmas_wreath": "Christmas Wreath",
-    "block.happyholidays.santa_list_block": "Santa's List",
+    "block.happyholidays.santa_list": "Santa's List",
 
     "block.happyholidays.baby_present_ornament": "Baby Present Ornament",
     "block.happyholidays.adult_present_ornament": "Adult Present Ornament",
@@ -209,11 +209,11 @@
     "chat.happyholidays.christmas_star.tier_not_ok": "You need to have at least Tier 5 to add the bonus item!",
     "chat.happyholidays.christmas_star.bonus_still_active": "You need to remove the bonus item first!",
 
-    "chat.happyholidays.santa_list_block.max_nice": "Santa is extremely pleased with you!",
-    "chat.happyholidays.santa_list_block.nice": "Santa is pleased with you.",
-    "chat.happyholidays.santa_list_block.neutral": "Santa doesn't know what to feel about you.",
-    "chat.happyholidays.santa_list_block.naughty": "Santa is displeased with you.",
-    "chat.happyholidays.santa_list_block.max_naughty": "Santa is extremely displeased with you!",
+    "chat.happyholidays.santa_list.max_nice": "Santa is extremely pleased with you!",
+    "chat.happyholidays.santa_list.nice": "Santa is pleased with you.",
+    "chat.happyholidays.santa_list.neutral": "Santa doesn't know what to feel about you.",
+    "chat.happyholidays.santa_list.naughty": "Santa is displeased with you.",
+    "chat.happyholidays.santa_list.max_naughty": "Santa is extremely displeased with you!",
 
     "effect.happyholidays.spirit_of_christmas": "Christmas Spirit",
     "effect.happyholidays.generosity_of_christmas": "Christmas Generosity",
