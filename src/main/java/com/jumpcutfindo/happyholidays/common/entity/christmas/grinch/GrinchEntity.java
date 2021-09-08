@@ -83,6 +83,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     private static final ResourceLocation GRINCH_APPEASEMENT_LOOT_TABLE = new ResourceLocation("happyholidays:entities"
             + "/grinch_appeasement");
 
+    // TODO: Tweak value so that it's not that common for grinches to spawn
     public static final double GRINCH_SPAWN_CHANCE = 0.2d;
 
     private static final int BREAK_PRESENT_ANIM_DURATION = 80;
