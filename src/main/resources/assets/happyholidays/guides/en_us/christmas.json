@@ -441,12 +441,12 @@
                     "type": "items",
                     "items": [
                         "happyholidays:gift_wrapping_station",
-                        "happyholidays:red_christmas_gift_item",
-                        "happyholidays:blue_christmas_gift_item",
-                        "happyholidays:yellow_christmas_gift_item",
-                        "happyholidays:green_christmas_gift_item",
-                        "happyholidays:gold_christmas_gift_item",
-                        "happyholidays:silver_christmas_gift_item"
+                        "happyholidays:red_christmas_gift",
+                        "happyholidays:blue_christmas_gift",
+                        "happyholidays:yellow_christmas_gift",
+                        "happyholidays:green_christmas_gift",
+                        "happyholidays:gold_christmas_gift",
+                        "happyholidays:silver_christmas_gift"
                     ]
                 },
                 {
