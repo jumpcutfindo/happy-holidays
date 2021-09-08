@@ -1,0 +1,64 @@
+{
+    "variants": {
+        "bites=3,facing=east": {
+            "model": "happyholidays:block/log_cake_three_bites",
+            "y": 270
+        },
+        "bites=3,facing=north": {
+            "model": "happyholidays:block/log_cake_three_bites",
+            "y": 180
+        },
+        "bites=3,facing=south": {
+            "model": "happyholidays:block/log_cake_three_bites"
+        },
+        "bites=3,facing=west": {
+            "model": "happyholidays:block/log_cake_three_bites",
+            "y": 90
+        },
+        "bites=2,facing=east": {
+            "model": "happyholidays:block/log_cake_two_bites",
+            "y": 270
+        },
+        "bites=2,facing=north": {
+            "model": "happyholidays:block/log_cake_two_bites",
+            "y": 180
+        },
+        "bites=2,facing=south": {
+            "model": "happyholidays:block/log_cake_two_bites"
+        },
+        "bites=2,facing=west": {
+            "model": "happyholidays:block/log_cake_two_bites",
+            "y": 90
+        },
+        "bites=1,facing=east": {
+            "model": "happyholidays:block/log_cake_one_bite",
+            "y": 270
+        },
+        "bites=1,facing=north": {
+            "model": "happyholidays:block/log_cake_one_bite",
+            "y": 180
+        },
+        "bites=1,facing=south": {
+            "model": "happyholidays:block/log_cake_one_bite"
+        },
+        "bites=1,facing=west": {
+            "model": "happyholidays:block/log_cake_one_bite",
+            "y": 90
+        },
+        "bites=0,facing=east": {
+            "model": "happyholidays:block/log_cake",
+            "y": 270
+        },
+        "bites=0,facing=north": {
+            "model": "happyholidays:block/log_cake",
+            "y": 180
+        },
+        "bites=0,facing=south": {
+            "model": "happyholidays:block/log_cake"
+        },
+        "bites=0,facing=west": {
+            "model": "happyholidays:block/log_cake",
+            "y": 90
+        }
+    }
+}

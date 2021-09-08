@@ -72,10 +72,10 @@
     "block.happyholidays.music_box.now_playing": "Now Playing - %s",
     "block.happyholidays.gift_wrapper_block": "Wrapping Station",
 
-    "block.happyholidays.milk_and_cookies_block": "Milk and Cookies",
-    "block.happyholidays.log_cake_block": "Log Cake",
-    "block.happyholidays.christmas_ham_block": "Christmas Ham",
-    "block.happyholidays.christmas_pudding_block": "Christmas Pudding",
+    "block.happyholidays.milk_and_cookies": "Milk and Cookies",
+    "block.happyholidays.log_cake": "Log Cake",
+    "block.happyholidays.christmas_ham": "Christmas Ham",
+    "block.happyholidays.christmas_pudding": "Christmas Pudding",
 
     "item.happyholidays.raw_gingerbread": "Gingerbread Dough",
     "item.happyholidays.gingerbread_cookie": "Gingerbread Cookie",

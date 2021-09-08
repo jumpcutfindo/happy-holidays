@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_holly_start",
     "display": {
         "icon": {
-            "item": "happyholidays:christmas_pudding_block"
+            "item": "happyholidays:christmas_pudding"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_pudding.title"
@@ -24,151 +24,151 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     },
                     {
-                        "item": "happyholidays:christmas_pudding_block",
+                        "item": "happyholidays:christmas_pudding",
                         "count": 4
                     }
                 ]
