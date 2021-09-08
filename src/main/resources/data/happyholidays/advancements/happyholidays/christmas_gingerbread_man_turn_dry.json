@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_gingerbread_start",
     "display": {
         "icon": {
-            "item": "happyholidays:raw_gingerbread"
+            "item": "happyholidays:gingerbread_dough"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_gingerbread_man_turn_dry.title"

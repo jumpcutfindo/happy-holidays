@@ -10,7 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
 
 public class RawGingerbreadBlock extends BaseGingerbreadBlock {
-    public static final String BLOCK_ID = "raw_gingerbread_block";
+    public static final String BLOCK_ID = "gingerbread_dough_block";
 
     public RawGingerbreadBlock() {
         super();

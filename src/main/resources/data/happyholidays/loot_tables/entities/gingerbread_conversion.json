@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "minecraft:item",
-                    "name": "happyholidays:raw_gingerbread",
+                    "name": "happyholidays:gingerbread_dough",
                     "functions": [
                         {
                             "function": "minecraft:set_count",

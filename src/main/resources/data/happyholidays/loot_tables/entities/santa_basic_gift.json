@@ -34,7 +34,7 @@
                 },
                 {
                     "type": "minecraft:item",
-                    "name": "happyholidays:raw_gingerbread_block",
+                    "name": "happyholidays:gingerbread_dough_block",
                     "functions": [
                         {
                             "function": "minecraft:set_count",

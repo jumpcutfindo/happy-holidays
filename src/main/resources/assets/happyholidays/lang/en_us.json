@@ -54,7 +54,7 @@
     "block.happyholidays.wither_skeleton_head_ornament_block": "Wither Skeleton Skull Ornament",
     "block.happyholidays.zombie_head_ornament_block": "Zombie Head Ornament",
 
-    "block.happyholidays.raw_gingerbread_block": "Block of Gingerbread Dough",
+    "block.happyholidays.gingerbread_dough_block": "Block of Gingerbread Dough",
     "block.happyholidays.gingerbread_block": "Block of Gingerbread",
     "block.happyholidays.soggy_gingerbread_block": "Block of Soggy Gingerbread",
 
@@ -77,7 +77,7 @@
     "block.happyholidays.christmas_ham": "Christmas Ham",
     "block.happyholidays.christmas_pudding": "Christmas Pudding",
 
-    "item.happyholidays.raw_gingerbread": "Gingerbread Dough",
+    "item.happyholidays.gingerbread_dough": "Gingerbread Dough",
     "item.happyholidays.gingerbread_cookie": "Gingerbread Cookie",
 
     "item.happyholidays.candy_cane": "Candy Cane",

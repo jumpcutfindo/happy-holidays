@@ -1,7 +1,7 @@
 {
     "type": "minecraft:smelting",
     "ingredient": {
-        "item": "happyholidays:raw_gingerbread_block"
+        "item": "happyholidays:gingerbread_dough_block"
     },
     "result": {
         "item": "happyholidays:gingerbread_block",

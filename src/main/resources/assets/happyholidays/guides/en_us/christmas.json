@@ -261,7 +261,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:raw_gingerbread",
+                        "happyholidays:gingerbread_dough",
                         "happyholidays:gingerbread_cookie"
                     ]
                 },
@@ -276,7 +276,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:raw_gingerbread_block",
+                        "happyholidays:gingerbread_dough_block",
                         "happyholidays:gingerbread_block",
                         "happyholidays:soggy_gingerbread_block"
                     ]
