@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.common.block.christmas;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.block.HappyHolidaysBlock;
+import com.jumpcutfindo.happyholidays.common.block.IHappyHolidaysBlock;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.ContainerBlock;
@@ -10,7 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockReader;
 
-public class ChristmasContainerBlock extends ContainerBlock implements HappyHolidaysBlock {
+public class ChristmasContainerBlock extends ContainerBlock implements IHappyHolidaysBlock {
 
     public final String blockId;
 
@@ -23,6 +23,16 @@ public class ChristmasContainerBlock extends ContainerBlock implements HappyHoli
         this.blockId = blockId;
         this.properties = properties;
         this.itemProperties = itemProperties;
+    }
+
+    @Override
+    public String getBlockId() {
+        return blockId;
+    }
+
+    @Override
+    public Item.Properties getItemProperties() {
+        return itemProperties;
     }
 
     @Override

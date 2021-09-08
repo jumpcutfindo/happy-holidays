@@ -12,6 +12,7 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
@@ -85,6 +86,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
     // TODO: Tweak value so that it's not that common for grinches to spawn
     public static final double GRINCH_SPAWN_CHANCE = 0.2d;
+    public static final int MAX_GRINCHES_IN_VICINITY = 3;
 
     private static final int BREAK_PRESENT_ANIM_DURATION = 80;
     private static final int BREAK_PRESENT_INTERVAL = 100;
@@ -359,6 +361,27 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                     AVOID_PLAYER_RADIUS);
 
             for (PlayerEntity playerEntity : playersAround) MinecraftForge.EVENT_BUS.post(new GrinchEvent.Encounter(this, playerEntity));
+        }
+    }
+
+    public static boolean canSpawnInArea(BlockPos blockPos, ServerWorld serverWorld) {
+        AxisAlignedBB searchBox = new AxisAlignedBB(blockPos).inflate(40.0D);
+        boolean isPlayerInVicinity = serverWorld.getEntitiesOfClass(PlayerEntity.class, searchBox).size() > 0;
+        boolean isGrinchesAround = serverWorld.getEntitiesOfClass(GrinchEntity.class, searchBox).size() > MAX_GRINCHES_IN_VICINITY;
+
+        return isPlayerInVicinity && !isGrinchesAround && serverWorld.isNight();
+    }
+
+    public static void spawnGrinchAround(BlockPos blockPos, ServerWorld serverWorld, Random random) {
+        if (random.nextDouble() <= GrinchEntity.GRINCH_SPAWN_CHANCE) {
+            int randomX = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
+            int randomY = 0;
+            int randomZ = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
+
+            GrinchEntity grinchEntity = EntityRegistry.GRINCH.get().create(serverWorld);
+            grinchEntity.moveTo(blockPos.getX() + randomX, blockPos.getY() + randomY, blockPos.getZ() + randomZ);
+
+            serverWorld.addFreshEntity(grinchEntity);
         }
     }
 

@@ -35,6 +35,7 @@ import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootParameters;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -44,6 +45,8 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -54,6 +57,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ForgeHooks;
 
 public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -212,31 +216,45 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
         }
     }
 
+    @Override
+    public void randomTick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
+        super.randomTick(blockState, serverWorld, blockPos, random);
+
+        // Handle growing for baby / adult presents
+        if (PresentBlock.isGrowable(blockState)) {
+            // Checks whether the block can grow on the current block and whether our randomised values allow it to grow
+            boolean isGrow = PresentBlock.canGrow(serverWorld, blockState, blockPos)
+                    && ForgeHooks.onCropsGrowPre(serverWorld, blockPos, blockState,
+                    random.nextInt((int)(1.0 / this.getGrowthProbability(serverWorld, blockPos))) == 0);
+
+            if (isGrow) PresentBlock.grow(blockState, serverWorld, blockPos, random);
+        }
+
+        // Handle Grinch spawning around the present
+        if (GrinchEntity.canSpawnInArea(blockPos, serverWorld)) GrinchEntity.spawnGrinchAround(blockPos, serverWorld, random);
+    }
+
+    public static void grow(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
+        // Determine the next block state
+        BlockState nextBlockState = blockState.getBlock() instanceof BabyPresentBlock
+                ? BlockRegistry.ADULT_PRESENT_BLOCK.get().defaultBlockState()
+                : BlockRegistry.ELDER_PRESENT_BLOCK.get().defaultBlockState();
+
+        // Update the server world by replacing the block
+        serverWorld.setBlock(blockPos, nextBlockState, 2);
+        serverWorld.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundEvents.WOOL_BREAK,
+                SoundCategory.BLOCKS, 1.0F, 1.0F);
+        serverWorld.sendParticles(ParticleTypes.CLOUD, blockPos.getX() + random.nextDouble(), blockPos.getY() + random.nextDouble(),
+                blockPos.getZ() + random.nextDouble(), 1, 0D, 0D, 0D, 0.0D);
+        ForgeHooks.onCropsGrowPost(serverWorld, blockPos, blockState);
+    }
+
     public static boolean canGrow(IWorld world, BlockState blockState, BlockPos blockPos) {
         return !world.getBlockState(blockPos.above()).is(BlockTags.LEAVES) && !blockState.isFaceSturdy(world, blockPos,
                 Direction.UP);
     }
 
-    @Override
-    public void randomTick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
-        super.randomTick(blockState, serverWorld, blockPos, random);
-
-        // Handle Grinch spawning around the present
-        AxisAlignedBB searchBox = new AxisAlignedBB(blockPos).inflate(40.0D);
-        boolean isPlayerInVicinity = serverWorld.getEntitiesOfClass(PlayerEntity.class, searchBox).size() > 0;
-        boolean isGrinchesAround = serverWorld.getEntitiesOfClass(GrinchEntity.class, searchBox).size() > 5;
-
-        if (isPlayerInVicinity && !isGrinchesAround && serverWorld.isNight()) {
-            if (random.nextDouble() <= GrinchEntity.GRINCH_SPAWN_CHANCE) {
-                int randomX = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
-                int randomY = 0;
-                int randomZ = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
-
-                GrinchEntity grinchEntity = EntityRegistry.GRINCH.get().create(serverWorld);
-                grinchEntity.moveTo(blockPos.getX() + randomX, blockPos.getY() + randomY, blockPos.getZ() + randomZ);
-
-                serverWorld.addFreshEntity(grinchEntity);
-            }
-        }
+    public static boolean isGrowable(BlockState blockState) {
+        return blockState.is(BlockRegistry.BABY_PRESENT_BLOCK.get()) || blockState.is(BlockRegistry.ADULT_PRESENT_BLOCK.get());
     }
 }

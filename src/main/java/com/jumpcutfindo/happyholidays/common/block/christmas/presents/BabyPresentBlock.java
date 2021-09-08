@@ -22,38 +22,7 @@ public class BabyPresentBlock extends PresentBlock {
             Block.box(4.25, 4.0, 4.25, 11.75, 5.5 ,11.75)
     );
 
-    private BlockState nextBlockState;
-
     public BabyPresentBlock() {
         super(BLOCK_ID, SHAPE);
-    }
-
-    @Override
-    public void configureBlock() {
-        super.configureBlock();
-        this.nextBlockState = BlockRegistry.ADULT_PRESENT_BLOCK.get().defaultBlockState();
-    }
-
-    @Override
-    public void randomTick(BlockState blockState, ServerWorld world, BlockPos blockPos, Random random) {
-        super.randomTick(blockState, world, blockPos, random);
-        if (!world.isAreaLoaded(blockPos, 1)) return;
-
-        // Destroy block if it isn't able to survive
-        if (!this.canSurvive(blockState, world, blockPos)) this.updateShape(blockState, Direction.UP,
-                world.getBlockState(blockPos.above()), world, blockPos, blockPos.above());
-
-        boolean isGrow = PresentBlock.canGrow(world, blockState, blockPos)
-                && net.minecraftforge.common.ForgeHooks.onCropsGrowPre(world, blockPos, blockState,
-                random.nextInt((int)(1.0 / this.getGrowthProbability(world, blockPos))) == 0);
-
-        if (isGrow) {
-            world.setBlock(blockPos, nextBlockState, 2);
-            world.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundEvents.WOOL_BREAK,
-                    SoundCategory.BLOCKS, 1.0F, 1.0F);
-            world.sendParticles(ParticleTypes.CLOUD, blockPos.getX() + random.nextDouble(), blockPos.getY() + random.nextDouble(),
-                    blockPos.getZ() + random.nextDouble(), 1, 0D, 0D, 0D, 0.0D);
-            net.minecraftforge.common.ForgeHooks.onCropsGrowPost(world, blockPos, blockState);
-        }
     }
 }

@@ -1,15 +1,37 @@
 package com.jumpcutfindo.happyholidays.common.block;
 
-
-import net.minecraft.block.AbstractBlock.Properties;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.RegistryObject;
 
-public interface HappyHolidaysBlock {
+public class HappyHolidaysBlock extends Block implements IHappyHolidaysBlock {
+    public final String blockId;
+    public final Item.Properties itemProperties;
+    public final Properties properties;
 
-    Properties getProperties();
+    public HappyHolidaysBlock(String blockId, Properties properties, Item.Properties itemProperties) {
+        super(properties);
 
-    void configureBlock();
+        this.blockId = blockId;
+        this.properties = properties;
+        this.itemProperties = itemProperties;
+    }
+
+    @Override
+    public Properties getProperties() {
+        return properties;
+    }
+
+    @Override
+    public String getBlockId() {
+        return blockId;
+    }
+
+    @Override
+    public Item.Properties getItemProperties() {
+        return itemProperties;
+    }
+
+    @Override
+    public void configureBlock() {
+    }
 }
