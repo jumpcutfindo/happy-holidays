@@ -1,17 +1,17 @@
 {
-    "block.christmas_star_block_place": {
+    "block.christmas_star_place": {
         "category": "block",
-        "subtitle": "block.happyholidays.christmas_star_block.block_place_in_radius",
+        "subtitle": "block.happyholidays.christmas_star.block_place_in_radius",
         "sounds": [
             {
-                "name": "happyholidays:block/christmas_star_block_place",
+                "name": "happyholidays:block/christmas_star_place",
                 "stream": true
             }
         ]
     },
     "block.christmas_star_effect_apply": {
         "category": "block",
-        "subtitle": "block.happyholidays.christmas_star_block.effect_apply",
+        "subtitle": "block.happyholidays.christmas_star.effect_apply",
         "sounds": [
             {
                 "name": "happyholidays:block/christmas_star_effect_apply",

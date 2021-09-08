@@ -9,17 +9,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 public class MusicBoxModel extends AnimatedGeoModel<MusicBoxTileEntity> {
     @Override
     public ResourceLocation getModelLocation(MusicBoxTileEntity object) {
-        return new ResourceLocation(HappyHolidaysMod.MOD_ID, "geo/christmas/music_box_block.geo.json");
+        return new ResourceLocation(HappyHolidaysMod.MOD_ID, "geo/christmas/music_box.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureLocation(MusicBoxTileEntity object) {
         // TODO: Fix music box texture; one is stretched
-        return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/block/music_box_block.png");
+        return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/block/music_box.png");
     }
 
     @Override
     public ResourceLocation getAnimationFileLocation(MusicBoxTileEntity animatable) {
-        return new ResourceLocation(HappyHolidaysMod.MOD_ID, "animations/christmas/music_box_block.animation.json");
+        return new ResourceLocation(HappyHolidaysMod.MOD_ID, "animations/christmas/music_box.animation.json");
     }
 }

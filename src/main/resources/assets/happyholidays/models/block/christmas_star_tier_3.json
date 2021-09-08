@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [192, 64],
 	"textures": {
-		"0": "happyholidays:block/christmas_star_block",
+		"0": "happyholidays:block/christmas_star",
 		"particle": "minecraft:block/glass"
 	},
 	"elements": [
@@ -11,8 +11,8 @@
 			"from": [0, 0, 8],
 			"to": [16, 16, 8],
 			"faces": {
-				"north": {"uv": [2.66667, 0, 5.33333, 8], "texture": "#0"},
-				"south": {"uv": [2.66667, 0, 5.33333, 8], "texture": "#0"}
+				"north": {"uv": [8, 0, 10.66667, 8], "texture": "#0"},
+				"south": {"uv": [8, 0, 10.66667, 8], "texture": "#0"}
 			}
 		},
 		{

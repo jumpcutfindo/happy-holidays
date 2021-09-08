@@ -41,7 +41,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:christmas_star_block"
+                        "happyholidays:christmas_star"
                     ]
                 },
                 {
@@ -73,7 +73,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:christmas_star_block"
+                        "happyholidays:christmas_star"
                     ]
                 },
                 {
@@ -467,7 +467,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:music_box_block",
+                        "happyholidays:music_box",
                         "happyholidays:christmas_sheet_music_angels_on_high"
                     ]
                 },

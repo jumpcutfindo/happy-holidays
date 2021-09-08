@@ -31,7 +31,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 public class MusicBoxBlock extends ChristmasContainerBlock {
-    public static final String BLOCK_ID = "music_box_block";
+    public static final String BLOCK_ID = "music_box";
 
     public static final BooleanProperty HAS_SHEET_MUSIC = BooleanProperty.create("has_sheet_music");
 
