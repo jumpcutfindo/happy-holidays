@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+        "minecraft:paper",
+        "minecraft:book",
+        "minecraft:red_dye",
+        "minecraft:green_dye"
+    ]
+}

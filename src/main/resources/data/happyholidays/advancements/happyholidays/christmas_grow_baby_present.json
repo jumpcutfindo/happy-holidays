@@ -19,11 +19,7 @@
         "baby_present": {
             "trigger": "minecraft:placed_block",
             "conditions": {
-                "items": [
-                    {
-                        "block": "happyholidays:baby_present_block"
-                    }
-                ]
+                "block": "happyholidays:baby_present_block"
             }
         }
     },

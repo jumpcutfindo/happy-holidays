@@ -1,0 +1,32 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "happyholidays:music_box_recipe"
+        ]
+    },
+    "criteria": {
+        "has_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:jukebox"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "happyholidays:music_box_recipe"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_items",
+            "has_the_recipe"
+        ]
+    ]
+}

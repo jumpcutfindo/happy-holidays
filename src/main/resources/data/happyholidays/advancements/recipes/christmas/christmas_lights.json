@@ -1,0 +1,37 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "happyholidays:red_christmas_light_recipe",
+            "happyholidays:blue_christmas_light_recipe",
+            "happyholidays:yellow_christmas_light_recipe",
+            "happyholidays:green_christmas_light_recipe",
+            "happyholidays:gold_christmas_light_recipe",
+            "happyholidays:silver_christmas_light_recipe"
+        ]
+    },
+    "criteria": {
+        "has_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "happyholidays:christmas_ball_ornament_parts"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "happyholidays:red_christmas_light_recipe"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_items",
+            "has_the_recipe"
+        ]
+    ]
+}

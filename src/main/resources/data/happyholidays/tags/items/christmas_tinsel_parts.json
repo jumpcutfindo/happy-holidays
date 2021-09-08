@@ -1,0 +1,13 @@
+{
+    "replace": false,
+    "values": [
+        "minecraft:string",
+        "minecraft:white_wool",
+        "minecraft:red_wool",
+        "minecraft:blue_wool",
+        "minecraft:yellow_wool",
+        "minecraft:green_wool",
+        "minecraft:iron_ingot",
+        "minecraft:gold_ingot"
+    ]
+}

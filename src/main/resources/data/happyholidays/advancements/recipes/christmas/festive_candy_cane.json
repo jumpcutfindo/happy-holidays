@@ -1,0 +1,40 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "happyholidays:festive_candy_cane_block_from_candy_cane_recipe",
+            "happyholidays:festive_candy_cane_block_from_raw_recipe"
+        ]
+    },
+    "criteria": {
+        "has_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "happyholidays:christmas_festive_candy_cane_parts"
+                    }
+                ]
+            }
+        },
+        "has_the_raw_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "happyholidays:festive_candy_cane_block_from_raw_recipe"
+            }
+        },
+        "has_the_candy_cane_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "happyholidays:festive_candy_cane_block_from_candy_cane_recipe"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_items",
+            "has_the_raw_recipe",
+            "has_the_candy_cane_recipe"
+        ]
+    ]
+}

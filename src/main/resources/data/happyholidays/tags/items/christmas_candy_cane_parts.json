@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+        "happyholidays:candy_cane_block",
+        "happyholidays:candy_cane",
+        "minecraft:sugar",
+        "minecraft:red_dye"
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "replace": false,
+    "values": [
+        "minecraft:string",
+        "minecraft:glass",
+        "minecraft:red_stained_glass",
+        "minecraft:blue_stained_glass",
+        "minecraft:yellow_stained_glass",
+        "minecraft:green_stained_glass",
+        "minecraft:iron_ingot",
+        "minecraft:gold_ingot"
+    ]
+}

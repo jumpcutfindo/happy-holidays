@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+        "minecraft:zombie_head",
+        "minecraft:skeleton_skull",
+        "minecraft:wither_skeleton_skull",
+        "minecraft:creeper_head"
+    ]
+}

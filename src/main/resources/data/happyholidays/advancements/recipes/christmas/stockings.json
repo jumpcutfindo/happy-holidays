@@ -1,0 +1,37 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "happyholidays:red_stocking_recipe",
+            "happyholidays:blue_stocking_recipe",
+            "happyholidays:yellow_stocking_recipe",
+            "happyholidays:green_stocking_recipe",
+            "happyholidays:gold_stocking_recipe",
+            "happyholidays:silver_stocking_recipe"
+        ]
+    },
+    "criteria": {
+        "has_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "happyholidays:christmas_tinsel_parts"
+                    }
+                ]
+            }
+        },
+        "has_the_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "happyholidays:red_stocking_recipe"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_items",
+            "has_the_recipe"
+        ]
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "happyholidays:raw_gingerbread_to_block_recipe",
+            "happyholidays:raw_gingerbread_to_cookie_recipe",
+            "happyholidays:raw_to_cooked_gingerbread_block_recipe",
+            "happyholidays:soggy_to_cooked_gingerbread_block_recipe"
+        ]
+    },
+    "criteria": {
+        "has_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "happyholidays:raw_gingerbread"
+                    }
+                ]
+            }
+        },
+        "has_the_a_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "happyholidays:raw_gingerbread_to_block_recipe"
+            }
+        },
+        "has_the_b_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "happyholidays:raw_gingerbread_to_cookie_recipe"
+            }
+        },
+        "has_the_c_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "happyholidays:raw_to_cooked_gingerbread_block_recipe"
+            }
+        },
+        "has_the_d_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "happyholidays:soggy_to_cooked_gingerbread_block_recipe"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_items",
+            "has_the_a_recipe",
+            "has_the_b_recipe",
+            "has_the_c_recipe",
+            "has_the_d_recipe"
+        ]
+    ]
+}
