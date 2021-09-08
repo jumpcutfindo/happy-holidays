@@ -154,7 +154,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:red_ball_ornament_block",
+                        "happyholidays:red_bauble",
                         "happyholidays:creeper_head_ornament_block",
                         "happyholidays:gingerbread_man_ornament_block"
                     ]
@@ -170,8 +170,8 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:red_ball_ornament_block",
-                        "happyholidays:big_red_ball_ornament_block",
+                        "happyholidays:red_bauble",
+                        "happyholidays:big_red_bauble",
                         "happyholidays:red_tinsel_block",
                         "happyholidays:red_christmas_light_block"
                     ]

@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_ornament_start",
     "display": {
         "icon": {
-            "item": "happyholidays:big_gold_ball_ornament_block"
+            "item": "happyholidays:big_gold_bauble"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_hoarder.title"
@@ -66,42 +66,42 @@
                         }
                     },
                     {
-                        "item": "happyholidays:big_red_ball_ornament_block",
+                        "item": "happyholidays:big_red_bauble",
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:big_blue_ball_ornament_block",
+                        "item": "happyholidays:big_blue_bauble",
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:big_yellow_ball_ornament_block",
+                        "item": "happyholidays:big_yellow_bauble",
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:big_green_ball_ornament_block",
+                        "item": "happyholidays:big_green_bauble",
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:big_gold_ball_ornament_block",
+                        "item": "happyholidays:big_gold_bauble",
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:big_silver_ball_ornament_block",
+                        "item": "happyholidays:big_silver_bauble",
                         "count": {
                             "min": 64,
                             "max": 64
