@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_grow_baby_present",
     "display": {
         "icon": {
-            "item": "happyholidays:adult_present_ornament_block"
+            "item": "happyholidays:adult_present_ornament"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_adult_present_ornament.title"
@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:adult_present_ornament_block"
+                        "item": "happyholidays:adult_present_ornament"
                     }
                 ]
             }

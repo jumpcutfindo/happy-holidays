@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#",
+        "R"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:string"
+        },
+        "R": {
+            "item": "happyholidays:enchanted_candy_cane"
+        }
+    },
+    "result": {
+        "item": "happyholidays:candy_cane_ornament",
+        "count": 1
+    }
+}

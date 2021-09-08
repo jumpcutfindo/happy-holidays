@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_star_put_ornament",
     "display": {
         "icon": {
-            "item": "happyholidays:gingerbread_man_ornament_block"
+            "item": "happyholidays:gingerbread_man_ornament"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_star_max_tier.title"

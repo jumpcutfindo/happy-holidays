@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "minecraft:item",
-                    "name": "happyholidays:gingerbread_man_ornament_block",
+                    "name": "happyholidays:gingerbread_man_ornament",
                     "functions": [
                         {
                             "function": "minecraft:set_count",

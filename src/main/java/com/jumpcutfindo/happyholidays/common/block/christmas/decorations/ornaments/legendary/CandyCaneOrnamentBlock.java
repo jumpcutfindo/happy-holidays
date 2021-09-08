@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.math.shapes.VoxelShape;
 
 public class CandyCaneOrnamentBlock extends LegendaryOrnamentBlock {
-    public static final String BLOCK_ID = "candy_cane_ornament_block";
+    public static final String BLOCK_ID = "candy_cane_ornament";
 
     public static final VoxelShape[][] ORNAMENT_SHAPES = {
             { Block.box(4.0, 0.0, 3.0, 12.0, 1.0, 13.0) },

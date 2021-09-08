@@ -194,7 +194,7 @@
             "entries": [
                 {
                     "type": "minecraft:item",
-                    "name": "happyholidays:baby_present_ornament_block",
+                    "name": "happyholidays:baby_present_ornament",
                     "functions": [
                         {
                             "function": "minecraft:set_count",

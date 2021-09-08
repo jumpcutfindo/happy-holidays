@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_candy_crush",
     "display": {
         "icon": {
-            "item": "happyholidays:candy_cane_ornament_block"
+            "item": "happyholidays:candy_cane_ornament"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_candy_cane_ornament.title"
@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:candy_cane_ornament_block"
+                        "item": "happyholidays:candy_cane_ornament"
                     }
                 ]
             }
