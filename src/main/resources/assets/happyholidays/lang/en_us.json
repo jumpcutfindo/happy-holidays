@@ -70,7 +70,7 @@
     "container.happyholidays.christmas_star_block": "Christmas Star",
     "block.happyholidays.music_box_block": "Music Box",
     "block.happyholidays.music_box.now_playing": "Now Playing - %s",
-    "block.happyholidays.gift_wrapper_block": "Wrapping Station",
+    "block.happyholidays.gift_wrapping_station": "Wrapping Station",
 
     "block.happyholidays.milk_and_cookies": "Milk and Cookies",
     "block.happyholidays.log_cake": "Log Cake",

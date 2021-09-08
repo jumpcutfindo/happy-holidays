@@ -38,7 +38,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
 public class    GiftWrapperBlock extends ChristmasBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public static final String BLOCK_ID = "gift_wrapper_block";
+    public static final String BLOCK_ID = "gift_wrapping_station";
 
     public static final Properties BLOCK_PROPERTIES =
             AbstractBlock.Properties

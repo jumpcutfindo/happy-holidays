@@ -23,7 +23,7 @@ import net.minecraft.util.IWorldPosCallable;
 import net.minecraft.world.World;
 
 public class GiftWrapperContainer extends Container {
-    public static final String CONTAINER_ID = "gift_wrapper_block";
+    public static final String CONTAINER_ID = "gift_wrapping_station";
 
     public final GiftWrapperTileEntity tileEntity;
     private final IWorldPosCallable canInteractWithCallable;
