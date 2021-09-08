@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_stocking_start",
     "display": {
         "icon": {
-            "item": "happyholidays:red_stocking_block"
+            "item": "happyholidays:red_stocking"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_stocking_fill.title"

@@ -1,0 +1,34 @@
+{
+    "variants": {
+        "filled=false,facing=east": {
+            "model": "happyholidays:block/blue_stocking",
+            "y": 270
+        },
+        "filled=false,facing=north": {
+            "model": "happyholidays:block/blue_stocking",
+            "y": 180
+        },
+        "filled=false,facing=south": {
+            "model": "happyholidays:block/blue_stocking"
+        },
+        "filled=false,facing=west": {
+            "model": "happyholidays:block/blue_stocking",
+            "y": 90
+        },
+        "filled=true,facing=east": {
+            "model": "happyholidays:block/blue_stocking_filled",
+            "y": 270
+        },
+        "filled=true,facing=north": {
+            "model": "happyholidays:block/blue_stocking_filled",
+            "y": 180
+        },
+        "filled=true,facing=south": {
+            "model": "happyholidays:block/blue_stocking_filled"
+        },
+        "filled=true,facing=west": {
+            "model": "happyholidays:block/blue_stocking_filled",
+            "y": 90
+        }
+    }
+}

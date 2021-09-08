@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_holly_start",
     "display": {
         "icon": {
-            "item": "happyholidays:christmas_wreath_block"
+            "item": "happyholidays:christmas_wreath"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_wreath.title"
@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:christmas_wreath_block"
+                        "item": "happyholidays:christmas_wreath"
                     }
                 ]
             }

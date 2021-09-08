@@ -9,7 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.util.math.shapes.VoxelShape;
 
 public class ChristmasWreathBlock extends WallDecorationBlock {
-    public static final String BLOCK_ID = "christmas_wreath_block";
+    public static final String BLOCK_ID = "christmas_wreath";
 
     public static final Properties BLOCK_PROPERTIES =
             AbstractBlock.Properties

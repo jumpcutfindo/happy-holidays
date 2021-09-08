@@ -498,12 +498,12 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:red_stocking_block",
-                        "happyholidays:blue_stocking_block",
-                        "happyholidays:yellow_stocking_block",
-                        "happyholidays:green_stocking_block",
-                        "happyholidays:gold_stocking_block",
-                        "happyholidays:silver_stocking_block"
+                        "happyholidays:red_stocking",
+                        "happyholidays:blue_stocking",
+                        "happyholidays:yellow_stocking",
+                        "happyholidays:green_stocking",
+                        "happyholidays:gold_stocking",
+                        "happyholidays:silver_stocking"
                     ]
                 },
                 {
@@ -521,7 +521,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:christmas_wreath_block"
+                        "happyholidays:christmas_wreath"
                     ]
                 },
                 {
