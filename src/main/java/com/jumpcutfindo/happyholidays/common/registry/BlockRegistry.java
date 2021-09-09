@@ -26,18 +26,8 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornamen
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.GingerbreadManOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.GrinchOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.SantaElfOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.BlueChristmasLightBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.GoldChristmasLightBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.GreenChristmasLightBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.RedChristmasLightBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.SilverChristmasLightBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.YellowChristmasLightBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.BlueTinselBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GoldTinselBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.GreenTinselBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.RedTinselBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.SilverTinselBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.YellowTinselBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.lights.ChristmasLightBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.tinsel.TinselBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
@@ -53,6 +43,8 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresen
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -63,6 +55,7 @@ public class BlockRegistry {
             HappyHolidaysMod.MOD_ID
     );
 
+    // Presents
     public static final RegistryObject<ChristmasBlock> BABY_PRESENT =
             BLOCKS.register(BabyPresentBlock.BLOCK_ID, BabyPresentBlock::new);
     public static final RegistryObject<ChristmasBlock> ADULT_PRESENT =
@@ -70,6 +63,7 @@ public class BlockRegistry {
     public static final RegistryObject<ChristmasBlock> ELDER_PRESENT =
             BLOCKS.register(ElderPresentBlock.BLOCK_ID, ElderPresentBlock::new);
 
+    // Baubles
     public static final RegistryObject<ChristmasBlock> RED_BAUBLE =
             BLOCKS.register(BaubleOrnamentBlock.RED_BAUBLE_ID, BaubleOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> BLUE_BAUBLE =
@@ -83,6 +77,7 @@ public class BlockRegistry {
     public static final RegistryObject<ChristmasBlock> SILVER_BAUBLE =
             BLOCKS.register(BaubleOrnamentBlock.SILVER_BAUBLE_ID, BaubleOrnamentBlock::new);
 
+    // Big Baubles
     public static final RegistryObject<ChristmasBlock> BIG_RED_BAUBLE =
             BLOCKS.register(BigBaubleOrnamentBlock.BIG_RED_BAUBLE_ID, BigBaubleOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> BIG_BLUE_BAUBLE =
@@ -96,6 +91,35 @@ public class BlockRegistry {
     public static final RegistryObject<ChristmasBlock> BIG_SILVER_BAUBLE =
             BLOCKS.register(BigBaubleOrnamentBlock.BIG_SILVER_BAUBLE_ID, BigBaubleOrnamentBlock::new);
 
+    // Tinsels
+    public static final RegistryObject<ChristmasBlock> RED_TINSEL =
+            BLOCKS.register(TinselBlock.RED_TINSEL_ID, TinselBlock::new);
+    public static final RegistryObject<ChristmasBlock> BLUE_TINSEL =
+            BLOCKS.register(TinselBlock.BLUE_TINSEL_ID, TinselBlock::new);
+    public static final RegistryObject<ChristmasBlock> YELLOW_TINSEL =
+            BLOCKS.register(TinselBlock.YELLOW_TINSEL_ID, TinselBlock::new);
+    public static final RegistryObject<ChristmasBlock> GREEN_TINSEL =
+            BLOCKS.register(TinselBlock.GREEN_TINSEL_ID, TinselBlock::new);
+    public static final RegistryObject<ChristmasBlock> GOLD_TINSEL =
+            BLOCKS.register(TinselBlock.GOLD_TINSEL_ID, TinselBlock::new);
+    public static final RegistryObject<ChristmasBlock> SILVER_TINSEL =
+            BLOCKS.register(TinselBlock.SILVER_TINSEL_ID, TinselBlock::new);
+
+    // Christmas Lights
+    public static final RegistryObject<ChristmasBlock> RED_CHRISTMAS_LIGHTS =
+            BLOCKS.register(ChristmasLightBlock.RED_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+    public static final RegistryObject<ChristmasBlock> BLUE_CHRISTMAS_LIGHTS =
+            BLOCKS.register(ChristmasLightBlock.BLUE_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+    public static final RegistryObject<ChristmasBlock> YELLOW_CHRISTMAS_LIGHTS =
+            BLOCKS.register(ChristmasLightBlock.YELLOW_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+    public static final RegistryObject<ChristmasBlock> GREEN_CHRISTMAS_LIGHTS =
+            BLOCKS.register(ChristmasLightBlock.GREEN_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+    public static final RegistryObject<ChristmasBlock> GOLD_CHRISTMAS_LIGHTS =
+            BLOCKS.register(ChristmasLightBlock.GOLD_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+    public static final RegistryObject<ChristmasBlock> SILVER_CHRISTMAS_LIGHTS =
+            BLOCKS.register(ChristmasLightBlock.SILVER_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+
+    // Head Ornaments
     public static final RegistryObject<ChristmasBlock> CREEPER_HEAD_ORNAMENT_BLOCK =
             BLOCKS.register(CreeperHeadOrnamentBlock.BLOCK_ID, CreeperHeadOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> SKELETON_HEAD_ORNAMENT_BLOCK =
@@ -104,32 +128,6 @@ public class BlockRegistry {
             BLOCKS.register(WitherSkeletonHeadOrnamentBlock.BLOCK_ID, WitherSkeletonHeadOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> ZOMBIE_HEAD_ORNAMENT_BLOCK =
             BLOCKS.register(ZombieHeadOrnamentBlock.BLOCK_ID, ZombieHeadOrnamentBlock::new);
-
-    public static final RegistryObject<ChristmasBlock> RED_TINSEL_BLOCK =
-            BLOCKS.register(RedTinselBlock.BLOCK_ID, RedTinselBlock::new);
-    public static final RegistryObject<ChristmasBlock> BLUE_TINSEL_BLOCK =
-            BLOCKS.register(BlueTinselBlock.BLOCK_ID, BlueTinselBlock::new);
-    public static final RegistryObject<ChristmasBlock> YELLOW_TINSEL_BLOCK =
-            BLOCKS.register(YellowTinselBlock.BLOCK_ID, YellowTinselBlock::new);
-    public static final RegistryObject<ChristmasBlock> GREEN_TINSEL_BLOCK =
-            BLOCKS.register(GreenTinselBlock.BLOCK_ID, GreenTinselBlock::new);
-    public static final RegistryObject<ChristmasBlock> GOLD_TINSEL_BLOCK =
-            BLOCKS.register(GoldTinselBlock.BLOCK_ID, GoldTinselBlock::new);
-    public static final RegistryObject<ChristmasBlock> SILVER_TINSEL_BLOCK =
-            BLOCKS.register(SilverTinselBlock.BLOCK_ID, SilverTinselBlock::new);
-
-    public static final RegistryObject<ChristmasBlock> RED_CHRISTMAS_LIGHT_BLOCK =
-            BLOCKS.register(RedChristmasLightBlock.BLOCK_ID, RedChristmasLightBlock::new);
-    public static final RegistryObject<ChristmasBlock> BLUE_CHRISTMAS_LIGHT_BLOCK =
-            BLOCKS.register(BlueChristmasLightBlock.BLOCK_ID, BlueChristmasLightBlock::new);
-    public static final RegistryObject<ChristmasBlock> YELLOW_CHRISTMAS_LIGHT_BLOCK =
-            BLOCKS.register(YellowChristmasLightBlock.BLOCK_ID, YellowChristmasLightBlock::new);
-    public static final RegistryObject<ChristmasBlock> GREEN_CHRISTMAS_LIGHT_BLOCK =
-            BLOCKS.register(GreenChristmasLightBlock.BLOCK_ID, GreenChristmasLightBlock::new);
-    public static final RegistryObject<ChristmasBlock> GOLD_CHRISTMAS_LIGHT_BLOCK =
-            BLOCKS.register(GoldChristmasLightBlock.BLOCK_ID, GoldChristmasLightBlock::new);
-    public static final RegistryObject<ChristmasBlock> SILVER_CHRISTMAS_LIGHT_BLOCK =
-            BLOCKS.register(SilverChristmasLightBlock.BLOCK_ID, SilverChristmasLightBlock::new);
 
     public static final RegistryObject<ChristmasBlock> RED_STOCKING_BLOCK =
             BLOCKS.register(RedStockingBlock.BLOCK_ID, RedStockingBlock::new);

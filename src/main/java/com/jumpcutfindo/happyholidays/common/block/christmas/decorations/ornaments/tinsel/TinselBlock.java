@@ -10,6 +10,13 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 
 public class TinselBlock extends ConnectedOrnamentBlock {
+    public static final String RED_TINSEL_ID = "red_tinsel";
+    public static final String BLUE_TINSEL_ID = "blue_tinsel";
+    public static final String YELLOW_TINSEL_ID = "yellow_tinsel";
+    public static final String GREEN_TINSEL_ID = "green_tinsel";
+    public static final String GOLD_TINSEL_ID = "gold_tinsel";
+    public static final String SILVER_TINSEL_ID = "silver_tinsel";
+
     private static final VoxelShape TINSEL_SHAPE = VoxelShapes.or(
             Block.box(0.0, 0.0, 0.0, 16.0, 16.0 ,1.0)
     );
@@ -23,7 +30,7 @@ public class TinselBlock extends ConnectedOrnamentBlock {
                     .noOcclusion()
                     .noCollission();
 
-    public TinselBlock(String blockId) {
+    public TinselBlock() {
         super(BLOCK_PROPERTIES, TINSEL_SHAPE);
     }
 }
