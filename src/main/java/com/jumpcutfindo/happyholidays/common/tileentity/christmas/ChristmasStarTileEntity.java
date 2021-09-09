@@ -206,15 +206,14 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
     }
 
     public void summonSanta() {
-        if (this.level != null && !this.level.isClientSide()) {
+        if (this.level != null && !this.level.isClientSide() && this.getCurrentTier() >= 5) {
             ServerWorld serverWorld = (ServerWorld) this.level;
 
             this.areaOfEffect = new AxisAlignedBB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
 
             // Reset naughty nice meter of players in radius
             int totalValue = 0, totalPlayers = 0;
-            for (ServerPlayerEntity serverPlayerEntity :
-                    serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
+            for (ServerPlayerEntity serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
                 int value = NaughtyNiceMeter.getMeterValue(serverPlayerEntity);
                 totalValue += value;
 
