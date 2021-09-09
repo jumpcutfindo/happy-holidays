@@ -8,22 +8,22 @@ import net.minecraft.entity.merchant.villager.VillagerTrades;
 public class SantaElfTrades {
     public static final VillagerTrades.ITrade[] SMALL_BALL_ORNAMENT_TRADES =
             new VillagerTrades.ITrade[] {
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.RED_BALL_ORNAMENT_BLOCK.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BLUE_BALL_ORNAMENT_BLOCK.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.YELLOW_BALL_ORNAMENT_BLOCK.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.GREEN_BALL_ORNAMENT_BLOCK.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.GOLD_BALL_ORNAMENT_BLOCK.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.SILVER_BALL_ORNAMENT_BLOCK.get().asItem(), 2, 4, 2)
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.RED_BAUBLE.get().asItem(), 2, 4, 2),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BLUE_BAUBLE.get().asItem(), 2, 4, 2),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.YELLOW_BAUBLE.get().asItem(), 2, 4, 2),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.GREEN_BAUBLE.get().asItem(), 2, 4, 2),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.GOLD_BAUBLE.get().asItem(), 2, 4, 2),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.SILVER_BAUBLE.get().asItem(), 2, 4, 2)
             };
 
     public static final VillagerTrades.ITrade[] BIG_BALL_ORNAMENT_TRADES =
             new VillagerTrades.ITrade[] {
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BIG_RED_BALL_ORNAMENT_BLOCK.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BIG_BLUE_BALL_ORNAMENT_BLOCK.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BIG_YELLOW_BALL_ORNAMENT_BLOCK.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BIG_GREEN_BALL_ORNAMENT_BLOCK.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BIG_GOLD_BALL_ORNAMENT_BLOCK.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BIG_SILVER_BALL_ORNAMENT_BLOCK.get().asItem(), 2, 4, 2)
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BIG_RED_BAUBLE.get().asItem(), 2, 4, 2),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BIG_BLUE_BAUBLE.get().asItem(), 2, 4, 2),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BIG_YELLOW_BAUBLE.get().asItem(), 2, 4, 2),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BIG_GREEN_BAUBLE.get().asItem(), 2, 4, 2),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BIG_GOLD_BAUBLE.get().asItem(), 2, 4, 2),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.BIG_SILVER_BAUBLE.get().asItem(), 2, 4, 2)
             };
 
     public static final VillagerTrades.ITrade[] TINSEL_TRADES =
