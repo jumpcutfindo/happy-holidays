@@ -17,6 +17,7 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
@@ -332,11 +333,11 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
                 itemStackList.add(itemStack);
             }
 
-            if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
+            if (ChristmasItems.isBasicOrnamentItem(itemStack)) {
                 newPoints += 5;
-            } else if (ChristmasItem.isRareOrnamentItem(itemStack)) {
+            } else if (ChristmasItems.isRareOrnamentItem(itemStack)) {
                 newPoints += 10;
-            } else if (ChristmasItem.isLegendaryOrnamentItem(itemStack)) {
+            } else if (ChristmasItems.isLegendaryOrnamentItem(itemStack)) {
                 newPoints += 20;
             }
         }

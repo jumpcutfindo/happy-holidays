@@ -273,14 +273,14 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
         // Drop random items
         lootTable.getRandomItems(ctx).forEach(itemStack -> {
-            if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
+            if (ChristmasItems.isBasicOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(36 - 12) + 1) + 12);
-            } else if (ChristmasItem.isRareOrnamentItem(itemStack)) {
+            } else if (ChristmasItems.isRareOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(8 - 4) + 1) + 4);
             } else if (ItemStack.isSame(itemStack, ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance())) {
                 itemStack.setCount((this.random.nextInt(18 - 12) + 1) + 12);
-            } else if (ChristmasItem.isFoodItem(itemStack)) {
-                if (ChristmasItem.isLargeFoodItem(itemStack)) {
+            } else if (ChristmasItems.isFoodItem(itemStack)) {
+                if (ChristmasItems.isLargeFoodItem(itemStack)) {
                     itemStack.setCount((this.random.nextInt(4 - 2) + 1) + 2);
                 } else {
                     itemStack.setCount((this.random.nextInt(16 - 12) + 1) + 12);

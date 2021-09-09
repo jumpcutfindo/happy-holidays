@@ -12,6 +12,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.Sa
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.BaubleOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.BigBaubleOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.LegendaryOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.rare.HeadOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.AdultPresentOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.BabyPresentOrnamentBlock;
@@ -35,12 +36,14 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.candy.CandyCaneItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.candy.EnchantedCandyCaneItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.candy.FestiveCandyCaneItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.EggnogItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.BlueChristmasGiftItem;
@@ -68,6 +71,7 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.music.JingleBellRock
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.JingleBellsSheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.JoyToTheWorldSheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.RudolphSheetMusicItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SilentNightSheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SleighRideSheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.TheFirstNoelSheetMusicItem;
@@ -75,7 +79,9 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.music.WeThreeKingsSh
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.WeWishYouSheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.WhiteChristmasSheetMusicItem;
 
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -301,5 +307,59 @@ public class ChristmasItems {
 
     public static Supplier<ChristmasBlockItem> itemOfContainer(RegistryObject<ChristmasContainerBlock> block, Item.Properties properties) {
         return () -> new ChristmasBlockItem(block.get(), properties);
+    }
+
+    public static boolean isSheetMusicItem(ItemStack itemStack) {
+        return itemStack.getItem() instanceof SheetMusicItem;
+    }
+
+    public static boolean isFoodItem(ItemStack itemStack) {
+        return itemStack.getItem() instanceof ChristmasFoodItem
+                || itemStack.getItem() instanceof ChristmasFoodBlockItem;
+    }
+
+    public static boolean isLargeFoodItem(ItemStack itemStack) {
+        return itemStack.getItem() instanceof ChristmasFoodBlockItem;
+    }
+
+    public static boolean isOrnamentItem(ItemStack item) {
+        return isBasicOrnamentItem(item) || isRareOrnamentItem(item) || isLegendaryOrnamentItem(item);
+    }
+
+    public static boolean isBasicOrnamentItem(ItemStack item) {
+        if (item.getItem() instanceof ChristmasBlockItem) {
+            ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
+
+            return blockItem.getBlock() instanceof BaubleOrnamentBlock
+                    || blockItem.getBlock() instanceof BigBaubleOrnamentBlock
+                    || blockItem.getBlock() instanceof ChristmasLightBlock
+                    || blockItem.getBlock() instanceof TinselBlock;
+        }
+
+        return false;
+    }
+
+    public static boolean isRareOrnamentItem(ItemStack item) {
+        if (item.getItem() instanceof ChristmasBlockItem) {
+            ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
+
+            return blockItem.getBlock() instanceof HeadOrnamentBlock;
+        }
+
+        return false;
+    }
+
+    public static boolean isLegendaryOrnamentItem(ItemStack item) {
+        if (item.getItem() instanceof ChristmasBlockItem) {
+            ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
+
+            return blockItem.getBlock() instanceof LegendaryOrnamentBlock;
+        }
+
+        return false;
+    }
+
+    public static boolean isPresentItem(ItemStack item) {
+        return item.getItem() instanceof BlockItem && ((BlockItem) item.getItem()).getBlock() instanceof PresentBlock;
     }
 }

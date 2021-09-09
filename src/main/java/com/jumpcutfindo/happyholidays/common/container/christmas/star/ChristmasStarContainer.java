@@ -100,7 +100,7 @@ public class ChristmasStarContainer extends Container {
             }
 
             // Handle the remaining slots
-            if (ChristmasItem.isOrnamentItem(itemstack1)) {
+            if (ChristmasItems.isOrnamentItem(itemstack1)) {
                 if (!this.moveItemStackTo(itemstack1,this.ornamentSlots.get(0).getSlotIndex(),
                         this.ornamentSlots.get(this.ornamentSlots.size() - 1).getSlotIndex() + 1,
                         false)) {

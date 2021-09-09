@@ -12,7 +12,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornamen
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.ChristmasLightBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.TinselBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
-import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysItem;
+import com.jumpcutfindo.happyholidays.common.item.IHappyHolidaysItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ChristmasItem extends Item implements HappyHolidaysItem {
+public class ChristmasItem extends Item implements IHappyHolidaysItem {
     public final String itemId;
     public final Item.Properties properties;
 
@@ -75,59 +75,5 @@ public class ChristmasItem extends Item implements HappyHolidaysItem {
         for (String description : tooltipDescriptions) {
             textComponents.add(new StringTextComponent(description));
         }
-    }
-
-    public static boolean isSheetMusicItem(ItemStack itemStack) {
-        return itemStack.getItem() instanceof SheetMusicItem;
-    }
-
-    public static boolean isFoodItem(ItemStack itemStack) {
-        return itemStack.getItem() instanceof ChristmasFoodItem
-                || itemStack.getItem() instanceof ChristmasFoodBlockItem;
-    }
-
-    public static boolean isLargeFoodItem(ItemStack itemStack) {
-        return itemStack.getItem() instanceof ChristmasFoodBlockItem;
-    }
-
-    public static boolean isOrnamentItem(ItemStack item) {
-        return isBasicOrnamentItem(item) || isRareOrnamentItem(item) || isLegendaryOrnamentItem(item);
-    }
-
-    public static boolean isBasicOrnamentItem(ItemStack item) {
-        if (item.getItem() instanceof ChristmasBlockItem) {
-            ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
-
-            return blockItem.getBlock() instanceof BaubleOrnamentBlock
-                    || blockItem.getBlock() instanceof BigBaubleOrnamentBlock
-                    || blockItem.getBlock() instanceof ChristmasLightBlock
-                    || blockItem.getBlock() instanceof TinselBlock;
-        }
-
-        return false;
-    }
-
-    public static boolean isRareOrnamentItem(ItemStack item) {
-        if (item.getItem() instanceof ChristmasBlockItem) {
-            ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
-
-            return blockItem.getBlock() instanceof HeadOrnamentBlock;
-        }
-
-        return false;
-    }
-
-    public static boolean isLegendaryOrnamentItem(ItemStack item) {
-        if (item.getItem() instanceof ChristmasBlockItem) {
-            ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
-
-            return blockItem.getBlock() instanceof LegendaryOrnamentBlock;
-        }
-
-        return false;
-    }
-
-    public static boolean isPresentItem(ItemStack item) {
-        return item.getItem() instanceof BlockItem && ((BlockItem) item.getItem()).getBlock() instanceof PresentBlock;
     }
 }

@@ -113,7 +113,7 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
 
         // Drop random items
         lootTable.getRandomItems(ctx).forEach(itemStack -> {
-            if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
+            if (ChristmasItems.isBasicOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(2 - 1) + 1) + 1);
             }
 

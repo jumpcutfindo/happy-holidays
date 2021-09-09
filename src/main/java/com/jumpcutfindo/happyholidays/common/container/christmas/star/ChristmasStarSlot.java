@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
 import net.minecraft.client.entity.player.ClientPlayerEntity;
@@ -27,7 +28,7 @@ public class ChristmasStarSlot extends Slot {
 
     @Override
     public boolean mayPlace(ItemStack itemStack) {
-        boolean flag = ChristmasItem.isOrnamentItem(itemStack);
+        boolean flag = ChristmasItems.isOrnamentItem(itemStack);
 
         if (flag) {
             World level = starTileEntity.getLevel();
@@ -44,7 +45,7 @@ public class ChristmasStarSlot extends Slot {
             }
         }
 
-        return ChristmasItem.isOrnamentItem(itemStack);
+        return ChristmasItems.isOrnamentItem(itemStack);
     }
 
     @Override

@@ -190,7 +190,7 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
 
             // Normal processing of drops (in lieu of item tag bug)
             for (ItemStack drop : drops) {
-                if (ChristmasItem.isBasicOrnamentItem(drop)) {
+                if (ChristmasItems.isBasicOrnamentItem(drop)) {
                     if (blockState.is(ChristmasBlocks.BABY_PRESENT.get())) {
                         drop.setCount((RANDOM.nextInt(2 - 1) + 1) + 1);
                     } else if (blockState.is(ChristmasBlocks.ADULT_PRESENT.get())) {
@@ -204,7 +204,7 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
             // Double drops if there is a bonus star nearby
             if (starTileEntity != null && starTileEntity.isBonusActive()) {
                 for (ItemStack drop : drops) {
-                    if (!ItemStack.isSame(drop, ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance()) && !ChristmasItem.isPresentItem(drop)) {
+                    if (!ItemStack.isSame(drop, ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance()) && !ChristmasItems.isPresentItem(drop)) {
                         drop.setCount(drop.getCount() * 2);
                     }
                 }
