@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.GiftWrapperTileEntity;
 
 import net.minecraft.block.AbstractBlock;
@@ -81,7 +81,7 @@ public class    GiftWrapperBlock extends ChristmasBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return TileEntityRegistry.GIFT_WRAPPER_ENTITY_TYPE.get().create();
+        return ChristmasTileEntities.GIFT_WRAPPER_ENTITY_TYPE.get().create();
     }
 
     @Override

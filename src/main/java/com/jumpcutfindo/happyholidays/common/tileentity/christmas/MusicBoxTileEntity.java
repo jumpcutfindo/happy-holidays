@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.common.tileentity.christmas;
 
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
 
 import net.minecraft.block.BlockState;
@@ -35,7 +35,7 @@ public class MusicBoxTileEntity extends TileEntity implements IChristmasTileEnti
     }
 
     public MusicBoxTileEntity() {
-        this(TileEntityRegistry.MUSIC_BOX_ENTITY_TYPE.get());
+        this(ChristmasTileEntities.MUSIC_BOX_ENTITY_TYPE.get());
     }
 
     @Override

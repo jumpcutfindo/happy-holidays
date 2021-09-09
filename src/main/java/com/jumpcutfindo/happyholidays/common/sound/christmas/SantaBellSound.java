@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.sound.christmas;
 
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
 import net.minecraft.client.audio.TickableSound;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,7 +13,7 @@ public class SantaBellSound extends TickableSound {
     private PlayerEntity player;
 
     public SantaBellSound(PlayerEntity player) {
-        super(SoundRegistry.SANTA_ELF_BELL.get(), SoundCategory.PLAYERS);
+        super(ChristmasSounds.SANTA_ELF_BELL.get(), SoundCategory.PLAYERS);
 
         this.player = player;
 

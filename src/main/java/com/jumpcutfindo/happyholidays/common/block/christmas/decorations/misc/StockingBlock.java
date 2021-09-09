@@ -6,8 +6,8 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
-import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.StockingTileEntity;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
@@ -106,7 +106,7 @@ public class StockingBlock extends WallDecorationBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return TileEntityRegistry.STOCKING_ENTITY_TYPE.get().create();
+        return ChristmasTileEntities.STOCKING_ENTITY_TYPE.get().create();
     }
 
     @Override
@@ -150,7 +150,7 @@ public class StockingBlock extends WallDecorationBlock {
         chance += baseChance;
 
         boolean isCookiesNear = HappyHolidaysUtils.findBlockInRadius(world, blockPos,
-                BlockRegistry.MILK_AND_COOKIES.get(), 5) != null;
+                ChristmasBlocks.MILK_AND_COOKIES.get(), 5) != null;
 
         chance += isCookiesNear ? 20 : 0;
 

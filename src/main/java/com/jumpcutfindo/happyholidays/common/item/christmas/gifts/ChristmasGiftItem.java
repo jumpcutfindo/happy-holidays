@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -28,18 +28,25 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class ChristmasGiftItem extends ChristmasItem {
+    public static final String RED_GIFT_ID = "red_christmas_gift";
+    public static final String BLUE_GIFT_ID = "blue_christmas_gift";
+    public static final String YELLOW_GIFT_ID = "yellow_christmas_gift";
+    public static final String GREEN_GIFT_ID = "green_christmas_gift";
+    public static final String GOLD_GIFT_ID = "gold_christmas_gift";
+    public static final String SILVER_GIFT_ID = "silver_christmas_gift";
+
     public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public static final int ITEM_USE_DURATION = 30;
 
-    public ChristmasGiftItem(String itemId) {
-        super(itemId, ITEM_PROPERTIES);
+    public ChristmasGiftItem() {
+        super(ITEM_PROPERTIES);
     }
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         player.startUsingItem(hand);
-        player.playSound(SoundRegistry.CHRISTMAS_GIFT_BOX_SHAKE.get(), 1.0F, 1.0F);
+        player.playSound(ChristmasSounds.CHRISTMAS_GIFT_BOX_SHAKE.get(), 1.0F, 1.0F);
         return ActionResult.sidedSuccess(player.getItemInHand(hand), world.isClientSide());
     }
 

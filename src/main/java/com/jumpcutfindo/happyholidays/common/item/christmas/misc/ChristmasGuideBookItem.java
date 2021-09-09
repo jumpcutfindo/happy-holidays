@@ -23,7 +23,7 @@ public class ChristmasGuideBookItem extends ChristmasItem {
                     .stacksTo(1);
 
     public ChristmasGuideBookItem() {
-        super(ITEM_ID, ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES);
     }
 
     @Override

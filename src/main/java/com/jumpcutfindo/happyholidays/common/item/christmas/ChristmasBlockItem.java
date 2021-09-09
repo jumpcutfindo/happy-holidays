@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysItem;
+import com.jumpcutfindo.happyholidays.common.item.IHappyHolidaysItem;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ChristmasBlockItem extends BlockItem implements HappyHolidaysItem {
+public class ChristmasBlockItem extends BlockItem implements IHappyHolidaysItem {
     public Block block;
     public Properties properties;
 
@@ -61,15 +61,8 @@ public class ChristmasBlockItem extends BlockItem implements HappyHolidaysItem {
         return properties;
     }
 
-    @Override
-    public void configureItem() {
-    }
-
-    public void setChristmasRarity(ChristmasRarity rarity) {
+    public ChristmasBlockItem setChristmasRarity(ChristmasRarity rarity) {
         this.christmasRarity = rarity;
-    }
-
-    public void setTooltipDescriptions(List<String> tooltipDescriptions) {
-        this.tooltipDescriptions = tooltipDescriptions;
+        return this;
     }
 }

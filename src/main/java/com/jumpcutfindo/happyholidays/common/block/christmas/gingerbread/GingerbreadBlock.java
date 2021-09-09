@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread;
 
-import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -18,7 +18,7 @@ public class GingerbreadBlock extends BaseGingerbreadBlock {
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState otherBlockState,
                                   IWorld world, BlockPos blockPos, BlockPos otherBlockPos) {
-        return world.getBlockState(otherBlockPos).is(Blocks.WATER) ? BlockRegistry.GINGERBREAD_BLOCK.get().defaultBlockState()
+        return world.getBlockState(otherBlockPos).is(Blocks.WATER) ? ChristmasBlocks.GINGERBREAD_BLOCK.get().defaultBlockState()
                 : blockState;
     }
 }

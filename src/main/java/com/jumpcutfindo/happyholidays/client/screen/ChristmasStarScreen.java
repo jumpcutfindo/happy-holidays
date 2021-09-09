@@ -103,10 +103,13 @@ public class ChristmasStarScreen extends ContainerScreen<ChristmasStarContainer>
         int y = (this.height - this.getYSize()) / 2;
 
         this.addButton(new SummonSantaButton(this, x + 72, y + 39, 32, 31, DialogTexts.GUI_DONE, (pred) -> {
-            Minecraft.getInstance().setScreen((Screen) null);
+            if (this.menu.tileEntity.getCurrentTier() >= 5) {
+                Minecraft.getInstance().setScreen((Screen) null);
 
-            PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
-                    new SummonSantaPacket(this.menu.tileEntity.getBlockPos()));
+                PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+                        new SummonSantaPacket(this.menu.tileEntity.getBlockPos()));
+            }
+
         }));
     }
 

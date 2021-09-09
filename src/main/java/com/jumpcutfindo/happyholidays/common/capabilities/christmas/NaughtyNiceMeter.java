@@ -87,19 +87,8 @@ public class NaughtyNiceMeter implements INaughtyNiceHandler {
 
             if (action.getActionType() == NaughtyNiceAction.Type.NAUGHTY) {
                 naughtyNiceMeter.addNaughty(action.getCost());
-
-                // TODO: Remove naughty / nice message
-                playerEntity.sendMessage(new StringTextComponent(String.format("Naughty / Nice meter: %d (-%d)",
-                        naughtyNiceMeter.getValue(), action.getCost())).withStyle(TextFormatting.RED),
-                        UUID.randomUUID());
-
             } else {
                 naughtyNiceMeter.addNice(action.getCost());
-
-                // TODO: Remove naughty / nice message
-                playerEntity.sendMessage(new StringTextComponent(String.format("Naughty / Nice meter: %d (+%d)",
-                        naughtyNiceMeter.getValue(), action.getCost())).withStyle(TextFormatting.GREEN),
-                        UUID.randomUUID());
             }
         }
     }

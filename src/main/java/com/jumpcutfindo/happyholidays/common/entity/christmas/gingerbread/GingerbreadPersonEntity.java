@@ -5,8 +5,8 @@ import java.util.Random;
 
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
 import net.minecraft.entity.CreatureEntity;
@@ -69,17 +69,17 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundRegistry.GINGERBREAD_PERSON_PASSIVE.get();
+        return ChristmasSounds.GINGERBREAD_PERSON_PASSIVE.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundRegistry.GINGERBREAD_PERSON_HURT.get();
+        return ChristmasSounds.GINGERBREAD_PERSON_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundRegistry.GINGERBREAD_PERSON_HURT.get();
+        return ChristmasSounds.GINGERBREAD_PERSON_HURT.get();
     }
 
     public void setLeader() {
@@ -113,7 +113,7 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
 
         // Drop random items
         lootTable.getRandomItems(ctx).forEach(itemStack -> {
-            if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
+            if (ChristmasItems.isBasicOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(2 - 1) + 1) + 1);
             }
 
@@ -125,7 +125,7 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
         // Drop ornament block
         double ornamentDropChance = CONVERSION_ORNAMENT_DROP_BASE_CHANCE * modifier;
         if (ornamentDropChance > this.random.nextDouble()) {
-            ItemStack gingerbreadOrnamentItem = ItemRegistry.GINGERBREAD_MAN_ORNAMENT.get().getDefaultInstance();
+            ItemStack gingerbreadOrnamentItem = ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get().getDefaultInstance();
             this.spawnAtLocation(gingerbreadOrnamentItem);
         }
     }

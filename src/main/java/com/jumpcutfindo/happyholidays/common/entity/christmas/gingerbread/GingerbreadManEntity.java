@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread;
 import java.util.List;
 
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
-import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.entity.CreatureEntity;
@@ -42,7 +42,7 @@ public class GingerbreadManEntity extends GingerbreadPersonEntity {
     }
 
     private void convertToSoggy() {
-        this.convertTo(EntityRegistry.SOGGY_GINGERBREAD_MAN.get(), true);
+        this.convertTo(ChristmasEntities.SOGGY_GINGERBREAD_MAN.get(), true);
         this.playSound(SoundEvents.GENERIC_SPLASH, 1.0F, 1.0F);
 
         if (!this.level.isClientSide()) {

@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.santa;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -67,13 +67,13 @@ public class BaseSantaEntity extends ChristmasEntity implements IAnimatable {
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
-        return SoundRegistry.SANTA_HURT.get();
+        return ChristmasSounds.SANTA_HURT.get();
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundRegistry.SANTA_HURT.get();
+        return ChristmasSounds.SANTA_HURT.get();
     }
     
     @Override

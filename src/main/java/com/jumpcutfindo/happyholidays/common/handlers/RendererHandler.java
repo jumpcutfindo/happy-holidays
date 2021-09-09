@@ -8,8 +8,8 @@ import com.jumpcutfindo.happyholidays.client.entity.GrinchEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.SantaElfEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.SantaEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.SleighRenderer;
-import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -20,48 +20,54 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RendererHandler {
     @SubscribeEvent
-    public static void handleRenderStuff(FMLClientSetupEvent event) {
+    public static void handleEntityRendering(FMLClientSetupEvent event) {
         // Register gingerbread people entity rendering
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityRegistry.GINGERBREAD_MAN.get(),
+                ChristmasEntities.GINGERBREAD_MAN.get(),
                 GingerbreadPersonEntityRenderer::new
         );
 
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityRegistry.SOGGY_GINGERBREAD_MAN.get(),
+                ChristmasEntities.SOGGY_GINGERBREAD_MAN.get(),
                 GingerbreadPersonEntityRenderer::new
         );
 
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityRegistry.SANTA_ELF.get(),
+                ChristmasEntities.SANTA_ELF.get(),
                 SantaElfEntityRenderer::new
         );
 
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityRegistry.GRINCH.get(),
+                ChristmasEntities.GRINCH.get(),
                 GrinchEntityRenderer::new
         );
 
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityRegistry.HAPPY_SANTA.get(),
+                ChristmasEntities.HAPPY_SANTA.get(),
                 SantaEntityRenderer::new
         );
 
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityRegistry.ANGRY_SANTA.get(),
+                ChristmasEntities.ANGRY_SANTA.get(),
                 SantaEntityRenderer::new
         );
 
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityRegistry.SLEIGH.get(),
+                ChristmasEntities.SLEIGH.get(),
                 SleighRenderer::new
         );
 
         RenderingRegistry.registerEntityRenderingHandler(
-                EntityRegistry.EXPLOSIVE_PRESENT.get(),
+                ChristmasEntities.EXPLOSIVE_PRESENT.get(),
                 ExplosivePresentRenderer::new
         );
+    }
 
-        ClientRegistry.bindTileEntityRenderer(TileEntityRegistry.MUSIC_BOX_ENTITY_TYPE.get(), MusicBoxRenderer::new);
+    @SubscribeEvent
+    public static void handleTileEntityRendering(FMLClientSetupEvent event) {
+        ClientRegistry.bindTileEntityRenderer(
+                ChristmasTileEntities.MUSIC_BOX_ENTITY_TYPE.get(),
+                MusicBoxRenderer::new
+        );
     }
 }

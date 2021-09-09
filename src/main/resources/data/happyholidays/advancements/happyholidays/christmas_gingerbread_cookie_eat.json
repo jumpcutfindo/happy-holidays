@@ -20,7 +20,7 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
                 "item": {
-                    "items": [ "happyholidays:gingerbread_cookie" ]
+                    "item": "happyholidays:gingerbread_cookie"
                 }
             }
         }

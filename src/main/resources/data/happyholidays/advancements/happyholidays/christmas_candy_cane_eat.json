@@ -16,18 +16,27 @@
         "hidden": false
     },
     "criteria": {
-        "consume_items": {
+        "consume_candy_cane": {
             "trigger": "minecraft:consume_item",
             "conditions": {
                 "item": {
-                    "items": [ "happyholidays:candy_cane", "happyholidays:festive_candy_cane" ]
+                    "item": "happyholidays:candy_cane"
+                }
+            }
+        },
+        "consume_festive_candy_cane": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "happyholidays:festive_candy_cane"
                 }
             }
         }
     },
     "requirements": [
         [
-            "consume_items"
+            "consume_candy_cane",
+            "consume_festive_candy_cane"
         ]
     ]
 }

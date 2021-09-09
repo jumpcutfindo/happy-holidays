@@ -3,14 +3,11 @@ package com.jumpcutfindo.happyholidays.common.container.christmas.star;
 import java.util.UUID;
 
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -32,29 +29,31 @@ public class ChristmasStarBonusSlot extends Slot {
         boolean isTierOK = starTileEntity.getCurrentTier() == 5;
 
         // If cannot place, we notify the user; if can, we emit an event
-        if (!isTierOK && starTileEntity.getLevel() != null && starTileEntity.getLevel().isClientSide()) {
-            Minecraft.getInstance().player.sendMessage(
-                    new TranslationTextComponent("chat.happyholidays.christmas_star.tier_not_ok")
-                            .withStyle(TextFormatting.RED),
-                    UUID.randomUUID()
-            );
-        } else {
-            World level = starTileEntity.getLevel();
-            if (level != null && !level.isClientSide()) {
-                BlockPos blockPos = starTileEntity.getBlockPos();
+        if (starTileEntity.getLevel() != null && !starTileEntity.getLevel().isClientSide()) {
+            if (isTierOK) {
+                World level = starTileEntity.getLevel();
+                if (level != null && !level.isClientSide()) {
+                    BlockPos blockPos = starTileEntity.getBlockPos();
 
-                PlayerEntity playerEntity = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(),
-                        10.0D, false);
+                    PlayerEntity playerEntity = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(),
+                            10.0D, false);
 
-                if (playerEntity != null) {
-                    ChristmasStarEvent event = new ChristmasStarEvent.ReachBonus(starTileEntity, playerEntity);
-                    MinecraftForge.EVENT_BUS.post(event);
+                    if (playerEntity != null) {
+                        ChristmasStarEvent event = new ChristmasStarEvent.ReachBonus(starTileEntity, playerEntity);
+                        MinecraftForge.EVENT_BUS.post(event);
+                    }
                 }
+            } else {
+                Minecraft.getInstance().player.sendMessage(
+                        new TranslationTextComponent("chat.happyholidays.christmas_star.tier_not_ok")
+                                .withStyle(TextFormatting.RED),
+                        UUID.randomUUID()
+                );
             }
         }
 
         return starTileEntity.getCurrentTier() == 5 && ItemStack.isSame(itemStack,
-                ItemRegistry.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
+                ChristmasItems.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
     }
 
     @Override
