@@ -21,6 +21,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
+import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 import com.jumpcutfindo.happyholidays.server.data.SantaSummonSavedData;
 
 import net.minecraft.block.BlockState;
@@ -206,10 +207,27 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
     }
 
     public void summonSanta() {
-        if (this.level != null && !this.level.isClientSide() && this.getCurrentTier() >= 5) {
+        if (this.level != null && !this.level.isClientSide()) {
             ServerWorld serverWorld = (ServerWorld) this.level;
+            SantaSummonSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(SantaSummonSavedData::new,
+                    SantaSummonSavedData.DATA_NAME);
 
             this.areaOfEffect = new AxisAlignedBB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
+
+            boolean isTierOK = this.getCurrentTier() >= 5;
+            boolean isValidTime = santaData.canSummon(serverWorld.getGameTime());
+
+            if (!isTierOK) return;
+            if (!isValidTime) {
+                long timeRemaining = santaData.getNextSummonTime() - serverWorld.getGameTime();
+
+                for (ServerPlayerEntity serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
+                    serverPlayerEntity.sendMessage(new TranslationTextComponent("chat.happyholidays.christmas_star"
+                            + ".santa_not_ready", HappyHolidaysUtils.convertTicksToString(timeRemaining)).withStyle(TextFormatting.RED), UUID.randomUUID());
+                }
+
+                return;
+            }
 
             // Reset naughty nice meter of players in radius
             int totalValue = 0, totalPlayers = 0;
