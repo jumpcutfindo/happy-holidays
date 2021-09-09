@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.common.registry.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.BaseCandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.ChristmasWreathBlock;
@@ -32,6 +33,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
 
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
@@ -185,4 +187,8 @@ public class ChristmasBlocks {
             BLOCKS.register(ChristmasHamBlock.BLOCK_ID, ChristmasHamBlock::new);
     public static final RegistryObject<ChristmasBlock> CHRISTMAS_PUDDING =
             BLOCKS.register(ChristmasPuddingBlock.BLOCK_ID, ChristmasPuddingBlock::new);
+
+    public static boolean isInfluencedByStar(Block block) {
+        return block instanceof PresentBlock || block instanceof BaseCandyCaneBlock;
+    }
 }

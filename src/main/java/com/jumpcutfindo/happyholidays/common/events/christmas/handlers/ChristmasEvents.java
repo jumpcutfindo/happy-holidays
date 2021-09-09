@@ -70,7 +70,7 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
-        if (event.getEntity() instanceof PlayerEntity && ChristmasBlock.isInfluencedByStar(event.getPlacedBlock().getBlock())) {
+        if (event.getEntity() instanceof PlayerEntity && ChristmasBlocks.isInfluencedByStar(event.getPlacedBlock().getBlock())) {
             PlayerEntity playerEntity = (PlayerEntity) event.getEntity();
             ChristmasStarTileEntity starTileEntity =
                     ChristmasStarTileEntity.getStarInfluencingBlock(playerEntity.level, event.getPos());
