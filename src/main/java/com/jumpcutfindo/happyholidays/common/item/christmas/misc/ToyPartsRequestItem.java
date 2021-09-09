@@ -29,7 +29,7 @@ public class ToyPartsRequestItem extends ChristmasItem {
                     .stacksTo(1);
 
     public ToyPartsRequestItem() {
-        super(ITEM_ID, ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES);
 
         this.christmasRarity = ChristmasRarity.UNIQUE;
     }

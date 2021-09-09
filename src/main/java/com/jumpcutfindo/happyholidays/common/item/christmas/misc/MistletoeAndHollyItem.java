@@ -11,6 +11,6 @@ public class MistletoeAndHollyItem extends ChristmasItem {
                     .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public MistletoeAndHollyItem() {
-        super(ITEM_ID, ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES);
     }
 }

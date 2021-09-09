@@ -48,7 +48,7 @@ public class SantaElfBellItem extends ChristmasItem {
     private SantaBellSound bellSound;
 
     public SantaElfBellItem() {
-        super(ITEM_ID, ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES);
         this.christmasRarity = ChristmasRarity.LEGENDARY;
     }
 

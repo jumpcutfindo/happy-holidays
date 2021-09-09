@@ -27,7 +27,7 @@ public class EggnogItem extends ChristmasFoodItem {
                     );
 
     public EggnogItem() {
-        super(ITEM_ID, ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES);
     }
 
     @Override

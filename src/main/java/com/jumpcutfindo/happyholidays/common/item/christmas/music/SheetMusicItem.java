@@ -36,7 +36,7 @@ public class SheetMusicItem extends ChristmasItem {
     public ChristmasMusic music;
 
     public SheetMusicItem(String itemId) {
-        super(itemId, ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES);
 
         this.christmasRarity = ChristmasRarity.RARE;
     }

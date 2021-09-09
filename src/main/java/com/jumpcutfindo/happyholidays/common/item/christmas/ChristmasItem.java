@@ -29,16 +29,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ChristmasItem extends Item implements IHappyHolidaysItem {
-    public final String itemId;
     public final Item.Properties properties;
 
     public ChristmasRarity christmasRarity;
     public List<String> tooltipDescriptions;
 
-    public ChristmasItem(String itemId, Item.Properties properties) {
+    public ChristmasItem(Item.Properties properties) {
         super(properties);
 
-        this.itemId = itemId;
         this.properties = properties;
 
         this.christmasRarity = ChristmasRarity.COMMON;
