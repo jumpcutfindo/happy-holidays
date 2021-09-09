@@ -15,6 +15,7 @@ public class MusicBoxModel extends AnimatedGeoModel<MusicBoxTileEntity> {
     @Override
     public ResourceLocation getTextureLocation(MusicBoxTileEntity object) {
         // TODO: Fix music box texture; one is stretched
+        // TODO: Fix music box, double rendering on the same spot
         return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/block/music_box.png");
     }
 

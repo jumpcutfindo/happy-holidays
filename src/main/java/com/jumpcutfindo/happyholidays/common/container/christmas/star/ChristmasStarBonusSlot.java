@@ -43,6 +43,7 @@ public class ChristmasStarBonusSlot extends Slot {
                 PlayerEntity playerEntity = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(),
                         10.0D, false);
 
+                // TODO: Change so that event is only emitted when item can be placed successfully
                 if (playerEntity != null) {
                     ChristmasStarEvent event = new ChristmasStarEvent.ReachBonus(starTileEntity, playerEntity);
                     MinecraftForge.EVENT_BUS.post(event);

@@ -59,22 +59,23 @@ public enum ChristmasMusic {
 
     public static int getSoundDuration(ChristmasMusic music) {
         switch (music) {
-        case ANGELS_ON_HIGH: return AngelsOnHighSheetMusicItem.LENGTH;
-        case CAROL_OF_THE_BELLS: return CarolOfBellsSheetMusicItem.LENGTH;
-        case DECK_THE_HALLS: return DeckTheHallsSheetMusicItem.LENGTH;
-        case FROSTY_THE_SNOWMAN: return FrostySnowmanSheetMusicItem.LENGTH;
-        case GOD_REST_GENTLEMEN: return GodRestGentlemenSheetMusicItem.LENGTH;
-        case HERE_COMES_SANTA: return HereComesSantaSheetMusicItem.LENGTH;
-        case JINGLE_BELL_ROCK: return JingleBellRockSheetMusicItem.LENGTH;
-        case JINGLE_BELLS: return JingleBellsSheetMusicItem.LENGTH;
-        case JOY_TO_THE_WORLD: return JoyToTheWorldSheetMusicItem.LENGTH;
-        case RUDOLPH: return RudolphSheetMusicItem.LENGTH;
-        case SILENT_NIGHT: return SilentNightSheetMusicItem.LENGTH;
-        case SLEIGH_RIDE: return SleighRideSheetMusicItem.LENGTH;
-        case THE_FIRST_NOEL: return TheFirstNoelSheetMusicItem.LENGTH;
-        case WE_THREE_KINGS: return WeThreeKingsSheetMusicItem.LENGTH;
-        case WE_WISH_YOU: return WeWishYouSheetMusicItem.LENGTH;
-        default: return WhiteChristmasSheetMusicItem.LENGTH;
+        case ANGELS_ON_HIGH: return 1221;
+        case CAROL_OF_THE_BELLS: return 1824;
+        case DECK_THE_HALLS: return 1817;
+        case FROSTY_THE_SNOWMAN: return 1162;
+        case GOD_REST_GENTLEMEN: return 1840;
+        case HERE_COMES_SANTA: return 2155;
+        case JINGLE_BELL_ROCK: return 1485;
+        case JINGLE_BELLS: return 2191;
+        case JOY_TO_THE_WORLD: return 2089;
+        case RUDOLPH: return 1789;
+        case SILENT_NIGHT: return 2037;
+        case SLEIGH_RIDE: return 1399;
+        case THE_FIRST_NOEL: return 1101;
+        case WE_THREE_KINGS: return 1460;
+        case WE_WISH_YOU: return 1977;
+        case WHITE_CHRISTMAS: return 1674;
+        default: return 0;
         }
     }
 }

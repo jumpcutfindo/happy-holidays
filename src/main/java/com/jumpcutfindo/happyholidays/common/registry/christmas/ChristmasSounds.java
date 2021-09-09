@@ -1,22 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.registry.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.AngelsOnHighSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.CarolOfBellsSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.DeckTheHallsSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.FrostySnowmanSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.GodRestGentlemenSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.HereComesSantaSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.JingleBellRockSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.JingleBellsSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.JoyToTheWorldSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.RudolphSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.SilentNightSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.SleighRideSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.TheFirstNoelSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.WeThreeKingsSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.WeWishYouSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.WhiteChristmasSheetMusicItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -176,67 +161,67 @@ public class ChristmasSounds {
     );
 
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_ANGELS_ON_HIGH = SOUNDS.register(
-            AngelsOnHighSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    AngelsOnHighSheetMusicItem.SOUND_ID))
+            SheetMusicItem.ANGELS_ON_HIGH_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.ANGELS_ON_HIGH_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_CAROL_OF_THE_BELLS = SOUNDS.register(
-            CarolOfBellsSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    CarolOfBellsSheetMusicItem.SOUND_ID))
+            SheetMusicItem.CAROL_OF_BELLS_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.CAROL_OF_BELLS_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_DECK_THE_HALLS = SOUNDS.register(
-            DeckTheHallsSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    DeckTheHallsSheetMusicItem.SOUND_ID))
+            SheetMusicItem.DECK_THE_HALLS_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.DECK_THE_HALLS_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_FROSTY_THE_SNOWMAN = SOUNDS.register(
-            FrostySnowmanSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    FrostySnowmanSheetMusicItem.SOUND_ID))
+            SheetMusicItem.FROSTY_THE_SNOWMAN_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.FROSTY_THE_SNOWMAN_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_GOD_REST_GENTLEMEN = SOUNDS.register(
-            GodRestGentlemenSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    GodRestGentlemenSheetMusicItem.SOUND_ID))
+            SheetMusicItem.GOD_REST_GENTLEMEN_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.GOD_REST_GENTLEMEN_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_HERE_COMES_SANTA = SOUNDS.register(
-            HereComesSantaSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    HereComesSantaSheetMusicItem.SOUND_ID))
+            SheetMusicItem.HERE_COMES_SANTA_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.HERE_COMES_SANTA_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_JINGLE_BELL_ROCK = SOUNDS.register(
-            JingleBellRockSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    JingleBellRockSheetMusicItem.SOUND_ID))
+            SheetMusicItem.JINGLE_BELL_ROCK_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.JINGLE_BELL_ROCK_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_JINGLE_BELLS = SOUNDS.register(
-            JingleBellsSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    JingleBellsSheetMusicItem.SOUND_ID))
+            SheetMusicItem.JINGLE_BELLS_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.JINGLE_BELLS_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_JOY_TO_THE_WORLD = SOUNDS.register(
-            JoyToTheWorldSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    JoyToTheWorldSheetMusicItem.SOUND_ID))
+            SheetMusicItem.JOY_TO_THE_WORLD_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.JOY_TO_THE_WORLD_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_RUDOLPH = SOUNDS.register(
-            RudolphSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    RudolphSheetMusicItem.SOUND_ID))
+            SheetMusicItem.RUDOLPH_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.RUDOLPH_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_SILENT_NIGHT = SOUNDS.register(
-            SilentNightSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    SilentNightSheetMusicItem.SOUND_ID))
+            SheetMusicItem.SILENT_NIGHT_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.SILENT_NIGHT_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_SLEIGH_RIDE = SOUNDS.register(
-            SleighRideSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    SleighRideSheetMusicItem.SOUND_ID))
+            SheetMusicItem.SLEIGH_RIDE_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.SLEIGH_RIDE_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_THE_FIRST_NOEL = SOUNDS.register(
-            TheFirstNoelSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    TheFirstNoelSheetMusicItem.SOUND_ID))
+            SheetMusicItem.THE_FIRST_NOEL_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.THE_FIRST_NOEL_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_WE_THREE_KINGS = SOUNDS.register(
-            WeThreeKingsSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    WeThreeKingsSheetMusicItem.SOUND_ID))
+            SheetMusicItem.WE_THREE_KINGS_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.WE_THREE_KINGS_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_WE_WISH_YOU = SOUNDS.register(
-            WeWishYouSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    WeWishYouSheetMusicItem.SOUND_ID))
+            SheetMusicItem.WE_WISH_YOU_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.WE_WISH_YOU_SOUND_ID))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_WHITE_CHRISTMAS = SOUNDS.register(
-            WhiteChristmasSheetMusicItem.SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    WhiteChristmasSheetMusicItem.SOUND_ID))
+            SheetMusicItem.WHITE_CHRISTMAS_SOUND_ID, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    SheetMusicItem.WHITE_CHRISTMAS_SOUND_ID))
     );
 }

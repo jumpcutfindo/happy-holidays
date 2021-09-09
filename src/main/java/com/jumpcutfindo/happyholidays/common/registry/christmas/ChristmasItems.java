@@ -55,23 +55,8 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PresentScrapIte
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SantaElfBellItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SantaHatItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.ToyPartsRequestItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.AngelsOnHighSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.CarolOfBellsSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.DeckTheHallsSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.FrostySnowmanSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.GodRestGentlemenSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.HereComesSantaSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.JingleBellRockSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.JingleBellsSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.JoyToTheWorldSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.RudolphSheetMusicItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.SilentNightSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.SleighRideSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.TheFirstNoelSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.WeThreeKingsSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.WeWishYouSheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.WhiteChristmasSheetMusicItem;
 
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -107,37 +92,37 @@ public class ChristmasItems {
             ITEMS.register(EnchantedSantaHatItem.ITEM_ID, EnchantedSantaHatItem::new);
 
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_ANGELS_ON_HIGH =
-            ITEMS.register(AngelsOnHighSheetMusicItem.ITEM_ID, AngelsOnHighSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.ANGELS_ON_HIGH_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.ANGELS_ON_HIGH));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_CAROL_OF_THE_BELLS =
-            ITEMS.register(CarolOfBellsSheetMusicItem.ITEM_ID, CarolOfBellsSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.CAROL_OF_BELLS_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.CAROL_OF_THE_BELLS));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_DECK_THE_HALLS =
-            ITEMS.register(DeckTheHallsSheetMusicItem.ITEM_ID, DeckTheHallsSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.DECK_THE_HALLS_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.DECK_THE_HALLS));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_FROSTY_THE_SNOWMAN =
-            ITEMS.register(FrostySnowmanSheetMusicItem.ITEM_ID, FrostySnowmanSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.FROSTY_THE_SNOWMAN_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.FROSTY_THE_SNOWMAN));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_GOD_REST_GENTLEMEN =
-            ITEMS.register(GodRestGentlemenSheetMusicItem.ITEM_ID, GodRestGentlemenSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.GOD_REST_GENTLEMEN_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.GOD_REST_GENTLEMEN));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_HERE_COMES_SANTA =
-            ITEMS.register(HereComesSantaSheetMusicItem.ITEM_ID, HereComesSantaSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.HERE_COMES_SANTA_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.HERE_COMES_SANTA));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_JINGLE_BELL_ROCK =
-            ITEMS.register(JingleBellRockSheetMusicItem.ITEM_ID, JingleBellRockSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.JINGLE_BELL_ROCK_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.JINGLE_BELL_ROCK));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_JINGLE_BELLS =
-            ITEMS.register(JingleBellsSheetMusicItem.ITEM_ID, JingleBellsSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.JINGLE_BELLS_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.JINGLE_BELLS));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_JOY_TO_THE_WORLD =
-            ITEMS.register(JoyToTheWorldSheetMusicItem.ITEM_ID, JoyToTheWorldSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.JOY_TO_THE_WORLD_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.JOY_TO_THE_WORLD));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_RUDOLPH =
-            ITEMS.register(RudolphSheetMusicItem.ITEM_ID, RudolphSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.RUDOLPH_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.RUDOLPH));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_SILENT_NIGHT =
-            ITEMS.register(SilentNightSheetMusicItem.ITEM_ID, SilentNightSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.SILENT_NIGHT_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.SILENT_NIGHT));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_SLEIGH_RIDE =
-            ITEMS.register(SleighRideSheetMusicItem.ITEM_ID, SleighRideSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.SLEIGH_RIDE_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.SLEIGH_RIDE));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_THE_FIRST_NOEL =
-            ITEMS.register(TheFirstNoelSheetMusicItem.ITEM_ID, TheFirstNoelSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.THE_FIRST_NOEL_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.THE_FIRST_NOEL));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_WE_THREE_KINGS =
-            ITEMS.register(WeThreeKingsSheetMusicItem.ITEM_ID, WeThreeKingsSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.WE_THREE_KINGS_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.WE_THREE_KINGS));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_WE_WISH_YOU =
-            ITEMS.register(WeWishYouSheetMusicItem.ITEM_ID, WeWishYouSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.WE_WISH_YOU_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.WE_WISH_YOU));
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_WHITE_CHRISTMAS =
-            ITEMS.register(WhiteChristmasSheetMusicItem.ITEM_ID, WhiteChristmasSheetMusicItem::new);
+            ITEMS.register(SheetMusicItem.WHITE_CHRISTMAS_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.WHITE_CHRISTMAS));
 
     public static final RegistryObject<ChristmasFoodItem> CANDY_CANE =
             ITEMS.register(CandyCaneItem.ITEM_ID, CandyCaneItem::new);
