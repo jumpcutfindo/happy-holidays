@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.common.tileentity.christmas;
 
 import java.util.Random;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
 
 import net.minecraft.block.Block;

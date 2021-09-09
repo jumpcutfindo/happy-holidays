@@ -3,7 +3,6 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.INaughtyNiceHandler;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
@@ -16,7 +15,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.VoxelShape;

@@ -1,7 +1,5 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallDecorationBlock;
-
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
