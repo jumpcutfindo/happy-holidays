@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.misc;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasContainerBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.MusicBoxTileEntity;
@@ -30,7 +31,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
-public class MusicBoxBlock extends ChristmasContainerBlock {
+public class MusicBoxBlock extends ChristmasBlock {
     public static final String BLOCK_ID = "music_box";
 
     public static final BooleanProperty HAS_SHEET_MUSIC = BooleanProperty.create("has_sheet_music");

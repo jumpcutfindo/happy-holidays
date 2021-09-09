@@ -172,7 +172,7 @@ public class ChristmasBlocks {
     // Miscellaneous blocks
     public static final RegistryObject<ChristmasBlock> CHRISTMAS_STAR =
             BLOCKS.register(ChristmasStarBlock.BLOCK_ID, ChristmasStarBlock::new);
-    public static final RegistryObject<ChristmasContainerBlock> MUSIC_BOX =
+    public static final RegistryObject<ChristmasBlock> MUSIC_BOX =
             BLOCKS.register(MusicBoxBlock.BLOCK_ID, MusicBoxBlock::new);
     public static final RegistryObject<ChristmasBlock> GIFT_WRAPPING_STATION =
             BLOCKS.register(GiftWrapperBlock.BLOCK_ID, GiftWrapperBlock::new);

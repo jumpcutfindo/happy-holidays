@@ -1,7 +1,10 @@
 package com.jumpcutfindo.happyholidays.common.handlers;
 
+import java.util.Arrays;
+
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasContainerBlock;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
@@ -14,17 +17,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SetupHandler {
-    private static ChristmasBlock[] christmasBlocks;
-    private static ChristmasItem[] christmasItems;
 
     @SubscribeEvent
-    public static void christmasCommonSetup(FMLCommonSetupEvent event) {
-        CapabilityNaughtyNice.register();
-    }
-
-    @SubscribeEvent
-    public static void initialise(FMLCommonSetupEvent event) {
-        christmasBlocks = new ChristmasBlock[] {
+    public static void configureBlocks(FMLCommonSetupEvent event) {
+        ChristmasBlock[] christmasBlocks = new ChristmasBlock[]{
                 ChristmasBlocks.BABY_PRESENT.get(),
                 ChristmasBlocks.ADULT_PRESENT.get(),
                 ChristmasBlocks.ELDER_PRESENT.get(),
@@ -43,11 +39,6 @@ public class SetupHandler {
                 ChristmasBlocks.BIG_GOLD_BAUBLE.get(),
                 ChristmasBlocks.BIG_SILVER_BAUBLE.get(),
 
-                ChristmasBlocks.CREEPER_HEAD_ORNAMENT.get(),
-                ChristmasBlocks.SKELETON_HEAD_ORNAMENT.get(),
-                ChristmasBlocks.WITHER_SKELETON_HEAD_ORNAMENT.get(),
-                ChristmasBlocks.ZOMBIE_HEAD_ORNAMENT.get(),
-
                 ChristmasBlocks.RED_TINSEL.get(),
                 ChristmasBlocks.BLUE_TINSEL.get(),
                 ChristmasBlocks.YELLOW_TINSEL.get(),
@@ -61,6 +52,21 @@ public class SetupHandler {
                 ChristmasBlocks.GREEN_CHRISTMAS_LIGHTS.get(),
                 ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS.get(),
                 ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS.get(),
+
+                ChristmasBlocks.CREEPER_HEAD_ORNAMENT.get(),
+                ChristmasBlocks.SKELETON_HEAD_ORNAMENT.get(),
+                ChristmasBlocks.WITHER_SKELETON_HEAD_ORNAMENT.get(),
+                ChristmasBlocks.ZOMBIE_HEAD_ORNAMENT.get(),
+
+                ChristmasBlocks.RED_STOCKING.get(),
+                ChristmasBlocks.BLUE_STOCKING.get(),
+                ChristmasBlocks.YELLOW_STOCKING.get(),
+                ChristmasBlocks.GREEN_STOCKING.get(),
+                ChristmasBlocks.GOLD_STOCKING.get(),
+                ChristmasBlocks.SILVER_STOCKING.get(),
+
+                ChristmasBlocks.CHRISTMAS_WREATH.get(),
+                ChristmasBlocks.SANTA_LIST.get(),
 
                 ChristmasBlocks.BABY_PRESENT_ORNAMENT.get(),
                 ChristmasBlocks.ADULT_PRESENT_ORNAMENT.get(),
@@ -77,53 +83,26 @@ public class SetupHandler {
                 ChristmasBlocks.CANDY_CANE_BLOCK.get(),
                 ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(),
 
-                ChristmasBlocks.RED_STOCKING.get(),
-                ChristmasBlocks.BLUE_STOCKING.get(),
-                ChristmasBlocks.YELLOW_STOCKING.get(),
-                ChristmasBlocks.GREEN_STOCKING.get(),
-                ChristmasBlocks.GOLD_STOCKING.get(),
-                ChristmasBlocks.SILVER_STOCKING.get(),
-
-                ChristmasBlocks.CHRISTMAS_WREATH.get(),
-                ChristmasBlocks.SANTA_LIST.get(),
-
                 ChristmasBlocks.MILK_AND_COOKIES.get(),
                 ChristmasBlocks.LOG_CAKE.get(),
+                ChristmasBlocks.CHRISTMAS_HAM.get(),
+                ChristmasBlocks.CHRISTMAS_PUDDING.get(),
 
-                ChristmasBlocks.CHRISTMAS_STAR.get()
+                ChristmasBlocks.CHRISTMAS_STAR.get(),
+                ChristmasBlocks.MUSIC_BOX.get(),
+                ChristmasBlocks.GIFT_WRAPPING_STATION.get()
         };
 
-        christmasItems = new ChristmasItem[] {
-                ChristmasItems.RAW_GINGERBREAD.get(),
-                ChristmasItems.GINGERBREAD_COOKIE.get(),
-                ChristmasItems.PRESENT_SCRAPS.get(),
-                ChristmasItems.CANDY_CANE.get(),
-                ChristmasItems.FESTIVE_CANDY_CANE.get(),
-                ChristmasItems.ENCHANTED_CANDY_CANE.get(),
-
-                ChristmasItems.EGGNOG.get()
-        };
-
-        configureBlocks();
-        configureItems();
+        Arrays.stream(christmasBlocks).forEach(ChristmasBlock::configureBlock);
     }
 
     @SubscribeEvent
-    public static void addTriggers(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            ChristmasTriggers.registerTriggers();
-        });
+    public static void registerCapabilities(FMLCommonSetupEvent event) {
+        CapabilityNaughtyNice.register();
     }
 
-    public static void configureBlocks() {
-        for (ChristmasBlock block : christmasBlocks) {
-            block.configureBlock();
-        }
-    }
-
-    public static void configureItems() {
-        for (ChristmasItem item : christmasItems) {
-            item.configureItem();
-        }
+    @SubscribeEvent
+    public static void registerTriggers(FMLCommonSetupEvent event) {
+        event.enqueueWork(ChristmasTriggers::registerTriggers);
     }
 }

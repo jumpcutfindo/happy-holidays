@@ -61,10 +61,6 @@ public class ChristmasBlockItem extends BlockItem implements IHappyHolidaysItem 
         return properties;
     }
 
-    @Override
-    public void configureItem() {
-    }
-
     public ChristmasBlockItem setChristmasRarity(ChristmasRarity rarity) {
         this.christmasRarity = rarity;
         return this;

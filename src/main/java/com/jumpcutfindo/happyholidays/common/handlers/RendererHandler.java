@@ -20,7 +20,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RendererHandler {
     @SubscribeEvent
-    public static void handleRenderStuff(FMLClientSetupEvent event) {
+    public static void handleEntityRendering(FMLClientSetupEvent event) {
         // Register gingerbread people entity rendering
         RenderingRegistry.registerEntityRenderingHandler(
                 ChristmasEntities.GINGERBREAD_MAN.get(),
@@ -61,7 +61,13 @@ public class RendererHandler {
                 ChristmasEntities.EXPLOSIVE_PRESENT.get(),
                 ExplosivePresentRenderer::new
         );
+    }
 
-        ClientRegistry.bindTileEntityRenderer(ChristmasTileEntities.MUSIC_BOX_ENTITY_TYPE.get(), MusicBoxRenderer::new);
+    @SubscribeEvent
+    public static void handleTileEntityRendering(FMLClientSetupEvent event) {
+        ClientRegistry.bindTileEntityRenderer(
+                ChristmasTileEntities.MUSIC_BOX_ENTITY_TYPE.get(),
+                MusicBoxRenderer::new
+        );
     }
 }

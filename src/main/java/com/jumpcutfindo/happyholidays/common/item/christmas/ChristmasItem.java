@@ -51,10 +51,6 @@ public class ChristmasItem extends Item implements IHappyHolidaysItem {
     }
 
     @Override
-    public void configureItem() {
-    }
-
-    @Override
     public ITextComponent getName(ItemStack itemStack) {
         TranslationTextComponent name = new TranslationTextComponent(this.getDescriptionId(itemStack));
 

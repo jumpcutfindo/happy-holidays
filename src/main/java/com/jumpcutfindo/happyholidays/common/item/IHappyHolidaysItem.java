@@ -5,6 +5,4 @@ import net.minecraftforge.fml.RegistryObject;
 
 public interface IHappyHolidaysItem {
     Item.Properties getProperties();
-
-    void configureItem();
 }
