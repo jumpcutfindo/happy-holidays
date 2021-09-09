@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_ornament_start",
     "display": {
         "icon": {
-            "item": "happyholidays:santa_elf_ornament_block"
+            "item": "happyholidays:santa_elf_ornament"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_fancy_hoarder.title"
@@ -24,25 +24,25 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:santa_elf_ornament_block"
+                        "item": "happyholidays:santa_elf_ornament"
                     },
                     {
-                        "item": "happyholidays:grinch_ornament_block"
+                        "item": "happyholidays:grinch_ornament"
                     },
                     {
-                        "item": "happyholidays:baby_present_ornament_block"
+                        "item": "happyholidays:baby_present_ornament"
                     },
                     {
-                        "item": "happyholidays:adult_present_ornament_block"
+                        "item": "happyholidays:adult_present_ornament"
                     },
                     {
-                        "item": "happyholidays:elder_present_ornament_block"
+                        "item": "happyholidays:elder_present_ornament"
                     },
                     {
-                        "item": "happyholidays:candy_cane_ornament_block"
+                        "item": "happyholidays:candy_cane_ornament"
                     },
                     {
-                        "item": "happyholidays:gingerbread_man_ornament_block"
+                        "item": "happyholidays:gingerbread_man_ornament"
                     }
                 ]
             }

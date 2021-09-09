@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_ornament_start",
     "display": {
         "icon": {
-            "item": "happyholidays:red_christmas_light_block"
+            "item": "happyholidays:red_christmas_lights"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_lights_ornaments.title"
@@ -21,22 +21,22 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:red_christmas_light_block"
+                        "item": "happyholidays:red_christmas_lights"
                     },
                     {
-                        "item": "happyholidays:blue_christmas_light_block"
+                        "item": "happyholidays:blue_christmas_lights"
                     },
                     {
-                        "item": "happyholidays:yellow_christmas_light_block"
+                        "item": "happyholidays:yellow_christmas_lights"
                     },
                     {
-                        "item": "happyholidays:green_christmas_light_block"
+                        "item": "happyholidays:green_christmas_lights"
                     },
                     {
-                        "item": "happyholidays:gold_christmas_light_block"
+                        "item": "happyholidays:gold_christmas_lights"
                     },
                     {
-                        "item": "happyholidays:silver_christmas_light_block"
+                        "item": "happyholidays:silver_christmas_lights"
                     }
                 ]
             }

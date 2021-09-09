@@ -450,7 +450,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         // Drop ornament block
         double ornamentDropChance = REQUEST_ORNAMENT_DROP_BASE_CHANCE * modifier;
         if (ornamentDropChance > this.random.nextDouble()) {
-            ItemStack elfOrnamentItem = ItemRegistry.SANTA_ELF_ORNAMENT_BLOCK.get().getDefaultInstance();
+            ItemStack elfOrnamentItem = ItemRegistry.SANTA_ELF_ORNAMENT.get().getDefaultInstance();
             this.spawnAtLocation(elfOrnamentItem);
         }
 

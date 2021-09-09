@@ -23,7 +23,7 @@ import net.minecraftforge.fml.network.PacketDistributor;
 
 public class ChristmasStarScreen extends ContainerScreen<ChristmasStarContainer> {
     private static final ResourceLocation CHRISTMAS_STAR_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
-            "textures/gui/container/christmas_star_block.png");
+            "textures/gui/container/christmas_star.png");
 
     private static final int[] STAR_HEIGHTS = new int [] { 0, 6, 12, 18, 24, 31 };
 
@@ -74,9 +74,9 @@ public class ChristmasStarScreen extends ContainerScreen<ChristmasStarContainer>
 
         // Draw tier
         TranslationTextComponent tierComponent = new TranslationTextComponent("block.happyholidays"
-                + ".christmas_star_block.tier", tier);
+                + ".christmas_star.tier", tier);
         if (this.menu.tileEntity.isBonusActive()) tierComponent.append(new TranslationTextComponent("block"
-                + ".happyholidays.christmas_star_block.bonus"));
+                + ".happyholidays.christmas_star.bonus"));
         this.font.draw(matrixStack, tierComponent, x + this.titleLabelX, y + this.titleLabelY, 4210752);
 
         // Draw text
@@ -124,7 +124,7 @@ public class ChristmasStarScreen extends ContainerScreen<ChristmasStarContainer>
     }
 
     public class SummonSantaButton extends Button {
-        private static final String SUMMON_SANTA_TOOLTIP = "block.happyholidays.christmas_star_block.summon_tooltip";
+        private static final String SUMMON_SANTA_TOOLTIP = "block.happyholidays.christmas_star.summon_tooltip";
 
         private final ChristmasStarScreen screen;
         public SummonSantaButton(ChristmasStarScreen screen, int p_i232255_1_, int p_i232255_2_, int p_i232255_3_,

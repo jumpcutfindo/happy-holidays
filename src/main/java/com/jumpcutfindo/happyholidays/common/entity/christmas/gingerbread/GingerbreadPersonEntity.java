@@ -125,7 +125,7 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
         // Drop ornament block
         double ornamentDropChance = CONVERSION_ORNAMENT_DROP_BASE_CHANCE * modifier;
         if (ornamentDropChance > this.random.nextDouble()) {
-            ItemStack gingerbreadOrnamentItem = ItemRegistry.GINGERBREAD_MAN_ORNAMENT_BLOCK.get().getDefaultInstance();
+            ItemStack gingerbreadOrnamentItem = ItemRegistry.GINGERBREAD_MAN_ORNAMENT.get().getDefaultInstance();
             this.spawnAtLocation(gingerbreadOrnamentItem);
         }
     }

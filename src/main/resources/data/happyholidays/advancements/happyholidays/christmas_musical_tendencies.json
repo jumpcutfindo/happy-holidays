@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_start",
     "display": {
         "icon": {
-            "item": "happyholidays:music_box_block"
+            "item": "happyholidays:music_box"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_musical_tendencies.title"
@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:music_box_block"
+                        "item": "happyholidays:music_box"
                     }
                 ]
             }

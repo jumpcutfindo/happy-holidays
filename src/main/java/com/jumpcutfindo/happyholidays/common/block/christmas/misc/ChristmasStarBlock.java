@@ -41,7 +41,7 @@ public class ChristmasStarBlock extends ChristmasBlock {
             ChristmasStarTier.class);
     public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
-    public static final String BLOCK_ID = "christmas_star_block";
+    public static final String BLOCK_ID = "christmas_star";
 
     public static final Properties BLOCK_PROPERTIES =
             AbstractBlock.Properties

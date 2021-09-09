@@ -21,7 +21,6 @@ import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
@@ -55,7 +54,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
@@ -178,10 +176,10 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     public void endPresentBreaking(BlockPos targetPresentBlock) {
         this.entityData.set(BREAK_ANIM_PROGRESS, -1);
 
-        if (this.level.getBlockState(targetPresentBlock).getBlock().is(BlockRegistry.BABY_PRESENT_BLOCK.get())) {
+        if (this.level.getBlockState(targetPresentBlock).getBlock().is(BlockRegistry.BABY_PRESENT.get())) {
             // Baby present
             this.presentsBrokenCount[0]++;
-        } else if (this.level.getBlockState(targetPresentBlock).getBlock().is(BlockRegistry.ADULT_PRESENT_BLOCK.get())) {
+        } else if (this.level.getBlockState(targetPresentBlock).getBlock().is(BlockRegistry.ADULT_PRESENT.get())) {
             // Adult present
             this.presentsBrokenCount[1]++;
         } else {
@@ -305,7 +303,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
         // Drop ornament block
         double ornamentDropChance = APPEASEMENT_ORNAMENT_DROP_BASE_CHANCE * modifier;
         if (ornamentDropChance > this.random.nextDouble()) {
-            ItemStack grinchOrnamentItem = ItemRegistry.GRINCH_ORNAMENT_BLOCK.get().getDefaultInstance();
+            ItemStack grinchOrnamentItem = ItemRegistry.GRINCH_ORNAMENT.get().getDefaultInstance();
             this.spawnAtLocation(grinchOrnamentItem);
         }
     }

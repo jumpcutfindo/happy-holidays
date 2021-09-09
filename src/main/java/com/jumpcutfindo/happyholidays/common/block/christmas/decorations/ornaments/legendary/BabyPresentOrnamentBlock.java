@@ -5,7 +5,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 
 public class BabyPresentOrnamentBlock extends LegendaryOrnamentBlock {
-    public static final String BLOCK_ID = "baby_present_ornament_block";
+    public static final String BLOCK_ID = "baby_present_ornament";
 
     public static final VoxelShape[][] ORNAMENT_SHAPES = {
             {

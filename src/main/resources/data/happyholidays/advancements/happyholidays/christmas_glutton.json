@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_holly_start",
     "display": {
         "icon": {
-            "item": "happyholidays:log_cake_block"
+            "item": "happyholidays:log_cake"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_glutton.title"
@@ -21,16 +21,16 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:christmas_pudding_block"
+                        "item": "happyholidays:christmas_pudding"
                     },
                     {
-                        "item": "happyholidays:christmas_ham_block"
+                        "item": "happyholidays:christmas_ham"
                     },
                     {
-                        "item": "happyholidays:log_cake_block"
+                        "item": "happyholidays:log_cake"
                     },
                     {
-                        "item": "happyholidays:milk_and_cookies_block"
+                        "item": "happyholidays:milk_and_cookies"
                     },
                     {
                         "item": "happyholidays:eggnog"

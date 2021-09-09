@@ -20,7 +20,7 @@ public class TileEntityRegistry {
                     ChristmasStarTileEntity.TILE_ENTITY_ID,
                     () -> TileEntityType.Builder.of(
                             ChristmasStarTileEntity::new,
-                            BlockRegistry.CHRISTMAS_STAR_BLOCK.get()
+                            BlockRegistry.CHRISTMAS_STAR.get()
                     ).build(null)
             );
     public static final RegistryObject<TileEntityType<MusicBoxTileEntity>> MUSIC_BOX_ENTITY_TYPE =
@@ -28,7 +28,7 @@ public class TileEntityRegistry {
                     MusicBoxTileEntity.TILE_ENTITY_ID,
                     () -> TileEntityType.Builder.of(
                             MusicBoxTileEntity::new,
-                            BlockRegistry.MUSIC_BOX_BLOCK.get()
+                            BlockRegistry.MUSIC_BOX.get()
                     ).build(null)
             );
     public static final RegistryObject<TileEntityType<GiftWrapperTileEntity>> GIFT_WRAPPER_ENTITY_TYPE =
@@ -36,7 +36,7 @@ public class TileEntityRegistry {
                     GiftWrapperTileEntity.TILE_ENTITY_ID,
                     () -> TileEntityType.Builder.of(
                             GiftWrapperTileEntity::new,
-                            BlockRegistry.GIFT_WRAPPER_BLOCK.get()
+                            BlockRegistry.GIFT_WRAPPING_STATION.get()
                     ).build(null)
             );
     public static final RegistryObject<TileEntityType<StockingTileEntity>> STOCKING_ENTITY_TYPE =
@@ -44,7 +44,7 @@ public class TileEntityRegistry {
                     StockingTileEntity.TILE_ENTITY_ID,
                     () -> TileEntityType.Builder.of(
                             StockingTileEntity::new,
-                            BlockRegistry.RED_STOCKING_BLOCK.get()
+                            BlockRegistry.RED_STOCKING.get()
                     ).build(null)
             );
 

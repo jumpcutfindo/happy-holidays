@@ -3,7 +3,6 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.INaughtyNiceHandler;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
@@ -16,7 +15,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -25,13 +23,13 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
 public class SantaListBlock extends WallDecorationBlock {
-    public static final String CHAT_NICE_MAX = "chat.happyholidays.santa_list_block.max_nice";
-    public static final String CHAT_NICE = "chat.happyholidays.santa_list_block.nice";
-    public static final String CHAT_NEUTRAL = "chat.happyholidays.santa_list_block.neutral";
-    public static final String CHAT_NAUGHTY = "chat.happyholidays.santa_list_block.naughty";
-    public static final String CHAT_NAUGHTY_MAX = "chat.happyholidays.santa_list_block.max_naughty";
+    public static final String CHAT_NICE_MAX = "chat.happyholidays.santa_list.max_nice";
+    public static final String CHAT_NICE = "chat.happyholidays.santa_list.nice";
+    public static final String CHAT_NEUTRAL = "chat.happyholidays.santa_list.neutral";
+    public static final String CHAT_NAUGHTY = "chat.happyholidays.santa_list.naughty";
+    public static final String CHAT_NAUGHTY_MAX = "chat.happyholidays.santa_list.max_naughty";
 
-    public static final String BLOCK_ID = "santa_list_block";
+    public static final String BLOCK_ID = "santa_list";
 
     public static final Properties BLOCK_PROPERTIES =
             AbstractBlock.Properties

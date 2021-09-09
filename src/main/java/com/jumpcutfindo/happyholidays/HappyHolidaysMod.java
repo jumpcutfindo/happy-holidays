@@ -3,7 +3,6 @@ package com.jumpcutfindo.happyholidays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.jumpcutfindo.happyholidays.common.handlers.GuideHandler;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
@@ -57,7 +56,7 @@ public class HappyHolidaysMod {
 
         @Override
         public ItemStack makeIcon() {
-            return BlockRegistry.ELDER_PRESENT_BLOCK.get().asItem().getDefaultInstance();
+            return BlockRegistry.ELDER_PRESENT.get().asItem().getDefaultInstance();
         }
     }
 }

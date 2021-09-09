@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_ornament_start",
     "display": {
         "icon": {
-            "item": "happyholidays:red_tinsel_block"
+            "item": "happyholidays:red_tinsel"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_tinsel_ornaments.title"
@@ -21,22 +21,22 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:red_tinsel_block"
+                        "item": "happyholidays:red_tinsel"
                     },
                     {
-                        "item": "happyholidays:blue_tinsel_block"
+                        "item": "happyholidays:blue_tinsel"
                     },
                     {
-                        "item": "happyholidays:yellow_tinsel_block"
+                        "item": "happyholidays:yellow_tinsel"
                     },
                     {
-                        "item": "happyholidays:green_tinsel_block"
+                        "item": "happyholidays:green_tinsel"
                     },
                     {
-                        "item": "happyholidays:gold_tinsel_block"
+                        "item": "happyholidays:gold_tinsel"
                     },
                     {
-                        "item": "happyholidays:silver_tinsel_block"
+                        "item": "happyholidays:silver_tinsel"
                     }
                 ]
             }

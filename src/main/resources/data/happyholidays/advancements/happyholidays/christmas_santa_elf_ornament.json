@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_santa_elf_request",
     "display": {
         "icon": {
-            "item": "happyholidays:santa_elf_ornament_block"
+            "item": "happyholidays:santa_elf_ornament"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_santa_elf_ornament.title"
@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:santa_elf_ornament_block"
+                        "item": "happyholidays:santa_elf_ornament"
                     }
                 ]
             }

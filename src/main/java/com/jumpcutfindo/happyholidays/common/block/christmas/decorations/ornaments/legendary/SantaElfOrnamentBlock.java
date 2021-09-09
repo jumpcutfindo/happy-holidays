@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.util.math.shapes.VoxelShape;
 
 public class SantaElfOrnamentBlock extends LegendaryOrnamentBlock {
-    public static final String BLOCK_ID = "santa_elf_ornament_block";
+    public static final String BLOCK_ID = "santa_elf_ornament";
 
     public static final VoxelShape[][] ORNAMENT_SHAPES = {
             {

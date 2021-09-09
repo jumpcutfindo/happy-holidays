@@ -26,7 +26,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.Tags;
 
 public class ChristmasStarContainer extends Container {
-    public static final String CONTAINER_ID = "christmas_star_block";
+    public static final String CONTAINER_ID = "christmas_star";
 
     public final ChristmasStarTileEntity tileEntity;
     private final IWorldPosCallable canInteractWithCallable;

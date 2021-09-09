@@ -41,19 +41,19 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:christmas_star_block"
+                        "happyholidays:christmas_star"
                     ]
                 },
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:baby_present_ornament_block",
-                        "happyholidays:adult_present_ornament_block",
-                        "happyholidays:elder_present_ornament_block",
-                        "happyholidays:candy_cane_ornament_block",
-                        "happyholidays:grinch_ornament_block",
-                        "happyholidays:santa_elf_ornament_block",
-                        "happyholidays:gingerbread_man_ornament_block"
+                        "happyholidays:baby_present_ornament",
+                        "happyholidays:adult_present_ornament",
+                        "happyholidays:elder_present_ornament",
+                        "happyholidays:candy_cane_ornament",
+                        "happyholidays:grinch_ornament",
+                        "happyholidays:santa_elf_ornament",
+                        "happyholidays:gingerbread_man_ornament"
                     ]
                 },
                 {
@@ -73,7 +73,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:christmas_star_block"
+                        "happyholidays:christmas_star"
                     ]
                 },
                 {
@@ -154,9 +154,9 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:red_ball_ornament_block",
-                        "happyholidays:creeper_head_ornament_block",
-                        "happyholidays:gingerbread_man_ornament_block"
+                        "happyholidays:red_bauble",
+                        "happyholidays:creeper_head_ornament",
+                        "happyholidays:gingerbread_man_ornament"
                     ]
                 },
                 {
@@ -170,10 +170,10 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:red_ball_ornament_block",
-                        "happyholidays:big_red_ball_ornament_block",
-                        "happyholidays:red_tinsel_block",
-                        "happyholidays:red_christmas_light_block"
+                        "happyholidays:red_bauble",
+                        "happyholidays:big_red_bauble",
+                        "happyholidays:red_tinsel",
+                        "happyholidays:red_christmas_lights"
                     ]
                 },
                 {
@@ -202,10 +202,10 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:creeper_head_ornament_block",
-                        "happyholidays:zombie_head_ornament_block",
-                        "happyholidays:skeleton_head_ornament_block",
-                        "happyholidays:wither_skeleton_head_ornament_block"
+                        "happyholidays:creeper_head_ornament",
+                        "happyholidays:zombie_head_ornament",
+                        "happyholidays:skeleton_head_ornament",
+                        "happyholidays:wither_skeleton_head_ornament"
                     ]
                 },
                 {
@@ -219,13 +219,13 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:baby_present_ornament_block",
-                        "happyholidays:adult_present_ornament_block",
-                        "happyholidays:elder_present_ornament_block",
-                        "happyholidays:candy_cane_ornament_block",
-                        "happyholidays:grinch_ornament_block",
-                        "happyholidays:santa_elf_ornament_block",
-                        "happyholidays:gingerbread_man_ornament_block"
+                        "happyholidays:baby_present_ornament",
+                        "happyholidays:adult_present_ornament",
+                        "happyholidays:elder_present_ornament",
+                        "happyholidays:candy_cane_ornament",
+                        "happyholidays:grinch_ornament",
+                        "happyholidays:santa_elf_ornament",
+                        "happyholidays:gingerbread_man_ornament"
                     ]
                 },
                 {
@@ -261,7 +261,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:raw_gingerbread",
+                        "happyholidays:gingerbread_dough",
                         "happyholidays:gingerbread_cookie"
                     ]
                 },
@@ -276,7 +276,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:raw_gingerbread_block",
+                        "happyholidays:gingerbread_dough_block",
                         "happyholidays:gingerbread_block",
                         "happyholidays:soggy_gingerbread_block"
                     ]
@@ -312,7 +312,7 @@
                     "type": "items",
                     "items": [
                         "happyholidays:enchanted_candy_cane",
-                        "happyholidays:candy_cane_ornament_block",
+                        "happyholidays:candy_cane_ornament",
                         "happyholidays:santa_elf_bell"
                     ]
                 },
@@ -329,9 +329,9 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:baby_present_block",
-                        "happyholidays:adult_present_block",
-                        "happyholidays:elder_present_block"
+                        "happyholidays:baby_present",
+                        "happyholidays:adult_present",
+                        "happyholidays:elder_present"
                     ]
                 },
                 {
@@ -440,13 +440,13 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:gift_wrapper_block",
-                        "happyholidays:red_christmas_gift_item",
-                        "happyholidays:blue_christmas_gift_item",
-                        "happyholidays:yellow_christmas_gift_item",
-                        "happyholidays:green_christmas_gift_item",
-                        "happyholidays:gold_christmas_gift_item",
-                        "happyholidays:silver_christmas_gift_item"
+                        "happyholidays:gift_wrapping_station",
+                        "happyholidays:red_christmas_gift",
+                        "happyholidays:blue_christmas_gift",
+                        "happyholidays:yellow_christmas_gift",
+                        "happyholidays:green_christmas_gift",
+                        "happyholidays:gold_christmas_gift",
+                        "happyholidays:silver_christmas_gift"
                     ]
                 },
                 {
@@ -467,7 +467,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:music_box_block",
+                        "happyholidays:music_box",
                         "happyholidays:christmas_sheet_music_angels_on_high"
                     ]
                 },
@@ -498,12 +498,12 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:red_stocking_block",
-                        "happyholidays:blue_stocking_block",
-                        "happyholidays:yellow_stocking_block",
-                        "happyholidays:green_stocking_block",
-                        "happyholidays:gold_stocking_block",
-                        "happyholidays:silver_stocking_block"
+                        "happyholidays:red_stocking",
+                        "happyholidays:blue_stocking",
+                        "happyholidays:yellow_stocking",
+                        "happyholidays:green_stocking",
+                        "happyholidays:gold_stocking",
+                        "happyholidays:silver_stocking"
                     ]
                 },
                 {
@@ -521,7 +521,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:christmas_wreath_block"
+                        "happyholidays:christmas_wreath"
                     ]
                 },
                 {
@@ -571,7 +571,7 @@
                 {
                     "type": "items",
                     "items": [
-                        "happyholidays:santa_list_block"
+                        "happyholidays:santa_list"
                     ]
                 },
                 {

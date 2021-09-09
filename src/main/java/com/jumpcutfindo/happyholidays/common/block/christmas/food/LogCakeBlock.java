@@ -30,7 +30,7 @@ public class LogCakeBlock extends ChristmasFoodBlock {
 
     public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, MAX_BITES - 1);
 
-    public static final String BLOCK_ID = "log_cake_block";
+    public static final String BLOCK_ID = "log_cake";
 
     public static final Properties BLOCK_PROPERTIES =
             Properties

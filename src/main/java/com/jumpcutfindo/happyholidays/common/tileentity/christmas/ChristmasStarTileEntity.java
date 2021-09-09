@@ -53,7 +53,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ChristmasStarTileEntity extends LockableTileEntity implements IChristmasTileEntity, ITickableTileEntity {
-    public static final String TILE_ENTITY_ID = "christmas_star_block";
+    public static final String TILE_ENTITY_ID = "christmas_star";
     public static final int SLOTS = 6;
 
     public static final int BONUS_SLOT_INDEX = 5;

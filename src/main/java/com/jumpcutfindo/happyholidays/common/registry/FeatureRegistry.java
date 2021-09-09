@@ -11,7 +11,7 @@ import net.minecraft.world.gen.feature.Feature;
 
 public class FeatureRegistry {
     public static final BlockClusterFeatureConfig WILD_PRESENT_GENERATION_CONFIG =
-            new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BlockRegistry.BABY_PRESENT_BLOCK.get().defaultBlockState()), new SimpleBlockPlacer())
+            new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BlockRegistry.BABY_PRESENT.get().defaultBlockState()), new SimpleBlockPlacer())
                     .tries(16)
                     .whitelist(ImmutableSet.of(Blocks.GRASS_BLOCK.getBlock()))
                     .xspread(4)

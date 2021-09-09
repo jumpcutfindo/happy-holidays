@@ -1,12 +1,12 @@
 {
     "replace": false,
     "values": [
-        "happyholidays:baby_present_ornament_block",
-        "happyholidays:adult_present_ornament_block",
-        "happyholidays:elder_present_ornament_block",
-        "happyholidays:grinch_ornament_block",
-        "happyholidays:santa_elf_ornament_block",
-        "happyholidays:candy_cane_ornament_block",
-        "happyholidays:gingerbread_man_ornament_block"
+        "happyholidays:baby_present_ornament",
+        "happyholidays:adult_present_ornament",
+        "happyholidays:elder_present_ornament",
+        "happyholidays:grinch_ornament",
+        "happyholidays:santa_elf_ornament",
+        "happyholidays:candy_cane_ornament",
+        "happyholidays:gingerbread_man_ornament"
     ]
 }

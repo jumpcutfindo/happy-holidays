@@ -12,7 +12,7 @@ import net.minecraft.util.text.ITextComponent;
 
 public class GiftWrapperScreen extends ContainerScreen<GiftWrapperContainer> {
     private static final ResourceLocation GIFT_WRAPPER_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
-            "textures/gui/container/gift_wrapper_block.png");
+            "textures/gui/container/gift_wrapping_station.png");
 
     public GiftWrapperScreen(GiftWrapperContainer screenContainer, PlayerInventory playerInv,
                              ITextComponent title) {

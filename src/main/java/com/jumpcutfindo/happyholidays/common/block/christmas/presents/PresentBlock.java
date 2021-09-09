@@ -11,7 +11,6 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
 import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
@@ -47,7 +46,6 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -193,9 +191,9 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
             // Normal processing of drops (in lieu of item tag bug)
             for (ItemStack drop : drops) {
                 if (ChristmasItem.isBasicOrnamentItem(drop)) {
-                    if (blockState.is(BlockRegistry.BABY_PRESENT_BLOCK.get())) {
+                    if (blockState.is(BlockRegistry.BABY_PRESENT.get())) {
                         drop.setCount((RANDOM.nextInt(2 - 1) + 1) + 1);
-                    } else if (blockState.is(BlockRegistry.ADULT_PRESENT_BLOCK.get())) {
+                    } else if (blockState.is(BlockRegistry.ADULT_PRESENT.get())) {
                         drop.setCount((RANDOM.nextInt(4 - 2) + 1) + 2);
                     } else {
                         drop.setCount((RANDOM.nextInt(5 - 3) + 1) + 3);
@@ -237,8 +235,8 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
     public static void grow(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
         // Determine the next block state
         BlockState nextBlockState = blockState.getBlock() instanceof BabyPresentBlock
-                ? BlockRegistry.ADULT_PRESENT_BLOCK.get().defaultBlockState()
-                : BlockRegistry.ELDER_PRESENT_BLOCK.get().defaultBlockState();
+                ? BlockRegistry.ADULT_PRESENT.get().defaultBlockState()
+                : BlockRegistry.ELDER_PRESENT.get().defaultBlockState();
 
         // Update the server world by replacing the block
         serverWorld.setBlock(blockPos, nextBlockState, 2);
@@ -255,6 +253,6 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
     }
 
     public static boolean isGrowable(BlockState blockState) {
-        return blockState.is(BlockRegistry.BABY_PRESENT_BLOCK.get()) || blockState.is(BlockRegistry.ADULT_PRESENT_BLOCK.get());
+        return blockState.is(BlockRegistry.BABY_PRESENT.get()) || blockState.is(BlockRegistry.ADULT_PRESENT.get());
     }
 }

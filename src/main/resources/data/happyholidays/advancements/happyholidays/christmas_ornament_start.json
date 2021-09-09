@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_start",
     "display": {
         "icon": {
-            "item": "happyholidays:red_ball_ornament_block"
+            "item": "happyholidays:red_bauble"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_ornament_start.title"

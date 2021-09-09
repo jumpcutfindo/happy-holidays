@@ -93,7 +93,7 @@ public class ChristmasGiftItem extends ChristmasItem {
         CompoundNBT nbt = itemStack.getTag();
 
         if (nbt != null && nbt.contains("WrappedBy")) {
-            IFormattableTextComponent wrappedByText = new TranslationTextComponent("item.happyholidays.christmas_gift_item.desc", nbt.getString(
+            IFormattableTextComponent wrappedByText = new TranslationTextComponent("item.happyholidays.christmas_gift.desc", nbt.getString(
                     "WrappedBy"));
             wrappedByText.withStyle(TextFormatting.GRAY);
             wrappedByText.withStyle(TextFormatting.ITALIC);

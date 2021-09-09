@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_start",
     "display": {
         "icon": {
-            "item": "happyholidays:christmas_star_block"
+            "item": "happyholidays:christmas_star"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_star_start.title"
@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:christmas_star_block"
+                        "item": "happyholidays:christmas_star"
                     }
                 ]
             }

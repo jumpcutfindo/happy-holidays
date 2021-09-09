@@ -29,8 +29,8 @@ public class SoundRegistry {
             HappyHolidaysMod.MOD_ID);
 
     public static final RegistryObject<SoundEvent> CHRISTMAS_STAR_BLOCK_PLACE = SOUNDS.register(
-            "block.christmas_star_block_place", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
-                    "block.christmas_star_block_place"))
+            "block.christmas_star_place", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,
+                    "block.christmas_star_place"))
     );
     public static final RegistryObject<SoundEvent> CHRISTMAS_STAR_EFFECT_APPLY = SOUNDS.register(
             "block.christmas_star_effect_apply", () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID,

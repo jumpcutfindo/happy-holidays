@@ -2,7 +2,7 @@
     "parent": "happyholidays:happyholidays/christmas_grow_baby_present",
     "display": {
         "icon": {
-            "item": "happyholidays:grinch_ornament_block"
+            "item": "happyholidays:grinch_ornament"
         },
         "title": {
             "translate": "advancements.happyholidays.christmas_grinch_encounter.title"

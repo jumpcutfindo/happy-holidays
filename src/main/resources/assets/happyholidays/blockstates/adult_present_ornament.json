@@ -1,0 +1,25 @@
+{
+    "variants": {
+        "face=ceiling": {
+            "model": "happyholidays:block/adult_present_ornament_hanging"
+        },
+        "face=floor": {
+            "model": "happyholidays:block/adult_present_ornament"
+        },
+        "face=wall,facing=east": {
+            "model": "happyholidays:block/adult_present_ornament_side",
+            "y": 270
+        },
+        "face=wall,facing=north": {
+            "model": "happyholidays:block/adult_present_ornament_side",
+            "y": 180
+        },
+        "face=wall,facing=south": {
+            "model": "happyholidays:block/adult_present_ornament_side"
+        },
+        "face=wall,facing=west": {
+            "model": "happyholidays:block/adult_present_ornament_side",
+            "y": 90
+        }
+    }
+}

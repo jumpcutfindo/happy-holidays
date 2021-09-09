@@ -47,10 +47,10 @@ public class SheetMusicItem extends ChristmasItem {
         BlockPos blockpos = itemUseContext.getClickedPos();
         BlockState blockstate = world.getBlockState(blockpos);
 
-        if (blockstate.is(BlockRegistry.MUSIC_BOX_BLOCK.get()) && !blockstate.getValue(MusicBoxBlock.HAS_SHEET_MUSIC)) {
+        if (blockstate.is(BlockRegistry.MUSIC_BOX.get()) && !blockstate.getValue(MusicBoxBlock.HAS_SHEET_MUSIC)) {
             ItemStack itemstack = itemUseContext.getItemInHand();
             if (!world.isClientSide) {
-                ((MusicBoxBlock) BlockRegistry.MUSIC_BOX_BLOCK.get()).setSheetMusic(world, blockpos, blockstate, itemstack);
+                ((MusicBoxBlock) BlockRegistry.MUSIC_BOX.get()).setSheetMusic(world, blockpos, blockstate, itemstack);
                 itemstack.shrink(1);
             }
 

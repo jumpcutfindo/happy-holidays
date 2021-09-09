@@ -30,7 +30,7 @@ public class ChristmasPuddingBlock extends ChristmasFoodBlock {
 
     public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, MAX_BITES - 1);
 
-    public static final String BLOCK_ID = "christmas_pudding_block";
+    public static final String BLOCK_ID = "christmas_pudding";
 
     public static final Properties BLOCK_PROPERTIES =
             Properties

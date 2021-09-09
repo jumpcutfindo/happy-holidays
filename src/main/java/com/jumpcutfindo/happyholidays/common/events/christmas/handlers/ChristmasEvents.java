@@ -109,7 +109,7 @@ public class ChristmasEvents {
             BlockState blockState = playerEntity.level.getBlockState(event.getPos());
 
             // Trigger music box playing trigger
-            if (itemInHand.getItem() instanceof SheetMusicItem && blockState.is(BlockRegistry.MUSIC_BOX_BLOCK.get())) {
+            if (itemInHand.getItem() instanceof SheetMusicItem && blockState.is(BlockRegistry.MUSIC_BOX.get())) {
                 TriggerRegistry.CHRISTMAS_PLAY_MUSIC_BOX.trigger(playerEntity);
             }
         }
