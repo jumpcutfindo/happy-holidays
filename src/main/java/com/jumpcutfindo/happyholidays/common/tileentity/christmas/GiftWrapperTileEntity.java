@@ -2,8 +2,8 @@ package com.jumpcutfindo.happyholidays.common.tileentity.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -42,7 +42,7 @@ public class GiftWrapperTileEntity extends LockableTileEntity implements IChrist
     }
 
     public GiftWrapperTileEntity() {
-        this(TileEntityRegistry.GIFT_WRAPPER_ENTITY_TYPE.get());
+        this(ChristmasTileEntities.GIFT_WRAPPER_ENTITY_TYPE.get());
     }
 
     @Override
@@ -130,17 +130,17 @@ public class GiftWrapperTileEntity extends LockableTileEntity implements IChrist
 
         ItemStack giftStack = ItemStack.EMPTY;
         if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.RED_DYE.getDefaultInstance())) {
-            giftStack = ItemRegistry.RED_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+            giftStack = ChristmasItems.RED_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
         } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.BLUE_DYE.getDefaultInstance())) {
-            giftStack = ItemRegistry.BLUE_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+            giftStack = ChristmasItems.BLUE_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
         } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.YELLOW_DYE.getDefaultInstance())) {
-            giftStack = ItemRegistry.YELLOW_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+            giftStack = ChristmasItems.YELLOW_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
         } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.GREEN_DYE.getDefaultInstance())) {
-            giftStack = ItemRegistry.GREEN_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+            giftStack = ChristmasItems.GREEN_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
         } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.GOLD_INGOT.getDefaultInstance())) {
-            giftStack = ItemRegistry.GOLD_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+            giftStack = ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
         } else {
-            giftStack = ItemRegistry.SILVER_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+            giftStack = ChristmasItems.SILVER_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
         }
 
         CompoundNBT giftTag = giftStack.getOrCreateTag();

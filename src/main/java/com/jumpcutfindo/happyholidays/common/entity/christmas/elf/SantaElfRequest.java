@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MusicDiscItem;
@@ -44,7 +44,7 @@ public class SantaElfRequest {
     }
 
     public ItemStack getRequestPaper() {
-        ItemStack requestPaper = ItemRegistry.TOY_PARTS_REQUEST.get().getDefaultInstance();
+        ItemStack requestPaper = ChristmasItems.TOY_PARTS_REQUEST.get().getDefaultInstance();
 
         CompoundNBT nbt = requestPaper.getOrCreateTag();
         nbt.put("SantaElfRequest", this.createTag());

@@ -13,6 +13,6 @@ public class PresentScrapItem extends ChristmasItem {
                     .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public PresentScrapItem() {
-        super(ITEM_ID, ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES);
     }
 }

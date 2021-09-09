@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.music;
 
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
 import net.minecraft.util.SoundEvent;
 
@@ -38,43 +38,44 @@ public enum ChristmasMusic {
 
     public static SoundEvent getSound(ChristmasMusic music) {
         switch (music) {
-        case ANGELS_ON_HIGH: return SoundRegistry.CHRISTMAS_MUSIC_ANGELS_ON_HIGH.get();
-        case CAROL_OF_THE_BELLS: return SoundRegistry.CHRISTMAS_MUSIC_CAROL_OF_THE_BELLS.get();
-        case DECK_THE_HALLS: return SoundRegistry.CHRISTMAS_MUSIC_DECK_THE_HALLS.get();
-        case FROSTY_THE_SNOWMAN: return SoundRegistry.CHRISTMAS_MUSIC_FROSTY_THE_SNOWMAN.get();
-        case GOD_REST_GENTLEMEN: return SoundRegistry.CHRISTMAS_MUSIC_GOD_REST_GENTLEMEN.get();
-        case HERE_COMES_SANTA: return SoundRegistry.CHRISTMAS_MUSIC_HERE_COMES_SANTA.get();
-        case JINGLE_BELL_ROCK: return SoundRegistry.CHRISTMAS_MUSIC_JINGLE_BELL_ROCK.get();
-        case JINGLE_BELLS: return SoundRegistry.CHRISTMAS_MUSIC_JINGLE_BELLS.get();
-        case JOY_TO_THE_WORLD: return SoundRegistry.CHRISTMAS_MUSIC_JOY_TO_THE_WORLD.get();
-        case RUDOLPH: return SoundRegistry.CHRISTMAS_MUSIC_RUDOLPH.get();
-        case SILENT_NIGHT: return SoundRegistry.CHRISTMAS_MUSIC_SILENT_NIGHT.get();
-        case SLEIGH_RIDE: return SoundRegistry.CHRISTMAS_MUSIC_SLEIGH_RIDE.get();
-        case THE_FIRST_NOEL: return SoundRegistry.CHRISTMAS_MUSIC_THE_FIRST_NOEL.get();
-        case WE_THREE_KINGS: return SoundRegistry.CHRISTMAS_MUSIC_WE_THREE_KINGS.get();
-        case WE_WISH_YOU: return SoundRegistry.CHRISTMAS_MUSIC_WE_WISH_YOU.get();
-        default: return SoundRegistry.CHRISTMAS_MUSIC_WHITE_CHRISTMAS.get();
+        case ANGELS_ON_HIGH: return ChristmasSounds.CHRISTMAS_MUSIC_ANGELS_ON_HIGH.get();
+        case CAROL_OF_THE_BELLS: return ChristmasSounds.CHRISTMAS_MUSIC_CAROL_OF_THE_BELLS.get();
+        case DECK_THE_HALLS: return ChristmasSounds.CHRISTMAS_MUSIC_DECK_THE_HALLS.get();
+        case FROSTY_THE_SNOWMAN: return ChristmasSounds.CHRISTMAS_MUSIC_FROSTY_THE_SNOWMAN.get();
+        case GOD_REST_GENTLEMEN: return ChristmasSounds.CHRISTMAS_MUSIC_GOD_REST_GENTLEMEN.get();
+        case HERE_COMES_SANTA: return ChristmasSounds.CHRISTMAS_MUSIC_HERE_COMES_SANTA.get();
+        case JINGLE_BELL_ROCK: return ChristmasSounds.CHRISTMAS_MUSIC_JINGLE_BELL_ROCK.get();
+        case JINGLE_BELLS: return ChristmasSounds.CHRISTMAS_MUSIC_JINGLE_BELLS.get();
+        case JOY_TO_THE_WORLD: return ChristmasSounds.CHRISTMAS_MUSIC_JOY_TO_THE_WORLD.get();
+        case RUDOLPH: return ChristmasSounds.CHRISTMAS_MUSIC_RUDOLPH.get();
+        case SILENT_NIGHT: return ChristmasSounds.CHRISTMAS_MUSIC_SILENT_NIGHT.get();
+        case SLEIGH_RIDE: return ChristmasSounds.CHRISTMAS_MUSIC_SLEIGH_RIDE.get();
+        case THE_FIRST_NOEL: return ChristmasSounds.CHRISTMAS_MUSIC_THE_FIRST_NOEL.get();
+        case WE_THREE_KINGS: return ChristmasSounds.CHRISTMAS_MUSIC_WE_THREE_KINGS.get();
+        case WE_WISH_YOU: return ChristmasSounds.CHRISTMAS_MUSIC_WE_WISH_YOU.get();
+        default: return ChristmasSounds.CHRISTMAS_MUSIC_WHITE_CHRISTMAS.get();
         }
     }
 
     public static int getSoundDuration(ChristmasMusic music) {
         switch (music) {
-        case ANGELS_ON_HIGH: return AngelsOnHighSheetMusicItem.LENGTH;
-        case CAROL_OF_THE_BELLS: return CarolOfBellsSheetMusicItem.LENGTH;
-        case DECK_THE_HALLS: return DeckTheHallsSheetMusicItem.LENGTH;
-        case FROSTY_THE_SNOWMAN: return FrostySnowmanSheetMusicItem.LENGTH;
-        case GOD_REST_GENTLEMEN: return GodRestGentlemenSheetMusicItem.LENGTH;
-        case HERE_COMES_SANTA: return HereComesSantaSheetMusicItem.LENGTH;
-        case JINGLE_BELL_ROCK: return JingleBellRockSheetMusicItem.LENGTH;
-        case JINGLE_BELLS: return JingleBellsSheetMusicItem.LENGTH;
-        case JOY_TO_THE_WORLD: return JoyToTheWorldSheetMusicItem.LENGTH;
-        case RUDOLPH: return RudolphSheetMusicItem.LENGTH;
-        case SILENT_NIGHT: return SilentNightSheetMusicItem.LENGTH;
-        case SLEIGH_RIDE: return SleighRideSheetMusicItem.LENGTH;
-        case THE_FIRST_NOEL: return TheFirstNoelSheetMusicItem.LENGTH;
-        case WE_THREE_KINGS: return WeThreeKingsSheetMusicItem.LENGTH;
-        case WE_WISH_YOU: return WeWishYouSheetMusicItem.LENGTH;
-        default: return WhiteChristmasSheetMusicItem.LENGTH;
+        case ANGELS_ON_HIGH: return 1221;
+        case CAROL_OF_THE_BELLS: return 1824;
+        case DECK_THE_HALLS: return 1817;
+        case FROSTY_THE_SNOWMAN: return 1162;
+        case GOD_REST_GENTLEMEN: return 1840;
+        case HERE_COMES_SANTA: return 2155;
+        case JINGLE_BELL_ROCK: return 1485;
+        case JINGLE_BELLS: return 2191;
+        case JOY_TO_THE_WORLD: return 2089;
+        case RUDOLPH: return 1789;
+        case SILENT_NIGHT: return 2037;
+        case SLEIGH_RIDE: return 1399;
+        case THE_FIRST_NOEL: return 1101;
+        case WE_THREE_KINGS: return 1460;
+        case WE_WISH_YOU: return 1977;
+        case WHITE_CHRISTMAS: return 1674;
+        default: return 0;
         }
     }
 }

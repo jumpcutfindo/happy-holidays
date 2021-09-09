@@ -15,7 +15,7 @@ public class EnchantedCandyCaneItem extends ChristmasItem {
                     .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public EnchantedCandyCaneItem() {
-        super(ITEM_ID, ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES);
 
         this.christmasRarity = ChristmasRarity.LEGENDARY;
     }

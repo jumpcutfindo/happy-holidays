@@ -19,8 +19,12 @@ public class SantaSummonSavedData extends WorldSavedData {
         this.lastSummonTime = lastSummonTime;
     }
 
+    public long getNextSummonTime() {
+        return lastSummonTime + 24000;
+    }
+
     public boolean canSummon(long gameTime) {
-        return gameTime > lastSummonTime;
+        return gameTime > getNextSummonTime();
     }
 
     @Override
@@ -30,7 +34,6 @@ public class SantaSummonSavedData extends WorldSavedData {
 
     @Override
     public CompoundNBT save(CompoundNBT nbt) {
-        // TODO: Change so that it is the next time that Santa can be summoned
         nbt.putLong("LastSummonTime", lastSummonTime);
 
         return nbt;

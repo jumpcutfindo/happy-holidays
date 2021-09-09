@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.common.handlers;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.ChristmasStarScreen;
 import com.jumpcutfindo.happyholidays.client.screen.GiftWrapperScreen;
-import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
 
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class InterfaceHandler {
     @SubscribeEvent
     public static void registerScreens(FMLClientSetupEvent event) {
-        ScreenManager.register(ContainerTypeRegistry.CHRISTMAS_STAR_CONTAINER.get(), ChristmasStarScreen::new);
-        ScreenManager.register(ContainerTypeRegistry.GIFT_WRAPPER_CONTAINER.get(), GiftWrapperScreen::new);
+        ScreenManager.register(ChristmasContainers.CHRISTMAS_STAR_CONTAINER.get(), ChristmasStarScreen::new);
+        ScreenManager.register(ChristmasContainers.GIFT_WRAPPER_CONTAINER.get(), GiftWrapperScreen::new);
     }
 }

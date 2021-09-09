@@ -1,7 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy;
 
 import java.util.List;
-import java.util.Random;
 
 import javax.annotation.Nullable;
 
@@ -9,9 +8,9 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEnt
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGiftType;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGifts;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaSummonSound;
 
 import net.minecraft.block.BlockState;
@@ -19,7 +18,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
@@ -35,7 +33,6 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.BasicParticleType;
-import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -156,7 +153,7 @@ public class HappySantaEntity extends BaseSantaEntity {
 
         this.despawnDelay = DEFAULT_DESPAWN_DELAY;
 
-        this.spawnAtLocation(ItemRegistry.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
+        this.spawnAtLocation(ChristmasItems.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
 
         if (!this.level.isClientSide()) {
             AxisAlignedBB searchBox =
@@ -199,13 +196,13 @@ public class HappySantaEntity extends BaseSantaEntity {
         double giftChance = this.random.nextDouble();
         if (giftChance < LEGENDARY_GIFT_SPAWN_CHANCE_THRESHOLD) {
             giftItem = SantaGifts.generateGift(SantaGiftType.LEGENDARY, this, (ServerWorld) this.level, ctx);
-            particleType = ParticleRegistry.CHRISTMAS_MEDIUM_GOLD_PARTICLE.get();
+            particleType = ChristmasParticles.CHRISTMAS_MEDIUM_GOLD_PARTICLE.get();
         } else if (giftChance < RARE_GIFT_SPAWN_CHANCE_THRESHOLD) {
             giftItem = SantaGifts.generateGift(SantaGiftType.RARE, this, (ServerWorld) this.level, ctx);
-            particleType = ParticleRegistry.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get();
+            particleType = ChristmasParticles.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get();
         } else {
             giftItem = SantaGifts.generateGift(SantaGiftType.BASIC, this, (ServerWorld) this.level, ctx);
-            particleType = ParticleRegistry.CHRISTMAS_MEDIUM_BLUE_PARTICLE.get();
+            particleType = ChristmasParticles.CHRISTMAS_MEDIUM_BLUE_PARTICLE.get();
         }
 
         ItemEntity giftEntity = new ItemEntity(this.level, randomPos.getX(), randomPos.getY(), randomPos.getZ(), giftItem);
@@ -226,7 +223,7 @@ public class HappySantaEntity extends BaseSantaEntity {
 
         this.level.addFreshEntity(giftEntity);
         this.level.playSound(null, randomPos.getX(), randomPos.getY(),
-                randomPos.getZ(), SoundRegistry.SANTA_ITEM_APPEAR.get(), SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                randomPos.getZ(), ChristmasSounds.SANTA_ITEM_APPEAR.get(), SoundCategory.NEUTRAL, 1.0f, 1.0f);
 
         this.giftsRemaining--;
 
@@ -239,10 +236,10 @@ public class HappySantaEntity extends BaseSantaEntity {
         double d2 = (double)(this.random.nextFloat() * 0.1F) + 0.25D;
 
         double d = this.random.nextDouble();
-        BasicParticleType particleType = d < 0.25 ? ParticleRegistry.CHRISTMAS_SMALL_RED_PARTICLE.get()
-                : d < 0.5 ? ParticleRegistry.CHRISTMAS_MEDIUM_RED_PARTICLE.get()
-                : d < 0.75 ? ParticleRegistry.CHRISTMAS_SMALL_GREEN_PARTICLE.get()
-                : ParticleRegistry.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get();
+        BasicParticleType particleType = d < 0.25 ? ChristmasParticles.CHRISTMAS_SMALL_RED_PARTICLE.get()
+                : d < 0.5 ? ChristmasParticles.CHRISTMAS_MEDIUM_RED_PARTICLE.get()
+                : d < 0.75 ? ChristmasParticles.CHRISTMAS_SMALL_GREEN_PARTICLE.get()
+                : ChristmasParticles.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get();
         
         ((ServerWorld) this.level).sendParticles(particleType,
                 this.getX(),
@@ -323,7 +320,7 @@ public class HappySantaEntity extends BaseSantaEntity {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundRegistry.SANTA_PASSIVE.get();
+        return ChristmasSounds.SANTA_PASSIVE.get();
     }
 
     @Override

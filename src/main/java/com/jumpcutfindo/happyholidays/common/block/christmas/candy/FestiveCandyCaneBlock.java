@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.candy;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -34,7 +34,7 @@ public class FestiveCandyCaneBlock extends BaseCandyCaneBlock {
 
         for (BlockPos pos : neighbours) {
             BlockState neighbourState = context.getLevel().getBlockState(pos);
-            if (neighbourState.is(BlockRegistry.FESTIVE_CANDY_CANE_BLOCK.get())) {
+            if (neighbourState.is(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get())) {
                 return this.defaultBlockState().setValue(CANDY_SHAPE, neighbourState.getValue(CANDY_SHAPE) == FestiveCandyShape.X_O ? FestiveCandyShape.O_X : FestiveCandyShape.X_O);
             }
         }

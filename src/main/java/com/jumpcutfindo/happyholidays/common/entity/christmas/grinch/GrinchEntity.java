@@ -10,11 +10,11 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
-import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
@@ -82,7 +82,6 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     private static final ResourceLocation GRINCH_APPEASEMENT_LOOT_TABLE = new ResourceLocation("happyholidays:entities"
             + "/grinch_appeasement");
 
-    // TODO: Tweak value so that it's not that common for grinches to spawn
     public static final double GRINCH_SPAWN_CHANCE = 0.2d;
     public static final int MAX_GRINCHES_IN_VICINITY = 3;
 
@@ -145,17 +144,17 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundRegistry.GRINCH_PASSIVE.get();
+        return ChristmasSounds.GRINCH_PASSIVE.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundRegistry.GRINCH_HURT.get();
+        return ChristmasSounds.GRINCH_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundRegistry.GRINCH_HURT.get();
+        return ChristmasSounds.GRINCH_HURT.get();
     }
 
     public boolean isPlayerAround() {
@@ -176,10 +175,10 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     public void endPresentBreaking(BlockPos targetPresentBlock) {
         this.entityData.set(BREAK_ANIM_PROGRESS, -1);
 
-        if (this.level.getBlockState(targetPresentBlock).getBlock().is(BlockRegistry.BABY_PRESENT.get())) {
+        if (this.level.getBlockState(targetPresentBlock).getBlock().is(ChristmasBlocks.BABY_PRESENT.get())) {
             // Baby present
             this.presentsBrokenCount[0]++;
-        } else if (this.level.getBlockState(targetPresentBlock).getBlock().is(BlockRegistry.ADULT_PRESENT.get())) {
+        } else if (this.level.getBlockState(targetPresentBlock).getBlock().is(ChristmasBlocks.ADULT_PRESENT.get())) {
             // Adult present
             this.presentsBrokenCount[1]++;
         } else {
@@ -188,7 +187,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
         }
 
         this.level.destroyBlock(targetPresentBlock, false);
-        this.level.playSound(null, targetPresentBlock, SoundRegistry.GRINCH_BREAK_BOX.get(), SoundCategory.NEUTRAL,
+        this.level.playSound(null, targetPresentBlock, ChristmasSounds.GRINCH_BREAK_BOX.get(), SoundCategory.NEUTRAL,
                 1.0f, 1.0f);
     }
 
@@ -250,7 +249,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     public void throwAppeasementRewards() {
 
         this.level.addFreshEntity(new ExperienceOrbEntity(this.level, this.getX(), this.getY(), this.getZ(), 50));
-        ItemStack scraps = ItemRegistry.PRESENT_SCRAPS.get().getDefaultInstance();
+        ItemStack scraps = ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance();
 
         scraps.setCount(this.presentsBrokenCount[0] + this.presentsBrokenCount[1] * 2 + this.presentsBrokenCount[2] * 3);
         this.level.addFreshEntity(new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), scraps));
@@ -273,14 +272,14 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
         // Drop random items
         lootTable.getRandomItems(ctx).forEach(itemStack -> {
-            if (ChristmasItem.isBasicOrnamentItem(itemStack)) {
+            if (ChristmasItems.isBasicOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(36 - 12) + 1) + 12);
-            } else if (ChristmasItem.isRareOrnamentItem(itemStack)) {
+            } else if (ChristmasItems.isRareOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(8 - 4) + 1) + 4);
-            } else if (ItemStack.isSame(itemStack, ItemRegistry.PRESENT_SCRAPS.get().getDefaultInstance())) {
+            } else if (ItemStack.isSame(itemStack, ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance())) {
                 itemStack.setCount((this.random.nextInt(18 - 12) + 1) + 12);
-            } else if (ChristmasItem.isFoodItem(itemStack)) {
-                if (ChristmasItem.isLargeFoodItem(itemStack)) {
+            } else if (ChristmasItems.isFoodItem(itemStack)) {
+                if (ChristmasItems.isLargeFoodItem(itemStack)) {
                     itemStack.setCount((this.random.nextInt(4 - 2) + 1) + 2);
                 } else {
                     itemStack.setCount((this.random.nextInt(16 - 12) + 1) + 12);
@@ -303,7 +302,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
         // Drop ornament block
         double ornamentDropChance = APPEASEMENT_ORNAMENT_DROP_BASE_CHANCE * modifier;
         if (ornamentDropChance > this.random.nextDouble()) {
-            ItemStack grinchOrnamentItem = ItemRegistry.GRINCH_ORNAMENT.get().getDefaultInstance();
+            ItemStack grinchOrnamentItem = ChristmasItems.GRINCH_ORNAMENT.get().getDefaultInstance();
             this.spawnAtLocation(grinchOrnamentItem);
         }
     }
@@ -323,7 +322,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                         this.getRandomZ(1.0D), 1, d0, d1, d2, 0.0D);
             }
 
-            serverWorld.playSound(null, this.blockPosition(), SoundRegistry.GRINCH_DESPAWN.get(),
+            serverWorld.playSound(null, this.blockPosition(), ChristmasSounds.GRINCH_DESPAWN.get(),
                     SoundCategory.NEUTRAL, 1.0f, 1.0f);
 
         }
@@ -376,7 +375,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
             int randomY = 0;
             int randomZ = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
 
-            GrinchEntity grinchEntity = EntityRegistry.GRINCH.get().create(serverWorld);
+            GrinchEntity grinchEntity = ChristmasEntities.GRINCH.get().create(serverWorld);
             grinchEntity.moveTo(blockPos.getX() + randomX, blockPos.getY() + randomY, blockPos.getZ() + randomZ);
 
             serverWorld.addFreshEntity(grinchEntity);
@@ -416,7 +415,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     @Override
     protected void dropCustomDeathLoot(DamageSource p_213333_1_, int p_213333_2_, boolean p_213333_3_) {
         // Grinch drops number of scraps equivalent to number of presents broken on death
-        ItemStack scraps = ItemRegistry.PRESENT_SCRAPS.get().getDefaultInstance();
+        ItemStack scraps = ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance();
         scraps.setCount(this.presentsBrokenCount[0] + this.presentsBrokenCount[1] + this.presentsBrokenCount[2]);
 
         this.level.addFreshEntity(new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), scraps));
@@ -460,7 +459,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
         @Override
         public boolean canUse() {
             if (grinchEntity.hasReceivedGift) return false;
-            if (this.grinchEntity.getEffect(EffectRegistry.DEBUFF_OF_CHRISTMAS_EFFECT.get()) != null) {
+            if (this.grinchEntity.getEffect(ChristmasEffects.DEBUFF_OF_CHRISTMAS_EFFECT.get()) != null) {
                 this.targetPresentBlockPos = null;
                 this.resetPresentBreaking();
 

@@ -23,6 +23,6 @@ public class GingerbreadCookieItem extends ChristmasItem {
                 );
 
     public GingerbreadCookieItem() {
-        super(ITEM_ID, ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES);
     }
 }

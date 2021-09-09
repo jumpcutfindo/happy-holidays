@@ -21,6 +21,6 @@ public class FestiveCandyCaneItem extends ChristmasFoodItem {
                     .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
     public FestiveCandyCaneItem() {
-        super(ITEM_ID, ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES);
     }
 }

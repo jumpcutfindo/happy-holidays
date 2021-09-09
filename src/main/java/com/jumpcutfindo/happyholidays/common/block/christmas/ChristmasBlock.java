@@ -16,9 +16,4 @@ public class ChristmasBlock extends HappyHolidaysBlock {
     public void configureBlock() {
         // Default left empty since we don't want the block to do anything
     }
-
-    public static boolean isInfluencedByStar(Block block) {
-        // TODO: Move to some central ChristmasBlocks class
-        return block instanceof PresentBlock || block instanceof BaseCandyCaneBlock;
-    }
 }

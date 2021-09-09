@@ -3,14 +3,14 @@ package com.jumpcutfindo.happyholidays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -36,14 +36,14 @@ public class HappyHolidaysMod {
         MinecraftForge.EVENT_BUS.register(this);
 
         // Register registries
-        EntityRegistry.ENTITY_TYPES.register(bus);
-        BlockRegistry.BLOCKS.register(bus);
-        ItemRegistry.ITEMS.register(bus);
-        TileEntityRegistry.TILE_ENTITY_TYPE.register(bus);
-        ContainerTypeRegistry.CONTAINER_TYPE.register(bus);
-        SoundRegistry.SOUNDS.register(bus);
-        EffectRegistry.EFFECTS.register(bus);
-        ParticleRegistry.PARTICLES.register(bus);
+        ChristmasEntities.ENTITY_TYPES.register(bus);
+        ChristmasBlocks.BLOCKS.register(bus);
+        ChristmasItems.ITEMS.register(bus);
+        ChristmasTileEntities.TILE_ENTITY_TYPE.register(bus);
+        ChristmasContainers.CONTAINER_TYPE.register(bus);
+        ChristmasSounds.SOUNDS.register(bus);
+        ChristmasEffects.EFFECTS.register(bus);
+        ChristmasParticles.PARTICLES.register(bus);
 
         GeckoLib.initialize();
         GeckoLibMod.DISABLE_IN_DEV = true;
@@ -56,7 +56,7 @@ public class HappyHolidaysMod {
 
         @Override
         public ItemStack makeIcon() {
-            return BlockRegistry.ELDER_PRESENT.get().asItem().getDefaultInstance();
+            return ChristmasBlocks.ELDER_PRESENT.get().asItem().getDefaultInstance();
         }
     }
 }

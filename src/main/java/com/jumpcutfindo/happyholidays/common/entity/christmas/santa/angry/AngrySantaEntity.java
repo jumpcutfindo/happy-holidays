@@ -9,10 +9,10 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEnt
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGiftType;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGifts;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
-import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
@@ -196,10 +196,10 @@ public class AngrySantaEntity extends BaseSantaEntity {
         this.entityData.set(ATTACK_SLEIGHS_ANIM_TIMER, 20);
         this.sleighAnimTimer = 20;
 
-        SleighEntity sleighEntity = EntityRegistry.SLEIGH.get().create(this.level).setRotation(vector);
+        SleighEntity sleighEntity = ChristmasEntities.SLEIGH.get().create(this.level).setRotation(vector);
         sleighEntity.moveTo(this.position().add(sleighEntity.getForward().multiply(3.0d, 3.0d, 3.0d)));
 
-        this.level.playSound(null, this.blockPosition(), SoundRegistry.SANTA_SUMMON_SLEIGHS.get(), SoundCategory.HOSTILE, 1.0f,
+        this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_SUMMON_SLEIGHS.get(), SoundCategory.HOSTILE, 1.0f,
                 1.0f);
         this.level.addFreshEntity(sleighEntity);
 
@@ -216,7 +216,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
         for (PlayerEntity playerEntity : playerEntities) {
             if (playerEntity.isAlive()) {
                 Vector3d playerPos = playerEntity.position();
-                ExplosivePresentEntity explosive = EntityRegistry.EXPLOSIVE_PRESENT.get().create(this.level);
+                ExplosivePresentEntity explosive = ChristmasEntities.EXPLOSIVE_PRESENT.get().create(this.level);
                 Vector3d explosivePos = playerPos.add(new Vector3d(0.0d, 2.0d, 0.0d));
 
                 explosive.moveTo(explosivePos);
@@ -236,8 +236,8 @@ public class AngrySantaEntity extends BaseSantaEntity {
 
         this.isTeleportCharging = true;
 
-        this.level.playSound(null, this.blockPosition(), SoundRegistry.SANTA_PREPARE_TELEPORT.get(), SoundCategory.HOSTILE, 1.0f, 1.0f);
-        this.level.playSound(null, new BlockPos(target), SoundRegistry.SANTA_PREPARE_TELEPORT.get(), SoundCategory.HOSTILE, 1.0f, 1.0f);
+        this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_PREPARE_TELEPORT.get(), SoundCategory.HOSTILE, 1.0f, 1.0f);
+        this.level.playSound(null, new BlockPos(target), ChristmasSounds.SANTA_PREPARE_TELEPORT.get(), SoundCategory.HOSTILE, 1.0f, 1.0f);
     }
 
     public void stopTeleportCharging() {
@@ -248,10 +248,10 @@ public class AngrySantaEntity extends BaseSantaEntity {
         this.isTeleportCharging = false;
 
         // Teleport to location and stomp the ground
-        this.level.playSound(null, this.blockPosition(), SoundRegistry.SANTA_TELEPORT.get(), SoundCategory.HOSTILE, 1.0f,
+        this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_TELEPORT.get(), SoundCategory.HOSTILE, 1.0f,
                 1.0f);
         this.teleportTo(position.x, position.y + 2.0D, position.z);
-        this.level.playSound(null, this.blockPosition(), SoundRegistry.SANTA_TELEPORT.get(), SoundCategory.HOSTILE, 1.0f,
+        this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_TELEPORT.get(), SoundCategory.HOSTILE, 1.0f,
                 1.0f);
 
         List<PlayerEntity> playerEntities = this.level.getEntitiesOfClass(PlayerEntity.class,
@@ -274,7 +274,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
                     this.random.nextDouble() * 2.0d
             );
 
-            this.level.playSound(null, this.blockPosition(), SoundRegistry.SANTA_FLICK.get(), SoundCategory.HOSTILE, 1.0f, 1.0f);
+            this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_FLICK.get(), SoundCategory.HOSTILE, 1.0f, 1.0f);
 
             this.hitAnimTimer = 10;
         }
@@ -377,8 +377,8 @@ public class AngrySantaEntity extends BaseSantaEntity {
         double d2 = (Math.random() * 0.1D) + 0.25D;
 
         double d = Math.random();
-        BasicParticleType particleType = d < 0.5 ? ParticleRegistry.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
-                ParticleRegistry.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get();
+        BasicParticleType particleType = d < 0.5 ? ChristmasParticles.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
+                ChristmasParticles.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get();
 
         ((ServerWorld) this.level).sendParticles(particleType,
                 pos.x,
@@ -451,7 +451,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
             gifts.add(basicGift);
         }
 
-        gifts.add(ItemRegistry.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
+        gifts.add(ChristmasItems.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
 
         return gifts;
     }
@@ -499,7 +499,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundRegistry.SANTA_ANGRY_PASSIVE.get();
+        return ChristmasSounds.SANTA_ANGRY_PASSIVE.get();
     }
 
     @Override
