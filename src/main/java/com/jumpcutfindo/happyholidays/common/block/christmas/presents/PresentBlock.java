@@ -10,8 +10,8 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
 import net.minecraft.block.AbstractBlock;
@@ -191,9 +191,9 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
             // Normal processing of drops (in lieu of item tag bug)
             for (ItemStack drop : drops) {
                 if (ChristmasItem.isBasicOrnamentItem(drop)) {
-                    if (blockState.is(BlockRegistry.BABY_PRESENT.get())) {
+                    if (blockState.is(ChristmasBlocks.BABY_PRESENT.get())) {
                         drop.setCount((RANDOM.nextInt(2 - 1) + 1) + 1);
-                    } else if (blockState.is(BlockRegistry.ADULT_PRESENT.get())) {
+                    } else if (blockState.is(ChristmasBlocks.ADULT_PRESENT.get())) {
                         drop.setCount((RANDOM.nextInt(4 - 2) + 1) + 2);
                     } else {
                         drop.setCount((RANDOM.nextInt(5 - 3) + 1) + 3);
@@ -204,7 +204,7 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
             // Double drops if there is a bonus star nearby
             if (starTileEntity != null && starTileEntity.isBonusActive()) {
                 for (ItemStack drop : drops) {
-                    if (!ItemStack.isSame(drop, ItemRegistry.PRESENT_SCRAPS.get().getDefaultInstance()) && !ChristmasItem.isPresentItem(drop)) {
+                    if (!ItemStack.isSame(drop, ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance()) && !ChristmasItem.isPresentItem(drop)) {
                         drop.setCount(drop.getCount() * 2);
                     }
                 }
@@ -235,8 +235,8 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
     public static void grow(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
         // Determine the next block state
         BlockState nextBlockState = blockState.getBlock() instanceof BabyPresentBlock
-                ? BlockRegistry.ADULT_PRESENT.get().defaultBlockState()
-                : BlockRegistry.ELDER_PRESENT.get().defaultBlockState();
+                ? ChristmasBlocks.ADULT_PRESENT.get().defaultBlockState()
+                : ChristmasBlocks.ELDER_PRESENT.get().defaultBlockState();
 
         // Update the server world by replacing the block
         serverWorld.setBlock(blockPos, nextBlockState, 2);
@@ -253,6 +253,6 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
     }
 
     public static boolean isGrowable(BlockState blockState) {
-        return blockState.is(BlockRegistry.BABY_PRESENT.get()) || blockState.is(BlockRegistry.ADULT_PRESENT.get());
+        return blockState.is(ChristmasBlocks.BABY_PRESENT.get()) || blockState.is(ChristmasBlocks.ADULT_PRESENT.get());
     }
 }

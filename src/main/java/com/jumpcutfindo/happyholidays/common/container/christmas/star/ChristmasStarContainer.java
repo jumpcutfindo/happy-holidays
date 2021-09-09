@@ -5,12 +5,10 @@ import java.util.Objects;
 
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -23,7 +21,6 @@ import net.minecraft.util.IIntArray;
 import net.minecraft.util.IWorldPosCallable;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.Tags;
 
 public class ChristmasStarContainer extends Container {
     public static final String CONTAINER_ID = "christmas_star";
@@ -39,7 +36,7 @@ public class ChristmasStarContainer extends Container {
 
     public ChristmasStarContainer(final int windowId, final PlayerInventory playerInv,
                                   final ChristmasStarTileEntity tileEntity) {
-        super(ContainerTypeRegistry.CHRISTMAS_STAR_CONTAINER.get(), windowId);
+        super(ChristmasContainers.CHRISTMAS_STAR_CONTAINER.get(), windowId);
 
         this.tileEntity = tileEntity;
         this.container = playerInv;
@@ -111,7 +108,7 @@ public class ChristmasStarContainer extends Container {
                 }
             }
 
-            if (ItemStack.isSame(itemstack1, ItemRegistry.ENCHANTED_SANTA_HAT.get().getDefaultInstance())) {
+            if (ItemStack.isSame(itemstack1, ChristmasItems.ENCHANTED_SANTA_HAT.get().getDefaultInstance())) {
                 if (!this.moveItemStackTo(itemstack1, this.bonusSlot.getSlotIndex(), this.bonusSlot.getSlotIndex() + 1
                         , false)) {
                     return ItemStack.EMPTY;

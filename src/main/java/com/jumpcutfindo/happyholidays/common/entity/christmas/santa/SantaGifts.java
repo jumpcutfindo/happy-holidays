@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy.HappySantaEntity;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.BlockItem;
@@ -40,7 +40,7 @@ public class SantaGifts {
 
         switch (type) {
             case BASIC: {
-                giftItem = ItemRegistry.BLUE_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+                giftItem = ChristmasItems.BLUE_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
                 giftItem.setHoverName(new TranslationTextComponent(NAME_BASIC_GIFT));
 
                 LootTable lootTable = level.getServer().getLootTables().get(BASIC_GIFT_LOOT_TABLE);
@@ -54,7 +54,7 @@ public class SantaGifts {
                 break;
             }
             case RARE: {
-                giftItem = ItemRegistry.GREEN_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+                giftItem = ChristmasItems.GREEN_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
                 giftItem.setHoverName(new TranslationTextComponent(NAME_RARE_GIFT));
 
 
@@ -63,7 +63,7 @@ public class SantaGifts {
                 break;
             }
             case LEGENDARY: {
-                giftItem = ItemRegistry.GOLD_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+                giftItem = ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
                 giftItem.setHoverName(new TranslationTextComponent(NAME_LEGENDARY_GIFT));
 
                 LootTable lootTable = level.getServer().getLootTables().get(LEGENDARY_GIFT_LOOT_TABLE);

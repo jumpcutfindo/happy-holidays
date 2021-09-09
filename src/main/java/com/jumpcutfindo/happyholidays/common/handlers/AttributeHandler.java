@@ -6,7 +6,7 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntit
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.SoggyGingerbreadManEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
-import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,11 +16,11 @@ import net.minecraftforge.fml.common.Mod;
 public class AttributeHandler {
     @SubscribeEvent
     public static void handleEntityAttributeStuff(final EntityAttributeCreationEvent event) {
-        event.put(EntityRegistry.GINGERBREAD_MAN.get(), GingerbreadManEntity.ENTITY_ATTRIBUTES);
-        event.put(EntityRegistry.SOGGY_GINGERBREAD_MAN.get(), SoggyGingerbreadManEntity.ENTITY_ATTRIBUTES);
-        event.put(EntityRegistry.SANTA_ELF.get(), SantaElfEntity.ENTITY_ATTRIBUTES);
-        event.put(EntityRegistry.GRINCH.get(), GrinchEntity.ENTITY_ATTRIBUTES);
-        event.put(EntityRegistry.ANGRY_SANTA.get(), BaseSantaEntity.ENTITY_ATTRIBUTES);
-        event.put(EntityRegistry.HAPPY_SANTA.get(), BaseSantaEntity.ENTITY_ATTRIBUTES);
+        event.put(ChristmasEntities.GINGERBREAD_MAN.get(), GingerbreadManEntity.ENTITY_ATTRIBUTES);
+        event.put(ChristmasEntities.SOGGY_GINGERBREAD_MAN.get(), SoggyGingerbreadManEntity.ENTITY_ATTRIBUTES);
+        event.put(ChristmasEntities.SANTA_ELF.get(), SantaElfEntity.ENTITY_ATTRIBUTES);
+        event.put(ChristmasEntities.GRINCH.get(), GrinchEntity.ENTITY_ATTRIBUTES);
+        event.put(ChristmasEntities.ANGRY_SANTA.get(), BaseSantaEntity.ENTITY_ATTRIBUTES);
+        event.put(ChristmasEntities.HAPPY_SANTA.get(), BaseSantaEntity.ENTITY_ATTRIBUTES);
     }
 }

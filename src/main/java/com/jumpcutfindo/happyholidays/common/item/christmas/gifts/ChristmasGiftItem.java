@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -39,7 +39,7 @@ public class ChristmasGiftItem extends ChristmasItem {
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         player.startUsingItem(hand);
-        player.playSound(SoundRegistry.CHRISTMAS_GIFT_BOX_SHAKE.get(), 1.0F, 1.0F);
+        player.playSound(ChristmasSounds.CHRISTMAS_GIFT_BOX_SHAKE.get(), 1.0F, 1.0F);
         return ActionResult.sidedSuccess(player.getItemInHand(hand), world.isClientSide());
     }
 

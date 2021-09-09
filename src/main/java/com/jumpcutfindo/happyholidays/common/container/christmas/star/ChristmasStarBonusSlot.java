@@ -3,14 +3,11 @@ package com.jumpcutfindo.happyholidays.common.container.christmas.star;
 import java.util.UUID;
 
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
-import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -54,7 +51,7 @@ public class ChristmasStarBonusSlot extends Slot {
         }
 
         return starTileEntity.getCurrentTier() == 5 && ItemStack.isSame(itemStack,
-                ItemRegistry.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
+                ChristmasItems.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
     }
 
     @Override

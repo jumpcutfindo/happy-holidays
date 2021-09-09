@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasContainerBlock;
-import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.MusicBoxTileEntity;
 
 import net.minecraft.block.AbstractBlock;
@@ -73,7 +73,7 @@ public class MusicBoxBlock extends ChristmasContainerBlock {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        this.musicBoxTileEntity = TileEntityRegistry.MUSIC_BOX_ENTITY_TYPE.get().create();
+        this.musicBoxTileEntity = ChristmasTileEntities.MUSIC_BOX_ENTITY_TYPE.get().create();
         return musicBoxTileEntity;
     }
 

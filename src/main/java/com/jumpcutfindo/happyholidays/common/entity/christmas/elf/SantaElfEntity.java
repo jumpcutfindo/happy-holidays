@@ -13,9 +13,9 @@ import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceM
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
 import net.minecraft.block.Block;
@@ -128,17 +128,17 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundRegistry.SANTA_ELF_PASSIVE.get();
+        return ChristmasSounds.SANTA_ELF_PASSIVE.get();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundRegistry.SANTA_ELF_HURT.get();
+        return ChristmasSounds.SANTA_ELF_HURT.get();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundRegistry.SANTA_ELF_HURT.get();
+        return ChristmasSounds.SANTA_ELF_HURT.get();
     }
 
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
@@ -166,7 +166,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         } else {
             if (!this.level.isClientSide) {
                 // Set prices based on debuff placed on elf
-                EffectInstance christmasDebuff = this.getEffect(EffectRegistry.DEBUFF_OF_CHRISTMAS_EFFECT.get());
+                EffectInstance christmasDebuff = this.getEffect(ChristmasEffects.DEBUFF_OF_CHRISTMAS_EFFECT.get());
                 if (christmasDebuff != null) {
                     double discount;
 
@@ -239,11 +239,11 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
     }
 
     public SoundEvent getNotifyTradeSound() {
-        return SoundRegistry.SANTA_ELF_YES.get();
+        return ChristmasSounds.SANTA_ELF_YES.get();
     }
 
     protected SoundEvent getTradeUpdatedSound(boolean b) {
-        return b ? SoundRegistry.SANTA_ELF_YES.get() : SoundRegistry.SANTA_ELF_NO.get();
+        return b ? ChristmasSounds.SANTA_ELF_YES.get() : ChristmasSounds.SANTA_ELF_NO.get();
     }
 
     @Override
@@ -360,7 +360,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         if (completedRequest != null) {
             this.pickUpSomeItems(itemEntity, completedRequest.getNumberOfItems());
             this.level.playSound(null, this.getX(), this.getY(), this.getZ(),
-                    SoundRegistry.SANTA_ELF_REQUEST_SINGLE_SUCCESS.get(), SoundCategory.VOICE, 1.0f, 1.0f);
+                    ChristmasSounds.SANTA_ELF_REQUEST_SINGLE_SUCCESS.get(), SoundCategory.VOICE, 1.0f, 1.0f);
 
             this.requestItemCooldown = 40;
             this.isRequestOutdated = true;
@@ -437,7 +437,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
                 itemStack.setCount((this.random.nextInt(36 - 12) + 1) + 12);
             } else if (ChristmasItem.isRareOrnamentItem(itemStack)) {
                 itemStack.setCount((this.random.nextInt(8 - 4) + 1) + 4);
-            } else if (ItemStack.isSame(itemStack, ItemRegistry.PRESENT_SCRAPS.get().getDefaultInstance())) {
+            } else if (ItemStack.isSame(itemStack, ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance())) {
                 itemStack.setCount((this.random.nextInt(18 - 12) + 1) + 12);
             }
 
@@ -450,12 +450,12 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         // Drop ornament block
         double ornamentDropChance = REQUEST_ORNAMENT_DROP_BASE_CHANCE * modifier;
         if (ornamentDropChance > this.random.nextDouble()) {
-            ItemStack elfOrnamentItem = ItemRegistry.SANTA_ELF_ORNAMENT.get().getDefaultInstance();
+            ItemStack elfOrnamentItem = ChristmasItems.SANTA_ELF_ORNAMENT.get().getDefaultInstance();
             this.spawnAtLocation(elfOrnamentItem);
         }
 
         this.level.playSound(null, this.getX(), this.getY(), this.getZ(),
-                SoundRegistry.SANTA_ELF_REQUEST_COMPLETE.get(), SoundCategory.VOICE, 1.0f, 1.0f);
+                ChristmasSounds.SANTA_ELF_REQUEST_COMPLETE.get(), SoundCategory.VOICE, 1.0f, 1.0f);
 
         // Creating effects
         this.level.addFreshEntity(new FireworkRocketEntity(this.level, null, this.getX(), this.getY(), this.getZ(),
@@ -555,7 +555,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
                         this.getRandomZ(1.0D), 1, d0, d1, d2, 0.0D);
             }
 
-            serverWorld.playSound(null, this.blockPosition(), SoundRegistry.SANTA_ELF_DESPAWN.get(),
+            serverWorld.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_ELF_DESPAWN.get(),
                     SoundCategory.NEUTRAL, 1.0f, 1.0f);
         }
 
@@ -690,7 +690,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
 
             if (nearbyEntities.size() != 0) {
                 for (ItemEntity entity : nearbyEntities) {
-                    if (ItemStack.isSame(entity.getItem(), ItemRegistry.TOY_PARTS_REQUEST.get().getDefaultInstance())) {
+                    if (ItemStack.isSame(entity.getItem(), ChristmasItems.TOY_PARTS_REQUEST.get().getDefaultInstance())) {
                         targetedEntity = entity;
                         return true;
                     }

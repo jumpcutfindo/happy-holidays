@@ -9,8 +9,8 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
-import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaBellSound;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
@@ -64,7 +64,7 @@ public class SantaElfBellItem extends ChristmasItem {
         if (world.getGameTime() > nextUseTime) {
             player.startUsingItem(hand);
 
-            player.playSound(SoundRegistry.SANTA_ELF_BELL.get(), 1.0F, 1.0F);
+            player.playSound(ChristmasSounds.SANTA_ELF_BELL.get(), 1.0F, 1.0F);
             return ActionResult.sidedSuccess(player.getItemInHand(hand), world.isClientSide());
         } else {
             long timeRemaining = nbt.getLong("NextUseTime") - world.getGameTime();
@@ -94,12 +94,12 @@ public class SantaElfBellItem extends ChristmasItem {
             spawnY = posAhead.getY();
             spawnZ = posAhead.getZ();
 
-            SantaElfEntity santaElfEntity = EntityRegistry.SANTA_ELF.get().create(world);
+            SantaElfEntity santaElfEntity = ChristmasEntities.SANTA_ELF.get().create(world);
             santaElfEntity.moveTo(spawnX, spawnY, spawnZ, 0.0F, 0.0F);
             world.addFreshEntity(santaElfEntity);
 
             world.addParticle(ParticleTypes.LARGE_SMOKE, spawnX, spawnY, spawnZ, 0.0F, 0.0F, 0.0F);
-            world.playSound(null, posAhead, SoundRegistry.SANTA_ELF_ARRIVAL.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+            world.playSound(null, posAhead, ChristmasSounds.SANTA_ELF_ARRIVAL.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
 
             SantaElfEvent.Summon elfSummonEvent = new SantaElfEvent.Summon(playerEntity, santaElfEntity);
             MinecraftForge.EVENT_BUS.post(elfSummonEvent);

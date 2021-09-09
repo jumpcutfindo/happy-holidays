@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.music;
 
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
 import net.minecraft.util.SoundEvent;
 
@@ -38,22 +38,22 @@ public enum ChristmasMusic {
 
     public static SoundEvent getSound(ChristmasMusic music) {
         switch (music) {
-        case ANGELS_ON_HIGH: return SoundRegistry.CHRISTMAS_MUSIC_ANGELS_ON_HIGH.get();
-        case CAROL_OF_THE_BELLS: return SoundRegistry.CHRISTMAS_MUSIC_CAROL_OF_THE_BELLS.get();
-        case DECK_THE_HALLS: return SoundRegistry.CHRISTMAS_MUSIC_DECK_THE_HALLS.get();
-        case FROSTY_THE_SNOWMAN: return SoundRegistry.CHRISTMAS_MUSIC_FROSTY_THE_SNOWMAN.get();
-        case GOD_REST_GENTLEMEN: return SoundRegistry.CHRISTMAS_MUSIC_GOD_REST_GENTLEMEN.get();
-        case HERE_COMES_SANTA: return SoundRegistry.CHRISTMAS_MUSIC_HERE_COMES_SANTA.get();
-        case JINGLE_BELL_ROCK: return SoundRegistry.CHRISTMAS_MUSIC_JINGLE_BELL_ROCK.get();
-        case JINGLE_BELLS: return SoundRegistry.CHRISTMAS_MUSIC_JINGLE_BELLS.get();
-        case JOY_TO_THE_WORLD: return SoundRegistry.CHRISTMAS_MUSIC_JOY_TO_THE_WORLD.get();
-        case RUDOLPH: return SoundRegistry.CHRISTMAS_MUSIC_RUDOLPH.get();
-        case SILENT_NIGHT: return SoundRegistry.CHRISTMAS_MUSIC_SILENT_NIGHT.get();
-        case SLEIGH_RIDE: return SoundRegistry.CHRISTMAS_MUSIC_SLEIGH_RIDE.get();
-        case THE_FIRST_NOEL: return SoundRegistry.CHRISTMAS_MUSIC_THE_FIRST_NOEL.get();
-        case WE_THREE_KINGS: return SoundRegistry.CHRISTMAS_MUSIC_WE_THREE_KINGS.get();
-        case WE_WISH_YOU: return SoundRegistry.CHRISTMAS_MUSIC_WE_WISH_YOU.get();
-        default: return SoundRegistry.CHRISTMAS_MUSIC_WHITE_CHRISTMAS.get();
+        case ANGELS_ON_HIGH: return ChristmasSounds.CHRISTMAS_MUSIC_ANGELS_ON_HIGH.get();
+        case CAROL_OF_THE_BELLS: return ChristmasSounds.CHRISTMAS_MUSIC_CAROL_OF_THE_BELLS.get();
+        case DECK_THE_HALLS: return ChristmasSounds.CHRISTMAS_MUSIC_DECK_THE_HALLS.get();
+        case FROSTY_THE_SNOWMAN: return ChristmasSounds.CHRISTMAS_MUSIC_FROSTY_THE_SNOWMAN.get();
+        case GOD_REST_GENTLEMEN: return ChristmasSounds.CHRISTMAS_MUSIC_GOD_REST_GENTLEMEN.get();
+        case HERE_COMES_SANTA: return ChristmasSounds.CHRISTMAS_MUSIC_HERE_COMES_SANTA.get();
+        case JINGLE_BELL_ROCK: return ChristmasSounds.CHRISTMAS_MUSIC_JINGLE_BELL_ROCK.get();
+        case JINGLE_BELLS: return ChristmasSounds.CHRISTMAS_MUSIC_JINGLE_BELLS.get();
+        case JOY_TO_THE_WORLD: return ChristmasSounds.CHRISTMAS_MUSIC_JOY_TO_THE_WORLD.get();
+        case RUDOLPH: return ChristmasSounds.CHRISTMAS_MUSIC_RUDOLPH.get();
+        case SILENT_NIGHT: return ChristmasSounds.CHRISTMAS_MUSIC_SILENT_NIGHT.get();
+        case SLEIGH_RIDE: return ChristmasSounds.CHRISTMAS_MUSIC_SLEIGH_RIDE.get();
+        case THE_FIRST_NOEL: return ChristmasSounds.CHRISTMAS_MUSIC_THE_FIRST_NOEL.get();
+        case WE_THREE_KINGS: return ChristmasSounds.CHRISTMAS_MUSIC_WE_THREE_KINGS.get();
+        case WE_WISH_YOU: return ChristmasSounds.CHRISTMAS_MUSIC_WE_WISH_YOU.get();
+        default: return ChristmasSounds.CHRISTMAS_MUSIC_WHITE_CHRISTMAS.get();
         }
     }
 

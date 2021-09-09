@@ -65,11 +65,8 @@ public class ChristmasBlockItem extends BlockItem implements HappyHolidaysItem {
     public void configureItem() {
     }
 
-    public void setChristmasRarity(ChristmasRarity rarity) {
+    public ChristmasBlockItem setChristmasRarity(ChristmasRarity rarity) {
         this.christmasRarity = rarity;
-    }
-
-    public void setTooltipDescriptions(List<String> tooltipDescriptions) {
-        this.tooltipDescriptions = tooltipDescriptions;
+        return this;
     }
 }

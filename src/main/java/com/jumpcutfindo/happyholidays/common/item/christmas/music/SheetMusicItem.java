@@ -8,7 +8,7 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
-import com.jumpcutfindo.happyholidays.common.registry.BlockRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
 
 import net.minecraft.block.BlockState;
@@ -47,10 +47,10 @@ public class SheetMusicItem extends ChristmasItem {
         BlockPos blockpos = itemUseContext.getClickedPos();
         BlockState blockstate = world.getBlockState(blockpos);
 
-        if (blockstate.is(BlockRegistry.MUSIC_BOX.get()) && !blockstate.getValue(MusicBoxBlock.HAS_SHEET_MUSIC)) {
+        if (blockstate.is(ChristmasBlocks.MUSIC_BOX.get()) && !blockstate.getValue(MusicBoxBlock.HAS_SHEET_MUSIC)) {
             ItemStack itemstack = itemUseContext.getItemInHand();
             if (!world.isClientSide) {
-                ((MusicBoxBlock) BlockRegistry.MUSIC_BOX.get()).setSheetMusic(world, blockpos, blockstate, itemstack);
+                ((MusicBoxBlock) ChristmasBlocks.MUSIC_BOX.get()).setSheetMusic(world, blockpos, blockstate, itemstack);
                 itemstack.shrink(1);
             }
 

@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.registry.ItemRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
 import net.minecraft.block.AbstractBlock;
@@ -92,7 +92,7 @@ public class BaseCandyCaneBlock extends ChristmasBlock {
                 chance = ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE * 3;
             }
 
-            if (RANDOM.nextDouble() <= chance) drops.add(ItemRegistry.ENCHANTED_CANDY_CANE.get().getDefaultInstance());
+            if (RANDOM.nextDouble() <= chance) drops.add(ChristmasItems.ENCHANTED_CANDY_CANE.get().getDefaultInstance());
 
             return drops;
         }

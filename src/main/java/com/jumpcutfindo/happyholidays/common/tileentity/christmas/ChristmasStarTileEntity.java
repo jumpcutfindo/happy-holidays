@@ -15,11 +15,11 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEnt
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy.HappySantaEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.registry.EffectRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.EntityRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.ParticleRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.SoundRegistry;
-import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 import com.jumpcutfindo.happyholidays.server.data.SantaSummonSavedData;
 
 import net.minecraft.block.BlockState;
@@ -115,7 +115,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
     }
 
     public ChristmasStarTileEntity() {
-        this(TileEntityRegistry.CHRISTMAS_STAR_ENTITY_TYPE.get());
+        this(ChristmasTileEntities.CHRISTMAS_STAR_ENTITY_TYPE.get());
     }
 
     @Override
@@ -178,13 +178,13 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
             List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, axisAlignedBB);
 
             for (PlayerEntity playerEntity : playerList) {
-                if (playerEntity.getEffect(EffectRegistry.SPIRIT_OF_CHRISTMAS_EFFECT.get()) == null) {
+                if (playerEntity.getEffect(ChristmasEffects.SPIRIT_OF_CHRISTMAS_EFFECT.get()) == null) {
                     // Fresh application of effect, play sound
                     ((ServerWorld) this.level).playSound(null, playerEntity.blockPosition(),
-                            SoundRegistry.CHRISTMAS_STAR_EFFECT_APPLY.get(), SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                            ChristmasSounds.CHRISTMAS_STAR_EFFECT_APPLY.get(), SoundCategory.NEUTRAL, 1.0f, 1.0f);
                 }
 
-                playerEntity.addEffect(new EffectInstance(EffectRegistry.SPIRIT_OF_CHRISTMAS_EFFECT.get(),
+                playerEntity.addEffect(new EffectInstance(ChristmasEffects.SPIRIT_OF_CHRISTMAS_EFFECT.get(),
                         200, this.currentTier - 1, true, true));
             }
         }
@@ -197,7 +197,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
             List<ChristmasEntity> christmasEntities = this.level.getEntitiesOfClass(ChristmasEntity.class, axisAlignedBB);
 
             for (ChristmasEntity entity : christmasEntities) {
-                entity.addEffect(new EffectInstance(EffectRegistry.DEBUFF_OF_CHRISTMAS_EFFECT.get(), 200,
+                entity.addEffect(new EffectInstance(ChristmasEffects.DEBUFF_OF_CHRISTMAS_EFFECT.get(), 200,
                         this.currentTier - 1, true, true));
             }
 
@@ -240,10 +240,10 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
 
             // Play relevant sound effects
             if (this.isGoodSanta) {
-                this.level.playSound(null, this.getBlockPos(), SoundRegistry.SANTA_SPAWNING_GOOD.get(),
+                this.level.playSound(null, this.getBlockPos(), ChristmasSounds.SANTA_SPAWNING_GOOD.get(),
                         SoundCategory.NEUTRAL, 1.0f, 1.0f);
             } else {
-                this.level.playSound(null, this.getBlockPos(), SoundRegistry.SANTA_SPAWNING_BAD.get(),
+                this.level.playSound(null, this.getBlockPos(), ChristmasSounds.SANTA_SPAWNING_BAD.get(),
                         SoundCategory.NEUTRAL, 1.0f, 1.0f);
             }
 
@@ -266,11 +266,11 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         BaseSantaEntity santaEntity = null;
         ITextComponent santaText = null;
         if (this.isGoodSanta) {
-            santaEntity = EntityRegistry.HAPPY_SANTA.get().create(this.level);
+            santaEntity = ChristmasEntities.HAPPY_SANTA.get().create(this.level);
             santaText =
                     new TranslationTextComponent("entity.happyholidays.santa_arrival_happy").withStyle(TextFormatting.AQUA);
         } else {
-            santaEntity = EntityRegistry.ANGRY_SANTA.get().create(this.level);
+            santaEntity = ChristmasEntities.ANGRY_SANTA.get().create(this.level);
             santaText =
                     new TranslationTextComponent("entity.happyholidays.santa_arrival_angry").withStyle(TextFormatting.RED);
         }
@@ -293,7 +293,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         this.isSummoningSanta = false;
 
         // Play santa spawn sound
-        this.level.playSound(null, this.getBlockPos(), SoundRegistry.SANTA_SPAWN.get(), SoundCategory.NEUTRAL,
+        this.level.playSound(null, this.getBlockPos(), ChristmasSounds.SANTA_SPAWN.get(), SoundCategory.NEUTRAL,
                 1.0f, 1.0f);
 
         this.summonEvent.removeAllPlayers();
@@ -405,8 +405,8 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
                 double d2 = (Math.random() * 0.1D) + 0.25D;
 
                 double d = Math.random();
-                BasicParticleType particleType = d < 0.5 ? ParticleRegistry.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
-                        ParticleRegistry.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get();
+                BasicParticleType particleType = d < 0.5 ? ChristmasParticles.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
+                        ChristmasParticles.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get();
 
                 ((ServerWorld) this.level).sendParticles(particleType,
                         this.getBlockPos().getX() + 0.5D,

@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.common.tileentity.christmas;
 import java.util.Random;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
-import com.jumpcutfindo.happyholidays.common.registry.TileEntityRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -37,7 +37,7 @@ public class StockingTileEntity extends TileEntity implements IChristmasTileEnti
     }
 
     public StockingTileEntity() {
-        this(TileEntityRegistry.STOCKING_ENTITY_TYPE.get());
+        this(ChristmasTileEntities.STOCKING_ENTITY_TYPE.get());
     }
 
     public boolean isEmpty() {

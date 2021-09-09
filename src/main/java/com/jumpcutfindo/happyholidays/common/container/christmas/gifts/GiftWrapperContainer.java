@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
-import com.jumpcutfindo.happyholidays.common.registry.ContainerTypeRegistry;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.GiftWrapperTileEntity;
 import com.google.common.collect.Lists;
 
@@ -35,7 +35,7 @@ public class GiftWrapperContainer extends Container {
 
     public GiftWrapperContainer(final int windowId, final PlayerInventory playerInv,
                                 final GiftWrapperTileEntity tileEntity) {
-        super(ContainerTypeRegistry.GIFT_WRAPPER_CONTAINER.get(), windowId);
+        super(ChristmasContainers.GIFT_WRAPPER_CONTAINER.get(), windowId);
 
         this.tileEntity = tileEntity;
         this.playerInv = playerInv;
