@@ -4,12 +4,12 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasContainerBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.MusicBoxTileEntity;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -64,6 +64,11 @@ public class MusicBoxBlock extends ChristmasBlock {
     @Override
     public void configureBlock() {
         RenderTypeLookup.setRenderLayer(this, RenderType.translucent());
+    }
+
+    @Override
+    public BlockRenderType getRenderShape(BlockState p_149645_1_) {
+        return BlockRenderType.ENTITYBLOCK_ANIMATED;
     }
 
     @Override
