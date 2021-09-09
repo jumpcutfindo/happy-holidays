@@ -37,6 +37,13 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.MinecraftForge;
 
 public class StockingBlock extends WallDecorationBlock {
+    public static final String RED_STOCKING_ID = "red_stocking";
+    public static final String BLUE_STOCKING_ID = "blue_stocking";
+    public static final String YELLOW_STOCKING_ID = "yellow_stocking";
+    public static final String GREEN_STOCKING_ID = "green_stocking";
+    public static final String GOLD_STOCKING_ID = "gold_stocking";
+    public static final String SILVER_STOCKING_ID = "silver_stocking";
+
     public static final BooleanProperty FILLED = BooleanProperty.create("filled");
 
     public static final Properties BLOCK_PROPERTIES =
@@ -50,7 +57,7 @@ public class StockingBlock extends WallDecorationBlock {
 
     public static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0 ,16.0, 16.0,0.5);
 
-    public StockingBlock(String blockId) {
+    public StockingBlock() {
         super(BLOCK_PROPERTIES, SHAPE);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)

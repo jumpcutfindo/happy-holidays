@@ -77,15 +77,15 @@ public class SetupHandler {
                 BlockRegistry.CANDY_CANE_BLOCK.get(),
                 BlockRegistry.FESTIVE_CANDY_CANE_BLOCK.get(),
 
-                BlockRegistry.RED_STOCKING_BLOCK.get(),
-                BlockRegistry.BLUE_STOCKING_BLOCK.get(),
-                BlockRegistry.YELLOW_STOCKING_BLOCK.get(),
-                BlockRegistry.GREEN_STOCKING_BLOCK.get(),
-                BlockRegistry.GOLD_STOCKING_BLOCK.get(),
-                BlockRegistry.SILVER_STOCKING_BLOCK.get(),
+                BlockRegistry.RED_STOCKING.get(),
+                BlockRegistry.BLUE_STOCKING.get(),
+                BlockRegistry.YELLOW_STOCKING.get(),
+                BlockRegistry.GREEN_STOCKING.get(),
+                BlockRegistry.GOLD_STOCKING.get(),
+                BlockRegistry.SILVER_STOCKING.get(),
 
-                BlockRegistry.CHRISTMAS_WREATH_BLOCK.get(),
-                BlockRegistry.SANTA_LIST_BLOCK.get(),
+                BlockRegistry.CHRISTMAS_WREATH.get(),
+                BlockRegistry.SANTA_LIST.get(),
 
                 BlockRegistry.MILK_AND_COOKIES_BLOCK.get(),
                 BlockRegistry.LOG_CAKE_BLOCK.get(),

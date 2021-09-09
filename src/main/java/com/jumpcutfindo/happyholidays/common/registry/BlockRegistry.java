@@ -7,12 +7,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBloc
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.ChristmasWreathBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.SantaListBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.BlueStockingBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.GoldStockingBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.GreenStockingBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.RedStockingBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.SilverStockingBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.YellowStockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ball.BaubleOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigBaubleOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.HeadOrnamentBlock;
@@ -124,22 +119,22 @@ public class BlockRegistry {
     public static final RegistryObject<ChristmasBlock> ZOMBIE_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.ZOMBIE_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
 
-    public static final RegistryObject<ChristmasBlock> RED_STOCKING_BLOCK =
-            BLOCKS.register(RedStockingBlock.BLOCK_ID, RedStockingBlock::new);
-    public static final RegistryObject<ChristmasBlock> BLUE_STOCKING_BLOCK =
-            BLOCKS.register(BlueStockingBlock.BLOCK_ID, BlueStockingBlock::new);
-    public static final RegistryObject<ChristmasBlock> YELLOW_STOCKING_BLOCK =
-            BLOCKS.register(YellowStockingBlock.BLOCK_ID, YellowStockingBlock::new);
-    public static final RegistryObject<ChristmasBlock> GREEN_STOCKING_BLOCK =
-            BLOCKS.register(GreenStockingBlock.BLOCK_ID, GreenStockingBlock::new);
-    public static final RegistryObject<ChristmasBlock> GOLD_STOCKING_BLOCK =
-            BLOCKS.register(GoldStockingBlock.BLOCK_ID, GoldStockingBlock::new);
-    public static final RegistryObject<ChristmasBlock> SILVER_STOCKING_BLOCK =
-            BLOCKS.register(SilverStockingBlock.BLOCK_ID, SilverStockingBlock::new);
+    public static final RegistryObject<ChristmasBlock> RED_STOCKING =
+            BLOCKS.register(StockingBlock.RED_STOCKING_ID, StockingBlock::new);
+    public static final RegistryObject<ChristmasBlock> BLUE_STOCKING =
+            BLOCKS.register(StockingBlock.BLUE_STOCKING_ID, StockingBlock::new);
+    public static final RegistryObject<ChristmasBlock> YELLOW_STOCKING =
+            BLOCKS.register(StockingBlock.YELLOW_STOCKING_ID, StockingBlock::new);
+    public static final RegistryObject<ChristmasBlock> GREEN_STOCKING =
+            BLOCKS.register(StockingBlock.GREEN_STOCKING_ID, StockingBlock::new);
+    public static final RegistryObject<ChristmasBlock> GOLD_STOCKING =
+            BLOCKS.register(StockingBlock.GOLD_STOCKING_ID, StockingBlock::new);
+    public static final RegistryObject<ChristmasBlock> SILVER_STOCKING =
+            BLOCKS.register(StockingBlock.SILVER_STOCKING_ID, StockingBlock::new);
 
-    public static final RegistryObject<ChristmasBlock> CHRISTMAS_WREATH_BLOCK =
+    public static final RegistryObject<ChristmasBlock> CHRISTMAS_WREATH =
             BLOCKS.register(ChristmasWreathBlock.BLOCK_ID, ChristmasWreathBlock::new);
-    public static final RegistryObject<ChristmasBlock> SANTA_LIST_BLOCK =
+    public static final RegistryObject<ChristmasBlock> SANTA_LIST =
             BLOCKS.register(SantaListBlock.BLOCK_ID, SantaListBlock::new);
 
     public static final RegistryObject<ChristmasBlock> BABY_PRESENT_ORNAMENT_BLOCK =
