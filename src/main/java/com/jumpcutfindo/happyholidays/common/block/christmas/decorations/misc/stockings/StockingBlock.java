@@ -151,7 +151,7 @@ public class StockingBlock extends WallDecorationBlock {
         chance += baseChance;
 
         boolean isCookiesNear = HappyHolidaysUtils.findBlockInRadius(world, blockPos,
-                BlockRegistry.MILK_AND_COOKIES_BLOCK.get(), 5) != null;
+                BlockRegistry.MILK_AND_COOKIES.get(), 5) != null;
 
         chance += isCookiesNear ? 20 : 0;
 

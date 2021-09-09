@@ -79,10 +79,10 @@ public class SantaElfTrades {
                     new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.CANDY_CANE.get().asItem(), 1,4, 24, 2),
                     new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.FESTIVE_CANDY_CANE.get().asItem(), 1,4, 24, 2),
                     new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.EGGNOG.get().asItem(), 1, 1, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.LOG_CAKE_BLOCK.get().asItem(), 4, 1, 4, 4),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.CHRISTMAS_HAM_BLOCK.get().asItem(), 4, 1, 4, 4),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.CHRISTMAS_PUDDING_BLOCK.get().asItem(), 4, 1, 4, 4),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.MILK_AND_COOKIES_BLOCK.get().asItem(), 4, 1, 4, 4)
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.LOG_CAKE.get().asItem(), 4, 1, 4, 4),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.CHRISTMAS_HAM.get().asItem(), 4, 1, 4, 4),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.CHRISTMAS_PUDDING.get().asItem(), 4, 1, 4, 4),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.MILK_AND_COOKIES.get().asItem(), 4, 1, 4, 4)
             };
 
     public static final VillagerTrades.ITrade[] SOMETIMES_APPEAR_TRADES =
@@ -92,7 +92,7 @@ public class SantaElfTrades {
 
     public static final VillagerTrades.ITrade[] ALWAYS_APPEAR_TRADES =
             new VillagerTrades.ITrade[] {
-                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.SANTA_LIST_BLOCK.get().asItem(), 4, 1, 1, 4),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(BlockRegistry.SANTA_LIST.get().asItem(), 4, 1, 1, 4),
                     new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.SANTA_ELF_BELL.get().asItem(), 64, 1, 1, 8)
             };
 }

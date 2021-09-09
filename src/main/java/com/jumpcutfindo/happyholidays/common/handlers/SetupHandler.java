@@ -62,16 +62,16 @@ public class SetupHandler {
                 BlockRegistry.GOLD_CHRISTMAS_LIGHTS.get(),
                 BlockRegistry.SILVER_CHRISTMAS_LIGHTS.get(),
 
-                BlockRegistry.BABY_PRESENT_ORNAMENT_BLOCK.get(),
-                BlockRegistry.ADULT_PRESENT_ORNAMENT_BLOCK.get(),
-                BlockRegistry.ELDER_PRESENT_ORNAMENT_BLOCK.get(),
-                BlockRegistry.CANDY_CANE_ORNAMENT_BLOCK.get(),
-                BlockRegistry.SANTA_ELF_ORNAMENT_BLOCK.get(),
-                BlockRegistry.GINGERBREAD_MAN_ORNAMENT_BLOCK.get(),
-                BlockRegistry.GRINCH_ORNAMENT_BLOCK.get(),
+                BlockRegistry.BABY_PRESENT_ORNAMENT.get(),
+                BlockRegistry.ADULT_PRESENT_ORNAMENT.get(),
+                BlockRegistry.ELDER_PRESENT_ORNAMENT.get(),
+                BlockRegistry.CANDY_CANE_ORNAMENT.get(),
+                BlockRegistry.SANTA_ELF_ORNAMENT.get(),
+                BlockRegistry.GINGERBREAD_MAN_ORNAMENT.get(),
+                BlockRegistry.GRINCH_ORNAMENT.get(),
 
                 BlockRegistry.GINGERBREAD_BLOCK.get(),
-                BlockRegistry.RAW_GINGERBREAD_BLOCK.get(),
+                BlockRegistry.GINGERBREAD_DOUGH_BLOCK.get(),
                 BlockRegistry.SOGGY_GINGERBREAD_BLOCK.get(),
 
                 BlockRegistry.CANDY_CANE_BLOCK.get(),
@@ -87,10 +87,10 @@ public class SetupHandler {
                 BlockRegistry.CHRISTMAS_WREATH.get(),
                 BlockRegistry.SANTA_LIST.get(),
 
-                BlockRegistry.MILK_AND_COOKIES_BLOCK.get(),
-                BlockRegistry.LOG_CAKE_BLOCK.get(),
+                BlockRegistry.MILK_AND_COOKIES.get(),
+                BlockRegistry.LOG_CAKE.get(),
 
-                BlockRegistry.CHRISTMAS_STAR_BLOCK.get()
+                BlockRegistry.CHRISTMAS_STAR.get()
         };
 
         christmasItems = new ChristmasItem[] {

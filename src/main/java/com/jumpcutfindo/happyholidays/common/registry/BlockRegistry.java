@@ -137,22 +137,22 @@ public class BlockRegistry {
     public static final RegistryObject<ChristmasBlock> SANTA_LIST =
             BLOCKS.register(SantaListBlock.BLOCK_ID, SantaListBlock::new);
 
-    public static final RegistryObject<ChristmasBlock> BABY_PRESENT_ORNAMENT_BLOCK =
+    public static final RegistryObject<ChristmasBlock> BABY_PRESENT_ORNAMENT =
             BLOCKS.register(BabyPresentOrnamentBlock.BLOCK_ID, BabyPresentOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ADULT_PRESENT_ORNAMENT_BLOCK =
+    public static final RegistryObject<ChristmasBlock> ADULT_PRESENT_ORNAMENT =
             BLOCKS.register(AdultPresentOrnamentBlock.BLOCK_ID, AdultPresentOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ELDER_PRESENT_ORNAMENT_BLOCK =
+    public static final RegistryObject<ChristmasBlock> ELDER_PRESENT_ORNAMENT =
             BLOCKS.register(ElderPresentOrnamentBlock.BLOCK_ID, ElderPresentOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> CANDY_CANE_ORNAMENT_BLOCK =
+    public static final RegistryObject<ChristmasBlock> CANDY_CANE_ORNAMENT =
             BLOCKS.register(CandyCaneOrnamentBlock.BLOCK_ID, CandyCaneOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> SANTA_ELF_ORNAMENT_BLOCK =
+    public static final RegistryObject<ChristmasBlock> SANTA_ELF_ORNAMENT =
             BLOCKS.register(SantaElfOrnamentBlock.BLOCK_ID, SantaElfOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> GINGERBREAD_MAN_ORNAMENT_BLOCK =
+    public static final RegistryObject<ChristmasBlock> GINGERBREAD_MAN_ORNAMENT =
             BLOCKS.register(GingerbreadManOrnamentBlock.BLOCK_ID, GingerbreadManOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> GRINCH_ORNAMENT_BLOCK =
+    public static final RegistryObject<ChristmasBlock> GRINCH_ORNAMENT =
             BLOCKS.register(GrinchOrnamentBlock.BLOCK_ID, GrinchOrnamentBlock::new);
 
-    public static final RegistryObject<ChristmasBlock> RAW_GINGERBREAD_BLOCK =
+    public static final RegistryObject<ChristmasBlock> GINGERBREAD_DOUGH_BLOCK =
             BLOCKS.register(RawGingerbreadBlock.BLOCK_ID, RawGingerbreadBlock::new);
     public static final RegistryObject<ChristmasBlock> GINGERBREAD_BLOCK =
             BLOCKS.register(GingerbreadBlock.BLOCK_ID, GingerbreadBlock::new);
@@ -164,19 +164,19 @@ public class BlockRegistry {
     public static final RegistryObject<ChristmasBlock> FESTIVE_CANDY_CANE_BLOCK =
             BLOCKS.register(FestiveCandyCaneBlock.BLOCK_ID, FestiveCandyCaneBlock::new);
 
-    public static final RegistryObject<ChristmasBlock> CHRISTMAS_STAR_BLOCK =
+    public static final RegistryObject<ChristmasBlock> CHRISTMAS_STAR =
             BLOCKS.register(ChristmasStarBlock.BLOCK_ID, ChristmasStarBlock::new);
-    public static final RegistryObject<ChristmasContainerBlock> MUSIC_BOX_BLOCK =
+    public static final RegistryObject<ChristmasContainerBlock> MUSIC_BOX =
             BLOCKS.register(MusicBoxBlock.BLOCK_ID, MusicBoxBlock::new);
-    public static final RegistryObject<ChristmasBlock> GIFT_WRAPPER_BLOCK =
+    public static final RegistryObject<ChristmasBlock> GIFT_WRAPPING_STATION =
             BLOCKS.register(GiftWrapperBlock.BLOCK_ID, GiftWrapperBlock::new);
 
-    public static final RegistryObject<ChristmasBlock> MILK_AND_COOKIES_BLOCK =
+    public static final RegistryObject<ChristmasBlock> MILK_AND_COOKIES =
             BLOCKS.register(MilkAndCookiesBlock.BLOCK_ID, MilkAndCookiesBlock::new);
-    public static final RegistryObject<ChristmasBlock> LOG_CAKE_BLOCK =
+    public static final RegistryObject<ChristmasBlock> LOG_CAKE =
             BLOCKS.register(LogCakeBlock.BLOCK_ID, LogCakeBlock::new);
-    public static final RegistryObject<ChristmasBlock> CHRISTMAS_HAM_BLOCK =
+    public static final RegistryObject<ChristmasBlock> CHRISTMAS_HAM =
             BLOCKS.register(ChristmasHamBlock.BLOCK_ID, ChristmasHamBlock::new);
-    public static final RegistryObject<ChristmasBlock> CHRISTMAS_PUDDING_BLOCK =
+    public static final RegistryObject<ChristmasBlock> CHRISTMAS_PUDDING =
             BLOCKS.register(ChristmasPuddingBlock.BLOCK_ID, ChristmasPuddingBlock::new);
 }
