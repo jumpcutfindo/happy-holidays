@@ -48,10 +48,10 @@ public class SantaElfTrades {
 
     public static final VillagerTrades.ITrade[] HEAD_ORNAMENT_TRADES =
             new VillagerTrades.ITrade[] {
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.CREEPER_HEAD_ORNAMENT_BLOCK_ITEM.get().asItem(), 16, 1, 2, 4),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.ZOMBIE_HEAD_ORNAMENT_BLOCK_ITEM.get().asItem(), 16, 1, 2, 4),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.SKELETON_HEAD_ORNAMENT_BLOCK_ITEM.get().asItem(), 16, 1, 2, 4),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.WITHER_SKELETON_HEAD_ORNAMENT_BLOCK_ITEM.get().asItem(), 16, 1, 2, 4),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.CREEPER_HEAD_ORNAMENT.get().asItem(), 16, 1, 2, 4),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.ZOMBIE_HEAD_ORNAMENT.get().asItem(), 16, 1, 2, 4),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.SKELETON_HEAD_ORNAMENT.get().asItem(), 16, 1, 2, 4),
+                    new SantaElfEntity.ItemsForEmeraldsTrade(ItemRegistry.WITHER_SKELETON_HEAD_ORNAMENT.get().asItem(), 16, 1, 2, 4),
             };
 
     public static final VillagerTrades.ITrade[] SHEET_MUSIC_TRADES =

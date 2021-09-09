@@ -15,10 +15,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.st
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.YellowStockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ball.BaubleOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigBaubleOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.CreeperHeadOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.SkeletonHeadOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.WitherSkeletonHeadOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.ZombieHeadOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.HeadOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.AdultPresentOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.BabyPresentOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.CandyCaneOrnamentBlock;
@@ -43,8 +40,6 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresen
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -120,14 +115,14 @@ public class BlockRegistry {
             BLOCKS.register(ChristmasLightBlock.SILVER_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
 
     // Head Ornaments
-    public static final RegistryObject<ChristmasBlock> CREEPER_HEAD_ORNAMENT_BLOCK =
-            BLOCKS.register(CreeperHeadOrnamentBlock.BLOCK_ID, CreeperHeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> SKELETON_HEAD_ORNAMENT_BLOCK =
-            BLOCKS.register(SkeletonHeadOrnamentBlock.BLOCK_ID, SkeletonHeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> WITHER_SKELETON_HEAD_ORNAMENT_BLOCK =
-            BLOCKS.register(WitherSkeletonHeadOrnamentBlock.BLOCK_ID, WitherSkeletonHeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ZOMBIE_HEAD_ORNAMENT_BLOCK =
-            BLOCKS.register(ZombieHeadOrnamentBlock.BLOCK_ID, ZombieHeadOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> CREEPER_HEAD_ORNAMENT =
+            BLOCKS.register(HeadOrnamentBlock.CREEPER_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> SKELETON_HEAD_ORNAMENT =
+            BLOCKS.register(HeadOrnamentBlock.SKELETON_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> WITHER_SKELETON_HEAD_ORNAMENT =
+            BLOCKS.register(HeadOrnamentBlock.WITHER_SKELETON_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ZOMBIE_HEAD_ORNAMENT =
+            BLOCKS.register(HeadOrnamentBlock.ZOMBIE_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
 
     public static final RegistryObject<ChristmasBlock> RED_STOCKING_BLOCK =
             BLOCKS.register(RedStockingBlock.BLOCK_ID, RedStockingBlock::new);

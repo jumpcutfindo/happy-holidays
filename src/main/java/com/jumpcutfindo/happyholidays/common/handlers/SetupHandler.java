@@ -43,10 +43,10 @@ public class SetupHandler {
                 BlockRegistry.BIG_GOLD_BAUBLE.get(),
                 BlockRegistry.BIG_SILVER_BAUBLE.get(),
 
-                BlockRegistry.CREEPER_HEAD_ORNAMENT_BLOCK.get(),
-                BlockRegistry.SKELETON_HEAD_ORNAMENT_BLOCK.get(),
-                BlockRegistry.WITHER_SKELETON_HEAD_ORNAMENT_BLOCK.get(),
-                BlockRegistry.ZOMBIE_HEAD_ORNAMENT_BLOCK.get(),
+                BlockRegistry.CREEPER_HEAD_ORNAMENT.get(),
+                BlockRegistry.SKELETON_HEAD_ORNAMENT.get(),
+                BlockRegistry.WITHER_SKELETON_HEAD_ORNAMENT.get(),
+                BlockRegistry.ZOMBIE_HEAD_ORNAMENT.get(),
 
                 BlockRegistry.RED_TINSEL.get(),
                 BlockRegistry.BLUE_TINSEL.get(),

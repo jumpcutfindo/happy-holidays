@@ -16,10 +16,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.st
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.stockings.YellowStockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ball.BaubleOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ball.BigBaubleOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.CreeperHeadOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.SkeletonHeadOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.WitherSkeletonHeadOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.ZombieHeadOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.head.HeadOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.AdultPresentOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.BabyPresentOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.CandyCaneOrnamentBlock;
@@ -44,7 +41,6 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresen
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.block.HeadOrnamentBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.block.LegendaryOrnamentBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.candy.CandyCaneItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.candy.EnchantedCandyCaneItem;
@@ -240,22 +236,14 @@ public class ItemRegistry {
     public static final RegistryObject<ChristmasBlockItem> SILVER_CHRISTMAS_LIGHTS =
             ITEMS.register(ChristmasLightBlock.SILVER_CHRISTMAS_LIGHTS_ID, itemOf(BlockRegistry.SILVER_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
 
-    public static final RegistryObject<ChristmasBlockItem> CREEPER_HEAD_ORNAMENT_BLOCK_ITEM =
-            ITEMS.register(CreeperHeadOrnamentBlock.BLOCK_ID,
-                    () -> new HeadOrnamentBlockItem(BlockRegistry.CREEPER_HEAD_ORNAMENT_BLOCK.get(),
-                    CreeperHeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> SKELETON_HEAD_ORNAMENT_BLOCK_ITEM =
-            ITEMS.register(SkeletonHeadOrnamentBlock.BLOCK_ID,
-                    () -> new HeadOrnamentBlockItem(BlockRegistry.SKELETON_HEAD_ORNAMENT_BLOCK.get(),
-                    SkeletonHeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> WITHER_SKELETON_HEAD_ORNAMENT_BLOCK_ITEM =
-            ITEMS.register(WitherSkeletonHeadOrnamentBlock.BLOCK_ID,
-                    () -> new HeadOrnamentBlockItem(BlockRegistry.WITHER_SKELETON_HEAD_ORNAMENT_BLOCK.get(),
-                    WitherSkeletonHeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ZOMBIE_HEAD_ORNAMENT_BLOCK_ITEM =
-            ITEMS.register(ZombieHeadOrnamentBlock.BLOCK_ID,
-                    () -> new HeadOrnamentBlockItem(BlockRegistry.ZOMBIE_HEAD_ORNAMENT_BLOCK.get(),
-                    ZombieHeadOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> CREEPER_HEAD_ORNAMENT =
+            ITEMS.register(HeadOrnamentBlock.CREEPER_HEAD_ORNAMENT_ID, itemOf(BlockRegistry.CREEPER_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> SKELETON_HEAD_ORNAMENT =
+            ITEMS.register(HeadOrnamentBlock.SKELETON_HEAD_ORNAMENT_ID, itemOf(BlockRegistry.SKELETON_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> WITHER_SKELETON_HEAD_ORNAMENT =
+            ITEMS.register(HeadOrnamentBlock.WITHER_SKELETON_HEAD_ORNAMENT_ID, itemOf(BlockRegistry.WITHER_SKELETON_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ZOMBIE_HEAD_ORNAMENT =
+            ITEMS.register(HeadOrnamentBlock.ZOMBIE_HEAD_ORNAMENT_ID, itemOf(BlockRegistry.ZOMBIE_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> RED_STOCKING_BLOCK_ITEM =
             ITEMS.register(RedStockingBlock.BLOCK_ID,
