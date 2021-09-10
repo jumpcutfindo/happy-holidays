@@ -229,6 +229,10 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
                 return;
             }
 
+            // Set summon time
+            santaData.setLastSummonTime(this.level.getGameTime());
+            santaData.setDirty();
+
             // Reset naughty nice meter of players in radius
             int totalValue = 0, totalPlayers = 0;
             for (ServerPlayerEntity serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
@@ -272,14 +276,6 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
     }
 
     public void finishSummonSanta() {
-        // Set santa has been summoned
-        ServerWorld serverWorld = (ServerWorld) this.level;
-        SantaSummonSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(SantaSummonSavedData::new,
-                SantaSummonSavedData.DATA_NAME);
-
-        santaData.setLastSummonTime(this.level.getGameTime());
-        santaData.setDirty();
-
         // Summon the appropriate santa
         BaseSantaEntity santaEntity = null;
         ITextComponent santaText = null;
