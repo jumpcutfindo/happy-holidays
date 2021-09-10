@@ -9,7 +9,7 @@ modLoader="javafml" #mandatory
 loaderVersion="[36,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
 # The license for you mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
 # Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
-license="All rights reserved"
+license="MIT License"
 # A URL to refer people to when problems occur with this mod
 #issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
@@ -29,7 +29,7 @@ displayName="Happy Holidays" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
-credits="Happy Holidays was created under the support of Esther!" #optional
+credits="Happy Holidays was created with the support of Esther!" #optional
 # A text field displayed in the mod UI
 authors="jumpcutfindo" #optional
 # The description text for the mod (multi line!) (#mandatory)
@@ -56,12 +56,12 @@ Happy Holidays is a mod specifically designed to replicate real life holidays, b
     mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="[1.16.5,1.17)"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"
 [[dependencies.happyholidays]]
     modId="geckolib"
     mandatory=false # may need to change this
     # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="[3.0.0,)"
-    ordering="BEFORE"
+    ordering="NONE"
     side="BOTH"
