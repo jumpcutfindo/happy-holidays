@@ -362,15 +362,15 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         this.currentPoints = Math.min(newPoints, MAX_POINTS);
 
         // Update tier
-        if (this.currentPoints == 0) {
+        if (this.currentPoints < 20) {
             changeTier(0);
-        } else if (this.currentPoints <= 20) {
+        } else if (this.currentPoints < 40) {
             changeTier(1);
-        } else if (this.currentPoints <= 40) {
+        } else if (this.currentPoints < 60) {
             changeTier(2);
-        } else if (this.currentPoints <= 60) {
+        } else if (this.currentPoints < 80) {
             changeTier(3);
-        } else if (this.currentPoints <= 80) {
+        } else if (this.currentPoints < 100) {
             changeTier(4);
         } else {
             changeTier(5);
