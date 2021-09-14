@@ -18,6 +18,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
@@ -376,9 +377,17 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
             int randomZ = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
 
             GrinchEntity grinchEntity = ChristmasEntities.GRINCH.get().create(serverWorld);
-            grinchEntity.moveTo(blockPos.getX() + randomX, blockPos.getY() + randomY, blockPos.getZ() + randomZ);
+            BlockPos spawnPos = new BlockPos(blockPos.getX() + randomX, blockPos.getY() + randomY, blockPos.getZ() + randomZ);
 
-            serverWorld.addFreshEntity(grinchEntity);
+            // Make sure that the block doesn't suffocate our grinch
+            int count = 0;
+            while (serverWorld.getBlockState(spawnPos).isSuffocating(serverWorld, spawnPos) && ++count <= 10) spawnPos = spawnPos.above();
+
+            // Last check to ensure it doesn't suffocate him
+            if (!serverWorld.getBlockState(spawnPos).isSuffocating(serverWorld, spawnPos)) {
+                grinchEntity.moveTo(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ());
+                serverWorld.addFreshEntity(grinchEntity);
+            }
         }
     }
 
