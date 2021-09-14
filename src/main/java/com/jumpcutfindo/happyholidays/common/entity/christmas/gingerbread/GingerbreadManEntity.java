@@ -6,12 +6,16 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConvers
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -54,5 +58,17 @@ public class GingerbreadManEntity extends GingerbreadPersonEntity {
                 MinecraftForge.EVENT_BUS.post(turnSoggyEvent);
             }
         }
+    }
+
+    public static boolean isValidHeatSource(BlockState blockState) {
+        return blockState.is(Blocks.FURNACE) && blockState.getValue(BlockStateProperties.LIT)
+                || blockState.is(Blocks.BLAST_FURNACE) && blockState.getValue(BlockStateProperties.LIT)
+                || blockState.is(Blocks.SMOKER) && blockState.getValue(BlockStateProperties.LIT)
+                || blockState.is(Blocks.FIRE)
+                || blockState.is(Blocks.SOUL_FIRE)
+                || blockState.is(Blocks.CAMPFIRE)
+                || blockState.is(Blocks.SOUL_CAMPFIRE)
+                || blockState.is(Blocks.MAGMA_BLOCK)
+                || blockState.is(Blocks.LAVA);
     }
 }

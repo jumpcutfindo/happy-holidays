@@ -6,8 +6,6 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConvers
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntitySize;
 import net.minecraft.entity.EntityType;
@@ -15,7 +13,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -65,26 +62,11 @@ public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
     }
 
     private boolean isNearFireSource() {
-        BlockPos blockPos = new BlockPos(this.getX(), this.getY(), this.getZ());
-        BlockState[] blockStates = new BlockState[] {
-                this.level.getBlockState(blockPos.below()),
-                this.level.getBlockState(blockPos.north()),
-                this.level.getBlockState(blockPos.south()),
-                this.level.getBlockState(blockPos.west()),
-                this.level.getBlockState(blockPos.east()),
-                this.level.getBlockState(blockPos.above().above())
-        };
+        BlockPos pos1 = new BlockPos(this.getX(), this.getY(), this.getZ()).offset(-1, -1, -1);
+        BlockPos pos2 = new BlockPos(this.getX(), this.getY(), this.getZ()).offset(1, 2, 1);
 
-        for (BlockState blockState : blockStates) {
-            if (blockState.is(Blocks.FURNACE) && blockState.getValue(BlockStateProperties.LIT)
-                || blockState.is(Blocks.BLAST_FURNACE) && blockState.getValue(BlockStateProperties.LIT)
-                || blockState.is(Blocks.SMOKER) && blockState.getValue(BlockStateProperties.LIT)
-                || blockState.is(Blocks.FIRE) || blockState.is(Blocks.SOUL_FIRE)
-                || blockState.is(Blocks.CAMPFIRE) || blockState.is(Blocks.SOUL_CAMPFIRE)
-                || blockState.is(Blocks.MAGMA_BLOCK)
-            ) {
-                return true;
-            }
+        for (BlockPos pos : BlockPos.betweenClosed(pos1, pos2)) {
+            if (GingerbreadManEntity.isValidHeatSource(this.level.getBlockState(pos))) return true;
         }
 
         return false;
