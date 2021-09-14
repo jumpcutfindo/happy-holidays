@@ -310,6 +310,10 @@
                 },
                 {
                     "type": "text",
+                    "content": "Candy Cane blocks are different in a way though; due to their crumbly nature, they tend to respond better when destroyed by explosions as compared to players mining them! There's a higher chance for these explosions to produce Enchanted Candy Canes, and even more so if the source of the explosion was natural!"
+                },
+                {
+                    "type": "text",
                     "title": "Enchanted Candy Canes"
                 },
                 {
