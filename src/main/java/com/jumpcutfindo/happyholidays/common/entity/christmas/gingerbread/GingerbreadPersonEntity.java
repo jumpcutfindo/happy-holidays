@@ -227,7 +227,7 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
             if (this.player == null) return false;
             else {
                 ItemStack[] heldItems = new ItemStack[]{ player.getMainHandItem(), player.getOffhandItem() };
-                return Arrays.stream(heldItems).anyMatch(itemStack -> Arrays.stream(HEAT_EMITTING_ITEMS).anyMatch(heatItem -> ItemStack.isSame(itemStack, heatItem.getDefaultInstance())));
+                return Arrays.stream(heldItems).anyMatch(GingerbreadPersonEntity::isValidHeatItem);
             }
         }
 
