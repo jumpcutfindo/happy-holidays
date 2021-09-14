@@ -59,16 +59,4 @@ public class GingerbreadManEntity extends GingerbreadPersonEntity {
             }
         }
     }
-
-    public static boolean isValidHeatSource(BlockState blockState) {
-        return blockState.is(Blocks.FURNACE) && blockState.getValue(BlockStateProperties.LIT)
-                || blockState.is(Blocks.BLAST_FURNACE) && blockState.getValue(BlockStateProperties.LIT)
-                || blockState.is(Blocks.SMOKER) && blockState.getValue(BlockStateProperties.LIT)
-                || blockState.is(Blocks.FIRE)
-                || blockState.is(Blocks.SOUL_FIRE)
-                || blockState.is(Blocks.CAMPFIRE)
-                || blockState.is(Blocks.SOUL_CAMPFIRE)
-                || blockState.is(Blocks.MAGMA_BLOCK)
-                || blockState.is(Blocks.LAVA);
-    }
 }

@@ -66,7 +66,7 @@ public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
         BlockPos pos2 = new BlockPos(this.getX(), this.getY(), this.getZ()).offset(1, 2, 1);
 
         for (BlockPos pos : BlockPos.betweenClosed(pos1, pos2)) {
-            if (GingerbreadManEntity.isValidHeatSource(this.level.getBlockState(pos))) return true;
+            if (GingerbreadPersonEntity.isValidHeatSource(this.level.getBlockState(pos))) return true;
         }
 
         return false;

@@ -1,28 +1,40 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.entity.ai.goal.FollowMobGoal;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
 import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.loot.LootContext;
 import net.minecraft.loot.LootParameterSets;
 import net.minecraft.loot.LootTable;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -45,6 +57,10 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
             + ":entities/gingerbread_conversion");
     private static final double CONVERSION_ORNAMENT_DROP_BASE_CHANCE = 0.01D;
 
+    public static final Item[] HEAT_EMITTING_ITEMS = {
+            Items.CAMPFIRE, Items.SOUL_CAMPFIRE, Items.MAGMA_BLOCK, Items.LAVA_BUCKET
+    };
+
     private AnimationFactory factory = new AnimationFactory(this);
 
     private boolean isLeader;
@@ -60,11 +76,24 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
         super.registerGoals();
 
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, PlayerEntity.class, 6.0F, 1.0D, 1.25D));
-        this.goalSelector.addGoal(2, new FollowGingerbreadLeaderGoal(this));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(1, new FollowHeatSourceGoal(this));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, PlayerEntity.class, 6.0F, 1.0D, 1.25D,
+                (entity) -> {
+                    if (entity instanceof PlayerEntity) {
+                        PlayerEntity playerEntity = (PlayerEntity) entity;
+                        ItemStack[] heldItems = new ItemStack[]{ playerEntity.getMainHandItem(), playerEntity.getOffhandItem() };
+
+                        return Arrays.stream(heldItems).anyMatch(itemStack -> ItemStack.isSame(itemStack,
+                                Items.WATER_BUCKET.getDefaultInstance()));
+                    }
+
+                    return false;
+                }
+        ));
+        this.goalSelector.addGoal(3, new FollowGingerbreadLeaderGoal(this));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
     }
 
     @Override
@@ -88,6 +117,10 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
 
     public boolean isLeader() {
         return isLeader;
+    }
+
+    public boolean isSoggy() {
+        return this instanceof SoggyGingerbreadManEntity;
     }
 
     public boolean fireImmune() {
@@ -159,6 +192,54 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
     public static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, IWorld world,
                                                      SpawnReason spawnReason, BlockPos pos, Random rand) {
         return world.getRawBrightness(pos,0) > 8;
+    }
+
+    public static boolean isValidHeatItem(ItemStack itemStack) {
+        return Arrays.stream(HEAT_EMITTING_ITEMS).anyMatch(item -> ItemStack.isSame(itemStack, item.getDefaultInstance()));
+    }
+
+    public static boolean isValidHeatSource(BlockState blockState) {
+        return blockState.is(Blocks.FURNACE) && blockState.getValue(BlockStateProperties.LIT)
+                || blockState.is(Blocks.BLAST_FURNACE) && blockState.getValue(BlockStateProperties.LIT)
+                || blockState.is(Blocks.SMOKER) && blockState.getValue(BlockStateProperties.LIT)
+                || blockState.is(Blocks.FIRE)
+                || blockState.is(Blocks.SOUL_FIRE)
+                || blockState.is(Blocks.CAMPFIRE)
+                || blockState.is(Blocks.SOUL_CAMPFIRE)
+                || blockState.is(Blocks.MAGMA_BLOCK)
+                || blockState.is(Blocks.LAVA);
+    }
+
+    private static class FollowHeatSourceGoal extends Goal {
+        private static final EntityPredicate TEMP_TARGETING = (new EntityPredicate()).range(10.0D).allowInvulnerable().allowSameTeam().allowNonAttackable().allowUnseeable();
+        private final GingerbreadPersonEntity gingerbreadPerson;
+        private PlayerEntity player;
+
+        public FollowHeatSourceGoal(GingerbreadPersonEntity gingerbreadPerson) {
+            this.gingerbreadPerson = gingerbreadPerson;
+        }
+
+        @Override
+        public boolean canUse() {
+            if (!this.gingerbreadPerson.isSoggy()) return false;
+
+            this.player = this.gingerbreadPerson.level.getNearestPlayer(TEMP_TARGETING, this.gingerbreadPerson);
+            if (this.player == null) return false;
+            else {
+                ItemStack[] heldItems = new ItemStack[]{ player.getMainHandItem(), player.getOffhandItem() };
+                return Arrays.stream(heldItems).anyMatch(itemStack -> Arrays.stream(HEAT_EMITTING_ITEMS).anyMatch(heatItem -> ItemStack.isSame(itemStack, heatItem.getDefaultInstance())));
+            }
+        }
+
+        @Override
+        public void tick() {
+            this.gingerbreadPerson.lookAt(player, (float)(this.gingerbreadPerson.getMaxHeadYRot() + 20), (float)this.gingerbreadPerson.getMaxHeadXRot());
+            if (this.gingerbreadPerson.distanceToSqr(this.player) < 6.25D) {
+                this.gingerbreadPerson.getNavigation().stop();
+            } else {
+                this.gingerbreadPerson.getNavigation().moveTo(this.player, 1.0D);
+            }
+        }
     }
 
     private static class FollowGingerbreadLeaderGoal extends Goal {
