@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
 public class GingerbreadManEntity extends GingerbreadPersonEntity {
-    public static final int SPAWN_WEIGHT = 100;
+    public static final int SPAWN_WEIGHT = 15;
     public static final int MIN_SPAWN_COUNT = 2;
     public static final int MAX_SPAWN_COUNT = 4;
 
