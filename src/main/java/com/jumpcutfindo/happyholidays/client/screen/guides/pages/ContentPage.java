@@ -2,17 +2,12 @@ package com.jumpcutfindo.happyholidays.client.screen.guides.pages;
 
 import java.util.List;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.EmptyLine;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
-import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ImageLine;
-import com.jumpcutfindo.happyholidays.client.screen.guides.lines.ItemLine;
-import com.jumpcutfindo.happyholidays.client.screen.guides.lines.TextLine;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.client.gui.Font;
 
 public class ContentPage implements IPage {
     private final GuideScreen guideScreen;
@@ -27,9 +22,9 @@ public class ContentPage implements IPage {
     }
 
     @Override
-    public void draw(MatrixStack matrixStack) {
+    public void draw(PoseStack matrixStack) {
         // Draw text of left page
-        FontRenderer font = guideScreen.getFontRenderer();
+        Font font = guideScreen.getFontRenderer();
 
         int x = (guideScreen.width - guideScreen.bgWidth) / 2;
         int y = (guideScreen.height - guideScreen.bgHeight) / 2;

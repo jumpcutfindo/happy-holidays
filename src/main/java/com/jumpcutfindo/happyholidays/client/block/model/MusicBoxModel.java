@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.client.block.model;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.MusicBoxTileEntity;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class MusicBoxModel extends AnimatedGeoModel<MusicBoxTileEntity> {

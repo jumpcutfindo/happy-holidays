@@ -5,22 +5,21 @@ import java.util.Arrays;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.item.Item;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ChristmasFoodBlock extends ChristmasBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -40,13 +39,13 @@ public class ChristmasFoodBlock extends ChristmasBlock {
 
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
-                                  IWorld world, BlockPos pos1, BlockPos pos2) {
+                                  LevelAccessor world, BlockPos pos1, BlockPos pos2) {
         return this.canSurvive(blockState, world, pos1) ? blockState : Blocks.AIR.defaultBlockState();
     }
     
     @Override
-    public VoxelShape getShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos,
-                               ISelectionContext context) {
+    public VoxelShape getShape(BlockState blockState, BlockGetter blockReader, BlockPos blockPos,
+                               CollisionContext context) {
         Direction direction = blockState.getValue(FACING);
 
         VoxelShape[] resultShapes = Arrays.copyOf(shape, shape.length);
@@ -78,11 +77,11 @@ public class ChristmasFoodBlock extends ChristmasBlock {
 
     @Override
     public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(this, RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutoutMipped());
     }
 
     @Override
-    public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
+    public boolean canSurvive(BlockState blockState, LevelReader world, BlockPos position) {
         return world.getBlockState(position.below()).getMaterial().isSolid();
     }
 

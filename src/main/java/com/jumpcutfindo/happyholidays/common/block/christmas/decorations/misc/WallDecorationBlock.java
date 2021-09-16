@@ -6,30 +6,32 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.IWaterLoggable;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.Item;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 
-public class WallDecorationBlock extends ChristmasBlock implements IWaterLoggable {
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+
+public class WallDecorationBlock extends ChristmasBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
@@ -50,17 +52,17 @@ public class WallDecorationBlock extends ChristmasBlock implements IWaterLoggabl
 
     @Override
     public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(this, RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutoutMipped());
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
         stateBuilder.add(FACING, WATERLOGGED);
     }
 
     @Override
-    public VoxelShape getShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos,
-                               ISelectionContext context) {
+    public VoxelShape getShape(BlockState blockState, BlockGetter blockReader, BlockPos blockPos,
+                               CollisionContext context) {
         Direction direction = blockState.getValue(FACING);
 
         if (direction == Direction.SOUTH) {
@@ -76,7 +78,7 @@ public class WallDecorationBlock extends ChristmasBlock implements IWaterLoggabl
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction clickedFaceDirection = context.getClickedFace();
 
         FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
@@ -91,7 +93,7 @@ public class WallDecorationBlock extends ChristmasBlock implements IWaterLoggabl
 
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
-                                  IWorld world, BlockPos pos1, BlockPos pos2) {
+                                  LevelAccessor world, BlockPos pos1, BlockPos pos2) {
         if (blockState.getValue(WATERLOGGED)) {
             world.getLiquidTicks().scheduleTick(pos1, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
@@ -105,7 +107,7 @@ public class WallDecorationBlock extends ChristmasBlock implements IWaterLoggabl
     }
 
     @Override
-    public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
+    public boolean canSurvive(BlockState blockState, LevelReader world, BlockPos position) {
         Direction facingDirection = blockState.getValue(FACING);
 
         BlockState onBlockState = facingDirection == Direction.NORTH ? world.getBlockState(position.south())

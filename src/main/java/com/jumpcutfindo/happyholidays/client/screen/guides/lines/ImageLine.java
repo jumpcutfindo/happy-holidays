@@ -2,10 +2,9 @@ package com.jumpcutfindo.happyholidays.client.screen.guides.lines;
 
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ImageSection;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.AbstractGui;
 
 public class ImageLine implements IPageLine {
     public static final int IMAGES_WIDTH = 512;
@@ -22,8 +21,8 @@ public class ImageLine implements IPageLine {
     }
 
     @Override
-    public void draw(MatrixStack matrixStack, int xPos, int yPos) {
-        Minecraft.getInstance().getTextureManager().bind(image.getSource());
+    public void draw(PoseStack matrixStack, int xPos, int yPos) {
+        Minecraft.getInstance().getTextureManager().bindForSetup(image.getSource());
 
         // Centre image
         int centeredX = xPos + GuideScreen.PAGE_WIDTH / 2 - image.getWidth() / 2;

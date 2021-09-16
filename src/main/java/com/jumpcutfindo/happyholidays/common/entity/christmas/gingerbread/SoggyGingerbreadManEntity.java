@@ -6,22 +6,22 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConvers
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 
 public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
     public static final String ENTITY_ID = "soggy_gingerbread_man";
 
-    public static final AttributeModifierMap ENTITY_ATTRIBUTES =
+    public static final AttributeSupplier ENTITY_ATTRIBUTES =
             createMobAttributes()
                     .add(Attributes.MAX_HEALTH, 10.0f)
                     .add(Attributes.MOVEMENT_SPEED, 0.18D)
@@ -29,7 +29,7 @@ public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
 
     private float timeLeftToDry;
 
-    public SoggyGingerbreadManEntity(EntityType<? extends CreatureEntity> entityType, World world) {
+    public SoggyGingerbreadManEntity(EntityType<? extends PathfinderMob> entityType, Level world) {
         super(entityType, world);
 
         timeLeftToDry = 300.0f;
@@ -48,7 +48,7 @@ public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
     }
 
     private void spawnSmokeParticles() {
-        EntitySize size = this.getDimensions(this.getPose());
+        EntityDimensions size = this.getDimensions(this.getPose());
 
         this.level.addParticle(
                 ParticleTypes.SMOKE,
@@ -79,9 +79,9 @@ public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
         this.dropConversionLoot();
 
         if (!this.level.isClientSide()) {
-            List<PlayerEntity> players = HappyHolidaysUtils.findPlayersInRadius(this.level, this.position(), 5.0d);
+            List<Player> players = HappyHolidaysUtils.findPlayersInRadius(this.level, this.position(), 5.0d);
 
-            for (PlayerEntity player : players) {
+            for (Player player : players) {
                 GingerbreadConversionEvent.ToDry turnDryEvent =
                         new GingerbreadConversionEvent.ToDry(player, this, this.blockPosition());
                 MinecraftForge.EVENT_BUS.post(turnDryEvent);

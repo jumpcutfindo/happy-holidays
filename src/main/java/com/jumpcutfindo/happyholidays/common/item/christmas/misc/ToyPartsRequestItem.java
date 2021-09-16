@@ -10,16 +10,16 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 
 public class ToyPartsRequestItem extends ChristmasItem {
     public static final String ITEM_ID = "toy_parts_request";
@@ -35,29 +35,29 @@ public class ToyPartsRequestItem extends ChristmasItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable World world, List<ITextComponent> textComponents, ITooltipFlag tooltipFlag) {
-        CompoundNBT nbt = itemStack.getTag();
+    public void appendHoverText(ItemStack itemStack, @Nullable Level world, List<Component> textComponents, TooltipFlag tooltipFlag) {
+        CompoundTag nbt = itemStack.getTag();
 
         if (nbt != null) {
             SantaElfRequest santaElfRequest = SantaElfRequest.fromTag(nbt.getCompound("SantaElfRequest"));
 
             for (SantaElfRequest.SingleElfRequest request : santaElfRequest.getRequestedItems()) {
-                IFormattableTextComponent formattableTextComponent = new StringTextComponent(request.toString());
-                if (request.isCompleted()) formattableTextComponent.withStyle(TextFormatting.STRIKETHROUGH);
+                MutableComponent formattableTextComponent = new TextComponent(request.toString());
+                if (request.isCompleted()) formattableTextComponent.withStyle(ChatFormatting.STRIKETHROUGH);
 
-                textComponents.add(formattableTextComponent.withStyle(TextFormatting.GRAY));
+                textComponents.add(formattableTextComponent.withStyle(ChatFormatting.GRAY));
             }
 
             long timeRemaining = santaElfRequest.getExpiryTime() - world.getGameTime();
 
             if (timeRemaining > 0) {
-                textComponents.add(new StringTextComponent(""));
+                textComponents.add(new TextComponent(""));
 
-                IFormattableTextComponent expiryTextComponent = new TranslationTextComponent(
+                MutableComponent expiryTextComponent = new TranslatableComponent(
                         "item.happyholidays.toy_parts_request.expires_in",
                         HappyHolidaysUtils.convertTicksToString(timeRemaining)
                 );
-                expiryTextComponent.withStyle(TextFormatting.GRAY);
+                expiryTextComponent.withStyle(ChatFormatting.GRAY);
 
                 textComponents.add(expiryTextComponent);
             }

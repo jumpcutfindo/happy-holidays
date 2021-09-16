@@ -3,14 +3,14 @@ package com.jumpcutfindo.happyholidays.common.advancements;
 import com.google.gson.JsonObject;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 
-import net.minecraft.advancements.criterion.AbstractCriterionTrigger;
-import net.minecraft.advancements.criterion.CriterionInstance;
-import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.loot.ConditionArrayParser;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.advancements.critereon.SimpleCriterionTrigger;
+import net.minecraft.advancements.critereon.AbstractCriterionTriggerInstance;
+import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.advancements.critereon.DeserializationContext;
+import net.minecraft.resources.ResourceLocation;
 
-public class CustomTrigger extends AbstractCriterionTrigger<CustomTrigger.Instance> {
+public class CustomTrigger extends SimpleCriterionTrigger<CustomTrigger.Instance> {
     private final ResourceLocation triggerId;
 
     public CustomTrigger(String location) {
@@ -22,7 +22,7 @@ public class CustomTrigger extends AbstractCriterionTrigger<CustomTrigger.Instan
         triggerId = resourceLocation;
     }
 
-    public void trigger(ServerPlayerEntity playerEntity) {
+    public void trigger(ServerPlayer playerEntity) {
         this.trigger(playerEntity, Instance::test);
     }
 
@@ -36,14 +36,14 @@ public class CustomTrigger extends AbstractCriterionTrigger<CustomTrigger.Instan
     }
 
     @Override
-    protected Instance createInstance(JsonObject jsonIn, EntityPredicate.AndPredicate entityPredicateIn,
-                                      ConditionArrayParser conditionsParserIn) {
+    protected Instance createInstance(JsonObject jsonIn, EntityPredicate.Composite entityPredicateIn,
+                                      DeserializationContext conditionsParserIn) {
         return new CustomTrigger.Instance(this.getId());
     }
 
-    public static class Instance extends CriterionInstance {
+    public static class Instance extends AbstractCriterionTriggerInstance {
         public Instance(ResourceLocation resourceLocation) {
-            super(resourceLocation, EntityPredicate.AndPredicate.ANY);
+            super(resourceLocation, EntityPredicate.Composite.ANY);
         }
 
         public boolean test() {

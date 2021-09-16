@@ -1,18 +1,17 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas;
 
-import net.minecraft.item.Rarity;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.ChatFormatting;
 
 public enum ChristmasRarity {
-    COMMON(TextFormatting.WHITE),
-    RARE(TextFormatting.AQUA),
-    LEGENDARY(TextFormatting.GOLD),
+    COMMON(ChatFormatting.WHITE),
+    RARE(ChatFormatting.AQUA),
+    LEGENDARY(ChatFormatting.GOLD),
 
-    UNIQUE(TextFormatting.GREEN);
+    UNIQUE(ChatFormatting.GREEN);
 
-    public final TextFormatting color;
+    public final ChatFormatting color;
 
-    private ChristmasRarity(TextFormatting formatting) {
+    private ChristmasRarity(ChatFormatting formatting) {
         this.color = formatting;
     }
 }

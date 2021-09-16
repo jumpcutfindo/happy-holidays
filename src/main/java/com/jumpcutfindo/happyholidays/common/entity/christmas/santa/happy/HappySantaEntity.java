@@ -13,35 +13,35 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticl
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaSummonSound;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameterSets;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BossInfo;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerBossInfo;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.MinecraftForge;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -49,8 +49,8 @@ import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 
 public class HappySantaEntity extends BaseSantaEntity {
-    public static final DataParameter<Boolean> IS_SUMMONING = EntityDataManager.defineId(HappySantaEntity.class,
-            DataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<Boolean> IS_SUMMONING = SynchedEntityData.defineId(HappySantaEntity.class,
+            EntityDataSerializers.BOOLEAN);
 
     public static final String ENTITY_ID = "happy_santa";
 
@@ -79,11 +79,11 @@ public class HappySantaEntity extends BaseSantaEntity {
 
     private SantaSummonSound summonSound;
 
-    private AxisAlignedBB areaOfEffect;
-    private final ServerBossInfo bossEvent = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(),
-            BossInfo.Color.RED, BossInfo.Overlay.PROGRESS));
+    private AABB areaOfEffect;
+    private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(),
+            BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS));
 
-    public HappySantaEntity(EntityType<? extends CreatureEntity> entityType, World world) {
+    public HappySantaEntity(EntityType<? extends PathfinderMob> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -97,10 +97,10 @@ public class HappySantaEntity extends BaseSantaEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SummonGiftsGoal(this));
-        this.goalSelector.addGoal(1, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
     }
 
     public boolean isSummoning() {
@@ -131,11 +131,11 @@ public class HappySantaEntity extends BaseSantaEntity {
 
         // Show boss bar to all players around the area
         if (!this.level.isClientSide()) {
-            this.bossEvent.setPercent((float) this.giftsRemaining / (float) (NUM_GIFTS_TO_SUMMON));
-            this.areaOfEffect = new AxisAlignedBB(this.summoningPos).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
+            this.bossEvent.setProgress((float) this.giftsRemaining / (float) (NUM_GIFTS_TO_SUMMON));
+            this.areaOfEffect = new AABB(this.summoningPos).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
 
-            List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, this.areaOfEffect);
-            for (PlayerEntity playerEntity : playerList) this.bossEvent.addPlayer((ServerPlayerEntity) playerEntity);
+            List<Player> playerList = this.level.getEntitiesOfClass(Player.class, this.areaOfEffect);
+            for (Player playerEntity : playerList) this.bossEvent.addPlayer((ServerPlayer) playerEntity);
         }
     }
 
@@ -156,11 +156,11 @@ public class HappySantaEntity extends BaseSantaEntity {
         this.spawnAtLocation(ChristmasItems.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
 
         if (!this.level.isClientSide()) {
-            AxisAlignedBB searchBox =
-                    new AxisAlignedBB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
-            List<PlayerEntity> playerEntities = this.level.getEntitiesOfClass(PlayerEntity.class, searchBox);
+            AABB searchBox =
+                    new AABB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
+            List<Player> playerEntities = this.level.getEntitiesOfClass(Player.class, searchBox);
 
-            for (PlayerEntity playerEntity : playerEntities) {
+            for (Player playerEntity : playerEntities) {
                 SantaEvent event = new SantaEvent.CompleteDropParty(this, playerEntity);
                 MinecraftForge.EVENT_BUS.post(event);
             }
@@ -189,19 +189,19 @@ public class HappySantaEntity extends BaseSantaEntity {
 
         // Create a gift to be spawned
         ItemStack giftItem = ItemStack.EMPTY;
-        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
+        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootContextParamSets.ENTITY);
 
-        BasicParticleType particleType = null;
+        SimpleParticleType particleType = null;
 
         double giftChance = this.random.nextDouble();
         if (giftChance < LEGENDARY_GIFT_SPAWN_CHANCE_THRESHOLD) {
-            giftItem = SantaGifts.generateGift(SantaGiftType.LEGENDARY, this, (ServerWorld) this.level, ctx);
+            giftItem = SantaGifts.generateGift(SantaGiftType.LEGENDARY, this, (ServerLevel) this.level, ctx);
             particleType = ChristmasParticles.CHRISTMAS_MEDIUM_GOLD_PARTICLE.get();
         } else if (giftChance < RARE_GIFT_SPAWN_CHANCE_THRESHOLD) {
-            giftItem = SantaGifts.generateGift(SantaGiftType.RARE, this, (ServerWorld) this.level, ctx);
+            giftItem = SantaGifts.generateGift(SantaGiftType.RARE, this, (ServerLevel) this.level, ctx);
             particleType = ChristmasParticles.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get();
         } else {
-            giftItem = SantaGifts.generateGift(SantaGiftType.BASIC, this, (ServerWorld) this.level, ctx);
+            giftItem = SantaGifts.generateGift(SantaGiftType.BASIC, this, (ServerLevel) this.level, ctx);
             particleType = ChristmasParticles.CHRISTMAS_MEDIUM_BLUE_PARTICLE.get();
         }
 
@@ -212,7 +212,7 @@ public class HappySantaEntity extends BaseSantaEntity {
             double d0 = this.random.nextGaussian() * 0.02D;
             double d1 = this.random.nextGaussian() * 0.02D;
             double d2 = this.random.nextGaussian() * 0.02D;
-            ((ServerWorld) this.level).sendParticles(particleType,
+            ((ServerLevel) this.level).sendParticles(particleType,
                     randomPos.getX() + this.random.nextDouble(),
                     randomPos.getY() + this.random.nextDouble(),
                     randomPos.getZ() + this.random.nextDouble(),
@@ -223,11 +223,11 @@ public class HappySantaEntity extends BaseSantaEntity {
 
         this.level.addFreshEntity(giftEntity);
         this.level.playSound(null, randomPos.getX(), randomPos.getY(),
-                randomPos.getZ(), ChristmasSounds.SANTA_ITEM_APPEAR.get(), SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                randomPos.getZ(), ChristmasSounds.SANTA_ITEM_APPEAR.get(), SoundSource.NEUTRAL, 1.0f, 1.0f);
 
         this.giftsRemaining--;
 
-        this.bossEvent.setPercent((float) this.giftsRemaining / (float) (NUM_GIFTS_TO_SUMMON));
+        this.bossEvent.setProgress((float) this.giftsRemaining / (float) (NUM_GIFTS_TO_SUMMON));
     }
 
     public void createSummoningParticle() {
@@ -236,12 +236,12 @@ public class HappySantaEntity extends BaseSantaEntity {
         double d2 = (double)(this.random.nextFloat() * 0.1F) + 0.25D;
 
         double d = this.random.nextDouble();
-        BasicParticleType particleType = d < 0.25 ? ChristmasParticles.CHRISTMAS_SMALL_RED_PARTICLE.get()
+        SimpleParticleType particleType = d < 0.25 ? ChristmasParticles.CHRISTMAS_SMALL_RED_PARTICLE.get()
                 : d < 0.5 ? ChristmasParticles.CHRISTMAS_MEDIUM_RED_PARTICLE.get()
                 : d < 0.75 ? ChristmasParticles.CHRISTMAS_SMALL_GREEN_PARTICLE.get()
                 : ChristmasParticles.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get();
         
-        ((ServerWorld) this.level).sendParticles(particleType,
+        ((ServerLevel) this.level).sendParticles(particleType,
                 this.getX(),
                 this.getY() + d1 + 1.5D,
                 this.getZ(),
@@ -253,7 +253,7 @@ public class HappySantaEntity extends BaseSantaEntity {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT nbt) {
+    public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
 
         nbt.putBoolean("HasSummonedGifts", this.hasSummonedGifts);
@@ -263,7 +263,7 @@ public class HappySantaEntity extends BaseSantaEntity {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT nbt) {
+    public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
 
         this.hasSummonedGifts = nbt.getBoolean("HasSummonedGifts");
@@ -292,17 +292,17 @@ public class HappySantaEntity extends BaseSantaEntity {
                 createSummoningParticle();
 
                 if (this.isAlive() && this.level.getGameTime() % 60L == 0) {
-                    List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, this.areaOfEffect);
+                    List<Player> playerList = this.level.getEntitiesOfClass(Player.class, this.areaOfEffect);
 
                     // Remove players outside the AOE
-                    for (ServerPlayerEntity serverPlayerEntity : this.bossEvent.getPlayers()) {
+                    for (ServerPlayer serverPlayerEntity : this.bossEvent.getPlayers()) {
                         if (!playerList.contains(serverPlayerEntity)) this.bossEvent.removePlayer(serverPlayerEntity);
                     }
 
                     // Add players inside the AOE
-                    for (PlayerEntity playerEntity : playerList) {
-                        ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) playerEntity;
-                        if (!this.bossEvent.getPlayers().contains(serverPlayerEntity)) this.bossEvent.addPlayer((ServerPlayerEntity) playerEntity);
+                    for (Player playerEntity : playerList) {
+                        ServerPlayer serverPlayerEntity = (ServerPlayer) playerEntity;
+                        if (!this.bossEvent.getPlayers().contains(serverPlayerEntity)) this.bossEvent.addPlayer((ServerPlayer) playerEntity);
                     }
                 }
             } else {
@@ -313,7 +313,7 @@ public class HappySantaEntity extends BaseSantaEntity {
 
     private void maybeDespawn() {
         if (this.despawnDelay > 0 && --this.despawnDelay == 0) {
-            this.remove();
+            this.remove(RemovalReason.KILLED);
         }
     }
 

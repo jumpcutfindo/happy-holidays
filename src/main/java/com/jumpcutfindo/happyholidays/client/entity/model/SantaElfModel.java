@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.client.entity.model;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class SantaElfModel<T extends SantaElfEntity> extends AnimatedGeoModel<SantaElfEntity> {

@@ -2,18 +2,13 @@ package com.jumpcutfindo.happyholidays.client.screen.guides.lines;
 
 import java.util.List;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ItemSection;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.AbstractGui;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.world.item.ItemStack;
 
 public class ItemLine implements IPageLine {
     public static final int ITEM_WIDTH = 18;
@@ -30,13 +25,13 @@ public class ItemLine implements IPageLine {
     }
 
     @Override
-    public void draw(MatrixStack matrixStack, int xPos, int yPos) {
+    public void draw(PoseStack matrixStack, int xPos, int yPos) {
         List<ItemStack> items = itemSection.getItems();
 
         int firstX = xPos + (GuideScreen.PAGE_WIDTH - ITEM_WIDTH * items.size()) / 2;
 
         // Draw backgrounds
-        Minecraft.getInstance().getTextureManager().bind(guideScreen.guideBookGUI);
+        Minecraft.getInstance().getTextureManager().bindForSetup(guideScreen.guideBookGUI);
         for (int i = 0; i < items.size(); i ++) {
             GuideScreen.blit(matrixStack, firstX + ITEM_WIDTH * i - 1, yPos - 1, 337, 62, 18, 18, 512, 512);
         }
@@ -49,7 +44,7 @@ public class ItemLine implements IPageLine {
         this.drawTooltip(matrixStack);
     }
 
-    public void drawTooltip(MatrixStack matrixStack) {
+    public void drawTooltip(PoseStack matrixStack) {
         if (this.isHovered) {
             ItemStack itemStack = getItemAtPos(guideScreen.mouseX, guideScreen.mouseY);
 

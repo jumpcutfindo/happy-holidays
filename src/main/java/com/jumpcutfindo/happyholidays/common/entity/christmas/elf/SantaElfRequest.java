@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.MusicDiscItem;
-import net.minecraft.nbt.ByteArrayNBT;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.nbt.LongNBT;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.RecordItem;
+import net.minecraft.nbt.ByteArrayTag;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.LongTag;
 
 public class SantaElfRequest {
     public Random random;
@@ -46,7 +46,7 @@ public class SantaElfRequest {
     public ItemStack getRequestPaper() {
         ItemStack requestPaper = ChristmasItems.TOY_PARTS_REQUEST.get().getDefaultInstance();
 
-        CompoundNBT nbt = requestPaper.getOrCreateTag();
+        CompoundTag nbt = requestPaper.getOrCreateTag();
         nbt.put("SantaElfRequest", this.createTag());
 
         return requestPaper;
@@ -71,10 +71,10 @@ public class SantaElfRequest {
         this.requestedItemsList.add(singleElfRequest);
     }
 
-    public static SantaElfRequest fromTag(CompoundNBT nbt) {
+    public static SantaElfRequest fromTag(CompoundTag nbt) {
         SantaElfRequest santaElfRequest = new SantaElfRequest();
 
-        ListNBT singleRequestsNBT = nbt.getList("SingleRequests", 10);
+        ListTag singleRequestsNBT = nbt.getList("SingleRequests", 10);
         byte[] completedRequestNBT = nbt.getByteArray("RequestsCompleted");
 
         for(int i = 0; i < singleRequestsNBT.size(); i++) {
@@ -90,25 +90,25 @@ public class SantaElfRequest {
         return santaElfRequest;
     }
 
-    public CompoundNBT createTag() {
-        CompoundNBT nbt = new CompoundNBT();
+    public CompoundTag createTag() {
+        CompoundTag nbt = new CompoundTag();
 
-        ListNBT singleRequestsNBT = new ListNBT();
+        ListTag singleRequestsNBT = new ListTag();
 
         for (SingleElfRequest singleElfRequest : this.requestedItemsList) {
             ItemStack itemstack = singleElfRequest.getRequestedItems();
             if (!itemstack.isEmpty()) {
-                singleRequestsNBT.add(itemstack.save(new CompoundNBT()));
+                singleRequestsNBT.add(itemstack.save(new CompoundTag()));
             }
         }
 
-        ByteArrayNBT completedRequestNBT =
-                new ByteArrayNBT(this.requestedItemsList.stream().map(request -> request.isCompleted() ? (byte) 1:
+        ByteArrayTag completedRequestNBT =
+                new ByteArrayTag(this.requestedItemsList.stream().map(request -> request.isCompleted() ? (byte) 1:
                         (byte) 0).collect(Collectors.toList()));
 
         nbt.put("SingleRequests", singleRequestsNBT);
         nbt.put("RequestsCompleted", completedRequestNBT);
-        nbt.put("ExpiryTime", LongNBT.valueOf(expiryTime));
+        nbt.put("ExpiryTime", LongTag.valueOf(expiryTime));
 
         return nbt;
     }
@@ -156,8 +156,8 @@ public class SantaElfRequest {
 
         @Override
         public String toString() {
-            if (this.requestedItems.getItem() instanceof MusicDiscItem) {
-                String itemName = ((MusicDiscItem) this.requestedItems.getItem()).getDisplayName().getString();
+            if (this.requestedItems.getItem() instanceof RecordItem) {
+                String itemName = ((RecordItem) this.requestedItems.getItem()).getDisplayName().getString();
                 return String.format("%d\u00d7 Music Disc [%s]", this.requestedItems.getCount(), itemName);
             } else {
                 String itemName = this.requestedItems.getHoverName().getString();

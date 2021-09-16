@@ -1,11 +1,11 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas;
 
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.Level;
 
-public class ChristmasEntity extends CreatureEntity {
-    public ChristmasEntity(EntityType<? extends CreatureEntity> p_i48575_1_, World p_i48575_2_) {
+public class ChristmasEntity extends PathfinderMob {
+    public ChristmasEntity(EntityType<? extends PathfinderMob> p_i48575_1_, Level p_i48575_2_) {
         super(p_i48575_1_, p_i48575_2_);
     }
 }

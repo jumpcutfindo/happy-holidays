@@ -2,18 +2,18 @@ package com.jumpcutfindo.happyholidays.common.sound.christmas;
 
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
-import net.minecraft.client.audio.TickableSound;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.sounds.SoundSource;
 
-public class SantaBellSound extends TickableSound {
+public class SantaBellSound extends AbstractTickableSoundInstance {
     public static final int DURATION = 40;
     private int currentTick = 0;
 
-    private PlayerEntity player;
+    private Player player;
 
-    public SantaBellSound(PlayerEntity player) {
-        super(ChristmasSounds.SANTA_ELF_BELL.get(), SoundCategory.PLAYERS);
+    public SantaBellSound(Player player) {
+        super(ChristmasSounds.SANTA_ELF_BELL.get(), SoundSource.PLAYERS);
 
         this.player = player;
 

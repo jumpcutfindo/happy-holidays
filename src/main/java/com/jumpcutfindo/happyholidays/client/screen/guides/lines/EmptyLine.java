@@ -1,9 +1,9 @@
 package com.jumpcutfindo.happyholidays.client.screen.guides.lines;
 
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.util.IReorderingProcessor;
+import net.minecraft.util.FormattedCharSequence;
 
 public class EmptyLine implements IPageLine {
     private final GuideScreen guideScreen;
@@ -19,8 +19,8 @@ public class EmptyLine implements IPageLine {
     }
 
     @Override
-    public void draw(MatrixStack matrixStack, int xPos, int yPos) {
-        guideScreen.getFontRenderer().draw(matrixStack, IReorderingProcessor.EMPTY, xPos, yPos, 4210752);
+    public void draw(PoseStack matrixStack, int xPos, int yPos) {
+        guideScreen.getFontRenderer().draw(matrixStack, FormattedCharSequence.EMPTY, xPos, yPos, 4210752);
     }
 
     @Override

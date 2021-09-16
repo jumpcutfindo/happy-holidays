@@ -1,18 +1,17 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ChristmasWreathBlock extends WallDecorationBlock {
     public static final String BLOCK_ID = "christmas_wreath";
 
     public static final Properties BLOCK_PROPERTIES =
-            AbstractBlock.Properties
+            BlockBehaviour.Properties
                     .of(Material.WOOL)
-                    .harvestLevel(-1)
                     .strength(0.1f)
                     .sound(SoundType.CROP)
                     .noOcclusion()

@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.common.guide.sections;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class ImageSection implements ISection {
     private String source;

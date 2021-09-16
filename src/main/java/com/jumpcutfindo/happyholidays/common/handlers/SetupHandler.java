@@ -8,6 +8,7 @@ import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNa
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
 
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -94,8 +95,8 @@ public class SetupHandler {
     }
 
     @SubscribeEvent
-    public static void registerCapabilities(FMLCommonSetupEvent event) {
-        CapabilityNaughtyNice.register();
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(CapabilityNaughtyNice.class);
     }
 
     @SubscribeEvent

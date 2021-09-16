@@ -8,7 +8,6 @@ import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceA
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
@@ -18,45 +17,44 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.PickaxeItem;
-import net.minecraft.item.ShovelItem;
-import net.minecraft.item.SwordItem;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameterSets;
-import net.minecraft.loot.LootTable;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.ShovelItem;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -67,12 +65,12 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class GrinchEntity extends ChristmasEntity implements IAnimatable {
-    public static final DataParameter<Integer> BREAK_ANIM_PROGRESS = EntityDataManager.defineId(GrinchEntity.class,
-            DataSerializers.INT);
+    public static final EntityDataAccessor<Integer> BREAK_ANIM_PROGRESS = SynchedEntityData.defineId(GrinchEntity.class,
+            EntityDataSerializers.INT);
 
     public static final String ENTITY_ID = "grinch";
-    public static final AttributeModifierMap ENTITY_ATTRIBUTES =
-            MobEntity.createMobAttributes()
+    public static final AttributeSupplier ENTITY_ATTRIBUTES =
+            Mob.createMobAttributes()
                     .add(Attributes.MAX_HEALTH, 20.0f)
                     .add(Attributes.MOVEMENT_SPEED, 0.21D)
                     .build();
@@ -106,7 +104,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     private int despawnTimer = GRINCH_TIME_TO_DESPAWN;
     private boolean isReadyToDespawn = false;
 
-    public GrinchEntity(EntityType<? extends CreatureEntity> entityType, World world) {
+    public GrinchEntity(EntityType<? extends PathfinderMob> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -122,12 +120,12 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
         this.goalSelector.addGoal(0, new PickupGiftGoal(this));
         this.goalSelector.addGoal(0, new AvoidEntityGoal<>(
-                this, PlayerEntity.class, GrinchEntity.AVOID_PLAYER_RADIUS, 1.0D, 1.5D,
+                this, Player.class, GrinchEntity.AVOID_PLAYER_RADIUS, 1.0D, 1.5D,
                 livingEntity -> {
                     if (GrinchEntity.this.hasReceivedGift) return false;
 
-                    if (livingEntity instanceof PlayerEntity) {
-                        PlayerEntity playerEntity = (PlayerEntity) livingEntity;
+                    if (livingEntity instanceof Player) {
+                        Player playerEntity = (Player) livingEntity;
                         if (playerEntity.getMainHandItem().getItem() instanceof ChristmasGiftItem
                                 || playerEntity.getOffhandItem().getItem() instanceof  ChristmasGiftItem) {
                             return false;
@@ -137,10 +135,10 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                 }
         ));
         this.goalSelector.addGoal(1, new BreakPresentsGoal(this));
-        this.goalSelector.addGoal(2, new SwimGoal(this));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(2, new FloatGoal(this));
+        this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
     }
 
     @Override
@@ -159,7 +157,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     }
 
     public boolean isPlayerAround() {
-        List<PlayerEntity> playerEntityList = this.level.getEntitiesOfClass(PlayerEntity.class, this.getBoundingBox().inflate(AVOID_PLAYER_RADIUS,
+        List<Player> playerEntityList = this.level.getEntitiesOfClass(Player.class, this.getBoundingBox().inflate(AVOID_PLAYER_RADIUS,
                 AVOID_PLAYER_RADIUS, AVOID_PLAYER_RADIUS), null);
 
         return playerEntityList.size() > 0;
@@ -176,10 +174,10 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     public void endPresentBreaking(BlockPos targetPresentBlock) {
         this.entityData.set(BREAK_ANIM_PROGRESS, -1);
 
-        if (this.level.getBlockState(targetPresentBlock).getBlock().is(ChristmasBlocks.BABY_PRESENT.get())) {
+        if (this.level.getBlockState(targetPresentBlock).is(ChristmasBlocks.BABY_PRESENT.get())) {
             // Baby present
             this.presentsBrokenCount[0]++;
-        } else if (this.level.getBlockState(targetPresentBlock).getBlock().is(ChristmasBlocks.ADULT_PRESENT.get())) {
+        } else if (this.level.getBlockState(targetPresentBlock).is(ChristmasBlocks.ADULT_PRESENT.get())) {
             // Adult present
             this.presentsBrokenCount[1]++;
         } else {
@@ -188,16 +186,16 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
         }
 
         this.level.destroyBlock(targetPresentBlock, false);
-        this.level.playSound(null, targetPresentBlock, ChristmasSounds.GRINCH_BREAK_BOX.get(), SoundCategory.NEUTRAL,
+        this.level.playSound(null, targetPresentBlock, ChristmasSounds.GRINCH_BREAK_BOX.get(), SoundSource.NEUTRAL,
                 1.0f, 1.0f);
     }
 
     public void handleGiftOnGround(ItemEntity itemEntity) {
         if (!this.hasReceivedGift) {
-            CompoundNBT itemTag = itemEntity.getItem().getTag();
+            CompoundTag itemTag = itemEntity.getItem().getTag();
             this.take(itemEntity, itemEntity.getItem().getCount());
 
-            itemEntity.remove();
+            itemEntity.remove(RemovalReason.DISCARDED);
 
             if (itemTag != null && itemTag.contains("Gifts")) {
                 // Grinch has happily received gift
@@ -209,7 +207,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
                 // Add to naughty / nice meter
                 if (itemEntity.getThrower() != null) {
-                    PlayerEntity thrower = this.level.getPlayerByUUID(itemEntity.getThrower());
+                    Player thrower = this.level.getPlayerByUUID(itemEntity.getThrower());
                     NaughtyNiceMeter.evaluateAction(thrower, NaughtyNiceAction.APPEASE_GRINCH_EVENT);
 
                     // Post event for achievements
@@ -220,7 +218,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                     double d0 = this.random.nextGaussian() * 0.02D;
                     double d1 = this.random.nextGaussian() * 0.02D;
                     double d2 = this.random.nextGaussian() * 0.02D;
-                    ((ServerWorld) this.level).sendParticles(ParticleTypes.HEART, this.getRandomX(1.0D), this.getRandomY() + 0.5D,
+                    ((ServerLevel) this.level).sendParticles(ParticleTypes.HEART, this.getRandomX(1.0D), this.getRandomY() + 0.5D,
                             this.getRandomZ(1.0D), 1, d0, d1, d2, 0.0D);
                 }
 
@@ -236,7 +234,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                     double d1 = this.random.nextGaussian() * 0.02D;
                     double d2 = this.random.nextGaussian() * 0.02D;
 
-                    ((ServerWorld) this.level).sendParticles(ParticleTypes.ANGRY_VILLAGER, this.getRandomX(1.0D), this.getRandomY() + 0.5D,
+                    ((ServerLevel) this.level).sendParticles(ParticleTypes.ANGRY_VILLAGER, this.getRandomX(1.0D), this.getRandomY() + 0.5D,
                             this.getRandomZ(1.0D), 1, d0, d1, d2, 0.0D);
                 }
 
@@ -249,14 +247,14 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
     public void throwAppeasementRewards() {
 
-        this.level.addFreshEntity(new ExperienceOrbEntity(this.level, this.getX(), this.getY(), this.getZ(), 50));
+        this.level.addFreshEntity(new ExperienceOrb(this.level, this.getX(), this.getY(), this.getZ(), 50));
         ItemStack scraps = ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance();
 
         scraps.setCount(this.presentsBrokenCount[0] + this.presentsBrokenCount[1] * 2 + this.presentsBrokenCount[2] * 3);
         this.level.addFreshEntity(new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), scraps));
 
         LootTable lootTable = this.level.getServer().getLootTables().get(GRINCH_APPEASEMENT_LOOT_TABLE);
-        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
+        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootContextParamSets.ENTITY);
 
         double modifier;
         ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingEntity(this.level,
@@ -310,10 +308,10 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
     public void despawnGrinch() {
         if (!this.level.isClientSide()) {
-            ServerWorld serverWorld = (ServerWorld) this.level;
+            ServerLevel serverWorld = (ServerLevel) this.level;
 
             // Spawn poof particles on disappear
-            BasicParticleType particleType = ParticleTypes.POOF;
+            SimpleParticleType particleType = ParticleTypes.POOF;
             for (int i = 0; i < 5; i++) {
                 double d0 = this.random.nextGaussian() * 0.02D;
                 double d1 = this.random.nextGaussian() * 0.02D;
@@ -324,11 +322,11 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
             }
 
             serverWorld.playSound(null, this.blockPosition(), ChristmasSounds.GRINCH_DESPAWN.get(),
-                    SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                    SoundSource.NEUTRAL, 1.0f, 1.0f);
 
         }
 
-        this.remove();
+        this.remove(RemovalReason.DISCARDED);
     }
 
     @Override
@@ -343,9 +341,9 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
             double d0 = this.random.nextGaussian() * 0.02D;
             double d1 = this.random.nextGaussian() * 0.02D;
             double d2 = this.random.nextGaussian() * 0.02D;
-            BasicParticleType particleType = isHappyWithGift ? ParticleTypes.HEART : ParticleTypes.ANGRY_VILLAGER;
+            SimpleParticleType particleType = isHappyWithGift ? ParticleTypes.HEART : ParticleTypes.ANGRY_VILLAGER;
 
-            ((ServerWorld) this.level).sendParticles(particleType, this.getRandomX(1.0D),
+            ((ServerLevel) this.level).sendParticles(particleType, this.getRandomX(1.0D),
                     this.getRandomY() + 0.5D,
                     this.getRandomZ(1.0D), 1, d0, d1, d2, 0.0D);
         }
@@ -355,22 +353,22 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
         }
 
         if (!this.level.isClientSide() && this.level.getGameTime() % 60L == 0) {
-            List<PlayerEntity> playersAround = HappyHolidaysUtils.findPlayersInRadius(this.level, this.position(),
+            List<Player> playersAround = HappyHolidaysUtils.findPlayersInRadius(this.level, this.position(),
                     AVOID_PLAYER_RADIUS);
 
-            for (PlayerEntity playerEntity : playersAround) MinecraftForge.EVENT_BUS.post(new GrinchEvent.Encounter(this, playerEntity));
+            for (Player playerEntity : playersAround) MinecraftForge.EVENT_BUS.post(new GrinchEvent.Encounter(this, playerEntity));
         }
     }
 
-    public static boolean canSpawnInArea(BlockPos blockPos, ServerWorld serverWorld) {
-        AxisAlignedBB searchBox = new AxisAlignedBB(blockPos).inflate(40.0D);
-        boolean isPlayerInVicinity = serverWorld.getEntitiesOfClass(PlayerEntity.class, searchBox).size() > 0;
+    public static boolean canSpawnInArea(BlockPos blockPos, ServerLevel serverWorld) {
+        AABB searchBox = new AABB(blockPos).inflate(40.0D);
+        boolean isPlayerInVicinity = serverWorld.getEntitiesOfClass(Player.class, searchBox).size() > 0;
         boolean isGrinchesAround = serverWorld.getEntitiesOfClass(GrinchEntity.class, searchBox).size() > MAX_GRINCHES_IN_VICINITY;
 
         return isPlayerInVicinity && !isGrinchesAround && serverWorld.isNight();
     }
 
-    public static void spawnGrinchAround(BlockPos blockPos, ServerWorld serverWorld, Random random) {
+    public static void spawnGrinchAround(BlockPos blockPos, ServerLevel serverWorld, Random random) {
         if (random.nextDouble() <= GrinchEntity.GRINCH_SPAWN_CHANCE) {
             int randomX = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
             int randomY = 0;
@@ -392,7 +390,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT nbt) {
+    public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
 
         nbt.putIntArray("PresentsBroken", this.presentsBrokenCount);
@@ -403,7 +401,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT nbt) {
+    public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
 
         int[] tempArray = nbt.getIntArray("PresentsBroken");
@@ -506,7 +504,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                                 // Check for entity instead of block, since we consider the Grinch's AOE instead of
                                 // the block's AOE for the block breaking functionality
                                 if (ChristmasStarTileEntity.getStarInfluencingEntity(this.grinchEntity.level,
-                                        new Vector3d(currPos.getX(), currPos.getY(), currPos.getZ())) != null) {
+                                        new Vec3(currPos.getX(), currPos.getY(), currPos.getZ())) != null) {
                                     continue;
                                 } else {
                                     this.targetPresentBlockPos = currPos;

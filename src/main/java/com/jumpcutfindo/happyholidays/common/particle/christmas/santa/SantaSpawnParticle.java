@@ -3,24 +3,24 @@ package com.jumpcutfindo.happyholidays.common.particle.christmas.santa;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.ChristmasParticle;
 
-import net.minecraft.client.particle.IAnimatedSprite;
-import net.minecraft.client.particle.IParticleFactory;
-import net.minecraft.client.particle.IParticleRenderType;
+import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.particle.ParticleProvider;
+import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.SpriteTexturedParticle;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particles.BasicParticleType;
+import net.minecraft.client.particle.TextureSheetParticle;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class SantaSpawnParticle extends SpriteTexturedParticle {
-    private final IAnimatedSprite sprites;
+public class SantaSpawnParticle extends TextureSheetParticle {
+    private final SpriteSet sprites;
     private final int color;
     private final double destX, destY, destZ;
 
-    public SantaSpawnParticle(ClientWorld world, double x, double y, double z,
-                              int color, IAnimatedSprite sprites) {
+    public SantaSpawnParticle(ClientLevel world, double x, double y, double z,
+                              int color, SpriteSet sprites) {
         super(world, x, y, z);
 
         this.color = color;
@@ -49,8 +49,8 @@ public class SantaSpawnParticle extends SpriteTexturedParticle {
     }
 
     @Override
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     public void tick() {
@@ -81,16 +81,16 @@ public class SantaSpawnParticle extends SpriteTexturedParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class Factory implements IParticleFactory<BasicParticleType> {
-        private final IAnimatedSprite sprites;
+    public static class Factory implements ParticleProvider<SimpleParticleType> {
+        private final SpriteSet sprites;
         private final int color;
 
-        public Factory(IAnimatedSprite sprites, int color) {
+        public Factory(SpriteSet sprites, int color) {
             this.sprites = sprites;
             this.color = color;
         }
 
-        public Particle createParticle(BasicParticleType p_199234_1_, ClientWorld p_199234_2_, double p_199234_3_, double p_199234_5_, double p_199234_7_, double p_199234_9_, double p_199234_11_, double p_199234_13_) {
+        public Particle createParticle(SimpleParticleType p_199234_1_, ClientLevel p_199234_2_, double p_199234_3_, double p_199234_5_, double p_199234_7_, double p_199234_9_, double p_199234_11_, double p_199234_13_) {
             return new SantaSpawnParticle(p_199234_2_, p_199234_3_, p_199234_5_, p_199234_7_, this.color,
                     this.sprites).multiplyColor();
         }

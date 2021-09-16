@@ -14,23 +14,23 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaBellSound;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.UseAction;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 
 public class SantaElfBellItem extends ChristmasItem {
@@ -53,38 +53,38 @@ public class SantaElfBellItem extends ChristmasItem {
     }
 
     @Override
-    public UseAction getUseAnimation(ItemStack stack) {
-        return UseAction.BOW;
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.BOW;
     }
 
     @Override
-    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        CompoundNBT nbt = player.getItemInHand(hand).getTag();
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        CompoundTag nbt = player.getItemInHand(hand).getTag();
         long nextUseTime = nbt.getLong("NextUseTime");
         if (world.getGameTime() > nextUseTime) {
             player.startUsingItem(hand);
 
             player.playSound(ChristmasSounds.SANTA_ELF_BELL.get(), 1.0F, 1.0F);
-            return ActionResult.sidedSuccess(player.getItemInHand(hand), world.isClientSide());
+            return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), world.isClientSide());
         } else {
             long timeRemaining = nbt.getLong("NextUseTime") - world.getGameTime();
-            IFormattableTextComponent chatComponent =
-                    new TranslationTextComponent("chat.happyholidays." + ITEM_ID + ".not_ready",
+            MutableComponent chatComponent =
+                    new TranslatableComponent("chat.happyholidays." + ITEM_ID + ".not_ready",
                             HappyHolidaysUtils.convertTicksToString(timeRemaining));
-            chatComponent.withStyle(TextFormatting.RED);
+            chatComponent.withStyle(ChatFormatting.RED);
             player.displayClientMessage(chatComponent, true);
-            return ActionResult.fail(player.getItemInHand(hand));
+            return InteractionResultHolder.fail(player.getItemInHand(hand));
         }
 
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livingEntity) {
-        if (livingEntity instanceof PlayerEntity) {
-            PlayerEntity playerEntity = (PlayerEntity) livingEntity;
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity livingEntity) {
+        if (livingEntity instanceof Player) {
+            Player playerEntity = (Player) livingEntity;
             BlockPos playerPos = playerEntity.blockPosition();
 
-            CompoundNBT nbt = stack.getOrCreateTag();
+            CompoundTag nbt = stack.getOrCreateTag();
             nbt.putLong("NextUseTime", world.getGameTime() + (long) ITEM_COOLDOWN);
 
             BlockPos posAhead = HappyHolidaysUtils.getPosInFront(playerEntity.getDirection(), playerPos, 4.0D);
@@ -99,7 +99,7 @@ public class SantaElfBellItem extends ChristmasItem {
             world.addFreshEntity(santaElfEntity);
 
             world.addParticle(ParticleTypes.LARGE_SMOKE, spawnX, spawnY, spawnZ, 0.0F, 0.0F, 0.0F);
-            world.playSound(null, posAhead, ChristmasSounds.SANTA_ELF_ARRIVAL.get(), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+            world.playSound(null, posAhead, ChristmasSounds.SANTA_ELF_ARRIVAL.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
 
             SantaElfEvent.Summon elfSummonEvent = new SantaElfEvent.Summon(playerEntity, santaElfEntity);
             MinecraftForge.EVENT_BUS.post(elfSummonEvent);
@@ -119,19 +119,19 @@ public class SantaElfBellItem extends ChristmasItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable World world, List<ITextComponent> textComponents, ITooltipFlag tooltipFlag) {
-        CompoundNBT nbt = itemStack.getTag();
+    public void appendHoverText(ItemStack itemStack, @Nullable Level world, List<Component> textComponents, TooltipFlag tooltipFlag) {
+        CompoundTag nbt = itemStack.getTag();
 
         if (nbt != null && world != null) {
             long timeRemaining = nbt.getLong("NextUseTime") - world.getGameTime();
 
             if (timeRemaining > 0) {
-                IFormattableTextComponent textComponent =
-                        new TranslationTextComponent(
+                MutableComponent textComponent =
+                        new TranslatableComponent(
                                 "item.happyholidays."+ ITEM_ID +".cooldown",
                                 HappyHolidaysUtils.convertTicksToString(timeRemaining)
                         );
-                textComponent.withStyle(TextFormatting.GRAY);
+                textComponent.withStyle(ChatFormatting.GRAY);
                 textComponents.add(textComponent);
             }
         }

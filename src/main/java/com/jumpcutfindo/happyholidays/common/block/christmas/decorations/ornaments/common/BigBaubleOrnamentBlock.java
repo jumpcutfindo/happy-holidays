@@ -2,8 +2,8 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.orname
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
 
-import net.minecraft.block.Block;
-import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BigBaubleOrnamentBlock extends OrnamentBlock {
     public static final String BIG_RED_BAUBLE_ID = "big_red_bauble";

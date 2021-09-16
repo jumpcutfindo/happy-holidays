@@ -6,13 +6,13 @@ import com.jumpcutfindo.happyholidays.common.handlers.GuideHandler;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.level.Level;
 
 public class ChristmasGuideBookItem extends ChristmasItem {
     public static final String ITEM_ID = "christmas_guide_book";
@@ -27,14 +27,14 @@ public class ChristmasGuideBookItem extends ChristmasItem {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World world, PlayerEntity playerEntity, Hand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player playerEntity, InteractionHand hand) {
         playerEntity.awardStat(Stats.ITEM_USED.get(this));
         ItemStack itemStack = playerEntity.getItemInHand(hand);
 
-        if (!world.isClientSide()) return ActionResult.success(itemStack);
+        if (!world.isClientSide()) return InteractionResultHolder.success(itemStack);
         else {
             ChristmasGuideBookItem.showGuide();
-            return ActionResult.success(itemStack);
+            return InteractionResultHolder.success(itemStack);
         }
     }
 

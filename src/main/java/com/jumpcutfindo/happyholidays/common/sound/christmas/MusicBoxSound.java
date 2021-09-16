@@ -1,16 +1,16 @@
 package com.jumpcutfindo.happyholidays.common.sound.christmas;
 
-import net.minecraft.client.audio.TickableSound;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.core.BlockPos;
 
-public class MusicBoxSound extends TickableSound {
+public class MusicBoxSound extends AbstractTickableSoundInstance {
     private final int duration;
     private int currentTick = 0;
 
     public MusicBoxSound(SoundEvent music, int duration, BlockPos playPos) {
-        super(music, SoundCategory.RECORDS);
+        super(music, SoundSource.RECORDS);
         this.duration = duration;
 
         this.looping = false;

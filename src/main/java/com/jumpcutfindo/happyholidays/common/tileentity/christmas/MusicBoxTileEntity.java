@@ -5,15 +5,16 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
 
-import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.inventory.IClearable;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.Clearable;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -22,7 +23,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class MusicBoxTileEntity extends TileEntity implements IChristmasTileEntity, IClearable, IAnimatable {
+public class MusicBoxTileEntity extends BlockEntity implements IChristmasTileEntity, Clearable, IAnimatable {
     public static final String TILE_ENTITY_ID = "music_box";
 
     private ItemStack sheetMusic = ItemStack.EMPTY;
@@ -30,26 +31,26 @@ public class MusicBoxTileEntity extends TileEntity implements IChristmasTileEnti
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    public MusicBoxTileEntity(TileEntityType<?> tileEntityType) {
-        super(tileEntityType);
+    public MusicBoxTileEntity(BlockEntityType<?> entityType, BlockPos pos, BlockState state) {
+        super(entityType, pos, state);
     }
 
-    public MusicBoxTileEntity() {
-        this(ChristmasTileEntities.MUSIC_BOX_ENTITY_TYPE.get());
+    public MusicBoxTileEntity(BlockPos pos, BlockState state) {
+        this(ChristmasTileEntities.MUSIC_BOX_ENTITY_TYPE.get(), pos, state);
     }
 
     @Override
-    public void load(BlockState p_230337_1_, CompoundNBT p_230337_2_) {
-        super.load(p_230337_1_, p_230337_2_);
+    public void load(CompoundTag p_230337_2_) {
+        super.load(p_230337_2_);
         if (p_230337_2_.contains("SheetMusicItem", 10)) {
             this.setSheetMusic(ItemStack.of(p_230337_2_.getCompound("SheetMusicItem")), false);
         }
     }
 
-    public CompoundNBT save(CompoundNBT p_189515_1_) {
+    public CompoundTag save(CompoundTag p_189515_1_) {
         super.save(p_189515_1_);
         if (!this.getSheetMusic().isEmpty()) {
-            p_189515_1_.put("SheetMusicItem", this.getSheetMusic().save(new CompoundNBT()));
+            p_189515_1_.put("SheetMusicItem", this.getSheetMusic().save(new CompoundTag()));
         }
 
         return p_189515_1_;
@@ -81,8 +82,8 @@ public class MusicBoxTileEntity extends TileEntity implements IChristmasTileEnti
     }
 
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket(){
-        CompoundNBT nbtTag = new CompoundNBT();
+    public ClientboundBlockEntityDataPacket getUpdatePacket(){
+        CompoundTag nbtTag = new CompoundTag();
 
         nbtTag.putBoolean("PlayMusic", !this.getSheetMusic().isEmpty());
 
@@ -90,12 +91,12 @@ public class MusicBoxTileEntity extends TileEntity implements IChristmasTileEnti
             nbtTag.putInt("SheetMusicId", ((SheetMusicItem) this.sheetMusic.getItem()).getMusic().getId());
         }
 
-        return new SUpdateTileEntityPacket(getBlockPos(), -1, nbtTag);
+        return new ClientboundBlockEntityDataPacket(getBlockPos(), -1, nbtTag);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt){
-        CompoundNBT nbtTag = pkt.getTag();
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt){
+        CompoundTag nbtTag = pkt.getTag();
 
         if (nbtTag.getBoolean("PlayMusic")) {
             int id = nbtTag.getInt("SheetMusicId");

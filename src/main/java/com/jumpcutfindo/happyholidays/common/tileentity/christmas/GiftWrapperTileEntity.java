@@ -5,22 +5,23 @@ import com.jumpcutfindo.happyholidays.common.container.christmas.gifts.GiftWrapp
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.LockableTileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.core.NonNullList;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 
-public class GiftWrapperTileEntity extends LockableTileEntity implements IChristmasTileEntity {
+public class GiftWrapperTileEntity extends BaseContainerBlockEntity implements IChristmasTileEntity {
     public static final String TILE_ENTITY_ID = "gift_wrapping_station";
     public static final int SLOTS = 10;
 
@@ -37,21 +38,21 @@ public class GiftWrapperTileEntity extends LockableTileEntity implements IChrist
 
     private GiftWrapperContainer container;
 
-    protected GiftWrapperTileEntity(TileEntityType<?> p_i48285_1_) {
-        super(p_i48285_1_);
+    protected GiftWrapperTileEntity(BlockEntityType<?> entityType, BlockPos pos, BlockState state) {
+        super(entityType, pos, state);
     }
 
-    public GiftWrapperTileEntity() {
-        this(ChristmasTileEntities.GIFT_WRAPPER_ENTITY_TYPE.get());
-    }
-
-    @Override
-    protected ITextComponent getDefaultName() {
-        return new TranslationTextComponent("container." + HappyHolidaysMod.MOD_ID + "." + TILE_ENTITY_ID);
+    public GiftWrapperTileEntity(BlockPos pos, BlockState state) {
+        this(ChristmasTileEntities.GIFT_WRAPPER_ENTITY_TYPE.get(), pos, state);
     }
 
     @Override
-    protected Container createMenu(int id, PlayerInventory playerInv) {
+    protected Component getDefaultName() {
+        return new TranslatableComponent("container." + HappyHolidaysMod.MOD_ID + "." + TILE_ENTITY_ID);
+    }
+
+    @Override
+    protected AbstractContainerMenu createMenu(int id, Inventory playerInv) {
         this.container = new GiftWrapperContainer(id, playerInv, this);
         return this.container;
     }
@@ -74,12 +75,12 @@ public class GiftWrapperTileEntity extends LockableTileEntity implements IChrist
     @Override
     public ItemStack removeItem(int start, int count) {
         if (!this.level.isClientSide()) this.container.slotsChanged(this);
-        return ItemStackHelper.removeItem(this.items, start, count);
+        return ContainerHelper.removeItem(this.items, start, count);
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int index) {
-        return ItemStackHelper.takeItem(this.items, index);
+        return ContainerHelper.takeItem(this.items, index);
     }
 
     @Override
@@ -89,7 +90,7 @@ public class GiftWrapperTileEntity extends LockableTileEntity implements IChrist
     }
 
     @Override
-    public boolean stillValid(PlayerEntity playerEntity) {
+    public boolean stillValid(Player playerEntity) {
         if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
@@ -103,30 +104,30 @@ public class GiftWrapperTileEntity extends LockableTileEntity implements IChrist
     }
 
     @Override
-    public void load(BlockState blockState, CompoundNBT nbt) {
-        super.load(blockState, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
 
         this.items = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.items);
+        ContainerHelper.loadAllItems(nbt, this.items);
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT nbt) {
+    public CompoundTag save(CompoundTag nbt) {
         super.save(nbt);
 
-        ItemStackHelper.saveAllItems(nbt, this.items);
+        ContainerHelper.saveAllItems(nbt, this.items);
 
         return nbt;
     }
 
-    public static ItemStack assembleGift(PlayerEntity playerEntity, IInventory giftWrapperInv) {
+    public static ItemStack assembleGift(Player playerEntity, Container giftWrapperInv) {
         NonNullList<ItemStack> giftItems = NonNullList.withSize(6, ItemStack.EMPTY);
         for (int i = GIFT_ITEMS_SLOT_INDEX_START; i <= GIFT_ITEMS_SLOT_INDEX_END; i++) {
             giftItems.set(i - GIFT_ITEMS_SLOT_INDEX_START, giftWrapperInv.getItem(i));
         }
 
-        CompoundNBT giftItemsNBT = new CompoundNBT();
-        ItemStackHelper.saveAllItems(giftItemsNBT, giftItems);
+        CompoundTag giftItemsNBT = new CompoundTag();
+        ContainerHelper.saveAllItems(giftItemsNBT, giftItems);
 
         ItemStack giftStack = ItemStack.EMPTY;
         if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.RED_DYE.getDefaultInstance())) {
@@ -143,7 +144,7 @@ public class GiftWrapperTileEntity extends LockableTileEntity implements IChrist
             giftStack = ChristmasItems.SILVER_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
         }
 
-        CompoundNBT giftTag = giftStack.getOrCreateTag();
+        CompoundTag giftTag = giftStack.getOrCreateTag();
 
         giftTag.put("Gifts", giftItemsNBT);
         giftTag.putString("WrappedBy", playerEntity.getDisplayName().getString());

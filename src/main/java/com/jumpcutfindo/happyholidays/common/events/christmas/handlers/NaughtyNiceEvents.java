@@ -11,9 +11,9 @@ import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceM
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,9 +27,9 @@ public class NaughtyNiceEvents {
      */
     @SubscribeEvent
     public static void onPlayerDeath(PlayerEvent.Clone event) {
-        PlayerEntity originalPlayer = (PlayerEntity) event.getOriginal();
+        Player originalPlayer = (Player) event.getOriginal();
         if (event.isWasDeath()) {
-            PlayerEntity newPlayer = event.getPlayer();
+            Player newPlayer = event.getPlayer();
 
             Optional<INaughtyNiceHandler> oldCapability =
                     originalPlayer.getCapability(CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY).resolve();
@@ -49,11 +49,11 @@ public class NaughtyNiceEvents {
 
     @SubscribeEvent
     public static void onKillEntity(LivingDeathEvent event) {
-        if (event.getSource().getEntity() instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) event.getSource().getEntity();
+        if (event.getSource().getEntity() instanceof Player) {
+            Player player = (Player) event.getSource().getEntity();
             LivingEntity killedEntity = event.getEntityLiving();
 
-            if (killedEntity.getClassification(false) != EntityClassification.MONSTER) {
+            if (killedEntity.getClassification(false) != MobCategory.MONSTER) {
                 // Killed a non-hostile mob, give naughty points
                 if (killedEntity instanceof SantaElfEntity) NaughtyNiceMeter.evaluateAction(player, NaughtyNiceAction.KILL_SANTA_ELF_EVENT);
                 else NaughtyNiceMeter.evaluateAction(player, NaughtyNiceAction.KILL_PASSIVE_MOB_EVENT);

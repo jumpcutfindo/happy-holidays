@@ -6,12 +6,11 @@ import java.util.List;
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.IReorderingProcessor;
-import net.minecraft.util.text.ITextProperties;
+import net.minecraft.client.gui.Font;
+import net.minecraft.network.chat.FormattedText;
+import net.minecraft.util.FormattedCharSequence;
 
 public class TitlePage implements IPage {
     public static final int LOGO_TEXTURE_X = 0;
@@ -23,7 +22,7 @@ public class TitlePage implements IPage {
     private final GuideScreen guideScreen;
     private final Guide guide;
 
-    private List<IReorderingProcessor> descriptionProcessors = Collections.emptyList();
+    private List<FormattedCharSequence> descriptionProcessors = Collections.emptyList();
 
     public TitlePage(GuideScreen guideScreen, Guide guide) {
         this.guideScreen = guideScreen;
@@ -31,11 +30,11 @@ public class TitlePage implements IPage {
     }
 
     @Override
-    public void draw(MatrixStack matrixStack) {
+    public void draw(PoseStack matrixStack) {
         int x = (guideScreen.width - guideScreen.bgWidth) / 2;
         int y = (guideScreen.height - guideScreen.bgHeight) / 2;
 
-        guideScreen.getMinecraft().getTextureManager().bind(guideScreen.guideBookGUI);
+        guideScreen.getMinecraft().getTextureManager().bindForSetup(guideScreen.guideBookGUI);
 
         // Draw logo
         GuideScreen.blit(matrixStack, x + GuideScreen.PAGE_LEFT_X_START + 4, y + 40, LOGO_TEXTURE_X, LOGO_TEXTURE_Y,
@@ -43,7 +42,7 @@ public class TitlePage implements IPage {
                 guideScreen.textureWidth, guideScreen.textureHeight);
 
         // Draw subtext
-        FontRenderer font = guideScreen.getFontRenderer();
+        Font font = guideScreen.getFontRenderer();
         String guideTitle = guide.getTitle();
         font.draw(matrixStack, guideTitle, x + (int) (guideScreen.bgWidth / 4) - (int) (font.width(guideTitle) / 2),
                 y + 110,
@@ -52,10 +51,10 @@ public class TitlePage implements IPage {
         // Draw description text
         int k = Math.min(GuideScreen.PAGE_HEIGHT / 9, this.descriptionProcessors.size());
         this.descriptionProcessors =
-                this.guideScreen.getFontRenderer().split(ITextProperties.of(this.guide.getDescription()), GuideScreen.PAGE_WIDTH);
+                this.guideScreen.getFontRenderer().split(FormattedText.of(this.guide.getDescription()), GuideScreen.PAGE_WIDTH);
 
         for (int i = 0; i < k; i ++) {
-            IReorderingProcessor processor = this.descriptionProcessors.get(i);
+            FormattedCharSequence processor = this.descriptionProcessors.get(i);
             font.draw(matrixStack, processor, x + GuideScreen.PAGE_RIGHT_X_START,
                     y + GuideScreen.PAGE_Y_START + (i * 9), 4210752);
         }

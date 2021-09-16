@@ -5,24 +5,25 @@ import java.util.Random;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameterSets;
-import net.minecraft.loot.LootParameters;
-import net.minecraft.loot.LootTable;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.Vec3;
 
-public class StockingTileEntity extends TileEntity implements IChristmasTileEntity {
+public class StockingTileEntity extends BlockEntity implements IChristmasTileEntity {
     public static final String TILE_ENTITY_ID = "stocking";
 
     private static final ResourceLocation STOCKING_PRESENTS_LOOT_TABLE = new ResourceLocation("happyholidays"
@@ -32,12 +33,12 @@ public class StockingTileEntity extends TileEntity implements IChristmasTileEnti
     private boolean isDoneForNight = false;
     private Random random = new Random();
 
-    public StockingTileEntity(TileEntityType<?> p_i48289_1_) {
-        super(p_i48289_1_);
+    public StockingTileEntity(BlockEntityType<?> entityType, BlockPos pos, BlockState state) {
+        super(entityType, pos, state);
     }
 
-    public StockingTileEntity() {
-        this(ChristmasTileEntities.STOCKING_ENTITY_TYPE.get());
+    public StockingTileEntity(BlockPos pos, BlockState state) {
+        this(ChristmasTileEntities.STOCKING_ENTITY_TYPE.get(), pos, state);
     }
 
     public boolean isEmpty() {
@@ -63,7 +64,7 @@ public class StockingTileEntity extends TileEntity implements IChristmasTileEnti
             double d1 = this.random.nextGaussian() * 0.02D;
             double d2 = this.random.nextGaussian() * 0.02D;
 
-            ((ServerWorld) this.level).sendParticles(ParticleTypes.HAPPY_VILLAGER,
+            ((ServerLevel) this.level).sendParticles(ParticleTypes.HAPPY_VILLAGER,
                     this.random.nextDouble(),
                     this.random.nextDouble() + 0.5D,
                     this.random.nextDouble(),
@@ -76,12 +77,12 @@ public class StockingTileEntity extends TileEntity implements IChristmasTileEnti
     public void dropStockingItems() {
         LootTable lootTable = this.level.getServer().getLootTables().get(STOCKING_PRESENTS_LOOT_TABLE);
 
-        LootContext ctx = new LootContext.Builder((ServerWorld) this.level)
+        LootContext ctx = new LootContext.Builder((ServerLevel) this.level)
                 .withRandom(this.random)
-                .withParameter(LootParameters.ORIGIN, new Vector3d(this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ()))
-                .withParameter(LootParameters.BLOCK_STATE, this.getBlockState())
-                .withParameter(LootParameters.TOOL, Items.WOODEN_HOE.getDefaultInstance())
-                .create(LootParameterSets.BLOCK);
+                .withParameter(LootContextParams.ORIGIN, new Vec3(this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ()))
+                .withParameter(LootContextParams.BLOCK_STATE, this.getBlockState())
+                .withParameter(LootContextParams.TOOL, Items.WOODEN_HOE.getDefaultInstance())
+                .create(LootContextParamSets.BLOCK);
 
         lootTable.getRandomItems(ctx)
                 .forEach(itemStack -> {
@@ -95,7 +96,7 @@ public class StockingTileEntity extends TileEntity implements IChristmasTileEnti
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT nbt) {
+    public CompoundTag save(CompoundTag nbt) {
         super.save(nbt);
         nbt.putBoolean("IsEmpty", this.isEmpty);
         nbt.putBoolean("IsDoneForNight", this.isDoneForNight);
@@ -103,27 +104,28 @@ public class StockingTileEntity extends TileEntity implements IChristmasTileEnti
         return nbt;
     }
 
+
     @Override
-    public void load(BlockState blockState, CompoundNBT nbt) {
-        super.load(blockState, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
 
         this.isEmpty = nbt.getBoolean("IsEmpty");
         this.isDoneForNight = nbt.getBoolean("IsDoneForNight");
     }
 
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket(){
-        CompoundNBT nbtTag = new CompoundNBT();
+    public ClientboundBlockEntityDataPacket getUpdatePacket(){
+        CompoundTag nbtTag = new CompoundTag();
 
         nbtTag.putBoolean("IsEmpty", this.isEmpty);
         nbtTag.putBoolean("IsDoneForNight", this.isDoneForNight);
 
-        return new SUpdateTileEntityPacket(getBlockPos(), -1, nbtTag);
+        return new ClientboundBlockEntityDataPacket(getBlockPos(), -1, nbtTag);
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt){
-        CompoundNBT nbtTag = pkt.getTag();
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt){
+        CompoundTag nbtTag = pkt.getTag();
 
         this.isEmpty = nbtTag.getBoolean("IsEmpty");
         this.isDoneForNight = nbtTag.getBoolean("IsDoneForNight");

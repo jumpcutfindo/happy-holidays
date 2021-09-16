@@ -3,44 +3,44 @@ package com.jumpcutfindo.happyholidays.common.container.christmas.gifts;
 import java.util.List;
 import java.util.Objects;
 
+import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.GiftWrapperTileEntity;
-import com.google.common.collect.Lists;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.play.server.SSetSlotPacket;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IWorldPosCallable;
-import net.minecraft.world.World;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 
-public class GiftWrapperContainer extends Container {
+public class GiftWrapperContainer extends AbstractContainerMenu {
     public static final String CONTAINER_ID = "gift_wrapping_station";
 
     public final GiftWrapperTileEntity tileEntity;
-    private final IWorldPosCallable canInteractWithCallable;
+    private final ContainerLevelAccess canInteractWithCallable;
 
-    private final PlayerInventory playerInv;
+    private final Inventory playerInv;
 
     public Slot stringSlot, paperSlot, dyeSlot, resultSlot;
     public List<Slot> giftItemSlots;
 
-    public GiftWrapperContainer(final int windowId, final PlayerInventory playerInv,
+    public GiftWrapperContainer(final int windowId, final Inventory playerInv,
                                 final GiftWrapperTileEntity tileEntity) {
         super(ChristmasContainers.GIFT_WRAPPER_CONTAINER.get(), windowId);
 
         this.tileEntity = tileEntity;
         this.playerInv = playerInv;
 
-        canInteractWithCallable = IWorldPosCallable.create(tileEntity.getLevel(), tileEntity.getBlockPos());
+        canInteractWithCallable = ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos());
 
         // Other slots
         stringSlot = this.addSlot(new Slot(tileEntity, 0, 16, 16));
@@ -69,20 +69,20 @@ public class GiftWrapperContainer extends Container {
         }
     }
 
-    public GiftWrapperContainer(final int windowId, final PlayerInventory playerInv, final PacketBuffer data) {
+    public GiftWrapperContainer(final int windowId, final Inventory playerInv, final FriendlyByteBuf data) {
         this(windowId, playerInv, GiftWrapperContainer.getTileEntity(playerInv, data));
     }
 
     @Override
-    public void removed(PlayerEntity p_75134_1_) {
+    public void removed(Player p_75134_1_) {
         super.removed(p_75134_1_);
         this.playerInv.stopOpen(p_75134_1_);
     }
 
-    public static void handleSlotsChanged(int containerId, World world, PlayerEntity playerEntity,
-                               IInventory playerInv, IInventory giftWrapperInv) {
+    public static void handleSlotsChanged(int containerId, int stateId, Level world, Player playerEntity,
+                               Container playerInv, Container giftWrapperInv) {
         if (!world.isClientSide) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) playerEntity;
+            ServerPlayer serverPlayer = (ServerPlayer) playerEntity;
             ItemStack itemStack = ItemStack.EMPTY;
 
             if (checkAllItemsPresent(giftWrapperInv)) {
@@ -92,11 +92,12 @@ public class GiftWrapperContainer extends Container {
             giftWrapperInv.setItem(GiftWrapperTileEntity.RESULT_SLOT_INDEX, itemStack);
             giftWrapperInv.setChanged();
 
-            serverPlayer.connection.send(new SSetSlotPacket(containerId, GiftWrapperTileEntity.RESULT_SLOT_INDEX, itemStack));
+            serverPlayer.connection.send(new ClientboundContainerSetSlotPacket(containerId, stateId,
+                    GiftWrapperTileEntity.RESULT_SLOT_INDEX, itemStack));
         }
     }
 
-    public static boolean checkAllItemsPresent(IInventory giftWrapperInv) {
+    public static boolean checkAllItemsPresent(Container giftWrapperInv) {
         ItemStack stringItems = giftWrapperInv.getItem(GiftWrapperTileEntity.STRING_SLOT_INDEX);
         ItemStack paperItems = giftWrapperInv.getItem(GiftWrapperTileEntity.PAPER_SLOT_INDEX);
         ItemStack dyeItems = giftWrapperInv.getItem(GiftWrapperTileEntity.DYE_SLOT_INDEX);
@@ -114,22 +115,23 @@ public class GiftWrapperContainer extends Container {
     }
 
     @Override
-    public void slotsChanged(IInventory inventory) {
+    public void slotsChanged(Container inventory) {
         this.canInteractWithCallable.execute((world, blockPos) -> {
-            handleSlotsChanged(this.containerId, world, this.playerInv.player, this.playerInv, this.tileEntity);
+            handleSlotsChanged(this.containerId, this.getStateId(), world, this.playerInv.player, this.playerInv,
+                    this.tileEntity);
         });
     }
 
     @Override
-    public boolean stillValid(PlayerEntity playerEntity) {
+    public boolean stillValid(Player playerEntity) {
         return this.playerInv.stillValid(playerEntity);
     }
 
-    private static GiftWrapperTileEntity getTileEntity(final PlayerInventory playerInv, final PacketBuffer data) {
+    private static GiftWrapperTileEntity getTileEntity(final Inventory playerInv, final FriendlyByteBuf data) {
         Objects.requireNonNull(playerInv, "Player inventory cannot be null");
         Objects.requireNonNull(data, "Packet buffer cannot be null");
 
-        final TileEntity te = playerInv.player.getCommandSenderWorld().getBlockEntity(data.readBlockPos());
+        final BlockEntity te = playerInv.player.getCommandSenderWorld().getBlockEntity(data.readBlockPos());
         if (te instanceof GiftWrapperTileEntity) {
             return (GiftWrapperTileEntity) te;
         }
@@ -138,7 +140,7 @@ public class GiftWrapperContainer extends Container {
     }
 
     @Override
-    public ItemStack quickMoveStack(PlayerEntity playerEntity, int selectedSlot) {
+    public ItemStack quickMoveStack(Player playerEntity, int selectedSlot) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(selectedSlot);
 

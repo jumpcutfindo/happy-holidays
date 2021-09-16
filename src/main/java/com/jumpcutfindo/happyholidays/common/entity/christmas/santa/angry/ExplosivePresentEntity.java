@@ -1,22 +1,21 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry;
 
-import net.minecraft.client.renderer.entity.TNTRenderer;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.item.TNTEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.item.PrimedTnt;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.controller.AnimationController;
@@ -25,7 +24,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class ExplosivePresentEntity extends Entity implements IAnimatable {
-    private static final DataParameter<Integer> DATA_FUSE_ID = EntityDataManager.defineId(TNTEntity.class, DataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(PrimedTnt.class, EntityDataSerializers.INT);
 
     public static final String ENTITY_ID = "explosive_present";
 
@@ -36,7 +35,7 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable {
 
     private int life;
 
-    public ExplosivePresentEntity(EntityType<?> entityType, World world) {
+    public ExplosivePresentEntity(EntityType<?> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -46,7 +45,7 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable {
 
         this.setLife(40);
 
-        this.level.playSound(null, this.blockPosition(), SoundEvents.TNT_PRIMED, SoundCategory.BLOCKS, 1.0f, 1.0f);
+        this.level.playSound(null, this.blockPosition(), SoundEvents.TNT_PRIMED, SoundSource.BLOCKS, 1.0f, 1.0f);
         this.noPhysics = false;
     }
 
@@ -60,8 +59,8 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable {
     }
 
     private void explode() {
-        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 2.5F, Explosion.Mode.NONE);
-        this.remove();
+        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 2.5F, Explosion.BlockInteraction.NONE);
+        this.remove(RemovalReason.KILLED);
     }
 
     @Override
@@ -95,24 +94,24 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable {
         this.entityData.define(DATA_FUSE_ID, 40);
     }
 
-    public void onSyncedDataUpdated(DataParameter<?> p_184206_1_) {
+    public void onSyncedDataUpdated(EntityDataAccessor<?> p_184206_1_) {
         if (DATA_FUSE_ID.equals(p_184206_1_)) {
             this.life = this.entityData.get(DATA_FUSE_ID);
         }
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundNBT nbt) {
+    protected void readAdditionalSaveData(CompoundTag nbt) {
         nbt.putShort("Fuse", (short) this.getLife());
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundNBT nbt) {
+    protected void addAdditionalSaveData(CompoundTag nbt) {
         this.setLife(nbt.getShort("Fuse"));
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

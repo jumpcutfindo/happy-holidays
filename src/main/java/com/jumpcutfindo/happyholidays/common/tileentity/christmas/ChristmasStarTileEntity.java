@@ -2,7 +2,6 @@ package com.jumpcutfindo.happyholidays.common.tileentity.christmas;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
@@ -14,7 +13,6 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy.HappySantaEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
@@ -24,37 +22,36 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEnt
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 import com.jumpcutfindo.happyholidays.server.data.SantaSummonSavedData;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.LockableTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.IIntArray;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.BossInfo;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerBossInfo;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 
-public class ChristmasStarTileEntity extends LockableTileEntity implements IChristmasTileEntity, ITickableTileEntity {
+public class ChristmasStarTileEntity extends BaseContainerBlockEntity implements IChristmasTileEntity {
     public static final String TILE_ENTITY_ID = "christmas_star";
     public static final int SLOTS = 6;
 
@@ -74,12 +71,12 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
     private boolean isGoodSanta;
     private int summonSantaProgress;
 
-    private AxisAlignedBB areaOfEffect;
-    private final ServerBossInfo summonEvent = (ServerBossInfo) (new ServerBossInfo(new TranslationTextComponent(
+    private AABB areaOfEffect;
+    private final ServerBossEvent summonEvent = (ServerBossEvent) (new ServerBossEvent(new TranslatableComponent(
             "entity.happyholidays.santa_is_coming"),
-            BossInfo.Color.WHITE, BossInfo.Overlay.PROGRESS));
+            BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS));
 
-    public final IIntArray dataAccess = new IIntArray() {
+    public final ContainerData dataAccess = new ContainerData() {
         @Override
         public int get(int code) {
             switch (code) {
@@ -112,21 +109,21 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
 
     protected NonNullList<ItemStack> items = NonNullList.withSize(SLOTS, ItemStack.EMPTY);
 
-    public ChristmasStarTileEntity(TileEntityType<?> tileEntityType) {
-        super(tileEntityType);
+    public ChristmasStarTileEntity(BlockEntityType<?> entityType, BlockPos pos, BlockState state) {
+        super(entityType, pos, state);
     }
 
-    public ChristmasStarTileEntity() {
-        this(ChristmasTileEntities.CHRISTMAS_STAR_ENTITY_TYPE.get());
-    }
-
-    @Override
-    protected ITextComponent getDefaultName() {
-        return new TranslationTextComponent("container." + HappyHolidaysMod.MOD_ID + "." + TILE_ENTITY_ID);
+    public ChristmasStarTileEntity(BlockPos pos, BlockState state) {
+        this(ChristmasTileEntities.CHRISTMAS_STAR_ENTITY_TYPE.get(), pos, state);
     }
 
     @Override
-    protected Container createMenu(int id, PlayerInventory playerInv) {
+    protected Component getDefaultName() {
+        return new TranslatableComponent("container." + HappyHolidaysMod.MOD_ID + "." + TILE_ENTITY_ID);
+    }
+
+    @Override
+    protected AbstractContainerMenu createMenu(int id, Inventory playerInv) {
         return new ChristmasStarContainer(id, playerInv, this);
     }
 
@@ -147,12 +144,12 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
 
     @Override
     public ItemStack removeItem(int start, int end) {
-        return ItemStackHelper.removeItem(this.items, start, end);
+        return ContainerHelper.removeItem(this.items, start, end);
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int index) {
-        return ItemStackHelper.takeItem(this.items, index);
+        return ContainerHelper.takeItem(this.items, index);
     }
 
     @Override
@@ -161,7 +158,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
     }
 
     @Override
-    public boolean stillValid(PlayerEntity playerEntity) {
+    public boolean stillValid(Player playerEntity) {
         if (this.level.getBlockEntity(this.worldPosition) != this) {
             return false;
         } else {
@@ -176,17 +173,17 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
 
     public void applyPlayerEffects() {
         if (!this.level.isClientSide() && this.currentTier > 0) {
-            AxisAlignedBB axisAlignedBB = new AxisAlignedBB(this.worldPosition).inflate(PLAYER_EFFECT_RADIUS[this.currentTier]);
-            List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, axisAlignedBB);
+            AABB axisAlignedBB = new AABB(this.worldPosition).inflate(PLAYER_EFFECT_RADIUS[this.currentTier]);
+            List<Player> playerList = this.level.getEntitiesOfClass(Player.class, axisAlignedBB);
 
-            for (PlayerEntity playerEntity : playerList) {
+            for (Player playerEntity : playerList) {
                 if (playerEntity.getEffect(ChristmasEffects.SPIRIT_OF_CHRISTMAS_EFFECT.get()) == null) {
                     // Fresh application of effect, play sound
-                    ((ServerWorld) this.level).playSound(null, playerEntity.blockPosition(),
-                            ChristmasSounds.CHRISTMAS_STAR_EFFECT_APPLY.get(), SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                    ((ServerLevel) this.level).playSound(null, playerEntity.blockPosition(),
+                            ChristmasSounds.CHRISTMAS_STAR_EFFECT_APPLY.get(), SoundSource.NEUTRAL, 1.0f, 1.0f);
                 }
 
-                playerEntity.addEffect(new EffectInstance(ChristmasEffects.SPIRIT_OF_CHRISTMAS_EFFECT.get(),
+                playerEntity.addEffect(new MobEffectInstance(ChristmasEffects.SPIRIT_OF_CHRISTMAS_EFFECT.get(),
                         200, this.currentTier - 1, true, true));
             }
         }
@@ -194,12 +191,12 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
 
     public void applyEntityEffects() {
         if (!this.level.isClientSide() && this.currentTier > 0) {
-            AxisAlignedBB axisAlignedBB = new AxisAlignedBB(this.worldPosition).inflate(ENTITY_EFFECT_RADIUS[this.currentTier]);
+            AABB axisAlignedBB = new AABB(this.worldPosition).inflate(ENTITY_EFFECT_RADIUS[this.currentTier]);
 
             List<ChristmasEntity> christmasEntities = this.level.getEntitiesOfClass(ChristmasEntity.class, axisAlignedBB);
 
             for (ChristmasEntity entity : christmasEntities) {
-                entity.addEffect(new EffectInstance(ChristmasEffects.DEBUFF_OF_CHRISTMAS_EFFECT.get(), 200,
+                entity.addEffect(new MobEffectInstance(ChristmasEffects.DEBUFF_OF_CHRISTMAS_EFFECT.get(), 200,
                         this.currentTier - 1, true, true));
             }
 
@@ -208,11 +205,15 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
 
     public void summonSanta() {
         if (this.level != null && !this.level.isClientSide()) {
-            ServerWorld serverWorld = (ServerWorld) this.level;
-            SantaSummonSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(SantaSummonSavedData::new,
-                    SantaSummonSavedData.DATA_NAME);
+            ServerLevel serverWorld = (ServerLevel) this.level;
 
-            this.areaOfEffect = new AxisAlignedBB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
+            SantaSummonSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(
+                    SantaSummonSavedData::createFromTag,
+                    SantaSummonSavedData::new,
+                    SantaSummonSavedData.DATA_NAME
+            );
+
+            this.areaOfEffect = new AABB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
 
             boolean isTierOK = this.getCurrentTier() >= 5;
             boolean isValidTime = santaData.canSummon(serverWorld.getGameTime());
@@ -221,9 +222,9 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
             if (!isValidTime) {
                 long timeRemaining = santaData.getNextSummonTime() - serverWorld.getGameTime();
 
-                for (ServerPlayerEntity serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
-                    serverPlayerEntity.sendMessage(new TranslationTextComponent("chat.happyholidays.christmas_star"
-                            + ".santa_not_ready", HappyHolidaysUtils.convertTicksToString(timeRemaining)).withStyle(TextFormatting.RED), UUID.randomUUID());
+                for (ServerPlayer serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
+                    serverPlayerEntity.sendMessage(new TranslatableComponent("chat.happyholidays.christmas_star"
+                            + ".santa_not_ready", HappyHolidaysUtils.convertTicksToString(timeRemaining)).withStyle(ChatFormatting.RED), UUID.randomUUID());
                 }
 
                 return;
@@ -235,7 +236,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
 
             // Reset naughty nice meter of players in radius
             int totalValue = 0, totalPlayers = 0;
-            for (ServerPlayerEntity serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
+            for (ServerPlayer serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
                 int value = NaughtyNiceMeter.getMeterValue(serverPlayerEntity);
                 totalValue += value;
 
@@ -244,7 +245,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
                 NaughtyNiceMeter.resetMeter(serverPlayerEntity);
 
                 // Show boss bar to players around
-                this.summonEvent.setPercent((float) this.summonSantaProgress / (float) (BaseSantaEntity.SUMMON_SANTA_DURATION));
+                this.summonEvent.setProgress((float) this.summonSantaProgress / (float) (BaseSantaEntity.SUMMON_SANTA_DURATION));
                 this.summonEvent.addPlayer(serverPlayerEntity);
             }
 
@@ -263,10 +264,10 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
             // Play relevant sound effects
             if (this.isGoodSanta) {
                 this.level.playSound(null, this.getBlockPos(), ChristmasSounds.SANTA_SPAWNING_GOOD.get(),
-                        SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                        SoundSource.NEUTRAL, 1.0f, 1.0f);
             } else {
                 this.level.playSound(null, this.getBlockPos(), ChristmasSounds.SANTA_SPAWNING_BAD.get(),
-                        SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                        SoundSource.NEUTRAL, 1.0f, 1.0f);
             }
 
             // Start summoning santa
@@ -278,20 +279,20 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
     public void finishSummonSanta() {
         // Summon the appropriate santa
         BaseSantaEntity santaEntity = null;
-        ITextComponent santaText = null;
+        Component santaText = null;
         if (this.isGoodSanta) {
             santaEntity = ChristmasEntities.HAPPY_SANTA.get().create(this.level);
             santaText =
-                    new TranslationTextComponent("entity.happyholidays.santa_arrival_happy").withStyle(TextFormatting.AQUA);
+                    new TranslatableComponent("entity.happyholidays.santa_arrival_happy").withStyle(ChatFormatting.AQUA);
         } else {
             santaEntity = ChristmasEntities.ANGRY_SANTA.get().create(this.level);
             santaText =
-                    new TranslationTextComponent("entity.happyholidays.santa_arrival_angry").withStyle(TextFormatting.RED);
+                    new TranslatableComponent("entity.happyholidays.santa_arrival_angry").withStyle(ChatFormatting.RED);
         }
 
-        List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, this.areaOfEffect);
+        List<Player> playerList = this.level.getEntitiesOfClass(Player.class, this.areaOfEffect);
 
-        ITextComponent finalSantaText = santaText;
+        Component finalSantaText = santaText;
         playerList.forEach(playerEntity -> {
                 playerEntity.sendMessage(finalSantaText, UUID.randomUUID());
 
@@ -307,7 +308,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         this.isSummoningSanta = false;
 
         // Play santa spawn sound
-        this.level.playSound(null, this.getBlockPos(), ChristmasSounds.SANTA_SPAWN.get(), SoundCategory.NEUTRAL,
+        this.level.playSound(null, this.getBlockPos(), ChristmasSounds.SANTA_SPAWN.get(), SoundSource.NEUTRAL,
                 1.0f, 1.0f);
 
         this.summonEvent.removeAllPlayers();
@@ -323,7 +324,7 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
     }
 
     public boolean isPosAffected(BlockPos pos) {
-        return new AxisAlignedBB(this.getBlockPos()).inflate(BLOCK_EFFECT_RADIUS[this.currentTier]).contains(pos.getX(), pos.getY(), pos.getZ());
+        return new AABB(this.getBlockPos()).inflate(BLOCK_EFFECT_RADIUS[this.currentTier]).contains(pos.getX(), pos.getY(), pos.getZ());
     }
 
     /**
@@ -388,13 +389,13 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
             this.level.setBlock(this.worldPosition, this.getBlockState().setValue(ChristmasStarBlock.STAR_TIER,
                     starTier), 0);
             this.level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(),
-                    this.worldPosition.getZ(), SoundEvents.NOTE_BLOCK_BELL, SoundCategory.BLOCKS, 1.0F,
+                    this.worldPosition.getZ(), SoundEvents.NOTE_BLOCK_BELL, SoundSource.BLOCKS, 1.0F,
                     1.0F + newTier * 0.1F);
         }
 
         if (oldTier < newTier && !this.level.isClientSide()) {
             BlockPos blockPos = this.getBlockPos();
-            PlayerEntity playerEntity = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(),
+            Player playerEntity = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(),
                     10.0D, false);
 
             if (playerEntity != null) {
@@ -404,72 +405,71 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         }
     }
 
-    @Override
-    public void tick() {
-        if (this.level != null && !this.level.isClientSide()) {
+    public static void serverTick(Level level, BlockPos pos, BlockState blockState, ChristmasStarTileEntity tileEntity) {
+        if (level != null && !level.isClientSide()) {
 
-            if (this.level.getGameTime() % 80L == 0L) {
-                this.applyPlayerEffects();
-                this.applyEntityEffects();
+            if (level.getGameTime() % 80L == 0L) {
+                tileEntity.applyPlayerEffects();
+                tileEntity.applyEntityEffects();
             }
 
-            if (isSummoningSanta) {
+            if (tileEntity.isSummoningSanta) {
                 double d0 = (Math.random() * 0.1D) + 0.25D;
                 double d1 = (Math.random() * 0.1D) + 0.25D;
                 double d2 = (Math.random() * 0.1D) + 0.25D;
 
                 double d = Math.random();
-                BasicParticleType particleType = d < 0.5 ? ChristmasParticles.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
+                SimpleParticleType particleType = d < 0.5 ? ChristmasParticles.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
                         ChristmasParticles.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get();
 
-                ((ServerWorld) this.level).sendParticles(particleType,
-                        this.getBlockPos().getX() + 0.5D,
-                        this.getBlockPos().getY() + d1 + 1.5D,
-                        this.getBlockPos().getZ() + 0.5D,
+                ((ServerLevel) level).sendParticles(particleType,
+                        tileEntity.getBlockPos().getX() + 0.5D,
+                        tileEntity.getBlockPos().getY() + d1 + 1.5D,
+                        tileEntity.getBlockPos().getZ() + 0.5D,
                         2, d0, d1, d2, 0.0D);
 
-                if (this.level.getGameTime() % 60L == 0) {
-                    List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, this.areaOfEffect);
+                if (level.getGameTime() % 60L == 0) {
+                    List<Player> playerList = level.getEntitiesOfClass(Player.class, tileEntity.areaOfEffect);
 
                     // Remove players outside the AOE
-                    for (ServerPlayerEntity serverPlayerEntity : this.summonEvent.getPlayers()) {
-                        if (!playerList.contains(serverPlayerEntity)) this.summonEvent.removePlayer(serverPlayerEntity);
+                    for (ServerPlayer serverPlayerEntity : tileEntity.summonEvent.getPlayers()) {
+                        if (!playerList.contains(serverPlayerEntity)) tileEntity.summonEvent.removePlayer(serverPlayerEntity);
                     }
 
                     // Add players inside the AOE
-                    for (PlayerEntity playerEntity : playerList) {
-                        ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) playerEntity;
-                        if (!this.summonEvent.getPlayers().contains(serverPlayerEntity)) this.summonEvent.addPlayer((ServerPlayerEntity) playerEntity);
+                    for (Player playerEntity : playerList) {
+                        ServerPlayer serverPlayerEntity = (ServerPlayer) playerEntity;
+                        if (!tileEntity.summonEvent.getPlayers().contains(serverPlayerEntity)) tileEntity.summonEvent.addPlayer((ServerPlayer) playerEntity);
                     }
                 }
 
-                this.summonEvent.setPercent((float) (BaseSantaEntity.SUMMON_SANTA_DURATION - this.summonSantaProgress) / (float) (BaseSantaEntity.SUMMON_SANTA_DURATION));
+                tileEntity.summonEvent.setProgress((float) (BaseSantaEntity.SUMMON_SANTA_DURATION - tileEntity.summonSantaProgress) / (float) (BaseSantaEntity.SUMMON_SANTA_DURATION));
             }
 
-            if (isSummoningSanta && --this.summonSantaProgress <= 0) {
-                this.finishSummonSanta();
+            if (tileEntity.isSummoningSanta && --tileEntity.summonSantaProgress <= 0) {
+                tileEntity.finishSummonSanta();
             }
         }
 
-        this.updatePoints();
+        tileEntity.updatePoints();
     }
 
     @Override
-    public void load(BlockState blockState, CompoundNBT nbt) {
-        super.load(blockState, nbt);
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
 
         this.items = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(nbt, this.items);
+        ContainerHelper.loadAllItems(nbt, this.items);
 
         this.currentTier = nbt.getInt("CurrentTier");
         this.currentPoints = nbt.getInt("CurrentPoints");
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT nbt) {
+    public CompoundTag save(CompoundTag nbt) {
         super.save(nbt);
 
-        ItemStackHelper.saveAllItems(nbt, this.items);
+        ContainerHelper.saveAllItems(nbt, this.items);
 
         nbt.putInt("CurrentTier", this.currentTier);
         nbt.putInt("CurrentPoints", this.currentPoints);
@@ -477,31 +477,22 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         return nbt;
     }
 
-    public static ChristmasStarTileEntity getStarInfluencingBlock(World world, BlockPos blockPos) {
+    public static ChristmasStarTileEntity getStarInfluencingBlock(Level level, BlockPos blockPos) {
         // Find all blocks that could possibly affect the block at blockPos
         int maxRadius = BLOCK_EFFECT_RADIUS[MAX_RADIUS_INDEX];
-        AxisAlignedBB blockBoundingBox = new AxisAlignedBB(blockPos).inflate(maxRadius);
-        List<TileEntity> tileEntityList = world.blockEntityList
-                .stream().filter(tileEntity -> tileEntity instanceof ChristmasStarTileEntity
-                        && blockBoundingBox.contains(tileEntity.getBlockPos().getX(),
-                        tileEntity.getBlockPos().getY(),
-                        tileEntity.getBlockPos().getZ()))
-                .collect(Collectors.toList());
+        List<ChristmasStarTileEntity> tileEntityList = getStarsAround(level, blockPos, maxRadius);
 
         // Iterate through the list and figure out the highest level
         ChristmasStarTileEntity influencingTileEntity = null;
-        for (TileEntity tileEntity : tileEntityList) {
-            if (tileEntity instanceof ChristmasStarTileEntity) {
-                ChristmasStarTileEntity christmasStarTileEntity = (ChristmasStarTileEntity) tileEntity;
-                int effectRadius = BLOCK_EFFECT_RADIUS[christmasStarTileEntity.getCurrentTier()];
-                AxisAlignedBB effectBoundingBox = new AxisAlignedBB(tileEntity.getBlockPos()).inflate(effectRadius);
+        for (ChristmasStarTileEntity tileEntity : tileEntityList) {
+            int effectRadius = BLOCK_EFFECT_RADIUS[tileEntity.getCurrentTier()];
+            AABB effectBoundingBox = new AABB(tileEntity.getBlockPos()).inflate(effectRadius);
 
-                // Check whether the tile entity being considered can influence the block, and whether it is at a higher
-                // tier compared to the current tile entity
-                if (effectBoundingBox.contains(blockPos.getX(), blockPos.getY(), blockPos.getZ())) {
-                    if (influencingTileEntity == null || christmasStarTileEntity.getCurrentTier() > influencingTileEntity.getCurrentTier()) {
-                        influencingTileEntity = christmasStarTileEntity;
-                    }
+            // Check whether the tile entity being considered can influence the block, and whether it is at a higher
+            // tier compared to the current tile entity
+            if (effectBoundingBox.contains(blockPos.getX(), blockPos.getY(), blockPos.getZ())) {
+                if (influencingTileEntity == null || tileEntity.getCurrentTier() > influencingTileEntity.getCurrentTier()) {
+                    influencingTileEntity = tileEntity;
                 }
             }
         }
@@ -509,35 +500,45 @@ public class ChristmasStarTileEntity extends LockableTileEntity implements IChri
         return influencingTileEntity;
     }
 
-    public static ChristmasStarTileEntity getStarInfluencingEntity(World world, Vector3d vector3d) {
+    public static ChristmasStarTileEntity getStarInfluencingEntity(Level level, Vec3 vector3d) {
         // Find all blocks that could possibly affect the block at blockPos
         int maxRadius = ENTITY_EFFECT_RADIUS[MAX_RADIUS_INDEX];
-        AxisAlignedBB blockBoundingBox = new AxisAlignedBB(new BlockPos(vector3d)).inflate(maxRadius);
-        List<TileEntity> tileEntityList = world.blockEntityList
-                .stream().filter(tileEntity -> tileEntity instanceof ChristmasStarTileEntity
-                        && blockBoundingBox.contains(tileEntity.getBlockPos().getX(),
-                        tileEntity.getBlockPos().getY(),
-                        tileEntity.getBlockPos().getZ()))
-                .collect(Collectors.toList());
+        List<ChristmasStarTileEntity> tileEntityList = getStarsAround(level, new BlockPos(vector3d), maxRadius);
 
         // Iterate through the list and figure out the highest level
         ChristmasStarTileEntity influencingTileEntity = null;
-        for (TileEntity tileEntity : tileEntityList) {
-            if (tileEntity instanceof ChristmasStarTileEntity) {
-                ChristmasStarTileEntity christmasStarTileEntity = (ChristmasStarTileEntity) tileEntity;
-                int effectRadius = ENTITY_EFFECT_RADIUS[christmasStarTileEntity.getCurrentTier()];
-                AxisAlignedBB effectBoundingBox = new AxisAlignedBB(tileEntity.getBlockPos()).inflate(effectRadius);
+        for (ChristmasStarTileEntity tileEntity : tileEntityList) {
+            int effectRadius = ENTITY_EFFECT_RADIUS[tileEntity.getCurrentTier()];
+            AABB effectBoundingBox = new AABB(tileEntity.getBlockPos()).inflate(effectRadius);
 
-                // Check whether the tile entity being considered can influence the block, and whether it is at a higher
-                // tier compared to the current tile entity
-                if (effectBoundingBox.contains(vector3d)) {
-                    if (influencingTileEntity == null || christmasStarTileEntity.getCurrentTier() > influencingTileEntity.getCurrentTier()) {
-                        influencingTileEntity = christmasStarTileEntity;
-                    }
+            // Check whether the tile entity being considered can influence the block, and whether it is at a higher
+            // tier compared to the current tile entity
+            if (effectBoundingBox.contains(vector3d)) {
+                if (influencingTileEntity == null || tileEntity.getCurrentTier() > influencingTileEntity.getCurrentTier()) {
+                    influencingTileEntity = tileEntity;
                 }
             }
         }
 
         return influencingTileEntity;
+    }
+
+    public static List<ChristmasStarTileEntity> getStarsAround(Level level, BlockPos pos, int maxRadius) {
+        AABB blockBoundingBox = new AABB(pos).inflate(maxRadius);
+
+        List<ChristmasStarTileEntity> tileEntityList = Lists.newArrayList();
+        for (int i = (int) blockBoundingBox.minX; i < blockBoundingBox.maxX; i++) {
+            for (int j = (int) blockBoundingBox.minY; j < blockBoundingBox.maxY; j++) {
+                for (int k = (int) blockBoundingBox.minZ; k < blockBoundingBox.maxZ; k++) {
+                    BlockPos currPos = new BlockPos(i, j, k);
+                    BlockEntity blockEntity = level.getBlockEntity(currPos);
+                    if (blockEntity instanceof ChristmasStarTileEntity) {
+                        tileEntityList.add((ChristmasStarTileEntity) blockEntity);
+                    }
+                }
+            }
+        }
+
+        return tileEntityList;
     }
 }

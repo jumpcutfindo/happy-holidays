@@ -5,26 +5,15 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.BaubleOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.BigBaubleOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.rare.HeadOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.LegendaryOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.ChristmasLightBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.TinselBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.item.IHappyHolidaysItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodBlockItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -49,8 +38,8 @@ public class ChristmasItem extends Item implements IHappyHolidaysItem {
     }
 
     @Override
-    public ITextComponent getName(ItemStack itemStack) {
-        TranslationTextComponent name = new TranslationTextComponent(this.getDescriptionId(itemStack));
+    public Component getName(ItemStack itemStack) {
+        TranslatableComponent name = new TranslatableComponent(this.getDescriptionId(itemStack));
 
         switch (christmasRarity) {
         case RARE:
@@ -65,9 +54,9 @@ public class ChristmasItem extends Item implements IHappyHolidaysItem {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack itemStack, @Nullable World world, List<ITextComponent> textComponents, ITooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack itemStack, @Nullable Level world, List<Component> textComponents, TooltipFlag tooltipFlag) {
         for (String description : tooltipDescriptions) {
-            textComponents.add(new StringTextComponent(description));
+            textComponents.add(new TextComponent(description));
         }
     }
 }

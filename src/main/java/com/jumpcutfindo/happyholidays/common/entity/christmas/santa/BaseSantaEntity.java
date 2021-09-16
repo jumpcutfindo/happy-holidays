@@ -5,13 +5,13 @@ import javax.annotation.Nullable;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.level.Level;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -23,7 +23,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class BaseSantaEntity extends ChristmasEntity implements IAnimatable {
     public static final float MAX_HEALTH = 200.0f;
 
-    public static final AttributeModifierMap ENTITY_ATTRIBUTES =
+    public static final AttributeSupplier ENTITY_ATTRIBUTES =
             createMobAttributes()
                     .add(Attributes.MAX_HEALTH, MAX_HEALTH)
                     .add(Attributes.MOVEMENT_SPEED, 0.30D)
@@ -42,7 +42,7 @@ public class BaseSantaEntity extends ChristmasEntity implements IAnimatable {
     private AnimationFactory factory = new AnimationFactory(this);
 
 
-    public BaseSantaEntity(EntityType<? extends CreatureEntity> entityType, World world) {
+    public BaseSantaEntity(EntityType<? extends PathfinderMob> entityType, Level world) {
         super(entityType, world);
     }
 

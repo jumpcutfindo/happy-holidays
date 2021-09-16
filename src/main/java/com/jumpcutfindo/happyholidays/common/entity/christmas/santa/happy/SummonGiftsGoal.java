@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy;
 
-import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.Goal;
 
 public class SummonGiftsGoal extends Goal {
     private HappySantaEntity santaEntity;

@@ -8,24 +8,24 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.UseAction;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.core.NonNullList;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 
 public class ChristmasGiftItem extends ChristmasItem {
     public static final String RED_GIFT_ID = "red_christmas_gift";
@@ -44,24 +44,24 @@ public class ChristmasGiftItem extends ChristmasItem {
     }
 
     @Override
-    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         player.startUsingItem(hand);
         player.playSound(ChristmasSounds.CHRISTMAS_GIFT_BOX_SHAKE.get(), 1.0F, 1.0F);
-        return ActionResult.sidedSuccess(player.getItemInHand(hand), world.isClientSide());
+        return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), world.isClientSide());
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livingEntity) {
-        if (livingEntity instanceof PlayerEntity) {
-            PlayerEntity playerEntity = (PlayerEntity) livingEntity;
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity livingEntity) {
+        if (livingEntity instanceof Player) {
+            Player playerEntity = (Player) livingEntity;
 
-            CompoundNBT nbt = stack.getTag();
+            CompoundTag nbt = stack.getTag();
             if (nbt != null) {
-                CompoundNBT giftsNBT = nbt.getCompound("Gifts");
+                CompoundTag giftsNBT = nbt.getCompound("Gifts");
 
                 NonNullList<ItemStack> giftList = NonNullList.withSize(6, ItemStack.EMPTY);
 
-                ItemStackHelper.loadAllItems(giftsNBT, giftList);
+                ContainerHelper.loadAllItems(giftsNBT, giftList);
 
                 for (ItemStack giftItem : giftList) {
                     ItemEntity giftEntity = new ItemEntity(world, playerEntity.getX(), playerEntity.getY(),
@@ -79,8 +79,8 @@ public class ChristmasGiftItem extends ChristmasItem {
     }
 
     @Override
-    public UseAction getUseAnimation(ItemStack stack) {
-        return UseAction.BOW;
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.BOW;
     }
 
     @Override
@@ -90,20 +90,20 @@ public class ChristmasGiftItem extends ChristmasItem {
 
     @Override
     public boolean isFoil(ItemStack itemStack) {
-        CompoundNBT nbt = itemStack.getTag();
+        CompoundTag nbt = itemStack.getTag();
 
         return nbt != null && nbt.contains("WrappedBy");
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable World world, List<ITextComponent> textComponents, ITooltipFlag tooltipFlag) {
-        CompoundNBT nbt = itemStack.getTag();
+    public void appendHoverText(ItemStack itemStack, @Nullable Level world, List<Component> textComponents, TooltipFlag tooltipFlag) {
+        CompoundTag nbt = itemStack.getTag();
 
         if (nbt != null && nbt.contains("WrappedBy")) {
-            IFormattableTextComponent wrappedByText = new TranslationTextComponent("item.happyholidays.christmas_gift.desc", nbt.getString(
+            MutableComponent wrappedByText = new TranslatableComponent("item.happyholidays.christmas_gift.desc", nbt.getString(
                     "WrappedBy"));
-            wrappedByText.withStyle(TextFormatting.GRAY);
-            wrappedByText.withStyle(TextFormatting.ITALIC);
+            wrappedByText.withStyle(ChatFormatting.GRAY);
+            wrappedByText.withStyle(ChatFormatting.ITALIC);
 
             textComponents.add(wrappedByText);
         }

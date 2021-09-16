@@ -12,53 +12,52 @@ import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceA
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.merchant.IMerchant;
-import net.minecraft.entity.merchant.villager.VillagerTrades;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.FireworkRocketEntity;
-import net.minecraft.item.DyeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.MerchantOffer;
-import net.minecraft.item.MerchantOffers;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameterSets;
-import net.minecraft.loot.LootTable;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.FireworkRocketEntity;
+import net.minecraft.world.item.DyeItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.Merchant;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.item.trading.MerchantOffers;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraftforge.common.MinecraftForge;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -68,10 +67,10 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMerchant {
+public class SantaElfEntity extends ChristmasEntity implements IAnimatable, Merchant {
     public static final String ENTITY_ID = "santa_elf";
-    public static final AttributeModifierMap ENTITY_ATTRIBUTES =
-            MobEntity.createMobAttributes()
+    public static final AttributeSupplier ENTITY_ATTRIBUTES =
+            Mob.createMobAttributes()
                     .add(Attributes.MAX_HEALTH, 20.0f)
                     .add(Attributes.MOVEMENT_SPEED, 0.27D)
                     .build();
@@ -87,7 +86,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
     private AnimationFactory factory = new AnimationFactory(this);
 
     @Nullable
-    private PlayerEntity tradingPlayer;
+    private Player tradingPlayer;
     @Nullable
     protected MerchantOffers offers;
 
@@ -102,7 +101,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
     private boolean isRequestOutdated = false;
     private int timeToCompleteRequest;
 
-    public SantaElfEntity(EntityType<? extends CreatureEntity> entityType, World world) {
+    public SantaElfEntity(EntityType<? extends PathfinderMob> entityType, Level world) {
         super(entityType, world);
 
         this.despawnDelay = DEFAULT_DESPAWN_DELAY;
@@ -119,10 +118,10 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         this.goalSelector.addGoal(1, new PickupRequestedItemGoal(this));
         this.goalSelector.addGoal(1, new SwapToyPartsRequestGoal(this));
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
-        this.goalSelector.addGoal(3, new SwimGoal(this));
-        this.goalSelector.addGoal(4, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(3, new FloatGoal(this));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
 
     }
 
@@ -160,13 +159,13 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
     }
 
     @Override
-    protected ActionResultType mobInteract(PlayerEntity playerEntity, Hand hand) {
+    protected InteractionResult mobInteract(Player playerEntity, InteractionHand hand) {
         if (this.getOffers().isEmpty()) {
-            return ActionResultType.sidedSuccess(this.level.isClientSide);
+            return InteractionResult.sidedSuccess(this.level.isClientSide);
         } else {
             if (!this.level.isClientSide) {
                 // Set prices based on debuff placed on elf
-                EffectInstance christmasDebuff = this.getEffect(ChristmasEffects.DEBUFF_OF_CHRISTMAS_EFFECT.get());
+                MobEffectInstance christmasDebuff = this.getEffect(ChristmasEffects.DEBUFF_OF_CHRISTMAS_EFFECT.get());
                 if (christmasDebuff != null) {
                     double discount;
 
@@ -189,18 +188,18 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
                 this.openTradingScreen(playerEntity, this.getDisplayName(), 1);
             }
 
-            return ActionResultType.sidedSuccess(this.level.isClientSide);
+            return InteractionResult.sidedSuccess(this.level.isClientSide);
         }
     }
 
     @Override
-    public void setTradingPlayer(@Nullable PlayerEntity playerEntity) {
+    public void setTradingPlayer(@Nullable Player playerEntity) {
         this.tradingPlayer = playerEntity;
     }
 
     @Nullable
     @Override
-    public PlayerEntity getTradingPlayer() {
+    public Player getTradingPlayer() {
         return this.tradingPlayer;
     }
 
@@ -247,7 +246,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
     }
 
     @Override
-    public World getLevel() {
+    public Level getLevel() {
         return this.level;
     }
 
@@ -268,7 +267,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
     protected void rewardTradeXp(MerchantOffer merchantOffer) {
         if (merchantOffer.shouldRewardExp()) {
             int i = 3 + this.random.nextInt(4);
-            this.level.addFreshEntity(new ExperienceOrbEntity(this.level, this.getX(), this.getY() + 0.5D, this.getZ(), i));
+            this.level.addFreshEntity(new ExperienceOrb(this.level, this.getX(), this.getY() + 0.5D, this.getZ(), i));
         }
     }
 
@@ -280,25 +279,25 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         MerchantOffers merchantOffers = this.getOffers();
 
         // Standard trades
-        List<VillagerTrades.ITrade[]> tradesList = ImmutableList.of(
+        List<VillagerTrades.ItemListing[]> tradesList = ImmutableList.of(
                 SantaElfTrades.SMALL_BALL_ORNAMENT_TRADES,
                 SantaElfTrades.BIG_BALL_ORNAMENT_TRADES,
                 SantaElfTrades.TINSEL_TRADES,
                 SantaElfTrades.CHRISTMAS_LIGHT_TRADES
         );
 
-        for (VillagerTrades.ITrade[] trades : tradesList) {
+        for (VillagerTrades.ItemListing[] trades : tradesList) {
             for (int i = 0; i < 1; i++) {
                 int randInt = this.random.nextInt(trades.length);
 
-                VillagerTrades.ITrade randomTrade = trades[randInt];
+                VillagerTrades.ItemListing randomTrade = trades[randInt];
                 MerchantOffer merchantOffer = randomTrade.getOffer(this, this.random);
 
                 if (merchantOffer != null) merchantOffers.add(merchantOffer);
             }
         }
 
-        List<VillagerTrades.ITrade[]> rareTradesList = ImmutableList.of(
+        List<VillagerTrades.ItemListing[]> rareTradesList = ImmutableList.of(
                 SantaElfTrades.HEAD_ORNAMENT_TRADES,
                 SantaElfTrades.SHEET_MUSIC_TRADES
         );
@@ -360,12 +359,12 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         if (completedRequest != null) {
             this.pickUpSomeItems(itemEntity, completedRequest.getNumberOfItems());
             this.level.playSound(null, this.getX(), this.getY(), this.getZ(),
-                    ChristmasSounds.SANTA_ELF_REQUEST_SINGLE_SUCCESS.get(), SoundCategory.VOICE, 1.0f, 1.0f);
+                    ChristmasSounds.SANTA_ELF_REQUEST_SINGLE_SUCCESS.get(), SoundSource.VOICE, 1.0f, 1.0f);
 
             this.requestItemCooldown = 40;
             this.isRequestOutdated = true;
 
-            itemEntity.remove();
+            itemEntity.remove(RemovalReason.DISCARDED);
         }
     }
 
@@ -381,7 +380,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
 
             // Add to naughty / nice meter
             if (itemEntity.getThrower() != null) {
-                PlayerEntity playerEntity = this.level.getPlayerByUUID(itemEntity.getThrower());
+                Player playerEntity = this.level.getPlayerByUUID(itemEntity.getThrower());
                 NaughtyNiceMeter.evaluateAction(playerEntity, NaughtyNiceAction.HELP_SANTA_ELF_EVENT);
 
                 SantaElfEvent.CompleteRequest completeRequestEvent = new SantaElfEvent.CompleteRequest(playerEntity,
@@ -390,7 +389,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
             }
 
             this.isRewardThrown = true;
-            itemEntity.remove();
+            itemEntity.remove(RemovalReason.DISCARDED);
         } else if (this.isRequestOutdated && !this.santaElfRequest.isCompleted()) {
             this.take(itemEntity, itemEntity.getItem().getCount());
             this.spawnAtLocation(this.getRequest().getRequestPaper());
@@ -398,7 +397,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
             this.requestPaperCooldown = 40;
             this.isRequestOutdated = false;
 
-            itemEntity.remove();
+            itemEntity.remove(RemovalReason.DISCARDED);
         }
     }
 
@@ -416,7 +415,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
 
     public void throwRequestRewards() {
         LootTable lootTable = this.level.getServer().getLootTables().get(SANTA_ELF_REQUEST_LOOT_TABLE);
-        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
+        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootContextParamSets.ENTITY);
 
         double modifier;
         ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingEntity(this.level,
@@ -455,22 +454,22 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         }
 
         this.level.playSound(null, this.getX(), this.getY(), this.getZ(),
-                ChristmasSounds.SANTA_ELF_REQUEST_COMPLETE.get(), SoundCategory.VOICE, 1.0f, 1.0f);
+                ChristmasSounds.SANTA_ELF_REQUEST_COMPLETE.get(), SoundSource.VOICE, 1.0f, 1.0f);
 
         // Creating effects
         this.level.addFreshEntity(new FireworkRocketEntity(this.level, null, this.getX(), this.getY(), this.getZ(),
                 this.createCelebratoryFireworks()));
 
-        this.level.addFreshEntity(new ExperienceOrbEntity(this.level, this.getX(), this.getY(), this.getZ(), 36));
+        this.level.addFreshEntity(new ExperienceOrb(this.level, this.getX(), this.getY(), this.getZ(), 36));
     }
 
     private ItemStack createCelebratoryFireworks() {
         ItemStack fireworkStack = Items.FIREWORK_ROCKET.getDefaultInstance();
-        CompoundNBT fireworkNBT = new CompoundNBT();
+        CompoundTag fireworkNBT = new CompoundTag();
 
         fireworkNBT.putInt("Flight", 2);
 
-        CompoundNBT explosionsNBT = new CompoundNBT();
+        CompoundTag explosionsNBT = new CompoundTag();
         explosionsNBT.putByte("Type", (byte) 0);
 
         List<Integer> colorList = Lists.newArrayList();
@@ -478,7 +477,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         colorList.add(((DyeItem) Items.RED_DYE).getDyeColor().getFireworkColor());
         explosionsNBT.putIntArray("Colors", colorList);
 
-        ListNBT listWrapper = new ListNBT();
+        ListTag listWrapper = new ListTag();
         listWrapper.add(explosionsNBT);
         fireworkNBT.put("Explosions", listWrapper);
 
@@ -493,7 +492,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT nbt) {
+    public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
         nbt.putInt("DespawnDelay", this.despawnDelay);
         nbt.put("SantaElfRequest", this.santaElfRequest.createTag());
@@ -504,7 +503,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT nbt) {
+    public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
         if (nbt.contains("DespawnDelay", 99)) {
             this.despawnDelay = nbt.getInt("DespawnDelay");
@@ -542,10 +541,10 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
 
     public void despawnElf() {
         if (!this.level.isClientSide()) {
-            ServerWorld serverWorld = (ServerWorld) this.level;
+            ServerLevel serverWorld = (ServerLevel) this.level;
 
             // Spawn poof particles on disappear
-            BasicParticleType particleType = ParticleTypes.POOF;
+            SimpleParticleType particleType = ParticleTypes.POOF;
             for (int i = 0; i < 5; i++) {
                 double d0 = this.random.nextGaussian() * 0.02D;
                 double d1 = this.random.nextGaussian() * 0.02D;
@@ -556,10 +555,10 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
             }
 
             serverWorld.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_ELF_DESPAWN.get(),
-                    SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                    SoundSource.NEUTRAL, 1.0f, 1.0f);
         }
 
-        this.remove();
+        this.remove(RemovalReason.DISCARDED);
     }
 
     public void pickUpSomeItems(ItemEntity itemEntity, int itemsToPickUpCount) {
@@ -592,7 +591,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
             } else if (this.mob.hurtMarked) {
                 return false;
             } else {
-                PlayerEntity playerentity = this.mob.getTradingPlayer();
+                Player playerentity = this.mob.getTradingPlayer();
                 if (playerentity == null) {
                     return false;
                 } else if (this.mob.distanceToSqr(playerentity) > 16.0D) {
@@ -608,15 +607,15 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         }
 
         public void stop() {
-            this.mob.setTradingPlayer((PlayerEntity)null);
+            this.mob.setTradingPlayer((Player)null);
         }
     }
 
-    private static class LookAtCustomerGoal extends LookAtGoal {
+    private static class LookAtCustomerGoal extends LookAtPlayerGoal {
         private final SantaElfEntity villager;
 
         public LookAtCustomerGoal(SantaElfEntity elfEntity) {
-            super(elfEntity, PlayerEntity.class, 8.0F);
+            super(elfEntity, Player.class, 8.0F);
             this.villager = elfEntity;
         }
 
@@ -712,14 +711,14 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         }
     }
 
-    static class EmeraldForItemsTrade implements VillagerTrades.ITrade {
+    static class EmeraldForItemsTrade implements VillagerTrades.ItemListing {
         private final Item item;
         private final int cost;
         private final int maxUses;
         private final int villagerXp;
         private final float priceMultiplier;
 
-        public EmeraldForItemsTrade(IItemProvider itemProvider, int cost, int maxUses, int xp) {
+        public EmeraldForItemsTrade(ItemLike itemProvider, int cost, int maxUses, int xp) {
             this.item = itemProvider.asItem();
             this.cost = cost;
             this.maxUses = maxUses;
@@ -733,7 +732,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, IMer
         }
     }
 
-    static class ItemsForEmeraldsTrade implements VillagerTrades.ITrade {
+    static class ItemsForEmeraldsTrade implements VillagerTrades.ItemListing {
         private final ItemStack itemStack;
         private final int emeraldCost;
         private final int numberOfItems;

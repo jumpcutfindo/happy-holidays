@@ -2,13 +2,13 @@ package com.jumpcutfindo.happyholidays.common.sound.christmas;
 
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
-import net.minecraft.client.audio.TickableSound;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.BlockPos;
 
-public class SantaSummonSound extends TickableSound {
+public class SantaSummonSound extends AbstractTickableSoundInstance {
     public SantaSummonSound(BlockPos playPos) {
-        super(ChristmasSounds.SANTA_SUMMONING.get(), SoundCategory.NEUTRAL);
+        super(ChristmasSounds.SANTA_SUMMONING.get(), SoundSource.NEUTRAL);
 
         this.looping = true;
 

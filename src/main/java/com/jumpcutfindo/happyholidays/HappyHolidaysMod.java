@@ -12,8 +12,8 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticl
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -27,7 +27,7 @@ public class HappyHolidaysMod {
     public static final String MOD_ID = "happyholidays";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
-    public static final ItemGroup HAPPY_HOLIDAYS_GROUP = new HappyHolidaysMod.HappyHolidaysGroup("happyholidaystab");
+    public static final CreativeModeTab HAPPY_HOLIDAYS_GROUP = new HappyHolidaysMod.HappyHolidaysGroup("happyholidaystab");
 
     public HappyHolidaysMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -49,7 +49,7 @@ public class HappyHolidaysMod {
         GeckoLibMod.DISABLE_IN_DEV = true;
     }
 
-    public static class HappyHolidaysGroup extends ItemGroup {
+    public static class HappyHolidaysGroup extends CreativeModeTab {
         public HappyHolidaysGroup(String label) {
             super(label);
         }

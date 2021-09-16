@@ -14,33 +14,33 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.RandomWalkingGoal;
-import net.minecraft.entity.item.ExperienceOrbEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameterSets;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.BossInfo;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerBossInfo;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.level.Level;
+import net.minecraft.server.level.ServerBossEvent;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraftforge.common.MinecraftForge;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -48,12 +48,12 @@ import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 
 public class AngrySantaEntity extends BaseSantaEntity {
-    public static final DataParameter<Integer> SANTA_PHASE = EntityDataManager.defineId(AngrySantaEntity.class,
-            DataSerializers.INT);
+    public static final EntityDataAccessor<Integer> SANTA_PHASE = SynchedEntityData.defineId(AngrySantaEntity.class,
+            EntityDataSerializers.INT);
 
-    public static final DataParameter<Integer> ATTACK_HIT_ANIM_TIMER = EntityDataManager.defineId(AngrySantaEntity.class, DataSerializers.INT);
-    public static final DataParameter<Integer> ATTACK_SLEIGHS_ANIM_TIMER = EntityDataManager.defineId(AngrySantaEntity.class, DataSerializers.INT);
-    public static final DataParameter<Integer> ATTACK_TELEPORT_ANIM_TIMER = EntityDataManager.defineId(AngrySantaEntity.class, DataSerializers.INT);
+    public static final EntityDataAccessor<Integer> ATTACK_HIT_ANIM_TIMER = SynchedEntityData.defineId(AngrySantaEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> ATTACK_SLEIGHS_ANIM_TIMER = SynchedEntityData.defineId(AngrySantaEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> ATTACK_TELEPORT_ANIM_TIMER = SynchedEntityData.defineId(AngrySantaEntity.class, EntityDataSerializers.INT);
 
     public static final String ENTITY_ID = "angry_santa";
 
@@ -86,33 +86,33 @@ public class AngrySantaEntity extends BaseSantaEntity {
     public static final int NUM_XP_ORBS_MAX = 48;
 
 
-    private static final Vector3d[] HORIZONTALS = {
-            new Vector3d(1.0, 0.0, 0.0),
-            new Vector3d(-1.0, 0.0, 0.0),
-            new Vector3d(0.0, 0.0, 1.0),
-            new Vector3d(0.0, 0.0, -1.0)
+    private static final Vec3[] HORIZONTALS = {
+            new Vec3(1.0, 0.0, 0.0),
+            new Vec3(-1.0, 0.0, 0.0),
+            new Vec3(0.0, 0.0, 1.0),
+            new Vec3(0.0, 0.0, -1.0)
     };
 
-    private static final Vector3d[] DIAGONALS = {
-            new Vector3d(1.0, 0.0, 1.0),
-            new Vector3d(1.0, 0.0, -1.0),
-            new Vector3d(-1.0, 0.0, -1.0),
-            new Vector3d(-1.0, 0.0, 1.0)
+    private static final Vec3[] DIAGONALS = {
+            new Vec3(1.0, 0.0, 1.0),
+            new Vec3(1.0, 0.0, -1.0),
+            new Vec3(-1.0, 0.0, -1.0),
+            new Vec3(-1.0, 0.0, 1.0)
     };
 
     private Phase currentPhase = Phase.SLEIGHS;
 
     private boolean isTeleportCharging;
-    private Vector3d teleportTarget;
+    private Vec3 teleportTarget;
 
-    private final ServerBossInfo bossEvent = (ServerBossInfo) (new ServerBossInfo(this.getDisplayName(),
-            BossInfo.Color.RED, BossInfo.Overlay.PROGRESS));
+    private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(),
+            BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS));
 
     private int hitAnimTimer, sleighAnimTimer, teleportAnimTimer;
 
     private boolean isDamagedByPlayer;
 
-    public AngrySantaEntity(EntityType<? extends CreatureEntity> entityType, World world) {
+    public AngrySantaEntity(EntityType<? extends PathfinderMob> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -120,9 +120,9 @@ public class AngrySantaEntity extends BaseSantaEntity {
     protected void registerGoals() {
         super.registerGoals();
 
-        this.goalSelector.addGoal(4, new RandomWalkingGoal(this, 1.0f, 4));
-        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(4, new RandomStrollGoal(this, 1.0f, 4));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 
         this.goalSelector.addGoal(0, new PhaseSwitchGoal(this));
         this.goalSelector.addGoal(1, new SleighAttackGoal(this));
@@ -153,11 +153,11 @@ public class AngrySantaEntity extends BaseSantaEntity {
     }
 
     private void createBossBar() {
-        this.bossEvent.setPercent((float) this.getHealth() / (float) (MAX_HEALTH));
-        AxisAlignedBB areaOfEffect = new AxisAlignedBB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
+        this.bossEvent.setProgress((float) this.getHealth() / (float) (MAX_HEALTH));
+        AABB areaOfEffect = new AABB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
 
-        List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, areaOfEffect);
-        for (PlayerEntity playerEntity : playerList) this.bossEvent.addPlayer((ServerPlayerEntity) playerEntity);
+        List<Player> playerList = this.level.getEntitiesOfClass(Player.class, areaOfEffect);
+        for (Player playerEntity : playerList) this.bossEvent.addPlayer((ServerPlayer) playerEntity);
     }
 
     public void setPhase(Phase phase) {
@@ -181,30 +181,30 @@ public class AngrySantaEntity extends BaseSantaEntity {
     }
 
     public void fireHorizontalSleighs() {
-        for (Vector3d horizontal : HORIZONTALS) {
+        for (Vec3 horizontal : HORIZONTALS) {
             this.fireSleigh(horizontal);
         }
     }
 
     public void fireDiagonalSleighs() {
-        for (Vector3d diagonal : DIAGONALS) {
+        for (Vec3 diagonal : DIAGONALS) {
             this.fireSleigh(diagonal);
         }
     }
 
-    public void fireSleigh(Vector3d vector) {
+    public void fireSleigh(Vec3 vector) {
         this.entityData.set(ATTACK_SLEIGHS_ANIM_TIMER, 20);
         this.sleighAnimTimer = 20;
 
         SleighEntity sleighEntity = ChristmasEntities.SLEIGH.get().create(this.level).setRotation(vector);
         sleighEntity.moveTo(this.position().add(sleighEntity.getForward().multiply(3.0d, 3.0d, 3.0d)));
 
-        this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_SUMMON_SLEIGHS.get(), SoundCategory.HOSTILE, 1.0f,
+        this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_SUMMON_SLEIGHS.get(), SoundSource.HOSTILE, 1.0f,
                 1.0f);
         this.level.addFreshEntity(sleighEntity);
 
         for (int i = 0; i < 5; i ++) {
-            ((ServerWorld) this.level).sendParticles(ParticleTypes.SMOKE,
+            ((ServerLevel) this.level).sendParticles(ParticleTypes.SMOKE,
                     sleighEntity.position().x + random.nextDouble(),
                     sleighEntity.position().y + random.nextDouble(),
                     sleighEntity.position().z + random.nextDouble(),
@@ -212,12 +212,12 @@ public class AngrySantaEntity extends BaseSantaEntity {
         }
     }
 
-    public void spawnExplosives(List<PlayerEntity> playerEntities) {
-        for (PlayerEntity playerEntity : playerEntities) {
+    public void spawnExplosives(List<Player> playerEntities) {
+        for (Player playerEntity : playerEntities) {
             if (playerEntity.isAlive()) {
-                Vector3d playerPos = playerEntity.position();
+                Vec3 playerPos = playerEntity.position();
                 ExplosivePresentEntity explosive = ChristmasEntities.EXPLOSIVE_PRESENT.get().create(this.level);
-                Vector3d explosivePos = playerPos.add(new Vector3d(0.0d, 2.0d, 0.0d));
+                Vec3 explosivePos = playerPos.add(new Vec3(0.0d, 2.0d, 0.0d));
 
                 explosive.moveTo(explosivePos);
                 for (int i = 0; i < 5; i++) this.summonPresentsParticles(explosivePos);
@@ -228,7 +228,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
         }
     }
 
-    public void startTeleportAttack(Vector3d target) {
+    public void startTeleportAttack(Vec3 target) {
         this.teleportTarget = target;
 
         this.entityData.set(ATTACK_TELEPORT_ANIM_TIMER, ATTACK_TELEPORT_CHARGE_TIME);
@@ -236,36 +236,36 @@ public class AngrySantaEntity extends BaseSantaEntity {
 
         this.isTeleportCharging = true;
 
-        this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_PREPARE_TELEPORT.get(), SoundCategory.HOSTILE, 1.0f, 1.0f);
-        this.level.playSound(null, new BlockPos(target), ChristmasSounds.SANTA_PREPARE_TELEPORT.get(), SoundCategory.HOSTILE, 1.0f, 1.0f);
+        this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_PREPARE_TELEPORT.get(), SoundSource.HOSTILE, 1.0f, 1.0f);
+        this.level.playSound(null, new BlockPos(target), ChristmasSounds.SANTA_PREPARE_TELEPORT.get(), SoundSource.HOSTILE, 1.0f, 1.0f);
     }
 
     public void stopTeleportCharging() {
         this.isTeleportCharging = false;
     }
 
-    public void teleportAttack(Vector3d position) {
+    public void teleportAttack(Vec3 position) {
         this.isTeleportCharging = false;
 
         // Teleport to location and stomp the ground
-        this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_TELEPORT.get(), SoundCategory.HOSTILE, 1.0f,
+        this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_TELEPORT.get(), SoundSource.HOSTILE, 1.0f,
                 1.0f);
         this.teleportTo(position.x, position.y + 2.0D, position.z);
-        this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_TELEPORT.get(), SoundCategory.HOSTILE, 1.0f,
+        this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_TELEPORT.get(), SoundSource.HOSTILE, 1.0f,
                 1.0f);
 
-        List<PlayerEntity> playerEntities = this.level.getEntitiesOfClass(PlayerEntity.class,
+        List<Player> playerEntities = this.level.getEntitiesOfClass(Player.class,
                 this.getBoundingBox().inflate(ATTACK_TELEPORT_DAMAGE_RADIUS / this.getAttackIntervalMultiplier()));
         this.summonStompParticles(position);
 
-        for (PlayerEntity playerEntity : playerEntities) {
+        for (Player playerEntity : playerEntities) {
             playerEntity.hurt(DamageSource.mobAttack(this), ATTACK_TELEPORT_DAMAGE * this.getAttackIntervalMultiplier());
         }
 
     }
 
     @Override
-    public void playerTouch(PlayerEntity playerEntity) {
+    public void playerTouch(Player playerEntity) {
         if (this.getBoundingBox().inflate(1.0D).intersects(playerEntity.getBoundingBox())) {
             playerEntity.hurt(DamageSource.GENERIC, 12.0f);
             playerEntity.setDeltaMovement(
@@ -274,7 +274,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
                     this.random.nextDouble() * 2.0d
             );
 
-            this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_FLICK.get(), SoundCategory.HOSTILE, 1.0f, 1.0f);
+            this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_FLICK.get(), SoundSource.HOSTILE, 1.0f, 1.0f);
 
             this.hitAnimTimer = 10;
         }
@@ -324,31 +324,31 @@ public class AngrySantaEntity extends BaseSantaEntity {
             if (this.isAlive() && this.level.getGameTime() % 60L == 0) {
                 if (this.bossEvent == null) this.createBossBar();
 
-                AxisAlignedBB areaOfEffect = new AxisAlignedBB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
-                List<PlayerEntity> playerList = this.level.getEntitiesOfClass(PlayerEntity.class, areaOfEffect);
+                AABB areaOfEffect = new AABB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
+                List<Player> playerList = this.level.getEntitiesOfClass(Player.class, areaOfEffect);
 
                 // Remove players outside the AOE
-                for (ServerPlayerEntity serverPlayerEntity : this.bossEvent.getPlayers()) {
+                for (ServerPlayer serverPlayerEntity : this.bossEvent.getPlayers()) {
                     if (!playerList.contains(serverPlayerEntity)) this.bossEvent.removePlayer(serverPlayerEntity);
                 }
 
                 // Add players inside the AOE
-                for (PlayerEntity playerEntity : playerList) {
-                    ServerPlayerEntity serverPlayerEntity = (ServerPlayerEntity) playerEntity;
-                    if (!this.bossEvent.getPlayers().contains(serverPlayerEntity)) this.bossEvent.addPlayer((ServerPlayerEntity) playerEntity);
+                for (Player playerEntity : playerList) {
+                    ServerPlayer serverPlayerEntity = (ServerPlayer) playerEntity;
+                    if (!this.bossEvent.getPlayers().contains(serverPlayerEntity)) this.bossEvent.addPlayer((ServerPlayer) playerEntity);
                 }
             }
         }
     }
 
-    private void summonPresentsParticles(Vector3d pos) {
+    private void summonPresentsParticles(Vec3 pos) {
         double d0 = (Math.random() * 0.1D) + 0.25D;
         double d1 = (Math.random() * 0.1D) + 0.25D;
         double d2 = (Math.random() * 0.1D) + 0.25D;
 
-        BasicParticleType particleType = ParticleTypes.SMOKE;
+        SimpleParticleType particleType = ParticleTypes.SMOKE;
 
-        ((ServerWorld) this.level).sendParticles(particleType,
+        ((ServerLevel) this.level).sendParticles(particleType,
                 pos.x,
                 pos.y + d1,
                 pos.z,
@@ -356,39 +356,39 @@ public class AngrySantaEntity extends BaseSantaEntity {
     }
 
     private void summonSantaPresentsParticles() {
-        Vector3d pos = this.position();
+        Vec3 pos = this.position();
 
         double d0 = (Math.random() * 0.1D) + 0.25D;
         double d1 = (Math.random() * 0.1D) + 0.25D;
         double d2 = (Math.random() * 0.1D) + 0.25D;
 
-        BasicParticleType particleType = ParticleTypes.SMOKE;
+        SimpleParticleType particleType = ParticleTypes.SMOKE;
 
-        ((ServerWorld) this.level).sendParticles(particleType,
+        ((ServerLevel) this.level).sendParticles(particleType,
                 pos.x + Math.random() * 2.0D * (this.random.nextBoolean() ? 1 : -1),
                 pos.y + d1,
                 pos.z + Math.random() * 2.0D * (this.random.nextBoolean() ? 1 : -1),
                 2, d0, d1, d2, 0.0D);
     }
 
-    private void summonTeleportationParticles(Vector3d pos) {
+    private void summonTeleportationParticles(Vec3 pos) {
         double d0 = (Math.random() * 0.1D) + 0.25D;
         double d1 = (Math.random() * 0.1D) + 0.25D;
         double d2 = (Math.random() * 0.1D) + 0.25D;
 
         double d = Math.random();
-        BasicParticleType particleType = d < 0.5 ? ChristmasParticles.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
+        SimpleParticleType particleType = d < 0.5 ? ChristmasParticles.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
                 ChristmasParticles.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get();
 
-        ((ServerWorld) this.level).sendParticles(particleType,
+        ((ServerLevel) this.level).sendParticles(particleType,
                 pos.x,
                 pos.y + d1,
                 pos.z,
                 2, d0, d1, d2, 0.0D);
     }
 
-    private void summonStompParticles(Vector3d pos) {
-        BasicParticleType particleType = ParticleTypes.CLOUD;
+    private void summonStompParticles(Vec3 pos) {
+        SimpleParticleType particleType = ParticleTypes.CLOUD;
 
         for (int i = 0; i < 25; i++) {
             double d0 = (Math.random() * ATTACK_TELEPORT_DAMAGE_RADIUS) * (this.random.nextBoolean() ? 1 : -1);
@@ -399,7 +399,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
             double dv1 = (Math.random() * 0.1D) + 0.25D;
             double dv2 = (Math.random() * 0.1D) + 0.25D;
 
-            ((ServerWorld) this.level).sendParticles(particleType,
+            ((ServerLevel) this.level).sendParticles(particleType,
                     pos.x + d0,
                     pos.y + d1,
                     pos.z + d2,
@@ -418,8 +418,8 @@ public class AngrySantaEntity extends BaseSantaEntity {
         int numOrbs = this.random.nextInt(NUM_XP_ORBS_MAX - NUM_XP_ORBS_MIN) + NUM_XP_ORBS_MIN;
 
         for (int i = 0; i < numOrbs; i++) {
-            int xpDrop = ExperienceOrbEntity.getExperienceValue((int) ((1 / (double) numOrbs) * AMT_XP_DROP));
-            this.level.addFreshEntity(new ExperienceOrbEntity(this.level, this.getX(), this.getY(), this.getZ(), xpDrop));
+            int xpDrop = ExperienceOrb.getExperienceValue((int) ((1 / (double) numOrbs) * AMT_XP_DROP));
+            this.level.addFreshEntity(new ExperienceOrb(this.level, this.getX(), this.getY(), this.getZ(), xpDrop));
         }
     }
 
@@ -432,22 +432,22 @@ public class AngrySantaEntity extends BaseSantaEntity {
         int numBasicPresents =
                 this.random.nextInt(NUM_BASIC_PRESENTS_MAX - NUM_BASIC_PRESENTS_MIN) + NUM_BASIC_PRESENTS_MIN;
 
-        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
+        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootContextParamSets.ENTITY);
 
         List<ItemStack> gifts = Lists.newArrayList();
 
         for (int i = 0; i < numLegendaryPresents; i++) {
-            ItemStack legendaryGift = SantaGifts.generateGift(SantaGiftType.LEGENDARY, this, (ServerWorld) this.level, ctx);
+            ItemStack legendaryGift = SantaGifts.generateGift(SantaGiftType.LEGENDARY, this, (ServerLevel) this.level, ctx);
             gifts.add(legendaryGift);
         }
 
         for (int i = 0; i < numRarePresents; i++) {
-            ItemStack rareGift = SantaGifts.generateGift(SantaGiftType.RARE, this, (ServerWorld) this.level, ctx);
+            ItemStack rareGift = SantaGifts.generateGift(SantaGiftType.RARE, this, (ServerLevel) this.level, ctx);
             gifts.add(rareGift);
         }
 
         for (int i = 0; i < numBasicPresents; i++) {
-            ItemStack basicGift = SantaGifts.generateGift(SantaGiftType.BASIC, this, (ServerWorld) this.level, ctx);
+            ItemStack basicGift = SantaGifts.generateGift(SantaGiftType.BASIC, this, (ServerLevel) this.level, ctx);
             gifts.add(basicGift);
         }
 
@@ -460,11 +460,11 @@ public class AngrySantaEntity extends BaseSantaEntity {
     public boolean hurt(DamageSource p_70097_1_, float p_70097_2_) {
         boolean flag = super.hurt(p_70097_1_, p_70097_2_);
 
-        if (p_70097_1_.getEntity() instanceof PlayerEntity) {
+        if (p_70097_1_.getEntity() instanceof Player) {
             this.isDamagedByPlayer = true;
         }
 
-        this.bossEvent.setPercent(this.getHealth() / MAX_HEALTH);
+        this.bossEvent.setProgress(this.getHealth() / MAX_HEALTH);
 
         return flag;
     }
@@ -474,11 +474,11 @@ public class AngrySantaEntity extends BaseSantaEntity {
         super.die(p_70645_1_);
 
         if (!this.isDamagedByPlayer) {
-            AxisAlignedBB searchBox =
-                    new AxisAlignedBB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
-            List<PlayerEntity> playerEntities = this.level.getEntitiesOfClass(PlayerEntity.class, searchBox);
+            AABB searchBox =
+                    new AABB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
+            List<Player> playerEntities = this.level.getEntitiesOfClass(Player.class, searchBox);
 
-            for (PlayerEntity playerEntity : playerEntities) {
+            for (Player playerEntity : playerEntities) {
                 SantaEvent event = new SantaEvent.AngryDie(this, playerEntity);
                 MinecraftForge.EVENT_BUS.post(event);
             }
@@ -522,14 +522,14 @@ public class AngrySantaEntity extends BaseSantaEntity {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundNBT nbt) {
+    public void addAdditionalSaveData(CompoundTag nbt) {
         super.addAdditionalSaveData(nbt);
 
         nbt.putBoolean("IsDamagedByPlayer", this.isDamagedByPlayer);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundNBT nbt) {
+    public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
 
         this.isDamagedByPlayer = nbt.getBoolean("IsDamagedByPlayer");

@@ -7,16 +7,18 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.item.IHappyHolidaysItem;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class ChristmasBlockItem extends BlockItem implements IHappyHolidaysItem {
     public Block block;
@@ -36,8 +38,8 @@ public class ChristmasBlockItem extends BlockItem implements IHappyHolidaysItem 
     }
 
     @Override
-    public ITextComponent getName(ItemStack itemStack) {
-        TranslationTextComponent name = new TranslationTextComponent(this.getDescriptionId(itemStack));
+    public Component getName(ItemStack itemStack) {
+        TranslatableComponent name = new TranslatableComponent(this.getDescriptionId(itemStack));
 
         switch (christmasRarity) {
         case RARE:
@@ -50,9 +52,9 @@ public class ChristmasBlockItem extends BlockItem implements IHappyHolidaysItem 
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack itemStack, @Nullable World world, List<ITextComponent> textComponents, ITooltipFlag tooltipFlag) {
+    public void appendHoverText(ItemStack itemStack, @Nullable Level world, List<Component> textComponents, TooltipFlag tooltipFlag) {
         for (String description : tooltipDescriptions) {
-            textComponents.add(new StringTextComponent(description));
+            textComponents.add(new TextComponent(description));
         }
     }
 

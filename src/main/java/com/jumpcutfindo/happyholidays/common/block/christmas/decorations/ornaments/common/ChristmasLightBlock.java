@@ -2,12 +2,12 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.orname
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ConnectedOrnamentBlock;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.Shapes;
 
 public class ChristmasLightBlock extends ConnectedOrnamentBlock {
     public static final String RED_CHRISTMAS_LIGHTS_ID = "red_christmas_lights";
@@ -17,14 +17,13 @@ public class ChristmasLightBlock extends ConnectedOrnamentBlock {
     public static final String GOLD_CHRISTMAS_LIGHTS_ID = "gold_christmas_lights";
     public static final String SILVER_CHRISTMAS_LIGHTS_ID = "silver_christmas_lights";
 
-    private static final VoxelShape CHRISTMAS_LIGHT_SHAPE = VoxelShapes.or(
+    private static final VoxelShape CHRISTMAS_LIGHT_SHAPE = Shapes.or(
             Block.box(0.0, 0.0, 0.0, 16.0, 16.0 ,1.0)
     );
 
-    private static final AbstractBlock.Properties BLOCK_PROPERTIES =
-            AbstractBlock.Properties
+    private static final BlockBehaviour.Properties BLOCK_PROPERTIES =
+            BlockBehaviour.Properties
                     .of(Material.GLASS)
-                    .harvestLevel(-1)
                     .strength(0.1f)
                     .sound(SoundType.GLASS)
                     .noOcclusion()

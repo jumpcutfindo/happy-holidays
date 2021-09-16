@@ -3,19 +3,16 @@ package com.jumpcutfindo.happyholidays.common.container.christmas.star;
 import java.util.UUID;
 
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
-import net.minecraft.client.entity.player.ClientPlayerEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ChristmasStarSlot extends Slot {
@@ -31,11 +28,11 @@ public class ChristmasStarSlot extends Slot {
         boolean flag = ChristmasItems.isOrnamentItem(itemStack);
 
         if (flag) {
-            World level = starTileEntity.getLevel();
+            Level level = starTileEntity.getLevel();
             if (level != null && !level.isClientSide()) {
                 BlockPos blockPos = starTileEntity.getBlockPos();
 
-                PlayerEntity playerEntity = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(),
+                Player playerEntity = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(),
                         10.0D, false);
 
                 if (playerEntity != null) {
@@ -49,21 +46,16 @@ public class ChristmasStarSlot extends Slot {
     }
 
     @Override
-    public boolean mayPickup(PlayerEntity playerEntity) {
+    public boolean mayPickup(Player playerEntity) {
         boolean mayPickup = !this.starTileEntity.isBonusActive();
 
         if (!mayPickup && starTileEntity.getLevel() != null && starTileEntity.getLevel().isClientSide())
             playerEntity.sendMessage(
-                new TranslationTextComponent("chat.happyholidays.christmas_star.bonus_still_active")
-                        .withStyle(TextFormatting.RED),
+                new TranslatableComponent("chat.happyholidays.christmas_star.bonus_still_active")
+                        .withStyle(ChatFormatting.RED),
                 UUID.randomUUID()
         );
 
         return mayPickup;
-    }
-
-    @Override
-    public ItemStack onTake(PlayerEntity p_190901_1_, ItemStack p_190901_2_) {
-        return super.onTake(p_190901_1_, p_190901_2_);
     }
 }

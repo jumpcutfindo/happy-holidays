@@ -9,61 +9,59 @@ import javax.annotation.Nullable;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.IWaterLoggable;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameterSets;
-import net.minecraft.loot.LootParameters;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.LootTables;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 
-public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
+public class PresentBlock extends ChristmasBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public static final Properties BLOCK_PROPERTIES =
-            AbstractBlock.Properties
+            BlockBehaviour.Properties
                     .of(Material.WOOL)
-                    .harvestLevel(-1)
                     .strength(0.25f)
                     .sound(SoundType.WOOL)
                     .randomTicks();
@@ -85,36 +83,36 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> p_206840_1_) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_206840_1_) {
         p_206840_1_.add(WATERLOGGED);
     }
 
     @Override
     public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(this, RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
     }
 
     @Override
-    public VoxelShape getShape(BlockState blockState, IBlockReader blockReader, BlockPos blockPos,
-                               ISelectionContext context) {
+    public VoxelShape getShape(BlockState blockState, BlockGetter blockReader, BlockPos blockPos,
+                               CollisionContext context) {
         return shape;
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState p_220071_1_, IBlockReader p_220071_2_, BlockPos p_220071_3_,
-                                        ISelectionContext p_220071_4_) {
+    public VoxelShape getCollisionShape(BlockState p_220071_1_, BlockGetter p_220071_2_, BlockPos p_220071_3_,
+                                        CollisionContext p_220071_4_) {
         return Block.box(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D);
     }
 
     @Override
-    public VoxelShape getVisualShape(BlockState p_230322_1_, IBlockReader p_230322_2_, BlockPos p_230322_3_,
-                                     ISelectionContext p_230322_4_) {
+    public VoxelShape getVisualShape(BlockState p_230322_1_, BlockGetter p_230322_2_, BlockPos p_230322_3_,
+                                     CollisionContext p_230322_4_) {
         return shape;
     }
 
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
-                                  IWorld world, BlockPos pos1, BlockPos pos2) {
+                                  LevelAccessor world, BlockPos pos1, BlockPos pos2) {
         if (blockState.getValue(WATERLOGGED)) {
             world.getLiquidTicks().scheduleTick(pos1, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
@@ -124,7 +122,7 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
 
     @Nullable
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
         boolean isWaterlogged = fluidstate.getType() == Fluids.WATER;
 
@@ -134,7 +132,7 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
     }
 
     @Override
-    public boolean canSurvive(BlockState blockState, IWorldReader world, BlockPos position) {
+    public boolean canSurvive(BlockState blockState, LevelReader world, BlockPos position) {
         return canSupportCenter(world, position.relative(Direction.DOWN), Direction.UP);
     }
 
@@ -144,11 +142,11 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
     }
 
     @Override
-    public boolean isPathfindable(BlockState p_196266_1_, IBlockReader p_196266_2_, BlockPos p_196266_3_, PathType p_196266_4_) {
+    public boolean isPathfindable(BlockState p_196266_1_, BlockGetter p_196266_2_, BlockPos p_196266_3_, PathComputationType p_196266_4_) {
         return false;
     }
 
-    public float getGrowthProbability(World world, BlockPos pos) {
+    public float getGrowthProbability(Level world, BlockPos pos) {
         ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingBlock(world, pos);
 
         if (starTileEntity == null) {
@@ -159,30 +157,30 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
     }
 
     @Override
-    public void playerDestroy(World world, PlayerEntity playerEntity, BlockPos blockPos, BlockState blockState, @Nullable TileEntity tileEntity, ItemStack itemStack) {
+    public void playerDestroy(Level world, Player playerEntity, BlockPos blockPos, BlockState blockState, @Nullable BlockEntity tileEntity, ItemStack itemStack) {
         playerEntity.awardStat(Stats.BLOCK_MINED.get(this));
         playerEntity.causeFoodExhaustion(0.005F);
 
         if (!world.isClientSide()) {
             LootContext.Builder lootContextBuilder =
-                    (new LootContext.Builder((ServerWorld) world)).withRandom(world.random).withParameter(LootParameters.ORIGIN,
-                            Vector3d.atCenterOf(blockPos)).withParameter(LootParameters.TOOL, playerEntity.getMainHandItem())
-                            .withOptionalParameter(LootParameters.BLOCK_ENTITY, tileEntity);
+                    (new LootContext.Builder((ServerLevel) world)).withRandom(world.random).withParameter(LootContextParams.ORIGIN,
+                            Vec3.atCenterOf(blockPos)).withParameter(LootContextParams.TOOL, playerEntity.getMainHandItem())
+                            .withOptionalParameter(LootContextParams.BLOCK_ENTITY, tileEntity);
 
             List<ItemStack> drops = this.getCustomDrops(blockState, blockPos, lootContextBuilder);
             for (ItemStack drop : drops) popResource(world, blockPos, drop);
-            blockState.spawnAfterBreak((ServerWorld) world, blockPos, itemStack);
+            blockState.spawnAfterBreak((ServerLevel) world, blockPos, itemStack);
         }
     }
 
     public List<ItemStack> getCustomDrops(BlockState blockState, BlockPos blockPos, LootContext.Builder builder) {
         ResourceLocation resourceLocation = this.getLootTable();
-        if (resourceLocation == LootTables.EMPTY) {
+        if (resourceLocation == BuiltInLootTables.EMPTY) {
             return Collections.emptyList();
         } else {
-            LootContext lootContext = builder.withParameter(LootParameters.BLOCK_STATE, blockState).create(LootParameterSets.BLOCK);
+            LootContext lootContext = builder.withParameter(LootContextParams.BLOCK_STATE, blockState).create(LootContextParamSets.BLOCK);
 
-            ServerWorld serverWorld = lootContext.getLevel();
+            ServerLevel serverWorld = lootContext.getLevel();
             LootTable lootTable = serverWorld.getServer().getLootTables().get(resourceLocation);
 
             ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingBlock(serverWorld, blockPos);
@@ -215,7 +213,7 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
     }
 
     @Override
-    public void randomTick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
+    public void randomTick(BlockState blockState, ServerLevel serverWorld, BlockPos blockPos, Random random) {
         super.randomTick(blockState, serverWorld, blockPos, random);
 
         // Handle growing for baby / adult presents
@@ -232,7 +230,7 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
         if (GrinchEntity.canSpawnInArea(blockPos, serverWorld)) GrinchEntity.spawnGrinchAround(blockPos, serverWorld, random);
     }
 
-    public static void grow(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
+    public static void grow(BlockState blockState, ServerLevel serverWorld, BlockPos blockPos, Random random) {
         // Determine the next block state
         BlockState nextBlockState = blockState.getBlock() instanceof BabyPresentBlock
                 ? ChristmasBlocks.ADULT_PRESENT.get().defaultBlockState()
@@ -241,13 +239,13 @@ public class PresentBlock extends ChristmasBlock implements IWaterLoggable {
         // Update the server world by replacing the block
         serverWorld.setBlock(blockPos, nextBlockState, 2);
         serverWorld.playSound(null, blockPos.getX(), blockPos.getY(), blockPos.getZ(), SoundEvents.WOOL_BREAK,
-                SoundCategory.BLOCKS, 1.0F, 1.0F);
+                SoundSource.BLOCKS, 1.0F, 1.0F);
         serverWorld.sendParticles(ParticleTypes.CLOUD, blockPos.getX() + random.nextDouble(), blockPos.getY() + random.nextDouble(),
                 blockPos.getZ() + random.nextDouble(), 1, 0D, 0D, 0D, 0.0D);
         ForgeHooks.onCropsGrowPost(serverWorld, blockPos, blockState);
     }
 
-    public static boolean canGrow(IWorld world, BlockState blockState, BlockPos blockPos) {
+    public static boolean canGrow(LevelAccessor world, BlockState blockState, BlockPos blockPos) {
         return !world.getBlockState(blockPos.above()).is(BlockTags.LEAVES) && !blockState.isFaceSturdy(world, blockPos,
                 Direction.UP);
     }
