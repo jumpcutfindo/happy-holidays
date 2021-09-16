@@ -56,7 +56,7 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
     @Override
     protected void renderBg(PoseStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-        Minecraft.getInstance().textureManager.bindForSetup(CHRISTMAS_STAR_GUI);
+        RenderSystem.setShaderTexture(0, CHRISTMAS_STAR_GUI);
 
         // Draw container GUI
         int x = (this.width - this.getXSize()) / 2;
@@ -102,7 +102,7 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
         int x = (this.width - this.getXSize()) / 2;
         int y = (this.height - this.getYSize()) / 2;
 
-        this.addWidget(new SummonSantaButton(this, x + 72, y + 39, 32, 31, CommonComponents.GUI_DONE, (pred) -> {
+        this.addRenderableWidget(new SummonSantaButton(this, x + 72, y + 39, 32, 31, CommonComponents.GUI_DONE, (pred) -> {
             if (this.menu.tileEntity.getCurrentTier() >= 5) {
                 Minecraft.getInstance().setScreen((Screen) null);
 
@@ -141,7 +141,7 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
             if (this.screen.getTileEntity().getCurrentTier() == 5) {
-                Minecraft.getInstance().getTextureManager().bindForSetup(CHRISTMAS_STAR_GUI);
+                RenderSystem.setShaderTexture(0, CHRISTMAS_STAR_GUI);
 
                 blit(matrixStack, this.x, this.y, 176, 31, 32, 31);
 

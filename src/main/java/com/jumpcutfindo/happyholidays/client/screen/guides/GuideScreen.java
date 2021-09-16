@@ -7,7 +7,6 @@ import com.jumpcutfindo.happyholidays.common.guide.Guide;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
@@ -90,7 +89,7 @@ public class GuideScreen extends Screen {
         this.renderBackground(matrixStack);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
-        this.minecraft.getTextureManager().bindForSetup(this.guideBookGUI);
+        RenderSystem.setShaderTexture(0, this.guideBookGUI);
 
         // Draw background and buttons
         int x = (this.width - this.bgWidth) / 2;
@@ -131,7 +130,7 @@ public class GuideScreen extends Screen {
         int x = (this.width - this.bgWidth) / 2;
         int y = (this.height - this.bgHeight) / 2;
 
-        this.addWidget(new GuideCloseButton(x + 338 - 9, y - 9, 18, 18, CommonComponents.GUI_DONE, (p_214161_1_) -> {
+        this.addRenderableWidget(new GuideCloseButton(x + 338 - 9, y - 9, 18, 18, CommonComponents.GUI_DONE, (p_214161_1_) -> {
             this.minecraft.setScreen((Screen)null);
         }));
     }
@@ -140,11 +139,11 @@ public class GuideScreen extends Screen {
         int x = (this.width - this.bgWidth) / 2;
         int y = (this.height - this.bgHeight) / 2;
 
-        this.forwardButton = this.addWidget(new GuideChangePageButton(x + 306, y + 198, true,
+        this.forwardButton = this.addRenderableWidget(new GuideChangePageButton(x + 306, y + 198, true,
                 (p_214159_1_) -> this.pageForward(), true));
-        this.backButton = this.addWidget(new GuideChangePageButton(x + 281, y + 198, false,
+        this.backButton = this.addRenderableWidget(new GuideChangePageButton(x + 281, y + 198, false,
                 (p_214158_1_) -> this.pageBack(), true));
-        this.tableOfContentsButton = this.addWidget(new GuideTableOfContentsButton(x + 259, y + 195, true,
+        this.tableOfContentsButton = this.addRenderableWidget(new GuideTableOfContentsButton(x + 259, y + 195, true,
                 (p_onPress_1_) -> this.pageTableOfContents(), true));
         this.updateButtonVisibility();
     }
@@ -228,7 +227,7 @@ public class GuideScreen extends Screen {
 
         public void renderButton(PoseStack matrixStack, int mouseX, int mouseY, float p_230431_4_) {
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            Minecraft.getInstance().getTextureManager().bindForSetup(guideBookGUI);
+            RenderSystem.setShaderTexture(0, guideBookGUI);
             int i = 338;
             int j = 26;
 
@@ -258,7 +257,7 @@ public class GuideScreen extends Screen {
 
         public void renderButton(PoseStack matrixStack, int mouseX, int mouseY, float p_230431_4_) {
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            Minecraft.getInstance().getTextureManager().bindForSetup(guideBookGUI);
+            RenderSystem.setShaderTexture(0, guideBookGUI);
             int i = 338;
             int j = 0;
             if (this.isHovered()) {
@@ -296,7 +295,7 @@ public class GuideScreen extends Screen {
 
         public void renderButton(PoseStack matrixStack, int mouseX, int mouseY, float p_230431_4_) {
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-            Minecraft.getInstance().getTextureManager().bindForSetup(guideBookGUI);
+            RenderSystem.setShaderTexture(0, guideBookGUI);
             int i = 338;
             int j = 44;
             if (this.isHovered()) {

@@ -44,7 +44,7 @@ public class GiftWrapperScreen extends AbstractContainerScreen<GiftWrapperContai
     @Override
     protected void renderBg(PoseStack matrixStack, float partialTicks, int mouseX, int mouseY) {
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
-        this.minecraft.textureManager.bindForSetup(GIFT_WRAPPER_GUI);
+        RenderSystem.setShaderTexture(0, GIFT_WRAPPER_GUI);
 
         // Draw container GUI
         int x = (this.width - this.getXSize()) / 2;

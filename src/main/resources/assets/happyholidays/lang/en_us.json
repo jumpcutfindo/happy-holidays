@@ -68,6 +68,7 @@
     "block.happyholidays.christmas_star.block_place_in_radius": "Christmas block placed",
     "block.happyholidays.christmas_star.effect_apply": "Christmas Spirit received",
     "container.happyholidays.christmas_star": "Christmas Star",
+    "container.happyholidays.gift_wrapping_station": "Gift Wrapping Station",
     "block.happyholidays.music_box": "Music Box",
     "block.happyholidays.music_box.now_playing": "Now Playing - %s",
     "block.happyholidays.gift_wrapping_station": "Wrapping Station",

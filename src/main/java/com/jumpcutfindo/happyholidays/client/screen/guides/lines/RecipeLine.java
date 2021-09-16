@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
 import com.jumpcutfindo.happyholidays.common.guide.sections.RecipeSection;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -44,7 +44,7 @@ public class RecipeLine implements IPageLine {
         this.yPos = baseY;
 
         // Draw backgrounds
-        Minecraft.getInstance().getTextureManager().bindForSetup(guideScreen.guideBookGUI);
+        RenderSystem.setShaderTexture(0, guideScreen.guideBookGUI);
         GuideScreen.blit(matrixStack, baseX, baseY, 337, 80, 114, 54, 512, 512);
 
         // Draw recipe items, and iterate through them (just like how Minecraft does it)

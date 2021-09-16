@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ItemSection;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.world.item.ItemStack;
 
@@ -31,7 +31,7 @@ public class ItemLine implements IPageLine {
         int firstX = xPos + (GuideScreen.PAGE_WIDTH - ITEM_WIDTH * items.size()) / 2;
 
         // Draw backgrounds
-        Minecraft.getInstance().getTextureManager().bindForSetup(guideScreen.guideBookGUI);
+        RenderSystem.setShaderTexture(0, guideScreen.guideBookGUI);
         for (int i = 0; i < items.size(); i ++) {
             GuideScreen.blit(matrixStack, firstX + ITEM_WIDTH * i - 1, yPos - 1, 337, 62, 18, 18, 512, 512);
         }
