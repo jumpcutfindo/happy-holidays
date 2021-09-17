@@ -50,7 +50,7 @@ public class GingerbreadManEntity extends GingerbreadPersonEntity {
 
             for (Player player : players) {
                 GingerbreadConversionEvent.ToSoggy turnSoggyEvent =
-                        new GingerbreadConversionEvent.ToSoggy(player, this, this.blockPosition());
+                        new GingerbreadConversionEvent.ToSoggy(this, player, this.blockPosition());
                 MinecraftForge.EVENT_BUS.post(turnSoggyEvent);
             }
         }

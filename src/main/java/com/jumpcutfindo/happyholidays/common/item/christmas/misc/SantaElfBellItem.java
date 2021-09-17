@@ -101,7 +101,7 @@ public class SantaElfBellItem extends ChristmasItem {
             world.addParticle(ParticleTypes.LARGE_SMOKE, spawnX, spawnY, spawnZ, 0.0F, 0.0F, 0.0F);
             world.playSound(null, posAhead, ChristmasSounds.SANTA_ELF_ARRIVAL.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
 
-            SantaElfEvent.Summon elfSummonEvent = new SantaElfEvent.Summon(playerEntity, santaElfEntity);
+            SantaElfEvent.Summon elfSummonEvent = new SantaElfEvent.Summon(santaElfEntity, playerEntity);
             MinecraftForge.EVENT_BUS.post(elfSummonEvent);
         }
 

@@ -117,23 +117,23 @@ public class ChristmasEvents {
     @SubscribeEvent
     public static void onGingerbreadConversion(GingerbreadConversionEvent event) {
         if (event instanceof GingerbreadConversionEvent.ToSoggy) {
-            ChristmasTriggers.CHRISTMAS_GINGERBREAD_MAN_TURN_SOGGY.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_GINGERBREAD_MAN_TURN_SOGGY.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof GingerbreadConversionEvent.ToDry) {
-            ChristmasTriggers.CHRISTMAS_GINGERBREAD_MAN_TURN_DRY.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_GINGERBREAD_MAN_TURN_DRY.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
     @SubscribeEvent
     public static void onSantaElfInteract(SantaElfEvent event) {
         if (event instanceof SantaElfEvent.Summon) {
-            ChristmasTriggers.CHRISTMAS_SANTA_ELF_SUMMON.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_SANTA_ELF_SUMMON.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof SantaElfEvent.Trade) {
-            ChristmasTriggers.CHRISTMAS_SANTA_ELF_TRADE.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_SANTA_ELF_TRADE.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof SantaElfEvent.CompleteRequest) {
-            ChristmasTriggers.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST.trigger((ServerPlayer) event.getPlayer());
 
             if (((SantaElfEvent.CompleteRequest) event).getTimeTaken() <= 6000) {
-                ChristmasTriggers.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST_QUICK.trigger((ServerPlayer) event.getPlayerEntity());
+                ChristmasTriggers.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST_QUICK.trigger((ServerPlayer) event.getPlayer());
             }
         }
     }
@@ -141,48 +141,48 @@ public class ChristmasEvents {
     @SubscribeEvent
     public static void onGrinchInteract(GrinchEvent event) {
         if (event instanceof GrinchEvent.Encounter) {
-            ChristmasTriggers.CHRISTMAS_GRINCH_ENCOUNTER.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_GRINCH_ENCOUNTER.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof GrinchEvent.Appease) {
-            ChristmasTriggers.CHRISTMAS_GRINCH_APPEASE.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_GRINCH_APPEASE.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
     @SubscribeEvent
     public static void onSantaInteract(SantaEvent event) {
         if (event instanceof SantaEvent.AngryDie) {
-            ChristmasTriggers.CHRISTMAS_SANTA_ANGRY_DIE.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_SANTA_ANGRY_DIE.trigger((ServerPlayer) event.getPlayer());
 
             AngrySantaEntity angrySantaEntity = (AngrySantaEntity) event.getSantaEntity();
             if (!angrySantaEntity.isDamagedByPlayer()) {
-                ChristmasTriggers.CHRISTMAS_SANTA_NO_TOUCHY.trigger((ServerPlayer) event.getPlayerEntity());
+                ChristmasTriggers.CHRISTMAS_SANTA_NO_TOUCHY.trigger((ServerPlayer) event.getPlayer());
             }
 
         } else if (event instanceof SantaEvent.CompleteDropParty) {
-            ChristmasTriggers.CHRISTMAS_SANTA_DROP_PARTY_COMPLETE.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_SANTA_DROP_PARTY_COMPLETE.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
     @SubscribeEvent
     public static void onStockingFill(StockingEvent event) {
         if (event instanceof StockingEvent.Fill) {
-            ChristmasTriggers.CHRISTMAS_STOCKING_FILL.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_STOCKING_FILL.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
     @SubscribeEvent
     public static void onChristmasStarInteract(ChristmasStarEvent event) {
         if (event instanceof ChristmasStarEvent.PutOrnament) {
-            ChristmasTriggers.CHRISTMAS_STAR_PUT_ORNAMENT.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_STAR_PUT_ORNAMENT.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof ChristmasStarEvent.IncreaseTier) {
             ChristmasStarEvent.IncreaseTier increaseTierEvent = (ChristmasStarEvent.IncreaseTier) event;
 
             if (increaseTierEvent.getTier() == 5) {
-                ChristmasTriggers.CHRISTMAS_STAR_MAXED_TIER.trigger((ServerPlayer) event.getPlayerEntity());
+                ChristmasTriggers.CHRISTMAS_STAR_MAXED_TIER.trigger((ServerPlayer) event.getPlayer());
             }
         } else if (event instanceof ChristmasStarEvent.SummonSanta) {
-            ChristmasTriggers.CHRISTMAS_STAR_SUMMON_SANTA.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_STAR_SUMMON_SANTA.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof ChristmasStarEvent.ReachBonus) {
-            ChristmasTriggers.CHRISTMAS_STAR_REACH_BONUS.trigger((ServerPlayer) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_STAR_REACH_BONUS.trigger((ServerPlayer) event.getPlayer());
         }
     }
 }

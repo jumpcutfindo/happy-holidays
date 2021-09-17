@@ -3,19 +3,13 @@ package com.jumpcutfindo.happyholidays.common.events.christmas;
 import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.eventbus.api.Event;
 
-public class ChristmasStarEvent extends Event {
+public class ChristmasStarEvent extends ChristmasEvent {
     final ChristmasStarTileEntity tileEntity;
-    final Player playerEntity;
 
     public ChristmasStarEvent(ChristmasStarTileEntity tileEntity, Player playerEntity) {
+        super(playerEntity);
         this.tileEntity = tileEntity;
-        this.playerEntity = playerEntity;
-    }
-
-    public Player getPlayerEntity() {
-        return playerEntity;
     }
 
     public static class PutOrnament extends ChristmasStarEvent {

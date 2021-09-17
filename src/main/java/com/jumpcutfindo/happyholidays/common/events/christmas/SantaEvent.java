@@ -4,19 +4,13 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEnt
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.AngrySantaEntity;
 
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.eventbus.api.Event;
 
-public class SantaEvent extends Event {
+public class SantaEvent extends ChristmasEvent {
     final BaseSantaEntity santaEntity;
-    final Player playerEntity;
 
     public SantaEvent(BaseSantaEntity santaEntity, Player playerEntity) {
+        super(playerEntity);
         this.santaEntity = santaEntity;
-        this.playerEntity = playerEntity;
-    }
-
-    public Player getPlayerEntity() {
-        return playerEntity;
     }
 
     public BaseSantaEntity getSantaEntity() {

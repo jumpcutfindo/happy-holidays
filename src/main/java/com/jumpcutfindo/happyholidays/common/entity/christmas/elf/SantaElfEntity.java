@@ -219,7 +219,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, Merc
         this.rewardTradeXp(merchantOffer);
 
         if (this.getTradingPlayer() != null) {
-            SantaElfEvent.Trade tradeEvent = new SantaElfEvent.Trade(this.getTradingPlayer(), this);
+            SantaElfEvent.Trade tradeEvent = new SantaElfEvent.Trade(this, this.getTradingPlayer());
             MinecraftForge.EVENT_BUS.post(tradeEvent);
         }
     }
@@ -378,8 +378,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, Merc
                 Player playerEntity = this.level.getPlayerByUUID(itemEntity.getThrower());
                 NaughtyNiceMeter.evaluateAction(playerEntity, NaughtyNiceAction.HELP_SANTA_ELF_EVENT);
 
-                SantaElfEvent.CompleteRequest completeRequestEvent = new SantaElfEvent.CompleteRequest(playerEntity,
-                        this, this.timeToCompleteRequest);
+                SantaElfEvent.CompleteRequest completeRequestEvent = new SantaElfEvent.CompleteRequest(this, playerEntity, this.timeToCompleteRequest);
                 MinecraftForge.EVENT_BUS.post(completeRequestEvent);
             }
 
