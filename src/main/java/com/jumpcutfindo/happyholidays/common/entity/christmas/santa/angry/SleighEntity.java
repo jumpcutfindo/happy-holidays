@@ -34,9 +34,9 @@ public class SleighEntity extends Entity implements IAnimatable {
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    private int remainingCharging = Integer.MAX_VALUE;
+    private int remainingCharging = AngrySantaEntity.ATTACK_SLEIGH_CHARGE_TIME;
     private boolean isCharged;
-    private int remainingLifespan = Integer.MAX_VALUE;
+    private int remainingLifespan = AngrySantaEntity.ATTACK_SLEIGH_LIFETIME;
     private boolean isMoving;
 
     public SleighEntity(EntityType<? extends Entity> entityType, Level world) {
@@ -46,6 +46,7 @@ public class SleighEntity extends Entity implements IAnimatable {
     @Override
     public void onAddedToWorld() {
         super.onAddedToWorld();
+
         this.remainingCharging = AngrySantaEntity.ATTACK_SLEIGH_CHARGE_TIME;
         this.remainingLifespan = AngrySantaEntity.ATTACK_SLEIGH_LIFETIME;
 
@@ -112,7 +113,7 @@ public class SleighEntity extends Entity implements IAnimatable {
         float explosivePower = isHitPlayer ? 3.0F : 1.0F;
 
         this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), explosivePower, Explosion.BlockInteraction.NONE);
-        this.remove(RemovalReason.KILLED);
+        this.remove(RemovalReason.DISCARDED);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -130,17 +131,22 @@ public class SleighEntity extends Entity implements IAnimatable {
 
     @Override
     protected void defineSynchedData() {
-
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundTag p_70037_1_) {
-
+    protected void readAdditionalSaveData(CompoundTag tag) {
+        if (tag.contains("RemainingCharging")) this.remainingCharging = tag.getInt("RemainingCharging");
+        this.isCharged = tag.getBoolean("IsCharged");
+        if (tag.contains("RemainingLifespan")) this.remainingLifespan = tag.getInt("RemainingLifespan");
+        this.isMoving = tag.getBoolean("IsMoving");
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundTag p_213281_1_) {
-
+    protected void addAdditionalSaveData(CompoundTag tag) {
+        tag.putInt("RemainingCharging", this.remainingCharging);
+        tag.putBoolean("IsCharged", this.isCharged);
+        tag.putInt("RemainingLifespan", this.remainingLifespan);
+        tag.putBoolean("IsMoving", this.isMoving);
     }
 
     @Override

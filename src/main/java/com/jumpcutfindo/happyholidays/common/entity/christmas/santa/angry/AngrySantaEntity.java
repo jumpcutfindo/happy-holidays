@@ -14,6 +14,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -224,6 +225,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
 
                 this.level.addFreshEntity(explosive);
 
+                this.level.playSound(null, new BlockPos(explosivePos), SoundEvents.TNT_PRIMED, SoundSource.BLOCKS, 1.0f, 1.0f);
             }
         }
     }

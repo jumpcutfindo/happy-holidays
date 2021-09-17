@@ -5,8 +5,6 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MoverType;
@@ -33,7 +31,7 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable {
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    private int life;
+    private int life = 40;
 
     public ExplosivePresentEntity(EntityType<?> entityType, Level world) {
         super(entityType, world);
@@ -45,7 +43,6 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable {
 
         this.setLife(40);
 
-        this.level.playSound(null, this.blockPosition(), SoundEvents.TNT_PRIMED, SoundSource.BLOCKS, 1.0f, 1.0f);
         this.noPhysics = false;
     }
 
@@ -55,12 +52,11 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable {
 
     public void setLife(int life) {
         this.life = life;
-        this.entityData.set(DATA_FUSE_ID, life);
     }
 
     private void explode() {
         this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 2.5F, Explosion.BlockInteraction.NONE);
-        this.remove(RemovalReason.KILLED);
+        this.remove(RemovalReason.DISCARDED);
     }
 
     @Override
@@ -107,7 +103,7 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable {
 
     @Override
     protected void addAdditionalSaveData(CompoundTag nbt) {
-        this.setLife(nbt.getShort("Fuse"));
+        if (nbt.contains("Fuse")) this.setLife(nbt.getShort("Fuse"));
     }
 
     @Override
