@@ -21,7 +21,7 @@
             "entries": [
                 {
                     "type": "minecraft:tag",
-                    "weight": 5,
+                    "weight": 1,
                     "name": "happyholidays:christmas_sheet_music",
                     "expand": true,
                     "functions": [
