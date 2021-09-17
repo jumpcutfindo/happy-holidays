@@ -21,7 +21,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -56,7 +55,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraftforge.common.MinecraftForge;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -79,9 +77,6 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, Merc
     public static final float ENTITY_BOX_HEIGHT = 22.0f / 16.0f;
 
     public static final int DEFAULT_DESPAWN_DELAY = 24000;
-
-    private static final ResourceLocation SANTA_ELF_REQUEST_LOOT_TABLE = new ResourceLocation("happyholidays:entities/santa_elf_request");
-    private static final double REQUEST_ORNAMENT_DROP_BASE_CHANCE = 0.2d;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -414,53 +409,19 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, Merc
     }
 
     public void throwRequestRewards() {
-        LootTable lootTable = this.level.getServer().getLootTables().get(SANTA_ELF_REQUEST_LOOT_TABLE);
-        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootContextParamSets.ENTITY);
+        // Create experience rewards
+        this.level.addFreshEntity(SantaElfRewards.generateCompletionXP(this.level, this.position()));
 
-        double modifier;
-        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingEntity(this.level,
-                this.position());
-        if (starTileEntity != null) {
-            if (starTileEntity.isBonusActive()) {
-                modifier = 2.0D;
-            } else {
-                modifier = 1.0D + (starTileEntity.getCurrentTier() * 0.1D);
-            }
-        } else {
-            modifier = 1.0D;
-        }
+        // Drop loot
+        LootContext ctx = this.createLootContext(false, DamageSource.GENERIC).create(LootContextParamSets.ENTITY);
+        SantaElfRewards.generateRewards(this, ctx).forEach(this::spawnAtLocation);
 
-        // Drop random items
-        lootTable.getRandomItems(ctx).forEach(itemStack -> {
-            if (ChristmasItems.isBasicOrnamentItem(itemStack)) {
-                itemStack.setCount((this.random.nextInt(36 - 12) + 1) + 12);
-            } else if (ChristmasItems.isRareOrnamentItem(itemStack)) {
-                itemStack.setCount((this.random.nextInt(8 - 4) + 1) + 4);
-            } else if (ItemStack.isSame(itemStack, ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance())) {
-                itemStack.setCount((this.random.nextInt(18 - 12) + 1) + 12);
-            }
-
-            // Apply modifier
-            itemStack.setCount((int) (itemStack.getCount() * modifier));
-
-            this.spawnAtLocation(itemStack);
-        });
-
-        // Drop ornament block
-        double ornamentDropChance = REQUEST_ORNAMENT_DROP_BASE_CHANCE * modifier;
-        if (ornamentDropChance > this.random.nextDouble()) {
-            ItemStack elfOrnamentItem = ChristmasItems.SANTA_ELF_ORNAMENT.get().getDefaultInstance();
-            this.spawnAtLocation(elfOrnamentItem);
-        }
-
+        // Creating effects
         this.level.playSound(null, this.getX(), this.getY(), this.getZ(),
                 ChristmasSounds.SANTA_ELF_REQUEST_COMPLETE.get(), SoundSource.VOICE, 1.0f, 1.0f);
 
-        // Creating effects
         this.level.addFreshEntity(new FireworkRocketEntity(this.level, null, this.getX(), this.getY(), this.getZ(),
                 this.createCelebratoryFireworks()));
-
-        this.level.addFreshEntity(new ExperienceOrb(this.level, this.getX(), this.getY(), this.getZ(), 36));
     }
 
     private ItemStack createCelebratoryFireworks() {

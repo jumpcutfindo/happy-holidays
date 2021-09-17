@@ -24,13 +24,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -43,15 +41,9 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.AxeItem;
-import net.minecraft.world.item.HoeItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.ShovelItem;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -78,9 +70,6 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     public static final float ENTITY_BOX_SIZE = 0.5f;
     public static final float ENTITY_BOX_HEIGHT = 34.0f / 16.0f;
 
-    private static final ResourceLocation GRINCH_APPEASEMENT_LOOT_TABLE = new ResourceLocation("happyholidays:entities"
-            + "/grinch_appeasement");
-
     public static final double GRINCH_SPAWN_CHANCE = 0.2d;
     public static final int MAX_GRINCHES_IN_VICINITY = 3;
 
@@ -89,8 +78,6 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     private static final float AVOID_PLAYER_RADIUS = 6.0f;
     private static final int GRINCH_TIME_TO_DESPAWN = 200;
     public static final int PRESENT_SEARCH_RADIUS = 8;
-
-    private static final double APPEASEMENT_ORNAMENT_DROP_BASE_CHANCE = 0.2d;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -158,7 +145,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
     public boolean isPlayerAround() {
         List<Player> playerEntityList = this.level.getEntitiesOfClass(Player.class, this.getBoundingBox().inflate(AVOID_PLAYER_RADIUS,
-                AVOID_PLAYER_RADIUS, AVOID_PLAYER_RADIUS), null);
+                AVOID_PLAYER_RADIUS, AVOID_PLAYER_RADIUS), player -> true);
 
         return playerEntityList.size() > 0;
     }
@@ -246,64 +233,12 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
     }
 
     public void throwAppeasementRewards() {
+        // Create experience rewards
+        this.level.addFreshEntity(GrinchRewards.generateAppeasementXP(this.level, this.position()));
 
-        this.level.addFreshEntity(new ExperienceOrb(this.level, this.getX(), this.getY(), this.getZ(), 50));
-        ItemStack scraps = ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance();
-
-        scraps.setCount(this.presentsBrokenCount[0] + this.presentsBrokenCount[1] * 2 + this.presentsBrokenCount[2] * 3);
-        this.level.addFreshEntity(new ItemEntity(this.level, this.getX(), this.getY(), this.getZ(), scraps));
-
-        LootTable lootTable = this.level.getServer().getLootTables().get(GRINCH_APPEASEMENT_LOOT_TABLE);
-        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootContextParamSets.ENTITY);
-
-        double modifier;
-        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingEntity(this.level,
-                this.position());
-        if (starTileEntity != null) {
-            if (starTileEntity.isBonusActive()) {
-                modifier = 2.0D;
-            } else {
-                modifier = 1.0D + (starTileEntity.getCurrentTier() * 0.1D);
-            }
-        } else {
-            modifier = 1.0D;
-        }
-
-        // Drop random items
-        lootTable.getRandomItems(ctx).forEach(itemStack -> {
-            if (ChristmasItems.isBasicOrnamentItem(itemStack)) {
-                itemStack.setCount((this.random.nextInt(12 - 8) + 1) + 8);
-            } else if (ChristmasItems.isRareOrnamentItem(itemStack)) {
-                itemStack.setCount((this.random.nextInt(4 - 2) + 1) + 2);
-            } else if (ItemStack.isSame(itemStack, ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance())) {
-                itemStack.setCount((this.random.nextInt(12 - 6) + 1) + 6);
-            } else if (ChristmasItems.isFoodItem(itemStack)) {
-                if (ChristmasItems.isLargeFoodItem(itemStack)) {
-                    itemStack.setCount((this.random.nextInt(4 - 2) + 1) + 2);
-                } else {
-                    itemStack.setCount((this.random.nextInt(12 - 6) + 1) + 6);
-                }
-            }
-
-            // Apply modifier
-            if (!(itemStack.getItem() instanceof SwordItem)
-                    && !(itemStack.getItem() instanceof HoeItem)
-                    && !(itemStack.getItem() instanceof AxeItem)
-                    && !(itemStack.getItem() instanceof PickaxeItem)
-                    && !(itemStack.getItem() instanceof ShovelItem)
-            ) {
-                itemStack.setCount((int) (itemStack.getCount() * modifier));
-            }
-
-            this.spawnAtLocation(itemStack);
-        });
-
-        // Drop ornament block
-        double ornamentDropChance = APPEASEMENT_ORNAMENT_DROP_BASE_CHANCE * modifier;
-        if (ornamentDropChance > this.random.nextDouble()) {
-            ItemStack grinchOrnamentItem = ChristmasItems.GRINCH_ORNAMENT.get().getDefaultInstance();
-            this.spawnAtLocation(grinchOrnamentItem);
-        }
+        // Drop loot
+        LootContext ctx = this.createLootContext(false, DamageSource.GENERIC).create(LootContextParamSets.ENTITY);
+        GrinchRewards.generateRewards(this, ctx).forEach(this::spawnAtLocation);
     }
 
     public void despawnGrinch() {
@@ -358,6 +293,10 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
 
             for (Player playerEntity : playersAround) MinecraftForge.EVENT_BUS.post(new GrinchEvent.Encounter(this, playerEntity));
         }
+    }
+
+    public int[] getPresentsBrokenCount() {
+        return presentsBrokenCount;
     }
 
     public static boolean canSpawnInArea(BlockPos blockPos, ServerLevel serverWorld) {
