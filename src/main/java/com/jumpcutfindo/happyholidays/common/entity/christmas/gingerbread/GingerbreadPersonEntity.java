@@ -312,7 +312,7 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
         public void tick() {
             if (--this.timeToRecalcPath <= 0) {
                 this.timeToRecalcPath = 10;
-                this.gingerbreadPerson.getNavigation().moveTo(this.leader, 4.0D);
+                this.gingerbreadPerson.getNavigation().moveTo(this.leader, 1.0D);
             }
         }
     }
