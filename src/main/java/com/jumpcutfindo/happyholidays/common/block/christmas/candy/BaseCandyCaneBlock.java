@@ -9,7 +9,7 @@ import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -68,13 +68,13 @@ public class BaseCandyCaneBlock extends ChristmasBlock {
     }
 
     @Override
-    public void playerDestroy(Level world, Player playerEntity, BlockPos blockPos, BlockState blockState, @Nullable BlockEntity tileEntity, ItemStack itemStack) {
-        super.playerDestroy(world, playerEntity, blockPos, blockState, tileEntity, itemStack);
+    public void playerDestroy(Level world, Player playerEntity, BlockPos blockPos, BlockState blockState, @Nullable BlockEntity blockEntity, ItemStack itemStack) {
+        super.playerDestroy(world, playerEntity, blockPos, blockState, blockEntity, itemStack);
 
         if (!world.isClientSide()) {
             LootContext.Builder lootContextBuilder =
                     (new LootContext.Builder((ServerLevel) world)).withRandom(world.random).withParameter(LootContextParams.ORIGIN,
-                            Vec3.atCenterOf(blockPos)).withParameter(LootContextParams.TOOL, playerEntity.getMainHandItem()).withOptionalParameter(LootContextParams.BLOCK_ENTITY, tileEntity);
+                            Vec3.atCenterOf(blockPos)).withParameter(LootContextParams.TOOL, playerEntity.getMainHandItem()).withOptionalParameter(LootContextParams.BLOCK_ENTITY, blockEntity);
 
             List<ItemStack> drops = this.getCustomDrops(blockState, blockPos, lootContextBuilder, DestroyReason.PLAYER);
             for (ItemStack drop : drops) popResource(world, blockPos, drop);
@@ -90,16 +90,16 @@ public class BaseCandyCaneBlock extends ChristmasBlock {
             LootContext lootContext = builder.withParameter(LootContextParams.BLOCK_STATE, blockState).create(LootContextParamSets.BLOCK);
             ServerLevel serverWorld = lootContext.getLevel();
 
-            ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingBlock(serverWorld, blockPos);
+            ChristmasStarBlockEntity starBlockEntity = ChristmasStarBlockEntity.getStarInfluencingBlock(serverWorld, blockPos);
             List<ItemStack> drops = Lists.newArrayList();
 
             // Enchanted candy cane drop
             double chance = 0.0D;
 
-            if (starTileEntity == null) {
+            if (starBlockEntity == null) {
                 chance = ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE;
-            } else if (!starTileEntity.isBonusActive()) {
-                chance = ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE + ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE * starTileEntity.getCurrentTier() * 0.2;
+            } else if (!starBlockEntity.isBonusActive()) {
+                chance = ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE + ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE * starBlockEntity.getCurrentTier() * 0.2;
             } else {
                 chance = ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE * 3;
             }

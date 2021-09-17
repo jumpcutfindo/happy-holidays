@@ -5,7 +5,7 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
 import com.jumpcutfindo.happyholidays.common.handlers.PacketHandler;
 import com.jumpcutfindo.happyholidays.common.network.christmas.SummonSantaPacket;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -75,7 +75,7 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
         // Draw tier
         TranslatableComponent tierComponent = new TranslatableComponent("block.happyholidays"
                 + ".christmas_star.tier", tier);
-        if (this.menu.tileEntity.isBonusActive()) tierComponent.append(new TranslatableComponent("block"
+        if (this.menu.blockEntity.isBonusActive()) tierComponent.append(new TranslatableComponent("block"
                 + ".happyholidays.christmas_star.bonus"));
         this.font.draw(matrixStack, tierComponent, x + this.titleLabelX, y + this.titleLabelY, 4210752);
 
@@ -94,7 +94,7 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
 
     @Override
     protected void renderLabels(PoseStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
-        this.font.draw(p_230451_1_, this.getTileEntity().getDisplayName(), (float) this.inventoryLabelX,
+        this.font.draw(p_230451_1_, this.getBlockEntity().getDisplayName(), (float) this.inventoryLabelX,
                 (float) this.inventoryLabelY, 4210752);
     }
 
@@ -103,18 +103,18 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
         int y = (this.height - this.getYSize()) / 2;
 
         this.addRenderableWidget(new SummonSantaButton(this, x + 72, y + 39, 32, 31, CommonComponents.GUI_DONE, (pred) -> {
-            if (this.menu.tileEntity.getCurrentTier() >= 5) {
+            if (this.menu.blockEntity.getCurrentTier() >= 5) {
                 Minecraft.getInstance().setScreen((Screen) null);
 
                 PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
-                        new SummonSantaPacket(this.menu.tileEntity.getBlockPos()));
+                        new SummonSantaPacket(this.menu.blockEntity.getBlockPos()));
             }
 
         }));
     }
 
-    public ChristmasStarTileEntity getTileEntity() {
-        return this.menu.getTileEntity();
+    public ChristmasStarBlockEntity getBlockEntity() {
+        return this.menu.getBlockEntity();
     }
 
     public void drawTooltip(PoseStack matrixStack, Component textComponent,  int mouseX, int mouseY) {
@@ -140,7 +140,7 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
         public void renderButton(PoseStack matrixStack, int mouseX, int mouseY, float p_230431_4_) {
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
-            if (this.screen.getTileEntity().getCurrentTier() == 5) {
+            if (this.screen.getBlockEntity().getCurrentTier() == 5) {
                 RenderSystem.setShaderTexture(0, CHRISTMAS_STAR_GUI);
 
                 blit(matrixStack, this.x, this.y, 176, 31, 32, 31);

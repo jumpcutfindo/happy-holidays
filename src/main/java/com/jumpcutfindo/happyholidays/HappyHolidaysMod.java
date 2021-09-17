@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
@@ -10,7 +11,6 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntitie
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -39,7 +39,7 @@ public class HappyHolidaysMod {
         ChristmasEntities.ENTITY_TYPES.register(bus);
         ChristmasBlocks.BLOCKS.register(bus);
         ChristmasItems.ITEMS.register(bus);
-        ChristmasTileEntities.TILE_ENTITY_TYPE.register(bus);
+        ChristmasBlockEntities.BLOCK_ENTITY_TYPE.register(bus);
         ChristmasContainers.CONTAINER_TYPE.register(bus);
         ChristmasSounds.SOUNDS.register(bus);
         ChristmasEffects.EFFECTS.register(bus);

@@ -6,7 +6,7 @@ import java.util.Objects;
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.GiftWrapperTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.GiftWrapperBlockEntity;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
@@ -25,7 +25,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 public class GiftWrapperContainer extends AbstractContainerMenu {
     public static final String CONTAINER_ID = "gift_wrapping_station";
 
-    public final GiftWrapperTileEntity tileEntity;
+    public final GiftWrapperBlockEntity blockEntity;
     private final ContainerLevelAccess canInteractWithCallable;
 
     private final Inventory playerInv;
@@ -34,27 +34,27 @@ public class GiftWrapperContainer extends AbstractContainerMenu {
     public List<Slot> giftItemSlots;
 
     public GiftWrapperContainer(final int windowId, final Inventory playerInv,
-                                final GiftWrapperTileEntity tileEntity) {
+                                final GiftWrapperBlockEntity blockEntity) {
         super(ChristmasContainers.GIFT_WRAPPER_CONTAINER.get(), windowId);
 
-        this.tileEntity = tileEntity;
+        this.blockEntity = blockEntity;
         this.playerInv = playerInv;
 
-        canInteractWithCallable = ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos());
+        canInteractWithCallable = ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos());
 
         // Other slots
-        stringSlot = this.addSlot(new Slot(tileEntity, 0, 16, 16));
-        paperSlot = this.addSlot(new Slot(tileEntity, 1, 16, 41));
-        dyeSlot = this.addSlot(new Slot(tileEntity, 2, 16, 66));
+        stringSlot = this.addSlot(new Slot(blockEntity, 0, 16, 16));
+        paperSlot = this.addSlot(new Slot(blockEntity, 1, 16, 41));
+        dyeSlot = this.addSlot(new Slot(blockEntity, 2, 16, 66));
 
         giftItemSlots = Lists.newArrayList();
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 3; j++) {
-                giftItemSlots.add(this.addSlot(new Slot(tileEntity, 3 + (i * 3) + j, 51 + j * 18, 32 + i * 18)));
+                giftItemSlots.add(this.addSlot(new Slot(blockEntity, 3 + (i * 3) + j, 51 + j * 18, 32 + i * 18)));
             }
         }
 
-        resultSlot = this.addSlot(new GiftWrapperResultSlot(tileEntity, 9, 140, 40));
+        resultSlot = this.addSlot(new GiftWrapperResultSlot(blockEntity, 9, 140, 40));
 
         // Main player inventory
         for (int row = 0; row < 3; row++) {
@@ -70,7 +70,7 @@ public class GiftWrapperContainer extends AbstractContainerMenu {
     }
 
     public GiftWrapperContainer(final int windowId, final Inventory playerInv, final FriendlyByteBuf data) {
-        this(windowId, playerInv, GiftWrapperContainer.getTileEntity(playerInv, data));
+        this(windowId, playerInv, GiftWrapperContainer.getBlockEntity(playerInv, data));
     }
 
     @Override
@@ -86,27 +86,27 @@ public class GiftWrapperContainer extends AbstractContainerMenu {
             ItemStack itemStack = ItemStack.EMPTY;
 
             if (checkAllItemsPresent(giftWrapperInv)) {
-                itemStack = GiftWrapperTileEntity.assembleGift(playerEntity, giftWrapperInv);
+                itemStack = GiftWrapperBlockEntity.assembleGift(playerEntity, giftWrapperInv);
             }
 
-            giftWrapperInv.setItem(GiftWrapperTileEntity.RESULT_SLOT_INDEX, itemStack);
+            giftWrapperInv.setItem(GiftWrapperBlockEntity.RESULT_SLOT_INDEX, itemStack);
             giftWrapperInv.setChanged();
 
             serverPlayer.connection.send(new ClientboundContainerSetSlotPacket(containerId, stateId,
-                    GiftWrapperTileEntity.RESULT_SLOT_INDEX, itemStack));
+                    GiftWrapperBlockEntity.RESULT_SLOT_INDEX, itemStack));
         }
     }
 
     public static boolean checkAllItemsPresent(Container giftWrapperInv) {
-        ItemStack stringItems = giftWrapperInv.getItem(GiftWrapperTileEntity.STRING_SLOT_INDEX);
-        ItemStack paperItems = giftWrapperInv.getItem(GiftWrapperTileEntity.PAPER_SLOT_INDEX);
-        ItemStack dyeItems = giftWrapperInv.getItem(GiftWrapperTileEntity.DYE_SLOT_INDEX);
+        ItemStack stringItems = giftWrapperInv.getItem(GiftWrapperBlockEntity.STRING_SLOT_INDEX);
+        ItemStack paperItems = giftWrapperInv.getItem(GiftWrapperBlockEntity.PAPER_SLOT_INDEX);
+        ItemStack dyeItems = giftWrapperInv.getItem(GiftWrapperBlockEntity.DYE_SLOT_INDEX);
 
         if (ItemStack.isSame(stringItems, Items.STRING.getDefaultInstance()) && stringItems.getCount() >= 2
                 && ItemStack.isSame(paperItems, Items.PAPER.getDefaultInstance()) && paperItems.getCount() >= 4
-                && GiftWrapperTileEntity.isValidColourModifier(dyeItems)
+                && GiftWrapperBlockEntity.isValidColourModifier(dyeItems)
         ) {
-            for (int i = GiftWrapperTileEntity.GIFT_ITEMS_SLOT_INDEX_START; i <= GiftWrapperTileEntity.GIFT_ITEMS_SLOT_INDEX_END; i++) {
+            for (int i = GiftWrapperBlockEntity.GIFT_ITEMS_SLOT_INDEX_START; i <= GiftWrapperBlockEntity.GIFT_ITEMS_SLOT_INDEX_END; i++) {
                 if (!giftWrapperInv.getItem(i).isEmpty() && !(giftWrapperInv.getItem(i).getItem() instanceof ChristmasGiftItem)) return true;
             }
         }
@@ -118,7 +118,7 @@ public class GiftWrapperContainer extends AbstractContainerMenu {
     public void slotsChanged(Container inventory) {
         this.canInteractWithCallable.execute((world, blockPos) -> {
             handleSlotsChanged(this.containerId, this.getStateId(), world, this.playerInv.player, this.playerInv,
-                    this.tileEntity);
+                    this.blockEntity);
         });
     }
 
@@ -127,13 +127,13 @@ public class GiftWrapperContainer extends AbstractContainerMenu {
         return this.playerInv.stillValid(playerEntity);
     }
 
-    private static GiftWrapperTileEntity getTileEntity(final Inventory playerInv, final FriendlyByteBuf data) {
+    private static GiftWrapperBlockEntity getBlockEntity(final Inventory playerInv, final FriendlyByteBuf data) {
         Objects.requireNonNull(playerInv, "Player inventory cannot be null");
         Objects.requireNonNull(data, "Packet buffer cannot be null");
 
         final BlockEntity te = playerInv.player.getCommandSenderWorld().getBlockEntity(data.readBlockPos());
-        if (te instanceof GiftWrapperTileEntity) {
-            return (GiftWrapperTileEntity) te;
+        if (te instanceof GiftWrapperBlockEntity) {
+            return (GiftWrapperBlockEntity) te;
         }
 
         throw new IllegalStateException("Incorrect tile entity!");
@@ -162,7 +162,7 @@ public class GiftWrapperContainer extends AbstractContainerMenu {
                             false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (GiftWrapperTileEntity.isValidColourModifier(itemStack)) {
+                } else if (GiftWrapperBlockEntity.isValidColourModifier(itemStack)) {
                     if (!this.moveItemStackTo(itemStack1, dyeSlot.getSlotIndex(), dyeSlot.getSlotIndex() + 1,
                             false)) {
                         return ItemStack.EMPTY;

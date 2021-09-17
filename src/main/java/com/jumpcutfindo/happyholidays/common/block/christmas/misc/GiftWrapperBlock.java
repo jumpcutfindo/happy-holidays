@@ -4,8 +4,8 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.GiftWrapperTileEntity;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.GiftWrapperBlockEntity;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -77,7 +77,7 @@ public class    GiftWrapperBlock extends ChristmasBlock implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ChristmasTileEntities.GIFT_WRAPPER_ENTITY_TYPE.get().create(pos, state);
+        return ChristmasBlockEntities.GIFT_WRAPPER_ENTITY_TYPE.get().create(pos, state);
     }
 
     @Override
@@ -86,8 +86,8 @@ public class    GiftWrapperBlock extends ChristmasBlock implements EntityBlock {
         if (world.isClientSide()) return InteractionResult.SUCCESS;
         else {
             BlockEntity te = world.getBlockEntity(blockPos);
-            if (te instanceof GiftWrapperTileEntity) {
-                NetworkHooks.openGui((ServerPlayer) playerEntity, (GiftWrapperTileEntity) te, blockPos);
+            if (te instanceof GiftWrapperBlockEntity) {
+                NetworkHooks.openGui((ServerPlayer) playerEntity, (GiftWrapperBlockEntity) te, blockPos);
             }
             return InteractionResult.CONSUME;
         }
@@ -98,8 +98,8 @@ public class    GiftWrapperBlock extends ChristmasBlock implements EntityBlock {
                                   Player playerEntity) {
         super.playerWillDestroy(world, blockPos, blockState, playerEntity);
         BlockEntity te = world.getBlockEntity(blockPos);
-        if (te instanceof GiftWrapperTileEntity) {
-            Containers.dropContents(world, blockPos, (GiftWrapperTileEntity) te);
+        if (te instanceof GiftWrapperBlockEntity) {
+            Containers.dropContents(world, blockPos, (GiftWrapperBlockEntity) te);
         }
     }
 

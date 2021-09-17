@@ -4,8 +4,8 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.MusicBoxTileEntity;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -46,7 +46,7 @@ public class MusicBoxBlock extends ChristmasBlock implements EntityBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
-    public MusicBoxTileEntity musicBoxTileEntity;
+    public MusicBoxBlockEntity musicBoxBlockEntity;
 
     public MusicBoxBlock() {
         super(BLOCK_PROPERTIES);
@@ -74,8 +74,8 @@ public class MusicBoxBlock extends ChristmasBlock implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        this.musicBoxTileEntity = ChristmasTileEntities.MUSIC_BOX_ENTITY_TYPE.get().create(pos, state);
-        return musicBoxTileEntity;
+        this.musicBoxBlockEntity = ChristmasBlockEntities.MUSIC_BOX_ENTITY_TYPE.get().create(pos, state);
+        return musicBoxBlockEntity;
     }
 
     @Override
@@ -97,21 +97,21 @@ public class MusicBoxBlock extends ChristmasBlock implements EntityBlock {
     }
 
     public void setSheetMusic(LevelAccessor world, BlockPos blockPos, BlockState blockState, ItemStack itemStack) {
-        BlockEntity tileentity = world.getBlockEntity(blockPos);
-        if (tileentity instanceof MusicBoxTileEntity) {
-            ((MusicBoxTileEntity) tileentity).setSheetMusic(itemStack.copy(), true);
+        BlockEntity blockEntity = world.getBlockEntity(blockPos);
+        if (blockEntity instanceof MusicBoxBlockEntity) {
+            ((MusicBoxBlockEntity) blockEntity).setSheetMusic(itemStack.copy(), true);
             world.setBlock(blockPos, blockState.setValue(HAS_SHEET_MUSIC, true), 2);
         }
     }
 
     private void dropSheetMusic(Level world, BlockPos blockPos) {
         if (!world.isClientSide) {
-            BlockEntity tileEntity = world.getBlockEntity(blockPos);
-            if (tileEntity instanceof MusicBoxTileEntity) {
-                MusicBoxTileEntity musicBoxTileEntity = (MusicBoxTileEntity) tileEntity;
-                ItemStack itemstack = musicBoxTileEntity.getSheetMusic();
+            BlockEntity blockEntity = world.getBlockEntity(blockPos);
+            if (blockEntity instanceof MusicBoxBlockEntity) {
+                MusicBoxBlockEntity musicBoxBlockEntity = (MusicBoxBlockEntity) blockEntity;
+                ItemStack itemstack = musicBoxBlockEntity.getSheetMusic();
                 if (!itemstack.isEmpty()) {
-                    musicBoxTileEntity.clearContent();
+                    musicBoxBlockEntity.clearContent();
                     float f = 0.7F;
                     double d0 = (double)(world.random.nextFloat() * 0.7F) + (double)0.15F;
                     double d1 = (double)(world.random.nextFloat() * 0.7F) + (double)0.060000002F + 0.6D;
@@ -138,10 +138,10 @@ public class MusicBoxBlock extends ChristmasBlock implements EntityBlock {
                                   Player playerEntity) {
         super.playerWillDestroy(world, blockPos, blockState, playerEntity);
 
-        BlockEntity tileEntity = world.getBlockEntity(blockPos);
-        if (tileEntity instanceof MusicBoxTileEntity) {
-            MusicBoxTileEntity musicBoxTileEntity = (MusicBoxTileEntity) tileEntity;
-            musicBoxTileEntity.stopMusic();
+        BlockEntity blockEntity = world.getBlockEntity(blockPos);
+        if (blockEntity instanceof MusicBoxBlockEntity) {
+            MusicBoxBlockEntity musicBoxBlockEntity = (MusicBoxBlockEntity) blockEntity;
+            musicBoxBlockEntity.stopMusic();
         }
     }
 }

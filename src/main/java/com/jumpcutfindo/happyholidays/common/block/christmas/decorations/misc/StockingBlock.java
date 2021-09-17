@@ -6,9 +6,9 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.StockingTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.StockingBlockEntity;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.core.BlockPos;
@@ -82,13 +82,13 @@ public class StockingBlock extends WallDecorationBlock implements EntityBlock {
 
     @Override
     public InteractionResult use(BlockState blockState, Level world, BlockPos blockPos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
-        BlockEntity tileEntity = world.getBlockEntity(blockPos);
+        BlockEntity blockEntity = world.getBlockEntity(blockPos);
 
-        if (!world.isClientSide() && tileEntity instanceof StockingTileEntity) {
-            StockingTileEntity stockingTileEntity = (StockingTileEntity) tileEntity;
+        if (!world.isClientSide() && blockEntity instanceof StockingBlockEntity) {
+            StockingBlockEntity stockingBlockEntity = (StockingBlockEntity) blockEntity;
 
-            if (!stockingTileEntity.isEmpty()) {
-                stockingTileEntity.dropStockingItems();
+            if (!stockingBlockEntity.isEmpty()) {
+                stockingBlockEntity.dropStockingItems();
             }
 
             return InteractionResult.SUCCESS;
@@ -100,7 +100,7 @@ public class StockingBlock extends WallDecorationBlock implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ChristmasTileEntities.STOCKING_ENTITY_TYPE.get().create(pos, state);
+        return ChristmasBlockEntities.STOCKING_ENTITY_TYPE.get().create(pos, state);
     }
 
     @Override
@@ -110,15 +110,15 @@ public class StockingBlock extends WallDecorationBlock implements EntityBlock {
 
     @Override
     public void randomTick(BlockState blockState, ServerLevel world, BlockPos blockPos, Random random) {
-        BlockEntity tileEntity = world.getBlockEntity(blockPos);
+        BlockEntity blockEntity = world.getBlockEntity(blockPos);
 
-        if (tileEntity instanceof StockingTileEntity) {
-            StockingTileEntity stockingTileEntity = (StockingTileEntity) tileEntity;
+        if (blockEntity instanceof StockingBlockEntity) {
+            StockingBlockEntity stockingBlockEntity = (StockingBlockEntity) blockEntity;
 
-            if (world.isNight() && !stockingTileEntity.isDoneForNight() && stockingTileEntity.isEmpty()) {
+            if (world.isNight() && !stockingBlockEntity.isDoneForNight() && stockingBlockEntity.isEmpty()) {
                 int randInt = random.nextInt(100);
                 if (randInt < StockingBlock.getFillChance(world, blockPos)) {
-                    stockingTileEntity.fillStocking();
+                    stockingBlockEntity.fillStocking();
 
                     AABB searchBox = new AABB(blockPos).inflate(4.0D);
                     List<Player> playersAround = world.getEntitiesOfClass(Player.class, searchBox);
@@ -130,7 +130,7 @@ public class StockingBlock extends WallDecorationBlock implements EntityBlock {
                 }
             }
 
-            if (world.isDay() && stockingTileEntity.isDoneForNight()) stockingTileEntity.resetStocking();
+            if (world.isDay() && stockingBlockEntity.isDoneForNight()) stockingBlockEntity.resetStocking();
         }
     }
 

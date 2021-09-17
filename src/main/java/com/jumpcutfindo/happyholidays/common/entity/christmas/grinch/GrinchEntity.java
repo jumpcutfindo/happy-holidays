@@ -14,7 +14,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.core.BlockPos;
@@ -442,7 +442,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                             if (this.grinchEntity.level.getBlockState(currPos).getBlock() instanceof PresentBlock) {
                                 // Check for entity instead of block, since we consider the Grinch's AOE instead of
                                 // the block's AOE for the block breaking functionality
-                                if (ChristmasStarTileEntity.getStarInfluencingEntity(this.grinchEntity.level,
+                                if (ChristmasStarBlockEntity.getStarInfluencingEntity(this.grinchEntity.level,
                                         new Vec3(currPos.getX(), currPos.getY(), currPos.getZ())) != null) {
                                     continue;
                                 } else {

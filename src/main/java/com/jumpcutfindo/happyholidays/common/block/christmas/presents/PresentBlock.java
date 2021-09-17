@@ -11,7 +11,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -147,17 +147,17 @@ public class PresentBlock extends ChristmasBlock implements SimpleWaterloggedBlo
     }
 
     public float getGrowthProbability(Level world, BlockPos pos) {
-        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingBlock(world, pos);
+        ChristmasStarBlockEntity starBlockEntity = ChristmasStarBlockEntity.getStarInfluencingBlock(world, pos);
 
-        if (starTileEntity == null) {
+        if (starBlockEntity == null) {
             return GROWTH_PROBABILITY;
         } else {
-            return GROWTH_PROBABILITY + GROWTH_PROBABILITY * starTileEntity.getCurrentTier() * 0.2f;
+            return GROWTH_PROBABILITY + GROWTH_PROBABILITY * starBlockEntity.getCurrentTier() * 0.2f;
         }
     }
 
     @Override
-    public void playerDestroy(Level world, Player playerEntity, BlockPos blockPos, BlockState blockState, @Nullable BlockEntity tileEntity, ItemStack itemStack) {
+    public void playerDestroy(Level world, Player playerEntity, BlockPos blockPos, BlockState blockState, @Nullable BlockEntity blockEntity, ItemStack itemStack) {
         playerEntity.awardStat(Stats.BLOCK_MINED.get(this));
         playerEntity.causeFoodExhaustion(0.005F);
 
@@ -165,7 +165,7 @@ public class PresentBlock extends ChristmasBlock implements SimpleWaterloggedBlo
             LootContext.Builder lootContextBuilder =
                     (new LootContext.Builder((ServerLevel) world)).withRandom(world.random).withParameter(LootContextParams.ORIGIN,
                             Vec3.atCenterOf(blockPos)).withParameter(LootContextParams.TOOL, playerEntity.getMainHandItem())
-                            .withOptionalParameter(LootContextParams.BLOCK_ENTITY, tileEntity);
+                            .withOptionalParameter(LootContextParams.BLOCK_ENTITY, blockEntity);
 
             List<ItemStack> drops = this.getCustomDrops(blockState, blockPos, lootContextBuilder);
             for (ItemStack drop : drops) popResource(world, blockPos, drop);
@@ -183,7 +183,7 @@ public class PresentBlock extends ChristmasBlock implements SimpleWaterloggedBlo
             ServerLevel serverWorld = lootContext.getLevel();
             LootTable lootTable = serverWorld.getServer().getLootTables().get(resourceLocation);
 
-            ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingBlock(serverWorld, blockPos);
+            ChristmasStarBlockEntity starBlockEntity = ChristmasStarBlockEntity.getStarInfluencingBlock(serverWorld, blockPos);
             List<ItemStack> drops = lootTable.getRandomItems(lootContext);
 
             // Normal processing of drops (in lieu of item tag bug)
@@ -200,7 +200,7 @@ public class PresentBlock extends ChristmasBlock implements SimpleWaterloggedBlo
             }
 
             // Double drops if there is a bonus star nearby
-            if (starTileEntity != null && starTileEntity.isBonusActive()) {
+            if (starBlockEntity != null && starBlockEntity.isBonusActive()) {
                 for (ItemStack drop : drops) {
                     if (!ItemStack.isSame(drop, ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance()) && !ChristmasItems.isPresentItem(drop)) {
                         drop.setCount(drop.getCount() * 2);

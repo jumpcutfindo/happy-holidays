@@ -9,7 +9,7 @@ import com.jumpcutfindo.happyholidays.client.entity.SantaElfEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.SantaEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.SleighRenderer;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -62,7 +62,7 @@ public class RendererHandler {
 
         // Register block entities
         event.registerBlockEntityRenderer(
-                ChristmasTileEntities.MUSIC_BOX_ENTITY_TYPE.get(),
+                ChristmasBlockEntities.MUSIC_BOX_ENTITY_TYPE.get(),
                 MusicBoxRenderer::new
         );
     }

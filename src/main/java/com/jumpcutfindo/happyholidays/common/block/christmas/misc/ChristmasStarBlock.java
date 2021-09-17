@@ -4,8 +4,8 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -94,7 +94,7 @@ public class ChristmasStarBlock extends ChristmasBlock implements EntityBlock {
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ChristmasTileEntities.CHRISTMAS_STAR_ENTITY_TYPE.get().create(pos, state);
+        return ChristmasBlockEntities.CHRISTMAS_STAR_ENTITY_TYPE.get().create(pos, state);
     }
 
     @Override
@@ -138,8 +138,8 @@ public class ChristmasStarBlock extends ChristmasBlock implements EntityBlock {
         if (world.isClientSide()) return InteractionResult.SUCCESS;
         else {
             BlockEntity te = world.getBlockEntity(blockPos);
-            if (te instanceof ChristmasStarTileEntity) {
-                NetworkHooks.openGui((ServerPlayer) playerEntity, (ChristmasStarTileEntity) te, blockPos);
+            if (te instanceof ChristmasStarBlockEntity) {
+                NetworkHooks.openGui((ServerPlayer) playerEntity, (ChristmasStarBlockEntity) te, blockPos);
             }
             return InteractionResult.CONSUME;
         }
@@ -150,8 +150,8 @@ public class ChristmasStarBlock extends ChristmasBlock implements EntityBlock {
                                   Player playerEntity) {
         super.playerWillDestroy(world, blockPos, blockState, playerEntity);
         BlockEntity te = world.getBlockEntity(blockPos);
-        if (te instanceof ChristmasStarTileEntity) {
-            Containers.dropContents(world, blockPos, (ChristmasStarTileEntity) te);
+        if (te instanceof ChristmasStarBlockEntity) {
+            Containers.dropContents(world, blockPos, (ChristmasStarBlockEntity) te);
         }
     }
 
@@ -164,10 +164,10 @@ public class ChristmasStarBlock extends ChristmasBlock implements EntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
                                                                   BlockEntityType<T> blockEntityType) {
-        return createStarTicker(level, blockEntityType, ChristmasTileEntities.CHRISTMAS_STAR_ENTITY_TYPE.get());
+        return createStarTicker(level, blockEntityType, ChristmasBlockEntities.CHRISTMAS_STAR_ENTITY_TYPE.get());
     }
 
-    protected static <T extends BlockEntity> BlockEntityTicker<T> createStarTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends ChristmasStarTileEntity> otherEntityType) {
-        return level.isClientSide() ? null : ChristmasBlock.createTickerHelper(blockEntityType, otherEntityType, ChristmasStarTileEntity::serverTick);
+    protected static <T extends BlockEntity> BlockEntityTicker<T> createStarTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends ChristmasStarBlockEntity> otherEntityType) {
+        return level.isClientSide() ? null : ChristmasBlock.createTickerHelper(blockEntityType, otherEntityType, ChristmasStarBlockEntity::serverTick);
     }
 }

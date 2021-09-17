@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.container.christmas.gifts;
 
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.GiftWrapperTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.GiftWrapperBlockEntity;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.Container;
@@ -21,18 +21,18 @@ public class GiftWrapperResultSlot extends Slot {
     public void onTake(Player p_190901_1_, ItemStack p_190901_2_) {
         Container giftWrapperInv = this.container;
 
-        ItemStack stringItems = giftWrapperInv.getItem(GiftWrapperTileEntity.STRING_SLOT_INDEX);
-        ItemStack paperItems = giftWrapperInv.getItem(GiftWrapperTileEntity.PAPER_SLOT_INDEX);
-        ItemStack dyeItems = giftWrapperInv.getItem(GiftWrapperTileEntity.DYE_SLOT_INDEX);
+        ItemStack stringItems = giftWrapperInv.getItem(GiftWrapperBlockEntity.STRING_SLOT_INDEX);
+        ItemStack paperItems = giftWrapperInv.getItem(GiftWrapperBlockEntity.PAPER_SLOT_INDEX);
+        ItemStack dyeItems = giftWrapperInv.getItem(GiftWrapperBlockEntity.DYE_SLOT_INDEX);
 
         stringItems.shrink(2);
         paperItems.shrink(4);
         dyeItems.shrink(1);
 
-        for (int i = GiftWrapperTileEntity.GIFT_ITEMS_SLOT_INDEX_START; i <= GiftWrapperTileEntity.GIFT_ITEMS_SLOT_INDEX_END; i++) {
+        for (int i = GiftWrapperBlockEntity.GIFT_ITEMS_SLOT_INDEX_START; i <= GiftWrapperBlockEntity.GIFT_ITEMS_SLOT_INDEX_END; i++) {
             giftWrapperInv.removeItemNoUpdate(i);
         }
 
-        giftWrapperInv.removeItem(GiftWrapperTileEntity.RESULT_SLOT_INDEX, 1);
+        giftWrapperInv.removeItem(GiftWrapperBlockEntity.RESULT_SLOT_INDEX, 1);
     }
 }

@@ -15,7 +15,7 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -164,9 +164,9 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, Merc
                 if (christmasDebuff != null) {
                     double discount;
 
-                    ChristmasStarTileEntity starTileEntity =
-                            ChristmasStarTileEntity.getStarInfluencingEntity(this.level, this.position());
-                    if (starTileEntity != null && starTileEntity.isBonusActive()) {
+                    ChristmasStarBlockEntity starBlockEntity =
+                            ChristmasStarBlockEntity.getStarInfluencingEntity(this.level, this.position());
+                    if (starBlockEntity != null && starBlockEntity.isBonusActive()) {
                         discount = 0.8D;
                     } else {
                         discount = 0.1D * (double) (christmasDebuff.getAmplifier() + 1);

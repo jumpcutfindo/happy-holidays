@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
@@ -17,29 +17,29 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ChristmasStarBonusSlot extends Slot {
-    private final ChristmasStarTileEntity starTileEntity;
+    private final ChristmasStarBlockEntity starBlockEntity;
 
-    public ChristmasStarBonusSlot(ChristmasStarTileEntity starTileEntity, int p_i1824_2_, int p_i1824_3_, int p_i1824_4_) {
-        super(starTileEntity, p_i1824_2_, p_i1824_3_, p_i1824_4_);
-        this.starTileEntity = starTileEntity;
+    public ChristmasStarBonusSlot(ChristmasStarBlockEntity starBlockEntity, int p_i1824_2_, int p_i1824_3_, int p_i1824_4_) {
+        super(starBlockEntity, p_i1824_2_, p_i1824_3_, p_i1824_4_);
+        this.starBlockEntity = starBlockEntity;
     }
 
     @Override
     public boolean mayPlace(ItemStack itemStack) {
-        boolean isTierOK = starTileEntity.getCurrentTier() == 5;
+        boolean isTierOK = starBlockEntity.getCurrentTier() == 5;
 
         // If cannot place, we notify the user; if can, we emit an event
-        if (starTileEntity.getLevel() != null && !starTileEntity.getLevel().isClientSide()) {
+        if (starBlockEntity.getLevel() != null && !starBlockEntity.getLevel().isClientSide()) {
             if (isTierOK) {
-                Level level = starTileEntity.getLevel();
+                Level level = starBlockEntity.getLevel();
                 if (level != null && !level.isClientSide()) {
-                    BlockPos blockPos = starTileEntity.getBlockPos();
+                    BlockPos blockPos = starBlockEntity.getBlockPos();
 
                     Player playerEntity = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(),
                             10.0D, false);
 
                     if (playerEntity != null) {
-                        ChristmasStarEvent event = new ChristmasStarEvent.ReachBonus(starTileEntity, playerEntity);
+                        ChristmasStarEvent event = new ChristmasStarEvent.ReachBonus(starBlockEntity, playerEntity);
                         MinecraftForge.EVENT_BUS.post(event);
                     }
                 }
@@ -52,7 +52,7 @@ public class ChristmasStarBonusSlot extends Slot {
             }
         }
 
-        return starTileEntity.getCurrentTier() == 5 && ItemStack.isSame(itemStack,
+        return starBlockEntity.getCurrentTier() == 5 && ItemStack.isSame(itemStack,
                 ChristmasItems.ENCHANTED_SANTA_HAT.get().getDefaultInstance());
     }
 }

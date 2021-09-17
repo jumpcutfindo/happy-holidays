@@ -15,7 +15,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -71,16 +71,16 @@ public class ChristmasEvents {
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
         if (event.getEntity() instanceof Player && ChristmasBlocks.isInfluencedByStar(event.getPlacedBlock().getBlock())) {
             Player playerEntity = (Player) event.getEntity();
-            ChristmasStarTileEntity starTileEntity =
-                    ChristmasStarTileEntity.getStarInfluencingBlock(playerEntity.level, event.getPos());
+            ChristmasStarBlockEntity starBlockEntity =
+                    ChristmasStarBlockEntity.getStarInfluencingBlock(playerEntity.level, event.getPos());
 
-            if (starTileEntity != null && starTileEntity.isPosAffected(event.getPos())) {
+            if (starBlockEntity != null && starBlockEntity.isPosAffected(event.getPos())) {
                 // Block is under influence of a star
                 BlockPos placedBlockPos = event.getBlockSnapshot().getPos();
 
-                int particleCount = starTileEntity.getCurrentTier() + (starTileEntity.isBonusActive() ? 1 : 0);
+                int particleCount = starBlockEntity.getCurrentTier() + (starBlockEntity.isBonusActive() ? 1 : 0);
 
-                for (int i = 0; i < starTileEntity.getCurrentTier(); i++) {
+                for (int i = 0; i < starBlockEntity.getCurrentTier(); i++) {
                     double d0 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
                     double d1 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
                     double d2 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;

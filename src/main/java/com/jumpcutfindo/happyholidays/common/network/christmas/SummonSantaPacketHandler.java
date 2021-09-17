@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.common.network.christmas;
 
 import java.util.function.Supplier;
 
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -14,10 +14,10 @@ public class SummonSantaPacketHandler {
         ServerLevel serverWorld = ctx.get().getSender().getLevel();
 
         if (serverWorld != null) {
-            BlockEntity tileEntity = serverWorld.getBlockEntity(new BlockPos(pkt.x, pkt.y, pkt.z));
+            BlockEntity blockEntity = serverWorld.getBlockEntity(new BlockPos(pkt.x, pkt.y, pkt.z));
 
-            if (tileEntity instanceof ChristmasStarTileEntity) {
-                ((ChristmasStarTileEntity) tileEntity).summonSanta();
+            if (blockEntity instanceof ChristmasStarBlockEntity) {
+                ((ChristmasStarBlockEntity) blockEntity).summonSanta();
             }
         }
     }

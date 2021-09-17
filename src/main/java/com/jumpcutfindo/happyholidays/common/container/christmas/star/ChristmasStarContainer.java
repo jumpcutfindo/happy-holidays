@@ -6,7 +6,7 @@ import java.util.Objects;
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.Container;
@@ -24,7 +24,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ChristmasStarContainer extends AbstractContainerMenu {
     public static final String CONTAINER_ID = "christmas_star";
 
-    public final ChristmasStarTileEntity tileEntity;
+    public final ChristmasStarBlockEntity blockEntity;
     private final ContainerLevelAccess canInteractWithCallable;
     private final Container container;
 
@@ -34,28 +34,28 @@ public class ChristmasStarContainer extends AbstractContainerMenu {
     private Slot bonusSlot;
 
     public ChristmasStarContainer(final int windowId, final Inventory playerInv,
-                                  final ChristmasStarTileEntity tileEntity) {
+                                  final ChristmasStarBlockEntity blockEntity) {
         super(ChristmasContainers.CHRISTMAS_STAR_CONTAINER.get(), windowId);
 
-        this.tileEntity = tileEntity;
+        this.blockEntity = blockEntity;
         this.container = playerInv;
 
-        this.data = tileEntity.dataAccess;
-        this.addDataSlots(this.tileEntity.dataAccess);
+        this.data = blockEntity.dataAccess;
+        this.addDataSlots(this.blockEntity.dataAccess);
 
-        canInteractWithCallable = ContainerLevelAccess.create(tileEntity.getLevel(), tileEntity.getBlockPos());
+        canInteractWithCallable = ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos());
 
         // Christmas ornament slots (5 slots)
         this.ornamentSlots = Lists.newArrayList(
-                this.addSlot(new ChristmasStarSlot(tileEntity, 0, 80, 15)),
-                this.addSlot(new ChristmasStarSlot(tileEntity, 1, 48, 43)),
-                this.addSlot(new ChristmasStarSlot(tileEntity, 2, 112, 43)),
-                this.addSlot(new ChristmasStarSlot(tileEntity, 3, 58, 77)),
-                this.addSlot(new ChristmasStarSlot(tileEntity, 4, 102, 77))
+                this.addSlot(new ChristmasStarSlot(blockEntity, 0, 80, 15)),
+                this.addSlot(new ChristmasStarSlot(blockEntity, 1, 48, 43)),
+                this.addSlot(new ChristmasStarSlot(blockEntity, 2, 112, 43)),
+                this.addSlot(new ChristmasStarSlot(blockEntity, 3, 58, 77)),
+                this.addSlot(new ChristmasStarSlot(blockEntity, 4, 102, 77))
         );
 
         // Special slot
-        this.bonusSlot = this.addSlot(new ChristmasStarBonusSlot(tileEntity, 5, 152, 77));
+        this.bonusSlot = this.addSlot(new ChristmasStarBonusSlot(blockEntity, 5, 152, 77));
 
         // Main player inventory
         for (int row = 0; row < 3; row++) {
@@ -71,7 +71,7 @@ public class ChristmasStarContainer extends AbstractContainerMenu {
     }
 
     public ChristmasStarContainer(final int windowId, final Inventory playerInv, final FriendlyByteBuf data) {
-        this(windowId, playerInv, ChristmasStarContainer.getTileEntity(playerInv, data));
+        this(windowId, playerInv, ChristmasStarContainer.getBlockEntity(playerInv, data));
     }
 
     @Override
@@ -151,17 +151,17 @@ public class ChristmasStarContainer extends AbstractContainerMenu {
         return this.data.get(0);
     }
 
-    public ChristmasStarTileEntity getTileEntity() {
-        return tileEntity;
+    public ChristmasStarBlockEntity getBlockEntity() {
+        return blockEntity;
     }
 
-    private static ChristmasStarTileEntity getTileEntity(final Inventory playerInv, final FriendlyByteBuf data) {
+    private static ChristmasStarBlockEntity getBlockEntity(final Inventory playerInv, final FriendlyByteBuf data) {
         Objects.requireNonNull(playerInv, "Player inventory cannot be null");
         Objects.requireNonNull(data, "Packet buffer cannot be null");
 
         final BlockEntity te = playerInv.player.getCommandSenderWorld().getBlockEntity(data.readBlockPos());
-        if (te instanceof ChristmasStarTileEntity) {
-            return (ChristmasStarTileEntity) te;
+        if (te instanceof ChristmasStarBlockEntity) {
+            return (ChristmasStarBlockEntity) te;
         }
 
         throw new IllegalStateException("Incorrect tile entity!");
