@@ -24,168 +24,168 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:red_tinsel",
+                        "items": ["happyholidays:red_tinsel"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:blue_tinsel",
+                        "items": ["happyholidays:blue_tinsel"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:yellow_tinsel",
+                        "items": ["happyholidays:yellow_tinsel"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:green_tinsel",
+                        "items": ["happyholidays:green_tinsel"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:gold_tinsel",
+                        "items": ["happyholidays:gold_tinsel"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:silver_tinsel",
+                        "items": ["happyholidays:silver_tinsel"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:big_red_bauble",
+                        "items": ["happyholidays:big_red_bauble"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:big_blue_bauble",
+                        "items": ["happyholidays:big_blue_bauble"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:big_yellow_bauble",
+                        "items": ["happyholidays:big_yellow_bauble"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:big_green_bauble",
+                        "items": ["happyholidays:big_green_bauble"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:big_gold_bauble",
+                        "items": ["happyholidays:big_gold_bauble"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:big_silver_bauble",
+                        "items": ["happyholidays:big_silver_bauble"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:red_christmas_lights",
+                        "items": ["happyholidays:red_christmas_lights"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:blue_christmas_lights",
+                        "items": ["happyholidays:blue_christmas_lights"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:yellow_christmas_lights",
+                        "items": ["happyholidays:yellow_christmas_lights"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:green_christmas_lights",
+                        "items": ["happyholidays:green_christmas_lights"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:gold_christmas_lights",
+                        "items": ["happyholidays:gold_christmas_lights"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:silver_christmas_lights",
+                        "items": ["happyholidays:silver_christmas_lights"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:red_tinsel",
+                        "items": ["happyholidays:red_tinsel"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:blue_tinsel",
+                        "items": ["happyholidays:blue_tinsel"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:yellow_tinsel",
+                        "items": ["happyholidays:yellow_tinsel"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:green_tinsel",
+                        "items": ["happyholidays:green_tinsel"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:gold_tinsel",
+                        "items": ["happyholidays:gold_tinsel"],
                         "count": {
                             "min": 64,
                             "max": 64
                         }
                     },
                     {
-                        "item": "happyholidays:silver_tinsel",
+                        "items": ["happyholidays:silver_tinsel"],
                         "count": {
                             "min": 64,
                             "max": 64

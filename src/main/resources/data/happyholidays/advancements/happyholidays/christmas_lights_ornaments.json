@@ -21,22 +21,22 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:red_christmas_lights"
+                        "items": ["happyholidays:red_christmas_lights"]
                     },
                     {
-                        "item": "happyholidays:blue_christmas_lights"
+                        "items": ["happyholidays:blue_christmas_lights"]
                     },
                     {
-                        "item": "happyholidays:yellow_christmas_lights"
+                        "items": ["happyholidays:yellow_christmas_lights"]
                     },
                     {
-                        "item": "happyholidays:green_christmas_lights"
+                        "items": ["happyholidays:green_christmas_lights"]
                     },
                     {
-                        "item": "happyholidays:gold_christmas_lights"
+                        "items": ["happyholidays:gold_christmas_lights"]
                     },
                     {
-                        "item": "happyholidays:silver_christmas_lights"
+                        "items": ["happyholidays:silver_christmas_lights"]
                     }
                 ]
             }

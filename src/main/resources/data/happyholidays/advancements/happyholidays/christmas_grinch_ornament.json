@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:grinch_ornament"
+                        "items": ["happyholidays:grinch_ornament"]
                     }
                 ]
             }

@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:candy_cane_block"
+                        "items": ["happyholidays:candy_cane_block"]
                     }
                 ]
             }

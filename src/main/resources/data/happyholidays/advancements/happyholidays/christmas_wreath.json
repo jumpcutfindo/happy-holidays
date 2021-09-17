@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:christmas_wreath"
+                        "items": ["happyholidays:christmas_wreath"]
                     }
                 ]
             }

@@ -21,19 +21,19 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:christmas_pudding"
+                        "items": ["happyholidays:christmas_pudding"]
                     },
                     {
-                        "item": "happyholidays:christmas_ham"
+                        "items": ["happyholidays:christmas_ham"]
                     },
                     {
-                        "item": "happyholidays:log_cake"
+                        "items": ["happyholidays:log_cake"]
                     },
                     {
-                        "item": "happyholidays:milk_and_cookies"
+                        "items": ["happyholidays:milk_and_cookies"]
                     },
                     {
-                        "item": "happyholidays:eggnog"
+                        "items": ["happyholidays:eggnog"]
                     }
                 ]
             }

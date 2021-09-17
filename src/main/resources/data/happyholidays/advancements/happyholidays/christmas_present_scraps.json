@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:present_scraps"
+                        "items": ["happyholidays:present_scraps"]
                     }
                 ]
             }
