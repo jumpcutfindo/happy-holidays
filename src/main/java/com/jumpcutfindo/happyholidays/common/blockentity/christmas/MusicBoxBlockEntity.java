@@ -24,7 +24,7 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class MusicBoxBlockEntity extends BlockEntity implements ChristmasEntityBlock, Clearable, IAnimatable {
-    public static final String TILE_ENTITY_ID = "music_box";
+    public static final String BLOCK_ENTITY_ID = "music_box";
 
     private ItemStack sheetMusic = ItemStack.EMPTY;
     private MusicBoxSound currentMusic = null;

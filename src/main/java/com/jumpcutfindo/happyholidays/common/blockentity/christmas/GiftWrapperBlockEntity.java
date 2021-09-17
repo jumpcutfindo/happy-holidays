@@ -22,7 +22,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 
 public class GiftWrapperBlockEntity extends BaseContainerBlockEntity implements ChristmasEntityBlock {
-    public static final String TILE_ENTITY_ID = "gift_wrapping_station";
+    public static final String BLOCK_ENTITY_ID = "gift_wrapping_station";
     public static final int SLOTS = 10;
 
     public static final int STRING_SLOT_INDEX = 0;
@@ -48,7 +48,7 @@ public class GiftWrapperBlockEntity extends BaseContainerBlockEntity implements 
 
     @Override
     protected Component getDefaultName() {
-        return new TranslatableComponent("container." + HappyHolidaysMod.MOD_ID + "." + TILE_ENTITY_ID);
+        return new TranslatableComponent("container." + HappyHolidaysMod.MOD_ID + "." + BLOCK_ENTITY_ID);
     }
 
     @Override

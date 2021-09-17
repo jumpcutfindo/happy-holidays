@@ -17,7 +17,7 @@ public class ChristmasBlockEntities {
 
     public static final RegistryObject<BlockEntityType<ChristmasStarBlockEntity>> CHRISTMAS_STAR_ENTITY_TYPE =
             BLOCK_ENTITY_TYPE.register(
-                    ChristmasStarBlockEntity.TILE_ENTITY_ID,
+                    ChristmasStarBlockEntity.BLOCK_ENTITY_ID,
                     () -> BlockEntityType.Builder.of(
                             ChristmasStarBlockEntity::new,
                             ChristmasBlocks.CHRISTMAS_STAR.get()
@@ -25,7 +25,7 @@ public class ChristmasBlockEntities {
             );
     public static final RegistryObject<BlockEntityType<MusicBoxBlockEntity>> MUSIC_BOX_ENTITY_TYPE =
             BLOCK_ENTITY_TYPE.register(
-                    MusicBoxBlockEntity.TILE_ENTITY_ID,
+                    MusicBoxBlockEntity.BLOCK_ENTITY_ID,
                     () -> BlockEntityType.Builder.of(
                             MusicBoxBlockEntity::new,
                             ChristmasBlocks.MUSIC_BOX.get()
@@ -33,7 +33,7 @@ public class ChristmasBlockEntities {
             );
     public static final RegistryObject<BlockEntityType<GiftWrapperBlockEntity>> GIFT_WRAPPER_ENTITY_TYPE =
             BLOCK_ENTITY_TYPE.register(
-                    GiftWrapperBlockEntity.TILE_ENTITY_ID,
+                    GiftWrapperBlockEntity.BLOCK_ENTITY_ID,
                     () -> BlockEntityType.Builder.of(
                             GiftWrapperBlockEntity::new,
                             ChristmasBlocks.GIFT_WRAPPING_STATION.get()
@@ -41,7 +41,7 @@ public class ChristmasBlockEntities {
             );
     public static final RegistryObject<BlockEntityType<StockingBlockEntity>> STOCKING_ENTITY_TYPE =
             BLOCK_ENTITY_TYPE.register(
-                    StockingBlockEntity.TILE_ENTITY_ID,
+                    StockingBlockEntity.BLOCK_ENTITY_ID,
                     () -> BlockEntityType.Builder.of(
                             StockingBlockEntity::new,
                             ChristmasBlocks.RED_STOCKING.get()
