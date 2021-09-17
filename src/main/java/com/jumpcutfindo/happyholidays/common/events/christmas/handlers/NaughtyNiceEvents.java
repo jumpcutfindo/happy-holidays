@@ -11,8 +11,9 @@ import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceM
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 
-import net.minecraft.world.entity.MobCategory;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -28,7 +29,9 @@ public class NaughtyNiceEvents {
     @SubscribeEvent
     public static void onPlayerDeath(PlayerEvent.Clone event) {
         Player originalPlayer = (Player) event.getOriginal();
+
         if (event.isWasDeath()) {
+            originalPlayer.reviveCaps();
             Player newPlayer = event.getPlayer();
 
             Optional<INaughtyNiceHandler> oldCapability =
@@ -43,14 +46,17 @@ public class NaughtyNiceEvents {
 
                     naughtyNiceMeter.setValue(oldCapability.get().getValue());
                 }
+
+                originalPlayer.invalidateCaps();
             }
+
         }
     }
 
     @SubscribeEvent
     public static void onKillEntity(LivingDeathEvent event) {
-        if (event.getSource().getEntity() instanceof Player) {
-            Player player = (Player) event.getSource().getEntity();
+        if (event.getSource().getEntity() instanceof ServerPlayer) {
+            ServerPlayer player = (ServerPlayer) event.getSource().getEntity();
             LivingEntity killedEntity = event.getEntityLiving();
 
             if (killedEntity.getClassification(false) != MobCategory.MONSTER) {

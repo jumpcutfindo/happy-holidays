@@ -17,7 +17,6 @@ public class CapabilityHandler {
         if (event.getObject() instanceof Player) {
             NaughtyNiceProvider provider = new NaughtyNiceProvider();
             event.addCapability(new ResourceLocation(HappyHolidaysMod.MOD_ID, "naughty_nice_meter"), provider);
-            event.addListener(provider::invalidate);
         }
     }
 }
