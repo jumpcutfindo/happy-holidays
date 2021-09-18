@@ -1,6 +1,8 @@
 package com.jumpcutfindo.happyholidays.common.events.christmas.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.AngrySantaEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
@@ -15,7 +17,6 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -29,6 +30,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -72,7 +74,7 @@ public class ChristmasEvents {
         if (event.getEntity() instanceof Player && ChristmasBlocks.isInfluencedByStar(event.getPlacedBlock().getBlock())) {
             Player playerEntity = (Player) event.getEntity();
             ChristmasStarBlockEntity starBlockEntity =
-                    ChristmasStarBlockEntity.getStarInfluencingBlock(playerEntity.level, event.getPos());
+                    ChristmasStarHelper.getStarInfluencingBlock(playerEntity.level, event.getPos());
 
             if (starBlockEntity != null && starBlockEntity.isPosAffected(event.getPos())) {
                 // Block is under influence of a star
@@ -112,6 +114,11 @@ public class ChristmasEvents {
                 ChristmasTriggers.CHRISTMAS_PLAY_MUSIC_BOX.trigger(playerEntity);
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onWorldLoad(WorldEvent.Load event) {
+        ChristmasStarHelper.onWorldLoad(event);
     }
 
     @SubscribeEvent

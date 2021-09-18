@@ -1,12 +1,15 @@
-package com.jumpcutfindo.happyholidays.common.blockentity.christmas;
+package com.jumpcutfindo.happyholidays.common.blockentity.christmas.star;
 
 import java.util.List;
 import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasEntityBlock;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
@@ -27,8 +30,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -44,11 +49,9 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implements ChristmasEntityBlock {
@@ -115,6 +118,14 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
 
     public ChristmasStarBlockEntity(BlockPos pos, BlockState state) {
         this(ChristmasBlockEntities.CHRISTMAS_STAR_ENTITY_TYPE.get(), pos, state);
+    }
+
+    @Override
+    public void clearRemoved() {
+        // FIXME: This is to be called by onLoad(), but the method is not being called (Forge issue)
+        ChristmasStarHelper.cacheStarLocation(this.getBlockPos());
+
+        super.clearRemoved();
     }
 
     @Override
@@ -391,6 +402,8 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
             this.level.playSound(null, this.worldPosition.getX(), this.worldPosition.getY(),
                     this.worldPosition.getZ(), SoundEvents.NOTE_BLOCK_BELL, SoundSource.BLOCKS, 1.0F,
                     1.0F + newTier * 0.1F);
+
+            if (!this.level.isClientSide) this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 2);
         }
 
         if (oldTier < newTier && !this.level.isClientSide()) {
@@ -402,7 +415,30 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
                 ChristmasStarEvent event = new ChristmasStarEvent.IncreaseTier(this, playerEntity);
                 MinecraftForge.EVENT_BUS.post(event);
             }
+
+            this.setChanged();
         }
+
+        if (oldTier < newTier && this.level.isClientSide()) {
+            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 2);
+        }
+    }
+
+    @Nullable
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        CompoundTag tag = new CompoundTag();
+
+        tag.putInt("StarTier", this.currentTier);
+
+        return new ClientboundBlockEntityDataPacket(getBlockPos(), -1, tag);
+    }
+
+    @Override
+    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
+        CompoundTag tag = pkt.getTag();
+
+        if (tag.contains("StarTier")) changeTier(tag.getInt("StarTier"));
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState blockState, ChristmasStarBlockEntity blockEntity) {
@@ -475,70 +511,5 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
         nbt.putInt("CurrentPoints", this.currentPoints);
 
         return nbt;
-    }
-
-    public static ChristmasStarBlockEntity getStarInfluencingBlock(Level level, BlockPos blockPos) {
-        // Find all blocks that could possibly affect the block at blockPos
-        int maxRadius = BLOCK_EFFECT_RADIUS[MAX_RADIUS_INDEX];
-        List<ChristmasStarBlockEntity> blockEntityList = getStarsAround(level, blockPos, maxRadius);
-
-        // Iterate through the list and figure out the highest level
-        ChristmasStarBlockEntity influencingBlockEntity = null;
-        for (ChristmasStarBlockEntity blockEntity : blockEntityList) {
-            int effectRadius = BLOCK_EFFECT_RADIUS[blockEntity.getCurrentTier()];
-            AABB effectBoundingBox = new AABB(blockEntity.getBlockPos()).inflate(effectRadius);
-
-            // Check whether the tile entity being considered can influence the block, and whether it is at a higher
-            // tier compared to the current tile entity
-            if (effectBoundingBox.contains(blockPos.getX(), blockPos.getY(), blockPos.getZ())) {
-                if (influencingBlockEntity == null || blockEntity.getCurrentTier() > influencingBlockEntity.getCurrentTier()) {
-                    influencingBlockEntity = blockEntity;
-                }
-            }
-        }
-
-        return influencingBlockEntity;
-    }
-
-    public static ChristmasStarBlockEntity getStarInfluencingEntity(Level level, Vec3 vector3d) {
-        // Find all blocks that could possibly affect the block at blockPos
-        int maxRadius = ENTITY_EFFECT_RADIUS[MAX_RADIUS_INDEX];
-        List<ChristmasStarBlockEntity> blockEntityList = getStarsAround(level, new BlockPos(vector3d), maxRadius);
-
-        // Iterate through the list and figure out the highest level
-        ChristmasStarBlockEntity influencingBlockEntity = null;
-        for (ChristmasStarBlockEntity blockEntity : blockEntityList) {
-            int effectRadius = ENTITY_EFFECT_RADIUS[blockEntity.getCurrentTier()];
-            AABB effectBoundingBox = new AABB(blockEntity.getBlockPos()).inflate(effectRadius);
-
-            // Check whether the tile entity being considered can influence the block, and whether it is at a higher
-            // tier compared to the current tile entity
-            if (effectBoundingBox.contains(vector3d)) {
-                if (influencingBlockEntity == null || blockEntity.getCurrentTier() > influencingBlockEntity.getCurrentTier()) {
-                    influencingBlockEntity = blockEntity;
-                }
-            }
-        }
-
-        return influencingBlockEntity;
-    }
-
-    public static List<ChristmasStarBlockEntity> getStarsAround(Level level, BlockPos pos, int maxRadius) {
-        AABB blockBoundingBox = new AABB(pos).inflate(maxRadius);
-
-        List<ChristmasStarBlockEntity> blockEntityList = Lists.newArrayList();
-        for (int i = (int) blockBoundingBox.minX; i < blockBoundingBox.maxX; i++) {
-            for (int j = (int) blockBoundingBox.minY; j < blockBoundingBox.maxY; j++) {
-                for (int k = (int) blockBoundingBox.minZ; k < blockBoundingBox.maxZ; k++) {
-                    BlockPos currPos = new BlockPos(i, j, k);
-                    BlockEntity blockEntity = level.getBlockEntity(currPos);
-                    if (blockEntity instanceof ChristmasStarBlockEntity) {
-                        blockEntityList.add((ChristmasStarBlockEntity) blockEntity);
-                    }
-                }
-            }
-        }
-
-        return blockEntityList;
     }
 }

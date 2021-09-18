@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
@@ -15,7 +16,7 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -165,7 +166,7 @@ public class SantaElfEntity extends ChristmasEntity implements IAnimatable, Merc
                     double discount;
 
                     ChristmasStarBlockEntity starBlockEntity =
-                            ChristmasStarBlockEntity.getStarInfluencingEntity(this.level, this.position());
+                            ChristmasStarHelper.getStarInfluencingEntity(this.level, this.position());
                     if (starBlockEntity != null && starBlockEntity.isBonusActive()) {
                         discount = 0.8D;
                     } else {

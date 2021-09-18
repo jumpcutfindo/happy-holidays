@@ -8,10 +8,11 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -147,7 +148,7 @@ public class PresentBlock extends ChristmasBlock implements SimpleWaterloggedBlo
     }
 
     public float getGrowthProbability(Level world, BlockPos pos) {
-        ChristmasStarBlockEntity starBlockEntity = ChristmasStarBlockEntity.getStarInfluencingBlock(world, pos);
+        ChristmasStarBlockEntity starBlockEntity = ChristmasStarHelper.getStarInfluencingBlock(world, pos);
 
         if (starBlockEntity == null) {
             return GROWTH_PROBABILITY;
@@ -183,7 +184,7 @@ public class PresentBlock extends ChristmasBlock implements SimpleWaterloggedBlo
             ServerLevel serverWorld = lootContext.getLevel();
             LootTable lootTable = serverWorld.getServer().getLootTables().get(resourceLocation);
 
-            ChristmasStarBlockEntity starBlockEntity = ChristmasStarBlockEntity.getStarInfluencingBlock(serverWorld, blockPos);
+            ChristmasStarBlockEntity starBlockEntity = ChristmasStarHelper.getStarInfluencingBlock(serverWorld, blockPos);
             List<ItemStack> drops = lootTable.getRandomItems(lootContext);
 
             // Normal processing of drops (in lieu of item tag bug)

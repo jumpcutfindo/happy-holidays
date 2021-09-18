@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas;
 
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -12,7 +13,7 @@ public class ChristmasRewards {
     public static double computeDropModifier(Level level, Vec3 position, double step) {
         double modifier;
 
-        ChristmasStarBlockEntity starBlockEntity = ChristmasStarBlockEntity.getStarInfluencingEntity(level, position);
+        ChristmasStarBlockEntity starBlockEntity = ChristmasStarHelper.getStarInfluencingEntity(level, position);
         if (starBlockEntity != null) {
             if (starBlockEntity.isBonusActive()) modifier = 2.0D;
             else modifier = 1.0D + (starBlockEntity.getCurrentTier() * step);

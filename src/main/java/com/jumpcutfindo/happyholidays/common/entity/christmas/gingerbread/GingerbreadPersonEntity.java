@@ -4,10 +4,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -126,7 +127,7 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
         LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootContextParamSets.ENTITY);
 
         double modifier;
-        ChristmasStarBlockEntity starBlockEntity = ChristmasStarBlockEntity.getStarInfluencingEntity(this.level,
+        ChristmasStarBlockEntity starBlockEntity = ChristmasStarHelper.getStarInfluencingEntity(this.level,
                 this.position());
         if (starBlockEntity != null) {
             if (starBlockEntity.isBonusActive()) {

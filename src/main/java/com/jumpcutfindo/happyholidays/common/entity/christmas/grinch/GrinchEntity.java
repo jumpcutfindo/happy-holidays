@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
@@ -14,7 +15,6 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.core.BlockPos;
@@ -442,7 +442,7 @@ public class GrinchEntity extends ChristmasEntity implements IAnimatable {
                             if (this.grinchEntity.level.getBlockState(currPos).getBlock() instanceof PresentBlock) {
                                 // Check for entity instead of block, since we consider the Grinch's AOE instead of
                                 // the block's AOE for the block breaking functionality
-                                if (ChristmasStarBlockEntity.getStarInfluencingEntity(this.grinchEntity.level,
+                                if (ChristmasStarHelper.getStarInfluencingEntity(this.grinchEntity.level,
                                         new Vec3(currPos.getX(), currPos.getY(), currPos.getZ())) != null) {
                                     continue;
                                 } else {

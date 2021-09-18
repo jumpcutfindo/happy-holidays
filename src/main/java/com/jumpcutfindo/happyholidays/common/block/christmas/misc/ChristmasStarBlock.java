@@ -4,8 +4,9 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -90,7 +91,6 @@ public class ChristmasStarBlock extends ChristmasBlock implements EntityBlock {
         stateBuilder.add(STAR_TIER, HORIZONTAL_AXIS);
     }
 
-
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
@@ -149,9 +149,12 @@ public class ChristmasStarBlock extends ChristmasBlock implements EntityBlock {
     public void playerWillDestroy(Level world, BlockPos blockPos, BlockState blockState,
                                   Player playerEntity) {
         super.playerWillDestroy(world, blockPos, blockState, playerEntity);
+
         BlockEntity te = world.getBlockEntity(blockPos);
         if (te instanceof ChristmasStarBlockEntity) {
             Containers.dropContents(world, blockPos, (ChristmasStarBlockEntity) te);
+
+            ChristmasStarHelper.removeStarLocation(blockPos);
         }
     }
 

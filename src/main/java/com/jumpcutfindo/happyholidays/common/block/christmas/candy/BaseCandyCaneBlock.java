@@ -8,8 +8,9 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasStarBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -90,7 +91,8 @@ public class BaseCandyCaneBlock extends ChristmasBlock {
             LootContext lootContext = builder.withParameter(LootContextParams.BLOCK_STATE, blockState).create(LootContextParamSets.BLOCK);
             ServerLevel serverWorld = lootContext.getLevel();
 
-            ChristmasStarBlockEntity starBlockEntity = ChristmasStarBlockEntity.getStarInfluencingBlock(serverWorld, blockPos);
+            ChristmasStarBlockEntity starBlockEntity = ChristmasStarHelper.getStarInfluencingBlock(serverWorld,
+                    blockPos);
             List<ItemStack> drops = Lists.newArrayList();
 
             // Enchanted candy cane drop
