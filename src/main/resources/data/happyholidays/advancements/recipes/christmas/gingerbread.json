@@ -14,7 +14,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:gingerbread_dough"
+                        "items": ["happyholidays:gingerbread_dough"]
                     }
                 ]
             }
