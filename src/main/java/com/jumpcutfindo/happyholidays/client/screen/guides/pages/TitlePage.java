@@ -6,6 +6,7 @@ import java.util.List;
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.gui.Font;
@@ -34,7 +35,7 @@ public class TitlePage implements IPage {
         int x = (guideScreen.width - guideScreen.bgWidth) / 2;
         int y = (guideScreen.height - guideScreen.bgHeight) / 2;
 
-        guideScreen.getMinecraft().getTextureManager().bindForSetup(guideScreen.guideBookGUI);
+        RenderSystem.setShaderTexture(0, guideScreen.guideBookGUI);
 
         // Draw logo
         GuideScreen.blit(matrixStack, x + GuideScreen.PAGE_LEFT_X_START + 4, y + 40, LOGO_TEXTURE_X, LOGO_TEXTURE_Y,
