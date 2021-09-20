@@ -1,5 +1,9 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry;
 
+import com.jumpcutfindo.happyholidays.client.entity.ExplosivePresentRenderer;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -21,7 +25,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class ExplosivePresentEntity extends Entity implements IAnimatable {
+public class ExplosivePresentEntity extends Entity implements IAnimatable, IChristmasEntity {
     private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(PrimedTnt.class, EntityDataSerializers.INT);
 
     public static final String ENTITY_ID = "explosive_present";

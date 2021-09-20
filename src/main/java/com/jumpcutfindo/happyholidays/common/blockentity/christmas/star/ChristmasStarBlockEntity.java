@@ -12,7 +12,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarT
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasEntityBlock;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy.HappySantaEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
@@ -42,6 +42,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.BossEvent;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -204,9 +205,10 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
         if (!this.level.isClientSide() && this.currentTier > 0) {
             AABB axisAlignedBB = new AABB(this.worldPosition).inflate(ENTITY_EFFECT_RADIUS[this.currentTier]);
 
-            List<ChristmasEntity> christmasEntities = this.level.getEntitiesOfClass(ChristmasEntity.class, axisAlignedBB);
+            List<LivingEntity> christmasEntities = this.level.getEntitiesOfClass(LivingEntity.class,
+                    axisAlignedBB, entity -> entity instanceof IChristmasEntity);
 
-            for (ChristmasEntity entity : christmasEntities) {
+            for (LivingEntity entity : christmasEntities) {
                 entity.addEffect(new MobEffectInstance(ChristmasEffects.DEBUFF_OF_CHRISTMAS_EFFECT.get(), 200,
                         this.currentTier - 1, true, true));
             }

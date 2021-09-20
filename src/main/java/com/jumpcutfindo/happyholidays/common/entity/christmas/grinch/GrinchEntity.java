@@ -3,11 +3,12 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.grinch;
 import java.util.List;
 import java.util.Random;
 
+import com.jumpcutfindo.happyholidays.client.entity.GrinchEntityRenderer;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
@@ -17,6 +18,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -56,7 +58,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class GrinchEntity extends ChristmasEntity implements IAnimatable {
+public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristmasEntity {
     public static final EntityDataAccessor<Integer> BREAK_ANIM_PROGRESS = SynchedEntityData.defineId(GrinchEntity.class,
             EntityDataSerializers.INT);
 
