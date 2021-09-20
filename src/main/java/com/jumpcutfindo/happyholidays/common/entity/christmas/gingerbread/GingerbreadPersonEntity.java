@@ -4,16 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.jumpcutfindo.happyholidays.client.entity.GingerbreadPersonEntityRenderer;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -36,7 +30,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -49,10 +42,6 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatable, IChristmasEntity {
     public static final float ENTITY_BOX_SIZE = 0.8f;
     public static final float ENTITY_BOX_HEIGHT = 2.0f;
-
-    private static final ResourceLocation GINGERBREAD_CONVERSION_LOOT_TABLE = new ResourceLocation("happyholidays"
-            + ":entities/gingerbread_conversion");
-    private static final double CONVERSION_ORNAMENT_DROP_BASE_CHANCE = 0.01D;
 
     public static final Item[] HEAT_EMITTING_ITEMS = {
             Items.CAMPFIRE, Items.SOUL_CAMPFIRE, Items.MAGMA_BLOCK, Items.LAVA_BUCKET
@@ -125,39 +114,9 @@ public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatabl
     }
 
     public void dropConversionLoot() {
-        LootTable lootTable = this.level.getServer().getLootTables().get(GINGERBREAD_CONVERSION_LOOT_TABLE);
+        // Drop loot
         LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootContextParamSets.ENTITY);
-
-        double modifier;
-        ChristmasStarBlockEntity starBlockEntity = ChristmasStarHelper.getStarInfluencingEntity(this.level,
-                this.position());
-        if (starBlockEntity != null) {
-            if (starBlockEntity.isBonusActive()) {
-                modifier = 2.0D;
-            } else {
-                modifier = 1.0D + (starBlockEntity.getCurrentTier() * 0.1D);
-            }
-        } else {
-            modifier = 1.0D;
-        }
-
-        // Drop random items
-        lootTable.getRandomItems(ctx).forEach(itemStack -> {
-            if (ChristmasItems.isBasicOrnamentItem(itemStack)) {
-                itemStack.setCount((this.random.nextInt(2 - 1) + 1) + 1);
-            }
-
-            itemStack.setCount((int) (itemStack.getCount() * modifier));
-
-            this.spawnAtLocation(itemStack);
-        });
-
-        // Drop ornament block
-        double ornamentDropChance = CONVERSION_ORNAMENT_DROP_BASE_CHANCE * modifier;
-        if (ornamentDropChance > this.random.nextDouble()) {
-            ItemStack gingerbreadOrnamentItem = ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get().getDefaultInstance();
-            this.spawnAtLocation(gingerbreadOrnamentItem);
-        }
+        GingerbreadConversionRewards.generateRewards(this, ctx).forEach(this::spawnAtLocation);
     }
 
     @Override
