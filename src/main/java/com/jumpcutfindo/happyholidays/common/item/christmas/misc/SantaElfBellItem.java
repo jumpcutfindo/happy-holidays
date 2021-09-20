@@ -49,7 +49,7 @@ public class SantaElfBellItem extends ChristmasItem {
 
     public SantaElfBellItem() {
         super(ITEM_PROPERTIES);
-        this.christmasRarity = ChristmasRarity.LEGENDARY;
+        this.setChristmasRarity(ChristmasRarity.LEGENDARY);
     }
 
     @Override

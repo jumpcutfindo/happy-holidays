@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.item.IHappyHolidaysItem;
-
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -17,10 +15,10 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ChristmasItem extends Item implements IHappyHolidaysItem {
+public class ChristmasItem extends Item implements IChristmasItem {
     public final Item.Properties properties;
 
-    public ChristmasRarity christmasRarity;
+    public ChristmasRarity christmasRarity = ChristmasRarity.COMMON;
     public List<String> tooltipDescriptions;
 
     public ChristmasItem(Item.Properties properties) {
@@ -28,7 +26,6 @@ public class ChristmasItem extends Item implements IHappyHolidaysItem {
 
         this.properties = properties;
 
-        this.christmasRarity = ChristmasRarity.COMMON;
         this.tooltipDescriptions = new ArrayList<>();
     }
 
@@ -40,17 +37,7 @@ public class ChristmasItem extends Item implements IHappyHolidaysItem {
     @Override
     public Component getName(ItemStack itemStack) {
         TranslatableComponent name = new TranslatableComponent(this.getDescriptionId(itemStack));
-
-        switch (christmasRarity) {
-        case RARE:
-            return name.withStyle(ChristmasRarity.RARE.color);
-        case LEGENDARY:
-            return name.withStyle(ChristmasRarity.LEGENDARY.color);
-        case UNIQUE:
-            return name.withStyle(ChristmasRarity.UNIQUE.color);
-        default:
-            return name.withStyle(ChristmasRarity.COMMON.color);
-        }
+        return IChristmasItem.createStyledComponent(name, this.christmasRarity);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -58,5 +45,11 @@ public class ChristmasItem extends Item implements IHappyHolidaysItem {
         for (String description : tooltipDescriptions) {
             textComponents.add(new TextComponent(description));
         }
+    }
+
+    @Override
+    public IChristmasItem setChristmasRarity(ChristmasRarity rarity) {
+        this.christmasRarity = rarity;
+        return this;
     }
 }

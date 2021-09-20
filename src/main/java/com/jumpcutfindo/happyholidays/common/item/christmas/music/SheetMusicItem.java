@@ -72,7 +72,7 @@ public class SheetMusicItem extends ChristmasItem {
     public SheetMusicItem() {
         super(ITEM_PROPERTIES);
 
-        this.christmasRarity = ChristmasRarity.RARE;
+        this.setChristmasRarity(ChristmasRarity.RARE);
     }
 
     @Override

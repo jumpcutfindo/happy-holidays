@@ -16,7 +16,7 @@ public class EnchantedSantaHatItem extends ChristmasItem {
 
     public EnchantedSantaHatItem() {
         super(ITEM_PROPERTIES);
-        this.christmasRarity = ChristmasRarity.LEGENDARY;
+        this.setChristmasRarity(ChristmasRarity.LEGENDARY);
     }
 
     @Override

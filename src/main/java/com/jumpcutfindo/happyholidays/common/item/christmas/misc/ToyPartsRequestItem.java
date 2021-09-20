@@ -10,15 +10,15 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.ChatFormatting;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 public class ToyPartsRequestItem extends ChristmasItem {
@@ -31,7 +31,7 @@ public class ToyPartsRequestItem extends ChristmasItem {
     public ToyPartsRequestItem() {
         super(ITEM_PROPERTIES);
 
-        this.christmasRarity = ChristmasRarity.UNIQUE;
+        this.setChristmasRarity(ChristmasRarity.UNIQUE);
     }
 
     @Override

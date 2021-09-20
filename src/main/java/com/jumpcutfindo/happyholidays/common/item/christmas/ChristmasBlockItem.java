@@ -5,26 +5,22 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.item.IHappyHolidaysItem;
-
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import net.minecraft.world.item.Item.Properties;
-
-public class ChristmasBlockItem extends BlockItem implements IHappyHolidaysItem {
+public class ChristmasBlockItem extends BlockItem implements IChristmasItem {
     public Block block;
     public Properties properties;
 
-    public ChristmasRarity christmasRarity;
+    public ChristmasRarity christmasRarity = ChristmasRarity.COMMON;
     public List<String> tooltipDescriptions;
 
     public ChristmasBlockItem(Block block, Properties properties) {
@@ -33,22 +29,13 @@ public class ChristmasBlockItem extends BlockItem implements IHappyHolidaysItem 
         this.block = block;
         this.properties = properties;
 
-        this.christmasRarity = ChristmasRarity.COMMON;
         this.tooltipDescriptions = new ArrayList<>();
     }
 
     @Override
     public Component getName(ItemStack itemStack) {
         TranslatableComponent name = new TranslatableComponent(this.getDescriptionId(itemStack));
-
-        switch (christmasRarity) {
-        case RARE:
-            return name.withStyle(ChristmasRarity.RARE.color);
-        case LEGENDARY:
-            return name.withStyle(ChristmasRarity.LEGENDARY.color);
-        default:
-            return name.withStyle(ChristmasRarity.COMMON.color);
-        }
+        return IChristmasItem.createStyledComponent(name, this.christmasRarity);
     }
 
     @OnlyIn(Dist.CLIENT)
