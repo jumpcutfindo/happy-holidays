@@ -410,8 +410,9 @@ public class AngrySantaEntity extends BaseSantaEntity {
     }
 
     @Override
-    protected void dropCustomDeathLoot(DamageSource p_213333_1_, int p_213333_2_, boolean p_213333_3_) {
-        super.dropCustomDeathLoot(p_213333_1_, p_213333_2_, p_213333_3_);
+    protected void dropCustomDeathLoot(DamageSource damageSource, int p_213333_2_, boolean p_213333_3_) {
+        super.dropCustomDeathLoot(damageSource, p_213333_2_, p_213333_3_);
+        if (damageSource == DamageSource.OUT_OF_WORLD) return;
 
         // Spawn gifts at this location
         for (ItemStack gift : this.generateDrops()) this.spawnAtLocation(gift);

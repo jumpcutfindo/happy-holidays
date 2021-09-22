@@ -3,7 +3,6 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.grinch;
 import java.util.List;
 import java.util.Random;
 
-import com.jumpcutfindo.happyholidays.client.entity.GrinchEntityRenderer;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
@@ -18,7 +17,6 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -361,8 +359,10 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
     }
 
     @Override
-    protected void dropCustomDeathLoot(DamageSource p_213333_1_, int p_213333_2_, boolean p_213333_3_) {
+    protected void dropCustomDeathLoot(DamageSource damageSource, int p_213333_2_, boolean p_213333_3_) {
         // Grinch drops number of scraps equivalent to number of presents broken on death
+        if (damageSource == DamageSource.OUT_OF_WORLD) return;
+
         ItemStack scraps = ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance();
         scraps.setCount(this.presentsBrokenCount[0] + this.presentsBrokenCount[1] + this.presentsBrokenCount[2]);
 
