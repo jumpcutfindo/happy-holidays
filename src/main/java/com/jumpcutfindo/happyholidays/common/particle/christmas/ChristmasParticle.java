@@ -1,24 +1,22 @@
 package com.jumpcutfindo.happyholidays.common.particle.christmas;
 
-import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumParticle;
-
-import net.minecraft.client.particle.IAnimatedSprite;
-import net.minecraft.client.particle.IParticleRenderType;
-import net.minecraft.client.particle.SpriteTexturedParticle;
-import net.minecraft.client.world.ClientWorld;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.particle.ParticleRenderType;
+import net.minecraft.client.particle.SpriteSet;
+import net.minecraft.client.particle.TextureSheetParticle;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class ChristmasParticle extends SpriteTexturedParticle {
-    private final IAnimatedSprite sprites;
+public class ChristmasParticle extends TextureSheetParticle {
+    private final SpriteSet sprites;
     private int color;
 
-    public ChristmasParticle(ClientWorld world,
+    public ChristmasParticle(ClientLevel world,
                                    double xCoord, double yCoord, double zCoord,
                                    double xSpeed, double ySpeed, double zSpeed,
                                    int color,
-                                   IAnimatedSprite sprites) {
+                                   SpriteSet sprites) {
         super(world, xCoord, yCoord, zCoord);
         this.sprites = sprites;
         this.xd = xSpeed + (Math.random() * 2.0D - 1.0D) * (double) 0.2F;
@@ -31,8 +29,8 @@ public class ChristmasParticle extends SpriteTexturedParticle {
         this.setSpriteFromAge(sprites);
     }
 
-    public IParticleRenderType getRenderType() {
-        return IParticleRenderType.PARTICLE_SHEET_OPAQUE;
+    public ParticleRenderType getRenderType() {
+        return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
     }
 
     public ChristmasParticle multiplyColor() {

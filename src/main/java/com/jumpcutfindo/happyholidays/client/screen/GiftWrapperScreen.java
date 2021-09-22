@@ -2,21 +2,27 @@ package com.jumpcutfindo.happyholidays.client.screen;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.GiftWrapperBlockEntity;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
 
-public class GiftWrapperScreen extends ContainerScreen<GiftWrapperContainer> {
+public class GiftWrapperScreen extends AbstractContainerScreen<GiftWrapperContainer> {
     private static final ResourceLocation GIFT_WRAPPER_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
             "textures/gui/container/gift_wrapping_station.png");
 
-    public GiftWrapperScreen(GiftWrapperContainer screenContainer, PlayerInventory playerInv,
-                             ITextComponent title) {
+    public final GiftWrapperContainer container;
+
+    public GiftWrapperScreen(GiftWrapperContainer screenContainer, Inventory playerInv,
+                             Component title) {
         super(screenContainer, playerInv, title);
+
+        this.container = screenContainer;
+
         this.leftPos = 0;
         this.topPos = 0;
         this.imageWidth = 176;
@@ -27,7 +33,7 @@ public class GiftWrapperScreen extends ContainerScreen<GiftWrapperContainer> {
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
+    public void render(PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(matrixStack);
         this.renderBg(matrixStack, partialTicks, mouseX, mouseY);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
@@ -36,9 +42,9 @@ public class GiftWrapperScreen extends ContainerScreen<GiftWrapperContainer> {
     }
 
     @Override
-    protected void renderBg(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
-        RenderSystem.color4f(1f, 1f, 1f, 1f);
-        this.minecraft.textureManager.bind(GIFT_WRAPPER_GUI);
+    protected void renderBg(PoseStack matrixStack, float partialTicks, int mouseX, int mouseY) {
+        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
+        RenderSystem.setShaderTexture(0, GIFT_WRAPPER_GUI);
 
         // Draw container GUI
         int x = (this.width - this.getXSize()) / 2;
@@ -51,12 +57,18 @@ public class GiftWrapperScreen extends ContainerScreen<GiftWrapperContainer> {
     }
 
     @Override
-    protected void renderLabels(MatrixStack matrixStack, int i, int j) {
-        this.font.draw(matrixStack, this.inventory.getDisplayName(), (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
+    protected void renderLabels(PoseStack matrixStack, int i, int j) {
+        this.font.draw(matrixStack, this.getBlockEntity().getDisplayName(), (float)this.inventoryLabelX,
+                (float)this.inventoryLabelY
+                , 4210752);
     }
 
     @Override
-    protected void renderTooltip(MatrixStack p_230459_1_, int p_230459_2_, int p_230459_3_) {
+    protected void renderTooltip(PoseStack p_230459_1_, int p_230459_2_, int p_230459_3_) {
         super.renderTooltip(p_230459_1_, p_230459_2_, p_230459_3_);
+    }
+
+    public GiftWrapperBlockEntity getBlockEntity() {
+        return this.menu.blockEntity;
     }
 }

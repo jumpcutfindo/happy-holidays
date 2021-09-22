@@ -24,52 +24,52 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:christmas_sheet_music_angels_on_high"
+                        "items": ["happyholidays:christmas_sheet_music_angels_on_high"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_carol_of_the_bells"
+                        "items": ["happyholidays:christmas_sheet_music_carol_of_the_bells"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_deck_the_halls"
+                        "items": ["happyholidays:christmas_sheet_music_deck_the_halls"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_frosty_the_snowman"
+                        "items": ["happyholidays:christmas_sheet_music_frosty_the_snowman"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_god_rest_gentlemen"
+                        "items": ["happyholidays:christmas_sheet_music_god_rest_gentlemen"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_here_comes_santa"
+                        "items": ["happyholidays:christmas_sheet_music_here_comes_santa"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_jingle_bell_rock"
+                        "items": ["happyholidays:christmas_sheet_music_jingle_bell_rock"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_jingle_bells"
+                        "items": ["happyholidays:christmas_sheet_music_jingle_bells"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_joy_to_the_world"
+                        "items": ["happyholidays:christmas_sheet_music_joy_to_the_world"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_rudolph"
+                        "items": ["happyholidays:christmas_sheet_music_rudolph"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_silent_night"
+                        "items": ["happyholidays:christmas_sheet_music_silent_night"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_sleigh_ride"
+                        "items": ["happyholidays:christmas_sheet_music_sleigh_ride"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_the_first_noel"
+                        "items": ["happyholidays:christmas_sheet_music_the_first_noel"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_we_three_kings"
+                        "items": ["happyholidays:christmas_sheet_music_we_three_kings"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_we_wish_you"
+                        "items": ["happyholidays:christmas_sheet_music_we_wish_you"]
                     },
                     {
-                        "item": "happyholidays:christmas_sheet_music_white_christmas"
+                        "items": ["happyholidays:christmas_sheet_music_white_christmas"]
                     }
                 ]
             }

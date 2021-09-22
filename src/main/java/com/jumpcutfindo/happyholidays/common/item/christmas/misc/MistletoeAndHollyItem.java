@@ -3,6 +3,8 @@ package com.jumpcutfindo.happyholidays.common.item.christmas.misc;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 
+import net.minecraft.world.item.Item.Properties;
+
 public class MistletoeAndHollyItem extends ChristmasItem {
     public static final String ITEM_ID = "mistletoe_and_holly";
 

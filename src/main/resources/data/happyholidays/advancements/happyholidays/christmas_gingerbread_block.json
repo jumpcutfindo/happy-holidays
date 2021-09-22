@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:gingerbread_block"
+                        "items": ["happyholidays:gingerbread_block"]
                     }
                 ]
             }

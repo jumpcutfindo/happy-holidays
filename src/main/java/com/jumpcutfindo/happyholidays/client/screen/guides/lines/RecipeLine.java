@@ -4,16 +4,14 @@ import java.util.List;
 
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
 import com.jumpcutfindo.happyholidays.common.guide.sections.RecipeSection;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.inventory.CraftingScreen;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeType;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.ShapedRecipe;
 
 public class RecipeLine implements IPageLine {
     public static final int ITEM_WIDTH = 18;
@@ -36,8 +34,8 @@ public class RecipeLine implements IPageLine {
     }
 
     @Override
-    public void draw(MatrixStack matrixStack, int xPos, int yPos) {
-        List<IRecipe> recipes = recipeSection.getRecipes();
+    public void draw(PoseStack matrixStack, int xPos, int yPos) {
+        List<Recipe> recipes = recipeSection.getRecipes();
 
         int baseX = xPos + 16;
         int baseY = yPos - 1;
@@ -46,7 +44,7 @@ public class RecipeLine implements IPageLine {
         this.yPos = baseY;
 
         // Draw backgrounds
-        Minecraft.getInstance().getTextureManager().bind(guideScreen.guideBookGUI);
+        RenderSystem.setShaderTexture(0, guideScreen.guideBookGUI);
         GuideScreen.blit(matrixStack, baseX, baseY, 337, 80, 114, 54, 512, 512);
 
         // Draw recipe items, and iterate through them (just like how Minecraft does it)
@@ -54,7 +52,7 @@ public class RecipeLine implements IPageLine {
 
         // Draw items
         ItemRenderer itemRenderer = guideScreen.getItemRenderer();
-        IRecipe recipe = recipes.get(this.recipeIndex);
+        Recipe recipe = recipes.get(this.recipeIndex);
 
         // Default width and height
         int width = 3;
@@ -97,7 +95,7 @@ public class RecipeLine implements IPageLine {
 
     }
 
-    public void drawTooltip(MatrixStack matrixStack) {
+    public void drawTooltip(PoseStack matrixStack) {
         if (this.isHovered) {
             ItemStack itemStack = getItemAtPos(guideScreen.mouseX, guideScreen.mouseY);
 
@@ -117,7 +115,7 @@ public class RecipeLine implements IPageLine {
 
                 if (lineX <= 54 && lineY <= 54) {
                     // Within range of crafting table grid
-                    IRecipe recipe = recipeSection.getRecipes().get(this.recipeIndex);
+                    Recipe recipe = recipeSection.getRecipes().get(this.recipeIndex);
                     int i = lineX / 18;
                     int j = lineY / 18;
 
@@ -140,7 +138,7 @@ public class RecipeLine implements IPageLine {
                     }
                 } else if (lineX >= 97 && lineX <= 97 + 18 && lineY <= 54 && lineY >= 18) {
                     // Within range of result item grid
-                    IRecipe recipe = recipeSection.getRecipes().get(this.recipeIndex);
+                    Recipe recipe = recipeSection.getRecipes().get(this.recipeIndex);
 
                     return recipe.getResultItem();
                 }
@@ -151,7 +149,7 @@ public class RecipeLine implements IPageLine {
 
                 if (lineX <= 54 && lineY <= 54) {
                     // Within range of crafting table grid
-                    IRecipe recipe = recipeSection.getRecipes().get(this.recipeIndex);
+                    Recipe recipe = recipeSection.getRecipes().get(this.recipeIndex);
                     int i = lineX / 18;
                     int j = lineY / 18;
 
@@ -174,7 +172,7 @@ public class RecipeLine implements IPageLine {
                     }
                 } else if (lineX >= 97 && lineX <= 97 + 18 && lineY <= 36 && lineY >= 18) {
                     // Within range of result item grid
-                    IRecipe recipe = recipeSection.getRecipes().get(this.recipeIndex);
+                    Recipe recipe = recipeSection.getRecipes().get(this.recipeIndex);
 
                     return recipe.getResultItem();
                 }

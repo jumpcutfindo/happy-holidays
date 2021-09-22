@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.common.item.christmas.gingerbread;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 
-import net.minecraft.item.Item;
+import net.minecraft.world.item.Item;
 
 public class RawGingerbreadItem extends ChristmasItem {
     public static final String ITEM_ID = "gingerbread_dough";

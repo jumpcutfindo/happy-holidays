@@ -4,42 +4,41 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.MusicBoxTileEntity;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.BlockHitResult;
 
-public class MusicBoxBlock extends ChristmasBlock {
+public class MusicBoxBlock extends ChristmasBlock implements EntityBlock {
     public static final String BLOCK_ID = "music_box";
 
     public static final BooleanProperty HAS_SHEET_MUSIC = BooleanProperty.create("has_sheet_music");
 
     public static final Properties BLOCK_PROPERTIES =
-            AbstractBlock.Properties
+            BlockBehaviour.Properties
                     .of(Material.DECORATION)
-                    .harvestLevel(-1)
                     .strength(0.25f)
                     .sound(SoundType.GLASS)
                     .noOcclusion();
@@ -47,7 +46,7 @@ public class MusicBoxBlock extends ChristmasBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
-    public MusicBoxTileEntity musicBoxTileEntity;
+    public MusicBoxBlockEntity musicBoxBlockEntity;
 
     public MusicBoxBlock() {
         super(BLOCK_PROPERTIES);
@@ -57,66 +56,62 @@ public class MusicBoxBlock extends ChristmasBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
         stateBuilder.add(HAS_SHEET_MUSIC);
     }
 
     @Override
     public void configureBlock() {
-        RenderTypeLookup.setRenderLayer(this, RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.translucent());
     }
 
     @Override
-    public BlockRenderType getRenderShape(BlockState p_149645_1_) {
-        return BlockRenderType.ENTITYBLOCK_ANIMATED;
+    public RenderShape getRenderShape(BlockState p_149645_1_) {
+        return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 
-    @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        this.musicBoxTileEntity = ChristmasTileEntities.MUSIC_BOX_ENTITY_TYPE.get().create();
-        return musicBoxTileEntity;
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        this.musicBoxBlockEntity = ChristmasBlockEntities.MUSIC_BOX_ENTITY_TYPE.get().create(pos, state);
+        return musicBoxBlockEntity;
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState()
                 .setValue(HAS_SHEET_MUSIC, false);
     }
 
     @Override
-    public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
+    public InteractionResult use(BlockState blockState, Level world, BlockPos blockPos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
         if (blockState.getValue(HAS_SHEET_MUSIC)) {
             this.dropSheetMusic(world, blockPos);
             blockState = blockState.setValue(HAS_SHEET_MUSIC, false);
             world.setBlock(blockPos, blockState, 2);
-            return ActionResultType.sidedSuccess(world.isClientSide);
+            return InteractionResult.sidedSuccess(world.isClientSide);
         } else {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         }
     }
 
-    public void setSheetMusic(IWorld world, BlockPos blockPos, BlockState blockState, ItemStack itemStack) {
-        TileEntity tileentity = world.getBlockEntity(blockPos);
-        if (tileentity instanceof MusicBoxTileEntity) {
-            ((MusicBoxTileEntity) tileentity).setSheetMusic(itemStack.copy(), true);
+    public void setSheetMusic(LevelAccessor world, BlockPos blockPos, BlockState blockState, ItemStack itemStack) {
+        BlockEntity blockEntity = world.getBlockEntity(blockPos);
+        if (blockEntity instanceof MusicBoxBlockEntity) {
+            ((MusicBoxBlockEntity) blockEntity).setSheetMusic(itemStack.copy(), true);
             world.setBlock(blockPos, blockState.setValue(HAS_SHEET_MUSIC, true), 2);
         }
     }
 
-    private void dropSheetMusic(World world, BlockPos blockPos) {
+    private void dropSheetMusic(Level world, BlockPos blockPos) {
         if (!world.isClientSide) {
-            TileEntity tileEntity = world.getBlockEntity(blockPos);
-            if (tileEntity instanceof MusicBoxTileEntity) {
-                MusicBoxTileEntity musicBoxTileEntity = (MusicBoxTileEntity) tileEntity;
-                ItemStack itemstack = musicBoxTileEntity.getSheetMusic();
+            BlockEntity blockEntity = world.getBlockEntity(blockPos);
+            if (blockEntity instanceof MusicBoxBlockEntity) {
+                MusicBoxBlockEntity musicBoxBlockEntity = (MusicBoxBlockEntity) blockEntity;
+                ItemStack itemstack = musicBoxBlockEntity.getSheetMusic();
                 if (!itemstack.isEmpty()) {
-                    musicBoxTileEntity.clearContent();
+                    musicBoxBlockEntity.clearContent();
                     float f = 0.7F;
                     double d0 = (double)(world.random.nextFloat() * 0.7F) + (double)0.15F;
                     double d1 = (double)(world.random.nextFloat() * 0.7F) + (double)0.060000002F + 0.6D;
@@ -130,7 +125,7 @@ public class MusicBoxBlock extends ChristmasBlock {
         }
     }
 
-    public void onRemove(BlockState blockState, World world, BlockPos blockPos, BlockState blockState1, boolean b) {
+    public void onRemove(BlockState blockState, Level world, BlockPos blockPos, BlockState blockState1, boolean b) {
         if (!blockState.is(blockState1.getBlock())) {
             this.dropSheetMusic(world, blockPos);
 
@@ -139,14 +134,14 @@ public class MusicBoxBlock extends ChristmasBlock {
     }
 
     @Override
-    public void playerWillDestroy(World world, BlockPos blockPos, BlockState blockState,
-                                  PlayerEntity playerEntity) {
+    public void playerWillDestroy(Level world, BlockPos blockPos, BlockState blockState,
+                                  Player playerEntity) {
         super.playerWillDestroy(world, blockPos, blockState, playerEntity);
 
-        TileEntity tileEntity = world.getBlockEntity(blockPos);
-        if (tileEntity instanceof MusicBoxTileEntity) {
-            MusicBoxTileEntity musicBoxTileEntity = (MusicBoxTileEntity) tileEntity;
-            musicBoxTileEntity.stopMusic();
+        BlockEntity blockEntity = world.getBlockEntity(blockPos);
+        if (blockEntity instanceof MusicBoxBlockEntity) {
+            MusicBoxBlockEntity musicBoxBlockEntity = (MusicBoxBlockEntity) blockEntity;
+            musicBoxBlockEntity.stopMusic();
         }
     }
 }

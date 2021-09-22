@@ -1,7 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.item;
 
-import net.minecraft.item.Item;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.item.Item;
 
 public interface IHappyHolidaysItem {
     Item.Properties getProperties();

@@ -14,7 +14,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:mistletoe_and_holly"
+                        "items": ["happyholidays:mistletoe_and_holly"]
                     }
                 ]
             }

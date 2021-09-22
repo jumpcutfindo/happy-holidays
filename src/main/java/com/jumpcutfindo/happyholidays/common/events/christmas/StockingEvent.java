@@ -1,33 +1,27 @@
 package com.jumpcutfindo.happyholidays.common.events.christmas;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.eventbus.api.Event;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.state.BlockState;
 
-public class StockingEvent extends Event {
+public class StockingEvent extends ChristmasEvent {
     private final BlockState blockState;
     private final BlockPos blockPos;
-    private final PlayerEntity playerEntity;
 
-    public StockingEvent(BlockState blockState, BlockPos blockPos, PlayerEntity playerEntity) {
+    public StockingEvent(BlockState blockState, BlockPos blockPos, Player playerEntity) {
+        super(playerEntity);
         this.blockState = blockState;
         this.blockPos = blockPos;
-        this.playerEntity = playerEntity;
-    }
-
-    public PlayerEntity getPlayerEntity() {
-        return playerEntity;
     }
 
     public static class Fill extends StockingEvent {
-        public Fill(BlockState blockState, BlockPos blockPos, PlayerEntity playerEntity) {
+        public Fill(BlockState blockState, BlockPos blockPos, Player playerEntity) {
             super(blockState, blockPos, playerEntity);
         }
     }
 
     public static class Empty extends StockingEvent {
-        public Empty(BlockState blockState, BlockPos blockPos, PlayerEntity playerEntity) {
+        public Empty(BlockState blockState, BlockPos blockPos, Player playerEntity) {
             super(blockState, blockPos, playerEntity);
         }
     }

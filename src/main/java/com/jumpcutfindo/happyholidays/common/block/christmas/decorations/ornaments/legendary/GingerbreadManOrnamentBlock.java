@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary;
 
-import net.minecraft.block.Block;
-import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class GingerbreadManOrnamentBlock extends LegendaryOrnamentBlock {
     public static final String BLOCK_ID = "gingerbread_man_ornament";

@@ -12,7 +12,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:enchanted_candy_cane"
+                        "items": ["happyholidays:enchanted_candy_cane"]
                     }
                 ]
             }

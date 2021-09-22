@@ -1,11 +1,12 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas;
 
-import com.jumpcutfindo.happyholidays.common.block.HappyHolidaysBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.candy.BaseCandyCaneBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
+import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
+import com.jumpcutfindo.happyholidays.common.block.HappyHolidaysBlock;
+
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class ChristmasBlock extends HappyHolidaysBlock {
     public ChristmasBlock(Properties properties) {
@@ -15,5 +16,10 @@ public class ChristmasBlock extends HappyHolidaysBlock {
     @Override
     public void configureBlock() {
         // Default left empty since we don't want the block to do anything
+    }
+
+    @Nullable
+    protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> p_152133_, BlockEntityType<E> p_152134_, BlockEntityTicker<? super E> p_152135_) {
+        return p_152134_ == p_152133_ ? (BlockEntityTicker<A>)p_152135_ : null;
     }
 }

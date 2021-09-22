@@ -5,10 +5,10 @@ import java.util.Optional;
 
 import com.google.common.collect.Lists;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Registry;
 
 public class ItemSection implements ISection {
     private final List<ItemStack> items;

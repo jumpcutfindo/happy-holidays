@@ -2,12 +2,12 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.orname
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ConnectedOrnamentBlock;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class TinselBlock extends ConnectedOrnamentBlock {
     public static final String RED_TINSEL_ID = "red_tinsel";
@@ -17,14 +17,13 @@ public class TinselBlock extends ConnectedOrnamentBlock {
     public static final String GOLD_TINSEL_ID = "gold_tinsel";
     public static final String SILVER_TINSEL_ID = "silver_tinsel";
 
-    private static final VoxelShape TINSEL_SHAPE = VoxelShapes.or(
+    private static final VoxelShape TINSEL_SHAPE = Shapes.or(
             Block.box(0.0, 0.0, 0.0, 16.0, 16.0 ,1.0)
     );
 
     private static final Properties BLOCK_PROPERTIES =
-            AbstractBlock.Properties
+            BlockBehaviour.Properties
                     .of(Material.WOOL)
-                    .harvestLevel(-1)
                     .strength(0.1f)
                     .sound(SoundType.WOOL)
                     .noOcclusion()

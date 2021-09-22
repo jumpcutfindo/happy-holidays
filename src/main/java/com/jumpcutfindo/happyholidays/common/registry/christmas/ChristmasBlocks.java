@@ -35,8 +35,8 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresen
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
 
-import net.minecraft.block.Block;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

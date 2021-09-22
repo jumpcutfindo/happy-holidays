@@ -21,13 +21,13 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "minecraft:string"
+                        "items": ["minecraft:string"]
                     },
                     {
-                        "item": "minecraft:glass"
+                        "items": ["minecraft:glass"]
                     },
                     {
-                        "item": "minecraft:white_wool"
+                        "items": ["minecraft:white_wool"]
                     }
                 ]
             }

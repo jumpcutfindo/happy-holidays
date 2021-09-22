@@ -2,27 +2,27 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.food;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class MilkAndCookiesBlock extends ChristmasFoodBlock {
     public static final int MAX_BITES = 2;
@@ -34,9 +34,8 @@ public class MilkAndCookiesBlock extends ChristmasFoodBlock {
     public static final String BLOCK_ID = "milk_and_cookies";
 
     public static final Properties BLOCK_PROPERTIES =
-            AbstractBlock.Properties
+            BlockBehaviour.Properties
                     .of(Material.GLASS)
-                    .harvestLevel(-1)
                     .strength(0.25f)
                     .sound(SoundType.GLASS)
                     .noOcclusion()
@@ -57,47 +56,47 @@ public class MilkAndCookiesBlock extends ChristmasFoodBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
         stateBuilder.add(BITES, FACING);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState()
                 .setValue(BITES, 0)
                 .setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     @Override
-    public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
+    public InteractionResult use(BlockState blockState, Level world, BlockPos blockPos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
         if (world.isClientSide) {
             ItemStack itemstack = playerEntity.getItemInHand(hand);
             if (this.eat(world, blockPos, blockState, playerEntity).consumesAction()) {
-                return ActionResultType.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
 
             if (itemstack.isEmpty()) {
-                return ActionResultType.CONSUME;
+                return InteractionResult.CONSUME;
             }
         }
 
         return this.eat(world, blockPos, blockState, playerEntity);
     }
 
-    private ActionResultType eat(IWorld world, BlockPos blockPos, BlockState blockState, PlayerEntity playerEntity) {
+    private InteractionResult eat(LevelAccessor world, BlockPos blockPos, BlockState blockState, Player playerEntity) {
         if (!playerEntity.canEat(false)) {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         } else {
             playerEntity.getFoodData().eat(NUTRITION, SATURATION);
             int i = blockState.getValue(BITES);
             if (i < MAX_BITES) {
                 world.setBlock(blockPos, blockState.setValue(BITES, i + 1), 3);
-                world.playSound(null, blockPos, SoundEvents.GENERIC_EAT, SoundCategory.PLAYERS, 0.0f, 0.0f);
+                world.playSound(null, blockPos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.0f, 0.0f);
             } else {
                 world.removeBlock(blockPos, false);
             }
 
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
     }
 }

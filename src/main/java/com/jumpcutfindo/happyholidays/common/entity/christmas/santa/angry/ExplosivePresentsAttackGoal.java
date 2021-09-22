@@ -2,14 +2,14 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry;
 
 import java.util.List;
 
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.phys.AABB;
 
 public class ExplosivePresentsAttackGoal extends Goal {
     private final AngrySantaEntity santaEntity;
 
-    private List<PlayerEntity> playerEntities;
+    private List<Player> playerEntities;
     private int summonTimer;
 
     public ExplosivePresentsAttackGoal(AngrySantaEntity santaEntity) {
@@ -19,9 +19,9 @@ public class ExplosivePresentsAttackGoal extends Goal {
     @Override
     public boolean canUse() {
         if (santaEntity.getPhase() == Phase.PRESENTS) {
-            AxisAlignedBB box =
-                    new AxisAlignedBB(this.santaEntity.blockPosition()).inflate(AngrySantaEntity.ATTACK_PRESENTS_CONSIDERATION_RADIUS);
-            playerEntities = this.santaEntity.level.getEntitiesOfClass(PlayerEntity.class, box);
+            AABB box =
+                    new AABB(this.santaEntity.blockPosition()).inflate(AngrySantaEntity.ATTACK_PRESENTS_CONSIDERATION_RADIUS);
+            playerEntities = this.santaEntity.level.getEntitiesOfClass(Player.class, box);
 
             return true;
         }

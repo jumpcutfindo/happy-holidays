@@ -1,34 +1,36 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.goal.AvoidEntityGoal;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.LookAtGoal;
-import net.minecraft.entity.ai.goal.LookRandomlyGoal;
-import net.minecraft.entity.ai.goal.SwimGoal;
-import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.LootParameterSets;
-import net.minecraft.loot.LootTable;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobSpawnType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -37,19 +39,19 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimatable {
+public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatable, IChristmasEntity {
     public static final float ENTITY_BOX_SIZE = 0.8f;
     public static final float ENTITY_BOX_HEIGHT = 2.0f;
 
-    private static final ResourceLocation GINGERBREAD_CONVERSION_LOOT_TABLE = new ResourceLocation("happyholidays"
-            + ":entities/gingerbread_conversion");
-    private static final double CONVERSION_ORNAMENT_DROP_BASE_CHANCE = 0.01D;
+    public static final Item[] HEAT_EMITTING_ITEMS = {
+            Items.CAMPFIRE, Items.SOUL_CAMPFIRE, Items.MAGMA_BLOCK, Items.LAVA_BUCKET
+    };
 
     private AnimationFactory factory = new AnimationFactory(this);
 
     private boolean isLeader;
 
-    public GingerbreadPersonEntity(EntityType<? extends CreatureEntity> entityType, World world) {
+    public GingerbreadPersonEntity(EntityType<? extends PathfinderMob> entityType, Level world) {
         super(entityType, world);
 
         isLeader = false;
@@ -59,12 +61,25 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
     protected void registerGoals() {
         super.registerGoals();
 
-        this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new AvoidEntityGoal<>(this, PlayerEntity.class, 6.0F, 1.0D, 1.25D));
-        this.goalSelector.addGoal(2, new FollowGingerbreadLeaderGoal(this));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new FollowHeatSourceGoal(this));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.0D, 1.25D,
+                (entity) -> {
+                    if (entity instanceof Player) {
+                        Player playerEntity = (Player) entity;
+                        ItemStack[] heldItems = new ItemStack[]{ playerEntity.getMainHandItem(), playerEntity.getOffhandItem() };
+
+                        return Arrays.stream(heldItems).anyMatch(itemStack -> ItemStack.isSame(itemStack,
+                                Items.WATER_BUCKET.getDefaultInstance()));
+                    }
+
+                    return false;
+                }
+        ));
+        this.goalSelector.addGoal(3, new FollowGingerbreadLeaderGoal(this));
+        this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(6, new RandomLookAroundGoal(this));
     }
 
     @Override
@@ -90,44 +105,18 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
         return isLeader;
     }
 
+    public boolean isSoggy() {
+        return this instanceof SoggyGingerbreadManEntity;
+    }
+
     public boolean fireImmune() {
         return false;
     }
 
     public void dropConversionLoot() {
-        LootTable lootTable = this.level.getServer().getLootTables().get(GINGERBREAD_CONVERSION_LOOT_TABLE);
-        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootParameterSets.ENTITY);
-
-        double modifier;
-        ChristmasStarTileEntity starTileEntity = ChristmasStarTileEntity.getStarInfluencingEntity(this.level,
-                this.position());
-        if (starTileEntity != null) {
-            if (starTileEntity.isBonusActive()) {
-                modifier = 2.0D;
-            } else {
-                modifier = 1.0D + (starTileEntity.getCurrentTier() * 0.1D);
-            }
-        } else {
-            modifier = 1.0D;
-        }
-
-        // Drop random items
-        lootTable.getRandomItems(ctx).forEach(itemStack -> {
-            if (ChristmasItems.isBasicOrnamentItem(itemStack)) {
-                itemStack.setCount((this.random.nextInt(2 - 1) + 1) + 1);
-            }
-
-            itemStack.setCount((int) (itemStack.getCount() * modifier));
-
-            this.spawnAtLocation(itemStack);
-        });
-
-        // Drop ornament block
-        double ornamentDropChance = CONVERSION_ORNAMENT_DROP_BASE_CHANCE * modifier;
-        if (ornamentDropChance > this.random.nextDouble()) {
-            ItemStack gingerbreadOrnamentItem = ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get().getDefaultInstance();
-            this.spawnAtLocation(gingerbreadOrnamentItem);
-        }
+        // Drop loot
+        LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootContextParamSets.ENTITY);
+        GingerbreadConversionRewards.generateRewards(this, ctx).forEach(this::spawnAtLocation);
     }
 
     @Override
@@ -156,9 +145,57 @@ public class GingerbreadPersonEntity extends ChristmasEntity implements IAnimata
         return factory;
     }
 
-    public static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, IWorld world,
-                                                     SpawnReason spawnReason, BlockPos pos, Random rand) {
+    public static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, LevelAccessor world,
+                                                     MobSpawnType spawnReason, BlockPos pos, Random rand) {
         return world.getRawBrightness(pos,0) > 8;
+    }
+
+    public static boolean isValidHeatItem(ItemStack itemStack) {
+        return Arrays.stream(HEAT_EMITTING_ITEMS).anyMatch(item -> ItemStack.isSame(itemStack, item.getDefaultInstance()));
+    }
+
+    public static boolean isValidHeatSource(BlockState blockState) {
+        return blockState.is(Blocks.FURNACE) && blockState.getValue(BlockStateProperties.LIT)
+                || blockState.is(Blocks.BLAST_FURNACE) && blockState.getValue(BlockStateProperties.LIT)
+                || blockState.is(Blocks.SMOKER) && blockState.getValue(BlockStateProperties.LIT)
+                || blockState.is(Blocks.FIRE)
+                || blockState.is(Blocks.SOUL_FIRE)
+                || blockState.is(Blocks.CAMPFIRE)
+                || blockState.is(Blocks.SOUL_CAMPFIRE)
+                || blockState.is(Blocks.MAGMA_BLOCK)
+                || blockState.is(Blocks.LAVA);
+    }
+
+    private static class FollowHeatSourceGoal extends Goal {
+        private static final TargetingConditions TEMP_TARGETING = TargetingConditions.forNonCombat().range(10.0D);
+        private final GingerbreadPersonEntity gingerbreadPerson;
+        private Player player;
+
+        public FollowHeatSourceGoal(GingerbreadPersonEntity gingerbreadPerson) {
+            this.gingerbreadPerson = gingerbreadPerson;
+        }
+
+        @Override
+        public boolean canUse() {
+            if (!this.gingerbreadPerson.isSoggy()) return false;
+
+            this.player = this.gingerbreadPerson.level.getNearestPlayer(TEMP_TARGETING, this.gingerbreadPerson);
+            if (this.player == null) return false;
+            else {
+                ItemStack[] heldItems = new ItemStack[]{ player.getMainHandItem(), player.getOffhandItem() };
+                return Arrays.stream(heldItems).anyMatch(GingerbreadPersonEntity::isValidHeatItem);
+            }
+        }
+
+        @Override
+        public void tick() {
+            this.gingerbreadPerson.lookAt(player, (float)(this.gingerbreadPerson.getMaxHeadYRot() + 20), (float)this.gingerbreadPerson.getMaxHeadXRot());
+            if (this.gingerbreadPerson.distanceToSqr(this.player) < 6.25D) {
+                this.gingerbreadPerson.getNavigation().stop();
+            } else {
+                this.gingerbreadPerson.getNavigation().moveTo(this.player, 1.0D);
+            }
+        }
     }
 
     private static class FollowGingerbreadLeaderGoal extends Goal {

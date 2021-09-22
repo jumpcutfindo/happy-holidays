@@ -6,30 +6,30 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConvers
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.world.World;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 
 public class GingerbreadManEntity extends GingerbreadPersonEntity {
-    public static final int SPAWN_WEIGHT = 100;
+    public static final int SPAWN_WEIGHT = 15;
     public static final int MIN_SPAWN_COUNT = 2;
     public static final int MAX_SPAWN_COUNT = 4;
 
     public static final String ENTITY_ID = "gingerbread_man";
 
-    public static final AttributeModifierMap ENTITY_ATTRIBUTES =
-            MobEntity.createMobAttributes()
+    public static final AttributeSupplier ENTITY_ATTRIBUTES =
+            Mob.createMobAttributes()
                     .add(Attributes.MAX_HEALTH, 10.0f)
                     .add(Attributes.MOVEMENT_SPEED, 0.23D)
                     .build();
 
-    public GingerbreadManEntity(EntityType<? extends CreatureEntity> entityType, World world) {
+    public GingerbreadManEntity(EntityType<? extends PathfinderMob> entityType, Level world) {
         super(entityType, world);
     }
 
@@ -46,11 +46,11 @@ public class GingerbreadManEntity extends GingerbreadPersonEntity {
         this.playSound(SoundEvents.GENERIC_SPLASH, 1.0F, 1.0F);
 
         if (!this.level.isClientSide()) {
-            List<PlayerEntity> players = HappyHolidaysUtils.findPlayersInRadius(this.level, this.position(), 5.0d);
+            List<Player> players = HappyHolidaysUtils.findPlayersInRadius(this.level, this.position(), 5.0d);
 
-            for (PlayerEntity player : players) {
+            for (Player player : players) {
                 GingerbreadConversionEvent.ToSoggy turnSoggyEvent =
-                        new GingerbreadConversionEvent.ToSoggy(player, this, this.blockPosition());
+                        new GingerbreadConversionEvent.ToSoggy(this, player, this.blockPosition());
                 MinecraftForge.EVENT_BUS.post(turnSoggyEvent);
             }
         }

@@ -21,22 +21,22 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:big_red_bauble"
+                        "items": ["happyholidays:big_red_bauble"]
                     },
                     {
-                        "item": "happyholidays:big_blue_bauble"
+                        "items": ["happyholidays:big_blue_bauble"]
                     },
                     {
-                        "item": "happyholidays:big_yellow_bauble"
+                        "items": ["happyholidays:big_yellow_bauble"]
                     },
                     {
-                        "item": "happyholidays:big_green_bauble"
+                        "items": ["happyholidays:big_green_bauble"]
                     },
                     {
-                        "item": "happyholidays:big_gold_bauble"
+                        "items": ["happyholidays:big_gold_bauble"]
                     },
                     {
-                        "item": "happyholidays:big_silver_bauble"
+                        "items": ["happyholidays:big_silver_bauble"]
                     }
                 ]
             }

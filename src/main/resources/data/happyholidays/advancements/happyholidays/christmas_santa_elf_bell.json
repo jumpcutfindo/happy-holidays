@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:santa_elf_bell"
+                        "items": ["happyholidays:santa_elf_bell"]
                     }
                 ]
             }

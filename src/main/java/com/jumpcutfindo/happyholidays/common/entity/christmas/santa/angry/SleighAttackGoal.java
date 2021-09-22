@@ -1,8 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.item.TNTEntity;
+import net.minecraft.world.entity.ai.goal.Goal;
 
 public class SleighAttackGoal extends Goal {
     private AngrySantaEntity santaEntity;

@@ -2,18 +2,18 @@ package com.jumpcutfindo.happyholidays.common.utils;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
 
 public class HappyHolidaysUtils {
     public static VoxelShape rotateShape(final VoxelShape shape, final Rotation rotationDir) {
@@ -40,14 +40,15 @@ public class HappyHolidaysUtils {
             z2 = 1 - z2;
         }
 
-        return VoxelShapes.box(x1, y1, z1, x2, y2, z2);
+        return Shapes.box(Math.min(x1, x2), Math.min(y1, y2), Math.min(z1, z2), Math.max(x1, x2), Math.max(y1, y2),
+                Math.max(z1, z2));
     }
 
     public static VoxelShape combineShapes(VoxelShape[] voxelShapes) {
-        VoxelShape result = VoxelShapes.empty();
+        VoxelShape result = Shapes.empty();
 
         for (VoxelShape shape : voxelShapes) {
-            result = VoxelShapes.join(result, shape, IBooleanFunction.OR);
+            result = Shapes.join(result, shape, BooleanOp.OR);
         }
 
         return result;
@@ -74,14 +75,14 @@ public class HappyHolidaysUtils {
         return String.format("%dm %ds", seconds / 60, seconds % 60);
     }
 
-    public static BlockPos findBlockInRadius(IWorld world, BlockPos currPos, Block block, int radius) {
+    public static BlockPos findBlockInRadius(LevelAccessor world, BlockPos currPos, Block block, int radius) {
         BlockPos startPos = currPos.offset(-radius, -radius, -radius);
 
         for (int x = 0; x < radius * 2; x++) {
             for (int y = 0; y < radius * 2; y++) {
                 for (int z = 0; z < radius * 2; z++) {
                     BlockPos checkingPos = startPos.offset(x, y, z);
-                    if (world.getBlockState(checkingPos).getBlock().is(block)) return checkingPos;
+                    if (world.getBlockState(checkingPos).is(block)) return checkingPos;
                 }
             }
         }
@@ -89,9 +90,9 @@ public class HappyHolidaysUtils {
         return null;
     }
 
-    public static List<PlayerEntity> findPlayersInRadius(World world, Vector3d pos, double radius) {
-        AxisAlignedBB box = new AxisAlignedBB(new BlockPos(pos)).inflate(radius);
+    public static List<Player> findPlayersInRadius(Level world, Vec3 pos, double radius) {
+        AABB box = new AABB(new BlockPos(pos)).inflate(radius);
 
-        return world.getEntitiesOfClass(PlayerEntity.class, box);
+        return world.getEntitiesOfClass(Player.class, box);
     }
 }

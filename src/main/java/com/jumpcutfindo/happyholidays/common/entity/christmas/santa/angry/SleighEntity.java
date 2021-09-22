@@ -1,17 +1,21 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
+import com.jumpcutfindo.happyholidays.client.entity.SleighRenderer;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Explosion;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.controller.AnimationController;
@@ -19,7 +23,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class SleighEntity extends Entity implements IAnimatable {
+public class SleighEntity extends Entity implements IAnimatable, IChristmasEntity {
     public static final String ENTITY_ID = "sleigh";
 
     public static final float ENTITY_BOX_SIZE = 32.0f / 16.0f;
@@ -34,18 +38,19 @@ public class SleighEntity extends Entity implements IAnimatable {
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    private int remainingCharging = Integer.MAX_VALUE;
+    private int remainingCharging = AngrySantaEntity.ATTACK_SLEIGH_CHARGE_TIME;
     private boolean isCharged;
-    private int remainingLifespan = Integer.MAX_VALUE;
+    private int remainingLifespan = AngrySantaEntity.ATTACK_SLEIGH_LIFETIME;
     private boolean isMoving;
 
-    public SleighEntity(EntityType<? extends Entity> entityType, World world) {
+    public SleighEntity(EntityType<? extends Entity> entityType, Level world) {
         super(entityType, world);
     }
 
     @Override
     public void onAddedToWorld() {
         super.onAddedToWorld();
+
         this.remainingCharging = AngrySantaEntity.ATTACK_SLEIGH_CHARGE_TIME;
         this.remainingLifespan = AngrySantaEntity.ATTACK_SLEIGH_LIFETIME;
 
@@ -85,7 +90,7 @@ public class SleighEntity extends Entity implements IAnimatable {
     }
 
     @Override
-    public void playerTouch(PlayerEntity playerEntity) {
+    public void playerTouch(Player playerEntity) {
         super.playerTouch(playerEntity);
 
         if (playerEntity.getBoundingBox().intersects(this.getBoundingBox())) {
@@ -98,21 +103,21 @@ public class SleighEntity extends Entity implements IAnimatable {
         return true;
     }
 
-    public SleighEntity setRotation(Vector3d vector) {
-        this.yRot = (float) (Math.atan2(vector.z, vector.x)) * 180.0f / (float) Math.PI;
+    public SleighEntity setRotation(Vec3 vector) {
+        this.setYRot((float) (Math.atan2(vector.z, vector.x)) * 180.0f / (float) Math.PI);
 
         return this;
     }
 
     public boolean isDiagonal() {
-        return this.yRot % 90.0f != 0.0f;
+        return this.getYRot() % 90.0f != 0.0f;
     }
 
     private void explode(boolean isHitPlayer) {
         float explosivePower = isHitPlayer ? 3.0F : 1.0F;
 
-        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), explosivePower, Explosion.Mode.NONE);
-        this.remove();
+        this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), explosivePower, Explosion.BlockInteraction.NONE);
+        this.remove(RemovalReason.DISCARDED);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -130,21 +135,26 @@ public class SleighEntity extends Entity implements IAnimatable {
 
     @Override
     protected void defineSynchedData() {
-
     }
 
     @Override
-    protected void readAdditionalSaveData(CompoundNBT p_70037_1_) {
-
+    protected void readAdditionalSaveData(CompoundTag tag) {
+        if (tag.contains("RemainingCharging")) this.remainingCharging = tag.getInt("RemainingCharging");
+        this.isCharged = tag.getBoolean("IsCharged");
+        if (tag.contains("RemainingLifespan")) this.remainingLifespan = tag.getInt("RemainingLifespan");
+        this.isMoving = tag.getBoolean("IsMoving");
     }
 
     @Override
-    protected void addAdditionalSaveData(CompoundNBT p_213281_1_) {
-
+    protected void addAdditionalSaveData(CompoundTag tag) {
+        tag.putInt("RemainingCharging", this.remainingCharging);
+        tag.putBoolean("IsCharged", this.isCharged);
+        tag.putInt("RemainingLifespan", this.remainingLifespan);
+        tag.putBoolean("IsMoving", this.isMoving);
     }
 
     @Override
-    public IPacket<?> getAddEntityPacket() {
+    public Packet<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 

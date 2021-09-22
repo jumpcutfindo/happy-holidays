@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.common.item.christmas.music;
 
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
-import net.minecraft.util.SoundEvent;
+import net.minecraft.sounds.SoundEvent;
 
 public enum ChristmasMusic {
     ANGELS_ON_HIGH(0),

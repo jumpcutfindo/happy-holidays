@@ -256,6 +256,10 @@
                 },
                 {
                     "type": "text",
+                    "content": "Gingerbread Men are generally scared of water, and holding a water bucket does not signal that you're friendly. Soggy Gingerbread Men do like the warmth of heated blocks though!"
+                },
+                {
+                    "type": "text",
                     "title": "Gingerbread Dough"
                 },
                 {
@@ -303,6 +307,10 @@
                 {
                     "type": "text",
                     "content": "Candy Canes were another item that fell off Santa's sleigh during the incident. They are tasty, craftable blocks that crumble into candy cane when broken. They also sometimes like to drop enchanted candy canes that have special uses!"
+                },
+                {
+                    "type": "text",
+                    "content": "Candy Cane blocks are different in a way though; due to their crumbly nature, they tend to respond better when destroyed by explosions as compared to players mining them! There's a higher chance for these explosions to produce Enchanted Candy Canes, and even more so if the source of the explosion was natural!"
                 },
                 {
                     "type": "text",

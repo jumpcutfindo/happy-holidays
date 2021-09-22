@@ -68,6 +68,7 @@
     "block.happyholidays.christmas_star.block_place_in_radius": "Christmas block placed",
     "block.happyholidays.christmas_star.effect_apply": "Christmas Spirit received",
     "container.happyholidays.christmas_star": "Christmas Star",
+    "container.happyholidays.gift_wrapping_station": "Gift Wrapping Station",
     "block.happyholidays.music_box": "Music Box",
     "block.happyholidays.music_box.now_playing": "Now Playing - %s",
     "block.happyholidays.gift_wrapping_station": "Wrapping Station",
@@ -196,6 +197,7 @@
     "entity.happyholidays.santa_arrival_angry": "Santa has arrived, but he doesn't look happy to be here...",
 
     "entity.happyholidays.angry_santa": "Angry Santa",
+    "entity.happyholidays.sleigh": "Sleigh",
     "entity.happyholidays.santa_angry_passive.sub": "Santa grunts angrily",
     "entity.happyholidays.santa_prepare_teleport.sub": "Angry Santa charges up",
     "entity.happyholidays.santa_teleport.sub": "Angry Santa teleports",

@@ -1,49 +1,42 @@
 package com.jumpcutfindo.happyholidays.common.events.christmas;
 
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.eventbus.api.Event;
+import net.minecraft.world.entity.player.Player;
 
-public class ChristmasStarEvent extends Event {
-    final ChristmasStarTileEntity tileEntity;
-    final PlayerEntity playerEntity;
+public class ChristmasStarEvent extends ChristmasEvent {
+    final ChristmasStarBlockEntity blockEntity;
 
-    public ChristmasStarEvent(ChristmasStarTileEntity tileEntity, PlayerEntity playerEntity) {
-        this.tileEntity = tileEntity;
-        this.playerEntity = playerEntity;
-    }
-
-    public PlayerEntity getPlayerEntity() {
-        return playerEntity;
+    public ChristmasStarEvent(ChristmasStarBlockEntity blockEntity, Player playerEntity) {
+        super(playerEntity);
+        this.blockEntity = blockEntity;
     }
 
     public static class PutOrnament extends ChristmasStarEvent {
-        public PutOrnament(ChristmasStarTileEntity tileEntity, PlayerEntity playerEntity) {
-            super(tileEntity, playerEntity);
+        public PutOrnament(ChristmasStarBlockEntity blockEntity, Player playerEntity) {
+            super(blockEntity, playerEntity);
         }
     }
 
     public static class IncreaseTier extends ChristmasStarEvent {
-        public IncreaseTier(ChristmasStarTileEntity tileEntity, PlayerEntity playerEntity) {
-            super(tileEntity, playerEntity);
+        public IncreaseTier(ChristmasStarBlockEntity blockEntity, Player playerEntity) {
+            super(blockEntity, playerEntity);
         }
 
         public int getTier() {
-            return tileEntity.getCurrentTier();
+            return blockEntity.getCurrentTier();
         }
     }
 
     public static class SummonSanta extends ChristmasStarEvent {
-        public SummonSanta(ChristmasStarTileEntity tileEntity, PlayerEntity playerEntity) {
-            super(tileEntity, playerEntity);
+        public SummonSanta(ChristmasStarBlockEntity blockEntity, Player playerEntity) {
+            super(blockEntity, playerEntity);
         }
     }
 
     public static class ReachBonus extends ChristmasStarEvent {
-        public ReachBonus(ChristmasStarTileEntity tileEntity, PlayerEntity playerEntity) {
-            super(tileEntity, playerEntity);
+        public ReachBonus(ChristmasStarBlockEntity blockEntity, Player playerEntity) {
+            super(blockEntity, playerEntity);
         }
     }
 }

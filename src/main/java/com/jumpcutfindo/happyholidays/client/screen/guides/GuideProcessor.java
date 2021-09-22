@@ -22,13 +22,13 @@ import com.jumpcutfindo.happyholidays.common.guide.sections.ImageSection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ItemSection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.RecipeSection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.TextSection;
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.event.ClickEvent;
+import net.minecraft.client.gui.Font;
+import net.minecraft.network.chat.FormattedText;
+import net.minecraft.network.chat.Style;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.ClickEvent;
 
 public class GuideProcessor {
     private float IMAGE_SCALE_VALUE = 0.5f;
@@ -64,12 +64,12 @@ public class GuideProcessor {
         setCurrentPage(0, false);
     }
 
-    public void draw(MatrixStack matrixStack) {
+    public void draw(PoseStack matrixStack) {
         this.currentPage.draw(matrixStack);
     }
 
     public void generateContentPages() {
-        FontRenderer font = guideScreen.getFontRenderer();
+        Font font = guideScreen.getFontRenderer();
         contentPages = Lists.newArrayList();
 
         int linesPerPage = GuideScreen.PAGE_HEIGHT / 9;
@@ -83,8 +83,8 @@ public class GuideProcessor {
             String chapterTitle = String.format("%d. %s", chapterCount, chapter.getTitle());
 
             // Chapter title and empty line after
-            chapterProcessors.addAll(font.split(ITextProperties.of(chapterTitle,
-                    Style.EMPTY.applyFormat(TextFormatting.BOLD)), GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
+            chapterProcessors.addAll(font.split(FormattedText.of(chapterTitle,
+                    Style.EMPTY.applyFormat(ChatFormatting.BOLD)), GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
             chapterProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.SPACING));
 
             // Add attached image below
@@ -109,14 +109,14 @@ public class GuideProcessor {
                     // Section numbering and title
                     if (textSection.getTitle() != null) {
                         String sectionTitle = String.format("%d.%d. %s", chapterCount, sectionCount, textSection.getTitle());
-                        chapterProcessors.addAll(font.split(ITextProperties.of(sectionTitle,
-                                Style.EMPTY.applyFormat(TextFormatting.ITALIC)), GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
+                        chapterProcessors.addAll(font.split(FormattedText.of(sectionTitle,
+                                Style.EMPTY.applyFormat(ChatFormatting.ITALIC)), GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
 
                         sectionCount++;
                     }
 
                     if (textSection.getContent() != null) {
-                        chapterProcessors.addAll(font.split(ITextProperties.of(textSection.getContent()),
+                        chapterProcessors.addAll(font.split(FormattedText.of(textSection.getContent()),
                                 GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
                     }
 
@@ -213,22 +213,22 @@ public class GuideProcessor {
     }
 
     public void generateTableOfContentsPage() {
-        FontRenderer font = guideScreen.getFontRenderer();
+        Font font = guideScreen.getFontRenderer();
         List<IPageLine> tableOfContentsProcessors = Lists.newArrayList();
 
         for (int i = 0; i < guide.getChapters().size(); i++) {
             if (i == 0) {
                 // Create title and spacing
-                tableOfContentsProcessors.addAll(font.split(ITextProperties.of(guide.getTableOfContentsTitle(),
-                        Style.EMPTY.applyFormat(TextFormatting.BOLD)), GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
+                tableOfContentsProcessors.addAll(font.split(FormattedText.of(guide.getTableOfContentsTitle(),
+                        Style.EMPTY.applyFormat(ChatFormatting.BOLD)), GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
 
                 tableOfContentsProcessors.add(new EmptyLine(guideScreen, EmptyLine.Type.SPACING));
             }
 
             Chapter chapter = guide.getChapters().get(i);
             int pageIndex = chapterPageMap.get(i);
-            tableOfContentsProcessors.addAll(font.split(ITextProperties.of(String.format("%d. %s", i + 1, chapter.getTitle()),
-                    Style.EMPTY.applyFormat(TextFormatting.ITALIC).withClickEvent(new ClickEvent(ClickEvent.Action.CHANGE_PAGE, Integer.toString(pageIndex)))),
+            tableOfContentsProcessors.addAll(font.split(FormattedText.of(String.format("%d. %s", i + 1, chapter.getTitle()),
+                    Style.EMPTY.applyFormat(ChatFormatting.ITALIC).withClickEvent(new ClickEvent(ClickEvent.Action.CHANGE_PAGE, Integer.toString(pageIndex)))),
                     GuideScreen.PAGE_WIDTH).stream().map(processor -> new TextLine(guideScreen, processor)).collect(Collectors.toList()));
         }
 

@@ -2,24 +2,18 @@ package com.jumpcutfindo.happyholidays.common.events.christmas;
 
 import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.GingerbreadPersonEntity;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.eventbus.api.Event;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
 
-public class GingerbreadConversionEvent extends Event {
-    private final PlayerEntity playerEntity;
+public class GingerbreadConversionEvent extends ChristmasEvent {
     private final GingerbreadPersonEntity gingerbreadPersonEntity;
     private final BlockPos conversionPos;
 
-    public GingerbreadConversionEvent(PlayerEntity playerEntity, GingerbreadPersonEntity gingerbreadPersonEntity,
+    public GingerbreadConversionEvent(GingerbreadPersonEntity gingerbreadPersonEntity, Player playerEntity,
                                       BlockPos conversionPos) {
-           this.playerEntity = playerEntity;
+           super(playerEntity);
            this.gingerbreadPersonEntity = gingerbreadPersonEntity;
            this.conversionPos = conversionPos;
-    }
-
-    public PlayerEntity getPlayerEntity() {
-        return playerEntity;
     }
 
     public GingerbreadPersonEntity getGingerbreadPersonEntity() {
@@ -31,16 +25,16 @@ public class GingerbreadConversionEvent extends Event {
     }
 
     public static class ToSoggy extends GingerbreadConversionEvent {
-        public ToSoggy(PlayerEntity playerEntity, GingerbreadPersonEntity gingerbreadPersonEntity,
+        public ToSoggy(GingerbreadPersonEntity gingerbreadPersonEntity, Player playerEntity,
                        BlockPos conversionPos) {
-            super(playerEntity, gingerbreadPersonEntity, conversionPos);
+            super(gingerbreadPersonEntity, playerEntity, conversionPos);
         }
     }
 
     public static class ToDry extends GingerbreadConversionEvent {
-        public ToDry(PlayerEntity playerEntity, GingerbreadPersonEntity gingerbreadPersonEntity,
+        public ToDry(GingerbreadPersonEntity gingerbreadPersonEntity, Player playerEntity,
                      BlockPos conversionPos) {
-            super(playerEntity, gingerbreadPersonEntity, conversionPos);
+            super(gingerbreadPersonEntity, playerEntity, conversionPos);
         }
     }
 }

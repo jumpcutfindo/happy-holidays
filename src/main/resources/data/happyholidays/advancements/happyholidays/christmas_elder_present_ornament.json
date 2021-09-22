@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:elder_present_ornament"
+                        "items": ["happyholidays:elder_present_ornament"]
                     }
                 ]
             }

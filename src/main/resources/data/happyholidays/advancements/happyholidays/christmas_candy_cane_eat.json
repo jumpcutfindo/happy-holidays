@@ -20,7 +20,7 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
                 "item": {
-                    "item": "happyholidays:candy_cane"
+                    "items": ["happyholidays:candy_cane"]
                 }
             }
         },
@@ -28,7 +28,7 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
                 "item": {
-                    "item": "happyholidays:festive_candy_cane"
+                    "items": ["happyholidays:festive_candy_cane"]
                 }
             }
         }

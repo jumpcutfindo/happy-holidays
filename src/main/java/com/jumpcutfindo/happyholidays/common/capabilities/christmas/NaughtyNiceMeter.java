@@ -1,12 +1,9 @@
 package com.jumpcutfindo.happyholidays.common.capabilities.christmas;
 
 import java.util.Optional;
-import java.util.UUID;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
 
 public class NaughtyNiceMeter implements INaughtyNiceHandler {
     public static final int VALUE_NICE_MAX = 200;
@@ -64,19 +61,19 @@ public class NaughtyNiceMeter implements INaughtyNiceHandler {
         return value == VALUE_NAUGHTY_MAX;
     }
 
-    public CompoundNBT writeToNBT(CompoundNBT nbt) {
+    public CompoundTag writeToNBT(CompoundTag nbt) {
         nbt.putInt("NaughtyNiceValue", this.getValue());
 
         return nbt;
     }
 
-    public NaughtyNiceMeter readFromNBT(CompoundNBT nbt) {
+    public NaughtyNiceMeter readFromNBT(CompoundTag nbt) {
         this.value = nbt.getInt("NaughtyNiceValue");
 
         return this;
     }
 
-    public static void evaluateAction(PlayerEntity playerEntity, NaughtyNiceAction action) {
+    public static void evaluateAction(Player playerEntity, NaughtyNiceAction action) {
         if (playerEntity == null) return;
 
         Optional<INaughtyNiceHandler> naughtyNiceCapability =
@@ -93,7 +90,7 @@ public class NaughtyNiceMeter implements INaughtyNiceHandler {
         }
     }
 
-    public static int getMeterValue(PlayerEntity playerEntity) {
+    public static int getMeterValue(Player playerEntity) {
         if (playerEntity == null) return 0;
 
         Optional<INaughtyNiceHandler> naughtyNiceCapability =
@@ -107,7 +104,7 @@ public class NaughtyNiceMeter implements INaughtyNiceHandler {
         return 0;
     }
 
-    public static void resetMeter(PlayerEntity playerEntity) {
+    public static void resetMeter(Player playerEntity) {
         if (playerEntity == null) return;
 
         Optional<INaughtyNiceHandler> naughtyNiceCapability =

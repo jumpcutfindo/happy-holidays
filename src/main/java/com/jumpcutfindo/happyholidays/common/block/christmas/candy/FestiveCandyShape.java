@@ -1,8 +1,8 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.candy;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum FestiveCandyShape implements  IStringSerializable {
+public enum FestiveCandyShape implements  StringRepresentable {
     X_O("x_o"),
     O_X("o_x");
 

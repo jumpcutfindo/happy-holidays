@@ -1,7 +1,8 @@
 package com.jumpcutfindo.happyholidays.common.events.christmas.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.AngrySantaEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
@@ -16,20 +17,20 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.ChristmasStarTileEntity;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particles.BasicParticleType;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -42,9 +43,9 @@ public class ChristmasEvents {
      */
     @SubscribeEvent
     public static void onFoodEaten(LivingEntityUseItemEvent.Finish event) {
-        if (event.getEntity() instanceof PlayerEntity && event.getItem().isEdible()) {
-            PlayerEntity playerEntity = (PlayerEntity) event.getEntity();
-            EffectInstance effectInstance = playerEntity.getEffect(ChristmasEffects.SPIRIT_OF_CHRISTMAS_EFFECT.get());
+        if (event.getEntity() instanceof Player && event.getItem().isEdible()) {
+            Player playerEntity = (Player) event.getEntity();
+            MobEffectInstance effectInstance = playerEntity.getEffect(ChristmasEffects.SPIRIT_OF_CHRISTMAS_EFFECT.get());
 
             if (effectInstance != null) {
                 ItemStack foodItemStack = event.getItem();
@@ -52,7 +53,7 @@ public class ChristmasEvents {
                 int effectAmplifier = effectInstance.getAmplifier();
                 int nutritionValue = foodItemStack.getItem().getFoodProperties().getNutrition();
 
-                if (ChristmasFoodItem.isChristmasFood(foodItemStack.getStack())) {
+                if (ChristmasFoodItem.isChristmasFood(foodItemStack)) {
                     playerEntity.getFoodData().eat(
                             (int) ((effectAmplifier + 1) * 0.2 * nutritionValue),
                             0.0f
@@ -70,41 +71,41 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
-        if (event.getEntity() instanceof PlayerEntity && ChristmasBlocks.isInfluencedByStar(event.getPlacedBlock().getBlock())) {
-            PlayerEntity playerEntity = (PlayerEntity) event.getEntity();
-            ChristmasStarTileEntity starTileEntity =
-                    ChristmasStarTileEntity.getStarInfluencingBlock(playerEntity.level, event.getPos());
+        if (event.getEntity() instanceof Player && ChristmasBlocks.isInfluencedByStar(event.getPlacedBlock().getBlock())) {
+            Player playerEntity = (Player) event.getEntity();
+            ChristmasStarBlockEntity starBlockEntity =
+                    ChristmasStarHelper.getStarInfluencingBlock(playerEntity.level, event.getPos());
 
-            if (starTileEntity != null && starTileEntity.isPosAffected(event.getPos())) {
+            if (starBlockEntity != null && starBlockEntity.isPosAffected(event.getPos())) {
                 // Block is under influence of a star
                 BlockPos placedBlockPos = event.getBlockSnapshot().getPos();
 
-                int particleCount = starTileEntity.getCurrentTier() + (starTileEntity.isBonusActive() ? 1 : 0);
+                int particleCount = starBlockEntity.getCurrentTier() + (starBlockEntity.isBonusActive() ? 1 : 0);
 
-                for (int i = 0; i < starTileEntity.getCurrentTier(); i++) {
+                for (int i = 0; i < starBlockEntity.getCurrentTier(); i++) {
                     double d0 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
                     double d1 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
                     double d2 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
 
-                    BasicParticleType particleType =
+                    SimpleParticleType particleType =
                             playerEntity.getRandom().nextBoolean() ? ChristmasParticles.CHRISTMAS_MEDIUM_RED_PARTICLE.get() : ChristmasParticles.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get();
 
-                    ((ServerWorld) playerEntity.level).sendParticles(particleType,
+                    ((ServerLevel) playerEntity.level).sendParticles(particleType,
                             placedBlockPos.getX() + 0.5D,
                             placedBlockPos.getY() + 0.5D,
                             placedBlockPos.getZ() + 0.5D, 1, d0, d1, d2, 0.0D);
                 }
 
-                ((ServerWorld) playerEntity.level).playSound(null, event.getPos(), ChristmasSounds.CHRISTMAS_STAR_BLOCK_PLACE.get(),
-                        SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                ((ServerLevel) playerEntity.level).playSound(null, event.getPos(), ChristmasSounds.CHRISTMAS_STAR_BLOCK_PLACE.get(),
+                        SoundSource.NEUTRAL, 1.0f, 1.0f);
             }
         }
     }
 
     @SubscribeEvent
     public static void onItemInteract(PlayerInteractEvent.RightClickBlock event) {
-        if (event.getEntity() instanceof ServerPlayerEntity) {
-            ServerPlayerEntity playerEntity = (ServerPlayerEntity) event.getEntity();
+        if (event.getEntity() instanceof ServerPlayer) {
+            ServerPlayer playerEntity = (ServerPlayer) event.getEntity();
             ItemStack itemInHand = playerEntity.getItemInHand(event.getHand());
             BlockState blockState = playerEntity.level.getBlockState(event.getPos());
 
@@ -116,25 +117,30 @@ public class ChristmasEvents {
     }
 
     @SubscribeEvent
+    public static void onWorldLoad(WorldEvent.Load event) {
+        ChristmasStarHelper.onWorldLoad(event);
+    }
+
+    @SubscribeEvent
     public static void onGingerbreadConversion(GingerbreadConversionEvent event) {
         if (event instanceof GingerbreadConversionEvent.ToSoggy) {
-            ChristmasTriggers.CHRISTMAS_GINGERBREAD_MAN_TURN_SOGGY.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_GINGERBREAD_MAN_TURN_SOGGY.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof GingerbreadConversionEvent.ToDry) {
-            ChristmasTriggers.CHRISTMAS_GINGERBREAD_MAN_TURN_DRY.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_GINGERBREAD_MAN_TURN_DRY.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
     @SubscribeEvent
     public static void onSantaElfInteract(SantaElfEvent event) {
         if (event instanceof SantaElfEvent.Summon) {
-            ChristmasTriggers.CHRISTMAS_SANTA_ELF_SUMMON.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_SANTA_ELF_SUMMON.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof SantaElfEvent.Trade) {
-            ChristmasTriggers.CHRISTMAS_SANTA_ELF_TRADE.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_SANTA_ELF_TRADE.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof SantaElfEvent.CompleteRequest) {
-            ChristmasTriggers.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST.trigger((ServerPlayer) event.getPlayer());
 
             if (((SantaElfEvent.CompleteRequest) event).getTimeTaken() <= 6000) {
-                ChristmasTriggers.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST_QUICK.trigger((ServerPlayerEntity) event.getPlayerEntity());
+                ChristmasTriggers.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST_QUICK.trigger((ServerPlayer) event.getPlayer());
             }
         }
     }
@@ -142,48 +148,48 @@ public class ChristmasEvents {
     @SubscribeEvent
     public static void onGrinchInteract(GrinchEvent event) {
         if (event instanceof GrinchEvent.Encounter) {
-            ChristmasTriggers.CHRISTMAS_GRINCH_ENCOUNTER.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_GRINCH_ENCOUNTER.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof GrinchEvent.Appease) {
-            ChristmasTriggers.CHRISTMAS_GRINCH_APPEASE.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_GRINCH_APPEASE.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
     @SubscribeEvent
     public static void onSantaInteract(SantaEvent event) {
         if (event instanceof SantaEvent.AngryDie) {
-            ChristmasTriggers.CHRISTMAS_SANTA_ANGRY_DIE.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_SANTA_ANGRY_DIE.trigger((ServerPlayer) event.getPlayer());
 
             AngrySantaEntity angrySantaEntity = (AngrySantaEntity) event.getSantaEntity();
             if (!angrySantaEntity.isDamagedByPlayer()) {
-                ChristmasTriggers.CHRISTMAS_SANTA_NO_TOUCHY.trigger((ServerPlayerEntity) event.getPlayerEntity());
+                ChristmasTriggers.CHRISTMAS_SANTA_NO_TOUCHY.trigger((ServerPlayer) event.getPlayer());
             }
 
         } else if (event instanceof SantaEvent.CompleteDropParty) {
-            ChristmasTriggers.CHRISTMAS_SANTA_DROP_PARTY_COMPLETE.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_SANTA_DROP_PARTY_COMPLETE.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
     @SubscribeEvent
     public static void onStockingFill(StockingEvent event) {
         if (event instanceof StockingEvent.Fill) {
-            ChristmasTriggers.CHRISTMAS_STOCKING_FILL.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_STOCKING_FILL.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
     @SubscribeEvent
     public static void onChristmasStarInteract(ChristmasStarEvent event) {
         if (event instanceof ChristmasStarEvent.PutOrnament) {
-            ChristmasTriggers.CHRISTMAS_STAR_PUT_ORNAMENT.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_STAR_PUT_ORNAMENT.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof ChristmasStarEvent.IncreaseTier) {
             ChristmasStarEvent.IncreaseTier increaseTierEvent = (ChristmasStarEvent.IncreaseTier) event;
 
             if (increaseTierEvent.getTier() == 5) {
-                ChristmasTriggers.CHRISTMAS_STAR_MAXED_TIER.trigger((ServerPlayerEntity) event.getPlayerEntity());
+                ChristmasTriggers.CHRISTMAS_STAR_MAXED_TIER.trigger((ServerPlayer) event.getPlayer());
             }
         } else if (event instanceof ChristmasStarEvent.SummonSanta) {
-            ChristmasTriggers.CHRISTMAS_STAR_SUMMON_SANTA.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_STAR_SUMMON_SANTA.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof ChristmasStarEvent.ReachBonus) {
-            ChristmasTriggers.CHRISTMAS_STAR_REACH_BONUS.trigger((ServerPlayerEntity) event.getPlayerEntity());
+            ChristmasTriggers.CHRISTMAS_STAR_REACH_BONUS.trigger((ServerPlayer) event.getPlayer());
         }
     }
 }

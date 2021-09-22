@@ -7,20 +7,20 @@ import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNa
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.INaughtyNiceHandler;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SantaListBlock extends WallDecorationBlock {
     public static final String CHAT_NICE_MAX = "chat.happyholidays.santa_list.max_nice";
@@ -32,9 +32,8 @@ public class SantaListBlock extends WallDecorationBlock {
     public static final String BLOCK_ID = "santa_list";
 
     public static final Properties BLOCK_PROPERTIES =
-            AbstractBlock.Properties
+            BlockBehaviour.Properties
                     .of(Material.WOOL)
-                    .harvestLevel(-1)
                     .strength(0.1f)
                     .sound(SoundType.WOOL)
                     .noOcclusion()
@@ -47,7 +46,7 @@ public class SantaListBlock extends WallDecorationBlock {
     }
 
     @Override
-    public ActionResultType use(BlockState blockState, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
+    public InteractionResult use(BlockState blockState, Level world, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
         Optional<INaughtyNiceHandler> naughtyNiceOptional =
             playerEntity.getCapability(CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY).resolve();
 
@@ -56,22 +55,22 @@ public class SantaListBlock extends WallDecorationBlock {
                 NaughtyNiceMeter naughtyNiceMeter = (NaughtyNiceMeter) naughtyNiceOptional.get();
 
                 if (naughtyNiceMeter.isMaxNaughty()) {
-                    playerEntity.sendMessage(new TranslationTextComponent(CHAT_NAUGHTY_MAX).withStyle(TextFormatting.RED), UUID.randomUUID());
+                    playerEntity.sendMessage(new TranslatableComponent(CHAT_NAUGHTY_MAX).withStyle(ChatFormatting.RED), UUID.randomUUID());
                 } else if (naughtyNiceMeter.isNaughty()) {
-                    playerEntity.sendMessage(new TranslationTextComponent(CHAT_NAUGHTY).withStyle(TextFormatting.RED), UUID.randomUUID());
+                    playerEntity.sendMessage(new TranslatableComponent(CHAT_NAUGHTY).withStyle(ChatFormatting.RED), UUID.randomUUID());
                 } else if (naughtyNiceMeter.isNeutral()) {
-                    playerEntity.sendMessage(new TranslationTextComponent(CHAT_NEUTRAL).withStyle(TextFormatting.DARK_GRAY), UUID.randomUUID());
+                    playerEntity.sendMessage(new TranslatableComponent(CHAT_NEUTRAL).withStyle(ChatFormatting.DARK_GRAY), UUID.randomUUID());
                 } else if (naughtyNiceMeter.isMaxNice()) {
-                    playerEntity.sendMessage(new TranslationTextComponent(CHAT_NICE_MAX).withStyle(TextFormatting.AQUA), UUID.randomUUID());
+                    playerEntity.sendMessage(new TranslatableComponent(CHAT_NICE_MAX).withStyle(ChatFormatting.AQUA), UUID.randomUUID());
                 } else if (naughtyNiceMeter.isNice()) {
-                    playerEntity.sendMessage(new TranslationTextComponent(CHAT_NICE).withStyle(TextFormatting.AQUA), UUID.randomUUID());
+                    playerEntity.sendMessage(new TranslatableComponent(CHAT_NICE).withStyle(ChatFormatting.AQUA), UUID.randomUUID());
                 }
             } else {
-                playerEntity.sendMessage(new TranslationTextComponent(CHAT_NEUTRAL).withStyle(TextFormatting.DARK_GRAY), UUID.randomUUID());
+                playerEntity.sendMessage(new TranslatableComponent(CHAT_NEUTRAL).withStyle(ChatFormatting.DARK_GRAY), UUID.randomUUID());
             }
         }
 
-        return ActionResultType.sidedSuccess(world.isClientSide());
+        return InteractionResult.sidedSuccess(world.isClientSide());
     }
 
 

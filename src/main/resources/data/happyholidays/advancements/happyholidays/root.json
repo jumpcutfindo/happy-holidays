@@ -21,10 +21,10 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "minecraft:dirt"
+                        "items": ["minecraft:dirt"]
                     },
                     {
-                        "item": "minecraft:cobblestone"
+                        "items": ["minecraft:cobblestone"]
                     }
                 ]
             }

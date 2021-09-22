@@ -1,8 +1,8 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum WallDecorationShape implements IStringSerializable {
+public enum WallDecorationShape implements StringRepresentable {
     STRAIGHT("straight"),
     LEFT_FACE("left_face"),
     RIGHT_FACE("right_face"),

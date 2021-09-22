@@ -8,34 +8,21 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.Sound;
-import net.minecraft.client.audio.SoundSystem;
-import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.client.resources.JsonReloadListener;
-import net.minecraft.client.resources.Language;
-import net.minecraft.profiler.IProfiler;
-import net.minecraft.resources.IResource;
-import net.minecraft.resources.IResourceManager;
-import net.minecraft.resources.SimpleReloadableResourceManager;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.resources.language.LanguageInfo;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.Resource;
+import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.client.ClientModLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
-import net.minecraftforge.fml.server.LanguageHook;
-import software.bernie.shadowed.eliotlash.mclib.math.functions.limit.Min;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -54,15 +41,15 @@ public class GuideHandler {
         HappyHolidaysMod.LOGGER.debug("Attempting to register guides for Happy Holidays...");
         GUIDES = Maps.newHashMap();
 
-        Language language = Minecraft.getInstance().getLanguageManager().getSelected();
+        LanguageInfo language = Minecraft.getInstance().getLanguageManager().getSelected();
         CURRENT_LANGUAGE_CODE = language.getCode();
-        IResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
+        ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
 
         for (String guideCode : GUIDE_CODES) {
             String defaultLocation = String.format(DEFAULT_GUIDE_LOCATION, DEFAULT_LANGUAGE_CODE, guideCode);
             String localisedLocation = String.format(DEFAULT_GUIDE_LOCATION, language.getCode(), guideCode);
 
-            List<IResource> guideResources = null;
+            List<Resource> guideResources = null;
 
             // Try loading localised version, and if not exists try loading default version
             try {
@@ -77,7 +64,7 @@ public class GuideHandler {
                 }
             }
 
-            for (IResource resource : guideResources) {
+            for (Resource resource : guideResources) {
                 InputStream inputStream = resource.getInputStream();
                 Guide guide = new Gson().fromJson(new InputStreamReader(inputStream), Guide.class);
 

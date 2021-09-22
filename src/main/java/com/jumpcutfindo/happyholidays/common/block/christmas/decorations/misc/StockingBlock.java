@@ -6,36 +6,36 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTileEntities;
-import com.jumpcutfindo.happyholidays.common.tileentity.christmas.StockingTileEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.StockingBlockEntity;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.MinecraftForge;
 
-public class StockingBlock extends WallDecorationBlock {
+public class StockingBlock extends WallDecorationBlock implements EntityBlock {
     public static final String RED_STOCKING_ID = "red_stocking";
     public static final String BLUE_STOCKING_ID = "blue_stocking";
     public static final String YELLOW_STOCKING_ID = "yellow_stocking";
@@ -46,9 +46,8 @@ public class StockingBlock extends WallDecorationBlock {
     public static final BooleanProperty FILLED = BooleanProperty.create("filled");
 
     public static final Properties BLOCK_PROPERTIES =
-            AbstractBlock.Properties
+            BlockBehaviour.Properties
                     .of(Material.WOOL)
-                    .harvestLevel(-1)
                     .strength(0.1f)
                     .sound(SoundType.WOOL)
                     .noOcclusion()
@@ -65,48 +64,43 @@ public class StockingBlock extends WallDecorationBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
         super.createBlockStateDefinition(stateBuilder);
         stateBuilder.add(FILLED);
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         return super.getStateForPlacement(context).setValue(FILLED, false);
     }
 
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
-                                  IWorld world, BlockPos pos1, BlockPos pos2) {
+                                  LevelAccessor world, BlockPos pos1, BlockPos pos2) {
         return this.canSurvive(blockState, world, pos1) ? blockState : Blocks.AIR.defaultBlockState();
     }
 
     @Override
-    public ActionResultType use(BlockState blockState, World world, BlockPos blockPos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult) {
-        TileEntity tileEntity = world.getBlockEntity(blockPos);
+    public InteractionResult use(BlockState blockState, Level world, BlockPos blockPos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
+        BlockEntity blockEntity = world.getBlockEntity(blockPos);
 
-        if (!world.isClientSide() && tileEntity instanceof StockingTileEntity) {
-            StockingTileEntity stockingTileEntity = (StockingTileEntity) tileEntity;
+        if (!world.isClientSide() && blockEntity instanceof StockingBlockEntity) {
+            StockingBlockEntity stockingBlockEntity = (StockingBlockEntity) blockEntity;
 
-            if (!stockingTileEntity.isEmpty()) {
-                stockingTileEntity.dropStockingItems();
+            if (!stockingBlockEntity.isEmpty()) {
+                stockingBlockEntity.dropStockingItems();
             }
 
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
 
-        return ActionResultType.sidedSuccess(world.isClientSide());
-    }
-
-    @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
+        return InteractionResult.sidedSuccess(world.isClientSide());
     }
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return ChristmasTileEntities.STOCKING_ENTITY_TYPE.get().create();
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return ChristmasBlockEntities.STOCKING_ENTITY_TYPE.get().create(pos, state);
     }
 
     @Override
@@ -115,28 +109,28 @@ public class StockingBlock extends WallDecorationBlock {
     }
 
     @Override
-    public void randomTick(BlockState blockState, ServerWorld world, BlockPos blockPos, Random random) {
-        TileEntity tileEntity = world.getBlockEntity(blockPos);
+    public void randomTick(BlockState blockState, ServerLevel world, BlockPos blockPos, Random random) {
+        BlockEntity blockEntity = world.getBlockEntity(blockPos);
 
-        if (tileEntity instanceof StockingTileEntity) {
-            StockingTileEntity stockingTileEntity = (StockingTileEntity) tileEntity;
+        if (blockEntity instanceof StockingBlockEntity) {
+            StockingBlockEntity stockingBlockEntity = (StockingBlockEntity) blockEntity;
 
-            if (world.isNight() && !stockingTileEntity.isDoneForNight() && stockingTileEntity.isEmpty()) {
+            if (world.isNight() && !stockingBlockEntity.isDoneForNight() && stockingBlockEntity.isEmpty()) {
                 int randInt = random.nextInt(100);
                 if (randInt < StockingBlock.getFillChance(world, blockPos)) {
-                    stockingTileEntity.fillStocking();
+                    stockingBlockEntity.fillStocking();
 
-                    AxisAlignedBB searchBox = new AxisAlignedBB(blockPos).inflate(4.0D);
-                    List<PlayerEntity> playersAround = world.getEntitiesOfClass(PlayerEntity.class, searchBox);
+                    AABB searchBox = new AABB(blockPos).inflate(4.0D);
+                    List<Player> playersAround = world.getEntitiesOfClass(Player.class, searchBox);
 
-                    for (PlayerEntity playerEntity : playersAround) {
+                    for (Player playerEntity : playersAround) {
                         StockingEvent fillEvent = new StockingEvent.Fill(blockState, blockPos, playerEntity);
                         MinecraftForge.EVENT_BUS.post(fillEvent);
                     }
                 }
             }
 
-            if (world.isDay() && stockingTileEntity.isDoneForNight()) stockingTileEntity.resetStocking();
+            if (world.isDay() && stockingBlockEntity.isDoneForNight()) stockingBlockEntity.resetStocking();
         }
     }
 
@@ -144,7 +138,7 @@ public class StockingBlock extends WallDecorationBlock {
         Calculates the chance at which the stocking will fill with a present. Note that the value returned is out of
         100, and the final chance is calculated / 100.
      */
-    public static int getFillChance(World world, BlockPos blockPos) {
+    public static int getFillChance(Level world, BlockPos blockPos) {
         int chance = 0, baseChance = 10;
 
         chance += baseChance;

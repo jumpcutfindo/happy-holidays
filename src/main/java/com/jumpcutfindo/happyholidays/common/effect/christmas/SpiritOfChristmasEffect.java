@@ -1,14 +1,14 @@
 package com.jumpcutfindo.happyholidays.common.effect.christmas;
 
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
 
-public class SpiritOfChristmasEffect extends Effect {
+public class SpiritOfChristmasEffect extends MobEffect {
     public static final String EFFECT_ID = "spirit_of_christmas";
 
-    public static final EffectType EFFECT_TYPE = EffectType.BENEFICIAL;
+    public static final MobEffectCategory EFFECT_TYPE = MobEffectCategory.BENEFICIAL;
     public static final int EFFECT_COLOUR = 32526;
 
     public SpiritOfChristmasEffect() {

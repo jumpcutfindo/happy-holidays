@@ -21,7 +21,7 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "happyholidays:christmas_guide_book"
+                        "items": ["happyholidays:christmas_guide_book"]
                     }
                 ]
             }

@@ -28,7 +28,7 @@
                 },
                 {
                     "type": "minecraft:item",
-                    "name": "minecraft:netherite_scrap",
+                    "name": "minecraft:diamond",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
@@ -47,7 +47,7 @@
                             "function": "minecraft:set_count",
                             "count": {
                                 "min": 2,
-                                "max": 4
+                                "max": 6
                             }
                         }
                     ]
@@ -60,7 +60,7 @@
                             "function": "minecraft:set_count",
                             "count": {
                                 "min": 2,
-                                "max": 4
+                                "max": 6
                             }
                         }
                     ]

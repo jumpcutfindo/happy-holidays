@@ -1,8 +1,8 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.misc;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum ChristmasStarTier implements IStringSerializable {
+public enum ChristmasStarTier implements StringRepresentable {
     TIER_0("tier_0"),
     TIER_1("tier_1"),
     TIER_2("tier_2"),

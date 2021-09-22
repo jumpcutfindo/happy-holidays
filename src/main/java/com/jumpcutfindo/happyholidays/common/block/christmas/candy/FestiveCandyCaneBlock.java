@@ -4,12 +4,12 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.core.BlockPos;
 
 public class FestiveCandyCaneBlock extends BaseCandyCaneBlock {
     public static final EnumProperty<FestiveCandyShape> CANDY_SHAPE = EnumProperty.create("candy_shape",
@@ -25,7 +25,7 @@ public class FestiveCandyCaneBlock extends BaseCandyCaneBlock {
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockPos blockPos = context.getClickedPos();
 
         BlockPos[] neighbours = new BlockPos[] {
@@ -43,7 +43,7 @@ public class FestiveCandyCaneBlock extends BaseCandyCaneBlock {
     }
 
     @Override
-    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> stateBuilder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
         stateBuilder.add(CANDY_SHAPE);
     }
 }
