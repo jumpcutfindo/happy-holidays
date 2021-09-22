@@ -487,16 +487,13 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
                 blockEntity.finishSummonSanta();
             }
 
-            if (blockEntity.isBonusActive() && level.getGameTime() % 40L == 0) {
-                double d0 = (Math.random() * 2.0D) * (level.random.nextBoolean() ? 1 : -1);
-                double d1 = (Math.random() * 3.0D);
-                double d2 = (Math.random() * 2.0D) * (level.random.nextBoolean() ? 1 : -1);
+            if (blockEntity.isBonusActive() && level.getGameTime() % 80L == 0) {
 
                 ((ServerLevel) level).sendParticles(ChristmasParticles.CHRISTMAS_STAR_PARTICLE.get(),
-                        blockEntity.getBlockPos().getX() + 0.5D,
-                        blockEntity.getBlockPos().getY() + d1,
-                        blockEntity.getBlockPos().getZ() + 0.5D,
-                        2, d0, d1, d2, 0.0D);
+                        blockEntity.getBlockPos().getX() + 0.5,
+                        blockEntity.getBlockPos().getY() + 0.5,
+                        blockEntity.getBlockPos().getZ() + 0.5,
+                        3, 0.5, 0.0, 0.5, 0.0D);
             }
         }
 
