@@ -445,7 +445,6 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
 
     public static void serverTick(Level level, BlockPos pos, BlockState blockState, ChristmasStarBlockEntity blockEntity) {
         if (level != null && !level.isClientSide()) {
-
             if (level.getGameTime() % 80L == 0L) {
                 blockEntity.applyPlayerEffects();
                 blockEntity.applyEntityEffects();
@@ -486,6 +485,18 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
 
             if (blockEntity.isSummoningSanta && --blockEntity.summonSantaProgress <= 0) {
                 blockEntity.finishSummonSanta();
+            }
+
+            if (blockEntity.isBonusActive() && level.getGameTime() % 40L == 0) {
+                double d0 = (Math.random() * 2.0D) * (level.random.nextBoolean() ? 1 : -1);
+                double d1 = (Math.random() * 3.0D);
+                double d2 = (Math.random() * 2.0D) * (level.random.nextBoolean() ? 1 : -1);
+
+                ((ServerLevel) level).sendParticles(ChristmasParticles.CHRISTMAS_STAR_PARTICLE.get(),
+                        blockEntity.getBlockPos().getX() + 0.5D,
+                        blockEntity.getBlockPos().getY() + d1,
+                        blockEntity.getBlockPos().getZ() + 0.5D,
+                        2, d0, d1, d2, 0.0D);
             }
         }
 

@@ -15,6 +15,7 @@ import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasS
 import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallRedParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallSilverParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallYellowParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.star.ChristmasStarParticle;
 
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -56,4 +57,7 @@ public class ChristmasParticles {
             PARTICLES.register(SantaRedSpawnParticle.PARTICLE_ID, () -> new SimpleParticleType(true));
     public static final RegistryObject<SimpleParticleType> CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE =
             PARTICLES.register(SantaGreenSpawnParticle.PARTICLE_ID, () -> new SimpleParticleType(true));
+
+    public static final RegistryObject<SimpleParticleType> CHRISTMAS_STAR_PARTICLE =
+            PARTICLES.register(ChristmasStarParticle.PARTICLE_ID, () -> new SimpleParticleType(true));
 }

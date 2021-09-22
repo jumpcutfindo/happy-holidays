@@ -18,6 +18,7 @@ import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasS
 import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallRedParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallSilverParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.small.ChristmasSmallYellowParticle;
+import com.jumpcutfindo.happyholidays.common.particle.christmas.star.ChristmasStarParticle;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 
 import net.minecraft.client.Minecraft;
@@ -60,5 +61,8 @@ public class ParticleHandler {
                 (sprites) -> new SantaSpawnParticle.Factory(sprites, SantaRedSpawnParticle.COLOR));
         Minecraft.getInstance().particleEngine.register(ChristmasParticles.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get(),
                 (sprites) -> new SantaSpawnParticle.Factory(sprites, SantaGreenSpawnParticle.COLOR));
+
+        Minecraft.getInstance().particleEngine.register(ChristmasParticles.CHRISTMAS_STAR_PARTICLE.get(),
+                ChristmasStarParticle.Provider::new);
     }
 }
