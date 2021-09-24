@@ -58,7 +58,7 @@ public class GingerbreadConversionRewards {
         // Drop ornament block
         double ornamentDropChance = CONVERSION_ORNAMENT_DROP_BASE_CHANCE * modifier;
         if (random.nextDouble() <= ornamentDropChance) {
-            return ChristmasItems.SANTA_ELF_ORNAMENT.get().getDefaultInstance();
+            return ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get().getDefaultInstance();
         } else {
             return ItemStack.EMPTY;
         }
