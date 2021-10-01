@@ -54,4 +54,9 @@ public class ChristmasBlockItem extends BlockItem implements IChristmasItem {
         this.christmasRarity = rarity;
         return this;
     }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
+    }
 }

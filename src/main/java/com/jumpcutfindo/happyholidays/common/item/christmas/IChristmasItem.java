@@ -6,7 +6,7 @@ import net.minecraft.network.chat.BaseComponent;
 import net.minecraft.network.chat.Component;
 
 public interface IChristmasItem extends IHappyHolidaysItem {
-    IChristmasItem setChristmasRarity(ChristmasRarity rarity);
+    ChristmasRarity getChristmasRarity();
 
     static Component createStyledComponent(BaseComponent component, ChristmasRarity rarity) {
         return component.withStyle(rarity.color);

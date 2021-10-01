@@ -16,8 +16,11 @@ public class EnchantedCandyCaneItem extends ChristmasItem {
 
     public EnchantedCandyCaneItem() {
         super(ITEM_PROPERTIES);
+    }
 
-        this.setChristmasRarity(ChristmasRarity.LEGENDARY);
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.LEGENDARY;
     }
 
     @Override

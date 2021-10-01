@@ -48,8 +48,7 @@ public class ChristmasItem extends Item implements IChristmasItem {
     }
 
     @Override
-    public IChristmasItem setChristmasRarity(ChristmasRarity rarity) {
-        this.christmasRarity = rarity;
-        return this;
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
     }
 }
