@@ -68,7 +68,7 @@
             "entries": [
                 {
                     "type": "minecraft:tag",
-                    "weight": 10,
+                    "weight": 5,
                     "name": "happyholidays:christmas_basic_ornaments",
                     "expand": true,
                     "functions": [
@@ -83,7 +83,7 @@
                 },
                 {
                     "type": "minecraft:tag",
-                    "weight": 15,
+                    "weight": 2,
                     "name": "happyholidays:christmas_sheet_music",
                     "expand": true,
                     "functions": [
@@ -95,7 +95,7 @@
                 },
                 {
                     "type": "minecraft:tag",
-                    "weight": 5,
+                    "weight": 10,
                     "name": "happyholidays:christmas_rare_ornaments",
                     "expand": true,
                     "functions": [
@@ -107,7 +107,7 @@
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 10,
+                    "weight": 5,
                     "name": "minecraft:coal",
                     "functions": [
                         {
@@ -122,6 +122,20 @@
                 {
                     "type": "minecraft:item",
                     "weight": 5,
+                    "name": "minecraft:copper_ingot",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 2,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "weight": 10,
                     "name": "minecraft:iron_ingot",
                     "functions": [
                         {
@@ -135,7 +149,7 @@
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 4,
+                    "weight": 10,
                     "name": "minecraft:gold_ingot",
                     "functions": [
                         {
@@ -149,7 +163,7 @@
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 2,
+                    "weight": 5,
                     "name": "minecraft:diamond",
                     "functions": [
                         {
@@ -160,7 +174,7 @@
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 1,
+                    "weight": 2,
                     "name": "minecraft:netherite_scrap",
                     "functions": [
                         {
