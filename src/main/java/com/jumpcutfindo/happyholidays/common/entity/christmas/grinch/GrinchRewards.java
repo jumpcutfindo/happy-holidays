@@ -60,16 +60,16 @@ public class GrinchRewards {
             //  incorrect counts (see MC-212671)
 
             if (ChristmasItems.isBasicOrnamentItem(itemStack)) {
-                itemStack.setCount((random.nextInt(12 - 8) + 1) + 8);
+                itemStack.setCount((random.nextInt(8 - 2) + 1) + 2);
             } else if (ChristmasItems.isRareOrnamentItem(itemStack)) {
                 itemStack.setCount((random.nextInt(4 - 2) + 1) + 2);
             } else if (ItemStack.isSame(itemStack, ChristmasItems.PRESENT_SCRAPS.get().getDefaultInstance())) {
-                itemStack.setCount((random.nextInt(12 - 6) + 1) + 6);
+                itemStack.setCount((random.nextInt(4 - 2) + 1) + 2);
             } else if (ChristmasItems.isFoodItem(itemStack)) {
                 if (ChristmasItems.isLargeFoodItem(itemStack)) {
                     itemStack.setCount((random.nextInt(4 - 2) + 1) + 2);
                 } else {
-                    itemStack.setCount((random.nextInt(12 - 6) + 1) + 6);
+                    itemStack.setCount((random.nextInt(6 - 2) + 1) + 2);
                 }
             }
 
