@@ -58,7 +58,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "The ultimate goal of Christmas is for you to fill up the Christmas Star, a craftable block that can be filled up with any kind of ornaments. These ornaments can be gathered from various sources, which will be described in the later portions of this guide."
+                    "content": "The ultimate goal of Christmas is for you to fill up the Christmas Star, a craftable block that can be filled up with any kind of ornaments. These ornaments can be gathered from various sources: from presents that spawn around the Overworld, to helping Santa's Elves gather materials for toy making! More of these will be described in the later portions of this guide."
                 },
                 {
                     "type": "text",
@@ -113,11 +113,31 @@
                 },
                 {
                     "type": "text",
+                    "content": "Player wise, the star will give players a boost in health and strength, and also make sure that foods eaten will give greater healing. The healing is amplified even further for Christmas foods!"
+                },
+                {
+                    "type": "text",
+                    "content": "Blocks wise, blocks affected by the star's power will produce particles. Blocks such as the Present Block benefit from the star's effects by growing faster, while Candy Cane blocks have a higher tendency to drop their legendary items!"
+                },
+                {
+                    "type": "text",
+                    "content": "Christmas mobs are also affected by the star's power! Under the effect of the star, Grinches are unable to destroy any presents and Santa's Elves feels much more generous. All Christmas mobs also tend to drop more items, as well as having higher drop chances for their relevant ornaments!"
+                },
+                {
+                    "type": "text",
+                    "content": "The Christmas Star's effects are amplified even further when you obtain an Enchanted Santa's Hat and put it in the star! This can be obtained from completing the Santa event!"
+                },
+                {
+                    "type": "text",
                     "title": "Summoning Santa"
                 },
                 {
                     "type": "text",
                     "content": "Once your star has reached an impressive tier, Santa will be ready to meet you and reward you accordingly. Be warned though: if you haven't been very nice this year, he might come bearing destruction instead of gifts!"
+                },
+                {
+                    "type": "text",
+                    "content": "You can check whether you've been naughty or nice by purchasing a Santa's List from the Santa's Elf! It's a restricted copy of Santa's naughty or nice list from the North Pole, so just make sure he doesn't find out! Right-clicking it will tell you your current naughtiness / niceness."
                 },
                 {
                     "type": "text",
@@ -256,7 +276,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "Gingerbread Men are generally scared of water, and holding a water bucket does not signal that you're friendly. Soggy Gingerbread Men do like the warmth of heated blocks though!"
+                    "content": "Gingerbread Men are generally scared of water, and holding a water bucket does not signal that you're friendly. Soggy Gingerbread Men do like the warmth of heated blocks though! They'll follow you around in those cases in order to try to get warm!"
                 },
                 {
                     "type": "text",
@@ -271,7 +291,7 @@
                 },
                 {
                     "type": "text",
-                    "content": "Gingerbread Men will drop their dough when attacked, or as a gift to players who have aided them. These pieces of dough can be crafted into Blocks of Gingerbread Dough, or cooked directly to obtain Gingerbread Cookies."
+                    "content": "Gingerbread Men will drop their dough when killed, or as a gift to players who have aided them. These pieces of dough can be crafted into Blocks of Gingerbread Dough, or cooked directly to obtain Gingerbread Cookies."
                 },
                 {
                     "type": "text",
@@ -287,7 +307,7 @@
                 }, 
                 {
                     "type": "text",
-                    "content": "Gingerbread Blocks are relatively sturdy blocks that can be used for building, although they have the same weakness as their mob counterparts: water. Blocks of Gingerbread Dough can be cooked to obtain Blocks of Gingerbread. Blocks of Soggy Gingerbread can also be reheated to dry them."
+                    "content": "Gingerbread Blocks are relatively sturdy blocks that can be used for building, although they have the same weakness as their mob counterparts: water. Gingerbread Blocks that come into contact with water will turn soggy. Blocks of Gingerbread Dough can be cooked to obtain Blocks of Gingerbread. Blocks of Soggy Gingerbread can also be reheated to dry them."
                 }
             ]
         },
@@ -382,7 +402,15 @@
                 },
                 {
                     "type": "text",
-                    "content": "Although, the Grinch hasn't really seen the beauty of Christmas yet. Maybe wrapping a gift for him might not be such a bad thing..."
+                    "content": "Moreover, the Grinch seems to succumb to the effect of the Christmas Star. Under its effect, it seems that he becomes less willing to break presents..."
+                },
+                {
+                    "type": "text",
+                    "content": "Although, the Grinch hasn't really seen the beauty of Christmas yet. Maybe wrapping a gift for him might not be such a bad thing. Who knows, you might even get some goodies in return from him!"
+                },
+                {
+                    "type": "text",
+                    "content": "Don't forget, Santa is also all-knowing. Doing these kinds of nice things for other will certainly boost your niceness rating! On the other hand, being hostile will probably not bode well for your naughtiness rating..."
                 }
             ]
         },
@@ -423,6 +451,18 @@
                 },
                 {
                     "type": "text",
+                    "title": "Trading"
+                },
+                {
+                    "type": "text",
+                    "content": "Santa's workshop generally needs a lot of emeralds to purchase materials for their toy production. As a result, these elves are travelling across the Overworld, selling various Christmas ornaments and foods to not only spread the Christmas cheer, but also to earn some money for toy production."
+                },
+                {
+                    "type": "text",
+                    "content": "On the side though, Santa's Elves have been smuggling out restricted copies of Santa's naughty or nice list; you could probably get one from them to check out whether you're in Santa's good books or not!"
+                },
+                {
+                    "type": "text",
                     "title": "Toy Parts Request"
                 },
                 {
@@ -438,6 +478,10 @@
                 {
                     "type": "text",
                     "content": "They aren't that stingy though; they know that this isn't a very easy job to do, and as such have brought along Christmas goodies and enchanted tools to reward you when you're done! They may even give you a special legendary ornament!"
+                },
+                {
+                    "type": "text",
+                    "content": "Santa will also definitely hear about good deeds like these from his beloved elves, so helping them wouldn't be such a bad thing if you wanted to get into his good books!"
                 }
             ]
         },
@@ -491,11 +535,11 @@
                 },
                 {
                     "type": "text",
-                    "content": "Similar to how jukeboxes take CDs, a music box will take in sheet music and play the music that is written on it. These pieces of sheet music can be easily obtained from all the Christmas related sources!"
+                    "content": "Similar to how jukeboxes take CDs, a music box will take in sheet music and play the music that is written on it. These pieces of sheet music can be obtained from all the Christmas related sources!"
                 },
                 {
                     "type": "text",
-                    "content": "There are a total of 16 pieces of sheet music that have been scattered in Minecraft; can you collect all of them?"
+                    "content": "There are a total of 16 unique pieces of sheet music that have been scattered in Minecraft; can you collect all of them?"
                 }
             ]
         },
