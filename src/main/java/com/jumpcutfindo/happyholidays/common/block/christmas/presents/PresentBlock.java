@@ -228,7 +228,9 @@ public class PresentBlock extends ChristmasBlock implements SimpleWaterloggedBlo
         }
 
         // Handle Grinch spawning around the present
-        if (GrinchEntity.canSpawnInArea(blockPos, serverWorld)) GrinchEntity.spawnGrinchAround(blockPos, serverWorld, random);
+        double grinchSpawnChance = random.nextDouble();
+        if (grinchSpawnChance <= GrinchEntity.GRINCH_SPAWN_CHANCE && GrinchEntity.canSpawnInArea(blockPos, serverWorld))
+            GrinchEntity.spawnGrinchAround(blockPos, serverWorld, random);
     }
 
     public static void grow(BlockState blockState, ServerLevel serverWorld, BlockPos blockPos, Random random) {
