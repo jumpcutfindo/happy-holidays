@@ -1,0 +1,33 @@
+{
+    "parent": "minecraft:recipes/root",
+    "rewards": {
+        "recipes": [
+            "happyholidays:alphabet_ornament_template_from_glass_stonecutting",
+            "happyholidays:alphabet_ornament_a_from_template_stonecutting"
+        ]
+    },
+    "criteria": {
+        "has_items": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "tag": "happyholidays:christmas_ball_ornament_parts"
+                    }
+                ]
+            }
+        },
+        "has_the_template_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "happyholidays:alphabet_ornament_template_from_glass_stonecutting"
+            }
+        }
+    },
+    "requirements": [
+        [
+            "has_items",
+            "has_the_template_recipe"
+        ]
+    ]
+}

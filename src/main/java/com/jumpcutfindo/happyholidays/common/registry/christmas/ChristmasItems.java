@@ -6,6 +6,7 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.ChristmasWreathBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.SantaListBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
@@ -227,6 +228,11 @@ public class ChristmasItems {
             ITEMS.register(StockingBlock.GOLD_STOCKING_ID, itemOf(ChristmasBlocks.GOLD_STOCKING, StockingBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> SILVER_STOCKING =
             ITEMS.register(StockingBlock.SILVER_STOCKING_ID, itemOf(ChristmasBlocks.SILVER_STOCKING, StockingBlock.ITEM_PROPERTIES));
+
+    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_TEMPLATE =
+            ITEMS.register(AlphabetOrnamentBlock.ALPHABET_TEMPLATE_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_TEMPLATE, AlphabetOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_A =
+            ITEMS.register(AlphabetOrnamentBlock.ALPHABET_A_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_A, AlphabetOrnamentBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> CHRISTMAS_WREATH =
             ITEMS.register(ChristmasWreathBlock.BLOCK_ID, itemOf(ChristmasBlocks.CHRISTMAS_WREATH, ChristmasWreathBlock.ITEM_PROPERTIES));

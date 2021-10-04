@@ -4,10 +4,12 @@ import java.util.Arrays;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetBlockColor;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
 
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -63,6 +65,9 @@ public class SetupHandler {
                 ChristmasBlocks.GOLD_STOCKING.get(),
                 ChristmasBlocks.SILVER_STOCKING.get(),
 
+                ChristmasBlocks.ALPHABET_ORNAMENT_TEMPLATE.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_A.get(),
+
                 ChristmasBlocks.CHRISTMAS_WREATH.get(),
                 ChristmasBlocks.SANTA_LIST.get(),
 
@@ -102,5 +107,11 @@ public class SetupHandler {
     @SubscribeEvent
     public static void registerTriggers(FMLCommonSetupEvent event) {
         event.enqueueWork(ChristmasTriggers::registerTriggers);
+    }
+
+    @SubscribeEvent
+    public static void registerBlockColors(ColorHandlerEvent.Block event) {
+        AlphabetBlockColor alphabetBlockColor = new AlphabetBlockColor();
+        event.getBlockColors().register(alphabetBlockColor, ChristmasBlocks.ALPHABET_ORNAMENT_A.get());
     }
 }

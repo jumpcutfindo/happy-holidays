@@ -1,0 +1,8 @@
+{
+    "type": "minecraft:stonecutting",
+    "ingredient": {
+        "item": "minecraft:glass"
+    },
+    "result": "happyholidays:alphabet_ornament_template",
+    "count": 8
+}
