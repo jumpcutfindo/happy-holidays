@@ -3,7 +3,12 @@
     "rewards": {
         "recipes": [
             "happyholidays:alphabet_ornament_template_from_glass_stonecutting",
-            "happyholidays:alphabet_ornament_a_from_template_stonecutting"
+            "happyholidays:alphabet_ornament_a_from_template_stonecutting",
+            "happyholidays:alphabet_ornament_b_from_template_stonecutting",
+            "happyholidays:alphabet_ornament_c_from_template_stonecutting",
+            "happyholidays:alphabet_ornament_d_from_template_stonecutting",
+            "happyholidays:alphabet_ornament_e_from_template_stonecutting",
+            "happyholidays:alphabet_ornament_f_from_template_stonecutting"
         ]
     },
     "criteria": {

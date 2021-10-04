@@ -140,6 +140,16 @@ public class ChristmasBlocks {
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_TEMPLATE_ID, AlphabetOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_A =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_A_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_B =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_B_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_C =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_C_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_D =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_D_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_E =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_E_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_F =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_F_ID, AlphabetOrnamentBlock::new);
 
     // Decoration blocks
     public static final RegistryObject<ChristmasBlock> CHRISTMAS_WREATH =

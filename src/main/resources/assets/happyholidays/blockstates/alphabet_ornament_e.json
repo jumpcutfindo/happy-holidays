@@ -1,0 +1,49 @@
+{
+    "variants": {
+        "face=ceiling,facing=east": {
+            "model": "happyholidays:block/alphabet_ornament_e_hanging",
+            "y": 270
+        },
+        "face=ceiling,facing=north": {
+            "model": "happyholidays:block/alphabet_ornament_e_hanging",
+            "y": 180
+        },
+        "face=ceiling,facing=south": {
+            "model": "happyholidays:block/alphabet_ornament_e_hanging"
+        },
+        "face=ceiling,facing=west": {
+            "model": "happyholidays:block/alphabet_ornament_e_hanging",
+            "y": 90
+        },
+        "face=floor,facing=east": {
+            "model": "happyholidays:block/alphabet_ornament_e",
+            "y": 270
+        },
+        "face=floor,facing=north": {
+            "model": "happyholidays:block/alphabet_ornament_e",
+            "y": 180
+        },
+        "face=floor,facing=south": {
+            "model": "happyholidays:block/alphabet_ornament_e"
+        },
+        "face=floor,facing=west": {
+            "model": "happyholidays:block/alphabet_ornament_e",
+            "y": 90
+        },
+        "face=wall,facing=east": {
+            "model": "happyholidays:block/alphabet_ornament_e_side",
+            "y": 270
+        },
+        "face=wall,facing=north": {
+            "model": "happyholidays:block/alphabet_ornament_e_side",
+            "y": 180
+        },
+        "face=wall,facing=south": {
+            "model": "happyholidays:block/alphabet_ornament_e_side"
+        },
+        "face=wall,facing=west": {
+            "model": "happyholidays:block/alphabet_ornament_e_side",
+            "y": 90
+        }
+    }
+}

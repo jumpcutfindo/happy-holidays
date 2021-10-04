@@ -29,6 +29,11 @@ public class AlphabetOrnamentBlock extends OrnamentBlock {
 
     public static final String ALPHABET_TEMPLATE_ID = "alphabet_ornament_template";
     public static final String ALPHABET_A_ID = "alphabet_ornament_a";
+    public static final String ALPHABET_B_ID = "alphabet_ornament_b";
+    public static final String ALPHABET_C_ID = "alphabet_ornament_c";
+    public static final String ALPHABET_D_ID = "alphabet_ornament_d";
+    public static final String ALPHABET_E_ID = "alphabet_ornament_e";
+    public static final String ALPHABET_F_ID = "alphabet_ornament_f";
 
     public static final VoxelShape[][] ORNAMENT_SHAPES = new VoxelShape[][] {
             new VoxelShape[] {

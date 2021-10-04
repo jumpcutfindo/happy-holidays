@@ -2,6 +2,6 @@
     "parent": "item/generated",
     "textures": {
         "layer0": "happyholidays:item/alphabet_ornament_template",
-        "layer1": "happyholidays:block/alphabet_a"
+        "layer1": "happyholidays:block/alphabet_b"
     }
 }

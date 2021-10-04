@@ -2,8 +2,9 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "happyholidays:block/alphabet_ornament_a",
-		"particle": "happyholidays:block/alphabet_ornament_a"
+		"0": "happyholidays:block/alphabet_ornament_template",
+		"1": "happyholidays:block/alphabet_a",
+		"particle": "happyholidays:block/alphabet_ornament_template"
 	},
 	"elements": [
 		{
@@ -33,7 +34,7 @@
 			}
 		},
 		{
-			"name": "alphabet",
+			"name": "glass",
 			"from": [2, 1.75, 8],
 			"to": [14, 13.75, 8],
 			"rotation": {"angle": 0, "axis": "x", "origin": [8, 0.5, 8]},
@@ -44,6 +45,20 @@
 				"west": {"uv": [0, 0, 6, 0.5], "rotation": 90, "texture": "#0", "tintindex": 0},
 				"up": {"uv": [0, 0, 6, 0.5], "rotation": 180, "texture": "#0", "tintindex": 0},
 				"down": {"uv": [0, 0, 6, 0.5], "texture": "#0", "tintindex": 0}
+			}
+		},
+		{
+			"name": "alphabet",
+			"from": [2, 1.75, 8],
+			"to": [14, 13.75, 8],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0.5, 8]},
+			"faces": {
+				"north": {"uv": [2, 2, 14, 14], "texture": "#1", "tintindex": 0},
+				"east": {"uv": [0, 0, 6, 0.5], "rotation": 270, "texture": "#1", "tintindex": 0},
+				"south": {"uv": [2, 2, 14, 14], "texture": "#1", "tintindex": 0},
+				"west": {"uv": [0, 0, 6, 0.5], "rotation": 90, "texture": "#1", "tintindex": 0},
+				"up": {"uv": [0, 0, 6, 0.5], "rotation": 180, "texture": "#1", "tintindex": 0},
+				"down": {"uv": [0, 0, 6, 0.5], "texture": "#1", "tintindex": 0}
 			}
 		},
 		{
@@ -110,12 +125,12 @@
 					"origin": [0, 0, 0],
 					"color": 0,
 					"children": [0, 1]
-				}, 2,
+				}, 2, 3,
 				{
 					"name": "glass_base",
 					"origin": [1.5, 7, 8],
 					"color": 0,
-					"children": [3, 4, 5, 6]
+					"children": [4, 5, 6, 7]
 				}
 			]
 		}

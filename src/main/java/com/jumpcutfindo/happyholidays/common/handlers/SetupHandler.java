@@ -67,6 +67,11 @@ public class SetupHandler {
 
                 ChristmasBlocks.ALPHABET_ORNAMENT_TEMPLATE.get(),
                 ChristmasBlocks.ALPHABET_ORNAMENT_A.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_B.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_C.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_D.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_E.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_F.get(),
 
                 ChristmasBlocks.CHRISTMAS_WREATH.get(),
                 ChristmasBlocks.SANTA_LIST.get(),
@@ -112,6 +117,16 @@ public class SetupHandler {
     @SubscribeEvent
     public static void registerBlockColors(ColorHandlerEvent.Block event) {
         AlphabetBlockColor alphabetBlockColor = new AlphabetBlockColor();
-        event.getBlockColors().register(alphabetBlockColor, ChristmasBlocks.ALPHABET_ORNAMENT_A.get());
+
+
+        event.getBlockColors().register(alphabetBlockColor,
+                ChristmasBlocks.ALPHABET_ORNAMENT_TEMPLATE.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_A.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_B.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_C.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_D.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_E.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_F.get()
+        );
     }
 }
