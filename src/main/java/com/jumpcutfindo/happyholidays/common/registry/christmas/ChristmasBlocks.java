@@ -150,6 +150,26 @@ public class ChristmasBlocks {
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_E_ID, AlphabetOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_F =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_F_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_G =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_G_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_H =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_H_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_I =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_I_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_J =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_J_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_K =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_K_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_L =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_L_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_M =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_M_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_N =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_N_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_O =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_O_ID, AlphabetOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_P =
+            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_P_ID, AlphabetOrnamentBlock::new);
 
     // Decoration blocks
     public static final RegistryObject<ChristmasBlock> CHRISTMAS_WREATH =

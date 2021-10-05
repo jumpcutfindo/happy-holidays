@@ -243,6 +243,26 @@ public class ChristmasItems {
             ITEMS.register(AlphabetOrnamentBlock.ALPHABET_E_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_E, AlphabetOrnamentBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_F =
             ITEMS.register(AlphabetOrnamentBlock.ALPHABET_F_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_F, AlphabetOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_G =
+            ITEMS.register(AlphabetOrnamentBlock.ALPHABET_G_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_G, AlphabetOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_H =
+            ITEMS.register(AlphabetOrnamentBlock.ALPHABET_H_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_H, AlphabetOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_I =
+            ITEMS.register(AlphabetOrnamentBlock.ALPHABET_I_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_I, AlphabetOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_J =
+            ITEMS.register(AlphabetOrnamentBlock.ALPHABET_J_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_J, AlphabetOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_K =
+            ITEMS.register(AlphabetOrnamentBlock.ALPHABET_K_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_K, AlphabetOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_L =
+            ITEMS.register(AlphabetOrnamentBlock.ALPHABET_L_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_L, AlphabetOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_M =
+            ITEMS.register(AlphabetOrnamentBlock.ALPHABET_M_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_M, AlphabetOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_N =
+            ITEMS.register(AlphabetOrnamentBlock.ALPHABET_N_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_N, AlphabetOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_O =
+            ITEMS.register(AlphabetOrnamentBlock.ALPHABET_O_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_O, AlphabetOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_P =
+            ITEMS.register(AlphabetOrnamentBlock.ALPHABET_P_ID, itemOf(ChristmasBlocks.ALPHABET_ORNAMENT_P, AlphabetOrnamentBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> CHRISTMAS_WREATH =
             ITEMS.register(ChristmasWreathBlock.BLOCK_ID, itemOf(ChristmasBlocks.CHRISTMAS_WREATH, ChristmasWreathBlock.ITEM_PROPERTIES));
