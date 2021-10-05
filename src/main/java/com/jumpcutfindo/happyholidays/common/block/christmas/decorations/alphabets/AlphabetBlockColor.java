@@ -18,10 +18,10 @@ public class AlphabetBlockColor implements BlockColor {
 
             switch (blockColor) {
             case RED -> {
-                return 14750740;
+                return 15278884;
             }
             case BLUE -> {
-                return 1186547;
+                return 2631923;
             }
             case YELLOW -> {
                 return 16773640;

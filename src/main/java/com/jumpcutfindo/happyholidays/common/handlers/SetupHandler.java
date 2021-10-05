@@ -82,6 +82,16 @@ public class SetupHandler {
                 ChristmasBlocks.ALPHABET_ORNAMENT_N.get(),
                 ChristmasBlocks.ALPHABET_ORNAMENT_O.get(),
                 ChristmasBlocks.ALPHABET_ORNAMENT_P.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_Q.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_R.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_S.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_T.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_U.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_V.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_W.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_X.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_Y.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_Z.get(),
 
                 ChristmasBlocks.CHRISTMAS_WREATH.get(),
                 ChristmasBlocks.SANTA_LIST.get(),
@@ -146,7 +156,17 @@ public class SetupHandler {
                 ChristmasBlocks.ALPHABET_ORNAMENT_M.get(),
                 ChristmasBlocks.ALPHABET_ORNAMENT_N.get(),
                 ChristmasBlocks.ALPHABET_ORNAMENT_O.get(),
-                ChristmasBlocks.ALPHABET_ORNAMENT_P.get()
+                ChristmasBlocks.ALPHABET_ORNAMENT_P.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_Q.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_R.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_S.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_T.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_U.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_V.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_W.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_X.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_Y.get(),
+                ChristmasBlocks.ALPHABET_ORNAMENT_Z.get()
         );
     }
 }
