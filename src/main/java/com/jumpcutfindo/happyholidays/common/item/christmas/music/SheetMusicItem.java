@@ -10,14 +10,17 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
+import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
+import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
+import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.BaseComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -87,10 +90,15 @@ public class SheetMusicItem extends ChristmasItem {
             }
 
             if (itemUseContext.getPlayer() != null) {
-                BaseComponent chatComponent = new TranslatableComponent("block.happyholidays.music_box"
-                        + ".now_playing", (new TranslatableComponent(this.getDescriptionId() + ".desc")));
-                chatComponent.withStyle(ChatFormatting.AQUA);
-                itemUseContext.getPlayer().displayClientMessage(chatComponent, true);
+                Player player = itemUseContext.getPlayer();
+
+                GameplayMessage message = new GameplayMessage(
+                        MessageType.INFO,
+                        "block.happyholidays.music_box.now_playing",
+                        new TranslatableComponent(this.getDescriptionId() + ".desc")
+                );
+
+                Messenger.sendClientMessage(message, player);
             }
 
             return InteractionResult.sidedSuccess(world.isClientSide);

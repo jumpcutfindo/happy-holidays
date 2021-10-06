@@ -10,7 +10,11 @@ public enum MessageType {
     INFO(ChatFormatting.AQUA),
     ERROR(ChatFormatting.RED),
     WARNING(ChatFormatting.GOLD),
-    SUCCESS(ChatFormatting.GREEN);
+    SUCCESS(ChatFormatting.GREEN),
+
+    NAUGHTY(ChatFormatting.RED),
+    NEUTRAL(ChatFormatting.GRAY),
+    NICE(ChatFormatting.AQUA);
 
     private final List<ChatFormatting> formatting;
 

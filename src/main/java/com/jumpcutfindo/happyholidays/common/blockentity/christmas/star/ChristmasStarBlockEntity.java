@@ -1,7 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.blockentity.christmas.star;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -22,10 +21,11 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntitie
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
+import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
+import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
+import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
 import com.jumpcutfindo.happyholidays.server.data.SantaSummonSavedData;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -235,10 +235,8 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
             if (!isValidTime) {
                 long timeRemaining = santaData.getNextSummonTime() - serverWorld.getGameTime();
 
-                for (ServerPlayer serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
-                    serverPlayerEntity.sendMessage(new TranslatableComponent("chat.happyholidays.christmas_star"
-                            + ".santa_not_ready", HappyHolidaysUtils.convertTicksToString(timeRemaining)).withStyle(ChatFormatting.RED), UUID.randomUUID());
-                }
+                GameplayMessage message = new GameplayMessage(MessageType.ERROR, "chat.happyholidays.christmas_star.santa_not_ready");
+                Messenger.sendChatMessage(message, serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position())));
 
                 return;
             }
@@ -292,23 +290,19 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
     public void finishSummonSanta() {
         // Summon the appropriate santa
         BaseSantaEntity santaEntity = null;
-        Component santaText = null;
+        GameplayMessage summonMessage = null;
         if (this.isGoodSanta) {
             santaEntity = ChristmasEntities.HAPPY_SANTA.get().create(this.level);
-            santaText =
-                    new TranslatableComponent("entity.happyholidays.santa_arrival_happy").withStyle(ChatFormatting.AQUA);
+            summonMessage = new GameplayMessage(MessageType.NICE, "entity.happyholidays.santa_arrival_happy");
         } else {
             santaEntity = ChristmasEntities.ANGRY_SANTA.get().create(this.level);
-            santaText =
-                    new TranslatableComponent("entity.happyholidays.santa_arrival_angry").withStyle(ChatFormatting.RED);
+            summonMessage = new GameplayMessage(MessageType.NAUGHTY, "entity.happyholidays.santa_arrival_angry");
         }
 
         List<Player> playerList = this.level.getEntitiesOfClass(Player.class, this.areaOfEffect);
+        Messenger.sendChatMessage(summonMessage, playerList);
 
-        Component finalSantaText = santaText;
         playerList.forEach(playerEntity -> {
-                playerEntity.sendMessage(finalSantaText, UUID.randomUUID());
-
                 ChristmasStarEvent summonEvent = new ChristmasStarEvent.SummonSanta(this, playerEntity);
                 MinecraftForge.EVENT_BUS.post(summonEvent);
             }

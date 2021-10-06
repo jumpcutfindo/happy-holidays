@@ -13,6 +13,9 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntitie
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaBellSound;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
+import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
+import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
+import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -67,11 +70,14 @@ public class SantaElfBellItem extends ChristmasItem {
             return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), world.isClientSide());
         } else {
             long timeRemaining = nbt.getLong("NextUseTime") - world.getGameTime();
-            MutableComponent chatComponent =
-                    new TranslatableComponent("chat.happyholidays." + ITEM_ID + ".not_ready",
-                            HappyHolidaysUtils.convertTicksToString(timeRemaining));
-            chatComponent.withStyle(ChatFormatting.RED);
-            player.displayClientMessage(chatComponent, true);
+
+            GameplayMessage message = new GameplayMessage(
+                    MessageType.ERROR,
+                    "chat.happyholidays.santa_elf_bell.not_ready",
+                    HappyHolidaysUtils.convertTicksToString(timeRemaining)
+            );
+
+            Messenger.sendClientMessage(message, player);
             return InteractionResultHolder.fail(player.getItemInHand(hand));
         }
 
