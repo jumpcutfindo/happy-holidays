@@ -132,6 +132,9 @@
     "item.happyholidays.silver_christmas_gift": "Silver Christmas Gift",
     "item.happyholidays.christmas_gift.desc": "Wrapped by %s",
     "item.christmas_gift_box_shake.sub": "Gift Box shakes",
+    "item.snow_globe_fill.sub": "Snow Globe fills",
+    "item.snow_globe_using.sub": "Snow Globe powers up",
+    "item.snow_globe_success.sub": "Snow Globe releases",
 
     "item.happyholidays.christmas_sheet_music_angels_on_high": "Sheet Music",
     "item.happyholidays.christmas_sheet_music_carol_of_the_bells": "Sheet Music",
@@ -236,7 +239,14 @@
 
     "itemGroup.happyholidaystab": "Happy Holidays",
 
+    "chat.happyholidays.snow_globe.weather_maxed": "The Snow Globe doesn't seem to respond to your shaking...",
+    "chat.happyholidays.snow_globe.weather_rain_to_thunder": "The sky darkens further as your Snow Globe becomes lighter...",
+    "chat.happyholidays.snow_globe.weather_clear_to_rain": "The sky darkens as your Snow Globe becomes lighter...",
+    "chat.happyholidays.snow_globe.try_fill_when_full": "Your Snow Globe isn't able to take in any more snow!",
+    "chat.happyholidays.snow_globe.try_fill_when_cauldron_not_full": "The cauldron doesn't seem to contain enough Powder Snow...",
+
     "chat.happyholidays.santa_elf_bell.not_ready": "Santa's Elf is not available yet (%s left)",
+
     "chat.happyholidays.christmas_star.tier_not_ok": "You need to have at least Tier 5 to add the bonus item!",
     "chat.happyholidays.christmas_star.bonus_still_active": "You need to remove the bonus item first!",
     "chat.happyholidays.christmas_star.santa_not_ready": "Santa is still resting from his last visit! You can call for him in %s.",

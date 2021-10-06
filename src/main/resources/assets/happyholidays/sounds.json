@@ -199,6 +199,36 @@
             }
         ]
     },
+    "item.snow_globe_fill": {
+      "category": "item",
+        "subtitle": "item.snow_globe_fill.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/snow_globe_fill",
+                "stream": true
+            }
+        ]
+    },
+    "item.snow_globe_using": {
+        "category": "item",
+        "subtitle": "item.snow_globe_using.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/snow_globe_using",
+                "stream": true
+            }
+        ]
+    },
+    "item.snow_globe_success": {
+        "category": "item",
+        "subtitle": "item.snow_globe_success.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/snow_globe_success",
+                "stream": true
+            }
+        ]
+    },
     "entity.gingerbread_person_passive": {
         "category": "entity",
         "subtitle": "entity.happyholidays.gingerbread_person_passive.sub",

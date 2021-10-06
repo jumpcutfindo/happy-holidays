@@ -13,16 +13,16 @@ public class ChristmasSounds {
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS,
             HappyHolidaysMod.MOD_ID);
 
-    public static RegistryObject<SoundEvent> registerSound(String soundId) {
-        return SOUNDS.register(soundId, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID, soundId)));
-    }
-
     public static final RegistryObject<SoundEvent> CHRISTMAS_STAR_BLOCK_PLACE = registerSound("block.christmas_star_place");
     public static final RegistryObject<SoundEvent> CHRISTMAS_STAR_EFFECT_APPLY = registerSound("block.christmas_star_effect_apply");
 
     public static final RegistryObject<SoundEvent> SANTA_ELF_BELL = registerSound("item.santa_elf_bell");
 
     public static final RegistryObject<SoundEvent> CHRISTMAS_GIFT_BOX_SHAKE = registerSound("item.christmas_gift_box_shake");
+
+    public static final RegistryObject<SoundEvent> SNOW_GLOBE_FILL = registerSound("item.snow_globe_fill");
+    public static final RegistryObject<SoundEvent> SNOW_GLOBE_USING = registerSound("item.snow_globe_using");
+    public static final RegistryObject<SoundEvent> SNOW_GLOBE_SUCCESS = registerSound("item.snow_globe_success");
 
     public static final RegistryObject<SoundEvent> GINGERBREAD_PERSON_PASSIVE = registerSound("entity.gingerbread_person_passive");
     public static final RegistryObject<SoundEvent> GINGERBREAD_PERSON_HURT = registerSound("entity.gingerbread_person_hurt");
@@ -70,4 +70,8 @@ public class ChristmasSounds {
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_WE_THREE_KINGS = registerSound(SheetMusicItem.WE_THREE_KINGS_SOUND_ID);
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_WE_WISH_YOU = registerSound(SheetMusicItem.WE_WISH_YOU_SOUND_ID);
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_WHITE_CHRISTMAS = registerSound(SheetMusicItem.WHITE_CHRISTMAS_SOUND_ID);
+
+    public static RegistryObject<SoundEvent> registerSound(String soundId) {
+        return SOUNDS.register(soundId, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID, soundId)));
+    }
 }
