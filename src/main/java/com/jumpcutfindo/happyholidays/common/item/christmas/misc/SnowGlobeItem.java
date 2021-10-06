@@ -29,11 +29,12 @@ import net.minecraft.world.level.block.state.BlockState;
 public class SnowGlobeItem extends ChristmasItem {
     public static final String ITEM_ID = "snow_globe";
 
-    public static final String WEATHER_MAXED = "chat.happyholidays.snow_globe.weather_maxed";
-    public static final String WEATHER_RAIN_TO_THUNDER = "chat.happyholidays.snow_globe.weather_rain_to_thunder";
-    public static final String WEATHER_CLEAR_TO_RAIN = "chat.happyholidays.snow_globe.weather_clear_to_rain";
-    public static final String TRY_FILL_WHEN_FULL = "chat.happyholidays.snow_globe.try_fill_when_full";
-    public static final String TRY_FILL_WHEN_CAULDRON_NOT_FULL = "chat.happyholidays.snow_globe.try_fill_when_cauldron_not_full";
+    public static final String MESSAGE_WEATHER_MAXED = "chat.happyholidays.snow_globe.weather_maxed";
+    public static final String MESSAGE_WEATHER_RAIN_TO_THUNDER = "chat.happyholidays.snow_globe.weather_rain_to_thunder";
+    public static final String MESSAGE_WEATHER_CLEAR_TO_RAIN = "chat.happyholidays.snow_globe.weather_clear_to_rain";
+    public static final String MESSAGE_TRY_USE_WHEN_EMPTY = "chat.happyholidays.snow_globe.try_use_when_empty";
+    public static final String MESSAGE_TRY_FILL_WHEN_FULL = "chat.happyholidays.snow_globe.try_fill_when_full";
+    public static final String MESSAGE_TRY_FILL_WHEN_CAULDRON_NOT_FULL = "chat.happyholidays.snow_globe.try_fill_when_cauldron_not_full";
 
     public static final int DEFAULT_DAMAGE = 5;
     public static final int MAX_DURABILITY = 5;
@@ -61,14 +62,14 @@ public class SnowGlobeItem extends ChristmasItem {
 
         if (blockState.is(Blocks.POWDER_SNOW_CAULDRON)) {
             if (this.isFullyCharged(snowGlobe)) {
-                GameplayMessage message = new GameplayMessage(MessageType.ERROR, TRY_FILL_WHEN_FULL);
+                GameplayMessage message = new GameplayMessage(MessageType.ERROR, MESSAGE_TRY_FILL_WHEN_FULL);
                 Messenger.sendClientMessage(message, player);
 
                 return InteractionResult.sidedSuccess(level.isClientSide());
             }
 
             if (blockState.getValue(PowderSnowCauldronBlock.LEVEL) != 3) {
-                GameplayMessage message = new GameplayMessage(MessageType.ERROR, TRY_FILL_WHEN_CAULDRON_NOT_FULL);
+                GameplayMessage message = new GameplayMessage(MessageType.ERROR, MESSAGE_TRY_FILL_WHEN_CAULDRON_NOT_FULL);
                 Messenger.sendClientMessage(message, player);
 
                 return InteractionResult.sidedSuccess(level.isClientSide());
@@ -100,31 +101,28 @@ public class SnowGlobeItem extends ChristmasItem {
         return snowGlobe.getDamageValue() < MAX_DURABILITY;
     }
 
-    public void useCharge(ItemStack snowGlobe, Level level, LivingEntity entity) {
-        // TODO: Change method signature to accept only player, not LivingEntity
-        Player player = (Player) entity;
-
+    public void useCharge(ItemStack snowGlobe, Level level, Player player) {
         if (!level.isClientSide()) {
             ServerLevel serverLevel = (ServerLevel) level;
 
             boolean shouldReduceCharges = false;
             if (serverLevel.isRaining() && serverLevel.isThundering()) {
                 // Weather is maxed out
-                GameplayMessage message = new GameplayMessage(MessageType.STANDARD, WEATHER_MAXED);
+                GameplayMessage message = new GameplayMessage(MessageType.STANDARD, MESSAGE_WEATHER_MAXED);
                 Messenger.sendChatMessage(message, player);
             } else if (serverLevel.isRaining() && !serverLevel.isThundering()) {
                 // Weather is raining, but not thundering
                 serverLevel.setWeatherParameters(0, 6000, true, true);
                 shouldReduceCharges = true;
 
-                GameplayMessage message = new GameplayMessage(MessageType.STANDARD, WEATHER_RAIN_TO_THUNDER);
+                GameplayMessage message = new GameplayMessage(MessageType.STANDARD, MESSAGE_WEATHER_RAIN_TO_THUNDER);
                 Messenger.sendChatMessage(message, player);
             } else if (!serverLevel.isRaining()) {
                 // Weather is clear
                 serverLevel.setWeatherParameters(0, 6000, true, false);
                 shouldReduceCharges = true;
 
-                GameplayMessage message = new GameplayMessage(MessageType.STANDARD, WEATHER_CLEAR_TO_RAIN);
+                GameplayMessage message = new GameplayMessage(MessageType.STANDARD, MESSAGE_WEATHER_CLEAR_TO_RAIN);
                 Messenger.sendChatMessage(message, player);
             }
 
@@ -158,6 +156,9 @@ public class SnowGlobeItem extends ChristmasItem {
         if (this.hasCharges(snowGlobe)) {
             player.startUsingItem(hand);
             level.playSound(null, player.blockPosition(), ChristmasSounds.SNOW_GLOBE_USING.get(), SoundSource.NEUTRAL, 1.0f, 1.0f);
+        } else {
+            GameplayMessage message = new GameplayMessage(MessageType.ERROR, MESSAGE_TRY_USE_WHEN_EMPTY);
+            Messenger.sendClientMessage(message, player);
         }
 
         return super.use(level, player, hand);
@@ -166,7 +167,7 @@ public class SnowGlobeItem extends ChristmasItem {
     @Override
     public ItemStack finishUsingItem(ItemStack snowGlobe, Level level, LivingEntity entity) {
         if (this.hasCharges(snowGlobe) && entity instanceof Player) {
-            this.useCharge(snowGlobe, level, entity);
+            this.useCharge(snowGlobe, level, (Player) entity);
         }
 
         return super.finishUsingItem(snowGlobe, level, entity);

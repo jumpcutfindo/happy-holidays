@@ -242,6 +242,7 @@
     "chat.happyholidays.snow_globe.weather_maxed": "The Snow Globe doesn't seem to respond to your shaking...",
     "chat.happyholidays.snow_globe.weather_rain_to_thunder": "The sky darkens further as your Snow Globe becomes lighter...",
     "chat.happyholidays.snow_globe.weather_clear_to_rain": "The sky darkens as your Snow Globe becomes lighter...",
+    "chat.happyholidays.snow_globe.try_use_when_empty": "Your Snow Globe has no charges left; try filling it with Powder Snow!",
     "chat.happyholidays.snow_globe.try_fill_when_full": "Your Snow Globe isn't able to take in any more snow!",
     "chat.happyholidays.snow_globe.try_fill_when_cauldron_not_full": "The cauldron doesn't seem to contain enough Powder Snow...",
 

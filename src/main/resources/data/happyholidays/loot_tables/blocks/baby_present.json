@@ -182,6 +182,21 @@
                             "count": 1
                         }
                     ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "weight": 1,
+                    "name": "happyholidays:snow_globe",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": 1
+                        },
+                        {
+                            "function": "minecraft:set_damage",
+                            "damage": 0.0
+                        }
+                    ]
                 }
             ],
             "conditions": [
