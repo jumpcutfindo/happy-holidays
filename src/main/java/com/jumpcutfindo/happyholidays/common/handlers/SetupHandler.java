@@ -138,7 +138,6 @@ public class SetupHandler {
     public static void registerBlockColors(ColorHandlerEvent.Block event) {
         AlphabetBlockColor alphabetBlockColor = new AlphabetBlockColor();
 
-
         event.getBlockColors().register(alphabetBlockColor,
                 ChristmasBlocks.ALPHABET_ORNAMENT_TEMPLATE.get(),
                 ChristmasBlocks.ALPHABET_ORNAMENT_A.get(),
