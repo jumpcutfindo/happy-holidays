@@ -30,8 +30,11 @@ public class ToyPartsRequestItem extends ChristmasItem {
 
     public ToyPartsRequestItem() {
         super(ITEM_PROPERTIES);
+    }
 
-        this.setChristmasRarity(ChristmasRarity.UNIQUE);
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.UNIQUE;
     }
 
     @Override

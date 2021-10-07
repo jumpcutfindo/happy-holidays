@@ -11,19 +11,19 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
 
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.BaseComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.BaseComponent;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -71,8 +71,6 @@ public class SheetMusicItem extends ChristmasItem {
 
     public SheetMusicItem() {
         super(ITEM_PROPERTIES);
-
-        this.setChristmasRarity(ChristmasRarity.RARE);
     }
 
     @Override
@@ -109,6 +107,11 @@ public class SheetMusicItem extends ChristmasItem {
     @OnlyIn(Dist.CLIENT)
     public MutableComponent getDisplayName() {
         return new TranslatableComponent(this.getDescriptionId() + ".desc");
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.RARE;
     }
 
     public SheetMusicItem setMusic(ChristmasMusic music) {

@@ -35,7 +35,7 @@ public class ChristmasBlockItem extends BlockItem implements IChristmasItem {
     @Override
     public Component getName(ItemStack itemStack) {
         TranslatableComponent name = new TranslatableComponent(this.getDescriptionId(itemStack));
-        return IChristmasItem.createStyledComponent(name, this.christmasRarity);
+        return IChristmasItem.createStyledComponent(name, getChristmasRarity());
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -53,5 +53,10 @@ public class ChristmasBlockItem extends BlockItem implements IChristmasItem {
     public ChristmasBlockItem setChristmasRarity(ChristmasRarity rarity) {
         this.christmasRarity = rarity;
         return this;
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return this.christmasRarity;
     }
 }

@@ -70,14 +70,16 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
     public static final float ENTITY_BOX_SIZE = 0.5f;
     public static final float ENTITY_BOX_HEIGHT = 34.0f / 16.0f;
 
-    public static final double GRINCH_SPAWN_CHANCE = 0.2d;
+    public static final double GRINCH_SPAWN_CHANCE = 0.01d;
     public static final int MAX_GRINCHES_IN_VICINITY = 3;
 
     private static final int BREAK_PRESENT_ANIM_DURATION = 80;
     private static final int BREAK_PRESENT_INTERVAL = 100;
     private static final float AVOID_PLAYER_RADIUS = 6.0f;
     private static final int GRINCH_TIME_TO_DESPAWN = 200;
+
     public static final int PRESENT_SEARCH_RADIUS = 8;
+    public static final int PRESENT_SEARCH_INTERVAL = 100;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -308,23 +310,21 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
     }
 
     public static void spawnGrinchAround(BlockPos blockPos, ServerLevel serverWorld, Random random) {
-        if (random.nextDouble() <= GrinchEntity.GRINCH_SPAWN_CHANCE) {
-            int randomX = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
-            int randomY = 0;
-            int randomZ = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
+        int randomX = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
+        int randomY = 0;
+        int randomZ = random.nextInt(GrinchEntity.PRESENT_SEARCH_RADIUS * 2) * (random.nextBoolean() ? -1 : 1);
 
-            GrinchEntity grinchEntity = ChristmasEntities.GRINCH.get().create(serverWorld);
-            BlockPos spawnPos = new BlockPos(blockPos.getX() + randomX, blockPos.getY() + randomY, blockPos.getZ() + randomZ);
+        GrinchEntity grinchEntity = ChristmasEntities.GRINCH.get().create(serverWorld);
+        BlockPos spawnPos = new BlockPos(blockPos.getX() + randomX, blockPos.getY() + randomY, blockPos.getZ() + randomZ);
 
-            // Make sure that the block doesn't suffocate our grinch
-            int count = 0;
-            while (serverWorld.getBlockState(spawnPos).isSuffocating(serverWorld, spawnPos) && ++count <= 10) spawnPos = spawnPos.above();
+        // Make sure that the block doesn't suffocate our grinch
+        int count = 0;
+        while (serverWorld.getBlockState(spawnPos).isSuffocating(serverWorld, spawnPos) && ++count <= 10) spawnPos = spawnPos.above();
 
-            // Last check to ensure it doesn't suffocate him
-            if (!serverWorld.getBlockState(spawnPos).isSuffocating(serverWorld, spawnPos)) {
-                grinchEntity.moveTo(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ());
-                serverWorld.addFreshEntity(grinchEntity);
-            }
+        // Last check to ensure it doesn't suffocate him
+        if (!serverWorld.getBlockState(spawnPos).isSuffocating(serverWorld, spawnPos)) {
+            grinchEntity.moveTo(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ());
+            serverWorld.addFreshEntity(grinchEntity);
         }
     }
 
@@ -392,7 +392,7 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
     }
 
     private static class BreakPresentsGoal extends Goal {
-        private static final float MOVE_TO_PRESENT_SPEED = 0.8f;
+        private static final float MOVE_TO_PRESENT_SPEED = 0.9f;
 
         private final GrinchEntity grinchEntity;
 
@@ -424,83 +424,94 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
 
         @Override
         public void tick() {
-            if (targetPresentBlockPos == null && timeLeftToNextSearch == 0) {
-                BlockPos startPos = this.grinchEntity.blockPosition();
-                boolean isFound = false;
-
-                // Do a spiral search from mob's current position
-                // x and z represent the offset from mob's current position
-                for (int y = (-PRESENT_SEARCH_RADIUS / 2); y < (PRESENT_SEARCH_RADIUS / 2); y++) {
-                    if (isFound) break;
-
-                    int X = PRESENT_SEARCH_RADIUS * 2, Z = PRESENT_SEARCH_RADIUS * 2;
-                    int x = 0, z = 0, dx = 0, dz = -1;
-                    int t = Math.max(X, Z);
-                    int maxI = t * t;
-
-                    for (int i = 0; i < maxI; i ++){
-                        if ((-X/2 <= x) && (x <= X/2) && (-Z/2 <= z) && (z <= Z/2)) {
-                            BlockPos currPos = startPos.offset(x, y, z);
-                            if (this.grinchEntity.level.getBlockState(currPos).getBlock() instanceof PresentBlock) {
-                                // Check for entity instead of block, since we consider the Grinch's AOE instead of
-                                // the block's AOE for the block breaking functionality
-                                if (ChristmasStarHelper.getStarInfluencingEntity(this.grinchEntity.level,
-                                        new Vec3(currPos.getX(), currPos.getY(), currPos.getZ())) != null) {
-                                    continue;
-                                } else {
-                                    this.targetPresentBlockPos = currPos;
-                                    this.presentBreakingProgress = GrinchEntity.BREAK_PRESENT_ANIM_DURATION;
-                                    isFound = true;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if((x == z) || ((x < 0) && (x == -z)) || ((x > 0) && (x == 1 - z))) {
-                            t = dx; dx = -dz; dz = t;
-                        }
-                        x += dx; z += dz;
-                    }
-                }
+            if (targetPresentBlockPos == null) {
+                if (timeLeftToNextSearch > 0) timeLeftToNextSearch--;
+                if (timeLeftToNextSearch <= 0) findNearestPresent();
             } else {
-                if (this.targetPresentBlockPos != null) {
-                    if (this.grinchEntity.level.isEmptyBlock(targetPresentBlockPos)) {
-                        this.targetPresentBlockPos = null;
-                        grinchEntity.updatePresentBreaking(-1);
-                        this.timeLeftToNextSearch = 100;
+                if (this.grinchEntity.level.isEmptyBlock(targetPresentBlockPos)) {
+                    // After breaking the present, we reset the searching
+                    this.targetPresentBlockPos = null;
+                    grinchEntity.updatePresentBreaking(-1);
+                    this.timeLeftToNextSearch = PRESENT_SEARCH_INTERVAL;
+                } else {
+                    BlockPos targetPos = getMoveToTarget();
+                    if (targetPos == null) return;
+
+                    int presentX = targetPos.getX(), presentY = targetPos.getY(), presentZ = targetPos.getZ();
+
+                    if (!targetPos.closerThan(this.grinchEntity.position(), 1.5D)) {
+                        // Since Grinch is not close enough, we move him to the location & make him look at it
+                        this.grinchEntity.navigation.moveTo(presentX + 0.5D, presentY, presentZ + 0.5D,
+                                MOVE_TO_PRESENT_SPEED);
+                        this.grinchEntity.lookControl.setLookAt(presentX, presentY, presentZ);
                     } else {
-                        int presentX = targetPresentBlockPos.getX(), presentY = targetPresentBlockPos.getY(), presentZ =
-                                targetPresentBlockPos.getZ();
-
-                        if (this.grinchEntity.distanceToSqr(presentX, presentY, presentZ) > 3.0f) {
-                            // Since Grinch is not close enough, we move him to the location & make him look at it
-                            this.grinchEntity.navigation.moveTo(presentX, presentY, presentZ, MOVE_TO_PRESENT_SPEED);
-                            this.grinchEntity.lookControl.setLookAt(presentX, presentY, presentZ);
-
-                            if (this.grinchEntity.navigation.isStuck()) this.grinchEntity.jumpControl.jump();
-                        } else {
-                            // Grinch is now close enough, so we carry out the breaking of the block & execution of the
-                            // animation
-                            if (presentBreakingProgress == GrinchEntity.BREAK_PRESENT_ANIM_DURATION) {
-                                // Present breaking process just started
-                                grinchEntity.beginPresentBreaking();
-                            } else if (presentBreakingProgress == 0) {
-                                // Present breaking process should end now
-                                grinchEntity.endPresentBreaking(targetPresentBlockPos);
-                                this.targetPresentBlockPos = null;
-
-                                this.timeLeftToNextSearch = GrinchEntity.BREAK_PRESENT_INTERVAL;
-                            } else {
-                                grinchEntity.updatePresentBreaking(this.presentBreakingProgress);
-                            }
-
-                            this.presentBreakingProgress--;
-                        }
+                        this.breakPresent();
                     }
                 }
             }
+        }
 
-            if (timeLeftToNextSearch > 0) timeLeftToNextSearch--;
+        private void findNearestPresent() {
+            BlockPos startPos = grinchEntity.getOnPos();
+            boolean isFound = false;
+
+            // Do a spiral search from mob's current position
+            // x and z represent the offset from mob's current position
+            for (int y = (-PRESENT_SEARCH_RADIUS / 2); y < (PRESENT_SEARCH_RADIUS / 2); y++) {
+                if (isFound) break;
+
+                int X = PRESENT_SEARCH_RADIUS * 2, Z = PRESENT_SEARCH_RADIUS * 2;
+                int x = 0, z = 0, dx = 0, dz = -1;
+                int t = Math.max(X, Z);
+                int maxI = t * t;
+
+                for (int i = 0; i < maxI; i ++){
+                    if ((-X/2 <= x) && (x <= X/2) && (-Z/2 <= z) && (z <= Z/2)) {
+                        BlockPos currPos = startPos.offset(x, y, z);
+                        if (this.grinchEntity.level.getBlockState(currPos).getBlock() instanceof PresentBlock) {
+                            // Check for entity instead of block, since we consider the Grinch's AOE instead of
+                            // the block's AOE for the block breaking functionality
+                            if (ChristmasStarHelper.getStarInfluencingEntity(this.grinchEntity.level, new Vec3(currPos.getX(), currPos.getY(), currPos.getZ())) != null) {
+                                continue;
+                            } else {
+                                this.targetPresentBlockPos = currPos;
+                                this.presentBreakingProgress = GrinchEntity.BREAK_PRESENT_ANIM_DURATION;
+
+                                isFound = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if((x == z) || ((x < 0) && (x == -z)) || ((x > 0) && (x == 1 - z))) {
+                        t = dx; dx = -dz; dz = t;
+                    }
+                    x += dx; z += dz;
+                }
+            }
+        }
+
+        private BlockPos getMoveToTarget() {
+            return this.targetPresentBlockPos == null ? null : this.targetPresentBlockPos.above();
+        }
+
+        private void breakPresent() {
+            // Grinch is now close enough, so we carry out the breaking of the block & execution of the
+            // animation
+            if (presentBreakingProgress == GrinchEntity.BREAK_PRESENT_ANIM_DURATION) {
+                // Present breaking process just started
+                grinchEntity.beginPresentBreaking();
+            } else if (presentBreakingProgress == 0) {
+                // Present breaking process should end now
+                grinchEntity.endPresentBreaking(targetPresentBlockPos);
+                this.targetPresentBlockPos = null;
+
+                this.timeLeftToNextSearch = GrinchEntity.BREAK_PRESENT_INTERVAL;
+            } else {
+                grinchEntity.updatePresentBreaking(this.presentBreakingProgress);
+            }
+
+            this.presentBreakingProgress--;
         }
 
         private void resetPresentBreaking() {

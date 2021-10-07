@@ -6,7 +6,7 @@
             "entries": [
                 {
                     "type": "minecraft:tag",
-                    "weight": 2,
+                    "weight": 1,
                     "name": "happyholidays:christmas_sheet_music",
                     "expand": true,
                     "functions": [
@@ -98,6 +98,20 @@
                             "count": {
                                 "min": 6,
                                 "max": 12
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "weight": 1,
+                    "name": "minecraft:copper_ingot",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 8,
+                                "max": 16
                             }
                         }
                     ]

@@ -41,7 +41,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatable, IChristmasEntity {
     public static final float ENTITY_BOX_SIZE = 0.8f;
-    public static final float ENTITY_BOX_HEIGHT = 2.0f;
+    public static final float ENTITY_BOX_HEIGHT = 1.95f;
 
     public static final Item[] HEAT_EMITTING_ITEMS = {
             Items.CAMPFIRE, Items.SOUL_CAMPFIRE, Items.MAGMA_BLOCK, Items.LAVA_BUCKET
@@ -50,6 +50,7 @@ public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatabl
     private AnimationFactory factory = new AnimationFactory(this);
 
     private boolean isLeader;
+    private boolean isFollowingPlayer;
 
     public GingerbreadPersonEntity(EntityType<? extends PathfinderMob> entityType, Level world) {
         super(entityType, world);
@@ -103,6 +104,14 @@ public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatabl
 
     public boolean isLeader() {
         return isLeader;
+    }
+
+    public void setFollowingPlayer(boolean isFollowingPlayer) {
+        this.isFollowingPlayer = isFollowingPlayer;
+    }
+
+    public boolean isFollowingPlayer() {
+        return this.isFollowingPlayer;
     }
 
     public boolean isSoggy() {
@@ -177,13 +186,26 @@ public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatabl
 
         @Override
         public boolean canUse() {
-            if (!this.gingerbreadPerson.isSoggy()) return false;
+            if (!this.gingerbreadPerson.isSoggy()) {
+                this.gingerbreadPerson.setFollowingPlayer(false);
+                return false;
+            }
 
             this.player = this.gingerbreadPerson.level.getNearestPlayer(TEMP_TARGETING, this.gingerbreadPerson);
-            if (this.player == null) return false;
-            else {
+            if (this.player == null) {
+                this.gingerbreadPerson.setFollowingPlayer(false);
+                return false;
+            } else {
                 ItemStack[] heldItems = new ItemStack[]{ player.getMainHandItem(), player.getOffhandItem() };
-                return Arrays.stream(heldItems).anyMatch(GingerbreadPersonEntity::isValidHeatItem);
+
+                if (Arrays.stream(heldItems).anyMatch(GingerbreadPersonEntity::isValidHeatItem)) {
+                    this.gingerbreadPerson.setFollowingPlayer(true);
+                    return true;
+                } else {
+                    this.gingerbreadPerson.setFollowingPlayer(false);
+                    this.player = null;
+                    return false;
+                }
             }
         }
 
@@ -210,6 +232,8 @@ public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatabl
 
         @Override
         public boolean canUse() {
+            if (this.gingerbreadPerson.isFollowingPlayer()) return false;
+
             if (this.gingerbreadPerson.isLeader()) {
                 return false;
             } else {

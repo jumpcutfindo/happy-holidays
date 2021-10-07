@@ -68,7 +68,7 @@
             "entries": [
                 {
                     "type": "minecraft:tag",
-                    "weight": 15,
+                    "weight": 10,
                     "name": "happyholidays:christmas_basic_ornaments",
                     "expand": true,
                     "functions": [
@@ -83,7 +83,7 @@
                 },
                 {
                     "type": "minecraft:tag",
-                    "weight": 15,
+                    "weight": 1,
                     "name": "happyholidays:christmas_sheet_music",
                     "expand": true,
                     "functions": [
@@ -114,6 +114,20 @@
                             "function": "minecraft:set_count",
                             "count": {
                                 "min": 1,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "weight": 10,
+                    "name": "minecraft:copper_ingot",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 2,
                                 "max": 4
                             }
                         }
