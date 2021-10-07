@@ -43,6 +43,7 @@ public class StockingBlock extends WallDecorationBlock implements EntityBlock {
     public static final String GOLD_STOCKING_ID = "gold_stocking";
     public static final String SILVER_STOCKING_ID = "silver_stocking";
 
+    public static final BooleanProperty ENCHANTED = BooleanProperty.create("enchanted");
     public static final BooleanProperty FILLED = BooleanProperty.create("filled");
 
     public static final Properties BLOCK_PROPERTIES =
@@ -60,18 +61,19 @@ public class StockingBlock extends WallDecorationBlock implements EntityBlock {
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(FILLED, false)
+                .setValue(ENCHANTED, false)
         );
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
         super.createBlockStateDefinition(stateBuilder);
-        stateBuilder.add(FILLED);
+        stateBuilder.add(ENCHANTED, FILLED);
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return super.getStateForPlacement(context).setValue(FILLED, false);
+        return super.getStateForPlacement(context).setValue(FILLED, false).setValue(ENCHANTED, false);
     }
 
     @Override
