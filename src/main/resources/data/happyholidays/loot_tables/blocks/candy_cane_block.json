@@ -9,7 +9,7 @@
                     "children": [
                         {
                             "type": "minecraft:item",
-                            "name": "happyholidays:candy_cane",
+                            "name": "happyholidays:candy_cane_block",
                             "conditions": [
                                 {
                                     "condition": "minecraft:match_tool",
