@@ -59,6 +59,8 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SnowGlobeItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.ToyPartsRequestItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.thread.EnchantedThreadItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.thread.ThreadItem;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -89,6 +91,11 @@ public class ChristmasItems {
             ITEMS.register(ChristmasGuideBookItem.ITEM_ID, ChristmasGuideBookItem::new);
     public static final RegistryObject<ChristmasItem> SNOW_GLOBE =
             ITEMS.register(SnowGlobeItem.ITEM_ID, SnowGlobeItem::new);
+
+    public static final RegistryObject<ChristmasItem> THREAD =
+            ITEMS.register(ThreadItem.ITEM_ID, ThreadItem::new);
+    public static final RegistryObject<ChristmasItem> ENCHANTED_THREAD =
+            ITEMS.register(EnchantedThreadItem.ITEM_ID, EnchantedThreadItem::new);
 
     public static final RegistryObject<ChristmasItem> SANTA_HAT =
             ITEMS.register(SantaHatItem.ITEM_ID, SantaHatItem::new);
