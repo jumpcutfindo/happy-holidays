@@ -94,6 +94,17 @@
                     ]
                 },
                 {
+                    "type": "minecraft:item",
+                    "weight": 10,
+                    "name": "happyholidays:enchanted_thread",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": 1
+                        }
+                    ]
+                },
+                {
                     "type": "minecraft:tag",
                     "weight": 10,
                     "name": "happyholidays:christmas_rare_ornaments",
