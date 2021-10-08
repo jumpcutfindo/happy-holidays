@@ -26,6 +26,8 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
 
     private PlayStopButton playStopButton;
     private LoopButton loopButton;
+    private PreviousButton previousButton;
+    private NextButton nextButton;
 
     public MusicBoxScreen(MusicBoxContainer screenContainer, Inventory inventory, Component title) {
         super(screenContainer, inventory, title);
@@ -45,7 +47,6 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
 
         this.createMusicControlButtons();
         this.loopButton.setLoop(container.isLooping());
-        this.playStopButton.setPlay(container.isPlaying());
     }
 
     @Override
@@ -79,7 +80,20 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
         int y = (this.height - this.imageHeight) / 2;
 
         this.playStopButton = this.addRenderableWidget(new PlayStopButton(x + 80, y + 72, 16, 16,  (onPress) -> toggleMusic()));
-        this.loopButton = this.addRenderableWidget(new LoopButton(x + 98, y + 72, 16, 16,  (onPress) -> toggleLoop()));
+        this.loopButton = this.addRenderableWidget(new LoopButton(x + 116, y + 72, 16, 16,  (onPress) -> toggleLoop()));
+
+        this.previousButton = this.addRenderableWidget(new PreviousButton(x + 62, y + 72, 16, 16, (onPress) -> previousTrack()));
+        this.nextButton = this.addRenderableWidget(new NextButton(x + 98, y + 72, 16, 16, (onPress) -> nextTrack()));
+    }
+
+    public void nextTrack() {
+        PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+                MusicBoxPacket.createNextRequestPacket(this.container.blockEntity.getBlockPos()));
+    }
+
+    public void previousTrack() {
+        PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+                MusicBoxPacket.createPreviousRequestPacket(this.container.blockEntity.getBlockPos()));
     }
 
     public void toggleMusic() {
@@ -113,8 +127,8 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
     }
 
     public class PlayStopButton extends Button {
-        private static final String PLAY_BUTTON_TOOLTIP = "container.happyholidays.music_box.play_button_tooltip";
-        private static final String STOP_BUTTON_TOOLTIP = "container.happyholidays.music_box.stop_button_tooltip";
+        private static final String PLAY_BUTTON_TOOLTIP = "block.happyholidays.music_box.play_button_tooltip";
+        private static final String STOP_BUTTON_TOOLTIP = "block.happyholidays.music_box.stop_button_tooltip";
 
         public boolean isPlay;
 
@@ -128,6 +142,8 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
         public void renderButton(PoseStack matrixStack, int mouseX, int mouseY, float p_93749_) {
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             RenderSystem.setShaderTexture(0, MUSIC_BOX_GUI);
+
+            this.isPlay = container.isPlaying();
 
             int i = 176;
             int j = 0;
@@ -154,7 +170,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
     }
 
     public class LoopButton extends Button {
-        private static final String LOOP_BUTTON_TOOLTIP = "container.happyholidays.music_box.play_button_tooltip";
+        private static final String LOOP_BUTTON_TOOLTIP = "block.happyholidays.music_box.loop_button_tooltip";
 
         public boolean isLoop;
 
@@ -187,4 +203,47 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
         }
     }
 
+    public class PreviousButton extends Button {
+        private static final String PREVIOUS_BUTTON_TOOLTIP = "block.happyholidays.music_box.previous_button_tooltip";
+
+        public PreviousButton(int p_93721_, int p_93722_, int p_93723_, int p_93724_,
+                          OnPress p_93726_) {
+            super(p_93721_, p_93722_, p_93723_, p_93724_, TextComponent.EMPTY, p_93726_);
+        }
+
+        @Override
+        public void renderButton(PoseStack matrixStack, int mouseX, int mouseY, float p_93749_) {
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+            RenderSystem.setShaderTexture(0, MUSIC_BOX_GUI);
+
+            int i = 176;
+            int j = 32;
+
+            blit(matrixStack, this.x, this.y, i, j, 16, 16, 256, 256);
+
+            if (this.isHovered()) drawTooltip(matrixStack, new TranslatableComponent(PREVIOUS_BUTTON_TOOLTIP), mouseX, mouseY);
+        }
+    }
+
+    public class NextButton extends Button {
+        private static final String NEXT_BUTTON_TOOLTIP = "block.happyholidays.music_box.next_button_tooltip";
+
+        public NextButton(int p_93721_, int p_93722_, int p_93723_, int p_93724_,
+                              OnPress p_93726_) {
+            super(p_93721_, p_93722_, p_93723_, p_93724_, TextComponent.EMPTY, p_93726_);
+        }
+
+        @Override
+        public void renderButton(PoseStack matrixStack, int mouseX, int mouseY, float p_93749_) {
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+            RenderSystem.setShaderTexture(0, MUSIC_BOX_GUI);
+
+            int i = 192;
+            int j = 32;
+
+            blit(matrixStack, this.x, this.y, i, j, 16, 16, 256, 256);
+
+            if (this.isHovered()) drawTooltip(matrixStack, new TranslatableComponent(NEXT_BUTTON_TOOLTIP), mouseX, mouseY);
+        }
+    }
 }

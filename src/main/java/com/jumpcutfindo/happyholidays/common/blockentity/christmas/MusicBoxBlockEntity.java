@@ -156,10 +156,54 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
         }
     }
 
-    public void playNext() {
+    public void playCurrent() {
         ItemStack sheetMusic = ItemStack.EMPTY;
 
         for (int i = currentSelectedSlot; i < SLOTS; i++) {
+            if (!items.get(i).isEmpty()) {
+                sheetMusic = items.get(i);
+                this.setSelectedSlot(i);
+                break;
+            }
+        }
+
+        if (sheetMusic.isEmpty()) {
+            for (int i = currentSelectedSlot; i >= 0; i--) {
+                if (!items.get(i).isEmpty()) {
+                    sheetMusic = items.get(i);
+                    this.setSelectedSlot(i);
+                    break;
+                }
+            }
+        }
+
+        if (sheetMusic.getItem() instanceof SheetMusicItem) {
+            this.playMusic(((SheetMusicItem) sheetMusic.getItem()).getMusic());
+        }
+    }
+
+    public void playPrev() {
+        this.stopMusic();
+        ItemStack sheetMusic = ItemStack.EMPTY;
+
+        for (int i = currentSelectedSlot - 1; i >= 0; i--) {
+            if (!items.get(i).isEmpty()) {
+                sheetMusic = items.get(i);
+                this.currentSelectedSlot = i;
+                break;
+            }
+        }
+
+        if (sheetMusic.getItem() instanceof SheetMusicItem) {
+            this.playMusic(((SheetMusicItem) sheetMusic.getItem()).getMusic());
+        }
+    }
+
+    public void playNext() {
+        this.stopMusic();
+        ItemStack sheetMusic = ItemStack.EMPTY;
+
+        for (int i = currentSelectedSlot + 1; i < SLOTS; i++) {
             if (!items.get(i).isEmpty()) {
                 sheetMusic = items.get(i);
                 this.currentSelectedSlot = i;
@@ -194,8 +238,6 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
         if (currentMusic != null) {
             currentMusic.stopTrack();
             currentMusic = null;
-
-            this.currentSelectedSlot = 0;
 
             this.isPlaying = false;
             this.timeToNextTrack = -1;
@@ -276,7 +318,6 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     public static void serverTick(Level level, BlockPos pos, BlockState blockState, MusicBoxBlockEntity blockEntity) {
         if (!level.isClientSide()) {
             if (blockEntity.isPlaying && --blockEntity.timeToNextTrack <= 0) {
-                blockEntity.nextSlot();
                 blockEntity.playNext();
             }
         }

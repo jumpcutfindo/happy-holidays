@@ -18,9 +18,11 @@ public class MusicBoxPacketHandler {
             BlockEntity blockEntity = serverWorld.getBlockEntity(blockPos);
 
             if (blockEntity instanceof MusicBoxBlockEntity musicBoxBlockEntity) {
-                if (pkt.isPlayRequest) musicBoxBlockEntity.playFromStart();
+                if (pkt.isPlayRequest) musicBoxBlockEntity.playCurrent();
                 if (pkt.isStopRequest) musicBoxBlockEntity.stopMusic();
                 if (pkt.isToggleLoopRequest) musicBoxBlockEntity.toggleLoop();
+                if (pkt.isPrevRequest) musicBoxBlockEntity.playPrev();
+                if (pkt.isNextRequest) musicBoxBlockEntity.playNext();
             }
         }
     }

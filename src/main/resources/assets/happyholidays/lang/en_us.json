@@ -96,9 +96,18 @@
     "block.happyholidays.christmas_star.block_place_in_radius": "Christmas block placed",
     "block.happyholidays.christmas_star.effect_apply": "Christmas Spirit received",
     "container.happyholidays.christmas_star": "Christmas Star",
+
     "container.happyholidays.gift_wrapping_station": "Gift Wrapping Station",
+
     "block.happyholidays.music_box": "Music Box",
+    "block.happyholidays.music_box.play_button_tooltip": "Play Music",
+    "block.happyholidays.music_box.stop_button_tooltip": "Stop Music",
+    "block.happyholidays.music_box.next_button_tooltip": "Next Track",
+    "block.happyholidays.music_box.previous_button_tooltip": "Previous Track",
+    "block.happyholidays.music_box.loop_button_tooltip": "Toggle Looping",
+    "container.happyholidays.music_box": "Music Box",
     "block.happyholidays.music_box.now_playing": "Now Playing - %s",
+
     "block.happyholidays.gift_wrapping_station": "Wrapping Station",
 
     "block.happyholidays.milk_and_cookies": "Milk and Cookies",
@@ -181,7 +190,7 @@
     "item.happyholidays.christmas_sheet_music_here_comes_santa.sub": "Music Box plays",
     "item.happyholidays.christmas_sheet_music_jingle_bell_rock.sub": "Music Box plays",
     "item.happyholidays.christmas_sheet_music_jingle_bells.sub": "Music Box plays",
-    "item.happyholidays.christmas_sheet_music_joy_to_the_world.sub": "JMusic Box plays",
+    "item.happyholidays.christmas_sheet_music_joy_to_the_world.sub": "Music Box plays",
     "item.happyholidays.christmas_sheet_music_rudolph.sub": "Music Box plays",
     "item.happyholidays.christmas_sheet_music_silent_night.sub": "Music Box plays",
     "item.happyholidays.christmas_sheet_music_sleigh_ride.sub": "Music Box plays",

@@ -14,15 +14,13 @@ public class MusicBoxPacket {
     public boolean isPlayRequest;
     public boolean isStopRequest;
     public boolean isToggleLoopRequest;
+    public boolean isPrevRequest;
+    public boolean isNextRequest;
 
-    private MusicBoxPacket(BlockPos blockPos, boolean isPlayRequest, boolean isStopRequest, boolean isToggleLoopRequest) {
+    private MusicBoxPacket(BlockPos blockPos) {
         this.x = blockPos.getX();
         this.y = blockPos.getY();
         this.z = blockPos.getZ();
-
-        this.isPlayRequest = isPlayRequest;
-        this.isStopRequest = isStopRequest;
-        this.isToggleLoopRequest = isToggleLoopRequest;
     }
 
     public MusicBoxPacket(FriendlyByteBuf buffer) {
@@ -33,6 +31,8 @@ public class MusicBoxPacket {
         this.isPlayRequest = buffer.readBoolean();
         this.isStopRequest = buffer.readBoolean();
         this.isToggleLoopRequest = buffer.readBoolean();
+        this.isPrevRequest = buffer.readBoolean();
+        this.isNextRequest = buffer.readBoolean();
     }
 
     public static void encode(MusicBoxPacket packet, FriendlyByteBuf packetBuffer) {
@@ -43,6 +43,8 @@ public class MusicBoxPacket {
         packetBuffer.writeBoolean(packet.isPlayRequest);
         packetBuffer.writeBoolean(packet.isStopRequest);
         packetBuffer.writeBoolean(packet.isToggleLoopRequest);
+        packetBuffer.writeBoolean(packet.isPrevRequest);
+        packetBuffer.writeBoolean(packet.isNextRequest);
     }
 
     public static void handle(MusicBoxPacket packet, Supplier<NetworkEvent.Context> ctx) {
@@ -53,15 +55,48 @@ public class MusicBoxPacket {
         ctx.get().setPacketHandled(true);
     }
 
+    public MusicBoxPacket setPlayRequest(boolean playRequest) {
+        isPlayRequest = playRequest;
+        return this;
+    }
+
+    public MusicBoxPacket setStopRequest(boolean stopRequest) {
+        isStopRequest = stopRequest;
+        return this;
+    }
+
+    public MusicBoxPacket setToggleLoopRequest(boolean toggleLoopRequest) {
+        isToggleLoopRequest = toggleLoopRequest;
+        return this;
+    }
+
+    public MusicBoxPacket setPrevRequest(boolean prevRequest) {
+        isPrevRequest = prevRequest;
+        return this;
+    }
+
+    public MusicBoxPacket setNextRequest(boolean nextRequest) {
+        isNextRequest = nextRequest;
+        return this;
+    }
+
     public static MusicBoxPacket createPlayRequestPacket(BlockPos blockPos) {
-        return new MusicBoxPacket(blockPos, true, false, false);
+        return new MusicBoxPacket(blockPos).setPlayRequest(true);
     }
 
     public static MusicBoxPacket createStopRequestPacket(BlockPos blockPos) {
-        return new MusicBoxPacket(blockPos, false, true, false);
+        return new MusicBoxPacket(blockPos).setStopRequest(true);
     }
 
     public static MusicBoxPacket createToggleLoopRequestPacket(BlockPos blockPos) {
-        return new MusicBoxPacket(blockPos, false, false, true);
+        return new MusicBoxPacket(blockPos).setToggleLoopRequest(true);
+    }
+
+    public static MusicBoxPacket createPreviousRequestPacket(BlockPos blockPos) {
+        return new MusicBoxPacket(blockPos).setPrevRequest(true);
+    }
+
+    public static MusicBoxPacket createNextRequestPacket(BlockPos blockPos) {
+        return new MusicBoxPacket(blockPos).setNextRequest(true);
     }
 }
