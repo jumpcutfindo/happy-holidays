@@ -100,12 +100,8 @@ public class MusicBoxContainer extends AbstractContainerMenu {
         return blockEntity.isLooping();
     }
 
-    public void updateState(boolean togglePlaying, boolean toggleLooping) {
-        blockEntity.updateState(togglePlaying, toggleLooping);
-    }
-
-    public void nextSlot() {
-        blockEntity.nextSlot();
+    public boolean isPlaying() {
+        return blockEntity.isPlaying();
     }
 
     public int getSelectedSlot() {

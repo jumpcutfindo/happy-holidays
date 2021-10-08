@@ -3,6 +3,8 @@ package com.jumpcutfindo.happyholidays.client.screen;
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.container.christmas.musicbox.MusicBoxContainer;
+import com.jumpcutfindo.happyholidays.common.handlers.PacketHandler;
+import com.jumpcutfindo.happyholidays.common.network.christmas.MusicBoxPacket;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -14,6 +16,7 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.fmlclient.gui.GuiUtils;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 
 public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
     public static final ResourceLocation MUSIC_BOX_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
@@ -21,7 +24,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
 
     private MusicBoxContainer container;
 
-    private PlayPauseButton playPauseButton;
+    private PlayStopButton playStopButton;
     private LoopButton loopButton;
 
     public MusicBoxScreen(MusicBoxContainer screenContainer, Inventory inventory, Component title) {
@@ -42,6 +45,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
 
         this.createMusicControlButtons();
         this.loopButton.setLoop(container.isLooping());
+        this.playStopButton.setPlay(container.isPlaying());
     }
 
     @Override
@@ -67,35 +71,36 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
         // Draw current selected
         int selectedSlot = container.getSelectedSlot();
 
-        blit(matrixStack, x + 6 + (selectedSlot % 9) * 18, y + 16 + (selectedSlot / 9) * 18, 176, 32, 20, 20);
+        blit(matrixStack, x + 6 + (selectedSlot % 9) * 18, y + 16 + (selectedSlot / 9) * 18, 176, 48, 20, 20);
     }
 
     public void createMusicControlButtons() {
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
 
-        this.playPauseButton = this.addRenderableWidget(new PlayPauseButton(x + 80, y + 72, 16, 16,  (onPress) -> toggleMusic()));
+        this.playStopButton = this.addRenderableWidget(new PlayStopButton(x + 80, y + 72, 16, 16,  (onPress) -> toggleMusic()));
         this.loopButton = this.addRenderableWidget(new LoopButton(x + 98, y + 72, 16, 16,  (onPress) -> toggleLoop()));
     }
 
     public void toggleMusic() {
-        if (this.playPauseButton.isPlay()) {
-            this.playPauseButton.setPlay(false);
-            this.container.updateState(true, false);
+        if (this.playStopButton.isPlay()) {
+            this.playStopButton.setPlay(false);
+
+            PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+                    MusicBoxPacket.createStopRequestPacket(this.container.blockEntity.getBlockPos()));
         } else {
-            this.playPauseButton.setPlay(true);
-            this.container.updateState(true, false);
+            this.playStopButton.setPlay(true);
+
+            PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+                    MusicBoxPacket.createPlayRequestPacket(this.container.blockEntity.getBlockPos()));
         }
     }
 
     public void toggleLoop() {
-        if (this.loopButton.isLoop()) {
-            this.loopButton.setLoop(false);
-            this.container.updateState(false, true);
-        } else {
-            this.loopButton.setLoop(true);
-            this.container.updateState(false, true);
-        }
+        this.loopButton.setLoop(!this.loopButton.isLoop());
+
+        PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+                MusicBoxPacket.createToggleLoopRequestPacket(this.container.blockEntity.getBlockPos()));
     }
 
     public void drawTooltip(PoseStack matrixStack, Component textComponent,  int mouseX, int mouseY) {
@@ -107,14 +112,14 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
                 this.font);
     }
 
-    public class PlayPauseButton extends Button {
+    public class PlayStopButton extends Button {
         private static final String PLAY_BUTTON_TOOLTIP = "container.happyholidays.music_box.play_button_tooltip";
         private static final String STOP_BUTTON_TOOLTIP = "container.happyholidays.music_box.stop_button_tooltip";
 
         public boolean isPlay;
 
-        public PlayPauseButton(int p_93721_, int p_93722_, int p_93723_, int p_93724_,
-                               OnPress p_93726_) {
+        public PlayStopButton(int p_93721_, int p_93722_, int p_93723_, int p_93724_,
+                              OnPress p_93726_) {
             super(p_93721_, p_93722_, p_93723_, p_93724_, TextComponent.EMPTY, p_93726_);
             this.isPlay = false;
         }

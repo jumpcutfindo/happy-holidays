@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.network.christmas.MusicBoxPacket;
 import com.jumpcutfindo.happyholidays.common.network.christmas.SummonSantaPacket;
 
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +14,7 @@ import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
 
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PacketHandler {
-    private static final String PROTOCOL_VERSION = "1";
+    private static final String PROTOCOL_VERSION = "1.2";
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(HappyHolidaysMod.MOD_ID, "main"),
             () -> PROTOCOL_VERSION,
@@ -29,5 +30,10 @@ public class PacketHandler {
                 .encoder(SummonSantaPacket::encode)
                 .decoder(SummonSantaPacket::new)
                 .consumer(SummonSantaPacket::handle).add();
+
+        INSTANCE.messageBuilder(MusicBoxPacket.class, id++, NetworkDirection.PLAY_TO_SERVER)
+                .encoder(MusicBoxPacket::encode)
+                .decoder(MusicBoxPacket::new)
+                .consumer(MusicBoxPacket::handle).add();
     }
 }

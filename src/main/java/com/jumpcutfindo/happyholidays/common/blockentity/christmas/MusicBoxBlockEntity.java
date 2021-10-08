@@ -1,6 +1,5 @@
 package com.jumpcutfindo.happyholidays.common.blockentity.christmas;
 
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.container.christmas.musicbox.MusicBoxContainer;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
@@ -46,6 +45,8 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     private boolean isLooping = false;
 
     private int currentSelectedSlot = 0;
+
+    private int timeToNextTrack = -1;
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -102,12 +103,22 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     public ClientboundBlockEntityDataPacket getUpdatePacket(){
         CompoundTag nbtTag = new CompoundTag();
 
+        nbtTag.putBoolean("IsPlaying", this.isPlaying);
+        nbtTag.putBoolean("IsLooping", this.isLooping);
+
+        nbtTag.putInt("CurrentSelectedSlot", this.currentSelectedSlot);
+
         return new ClientboundBlockEntityDataPacket(getBlockPos(), -1, nbtTag);
     }
 
     @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt){
         CompoundTag nbtTag = pkt.getTag();
+
+        this.isPlaying = nbtTag.getBoolean("IsPlaying");
+        this.isLooping = nbtTag.getBoolean("IsLooping");
+
+        this.currentSelectedSlot = nbtTag.getInt("CurrentSelectedSlot");
     }
 
     public int getSelectedSlot() {
@@ -123,29 +134,19 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
         else currentSelectedSlot = slot;
     }
 
-    public void updateState(boolean togglePlaying, boolean toggleLooping) {
-        if (togglePlaying) {
-            if (this.isPlaying) {
-                this.stopMusic();
-            }
-            else {
-                this.playFromStart();
-            }
-
-            this.isPlaying = !this.isPlaying;
-        }
-
-        if (toggleLooping) {
-            this.isLooping = !this.isLooping;
-        }
+    public void toggleLoop() {
+        this.isLooping = !this.isLooping;
+        this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 2);
     }
 
     public void playFromStart() {
+        this.setSelectedSlot(0);
         ItemStack sheetMusic = ItemStack.EMPTY;
 
         for (int i = 0; i < SLOTS; i++) {
             if (!items.get(i).isEmpty()) {
                 sheetMusic = items.get(i);
+                this.setSelectedSlot(i);
                 break;
             }
         }
@@ -155,9 +156,38 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
         }
     }
 
+    public void playNext() {
+        ItemStack sheetMusic = ItemStack.EMPTY;
+
+        for (int i = currentSelectedSlot; i < SLOTS; i++) {
+            if (!items.get(i).isEmpty()) {
+                sheetMusic = items.get(i);
+                this.currentSelectedSlot = i;
+                break;
+            }
+        }
+
+        if (sheetMusic.getItem() instanceof SheetMusicItem) {
+            this.playMusic(((SheetMusicItem) sheetMusic.getItem()).getMusic());
+        } else {
+            if (this.isLooping()) {
+                this.playFromStart();
+            } else {
+                this.stopMusic();
+            }
+        }
+
+    }
+
     public void playMusic(ChristmasMusic music) {
         currentMusic = SheetMusicItem.createMusicBoxSound(music, this.worldPosition);
         Minecraft.getInstance().getSoundManager().play(currentMusic);
+
+        this.isPlaying = true;
+
+        this.timeToNextTrack = ChristmasMusic.getSoundDuration(music);
+
+        this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 2);
     }
 
     public void stopMusic() {
@@ -166,18 +196,27 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
             currentMusic = null;
 
             this.currentSelectedSlot = 0;
+
+            this.isPlaying = false;
+            this.timeToNextTrack = -1;
         }
+
+        this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 2);
     }
 
     public boolean isLooping() {
         return this.isLooping;
     }
 
+    public boolean isPlaying() {
+        return this.isPlaying;
+    }
+
     /*
         Handle animation stuff
      */
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
-        if (this.currentMusic != null && !this.currentMusic.isStopped()) event.getController().setAnimation(new AnimationBuilder().addAnimation(
+        if (this.isPlaying()) event.getController().setAnimation(new AnimationBuilder().addAnimation(
                 "animation.model.playing", true));
         else {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.idle", true));
@@ -234,9 +273,12 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
         }
     }
 
-    public static void serverTick(Level level, BlockPos pos, BlockState blockState, ChristmasStarBlockEntity blockEntity) {
+    public static void serverTick(Level level, BlockPos pos, BlockState blockState, MusicBoxBlockEntity blockEntity) {
         if (!level.isClientSide()) {
-
+            if (blockEntity.isPlaying && --blockEntity.timeToNextTrack <= 0) {
+                blockEntity.nextSlot();
+                blockEntity.playNext();
+            }
         }
     }
 }

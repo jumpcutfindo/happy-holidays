@@ -24,6 +24,8 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -118,5 +120,15 @@ public class MusicBoxBlock extends ChristmasBlock implements EntityBlock {
                 popResource(level, blockPos, itemStack);
             }
         }
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
+        return createMusicBoxTicker(level, blockEntityType, ChristmasBlockEntities.MUSIC_BOX_ENTITY_TYPE.get());
+    }
+
+    public static <T extends BlockEntity> BlockEntityTicker<T> createMusicBoxTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends MusicBoxBlockEntity> otherEntityType) {
+        return level.isClientSide() ? null : ChristmasBlock.createTickerHelper(blockEntityType, otherEntityType, MusicBoxBlockEntity::serverTick);
     }
 }
