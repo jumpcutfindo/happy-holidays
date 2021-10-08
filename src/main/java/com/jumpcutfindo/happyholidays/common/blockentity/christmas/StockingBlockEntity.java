@@ -28,6 +28,8 @@ public class StockingBlockEntity extends BlockEntity implements ChristmasEntityB
 
     private static final ResourceLocation STOCKING_PRESENTS_LOOT_TABLE = new ResourceLocation("happyholidays"
             + ":blocks/stocking_presents");
+    private static final ResourceLocation ENCHANTED_STOCKING_PRESENTS_LOOT_TABLE = new ResourceLocation("happyholidays"
+            + ":blocks/stocking_presents_enchanted");
 
     private boolean isEmpty = true;
     private boolean isDoneForNight = false;
@@ -74,8 +76,10 @@ public class StockingBlockEntity extends BlockEntity implements ChristmasEntityB
         this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 2);
     }
 
-    public void dropStockingItems() {
-        LootTable lootTable = this.level.getServer().getLootTables().get(STOCKING_PRESENTS_LOOT_TABLE);
+    public void dropStockingItems(boolean isEnchanted) {
+        LootTable lootTable =
+                isEnchanted ? this.level.getServer().getLootTables().get(ENCHANTED_STOCKING_PRESENTS_LOOT_TABLE)
+                        : this.level.getServer().getLootTables().get(STOCKING_PRESENTS_LOOT_TABLE);
 
         LootContext ctx = new LootContext.Builder((ServerLevel) this.level)
                 .withRandom(this.random)

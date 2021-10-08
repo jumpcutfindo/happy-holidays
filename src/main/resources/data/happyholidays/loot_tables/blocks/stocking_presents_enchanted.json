@@ -7,11 +7,25 @@
                 {
                     "type": "minecraft:item",
                     "weight": 1,
-                    "name": "minecraft:diamond",
+                    "name": "minecraft:netherite_scrap",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
                             "count": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "weight": 5,
+                    "name": "minecraft:diamond",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 4
+                            }
                         }
                     ]
                 },
@@ -22,73 +36,94 @@
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 8
+                            }
                         }
                     ]
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 20,
+                    "weight": 10,
                     "name": "minecraft:cookie",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 4
+                            }
                         }
                     ]
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 30,
+                    "weight": 5,
                     "name": "minecraft:sugar",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 8
+                            }
                         }
                     ]
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 20,
+                    "weight": 5,
                     "name": "minecraft:potato",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 8
+                            }
                         }
                     ]
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 20,
+                    "weight": 5,
                     "name": "minecraft:carrot",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 8
+                            }
                         }
                     ]
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 20,
+                    "weight": 5,
                     "name": "minecraft:beetroot_seeds",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 8
+                            }
                         }
                     ]
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 20,
+                    "weight": 5,
                     "name": "minecraft:wheat_seeds",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 8
+                            }
                         }
                     ]
                 },
@@ -99,62 +134,80 @@
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 8
+                            }
                         }
                     ]
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 15,
+                    "weight": 20,
                     "name": "minecraft:glowstone_dust",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
-                        }
-                    ]
-                },
-                {
-                    "type": "minecraft:item",
-                    "weight": 30,
-                    "name": "minecraft:clay_ball",
-                    "functions": [
-                        {
-                            "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 4
+                            }
                         }
                     ]
                 },
                 {
                     "type": "minecraft:item",
                     "weight": 5,
+                    "name": "minecraft:clay_ball",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 2,
+                                "max": 16
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "weight": 10,
                     "name": "happyholidays:present_scraps",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 8
+                            }
                         }
                     ]
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 15,
+                    "weight": 20,
                     "name": "minecraft:redstone",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 4,
+                                "max": 12
+                            }
                         }
                     ]
                 },
                 {
                     "type": "minecraft:item",
-                    "weight": 30,
+                    "weight": 5,
                     "name": "minecraft:stick",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 48
+                            }
                         }
                     ]
                 },
@@ -165,7 +218,10 @@
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 4
+                            }
                         }
                     ]
                 },
@@ -176,40 +232,52 @@
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
-                        }
-                    ]
-                },
-                {
-                    "type": "minecraft:item",
-                    "weight": 10,
-                    "name": "minecraft:iron_ingot",
-                    "functions": [
-                        {
-                            "function": "minecraft:set_count",
-                            "count": 1
-                        }
-                    ]
-                },
-                {
-                    "type": "minecraft:item",
-                    "weight": 5,
-                    "name": "minecraft:gold_ingot",
-                    "functions": [
-                        {
-                            "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 4,
+                                "max": 12
+                            }
                         }
                     ]
                 },
                 {
                     "type": "minecraft:item",
                     "weight": 20,
+                    "name": "minecraft:iron_ingot",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 2,
+                                "max": 8
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "weight": 20,
+                    "name": "minecraft:gold_ingot",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "count": {
+                                "min": 2,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "minecraft:item",
+                    "weight": 30,
                     "name": "minecraft:coal",
                     "functions": [
                         {
                             "function": "minecraft:set_count",
-                            "count": 1
+                            "count": {
+                                "min": 2,
+                                "max": 10
+                            }
                         }
                     ]
                 }

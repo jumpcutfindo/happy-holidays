@@ -106,7 +106,7 @@ public class StockingBlock extends WallDecorationBlock implements EntityBlock {
             }
 
             if (!stockingBlockEntity.isEmpty()) {
-                stockingBlockEntity.dropStockingItems();
+                stockingBlockEntity.dropStockingItems(blockState.getValue(ENCHANTED));
             }
 
             return InteractionResult.SUCCESS;
