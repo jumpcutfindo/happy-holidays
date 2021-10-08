@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.client.screen;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.container.christmas.MusicBoxContainer;
+import com.jumpcutfindo.happyholidays.common.container.christmas.musicbox.MusicBoxContainer;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 

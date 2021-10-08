@@ -1,12 +1,9 @@
 package com.jumpcutfindo.happyholidays.common.blockentity.christmas;
 
-import com.jumpcutfindo.happyholidays.common.container.christmas.MusicBoxContainer;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
+import com.jumpcutfindo.happyholidays.common.container.christmas.musicbox.MusicBoxContainer;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -36,7 +33,6 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
 
     public static final int SLOTS = 27;
 
-    private ItemStack sheetMusic = ItemStack.EMPTY;
     private MusicBoxSound currentMusic = null;
 
     private NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
@@ -52,20 +48,18 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     }
 
     @Override
-    public void load(CompoundTag p_230337_2_) {
-        super.load(p_230337_2_);
-        if (p_230337_2_.contains("SheetMusicItem", 10)) {
-            this.setSheetMusic(ItemStack.of(p_230337_2_.getCompound("SheetMusicItem")), false);
-        }
+    public void load(CompoundTag tag) {
+        super.load(tag);
+
+        ContainerHelper.loadAllItems(tag, items);
     }
 
-    public CompoundTag save(CompoundTag p_189515_1_) {
-        super.save(p_189515_1_);
-        if (!this.getSheetMusic().isEmpty()) {
-            p_189515_1_.put("SheetMusicItem", this.getSheetMusic().save(new CompoundTag()));
-        }
+    public CompoundTag save(CompoundTag tag) {
+        super.save(tag);
 
-        return p_189515_1_;
+        ContainerHelper.saveAllItems(tag, items);
+
+        return tag;
     }
 
     @Override
@@ -78,25 +72,13 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
         return new MusicBoxContainer(id, playerInv, this);
     }
 
-    public ItemStack getSheetMusic() {
-        return this.sheetMusic;
-    }
-
-    public void setSheetMusic(ItemStack itemStack, boolean isPlayerAction) {
-        ItemStack itemStackCopy = itemStack.copy();
-        itemStackCopy.setCount(1);
-
-        this.sheetMusic = itemStackCopy;
-        this.setChanged();
-
-        if (this.level != null && this.level.isClientSide() && !isPlayerAction) {
-            this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 2);
-        }
+    public NonNullList<ItemStack> getItems() {
+        return this.items;
     }
 
     @Override
     public void clearContent() {
-        this.sheetMusic = ItemStack.EMPTY;
+        this.items = NonNullList.withSize(SLOTS, ItemStack.EMPTY);
 
         if (this.level != null && this.level.isClientSide()) {
             this.level.sendBlockUpdated(this.worldPosition, this.getBlockState(), this.getBlockState(), 2);
@@ -107,30 +89,12 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     public ClientboundBlockEntityDataPacket getUpdatePacket(){
         CompoundTag nbtTag = new CompoundTag();
 
-        nbtTag.putBoolean("PlayMusic", !this.getSheetMusic().isEmpty());
-
-        if (this.sheetMusic.getItem() instanceof SheetMusicItem) {
-            nbtTag.putInt("SheetMusicId", ((SheetMusicItem) this.sheetMusic.getItem()).getMusic().getId());
-        }
-
         return new ClientboundBlockEntityDataPacket(getBlockPos(), -1, nbtTag);
     }
 
     @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt){
         CompoundTag nbtTag = pkt.getTag();
-
-        if (nbtTag.getBoolean("PlayMusic")) {
-            int id = nbtTag.getInt("SheetMusicId");
-
-            currentMusic = SheetMusicItem.createMusicBoxSound(ChristmasMusic.getMusic(id), this.worldPosition);
-            Minecraft.getInstance().getSoundManager().play(currentMusic);
-        } else {
-            if (currentMusic != null) {
-                currentMusic.stopTrack();
-                currentMusic = null;
-            }
-        }
     }
 
     public void stopMusic() {

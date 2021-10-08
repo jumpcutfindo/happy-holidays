@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.container.christmas;
+package com.jumpcutfindo.happyholidays.common.container.christmas.musicbox;
 
 import java.util.Objects;
 
@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class MusicBoxContainer extends AbstractContainerMenu {
@@ -30,18 +31,23 @@ public class MusicBoxContainer extends AbstractContainerMenu {
 
         canInteractWithCallable = ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos());
 
-        // Other slots
+        int i = 3;
+        int j = 9;
 
-        // Main player inventory
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 9; col++) {
-                this.addSlot(new Slot(playerInv, col + row * 9 + 9, 8 + col * 18, 189 - (4 - row) * 18 - 10));
+        for(int k = 0; k < 3; ++k) {
+            for(int l = 0; l < 9; ++l) {
+                this.addSlot(new MusicBoxSlot(blockEntity, l + k * 9, 8 + l * 18, 18 + k * 18));
             }
         }
 
-        // Player hot bar
-        for (int col = 0; col < 9; col++) {
-            this.addSlot(new Slot(playerInv, col, 8 + col * 18, 165));
+        for(int i1 = 0; i1 < 3; ++i1) {
+            for(int k1 = 0; k1 < 9; ++k1) {
+                this.addSlot(new Slot(playerInv, k1 + i1 * 9 + 9, 8 + k1 * 18, 84 + i1 * 18));
+            }
+        }
+
+        for(int j1 = 0; j1 < 9; ++j1) {
+            this.addSlot(new Slot(playerInv, j1, 8 + j1 * 18, 142));
         }
     }
 
@@ -59,6 +65,35 @@ public class MusicBoxContainer extends AbstractContainerMenu {
         }
 
         throw new IllegalStateException("Incorrect tile entity!");
+    }
+
+    public ItemStack quickMoveStack(Player p_40199_, int p_40200_) {
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(p_40200_);
+        if (slot != null && slot.hasItem()) {
+            ItemStack itemstack1 = slot.getItem();
+            itemstack = itemstack1.copy();
+            if (p_40200_ < this.blockEntity.getContainerSize()) {
+                if (!this.moveItemStackTo(itemstack1, this.blockEntity.getContainerSize(), this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.moveItemStackTo(itemstack1, 0, this.blockEntity.getContainerSize(), false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (itemstack1.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+        }
+
+        return itemstack;
+    }
+
+    public void removed(Player p_40197_) {
+        super.removed(p_40197_);
+        this.playerInv.stopOpen(p_40197_);
     }
 
     @Override
