@@ -5,18 +5,23 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.StockingBlockEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.StockingBlockEntity;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -34,6 +39,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.Tags;
 
 public class StockingBlock extends WallDecorationBlock implements EntityBlock {
     public static final String RED_STOCKING_ID = "red_stocking";
@@ -83,11 +89,21 @@ public class StockingBlock extends WallDecorationBlock implements EntityBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState blockState, Level world, BlockPos blockPos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
-        BlockEntity blockEntity = world.getBlockEntity(blockPos);
+    public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
+        BlockEntity blockEntity = level.getBlockEntity(blockPos);
 
-        if (!world.isClientSide() && blockEntity instanceof StockingBlockEntity) {
+        if (!level.isClientSide() && blockEntity instanceof StockingBlockEntity) {
             StockingBlockEntity stockingBlockEntity = (StockingBlockEntity) blockEntity;
+
+            if (blockState.getValue(ENCHANTED) && playerEntity.getItemInHand(hand).is(Tags.Items.SHEARS)) {
+                // Drop the Enchanted Thread and revert to normal
+                this.cutStocking((ServerLevel) level, blockPos, blockState, playerEntity, playerEntity.getItemInHand(hand));
+            }
+
+            if (!blockState.getValue(ENCHANTED) && playerEntity.getItemInHand(hand).is(ChristmasItems.ENCHANTED_THREAD.get())) {
+                // Upgrade the stocking to its enchanted state
+                this.upgradeStocking((ServerLevel) level, blockPos, blockState, playerEntity, playerEntity.getItemInHand(hand));
+            }
 
             if (!stockingBlockEntity.isEmpty()) {
                 stockingBlockEntity.dropStockingItems();
@@ -96,7 +112,27 @@ public class StockingBlock extends WallDecorationBlock implements EntityBlock {
             return InteractionResult.SUCCESS;
         }
 
-        return InteractionResult.sidedSuccess(world.isClientSide());
+        return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    public void cutStocking(ServerLevel level, BlockPos blockPos, BlockState blockState, Player playerEntity, ItemStack shears) {
+        level.setBlock(blockPos, blockState.setValue(ENCHANTED, false), 0);
+        level.playSound(null, blockPos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0f, 1.0f);
+
+        Block.popResource(level, blockPos, ChristmasItems.ENCHANTED_THREAD.get().getDefaultInstance());
+
+        shears.hurtAndBreak(1, playerEntity, null);
+    }
+
+    public void upgradeStocking(ServerLevel level, BlockPos blockPos, BlockState blockState, Player playerEntity, ItemStack enchantedThreads) {
+        // Apply enchanted effect
+        level.setBlock(blockPos, blockState.setValue(ENCHANTED, true), 0);
+        level.playSound(null, blockPos, SoundEvents.WOOL_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
+
+        level.sendParticles(ParticleTypes.COMPOSTER, blockPos.getX() + 0.5D, blockPos.getY() + 0.5D, blockPos.getZ() + 0.5D,
+                5, 0.25D, 0.25D, 0.25D, 0.0D);
+
+        if (!playerEntity.isCreative()) enchantedThreads.shrink(1);
     }
 
     @Nullable
