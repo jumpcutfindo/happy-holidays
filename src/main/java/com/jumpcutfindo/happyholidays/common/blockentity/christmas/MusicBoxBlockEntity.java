@@ -1,5 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.blockentity.christmas;
 
+import com.jumpcutfindo.happyholidays.common.container.christmas.MusicBoxContainer;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
@@ -7,12 +8,19 @@ import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.Clearable;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import software.bernie.geckolib3.core.IAnimatable;
@@ -23,11 +31,15 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class MusicBoxBlockEntity extends BlockEntity implements ChristmasEntityBlock, Clearable, IAnimatable {
+public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements ChristmasEntityBlock, Clearable, IAnimatable {
     public static final String BLOCK_ENTITY_ID = "music_box";
+
+    public static final int SLOTS = 27;
 
     private ItemStack sheetMusic = ItemStack.EMPTY;
     private MusicBoxSound currentMusic = null;
+
+    private NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -54,6 +66,16 @@ public class MusicBoxBlockEntity extends BlockEntity implements ChristmasEntityB
         }
 
         return p_189515_1_;
+    }
+
+    @Override
+    protected Component getDefaultName() {
+        return new TranslatableComponent(BLOCK_ENTITY_ID);
+    }
+
+    @Override
+    protected AbstractContainerMenu createMenu(int id, Inventory playerInv) {
+        return new MusicBoxContainer(id, playerInv, this);
     }
 
     public ItemStack getSheetMusic() {
@@ -138,5 +160,44 @@ public class MusicBoxBlockEntity extends BlockEntity implements ChristmasEntityB
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
+    }
+
+    @Override
+    public int getContainerSize() {
+        return SLOTS;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public ItemStack getItem(int index) {
+        return this.items.get(index);
+    }
+
+    @Override
+    public ItemStack removeItem(int start, int end) {
+        return ContainerHelper.removeItem(this.items, start, end);
+    }
+
+    @Override
+    public ItemStack removeItemNoUpdate(int index) {
+        return ContainerHelper.takeItem(this.items, index);
+    }
+
+    @Override
+    public void setItem(int index, ItemStack itemStack) {
+        this.items.set(index, itemStack);
+    }
+
+    @Override
+    public boolean stillValid(Player playerEntity) {
+        if (this.level.getBlockEntity(this.worldPosition) != this) {
+            return false;
+        } else {
+            return playerEntity.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
+        }
     }
 }

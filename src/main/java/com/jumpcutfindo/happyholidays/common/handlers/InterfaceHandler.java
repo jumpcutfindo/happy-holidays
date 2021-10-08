@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.handlers;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.ChristmasStarScreen;
 import com.jumpcutfindo.happyholidays.client.screen.GiftWrapperScreen;
+import com.jumpcutfindo.happyholidays.client.screen.MusicBoxScreen;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
 
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -16,5 +17,6 @@ public class InterfaceHandler {
     public static void registerScreens(FMLClientSetupEvent event) {
         MenuScreens.register(ChristmasContainers.CHRISTMAS_STAR_CONTAINER.get(), ChristmasStarScreen::new);
         MenuScreens.register(ChristmasContainers.GIFT_WRAPPER_CONTAINER.get(), GiftWrapperScreen::new);
+        MenuScreens.register(ChristmasContainers.MUSIC_BOX_CONTAINER.get(), MusicBoxScreen::new);
     }
 }

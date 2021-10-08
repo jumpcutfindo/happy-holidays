@@ -4,12 +4,13 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -30,6 +31,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 public class MusicBoxBlock extends ChristmasBlock implements EntityBlock {
     public static final String BLOCK_ID = "music_box";
@@ -86,13 +88,13 @@ public class MusicBoxBlock extends ChristmasBlock implements EntityBlock {
 
     @Override
     public InteractionResult use(BlockState blockState, Level world, BlockPos blockPos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
-        if (blockState.getValue(HAS_SHEET_MUSIC)) {
-            this.dropSheetMusic(world, blockPos);
-            blockState = blockState.setValue(HAS_SHEET_MUSIC, false);
-            world.setBlock(blockPos, blockState, 2);
-            return InteractionResult.sidedSuccess(world.isClientSide);
-        } else {
-            return InteractionResult.PASS;
+        if (world.isClientSide()) return InteractionResult.SUCCESS;
+        else {
+            BlockEntity te = world.getBlockEntity(blockPos);
+            if (te instanceof MusicBoxBlockEntity) {
+                NetworkHooks.openGui((ServerPlayer) playerEntity, (MusicBoxBlockEntity) te, blockPos);
+            }
+            return InteractionResult.CONSUME;
         }
     }
 
