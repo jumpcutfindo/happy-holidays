@@ -1,9 +1,13 @@
 package com.jumpcutfindo.happyholidays.common.blockentity.christmas;
 
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.container.christmas.musicbox.MusicBoxContainer;
+import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
+import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -17,6 +21,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -37,6 +42,11 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
 
     private NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
 
+    private boolean isPlaying = false;
+    private boolean isLooping = false;
+
+    private int currentSelectedSlot = 0;
+
     private AnimationFactory factory = new AnimationFactory(this);
 
     public MusicBoxBlockEntity(BlockEntityType<?> entityType, BlockPos pos, BlockState state) {
@@ -51,12 +61,15 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     public void load(CompoundTag tag) {
         super.load(tag);
 
+        this.isLooping = tag.getBoolean("IsLooping");
+
         ContainerHelper.loadAllItems(tag, items);
     }
 
     public CompoundTag save(CompoundTag tag) {
         super.save(tag);
 
+        tag.putBoolean("IsLooping", this.isLooping);
         ContainerHelper.saveAllItems(tag, items);
 
         return tag;
@@ -97,11 +110,67 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
         CompoundTag nbtTag = pkt.getTag();
     }
 
+    public int getSelectedSlot() {
+        return this.currentSelectedSlot;
+    }
+
+    public void nextSlot() {
+        this.setSelectedSlot(this.currentSelectedSlot + 1);
+    }
+
+    public void setSelectedSlot(int slot) {
+        if (slot < 0 || slot >= SLOTS) currentSelectedSlot = 0;
+        else currentSelectedSlot = slot;
+    }
+
+    public void updateState(boolean togglePlaying, boolean toggleLooping) {
+        if (togglePlaying) {
+            if (this.isPlaying) {
+                this.stopMusic();
+            }
+            else {
+                this.playFromStart();
+            }
+
+            this.isPlaying = !this.isPlaying;
+        }
+
+        if (toggleLooping) {
+            this.isLooping = !this.isLooping;
+        }
+    }
+
+    public void playFromStart() {
+        ItemStack sheetMusic = ItemStack.EMPTY;
+
+        for (int i = 0; i < SLOTS; i++) {
+            if (!items.get(i).isEmpty()) {
+                sheetMusic = items.get(i);
+                break;
+            }
+        }
+
+        if (sheetMusic.getItem() instanceof SheetMusicItem) {
+            this.playMusic(((SheetMusicItem) sheetMusic.getItem()).getMusic());
+        }
+    }
+
+    public void playMusic(ChristmasMusic music) {
+        currentMusic = SheetMusicItem.createMusicBoxSound(music, this.worldPosition);
+        Minecraft.getInstance().getSoundManager().play(currentMusic);
+    }
+
     public void stopMusic() {
         if (currentMusic != null) {
             currentMusic.stopTrack();
             currentMusic = null;
+
+            this.currentSelectedSlot = 0;
         }
+    }
+
+    public boolean isLooping() {
+        return this.isLooping;
     }
 
     /*
@@ -162,6 +231,12 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
             return false;
         } else {
             return playerEntity.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
+        }
+    }
+
+    public static void serverTick(Level level, BlockPos pos, BlockState blockState, ChristmasStarBlockEntity blockEntity) {
+        if (!level.isClientSide()) {
+
         }
     }
 }

@@ -42,12 +42,12 @@ public class MusicBoxContainer extends AbstractContainerMenu {
 
         for(int i1 = 0; i1 < 3; ++i1) {
             for(int k1 = 0; k1 < 9; ++k1) {
-                this.addSlot(new Slot(playerInv, k1 + i1 * 9 + 9, 8 + k1 * 18, 84 + i1 * 18));
+                this.addSlot(new Slot(playerInv, k1 + i1 * 9 + 9, 8 + k1 * 18, 102 + i1 * 18));
             }
         }
 
         for(int j1 = 0; j1 < 9; ++j1) {
-            this.addSlot(new Slot(playerInv, j1, 8 + j1 * 18, 142));
+            this.addSlot(new Slot(playerInv, j1, 8 + j1 * 18, 160));
         }
     }
 
@@ -94,6 +94,22 @@ public class MusicBoxContainer extends AbstractContainerMenu {
     public void removed(Player p_40197_) {
         super.removed(p_40197_);
         this.playerInv.stopOpen(p_40197_);
+    }
+
+    public boolean isLooping() {
+        return blockEntity.isLooping();
+    }
+
+    public void updateState(boolean togglePlaying, boolean toggleLooping) {
+        blockEntity.updateState(togglePlaying, toggleLooping);
+    }
+
+    public void nextSlot() {
+        blockEntity.nextSlot();
+    }
+
+    public int getSelectedSlot() {
+        return blockEntity.getSelectedSlot();
     }
 
     @Override
