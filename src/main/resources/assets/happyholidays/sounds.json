@@ -1,4 +1,14 @@
 {
+    "block.gingerbread_soggified": {
+        "category": "block",
+        "subtitle": "block.happyholidays.gingerbread_block.gingerbread_soggified",
+        "sounds": [
+            {
+                "name": "happyholidays:block/gingerbread_soggified",
+                "stream": true
+            }
+        ]
+    },
     "block.christmas_star_place": {
         "category": "block",
         "subtitle": "block.happyholidays.christmas_star.block_place_in_radius",
