@@ -47,6 +47,9 @@ public class BaseGingerbreadBlock extends ChristmasBlock {
     }
 
     public static BlockState getPlacementState(BlockPlaceContext context, BlockState defaultBlockState, Supplier<BlockState> soggyStateSupplier) {
+        // Check if can place the block at this spot (using BlockItem#canPlace but in static form)
+        if (!BlockUtils.canPlace(context, defaultBlockState)) return defaultBlockState;
+
         // For waterloggable blocks, consider the situation where we place the block inside water straightaway
         if (defaultBlockState.hasProperty(BlockStateProperties.WATERLOGGED)) {
             if (context.getLevel().getBlockState(context.getClickedPos()).is(Blocks.WATER)) {
