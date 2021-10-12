@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
+import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,7 +28,7 @@ public class BaseGingerbreadStairBlock extends StairBlock {
         BlockState blockState = super.getStateForPlacement(context);
 
         if (this.defaultBlockState().getBlock() instanceof Soggifiable) {
-            if (BaseGingerbreadBlock.isWaterAround(context.getLevel(), pos)) {
+            if (context.getLevel().getBlockState(context.getClickedPos()).is(Blocks.WATER) || BaseGingerbreadBlock.isWaterAround(context.getLevel(), pos)) {
                 if (!context.getLevel().isClientSide()) BaseGingerbreadBlock.playSoggyEffects((ServerLevel) context.getLevel(), pos);
                 return ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS.get().withPropertiesOf(blockState);
             } else {
@@ -41,7 +42,7 @@ public class BaseGingerbreadStairBlock extends StairBlock {
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState otherBlockState,
                                   LevelAccessor level, BlockPos blockPos, BlockPos otherBlockPos) {
-        if (blockState.getBlock() instanceof Soggifiable && level.getBlockState(otherBlockPos).is(Blocks.WATER)) {
+        if (blockState.getBlock() instanceof Soggifiable && (BlockUtils.isWet(blockState) || BlockUtils.isWet(otherBlockState))) {
             if (!level.isClientSide()) {
                 BaseGingerbreadBlock.playSoggyEffects((ServerLevel) level, blockPos);
             }

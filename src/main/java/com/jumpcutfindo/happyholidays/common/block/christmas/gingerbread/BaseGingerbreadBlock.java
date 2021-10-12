@@ -6,6 +6,7 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,7 +17,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -48,7 +48,7 @@ public class BaseGingerbreadBlock extends ChristmasBlock {
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState otherBlockState,
                                   LevelAccessor level, BlockPos blockPos, BlockPos otherBlockPos) {
-        if (blockState.getBlock() instanceof Soggifiable && level.getBlockState(otherBlockPos).is(Blocks.WATER)) {
+        if (blockState.getBlock() instanceof Soggifiable && BlockUtils.isWet(otherBlockState)) {
             if (!level.isClientSide()) {
                 playSoggyEffects((ServerLevel) level, blockPos);
             }
@@ -66,11 +66,11 @@ public class BaseGingerbreadBlock extends ChristmasBlock {
     }
 
     public static boolean isWaterAround(Level level, BlockPos pos) {
-        return level.getBlockState(pos.above()).is(Blocks.WATER)
-                || level.getBlockState(pos.below()).is(Blocks.WATER)
-                || level.getBlockState(pos.north()).is(Blocks.WATER)
-                || level.getBlockState(pos.south()).is(Blocks.WATER)
-                || level.getBlockState(pos.east()).is(Blocks.WATER)
-                || level.getBlockState(pos.west()).is(Blocks.WATER);
+        return BlockUtils.isWet(level.getBlockState(pos.above()))
+                || BlockUtils.isWet(level.getBlockState(pos.below()))
+                || BlockUtils.isWet(level.getBlockState(pos.north()))
+                || BlockUtils.isWet(level.getBlockState(pos.south()))
+                || BlockUtils.isWet(level.getBlockState(pos.east()))
+                || BlockUtils.isWet(level.getBlockState(pos.west()));
     }
 }
