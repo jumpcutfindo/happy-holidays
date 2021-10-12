@@ -15,6 +15,12 @@ public class BaseGingerbreadBlock extends ChristmasBlock {
                     .strength(0.5f)
                     .sound(SoundType.FUNGUS);
 
+    public static final BlockBehaviour.Properties SOGGY_PROPERTIES =
+            BlockBehaviour.Properties
+                    .of(Material.SNOW)
+                    .strength(0.25f)
+                    .sound(SoundType.FUNGUS);
+
     public static final Item.Properties ITEM_PROPERITES =
             new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 

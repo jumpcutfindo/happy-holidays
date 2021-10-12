@@ -25,6 +25,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBl
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.MilkAndCookiesBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.BaseGingerbreadBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.GingerbreadBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.RawGingerbreadBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.SoggyGingerbreadBlock;
@@ -219,7 +220,7 @@ public class ChristmasBlocks {
     public static final RegistryObject<ChristmasBlock> GINGERBREAD_BLOCK =
             BLOCKS.register(GingerbreadBlock.BLOCK_ID, GingerbreadBlock::new);
     public static final RegistryObject<ChristmasBlock> SOGGY_GINGERBREAD_BLOCK =
-            BLOCKS.register(SoggyGingerbreadBlock.BLOCK_ID, SoggyGingerbreadBlock::new);
+            BLOCKS.register(SoggyGingerbreadBlock.BLOCK_ID, () -> new ChristmasBlock(BaseGingerbreadBlock.SOGGY_PROPERTIES));
 
     // Candy cane blocks
     public static final RegistryObject<ChristmasBlock> CANDY_CANE_BLOCK =
