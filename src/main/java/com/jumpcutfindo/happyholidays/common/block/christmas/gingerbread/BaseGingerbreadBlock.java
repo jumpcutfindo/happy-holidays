@@ -58,7 +58,7 @@ public class BaseGingerbreadBlock extends ChristmasBlock {
         }
     }
 
-    public void playSoggyEffects(ServerLevel level, BlockPos blockPos) {
+    public static void playSoggyEffects(ServerLevel level, BlockPos blockPos) {
         level.playSound(null, blockPos, ChristmasSounds.GINGERBREAD_SOGGIFIED.get(), SoundSource.BLOCKS, 1.0f, 1.0f);
 
         level.sendParticles(ParticleTypes.SPLASH, blockPos.getX() + 0.5D, blockPos.getY() + 0.5D, blockPos.getZ() + 0.5D,

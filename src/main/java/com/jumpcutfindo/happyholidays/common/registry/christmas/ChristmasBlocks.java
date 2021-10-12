@@ -1,5 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.registry.christmas;
 
+import java.util.function.Supplier;
+
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.BaseCandyCaneBlock;
@@ -28,6 +30,9 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.food.MilkAndCookies
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.GingerbreadBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.RawGingerbreadBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.SoggyGingerbreadBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs.GingerbreadStair;
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs.RawGingerbreadStair;
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs.SoggyGingerbreadStair;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.GiftWrapperBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
@@ -37,6 +42,8 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPrese
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -46,6 +53,10 @@ public class ChristmasBlocks {
             ForgeRegistries.BLOCKS,
             HappyHolidaysMod.MOD_ID
     );
+
+    public static Supplier<BlockState> supplierOf(RegistryObject<? extends Block> registryObject) {
+        return () -> registryObject.get().defaultBlockState();
+    }
 
     // Presents
     public static final RegistryObject<ChristmasBlock> BABY_PRESENT =
@@ -216,10 +227,18 @@ public class ChristmasBlocks {
     // Gingerbread blocks
     public static final RegistryObject<ChristmasBlock> GINGERBREAD_DOUGH_BLOCK =
             BLOCKS.register(RawGingerbreadBlock.BLOCK_ID, RawGingerbreadBlock::new);
+    public static final RegistryObject<StairBlock> GINGERBREAD_DOUGH_STAIRS =
+            BLOCKS.register(RawGingerbreadStair.BLOCK_ID, RawGingerbreadStair::new);
+
     public static final RegistryObject<ChristmasBlock> GINGERBREAD_BLOCK =
             BLOCKS.register(GingerbreadBlock.BLOCK_ID, GingerbreadBlock::new);
+    public static final RegistryObject<StairBlock> GINGERBREAD_STAIRS =
+            BLOCKS.register(GingerbreadStair.BLOCK_ID, GingerbreadStair::new);
+
     public static final RegistryObject<ChristmasBlock> SOGGY_GINGERBREAD_BLOCK =
             BLOCKS.register(SoggyGingerbreadBlock.BLOCK_ID, SoggyGingerbreadBlock::new);
+    public static final RegistryObject<StairBlock> SOGGY_GINGERBREAD_STAIRS =
+            BLOCKS.register(SoggyGingerbreadStair.BLOCK_ID, SoggyGingerbreadStair::new);
 
     // Candy cane blocks
     public static final RegistryObject<ChristmasBlock> CANDY_CANE_BLOCK =
