@@ -1,24 +1,19 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread;
 
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
 
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.core.Direction;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.LevelAccessor;
-
-public class GingerbreadBlock extends BaseGingerbreadBlock {
+public class GingerbreadBlock extends BaseGingerbreadBlock implements Soggifiable {
     public static final String BLOCK_ID = "gingerbread_block";
 
-    public GingerbreadBlock() {
-        super();
-    }
+    public static final BlockBehaviour.Properties BLOCK_PROPERTIES =
+            BlockBehaviour.Properties
+                    .of(Material.SNOW)
+                    .strength(1.0f)
+                    .sound(SoundType.FUNGUS);
 
-    @Override
-    public BlockState updateShape(BlockState blockState, Direction direction, BlockState otherBlockState,
-                                  LevelAccessor world, BlockPos blockPos, BlockPos otherBlockPos) {
-        return world.getBlockState(otherBlockPos).is(Blocks.WATER) ? ChristmasBlocks.GINGERBREAD_BLOCK.get().defaultBlockState()
-                : blockState;
+    public GingerbreadBlock() {
+        super(BLOCK_PROPERTIES);
     }
 }
