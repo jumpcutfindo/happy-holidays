@@ -36,6 +36,9 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.slab.So
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs.GingerbreadStair;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs.RawGingerbreadStair;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs.SoggyGingerbreadStair;
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.wall.GingerbreadWall;
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.wall.RawGingerbreadWall;
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.wall.SoggyGingerbreadWall;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.GiftWrapperBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
@@ -73,6 +76,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -329,6 +333,8 @@ public class ChristmasItems {
             ITEMS.register(RawGingerbreadStair.BLOCK_ID, stairItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_STAIRS, RawGingerbreadBlock.ITEM_PROPERITES));
     public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_SLAB =
             ITEMS.register(RawGingerbreadSlab.BLOCK_ID, slabItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_SLAB, RawGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_WALL =
+            ITEMS.register(RawGingerbreadWall.BLOCK_ID, wallItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_WALL, RawGingerbreadBlock.ITEM_PROPERITES));
 
     public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_BLOCK =
             ITEMS.register(GingerbreadBlock.BLOCK_ID, itemOf(ChristmasBlocks.GINGERBREAD_BLOCK, GingerbreadBlock.ITEM_PROPERITES));
@@ -336,6 +342,8 @@ public class ChristmasItems {
             ITEMS.register(GingerbreadStair.BLOCK_ID, stairItemOf(ChristmasBlocks.GINGERBREAD_STAIRS, GingerbreadBlock.ITEM_PROPERITES));
     public static final RegistryObject<BlockItem> GINGERBREAD_SLAB =
             ITEMS.register(GingerbreadSlab.BLOCK_ID, slabItemOf(ChristmasBlocks.GINGERBREAD_SLAB, GingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> GINGERBREAD_WALL =
+            ITEMS.register(GingerbreadWall.BLOCK_ID, wallItemOf(ChristmasBlocks.GINGERBREAD_WALL, GingerbreadBlock.ITEM_PROPERITES));
 
     public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_BLOCK =
             ITEMS.register(SoggyGingerbreadBlock.BLOCK_ID, itemOf(ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK, SoggyGingerbreadBlock.ITEM_PROPERITES));
@@ -343,6 +351,8 @@ public class ChristmasItems {
             ITEMS.register(SoggyGingerbreadStair.BLOCK_ID, stairItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS, SoggyGingerbreadBlock.ITEM_PROPERITES));
     public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_SLAB =
             ITEMS.register(SoggyGingerbreadSlab.BLOCK_ID, slabItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_SLAB, SoggyGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_WALL =
+            ITEMS.register(SoggyGingerbreadWall.BLOCK_ID, wallItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_WALL, SoggyGingerbreadBlock.ITEM_PROPERITES));
 
     public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_BLOCK =
             ITEMS.register(CandyCaneBlock.BLOCK_ID, itemOf(ChristmasBlocks.CANDY_CANE_BLOCK, CandyCaneOrnamentBlock.ITEM_PROPERTIES));
@@ -378,6 +388,10 @@ public class ChristmasItems {
     }
 
     public static Supplier<BlockItem> slabItemOf(RegistryObject<SlabBlock> block, Item.Properties properties) {
+        return () -> new BlockItem(block.get(), properties);
+    }
+
+    public static Supplier<BlockItem> wallItemOf(RegistryObject<WallBlock> block, Item.Properties properties) {
         return () -> new BlockItem(block.get(), properties);
     }
 
