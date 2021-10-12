@@ -5,7 +5,23 @@
             "happyholidays:gingerbread_dough_to_block_recipe",
             "happyholidays:gingerbread_dough_to_cookie_recipe",
             "happyholidays:raw_to_cooked_gingerbread_block_recipe",
-            "happyholidays:soggy_to_cooked_gingerbread_block_recipe"
+            "happyholidays:soggy_to_cooked_gingerbread_block_recipe",
+            "happyholidays:gingerbread_slab_recipe",
+            "happyholidays:soggy_gingerbread_slab_recipe",
+            "happyholidays:gingerbread_dough_slab_recipe",
+            "happyholidays:gingerbread_stairs_recipe",
+            "happyholidays:soggy_gingerbread_stairs_recipe",
+            "happyholidays:gingerbread_dough_stairs_recipe",
+            "happyholidays:gingerbread_slab_from_block_stonecutting",
+            "happyholidays:soggy_gingerbread_slab_from_block_stonecutting",
+            "happyholidays:gingerbread_dough_slab_from_block_stonecutting",
+            "happyholidays:gingerbread_stairs_from_block_stonecutting",
+            "happyholidays:soggy_gingerbread_stairs_from_block_stonecutting",
+            "happyholidays:gingerbread_dough_stairs_from_block_stonecutting",
+            "soggy_to_cooked_gingerbread_stairs_recipe",
+            "raw_to_cooked_gingerbread_stairs_recipe",
+            "soggy_to_cooked_gingerbread_slab_recipe",
+            "raw_to_cooked_gingerbread_slab_recipe"
         ]
     },
     "criteria": {
@@ -42,6 +58,18 @@
             "conditions": {
                 "recipe": "happyholidays:soggy_to_cooked_gingerbread_block_recipe"
             }
+        },
+        "has_the_e_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "happyholidays:gingerbread_slab_from_block_stonecutting"
+            }
+        },
+        "has_the_f_recipe": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "soggy_to_cooked_gingerbread_stairs_recipe"
+            }
         }
     },
     "requirements": [
@@ -50,7 +78,9 @@
             "has_the_a_recipe",
             "has_the_b_recipe",
             "has_the_c_recipe",
-            "has_the_d_recipe"
+            "has_the_d_recipe",
+            "has_the_e_recipe",
+            "has_the_f_recipe"
         ]
     ]
 }
