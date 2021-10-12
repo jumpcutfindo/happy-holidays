@@ -12,6 +12,9 @@
         "happyholidays:soggy_gingerbread_slab",
         "happyholidays:gingerbread_dough_wall",
         "happyholidays:gingerbread_wall",
-        "happyholidays:soggy_gingerbread_wall"
+        "happyholidays:soggy_gingerbread_wall",
+        "happyholidays:gingerbread_dough_bricks",
+        "happyholidays:gingerbread_bricks",
+        "happyholidays:soggy_gingerbread_bricks"
     ]
 }

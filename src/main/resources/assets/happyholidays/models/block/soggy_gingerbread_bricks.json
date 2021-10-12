@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "happyholidays:block/soggy_gingerbread_bricks"
+    }
+}
