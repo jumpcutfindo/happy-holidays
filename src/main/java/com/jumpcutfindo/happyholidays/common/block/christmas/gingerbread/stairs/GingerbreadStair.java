@@ -1,6 +1,5 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.BaseGingerbreadStairBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.GingerbreadBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.Soggifiable;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;

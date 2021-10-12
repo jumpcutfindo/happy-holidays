@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "type=bottom": {
+            "model": "happyholidays:block/soggy_gingerbread_slab"
+        },
+        "type=double": {
+            "model": "happyholidays:block/soggy_gingerbread_block"
+        },
+        "type=top": {
+            "model": "happyholidays:block/soggy_gingerbread_slab_top"
+        }
+    }
+}

@@ -1,9 +1,10 @@
-package com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread;
+package com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs;
 
 import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.BaseGingerbreadBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 
 import net.minecraft.core.BlockPos;
