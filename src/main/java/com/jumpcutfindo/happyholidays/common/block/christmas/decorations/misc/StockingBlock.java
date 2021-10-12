@@ -10,7 +10,7 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
-import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
+import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -181,7 +181,7 @@ public class StockingBlock extends WallDecorationBlock implements EntityBlock {
 
         chance += baseChance;
 
-        boolean isCookiesNear = HappyHolidaysUtils.findBlockInRadius(world, blockPos,
+        boolean isCookiesNear = BlockUtils.findBlockInRadius(world, blockPos,
                 ChristmasBlocks.MILK_AND_COOKIES.get(), 5) != null;
 
         chance += isCookiesNear ? 20 : 0;

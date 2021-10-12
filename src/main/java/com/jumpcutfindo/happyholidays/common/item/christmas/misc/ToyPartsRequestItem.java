@@ -8,7 +8,7 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfRequest;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
-import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
+import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
@@ -58,7 +58,7 @@ public class ToyPartsRequestItem extends ChristmasItem {
 
                 MutableComponent expiryTextComponent = new TranslatableComponent(
                         "item.happyholidays.toy_parts_request.expires_in",
-                        HappyHolidaysUtils.convertTicksToString(timeRemaining)
+                        StringUtils.convertTicksToString(timeRemaining)
                 );
                 expiryTextComponent.withStyle(ChatFormatting.GRAY);
 

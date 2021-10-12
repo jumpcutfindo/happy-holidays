@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
+import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,8 +28,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
-
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 
 public class WallDecorationBlock extends ChristmasBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -68,12 +66,12 @@ public class WallDecorationBlock extends ChristmasBlock implements SimpleWaterlo
         if (direction == Direction.SOUTH) {
             return shape;
         } else if (direction == Direction.NORTH) {
-            return HappyHolidaysUtils.rotateShape(shape, Rotation.CLOCKWISE_180);
+            return BlockUtils.rotateShape(shape, Rotation.CLOCKWISE_180);
         } else if (direction == Direction.WEST) {
-            return HappyHolidaysUtils.rotateShape(shape, Rotation.CLOCKWISE_90);
+            return BlockUtils.rotateShape(shape, Rotation.CLOCKWISE_90);
         } else {
             // Direction.EAST
-            return HappyHolidaysUtils.rotateShape(shape, Rotation.COUNTERCLOCKWISE_90);
+            return BlockUtils.rotateShape(shape, Rotation.COUNTERCLOCKWISE_90);
         }
     }
 

@@ -6,7 +6,7 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
+import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -123,26 +123,26 @@ public class OrnamentBlock extends ChristmasBlock implements SimpleWaterloggedBl
         }
 
         if (direction == Direction.SOUTH) {
-            return HappyHolidaysUtils.combineShapes(resultShapes);
+            return BlockUtils.combineShapes(resultShapes);
         } else if (direction == Direction.NORTH) {
             for (int i = 0; i < resultShapes.length; i++) {
-                resultShapes[i] = HappyHolidaysUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_180);
+                resultShapes[i] = BlockUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_180);
             }
 
-            return HappyHolidaysUtils.combineShapes(resultShapes);
+            return BlockUtils.combineShapes(resultShapes);
         } else if (direction == Direction.WEST) {
             for (int i = 0; i < resultShapes.length; i++) {
-                resultShapes[i] = HappyHolidaysUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_90);
+                resultShapes[i] = BlockUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_90);
             }
 
-            return HappyHolidaysUtils.combineShapes(resultShapes);
+            return BlockUtils.combineShapes(resultShapes);
         } else {
             // Direction.EAST
             for (int i = 0; i < resultShapes.length; i++) {
-                resultShapes[i] = HappyHolidaysUtils.rotateShape(resultShapes[i], Rotation.COUNTERCLOCKWISE_90);
+                resultShapes[i] = BlockUtils.rotateShape(resultShapes[i], Rotation.COUNTERCLOCKWISE_90);
             }
 
-            return HappyHolidaysUtils.combineShapes(resultShapes);
+            return BlockUtils.combineShapes(resultShapes);
         }
     }
 

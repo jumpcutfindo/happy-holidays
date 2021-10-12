@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
-import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
+import com.jumpcutfindo.happyholidays.common.utils.EntityUtils;
 
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.EntityDimensions;
@@ -79,7 +79,7 @@ public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
         this.dropConversionLoot();
 
         if (!this.level.isClientSide()) {
-            List<Player> players = HappyHolidaysUtils.findPlayersInRadius(this.level, this.position(), 5.0d);
+            List<Player> players = EntityUtils.findPlayersInRadius(this.level, this.position(), 5.0d);
 
             for (Player player : players) {
                 GingerbreadConversionEvent.ToDry turnDryEvent =

@@ -15,7 +15,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
+import com.jumpcutfindo.happyholidays.common.utils.EntityUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -290,7 +290,7 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
         }
 
         if (!this.level.isClientSide() && this.level.getGameTime() % 60L == 0) {
-            List<Player> playersAround = HappyHolidaysUtils.findPlayersInRadius(this.level, this.position(),
+            List<Player> playersAround = EntityUtils.findPlayersInRadius(this.level, this.position(),
                     AVOID_PLAYER_RADIUS);
 
             for (Player playerEntity : playersAround) MinecraftForge.EVENT_BUS.post(new GrinchEvent.Encounter(this, playerEntity));

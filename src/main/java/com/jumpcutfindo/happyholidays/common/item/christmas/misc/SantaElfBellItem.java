@@ -12,7 +12,8 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaBellSound;
-import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
+import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
+import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
 import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
 import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
 import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
@@ -74,7 +75,7 @@ public class SantaElfBellItem extends ChristmasItem {
             GameplayMessage message = new GameplayMessage(
                     MessageType.ERROR,
                     "chat.happyholidays.santa_elf_bell.not_ready",
-                    HappyHolidaysUtils.convertTicksToString(timeRemaining)
+                    StringUtils.convertTicksToString(timeRemaining)
             );
 
             Messenger.sendClientMessage(message, player);
@@ -92,7 +93,7 @@ public class SantaElfBellItem extends ChristmasItem {
             CompoundTag nbt = stack.getOrCreateTag();
             nbt.putLong("NextUseTime", world.getGameTime() + (long) ITEM_COOLDOWN);
 
-            BlockPos posAhead = HappyHolidaysUtils.getPosInFront(playerEntity.getDirection(), playerPos, 4.0D);
+            BlockPos posAhead = BlockUtils.getPosInFront(playerEntity.getDirection(), playerPos, 4.0D);
 
             double spawnX, spawnY, spawnZ;
             spawnX = posAhead.getX();
@@ -139,7 +140,7 @@ public class SantaElfBellItem extends ChristmasItem {
                 MutableComponent textComponent =
                         new TranslatableComponent(
                                 "item.happyholidays."+ ITEM_ID +".cooldown",
-                                HappyHolidaysUtils.convertTicksToString(timeRemaining)
+                                StringUtils.convertTicksToString(timeRemaining)
                         );
                 textComponent.withStyle(ChatFormatting.GRAY);
                 textComponents.add(textComponent);
