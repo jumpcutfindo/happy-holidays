@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "enchanted=false,facing=north,filled=false": {
+      "model": "happyholidays:block/blue_stocking",
+      "y": 180
+    },
+    "enchanted=true,facing=north,filled=false": {
+      "model": "happyholidays:block/blue_stocking_enchanted",
+      "y": 180
+    },
+    "enchanted=false,facing=south,filled=false": {
+      "model": "happyholidays:block/blue_stocking"
+    },
+    "enchanted=true,facing=south,filled=false": {
+      "model": "happyholidays:block/blue_stocking_enchanted"
+    },
+    "enchanted=false,facing=west,filled=false": {
+      "model": "happyholidays:block/blue_stocking",
+      "y": 90
+    },
+    "enchanted=true,facing=west,filled=false": {
+      "model": "happyholidays:block/blue_stocking_enchanted",
+      "y": 90
+    },
+    "enchanted=false,facing=east,filled=false": {
+      "model": "happyholidays:block/blue_stocking",
+      "y": 270
+    },
+    "enchanted=true,facing=east,filled=false": {
+      "model": "happyholidays:block/blue_stocking_enchanted",
+      "y": 270
+    },
+    "enchanted=false,facing=north,filled=true": {
+      "model": "happyholidays:block/blue_stocking_filled",
+      "y": 180
+    },
+    "enchanted=true,facing=north,filled=true": {
+      "model": "happyholidays:block/blue_stocking_enchanted_filled",
+      "y": 180
+    },
+    "enchanted=false,facing=south,filled=true": {
+      "model": "happyholidays:block/blue_stocking_filled"
+    },
+    "enchanted=true,facing=south,filled=true": {
+      "model": "happyholidays:block/blue_stocking_enchanted_filled"
+    },
+    "enchanted=false,facing=west,filled=true": {
+      "model": "happyholidays:block/blue_stocking_filled",
+      "y": 90
+    },
+    "enchanted=true,facing=west,filled=true": {
+      "model": "happyholidays:block/blue_stocking_enchanted_filled",
+      "y": 90
+    },
+    "enchanted=false,facing=east,filled=true": {
+      "model": "happyholidays:block/blue_stocking_filled",
+      "y": 270
+    },
+    "enchanted=true,facing=east,filled=true": {
+      "model": "happyholidays:block/blue_stocking_enchanted_filled",
+      "y": 270
+    }
+  }
+}

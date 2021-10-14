@@ -7,10 +7,19 @@ import java.util.function.Function;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyShape;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ConnectedOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallDecorationShape;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.WallDecorationBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.food.MilkAndCookiesBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 
 import net.minecraft.core.Direction;
@@ -22,6 +31,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -187,7 +197,110 @@ public class BlockStates extends BlockStateProvider {
     }
 
     private void registerCustom() {
+        // Register festive candy cane block
+        Block festiveCandyCaneBlock = ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get();
+        getVariantBuilder(festiveCandyCaneBlock).forAllStates(state -> {
+            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+            String modelId = blockId(festiveCandyCaneBlock);
 
+            FestiveCandyShape shape = state.getValue(FestiveCandyCaneBlock.CANDY_SHAPE);
+
+            if (shape == FestiveCandyShape.O_X) modelId += "_ox";
+            else modelId += "_xo";
+
+            return builder.modelFile(modelFileOf(modelId)).build();
+        });
+
+        Function<Direction, Integer> getRotationY = (direction) -> switch (direction) {
+            case EAST -> 270;
+            case NORTH -> 180;
+            case WEST -> 90;
+            default -> 0;
+        };
+
+        // Register stockings
+        Set<Block> stockings = Set.of(
+                ChristmasBlocks.RED_STOCKING.get(),
+                ChristmasBlocks.BLUE_STOCKING.get(),
+                ChristmasBlocks.YELLOW_STOCKING.get(),
+                ChristmasBlocks.GREEN_STOCKING.get(),
+                ChristmasBlocks.GOLD_STOCKING.get(),
+                ChristmasBlocks.SILVER_STOCKING.get()
+        );
+
+        for (Block block : stockings) {
+            getVariantBuilder(block).forAllStatesExcept(state -> {
+                ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+                String modelId = blockId(block);
+
+                Direction facingDirection = state.getValue(WallDecorationBlock.FACING);
+                boolean isFilled = state.getValue(StockingBlock.FILLED);
+                boolean isEnchanted = state.getValue(StockingBlock.ENCHANTED);
+
+                if (isEnchanted) modelId += "_enchanted";
+                if (isFilled) modelId += "_filled";
+
+                return builder.modelFile(modelFileOf(modelId)).rotationY(getRotationY.apply(facingDirection)).build();
+            }, BlockStateProperties.WATERLOGGED);
+        }
+
+        // Register foods
+        Set<Block> foodBlocks = Set.of(
+                ChristmasBlocks.CHRISTMAS_HAM.get(),
+                ChristmasBlocks.CHRISTMAS_PUDDING.get(),
+                ChristmasBlocks.LOG_CAKE.get(),
+                ChristmasBlocks.MILK_AND_COOKIES.get()
+        );
+
+        Function<Block, IntegerProperty> getBiteProperty = (block) -> {
+            if (block instanceof ChristmasHamBlock || block instanceof LogCakeBlock) {
+                return ChristmasHamBlock.BITES;
+            } else if (block instanceof ChristmasPuddingBlock) {
+                return ChristmasPuddingBlock.BITES;
+            } else {
+                return MilkAndCookiesBlock.BITES;
+            }
+        };
+
+        for (Block block : foodBlocks) {
+            getVariantBuilder(block).forAllStatesExcept(state -> {
+                ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+                String modelId = blockId(block);
+
+                Direction facingDirection = state.getValue(WallDecorationBlock.FACING);
+                int bites = state.getValue(getBiteProperty.apply(block));
+
+                switch (bites) {
+                case 3 -> modelId += "_three_bites";
+                case 2 -> modelId += "_two_bites";
+                case 1 -> modelId += "_one_bite";
+                }
+
+                return builder.modelFile(modelFileOf(modelId)).rotationY(getRotationY.apply(facingDirection)).build();
+            });
+        }
+
+        // Register Christmas Star
+        Block christmasStarBlock = ChristmasBlocks.CHRISTMAS_STAR.get();
+        getVariantBuilder(christmasStarBlock).forAllStates(state -> {
+            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+            String modelId = blockId(christmasStarBlock);
+
+            Direction.Axis axis = state.getValue(ChristmasStarBlock.HORIZONTAL_AXIS);
+            ChristmasStarTier starTier = state.getValue(ChristmasStarBlock.STAR_TIER);
+
+            switch (starTier) {
+            case TIER_0 -> modelId += "_tier_0";
+            case TIER_1 -> modelId += "_tier_1";
+            case TIER_2 -> modelId += "_tier_2";
+            case TIER_3 -> modelId += "_tier_3";
+            case TIER_4 -> modelId += "_tier_4";
+            case TIER_5 -> modelId += "_tier_5";
+            }
+
+            if (axis == Direction.Axis.X) return builder.modelFile(modelFileOf(modelId)).rotationY(90).build();
+            else return builder.modelFile(modelFileOf(modelId)).build();
+        });
     }
 
     // Creates blockstate for blocks

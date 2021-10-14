@@ -1,0 +1,46 @@
+{
+  "variants": {
+    "axis=x,christmas_star_tier=tier_0": {
+      "model": "happyholidays:block/christmas_star_tier_0",
+      "y": 90
+    },
+    "axis=z,christmas_star_tier=tier_0": {
+      "model": "happyholidays:block/christmas_star_tier_0"
+    },
+    "axis=x,christmas_star_tier=tier_1": {
+      "model": "happyholidays:block/christmas_star_tier_1",
+      "y": 90
+    },
+    "axis=z,christmas_star_tier=tier_1": {
+      "model": "happyholidays:block/christmas_star_tier_1"
+    },
+    "axis=x,christmas_star_tier=tier_2": {
+      "model": "happyholidays:block/christmas_star_tier_2",
+      "y": 90
+    },
+    "axis=z,christmas_star_tier=tier_2": {
+      "model": "happyholidays:block/christmas_star_tier_2"
+    },
+    "axis=x,christmas_star_tier=tier_3": {
+      "model": "happyholidays:block/christmas_star_tier_3",
+      "y": 90
+    },
+    "axis=z,christmas_star_tier=tier_3": {
+      "model": "happyholidays:block/christmas_star_tier_3"
+    },
+    "axis=x,christmas_star_tier=tier_4": {
+      "model": "happyholidays:block/christmas_star_tier_4",
+      "y": 90
+    },
+    "axis=z,christmas_star_tier=tier_4": {
+      "model": "happyholidays:block/christmas_star_tier_4"
+    },
+    "axis=x,christmas_star_tier=tier_5": {
+      "model": "happyholidays:block/christmas_star_tier_5",
+      "y": 90
+    },
+    "axis=z,christmas_star_tier=tier_5": {
+      "model": "happyholidays:block/christmas_star_tier_5"
+    }
+  }
+}
