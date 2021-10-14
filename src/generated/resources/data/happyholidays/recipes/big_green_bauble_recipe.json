@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "GGG"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:string"
+    },
+    "G": {
+      "item": "minecraft:green_stained_glass"
+    }
+  },
+  "result": {
+    "item": "happyholidays:big_green_bauble",
+    "count": 2
+  }
+}

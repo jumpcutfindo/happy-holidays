@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:gingerbread_dough_block_recipe"
+    ]
+  },
+  "criteria": {
+    "has_gingerbread_dough": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gingerbread_dough"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:gingerbread_dough_block_recipe"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gingerbread_dough",
+      "has_the_recipe"
+    ]
+  ]
+}
