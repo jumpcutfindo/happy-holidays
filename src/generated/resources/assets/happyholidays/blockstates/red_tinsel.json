@@ -1,0 +1,76 @@
+{
+  "variants": {
+    "decoration_shape=straight,facing=north": {
+      "model": "happyholidays:block/red_tinsel",
+      "y": 180
+    },
+    "decoration_shape=left_face,facing=north": {
+      "model": "happyholidays:block/red_tinsel_left_face",
+      "y": 270
+    },
+    "decoration_shape=right_face,facing=north": {
+      "model": "happyholidays:block/red_tinsel_right_face",
+      "y": 90
+    },
+    "decoration_shape=side_face,facing=north": {
+      "model": "happyholidays:block/red_tinsel_side_face",
+      "y": 180
+    },
+    "decoration_shape=all_face,facing=north": {
+      "model": "happyholidays:block/red_tinsel_all_face"
+    },
+    "decoration_shape=straight,facing=south": {
+      "model": "happyholidays:block/red_tinsel"
+    },
+    "decoration_shape=left_face,facing=south": {
+      "model": "happyholidays:block/red_tinsel_left_face",
+      "y": 90
+    },
+    "decoration_shape=right_face,facing=south": {
+      "model": "happyholidays:block/red_tinsel_right_face",
+      "y": 270
+    },
+    "decoration_shape=side_face,facing=south": {
+      "model": "happyholidays:block/red_tinsel_side_face"
+    },
+    "decoration_shape=all_face,facing=south": {
+      "model": "happyholidays:block/red_tinsel_all_face"
+    },
+    "decoration_shape=straight,facing=west": {
+      "model": "happyholidays:block/red_tinsel",
+      "y": 90
+    },
+    "decoration_shape=left_face,facing=west": {
+      "model": "happyholidays:block/red_tinsel_left_face",
+      "y": 180
+    },
+    "decoration_shape=right_face,facing=west": {
+      "model": "happyholidays:block/red_tinsel_right_face"
+    },
+    "decoration_shape=side_face,facing=west": {
+      "model": "happyholidays:block/red_tinsel_side_face",
+      "y": 90
+    },
+    "decoration_shape=all_face,facing=west": {
+      "model": "happyholidays:block/red_tinsel_all_face"
+    },
+    "decoration_shape=straight,facing=east": {
+      "model": "happyholidays:block/red_tinsel",
+      "y": 270
+    },
+    "decoration_shape=left_face,facing=east": {
+      "model": "happyholidays:block/red_tinsel_left_face"
+    },
+    "decoration_shape=right_face,facing=east": {
+      "model": "happyholidays:block/red_tinsel_right_face",
+      "y": 180
+    },
+    "decoration_shape=side_face,facing=east": {
+      "model": "happyholidays:block/red_tinsel_side_face",
+      "y": 270
+    },
+    "decoration_shape=all_face,facing=east": {
+      "model": "happyholidays:block/red_tinsel_all_face"
+    }
+  }
+}

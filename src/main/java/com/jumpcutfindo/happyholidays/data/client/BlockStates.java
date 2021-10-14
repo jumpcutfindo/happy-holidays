@@ -1,9 +1,13 @@
 package com.jumpcutfindo.happyholidays.data.client;
 
 import java.util.Set;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ConnectedOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallDecorationShape;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 
 import net.minecraft.core.Direction;
@@ -27,7 +31,7 @@ public class BlockStates extends BlockStateProvider {
     }
 
     private void registerOrnaments() {
-        Set<Block> blocks = Set.of(
+        Set<Block> ornamentBlocks = Set.of(
                 ChristmasBlocks.BABY_PRESENT_ORNAMENT.get(),
                 ChristmasBlocks.ADULT_PRESENT_ORNAMENT.get(),
                 ChristmasBlocks.ELDER_PRESENT_ORNAMENT.get(),
@@ -84,11 +88,35 @@ public class BlockStates extends BlockStateProvider {
                 ChristmasBlocks.ALPHABET_ORNAMENT_Z.get()
         );
 
-        for (Block block : blocks) ornamentOf(block);
+        Set<Block> connectedOrnamentBlocks = Set.of(
+                ChristmasBlocks.RED_TINSEL.get(),
+                ChristmasBlocks.BLUE_TINSEL.get(),
+                ChristmasBlocks.YELLOW_TINSEL.get(),
+                ChristmasBlocks.GREEN_TINSEL.get(),
+                ChristmasBlocks.GOLD_TINSEL.get(),
+                ChristmasBlocks.SILVER_TINSEL.get(),
+
+                ChristmasBlocks.RED_CHRISTMAS_LIGHTS.get(),
+                ChristmasBlocks.BLUE_CHRISTMAS_LIGHTS.get(),
+                ChristmasBlocks.YELLOW_CHRISTMAS_LIGHTS.get(),
+                ChristmasBlocks.GREEN_CHRISTMAS_LIGHTS.get(),
+                ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS.get(),
+                ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS.get()
+        );
+
+        for (Block block : ornamentBlocks) ornamentOf(block);
+        for (Block block : connectedOrnamentBlocks) connectedOrnamentOf(block);
     }
 
     private void ornamentOf(Block block) {
         String blockId = blockId(block);
+
+        Function<Direction, Integer> getRotationY = (direction) -> switch (direction) {
+            case EAST -> 270;
+            case NORTH -> 180;
+            case WEST -> 90;
+            default -> 0;
+        };
 
         getVariantBuilder(block).forAllStatesExcept(state -> {
             ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
@@ -102,8 +130,55 @@ public class BlockStates extends BlockStateProvider {
             case FLOOR -> builder = builder.modelFile(modelFileOf(blockId));
             }
 
-            return builder.rotationY(getRotationY(facingDirection)).build();
+            return builder.rotationY(getRotationY.apply(facingDirection)).build();
         }, OrnamentBlock.WATERLOGGED);
+    }
+
+    private void connectedOrnamentOf(Block block) {
+        String blockId = blockId(block);
+
+        BiFunction<WallDecorationShape, Direction, Integer> getRotationY = (wallShape, direction) -> {
+            switch (wallShape) {
+                case STRAIGHT, SIDE_FACE -> {
+                    return direction == Direction.EAST ? 270
+                            : direction == Direction.NORTH ? 180
+                            : direction == Direction.SOUTH ? 0
+                            : 90;
+                }
+                case LEFT_FACE ->  {
+                    return direction == Direction.EAST ? 0
+                            : direction == Direction.NORTH ? 270
+                            : direction == Direction.SOUTH ? 90
+                            : 180;
+                }
+                case RIGHT_FACE -> {
+                    return direction == Direction.EAST ? 180
+                            : direction == Direction.NORTH ? 90
+                            : direction == Direction.SOUTH ? 270
+                            : 0;
+                }
+                default -> {
+                    return 0;
+                }
+            }
+        };
+
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+
+            WallDecorationShape wallShape = state.getValue(ConnectedOrnamentBlock.WALL_SHAPE);
+            Direction facingDirection = state.getValue(ConnectedOrnamentBlock.FACING);
+
+            switch (wallShape) {
+            case LEFT_FACE -> builder = builder.modelFile(modelFileOf(blockId + "_left_face"));
+            case RIGHT_FACE -> builder = builder.modelFile(modelFileOf(blockId + "_right_face"));
+            case SIDE_FACE -> builder = builder.modelFile(modelFileOf(blockId + "_side_face"));
+            case ALL_FACE -> builder = builder.modelFile(modelFileOf(blockId + "_all_face"));
+            default -> builder = builder.modelFile(modelFileOf(blockId));
+            }
+
+            return builder.rotationY(getRotationY.apply(wallShape, facingDirection)).build();
+        }, ConnectedOrnamentBlock.WATERLOGGED);
     }
 
     private String blockId(Block block) {
@@ -120,14 +195,5 @@ public class BlockStates extends BlockStateProvider {
 
     private ModelFile modelFileOf(Block block) {
         return new ModelFile.ExistingModelFile(resourceOfBlock(blockId(block)), models().existingFileHelper);
-    }
-
-    private int getRotationY(Direction direction) {
-        return switch (direction) {
-            case EAST -> 270;
-            case NORTH -> 180;
-            case WEST -> 90;
-            default -> 0;
-        };
     }
 }
