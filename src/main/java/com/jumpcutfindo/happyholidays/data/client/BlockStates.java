@@ -15,6 +15,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -27,7 +28,35 @@ public class BlockStates extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        registerBlocks();
         registerOrnaments();
+    }
+
+    private void registerBlocks() {
+        // For blocks with custom models
+        Set<Block> blocksWithModels = Set.of(
+                ChristmasBlocks.BABY_PRESENT.get(),
+                ChristmasBlocks.ADULT_PRESENT.get(),
+                ChristmasBlocks.ELDER_PRESENT.get(),
+
+                ChristmasBlocks.MUSIC_BOX.get()
+        );
+
+        // For default blocks where all sides are the same
+        Set<Block> blocksWithoutModels = Set.of(
+                ChristmasBlocks.CANDY_CANE_BLOCK.get(),
+
+                ChristmasBlocks.GINGERBREAD_BLOCK.get(),
+                ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK.get(),
+                ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get(),
+
+                ChristmasBlocks.GINGERBREAD_BRICKS.get(),
+                ChristmasBlocks.GINGERBREAD_DOUGH_BRICKS.get(),
+                ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS.get()
+        );
+
+        for (Block block : blocksWithModels) blockOf(block);
+        for (Block block : blocksWithoutModels) simpleBlock(block);
     }
 
     private void registerOrnaments() {
@@ -108,6 +137,16 @@ public class BlockStates extends BlockStateProvider {
         for (Block block : connectedOrnamentBlocks) connectedOrnamentOf(block);
     }
 
+    // Creates blockstate for blocks
+    private void blockOf(Block block) {
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+
+            return builder.modelFile(modelFileOf(block)).build();
+        }, BlockStateProperties.WATERLOGGED);
+    }
+
+    // Creates blockstate for ornament blocks
     private void ornamentOf(Block block) {
         String blockId = blockId(block);
 
@@ -134,6 +173,7 @@ public class BlockStates extends BlockStateProvider {
         }, OrnamentBlock.WATERLOGGED);
     }
 
+    // Creates blockstate for connected ornament blocks
     private void connectedOrnamentOf(Block block) {
         String blockId = blockId(block);
 
