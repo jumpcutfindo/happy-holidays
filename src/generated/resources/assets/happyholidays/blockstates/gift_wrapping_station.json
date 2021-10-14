@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "happyholidays:block/gift_wrapping_station"
+    },
+    "facing=south": {
+      "model": "happyholidays:block/gift_wrapping_station",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "happyholidays:block/gift_wrapping_station",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "happyholidays:block/gift_wrapping_station",
+      "y": 90
+    }
+  }
+}

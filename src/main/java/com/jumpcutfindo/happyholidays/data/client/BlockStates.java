@@ -4,16 +4,22 @@ import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ConnectedOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallDecorationShape;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -30,6 +36,8 @@ public class BlockStates extends BlockStateProvider {
     protected void registerStatesAndModels() {
         registerBlocks();
         registerOrnaments();
+        registerDecorations();
+        registerCustom();
     }
 
     private void registerBlocks() {
@@ -55,8 +63,40 @@ public class BlockStates extends BlockStateProvider {
                 ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS.get()
         );
 
-        for (Block block : blocksWithModels) blockOf(block);
+        // For blocks with horizontal directions only
+        Set<Block> blocksWithHorizontals = Set.of(
+                ChristmasBlocks.GIFT_WRAPPING_STATION.get()
+        );
+
+        // For blocks that are stairs
+        Set<Pair<Block, ResourceLocation>> stairBlocks = Set.of(
+                resourcePair(ChristmasBlocks.GINGERBREAD_DOUGH_STAIRS.get(), ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK.get()),
+                resourcePair(ChristmasBlocks.GINGERBREAD_STAIRS.get(), ChristmasBlocks.GINGERBREAD_BLOCK.get()),
+                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS.get(), ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get())
+        );
+
+        // For blocks that are slabs
+        Set<Pair<Block, ResourceLocation>> slabBlocks = Set.of(
+                resourcePair(ChristmasBlocks.GINGERBREAD_DOUGH_SLAB.get(), ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK.get()),
+                resourcePair(ChristmasBlocks.GINGERBREAD_SLAB.get(), ChristmasBlocks.GINGERBREAD_BLOCK.get()),
+                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_SLAB.get(), ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get())
+        );
+
+        // For blocks that are walls
+        Set<Pair<Block, ResourceLocation>> wallBlocks = Set.of(
+                resourcePair(ChristmasBlocks.GINGERBREAD_DOUGH_WALL.get(), ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK.get()),
+                resourcePair(ChristmasBlocks.GINGERBREAD_WALL.get(), ChristmasBlocks.GINGERBREAD_BLOCK.get()),
+                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_WALL.get(), ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get())
+        );
+
         for (Block block : blocksWithoutModels) simpleBlock(block);
+        for (Block block : blocksWithModels) blockOf(block);
+        for (Block block : blocksWithHorizontals) horizontalBlock(block, modelFileOf(block));
+
+        for (Pair<Block, ResourceLocation> blockPair : stairBlocks) stairsBlock((StairBlock) blockPair.getKey(), blockPair.getValue());
+        for (Pair<Block, ResourceLocation> blockPair : slabBlocks) slabBlock((SlabBlock) blockPair.getKey(), blockPair.getValue(), blockPair.getValue());
+        for (Pair<Block, ResourceLocation> blockPair : wallBlocks) wallBlock((WallBlock) blockPair.getKey(), blockPair.getValue());
+
     }
 
     private void registerOrnaments() {
@@ -135,6 +175,19 @@ public class BlockStates extends BlockStateProvider {
 
         for (Block block : ornamentBlocks) ornamentOf(block);
         for (Block block : connectedOrnamentBlocks) connectedOrnamentOf(block);
+    }
+
+    private void registerDecorations() {
+        Set<Block> decorations = Set.of(
+                ChristmasBlocks.SANTA_LIST.get(),
+                ChristmasBlocks.CHRISTMAS_WREATH.get()
+        );
+
+        for (Block block : decorations) wallDecorationOf(block);
+    }
+
+    private void registerCustom() {
+
     }
 
     // Creates blockstate for blocks
@@ -219,6 +272,30 @@ public class BlockStates extends BlockStateProvider {
 
             return builder.rotationY(getRotationY.apply(wallShape, facingDirection)).build();
         }, ConnectedOrnamentBlock.WATERLOGGED);
+    }
+
+    // Creates blockstate for wall decoration blocks
+    private void wallDecorationOf(Block block) {
+        String blockId = blockId(block);
+
+        Function<Direction, Integer> getRotationY = (direction) -> switch (direction) {
+            case EAST -> 270;
+            case NORTH -> 180;
+            case WEST -> 90;
+            default -> 0;
+        };
+
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+
+            Direction facingDirection = state.getValue(WallDecorationBlock.FACING);
+
+            return builder.modelFile(modelFileOf(block)).rotationY(getRotationY.apply(facingDirection)).build();
+        }, BlockStateProperties.WATERLOGGED);
+    }
+
+    private Pair<Block, ResourceLocation> resourcePair(Block block, Block resourceBlock) {
+        return Pair.of(block, resourceOfBlock(blockId(resourceBlock)));
     }
 
     private String blockId(Block block) {

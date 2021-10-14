@@ -1,8 +1,0 @@
-{
-    "parent": "minecraft:block/slab",
-    "textures": {
-        "bottom": "happyholidays:block/gingerbread_dough_block",
-        "top": "happyholidays:block/gingerbread_dough_block",
-        "side": "happyholidays:block/gingerbread_dough_block"
-    }
-}

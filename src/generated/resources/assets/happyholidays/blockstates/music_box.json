@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "playing=false": {
+      "model": "happyholidays:block/music_box"
+    },
+    "playing=true": {
+      "model": "happyholidays:block/music_box"
+    }
+  }
+}
