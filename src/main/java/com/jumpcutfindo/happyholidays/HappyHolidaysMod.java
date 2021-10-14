@@ -45,8 +45,8 @@ public class HappyHolidaysMod {
         ChristmasEffects.EFFECTS.register(bus);
         ChristmasParticles.PARTICLES.register(bus);
 
-        GeckoLib.initialize();
         GeckoLibMod.DISABLE_IN_DEV = true;
+        GeckoLib.initialize();
     }
 
     public static class HappyHolidaysGroup extends CreativeModeTab {
