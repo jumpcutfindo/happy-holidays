@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.data;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.data.client.BlockStates;
 import com.jumpcutfindo.happyholidays.data.client.ItemModels;
+import com.jumpcutfindo.happyholidays.data.server.Recipes;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -21,7 +22,11 @@ public class DataGenerators {
 
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
+        // Client-side providers
         gen.addProvider(new BlockStates(gen, existingFileHelper));
         gen.addProvider(new ItemModels(gen, existingFileHelper));
+
+        // Server-side providers
+        gen.addProvider(new Recipes(gen));
     }
 }
