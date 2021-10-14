@@ -30,6 +30,9 @@ public class HappyHolidaysMod {
     public static final CreativeModeTab HAPPY_HOLIDAYS_GROUP = new HappyHolidaysMod.HappyHolidaysGroup("happyholidaystab");
 
     public HappyHolidaysMod() {
+        GeckoLibMod.DISABLE_IN_DEV = true;
+        GeckoLib.initialize();
+
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register ourselves for server and other game events we are interested in
@@ -44,9 +47,6 @@ public class HappyHolidaysMod {
         ChristmasSounds.SOUNDS.register(bus);
         ChristmasEffects.EFFECTS.register(bus);
         ChristmasParticles.PARTICLES.register(bus);
-
-        GeckoLibMod.DISABLE_IN_DEV = true;
-        GeckoLib.initialize();
     }
 
     public static class HappyHolidaysGroup extends CreativeModeTab {
