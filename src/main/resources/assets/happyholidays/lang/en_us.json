@@ -124,7 +124,7 @@
     "container.happyholidays.music_box": "Music Box",
     "block.happyholidays.music_box.now_playing": "Now Playing - %s",
 
-    "block.happyholidays.gift_wrapping_station": "Wrapping Station",
+    "block.happyholidays.gift_wrapping_station": "Gift Wrapping Station",
 
     "block.happyholidays.milk_and_cookies": "Milk and Cookies",
     "block.happyholidays.log_cake": "Log Cake",
@@ -265,7 +265,7 @@
     "entity.happyholidays.santa_flick.sub": "Angry Santa flicks",
     "entity.happyholidays.sleigh_sliding.sub": "Sleigh skids",
 
-    "itemGroup.happyholidaystab": "Happy Holidays",
+    "itemGroup.happyholidays": "Happy Holidays",
 
     "chat.happyholidays.snow_globe.weather_maxed": "The Snow Globe doesn't seem to respond to your shaking...",
     "chat.happyholidays.snow_globe.weather_rain_to_thunder": "The sky darkens further as your Snow Globe becomes lighter...",
