@@ -1,0 +1,319 @@
+{
+  "variants": {
+    "christmas_color=none,face=floor,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 180
+    },
+    "christmas_color=red,face=floor,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 180
+    },
+    "christmas_color=blue,face=floor,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 180
+    },
+    "christmas_color=yellow,face=floor,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 180
+    },
+    "christmas_color=green,face=floor,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 180
+    },
+    "christmas_color=gold,face=floor,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 180
+    },
+    "christmas_color=silver,face=floor,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 180
+    },
+    "christmas_color=none,face=wall,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 180
+    },
+    "christmas_color=red,face=wall,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 180
+    },
+    "christmas_color=blue,face=wall,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 180
+    },
+    "christmas_color=yellow,face=wall,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 180
+    },
+    "christmas_color=green,face=wall,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 180
+    },
+    "christmas_color=gold,face=wall,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 180
+    },
+    "christmas_color=silver,face=wall,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 180
+    },
+    "christmas_color=none,face=ceiling,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 180
+    },
+    "christmas_color=red,face=ceiling,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 180
+    },
+    "christmas_color=blue,face=ceiling,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 180
+    },
+    "christmas_color=yellow,face=ceiling,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 180
+    },
+    "christmas_color=green,face=ceiling,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 180
+    },
+    "christmas_color=gold,face=ceiling,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 180
+    },
+    "christmas_color=silver,face=ceiling,facing=north": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 180
+    },
+    "christmas_color=none,face=floor,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a"
+    },
+    "christmas_color=red,face=floor,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a"
+    },
+    "christmas_color=blue,face=floor,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a"
+    },
+    "christmas_color=yellow,face=floor,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a"
+    },
+    "christmas_color=green,face=floor,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a"
+    },
+    "christmas_color=gold,face=floor,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a"
+    },
+    "christmas_color=silver,face=floor,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a"
+    },
+    "christmas_color=none,face=wall,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_side"
+    },
+    "christmas_color=red,face=wall,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_side"
+    },
+    "christmas_color=blue,face=wall,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_side"
+    },
+    "christmas_color=yellow,face=wall,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_side"
+    },
+    "christmas_color=green,face=wall,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_side"
+    },
+    "christmas_color=gold,face=wall,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_side"
+    },
+    "christmas_color=silver,face=wall,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_side"
+    },
+    "christmas_color=none,face=ceiling,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging"
+    },
+    "christmas_color=red,face=ceiling,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging"
+    },
+    "christmas_color=blue,face=ceiling,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging"
+    },
+    "christmas_color=yellow,face=ceiling,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging"
+    },
+    "christmas_color=green,face=ceiling,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging"
+    },
+    "christmas_color=gold,face=ceiling,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging"
+    },
+    "christmas_color=silver,face=ceiling,facing=south": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging"
+    },
+    "christmas_color=none,face=floor,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 90
+    },
+    "christmas_color=red,face=floor,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 90
+    },
+    "christmas_color=blue,face=floor,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 90
+    },
+    "christmas_color=yellow,face=floor,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 90
+    },
+    "christmas_color=green,face=floor,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 90
+    },
+    "christmas_color=gold,face=floor,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 90
+    },
+    "christmas_color=silver,face=floor,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 90
+    },
+    "christmas_color=none,face=wall,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 90
+    },
+    "christmas_color=red,face=wall,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 90
+    },
+    "christmas_color=blue,face=wall,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 90
+    },
+    "christmas_color=yellow,face=wall,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 90
+    },
+    "christmas_color=green,face=wall,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 90
+    },
+    "christmas_color=gold,face=wall,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 90
+    },
+    "christmas_color=silver,face=wall,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 90
+    },
+    "christmas_color=none,face=ceiling,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 90
+    },
+    "christmas_color=red,face=ceiling,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 90
+    },
+    "christmas_color=blue,face=ceiling,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 90
+    },
+    "christmas_color=yellow,face=ceiling,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 90
+    },
+    "christmas_color=green,face=ceiling,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 90
+    },
+    "christmas_color=gold,face=ceiling,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 90
+    },
+    "christmas_color=silver,face=ceiling,facing=west": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 90
+    },
+    "christmas_color=none,face=floor,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 270
+    },
+    "christmas_color=red,face=floor,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 270
+    },
+    "christmas_color=blue,face=floor,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 270
+    },
+    "christmas_color=yellow,face=floor,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 270
+    },
+    "christmas_color=green,face=floor,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 270
+    },
+    "christmas_color=gold,face=floor,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 270
+    },
+    "christmas_color=silver,face=floor,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a",
+      "y": 270
+    },
+    "christmas_color=none,face=wall,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 270
+    },
+    "christmas_color=red,face=wall,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 270
+    },
+    "christmas_color=blue,face=wall,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 270
+    },
+    "christmas_color=yellow,face=wall,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 270
+    },
+    "christmas_color=green,face=wall,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 270
+    },
+    "christmas_color=gold,face=wall,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 270
+    },
+    "christmas_color=silver,face=wall,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_side",
+      "y": 270
+    },
+    "christmas_color=none,face=ceiling,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 270
+    },
+    "christmas_color=red,face=ceiling,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 270
+    },
+    "christmas_color=blue,face=ceiling,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 270
+    },
+    "christmas_color=yellow,face=ceiling,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 270
+    },
+    "christmas_color=green,face=ceiling,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 270
+    },
+    "christmas_color=gold,face=ceiling,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 270
+    },
+    "christmas_color=silver,face=ceiling,facing=east": {
+      "model": "happyholidays:block/alphabet_ornament_a_hanging",
+      "y": 270
+    }
+  }
+}
