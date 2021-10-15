@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "group": "christmas_festive_candy_cane_block",
   "pattern": [
     "R#",
     "#G"

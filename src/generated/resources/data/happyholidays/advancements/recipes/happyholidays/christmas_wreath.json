@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:christmas_wreath"
+    ]
+  },
+  "criteria": {
+    "has_mistletoe_and_holly": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:mistletoe_and_holly"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:christmas_wreath"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mistletoe_and_holly",
+      "has_the_recipe"
+    ]
+  ]
+}
