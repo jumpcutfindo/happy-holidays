@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bell"
+    },
+    {
+      "item": "happyholidays:enchanted_candy_cane"
+    }
+  ],
+  "result": {
+    "item": "happyholidays:santa_elf_bell"
+  }
+}
