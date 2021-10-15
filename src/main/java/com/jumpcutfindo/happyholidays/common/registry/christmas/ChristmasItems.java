@@ -55,6 +55,7 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.candy.CandyCaneItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.candy.EnchantedCandyCaneItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.candy.FestiveCandyCaneItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.dye.DyeBowlItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.EggnogItem;
@@ -114,6 +115,21 @@ public class ChristmasItems {
             ITEMS.register(SantaHatItem.ITEM_ID, SantaHatItem::new);
     public static final RegistryObject<ChristmasItem> ENCHANTED_SANTA_HAT =
             ITEMS.register(EnchantedSantaHatItem.ITEM_ID, EnchantedSantaHatItem::new);
+
+    public static final RegistryObject<ChristmasItem> DYE_BOWL =
+            ITEMS.register(DyeBowlItem.DYE_BOWL_ID, DyeBowlItem::new);
+    public static final RegistryObject<ChristmasItem> RED_CHRISTMAS_DYE =
+            ITEMS.register(DyeBowlItem.RED_DYE_ID, DyeBowlItem::new);
+    public static final RegistryObject<ChristmasItem> BLUE_CHRISTMAS_DYE =
+            ITEMS.register(DyeBowlItem.BLUE_DYE_ID, DyeBowlItem::new);
+    public static final RegistryObject<ChristmasItem> YELLOW_CHRISTMAS_DYE =
+            ITEMS.register(DyeBowlItem.YELLOW_DYE_ID, DyeBowlItem::new);
+    public static final RegistryObject<ChristmasItem> GREEN_CHRISTMAS_DYE =
+            ITEMS.register(DyeBowlItem.GREEN_DYE_ID, DyeBowlItem::new);
+    public static final RegistryObject<ChristmasItem> GOLD_CHRISTMAS_DYE =
+            ITEMS.register(DyeBowlItem.GOLD_DYE_ID, DyeBowlItem::new);
+    public static final RegistryObject<ChristmasItem> SILVER_CHRISTMAS_DYE =
+            ITEMS.register(DyeBowlItem.SILVER_DYE_ID, DyeBowlItem::new);
 
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_ANGELS_ON_HIGH =
             ITEMS.register(SheetMusicItem.ANGELS_ON_HIGH_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.ANGELS_ON_HIGH));

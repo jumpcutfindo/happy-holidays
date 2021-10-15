@@ -143,6 +143,14 @@ public class ItemModels extends ItemModelProvider {
                 itemTexturePair(ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get()),
                 itemTexturePair(ChristmasItems.SILVER_CHRISTMAS_GIFT_ITEM.get()),
 
+                itemTexturePair(ChristmasItems.DYE_BOWL.get()),
+                itemTexturePair(ChristmasItems.RED_CHRISTMAS_DYE.get()),
+                itemTexturePair(ChristmasItems.BLUE_CHRISTMAS_DYE.get()),
+                itemTexturePair(ChristmasItems.YELLOW_CHRISTMAS_DYE.get()),
+                itemTexturePair(ChristmasItems.GREEN_CHRISTMAS_DYE.get()),
+                itemTexturePair(ChristmasItems.GOLD_CHRISTMAS_DYE.get()),
+                itemTexturePair(ChristmasItems.SILVER_CHRISTMAS_DYE.get()),
+
                 itemTexturePair(ChristmasItems.SHEET_MUSIC_ANGELS_ON_HIGH.get(), "christmas_sheet_music"),
                 itemTexturePair(ChristmasItems.SHEET_MUSIC_CAROL_OF_THE_BELLS.get(), "christmas_sheet_music"),
                 itemTexturePair(ChristmasItems.SHEET_MUSIC_DECK_THE_HALLS.get(), "christmas_sheet_music"),
