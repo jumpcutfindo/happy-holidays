@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "happyholidays:christmas_bauble",
+  "pattern": [
+    "# ",
+    "GA"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:string"
+    },
+    "G": {
+      "item": "minecraft:glass"
+    },
+    "A": {
+      "item": "happyholidays:red_christmas_dye"
+    }
+  },
+  "result": {
+    "item": "happyholidays:red_bauble",
+    "count": 4
+  }
+}

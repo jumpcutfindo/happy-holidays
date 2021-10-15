@@ -108,6 +108,7 @@ public class Recipes extends RecipeProvider {
 
     private void bigBauble(Consumer<FinishedRecipe> consumer, Block block, Item christmasDye) {
         ShapedRecipeBuilder.shaped(block, 4)
+                .group(groupOf("christmas_big_bauble"))
                 .define('#', Items.STRING).define('G', Items.GLASS).define('A', christmasDye)
                 .pattern(" # ").pattern("GAG")
                 .unlockedBy("has_string", has(Items.STRING)).unlockedBy("has_glass", has(Items.GLASS))
@@ -143,7 +144,7 @@ public class Recipes extends RecipeProvider {
 
     private ResourceLocation recipeResourceOf(ItemLike item) {
         String id = item.asItem().getRegistryName().getPath();
-        return new ResourceLocation(HappyHolidaysMod.MOD_ID, id + "_recipe");
+        return new ResourceLocation(HappyHolidaysMod.MOD_ID, id);
     }
 
     private String groupOf(String groupName) {

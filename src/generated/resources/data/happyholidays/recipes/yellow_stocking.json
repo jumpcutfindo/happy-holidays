@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "happyholidays:christmas_stocking",
+  "pattern": [
+    "S",
+    "W",
+    "A"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "W": {
+      "item": "minecraft:white_wool"
+    },
+    "A": {
+      "item": "happyholidays:yellow_christmas_dye"
+    }
+  },
+  "result": {
+    "item": "happyholidays:yellow_stocking"
+  }
+}

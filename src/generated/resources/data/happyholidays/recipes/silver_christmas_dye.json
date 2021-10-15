@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "happyholidays:christmas_dye",
+  "ingredients": [
+    {
+      "item": "happyholidays:dye_bowl"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "item": "happyholidays:silver_christmas_dye",
+    "count": 2
+  }
+}
