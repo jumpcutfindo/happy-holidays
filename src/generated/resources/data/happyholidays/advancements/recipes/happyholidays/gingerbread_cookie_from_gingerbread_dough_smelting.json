@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:gingerbread_cookie_from_gingerbread_dough_smelting"
+    ]
+  },
+  "criteria": {
+    "has_gingerbread_dough": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gingerbread_dough"
+            ]
+          }
+        ]
+      }
+    },
+    "has_gingerbread_cookie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gingerbread_cookie"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:gingerbread_cookie_from_gingerbread_dough_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gingerbread_dough",
+      "has_gingerbread_cookie",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "happyholidays:gingerbread_slab"
+  },
+  "result": "happyholidays:soggy_gingerbread_slab",
+  "experience": 0.05,
+  "cookingtime": 100
+}

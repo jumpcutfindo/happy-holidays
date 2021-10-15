@@ -8,15 +8,18 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
@@ -27,12 +30,6 @@ public class Recipes extends RecipeProvider {
 
     @Override
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shaped(ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK.get(), 1)
-                .define('#', ChristmasItems.RAW_GINGERBREAD.get())
-                .pattern("##").pattern("##")
-                .unlockedBy("has_gingerbread_dough", has(ChristmasItems.RAW_GINGERBREAD.get()))
-                .save(consumer, recipeResourceOf(ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK.get()));
-
         dyeBowl(consumer);
         christmasDye(consumer, ChristmasItems.RED_CHRISTMAS_DYE.get(), Items.RED_DYE);
         christmasDye(consumer, ChristmasItems.BLUE_CHRISTMAS_DYE.get(), Items.BLUE_DYE);
@@ -109,6 +106,7 @@ public class Recipes extends RecipeProvider {
         christmasStar(consumer);
         christmasWreath(consumer);
         foods(consumer);
+        gingerbread(consumer);
         guideBook(consumer);
         mistletoeAndHolly(consumer);
         musicBox(consumer);
@@ -270,6 +268,47 @@ public class Recipes extends RecipeProvider {
                 .save(consumer, recipeResourceOf(ChristmasItems.MILK_AND_COOKIES.get()));
     }
 
+    private void gingerbread(Consumer<FinishedRecipe> consumer) {
+        twoByTwo(consumer, ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get(), ChristmasItems.RAW_GINGERBREAD.get(), 1);
+        slab(consumer, ChristmasItems.GINGERBREAD_DOUGH_SLAB.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get());
+        stair(consumer, ChristmasItems.GINGERBREAD_DOUGH_STAIRS.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get());
+        wall(consumer, ChristmasItems.GINGERBREAD_DOUGH_WALL.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get());
+
+        slab(consumer, ChristmasItems.GINGERBREAD_SLAB.get(), ChristmasItems.GINGERBREAD_BLOCK.get());
+        stair(consumer, ChristmasItems.GINGERBREAD_STAIRS.get(), ChristmasItems.GINGERBREAD_BLOCK.get());
+        wall(consumer, ChristmasItems.GINGERBREAD_WALL.get(), ChristmasItems.GINGERBREAD_BLOCK.get());
+
+        slab(consumer, ChristmasItems.SOGGY_GINGERBREAD_SLAB.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get());
+        stair(consumer, ChristmasItems.SOGGY_GINGERBREAD_STAIRS.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get());
+        wall(consumer, ChristmasItems.SOGGY_GINGERBREAD_WALL.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get());
+
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_SLAB.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_STAIRS.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_WALL.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get());
+
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_SLAB.get(), ChristmasItems.GINGERBREAD_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_STAIRS.get(), ChristmasItems.GINGERBREAD_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_WALL.get(), ChristmasItems.GINGERBREAD_BLOCK.get());
+
+        stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_SLAB.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_STAIRS.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_WALL.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get());
+
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_COOKIE.get(), ChristmasItems.RAW_GINGERBREAD.get());
+
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_BLOCK.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get());
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_BLOCK.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get());
+
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_SLAB.get(), ChristmasItems.GINGERBREAD_DOUGH_SLAB.get(), 0.05f, 100);
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_SLAB.get(), ChristmasItems.SOGGY_GINGERBREAD_SLAB.get(), 0.05f, 100);
+
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_STAIRS.get(), ChristmasItems.GINGERBREAD_DOUGH_STAIRS.get());
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_STAIRS.get(), ChristmasItems.SOGGY_GINGERBREAD_STAIRS.get());
+
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_WALL.get(), ChristmasItems.GINGERBREAD_DOUGH_WALL.get());
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_WALL.get(), ChristmasItems.SOGGY_GINGERBREAD_WALL.get());
+    }
+
     private void guideBook(Consumer<FinishedRecipe> consumer) {
         ShapelessRecipeBuilder.shapeless(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get())
                 .requires(Items.BOOK).requires(ChristmasItems.GREEN_CHRISTMAS_DYE.get()).requires(ChristmasItems.RED_CHRISTMAS_DYE.get())
@@ -308,6 +347,30 @@ public class Recipes extends RecipeProvider {
                 .save(consumer, recipeResourceOf(ChristmasItems.GIFT_WRAPPING_STATION.get()));
     }
 
+    private void twoByTwo(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient, int count) {
+        ShapedRecipeBuilder.shaped(result)
+                .define('#', ingredient)
+                .pattern("##").pattern("##")
+                .unlockedBy(getHasName(ingredient), has(ingredient))
+                .save(consumer, recipeResourceOf(result));
+    }
+
+    private void slab(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {
+        slabBuilder(result, Ingredient.of(ingredient)).unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer);
+    }
+
+    private static RecipeBuilder slabBuilder(ItemLike result, Ingredient ingredient) {
+        return ShapedRecipeBuilder.shaped(result, 6).define('#', ingredient).pattern("###");
+    }
+
+    private void stair(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {
+        stairBuilder(result, Ingredient.of(ingredient)).unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer);
+    }
+
+    private static RecipeBuilder stairBuilder(ItemLike result, Ingredient ingredient) {
+        return ShapedRecipeBuilder.shaped(result, 4).define('#', ingredient).pattern("#  ").pattern("## ").pattern("###");
+    }
+
     private void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike source) {
         stonecutterResultFromBase(consumer, result, source, 1);
     }
@@ -318,6 +381,16 @@ public class Recipes extends RecipeProvider {
 
     private ResourceLocation stonecutterRecipeResourceOf(ItemLike result, ItemLike source) {
         return new ResourceLocation(HappyHolidaysMod.MOD_ID, itemId(result) + "_from_" + itemId(source) + "_stonecutting");
+    }
+
+    private void cookingResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {
+        cookingResultFromBase(consumer, result, ingredient, 0.1f, 200);
+    }
+
+    private void cookingResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient, float xp, int cookingDuration) {
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(result), ingredient, xp, cookingDuration, RecipeSerializer.SMELTING_RECIPE)
+                .unlockedBy(getHasName(ingredient), has(ingredient)).unlockedBy(getHasName(result), has(result))
+                .save(consumer, recipeResourceOf(result) + "_from_" + itemId(ingredient) + "_smelting");
     }
 
     private String getHasName(ItemLike item) {
