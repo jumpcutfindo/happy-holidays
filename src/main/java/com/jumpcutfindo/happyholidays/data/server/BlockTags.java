@@ -17,6 +17,11 @@ public class BlockTags extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
+        modTags();
+        minecraftTags();
+    }
+
+    private void modTags() {
         tag(ChristmasTags.Blocks.BAUBLES)
                 .add(ChristmasBlocks.RED_BAUBLE.get())
                 .add(ChristmasBlocks.BLUE_BAUBLE.get())
@@ -57,5 +62,53 @@ public class BlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.SKELETON_HEAD_ORNAMENT.get())
                 .add(ChristmasBlocks.WITHER_SKELETON_HEAD_ORNAMENT.get())
                 .add(ChristmasBlocks.SKELETON_HEAD_ORNAMENT.get());
+
+        tag(ChristmasTags.Blocks.GINGERBREAD_BLOCKS)
+                .add(ChristmasBlocks.GINGERBREAD_BLOCK.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get())
+
+                .add(ChristmasBlocks.GINGERBREAD_STAIRS.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_STAIRS.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS.get())
+
+                .add(ChristmasBlocks.GINGERBREAD_SLAB.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_SLAB.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_SLAB.get())
+
+                .add(ChristmasBlocks.GINGERBREAD_WALL.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_WALL.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_WALL.get());
+
+        tag(ChristmasTags.Blocks.CANDY_CANE_BLOCKS)
+                .add(ChristmasBlocks.CANDY_CANE_BLOCK.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get());
+    }
+
+    private void minecraftTags() {
+        tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_AXE)
+                .add(ChristmasBlocks.GIFT_WRAPPING_STATION.get());
+
+        tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_HOE)
+                .addTag(ChristmasTags.Blocks.GINGERBREAD_BLOCKS);
+
+        tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE)
+                .addTag(ChristmasTags.Blocks.CANDY_CANE_BLOCKS);
+
+        tag(net.minecraft.tags.BlockTags.WALLS)
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_WALL.get())
+                .add(ChristmasBlocks.GINGERBREAD_WALL.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_WALL.get());
+
+        tag(net.minecraft.tags.BlockTags.STAIRS)
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_STAIRS.get())
+                .add(ChristmasBlocks.GINGERBREAD_STAIRS.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS.get());
+
+        tag(net.minecraft.tags.BlockTags.SLABS)
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_SLAB.get())
+                .add(ChristmasBlocks.GINGERBREAD_SLAB.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_SLAB.get());
+
     }
 }

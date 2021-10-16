@@ -23,6 +23,10 @@ public class ChristmasTags {
         public static final Tags.IOptionalNamedTag<Block> DECORATIONS = blockTag("decorations");
 
         public static final Tags.IOptionalNamedTag<Block> HEAD_ORNAMENTS = blockTag("head_ornaments");
+
+        public static final Tags.IOptionalNamedTag<Block> GINGERBREAD_BLOCKS = blockTag("gingerbread_blocks");
+
+        public static final Tags.IOptionalNamedTag<Block> CANDY_CANE_BLOCKS = blockTag("candy_cane_blocks");
     }
 
     public class Items {
@@ -47,6 +51,10 @@ public class ChristmasTags {
         public static final Tags.IOptionalNamedTag<Item> FOODS = itemTag("foods");
 
         public static final Tags.IOptionalNamedTag<Item> SHEET_MUSIC = itemTag("sheet_music");
+
+        public static final Tags.IOptionalNamedTag<Item> GINGERBREAD_BLOCKS = itemTag("gingerbread_blocks");
+
+        public static final Tags.IOptionalNamedTag<Item> CANDY_CANE_BLOCKS = itemTag("candy_cane_blocks");
     }
 
     private static Tags.IOptionalNamedTag<Block> blockTag(String name) {
