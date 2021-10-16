@@ -4,18 +4,21 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.St
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
+import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.CopyNameFunction;
-import net.minecraft.world.level.storage.loot.functions.SetContainerContents;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
@@ -135,7 +138,7 @@ public class LootTables extends BaseLootTableProvider {
 
     private void addStockingBlock(Block block) {
         LootPool.Builder enchantedPool = LootPool.lootPool()
-                .name(id(block))
+                .name(id(block) + "_enchanted")
                 .setRolls(ConstantValue.exactly(1))
                 .add(LootItem.lootTableItem(ChristmasItems.ENCHANTED_THREAD.get()))
                 .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS)))
@@ -149,15 +152,28 @@ public class LootTables extends BaseLootTableProvider {
         lootTables.put(block, standardBlock(block).withPool(enchantedPool));
     }
 
-    protected LootTable.Builder createStandardTable(String name, Block block) {
-        LootPool.Builder builder = LootPool.lootPool()
-                .name(name)
+    private void addPresentBlocks() {
+        Block block = ChristmasBlocks.BABY_PRESENT.get();
+        Item ornamentItem = ChristmasItems.BABY_PRESENT_ORNAMENT.get();
+        int scrapCount = 1;
+
+        LootItemCondition.Builder silkTouchCondition = MatchTool.toolMatches(
+                ItemPredicate.Builder.item()
+                        .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.ANY))
+        );
+
+        LootPool.Builder scrapsPool = LootPool.lootPool()
+                .name("scraps")
                 .setRolls(ConstantValue.exactly(1))
-                .add(LootItem.lootTableItem(block)
-                        .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY))
-                        .apply(SetContainerContents.setContents()
-                                .withEntry(LootItem.lootTableItem(Items.STRING)))
-                );
-        return LootTable.lootTable().setParamSet(LootContextParamSets.BLOCK).withPool(builder);
+                .add(LootItem.lootTableItem(ChristmasItems.PRESENT_SCRAPS.get()))
+                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(scrapCount)))
+                .when(InvertedLootItemCondition.invert(silkTouchCondition));
+
+        LootPool.Builder presentOrnamentPool = LootPool.lootPool()
+                .name("scraps")
+                .setRolls(ConstantValue.exactly(1))
+                .add(LootItem.lootTableItem(ornamentItem))
+                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))
+                .when(InvertedLootItemCondition.invert(silkTouchCondition));
     }
 }

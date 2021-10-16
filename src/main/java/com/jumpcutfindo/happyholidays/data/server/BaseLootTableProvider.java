@@ -14,12 +14,16 @@ import com.google.gson.GsonBuilder;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.mojang.datafixers.util.Pair;
 
+import net.minecraft.advancements.critereon.EnchantmentPredicate;
+import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -29,6 +33,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
+import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 public abstract class BaseLootTableProvider extends LootTableProvider {
@@ -88,6 +93,20 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
                     .setRolls(ConstantValue.exactly(1))
                     .add(LootItem.lootTableItem(block))
                     .when(ExplosionCondition.survivesExplosion());
+        return LootTable.lootTable().setParamSet(LootContextParamSets.BLOCK).withPool(builder);
+    }
+
+    public static LootTable.Builder silkTouchBlock(Block block) {
+        LootPool.Builder builder =
+                LootPool.lootPool()
+                        .name(id(block))
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(block))
+                        .when(MatchTool.toolMatches(
+                                ItemPredicate.Builder.item()
+                                        .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.ANY))
+                        ));
+
         return LootTable.lootTable().setParamSet(LootContextParamSets.BLOCK).withPool(builder);
     }
 
