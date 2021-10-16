@@ -30,10 +30,10 @@ public class DataGenerators {
         gen.addProvider(new ItemModels(gen, existingFileHelper));
 
         // Server-side providers
-        gen.addProvider(new Recipes(gen));
-        gen.addProvider(new LootTables(gen));
         BlockTags blockTags = new BlockTags(gen, existingFileHelper);
         gen.addProvider(blockTags);
         gen.addProvider(new ItemTags(gen, blockTags, existingFileHelper));
+        gen.addProvider(new Recipes(gen));
+        gen.addProvider(new LootTables(gen));
     }
 }
