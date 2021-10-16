@@ -15,8 +15,9 @@ public class BlockTags extends BlockTagsProvider {
         super(p_126511_, HappyHolidaysMod.MOD_ID, existingFileHelper);
     }
 
-    private void registerTags() {
-        tag(ChristmasTags.BAUBLES)
+    @Override
+    protected void addTags() {
+        tag(ChristmasTags.Blocks.BAUBLES)
                 .add(ChristmasBlocks.RED_BAUBLE.get())
                 .add(ChristmasBlocks.BLUE_BAUBLE.get())
                 .add(ChristmasBlocks.YELLOW_BAUBLE.get())
@@ -24,7 +25,7 @@ public class BlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.GOLD_BAUBLE.get())
                 .add(ChristmasBlocks.SILVER_BAUBLE.get());
 
-        tag(ChristmasTags.BIG_BAUBLES)
+        tag(ChristmasTags.Blocks.BIG_BAUBLES)
                 .add(ChristmasBlocks.BIG_RED_BAUBLE.get())
                 .add(ChristmasBlocks.BIG_BLUE_BAUBLE.get())
                 .add(ChristmasBlocks.BIG_YELLOW_BAUBLE.get())
@@ -32,7 +33,7 @@ public class BlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.BIG_GOLD_BAUBLE.get())
                 .add(ChristmasBlocks.BIG_SILVER_BAUBLE.get());
 
-        tag(ChristmasTags.TINSEL)
+        tag(ChristmasTags.Blocks.TINSEL)
                 .add(ChristmasBlocks.RED_TINSEL.get())
                 .add(ChristmasBlocks.BLUE_TINSEL.get())
                 .add(ChristmasBlocks.YELLOW_TINSEL.get())
@@ -40,12 +41,21 @@ public class BlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.GOLD_TINSEL.get())
                 .add(ChristmasBlocks.SILVER_TINSEL.get());
 
-        tag(ChristmasTags.CHRISTMAS_LIGHTS)
+        tag(ChristmasTags.Blocks.CHRISTMAS_LIGHTS)
                 .add(ChristmasBlocks.RED_CHRISTMAS_LIGHTS.get())
                 .add(ChristmasBlocks.BLUE_CHRISTMAS_LIGHTS.get())
                 .add(ChristmasBlocks.YELLOW_CHRISTMAS_LIGHTS.get())
                 .add(ChristmasBlocks.GREEN_CHRISTMAS_LIGHTS.get())
                 .add(ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS.get())
                 .add(ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS.get());
+
+        tag(ChristmasTags.Blocks.DECORATIONS)
+                .add(ChristmasBlocks.CHRISTMAS_WREATH.get());
+
+        tag(ChristmasTags.Blocks.HEAD_ORNAMENTS)
+                .add(ChristmasBlocks.CREEPER_HEAD_ORNAMENT.get())
+                .add(ChristmasBlocks.SKELETON_HEAD_ORNAMENT.get())
+                .add(ChristmasBlocks.WITHER_SKELETON_HEAD_ORNAMENT.get())
+                .add(ChristmasBlocks.SKELETON_HEAD_ORNAMENT.get());
     }
 }

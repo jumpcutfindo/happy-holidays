@@ -2,13 +2,13 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "red_stocking",
+      "name": "silver_stocking",
       "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "happyholidays:red_stocking"
+          "name": "happyholidays:silver_stocking"
         }
       ],
       "conditions": [
@@ -19,7 +19,7 @@
       "functions": []
     },
     {
-      "name": "red_stocking_enchanted",
+      "name": "silver_stocking_enchanted",
       "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": [
@@ -39,7 +39,7 @@
         },
         {
           "condition": "minecraft:block_state_property",
-          "block": "happyholidays:red_stocking",
+          "block": "happyholidays:silver_stocking",
           "properties": {
             "enchanted": "true"
           }
