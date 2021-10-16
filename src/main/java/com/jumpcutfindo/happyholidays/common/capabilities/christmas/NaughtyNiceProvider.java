@@ -16,7 +16,7 @@ public class NaughtyNiceProvider implements ICapabilitySerializable<CompoundTag>
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        return meterOptional.cast();
+        return cap == CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY ? meterOptional.cast() : LazyOptional.empty();
     }
 
     @Override
