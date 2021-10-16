@@ -19,10 +19,17 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.LootTables;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 
 public abstract class BaseLootTableProvider extends LootTableProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
@@ -72,5 +79,19 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
     @Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
         return super.getTables();
+    }
+
+    public static LootTable.Builder standardBlock(Block block) {
+        LootPool.Builder builder =
+                LootPool.lootPool()
+                    .name(id(block))
+                    .setRolls(ConstantValue.exactly(1))
+                    .add(LootItem.lootTableItem(block))
+                    .when(ExplosionCondition.survivesExplosion());
+        return LootTable.lootTable().setParamSet(LootContextParamSets.BLOCK).withPool(builder);
+    }
+
+    public static String id(ItemLike itemLike) {
+        return itemLike instanceof Block ? ((Block) itemLike).getRegistryName().getPath() : ((Item) itemLike).getRegistryName().getPath();
     }
 }

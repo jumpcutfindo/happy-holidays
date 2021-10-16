@@ -95,6 +95,7 @@ public class AlphabetOrnamentBlock extends OrnamentBlock {
         if (!world.isClientSide()) {
             ItemStack heldItem = playerEntity.getItemInHand(hand);
 
+            // TODO: Change to Christmas Dyes
             if (heldItem.is(Items.RED_DYE)) stainGlass(world, blockState, blockPos, ChristmasBlockColor.RED);
             else if (heldItem.is(Items.BLUE_DYE)) stainGlass(world, blockState, blockPos, ChristmasBlockColor.BLUE);
             else if (heldItem.is(Items.YELLOW_DYE)) stainGlass(world, blockState, blockPos, ChristmasBlockColor.YELLOW);
