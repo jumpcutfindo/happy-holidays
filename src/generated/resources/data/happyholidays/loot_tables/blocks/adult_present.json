@@ -2,13 +2,13 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "baby_present",
+      "name": "adult_present",
       "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "happyholidays:baby_present"
+          "name": "happyholidays:adult_present"
         }
       ],
       "conditions": [
@@ -53,7 +53,7 @@
       "functions": [
         {
           "function": "minecraft:set_count",
-          "count": 1.0,
+          "count": 2.0,
           "add": false
         }
       ]
@@ -65,7 +65,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "happyholidays:baby_present_ornament"
+          "name": "happyholidays:adult_present_ornament"
         }
       ],
       "conditions": [
@@ -102,7 +102,7 @@
       "entries": [
         {
           "type": "minecraft:tag",
-          "weight": 200,
+          "weight": 100,
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -164,12 +164,12 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 2.0
+                "max": 4.0
               },
               "add": false
             }
           ],
-          "name": "minecraft:copper_ingot"
+          "name": "minecraft:coal"
         },
         {
           "type": "minecraft:item",
@@ -180,12 +180,12 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0
+                "max": 2.0
               },
               "add": false
             }
           ],
-          "name": "minecraft:coal"
+          "name": "minecraft:copper_ingot"
         },
         {
           "type": "minecraft:item",
@@ -245,7 +245,7 @@
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
+          "weight": 20,
           "functions": [
             {
               "function": "minecraft:set_count",
