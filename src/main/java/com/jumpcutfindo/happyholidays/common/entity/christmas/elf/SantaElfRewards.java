@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.elf;
 import java.util.List;
 import java.util.Random;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasRewards;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
@@ -15,7 +16,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 
 public class SantaElfRewards {
-    private static final ResourceLocation SANTA_ELF_REQUEST_LOOT_TABLE = new ResourceLocation("happyholidays:entities/santa_elf_request");
+    private static final ResourceLocation SANTA_ELF_REQUEST_LOOT_TABLE = new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/santa_elf_request_rewards");
 
     public static final double REQUEST_REWARD_MULTIPLIER_STEP = 0.1d;
     private static final double REQUEST_ORNAMENT_DROP_BASE_CHANCE = 0.2d;
