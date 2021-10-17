@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.santa;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy.HappySantaEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
@@ -26,12 +27,9 @@ public class SantaGifts {
     public static final String NAME_RARE_GIFT ="item.happyholidays.santa.rare_gift";
     public static final String NAME_LEGENDARY_GIFT ="item.happyholidays.santa.legendary_gift";
 
-    public static final ResourceLocation BASIC_GIFT_LOOT_TABLE = new ResourceLocation("happyholidays:entities"
-            + "/santa_basic_gift");
-    public static final ResourceLocation RARE_GIFT_LOOT_TABLE = new ResourceLocation("happyholidays:entities"
-            + "/santa_rare_gift");
-    public static final ResourceLocation LEGENDARY_GIFT_LOOT_TABLE = new ResourceLocation("happyholidays:entities"
-            + "/santa_legendary_gift");
+    public static final ResourceLocation BASIC_GIFT_LOOT_TABLE = new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/santa_basic_gifts");
+    public static final ResourceLocation RARE_GIFT_LOOT_TABLE = new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/santa_rare_gifts");
+    public static final ResourceLocation LEGENDARY_GIFT_LOOT_TABLE = new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/santa_legendary_gifts");
 
     public static ItemStack generateGift(SantaGiftType type, BaseSantaEntity santaEntity, ServerLevel level,
                                          LootContext lootContext) {
