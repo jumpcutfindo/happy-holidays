@@ -5,7 +5,9 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.St
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.GingerbreadPersonEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
@@ -16,6 +18,7 @@ import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -30,12 +33,14 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.TagEntry;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.LimitCount;
+import net.minecraft.world.level.storage.loot.functions.LootingEnchantFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemDamageFunction;
 import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -49,6 +54,8 @@ public class LootTables extends BaseLootTableProvider {
     @Override
     protected void addTables() {
         registerBlocks();
+        registerEntities();
+        registerAdditional();
     }
 
     private void registerBlocks() {
@@ -156,7 +163,19 @@ public class LootTables extends BaseLootTableProvider {
 
         addCandyCaneBlock(ChristmasBlocks.CANDY_CANE_BLOCK.get(), ChristmasItems.CANDY_CANE.get());
         addCandyCaneBlock(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), ChristmasItems.FESTIVE_CANDY_CANE.get());
+    }
 
+    private void registerEntities() {
+        addGingerbreadMan(ChristmasEntities.GINGERBREAD_MAN.get());
+        addGingerbreadMan(ChristmasEntities.SOGGY_GINGERBREAD_MAN.get());
+
+        entityLootTables.put(ChristmasEntities.GRINCH.get(), LootTable.lootTable());
+        entityLootTables.put(ChristmasEntities.SANTA_ELF.get(), LootTable.lootTable());
+        entityLootTables.put(ChristmasEntities.ANGRY_SANTA.get(), LootTable.lootTable());
+        entityLootTables.put(ChristmasEntities.HAPPY_SANTA.get(), LootTable.lootTable());
+    }
+
+    private void registerAdditional() {
         addStockingPresents();
     }
 
@@ -292,6 +311,8 @@ public class LootTables extends BaseLootTableProvider {
     private void addStockingPresents() {
         // Normal stocking presents
         LootPool.Builder normalStockingPool = LootPool.lootPool()
+                .name("stocking_presents")
+                .setRolls(ConstantValue.exactly(1))
                 .add(LootItem.lootTableItem(Items.COAL).setWeight(200).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                 .add(LootItem.lootTableItem(Items.COPPER_INGOT).setWeight(200).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                 .add(LootItem.lootTableItem(Items.IRON_INGOT).setWeight(100).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
@@ -314,6 +335,8 @@ public class LootTables extends BaseLootTableProvider {
                 .add(LootItem.lootTableItem(ChristmasItems.PRESENT_SCRAPS.get()).setWeight(50).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))));
 
         LootPool.Builder enchantedStockingPool = LootPool.lootPool()
+                .name("enchanted_stocking_presents")
+                .setRolls(ConstantValue.exactly(1))
                 .add(LootItem.lootTableItem(Items.COAL).setWeight(300).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
                 .add(LootItem.lootTableItem(Items.COPPER_INGOT).setWeight(200).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 8))))
                 .add(LootItem.lootTableItem(Items.IRON_INGOT).setWeight(200).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
@@ -338,6 +361,22 @@ public class LootTables extends BaseLootTableProvider {
 
         additionalLootTables.put(christmasResource("stocking_presents"), LootTable.lootTable().withPool(normalStockingPool));
         additionalLootTables.put(christmasResource("enchanted_stocking_presents"), LootTable.lootTable().withPool(enchantedStockingPool));
+    }
+
+    private void addGingerbreadMan(EntityType<? extends GingerbreadPersonEntity> gingerbreadEntity) {
+        LootPool.Builder gingerbreadManPool = LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .add(LootItem.lootTableItem(ChristmasItems.RAW_GINGERBREAD.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))).apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(1, 2))));
+
+        LootPool.Builder gingerbreadCookiePool = LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .add(LootItem.lootTableItem(ChristmasItems.GINGERBREAD_COOKIE.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))).when(LootItemKilledByPlayerCondition.killedByPlayer()).when(LootItemRandomChanceCondition.randomChance(0.01f)));
+
+        LootPool.Builder gingerbreadOrnamentPool = LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .add(LootItem.lootTableItem(ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).when(LootItemKilledByPlayerCondition.killedByPlayer()).when(LootItemRandomChanceCondition.randomChance(0.005f)));
+
+        entityLootTables.put(gingerbreadEntity, LootTable.lootTable().withPool(gingerbreadManPool).withPool(gingerbreadCookiePool).withPool(gingerbreadOrnamentPool));
     }
 
     private static ResourceLocation christmasResource(String id) {

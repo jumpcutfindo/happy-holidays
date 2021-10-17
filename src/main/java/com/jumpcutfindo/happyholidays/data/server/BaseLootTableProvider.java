@@ -22,6 +22,7 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
@@ -46,6 +47,7 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     protected final Map<Block, LootTable.Builder> blockLootTables = new HashMap<>();
+    protected final Map<EntityType<?>, LootTable.Builder> entityLootTables = new HashMap<>();
     protected final Map<ResourceLocation, LootTable.Builder> additionalLootTables = new HashMap<>();
     public static Map<ResourceLocation, LootTable> tables = new HashMap<>();
     protected final DataGenerator generator;
@@ -82,6 +84,10 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
 
         for (Map.Entry<ResourceLocation, LootTable.Builder> entry : additionalLootTables.entrySet()) {
             tables.put(entry.getKey(), entry.getValue().build());
+        }
+
+        for (Map.Entry<EntityType<?>, LootTable.Builder> entry : entityLootTables.entrySet()) {
+            tables.put(entry.getKey().getDefaultLootTable(), entry.getValue().build());
         }
 
         writeTables(cache, tables);
