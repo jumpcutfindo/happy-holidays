@@ -156,6 +156,8 @@ public class LootTables extends BaseLootTableProvider {
 
         addCandyCaneBlock(ChristmasBlocks.CANDY_CANE_BLOCK.get(), ChristmasItems.CANDY_CANE.get());
         addCandyCaneBlock(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), ChristmasItems.FESTIVE_CANDY_CANE.get());
+
+        addStockingPresents();
     }
 
     private void addStandardBlock(Block block) {
@@ -289,9 +291,53 @@ public class LootTables extends BaseLootTableProvider {
 
     private void addStockingPresents() {
         // Normal stocking presents
-        LootPool.Builder pool = LootPool.lootPool();
+        LootPool.Builder normalStockingPool = LootPool.lootPool()
+                .add(LootItem.lootTableItem(Items.COAL).setWeight(200).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.COPPER_INGOT).setWeight(200).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.IRON_INGOT).setWeight(100).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.GOLD_INGOT).setWeight(50).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(10).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.EMERALD).setWeight(100).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.COOKIE).setWeight(200).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.SUGAR).setWeight(300).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.POTATO).setWeight(200).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.CARROT).setWeight(200).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.BEETROOT_SEEDS).setWeight(200).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.WHEAT_SEEDS).setWeight(200).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.MELON_SEEDS).setWeight(200).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.PUMPKIN_SEEDS).setWeight(200).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.GLOWSTONE_DUST).setWeight(150)).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1)))
+                .add(LootItem.lootTableItem(Items.CLAY_BALL).setWeight(300).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.REDSTONE).setWeight(150).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.STICK).setWeight(300).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.QUARTZ).setWeight(100).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(ChristmasItems.PRESENT_SCRAPS.get()).setWeight(50).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))));
 
-        additionalLootTables.put(christmasResource("stocking_presents"), LootTable.lootTable().withPool(pool));
+        LootPool.Builder enchantedStockingPool = LootPool.lootPool()
+                .add(LootItem.lootTableItem(Items.COAL).setWeight(300).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
+                .add(LootItem.lootTableItem(Items.COPPER_INGOT).setWeight(200).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 8))))
+                .add(LootItem.lootTableItem(Items.IRON_INGOT).setWeight(200).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
+                .add(LootItem.lootTableItem(Items.GOLD_INGOT).setWeight(200).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
+                .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))))
+                .add(LootItem.lootTableItem(Items.NETHERITE_SCRAP).setWeight(10).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(Items.EMERALD).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
+                .add(LootItem.lootTableItem(Items.COOKIE).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
+                .add(LootItem.lootTableItem(Items.SUGAR).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
+                .add(LootItem.lootTableItem(Items.POTATO).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
+                .add(LootItem.lootTableItem(Items.CARROT).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
+                .add(LootItem.lootTableItem(Items.BEETROOT_SEEDS).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
+                .add(LootItem.lootTableItem(Items.WHEAT_SEEDS).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
+                .add(LootItem.lootTableItem(Items.MELON_SEEDS).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
+                .add(LootItem.lootTableItem(Items.PUMPKIN_SEEDS).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))))
+                .add(LootItem.lootTableItem(Items.GLOWSTONE_DUST).setWeight(50)).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 12)))
+                .add(LootItem.lootTableItem(Items.CLAY_BALL).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 16))))
+                .add(LootItem.lootTableItem(Items.REDSTONE).setWeight(200).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 12))))
+                .add(LootItem.lootTableItem(Items.STICK).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 24))))
+                .add(LootItem.lootTableItem(Items.QUARTZ).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
+                .add(LootItem.lootTableItem(ChristmasItems.PRESENT_SCRAPS.get()).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 8))));
+
+        additionalLootTables.put(christmasResource("stocking_presents"), LootTable.lootTable().withPool(normalStockingPool));
+        additionalLootTables.put(christmasResource("enchanted_stocking_presents"), LootTable.lootTable().withPool(enchantedStockingPool));
     }
 
     private static ResourceLocation christmasResource(String id) {

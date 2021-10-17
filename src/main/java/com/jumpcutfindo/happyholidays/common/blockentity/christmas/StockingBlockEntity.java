@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.common.blockentity.christmas;
 
 import java.util.Random;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 
@@ -26,10 +27,8 @@ import net.minecraft.world.phys.Vec3;
 public class StockingBlockEntity extends BlockEntity implements ChristmasEntityBlock {
     public static final String BLOCK_ENTITY_ID = "stocking";
 
-    private static final ResourceLocation STOCKING_PRESENTS_LOOT_TABLE = new ResourceLocation("happyholidays"
-            + ":blocks/stocking_presents");
-    private static final ResourceLocation ENCHANTED_STOCKING_PRESENTS_LOOT_TABLE = new ResourceLocation("happyholidays"
-            + ":blocks/stocking_presents_enchanted");
+    private static final ResourceLocation STOCKING_PRESENTS_LOOT_TABLE = new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/stocking_presents");
+    private static final ResourceLocation ENCHANTED_STOCKING_PRESENTS_LOOT_TABLE = new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/enchanted_stocking_presents");
 
     private boolean isEmpty = true;
     private boolean isDoneForNight = false;
