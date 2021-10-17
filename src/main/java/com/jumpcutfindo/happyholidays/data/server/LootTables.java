@@ -15,6 +15,7 @@ import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -158,7 +159,7 @@ public class LootTables extends BaseLootTableProvider {
     }
 
     private void addStandardBlock(Block block) {
-        lootTables.put(block, standardBlock(block));
+        blockLootTables.put(block, standardBlock(block));
     }
 
     private void addStockingBlock(Block block) {
@@ -174,7 +175,7 @@ public class LootTables extends BaseLootTableProvider {
                         )
                 );
 
-        lootTables.put(block, standardBlock(block).withPool(enchantedPool));
+        blockLootTables.put(block, standardBlock(block).withPool(enchantedPool));
     }
 
     private void addPresentBlock(Block presentBlock) {
@@ -258,7 +259,7 @@ public class LootTables extends BaseLootTableProvider {
                 .when(LootItemRandomChanceCondition.randomChance(0.02f))
                 .when(InvertedLootItemCondition.invert(silkTouchCondition));
 
-        lootTables.put(presentBlock, silkTouchBlock(presentBlock).withPool(scrapsPool).withPool(presentOrnamentPool).withPool(presentsPool));
+        blockLootTables.put(presentBlock, silkTouchBlock(presentBlock).withPool(scrapsPool).withPool(presentOrnamentPool).withPool(presentsPool));
     }
 
     private void addCandyCaneBlock(Block candyCaneBlock, ItemLike component) {
@@ -283,6 +284,17 @@ public class LootTables extends BaseLootTableProvider {
                         .add(LootItem.lootTableItem(ChristmasItems.ENCHANTED_CANDY_CANE.get()))
                         .when(LootItemRandomChanceCondition.randomChance((float) BaseCandyCaneBlock.ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE));
 
-        lootTables.put(candyCaneBlock, LootTable.lootTable().withPool(pool).withPool(enchantedPool));
+        blockLootTables.put(candyCaneBlock, LootTable.lootTable().withPool(pool).withPool(enchantedPool));
+    }
+
+    private void addStockingPresents() {
+        // Normal stocking presents
+        LootPool.Builder pool = LootPool.lootPool();
+
+        additionalLootTables.put(christmasResource("stocking_presents"), LootTable.lootTable().withPool(pool));
+    }
+
+    private static ResourceLocation christmasResource(String id) {
+        return resourceOf("christmas/" + id);
     }
 }

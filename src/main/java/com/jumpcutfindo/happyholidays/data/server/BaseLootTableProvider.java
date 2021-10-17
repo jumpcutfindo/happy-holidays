@@ -45,7 +45,8 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 public abstract class BaseLootTableProvider extends LootTableProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
-    protected final Map<Block, LootTable.Builder> lootTables = new HashMap<>();
+    protected final Map<Block, LootTable.Builder> blockLootTables = new HashMap<>();
+    protected final Map<ResourceLocation, LootTable.Builder> additionalLootTables = new HashMap<>();
     public static Map<ResourceLocation, LootTable> tables = new HashMap<>();
     protected final DataGenerator generator;
 
@@ -75,8 +76,12 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
     public void run(HashCache cache) {
         addTables();
 
-        for (Map.Entry<Block, LootTable.Builder> entry : lootTables.entrySet()) {
+        for (Map.Entry<Block, LootTable.Builder> entry : blockLootTables.entrySet()) {
             tables.put(entry.getKey().getLootTable(), entry.getValue().build());
+        }
+
+        for (Map.Entry<ResourceLocation, LootTable.Builder> entry : additionalLootTables.entrySet()) {
+            tables.put(entry.getKey(), entry.getValue().build());
         }
 
         writeTables(cache, tables);
@@ -134,5 +139,9 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
 
     public static String id(ItemLike itemLike) {
         return itemLike instanceof Block ? ((Block) itemLike).getRegistryName().getPath() : ((Item) itemLike).getRegistryName().getPath();
+    }
+
+    public static ResourceLocation resourceOf(String id) {
+        return new ResourceLocation(HappyHolidaysMod.MOD_ID, id);
     }
 }
