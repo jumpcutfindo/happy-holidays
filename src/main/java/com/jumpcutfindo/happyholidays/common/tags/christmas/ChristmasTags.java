@@ -4,7 +4,9 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
@@ -57,11 +59,19 @@ public class ChristmasTags {
         public static final Tags.IOptionalNamedTag<Item> CANDY_CANE_BLOCKS = itemTag("candy_cane_blocks");
     }
 
+    public class Entities {
+        public static final Tags.IOptionalNamedTag<EntityType<?>> CANDY_CANE_EXPLODERS = entityTag("candy_cane_exploders");
+    }
+
     private static Tags.IOptionalNamedTag<Block> blockTag(String name) {
         return BlockTags.createOptional(new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/" + name));
     }
 
     private static Tags.IOptionalNamedTag<Item> itemTag(String name) {
         return ItemTags.createOptional(new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/" + name));
+    }
+
+    private static Tags.IOptionalNamedTag<EntityType<?>> entityTag(String name) {
+        return EntityTypeTags.createOptional(new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/" + name));
     }
 }

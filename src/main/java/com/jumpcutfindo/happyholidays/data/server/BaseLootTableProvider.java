@@ -26,15 +26,21 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.LootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.LimitCount;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 public abstract class BaseLootTableProvider extends LootTableProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
@@ -106,6 +112,22 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
                                 ItemPredicate.Builder.item()
                                         .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.ANY))
                         ));
+
+        return LootTable.lootTable().setParamSet(LootContextParamSets.BLOCK).withPool(builder);
+    }
+
+    public static LootTable.Builder fortuneAndSilkTouchBlock(Block block, ItemLike component, int minCount, int maxCount) {
+        LootItemCondition.Builder silkTouchCondition = MatchTool.toolMatches(
+                ItemPredicate.Builder.item()
+                        .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.ANY))
+        );
+
+        LootPool.Builder builder =
+                LootPool.lootPool()
+                        .name(id(block) + "_silk_touch")
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(block).when(silkTouchCondition))
+                        .add(LootItem.lootTableItem(component).apply(SetItemCountFunction.setCount(UniformGenerator.between(minCount, maxCount))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(LimitCount.limitCount(IntRange.exact(maxCount))));
 
         return LootTable.lootTable().setParamSet(LootContextParamSets.BLOCK).withPool(builder);
     }

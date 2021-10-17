@@ -4,6 +4,7 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.data.client.BlockStates;
 import com.jumpcutfindo.happyholidays.data.client.ItemModels;
 import com.jumpcutfindo.happyholidays.data.server.BlockTags;
+import com.jumpcutfindo.happyholidays.data.server.EntityTags;
 import com.jumpcutfindo.happyholidays.data.server.ItemTags;
 import com.jumpcutfindo.happyholidays.data.server.LootTables;
 import com.jumpcutfindo.happyholidays.data.server.Recipes;
@@ -33,6 +34,7 @@ public class DataGenerators {
         BlockTags blockTags = new BlockTags(gen, existingFileHelper);
         gen.addProvider(blockTags);
         gen.addProvider(new ItemTags(gen, blockTags, existingFileHelper));
+        gen.addProvider(new EntityTags(gen, existingFileHelper));
         gen.addProvider(new Recipes(gen));
         gen.addProvider(new LootTables(gen));
     }

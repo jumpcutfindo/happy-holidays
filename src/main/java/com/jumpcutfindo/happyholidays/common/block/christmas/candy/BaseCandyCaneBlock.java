@@ -18,7 +18,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -28,10 +27,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.phys.Vec3;
 
 public class BaseCandyCaneBlock extends ChristmasBlock {
     public static final Properties BLOCK_PROPERTIES = BlockBehaviour.Properties
@@ -50,48 +45,33 @@ public class BaseCandyCaneBlock extends ChristmasBlock {
 
 
     @Override
-    public void onBlockExploded(BlockState state, Level world, BlockPos pos, Explosion explosion) {
-        world.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
+    public void onBlockExploded(BlockState state, Level level, BlockPos pos, Explosion explosion) {
+        level.setBlock(pos, Blocks.AIR.defaultBlockState(), 3);
 
-        LootContext.Builder lootContextBuilder =
-                (new LootContext.Builder((ServerLevel) world)).withRandom(world.random)
-                        .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
-                        .withParameter(LootContextParams.TOOL, Items.WOODEN_HOE.getDefaultInstance());
         List<ItemStack> drops;
 
         if (explosion.getSourceMob() != null) {
-            drops = this.getCustomDrops(state, pos, lootContextBuilder, DestroyReason.NATURAL_EXPLOSION);
+            drops = this.getCustomDrops(state, pos, level, DestroyReason.NATURAL_EXPLOSION);
         } else {
-            drops = this.getCustomDrops(state, pos, lootContextBuilder, DestroyReason.EXPLOSION);
+            drops = this.getCustomDrops(state, pos, level, DestroyReason.EXPLOSION);
         }
 
-        for (ItemStack drop : drops) popResource(world, pos, drop);
+        for (ItemStack drop : drops) popResource(level, pos, drop);
     }
 
     @Override
     public void playerDestroy(Level world, Player playerEntity, BlockPos blockPos, BlockState blockState, @Nullable BlockEntity blockEntity, ItemStack itemStack) {
         super.playerDestroy(world, playerEntity, blockPos, blockState, blockEntity, itemStack);
-
-        if (!world.isClientSide()) {
-            LootContext.Builder lootContextBuilder =
-                    (new LootContext.Builder((ServerLevel) world)).withRandom(world.random).withParameter(LootContextParams.ORIGIN,
-                            Vec3.atCenterOf(blockPos)).withParameter(LootContextParams.TOOL, playerEntity.getMainHandItem()).withOptionalParameter(LootContextParams.BLOCK_ENTITY, blockEntity);
-
-            List<ItemStack> drops = this.getCustomDrops(blockState, blockPos, lootContextBuilder, DestroyReason.PLAYER);
-            for (ItemStack drop : drops) popResource(world, blockPos, drop);
-            blockState.spawnAfterBreak((ServerLevel) world, blockPos, itemStack);
-        }
     }
 
-    public List<ItemStack> getCustomDrops(BlockState blockState, BlockPos blockPos, LootContext.Builder builder, DestroyReason destroyReason) {
+    public List<ItemStack> getCustomDrops(BlockState blockState, BlockPos blockPos, Level level, DestroyReason destroyReason) {
         ResourceLocation resourceLocation = this.getLootTable();
         if (resourceLocation == BuiltInLootTables.EMPTY) {
             return Collections.emptyList();
         } else {
-            LootContext lootContext = builder.withParameter(LootContextParams.BLOCK_STATE, blockState).create(LootContextParamSets.BLOCK);
-            ServerLevel serverWorld = lootContext.getLevel();
+            ServerLevel serverLevel = (ServerLevel) level;
 
-            ChristmasStarBlockEntity starBlockEntity = ChristmasStarHelper.getStarInfluencingBlock(serverWorld,
+            ChristmasStarBlockEntity starBlockEntity = ChristmasStarHelper.getStarInfluencingBlock(serverLevel,
                     blockPos);
             List<ItemStack> drops = Lists.newArrayList();
 

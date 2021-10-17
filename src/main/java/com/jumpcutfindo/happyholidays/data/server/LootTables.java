@@ -1,5 +1,6 @@
 package com.jumpcutfindo.happyholidays.data.server;
 
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.BaseCandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
@@ -9,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
+import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -16,15 +18,23 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.IntRange;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.AlternativesEntry;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.TagEntry;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.LimitCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemDamageFunction;
 import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -142,6 +152,9 @@ public class LootTables extends BaseLootTableProvider {
         addPresentBlock(ChristmasBlocks.BABY_PRESENT.get());
         addPresentBlock(ChristmasBlocks.ADULT_PRESENT.get());
         addPresentBlock(ChristmasBlocks.ELDER_PRESENT.get());
+
+        addCandyCaneBlock(ChristmasBlocks.CANDY_CANE_BLOCK.get(), ChristmasItems.CANDY_CANE.get());
+        addCandyCaneBlock(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), ChristmasItems.FESTIVE_CANDY_CANE.get());
     }
 
     private void addStandardBlock(Block block) {
@@ -246,5 +259,30 @@ public class LootTables extends BaseLootTableProvider {
                 .when(InvertedLootItemCondition.invert(silkTouchCondition));
 
         lootTables.put(presentBlock, silkTouchBlock(presentBlock).withPool(scrapsPool).withPool(presentOrnamentPool).withPool(presentsPool));
+    }
+
+    private void addCandyCaneBlock(Block candyCaneBlock, ItemLike component) {
+        int minCount = 2;
+        int maxCount = 4;
+
+        LootItemCondition.Builder silkTouchCondition = MatchTool.toolMatches(
+                ItemPredicate.Builder.item()
+                        .hasEnchantment(new EnchantmentPredicate(Enchantments.SILK_TOUCH, MinMaxBounds.Ints.ANY))
+        );
+
+        LootPool.Builder pool = LootPool.lootPool()
+                        .name(id(candyCaneBlock))
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(AlternativesEntry.alternatives(LootItem.lootTableItem(candyCaneBlock).when(silkTouchCondition))
+                            .otherwise(LootItem.lootTableItem(component).apply(SetItemCountFunction.setCount(ConstantValue.exactly(maxCount))).when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().of(ChristmasTags.Entities.CANDY_CANE_EXPLODERS).build())))
+                            .otherwise(LootItem.lootTableItem(component).apply(SetItemCountFunction.setCount(UniformGenerator.between(minCount, maxCount))).apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)).apply(LimitCount.limitCount(IntRange.range(maxCount - 2, maxCount)))));
+
+        LootPool.Builder enchantedPool = LootPool.lootPool()
+                        .name(id(ChristmasItems.ENCHANTED_CANDY_CANE.get()))
+                        .setRolls(ConstantValue.exactly(1))
+                        .add(LootItem.lootTableItem(ChristmasItems.ENCHANTED_CANDY_CANE.get()))
+                        .when(LootItemRandomChanceCondition.randomChance((float) BaseCandyCaneBlock.ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE));
+
+        lootTables.put(candyCaneBlock, LootTable.lootTable().withPool(pool).withPool(enchantedPool));
     }
 }
