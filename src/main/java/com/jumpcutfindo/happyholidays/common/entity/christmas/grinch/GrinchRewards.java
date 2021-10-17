@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.grinch;
 import java.util.List;
 import java.util.Random;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasRewards;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
@@ -15,8 +16,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 
 public class GrinchRewards {
-    private static final ResourceLocation GRINCH_APPEASEMENT_LOOT_TABLE = new ResourceLocation("happyholidays:entities"
-            + "/grinch_appeasement");
+    private static final ResourceLocation GRINCH_APPEASEMENT_LOOT_TABLE = new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/grinch_appeasement");
 
     public static final double APPEASEMENT_REWARD_MODIFIER_STEP = 0.1d;
     public static final double APPEASEMENT_ORNAMENT_DROP_BASE_CHANCE = 0.2d;

@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread;
 import java.util.List;
 import java.util.Random;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasRewards;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
@@ -13,8 +14,7 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootTable;
 
 public class GingerbreadConversionRewards {
-    private static final ResourceLocation GINGERBREAD_CONVERSION_LOOT_TABLE = new ResourceLocation("happyholidays"
-            + ":entities/gingerbread_conversion");
+    private static final ResourceLocation GINGERBREAD_CONVERSION_LOOT_TABLE = new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/gingerbread_conversion");
 
     public static final double CONVERSION_REWARD_MODIFIER_STEP = 0.1d;
     private static final double CONVERSION_ORNAMENT_DROP_BASE_CHANCE = 0.01D;

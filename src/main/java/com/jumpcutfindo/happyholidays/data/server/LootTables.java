@@ -180,6 +180,8 @@ public class LootTables extends BaseLootTableProvider {
     private void registerAdditional() {
         addStockingPresents();
         addSantaGiftRewards();
+        addGingerbreadConversionRewards();
+        addGrinchAppeasement();
     }
 
     private void addStandardBlock(Block block) {
@@ -434,6 +436,51 @@ public class LootTables extends BaseLootTableProvider {
         additionalLootTables.put(christmasResource("santa_basic_gifts"), LootTable.lootTable().withPool(basicGiftPool));
         additionalLootTables.put(christmasResource("santa_rare_gifts"), LootTable.lootTable().withPool(rareGiftPool));
         additionalLootTables.put(christmasResource("santa_legendary_gifts"), LootTable.lootTable().withPool(legendaryGiftPool));
+    }
+
+    private void addGingerbreadConversionRewards() {
+        LootPool.Builder gingerbreadDoughPool = LootPool.lootPool()
+                .name("gingerbread_dough")
+                .setRolls(ConstantValue.exactly(1))
+                .add(LootItem.lootTableItem(ChristmasItems.RAW_GINGERBREAD.get())
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))));
+
+        LootPool.Builder gingerbreadCookiePool = LootPool.lootPool()
+                .name("gingerbread_cookie")
+                .setRolls(ConstantValue.exactly(1))
+                .add(LootItem.lootTableItem(ChristmasItems.GINGERBREAD_COOKIE.get()))
+                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1,2)))
+                    .when(LootItemRandomChanceCondition.randomChance(0.02f));
+
+        LootPool.Builder ornamentsPool = LootPool.lootPool()
+                .name("ornaments")
+                .setRolls(UniformGenerator.between(1, 2))
+                .add(TagEntry.expandTag(ChristmasTags.Items.BASIC_ORNAMENTS).setWeight(100))
+                .add(TagEntry.expandTag(ChristmasTags.Items.RARE_ORNAMENTS).setWeight(10))
+                .add(LootItem.lootTableItem(ChristmasItems.ENCHANTED_THREAD.get()).setWeight(10))
+                .when(LootItemRandomChanceCondition.randomChance(0.05f));
+
+        additionalLootTables.put(christmasResource("gingerbread_conversion"), LootTable.lootTable().withPool(gingerbreadDoughPool).withPool(gingerbreadCookiePool).withPool(ornamentsPool));
+    }
+
+    private void addGrinchAppeasement() {
+        LootPool.Builder builder = LootPool.lootPool()
+                .name("grinch_appeasement")
+                .setRolls(ConstantValue.exactly(3))
+                .add(TagEntry.expandTag(ChristmasTags.Items.BASIC_ORNAMENTS).setWeight(20).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 8))))
+                .add(TagEntry.expandTag(ChristmasTags.Items.RARE_ORNAMENTS).setWeight(20).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
+                .add(TagEntry.expandTag(ChristmasTags.Items.SHEET_MUSIC).setWeight(10))
+                .add(LootItem.lootTableItem(ChristmasItems.ENCHANTED_THREAD.get()).setWeight(20).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))))
+                .add(LootItem.lootTableItem(ChristmasItems.PRESENT_SCRAPS.get()).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(12, 18))))
+                .add(LootItem.lootTableItem(Items.COAL).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(8, 24))))
+                .add(LootItem.lootTableItem(Items.COPPER_INGOT).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 16))))
+                .add(LootItem.lootTableItem(Items.GOLD_INGOT).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 8))))
+                .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
+                .add(LootItem.lootTableItem(Items.COAL).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(8, 24))))
+                .add(LootItem.lootTableItem(Items.COAL).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(8, 24))))
+                .add(LootItem.lootTableItem(Items.COAL).setWeight(10).apply(SetItemCountFunction.setCount(UniformGenerator.between(8, 24))));
+
+        additionalLootTables.put(christmasResource("grinch_appeasement"), LootTable.lootTable().withPool(builder));
     }
 
     private void addGingerbreadMan(EntityType<? extends GingerbreadPersonEntity> gingerbreadEntity) {
