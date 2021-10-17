@@ -2,10 +2,8 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.elf;
 
 import java.util.Random;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -18,22 +16,18 @@ public class SantaElfRequests {
     public static final int NO_OF_UNIQUE_BASIC_ITEMS = 2;
     public static final int MIN_BASIC_REQUESTABLE_ITEMS = 12;
     public static final int MAX_BASIC_REQUESTABLE_ITEMS = 48;
-    public static final Tag<Item> BASIC_REQUESTABLE_ITEMS =
-            ItemTags.getAllTags().getTag(new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas_elf_basic_requestables"));
+    public static final Tag<Item> BASIC_REQUESTABLE_ITEMS = ChristmasTags.Items.SANTA_ELF_BASIC_REQUESTABLES;
 
     public static final int NO_OF_UNIQUE_INTERMEDIATE_ITEMS = 1;
     public static final int MIN_INTERMEDIATE_REQUESTABLE_ITEMS = 6;
     public static final int MAX_INTERMEDIATE_REQUESTABLE_ITEMS = 24;
-    public static final Tag<Item> INTERMEDIATE_REQUESTABLE_ITEMS =
-            ItemTags.getAllTags().getTag(new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas_elf_intermediate_requestables"));
+    public static final Tag<Item> INTERMEDIATE_REQUESTABLE_ITEMS = ChristmasTags.Items.SANTA_ELF_INTERMEDIATE_REQUESTABLES;
 
     public static final int NO_OF_UNIQUE_ADVANCED_ITEMS = 1;
     public static final int MIN_ADVANCED_REQUESTABLE_ITEMS = 4;
     public static final int MAX_ADVANCED_REQUESTABLE_ITEMS = 12;
-    public static final Tag<Item> ADVANCED_REQUESTABLE_ITEMS =
-            ItemTags.getAllTags().getTag(new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas_elf_advanced_requestables"));
-    public static final Tag<Item> ADVANCED_REQUESTABLE_ITEMS_ALTERNATE =
-            ItemTags.getAllTags().getTag(new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas_elf_advanced_requestables_alternate"));
+    public static final Tag<Item> ADVANCED_REQUESTABLE_ITEMS = ChristmasTags.Items.SANTA_ELF_ADVANCED_REQUESTABLES;
+    public static final Tag<Item> ADVANCED_REQUESTABLE_ITEMS_ALTERNATE = ChristmasTags.Items.SANTA_ELF_ADVANCED_REQUESTABLES_ALTERNATE;
 
 
     public static SantaElfRequest createRandomRequest(long gameTime) {

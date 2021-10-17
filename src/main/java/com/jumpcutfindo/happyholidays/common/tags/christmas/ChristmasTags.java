@@ -57,6 +57,14 @@ public class ChristmasTags {
         public static final Tags.IOptionalNamedTag<Item> GINGERBREAD_BLOCKS = itemTag("gingerbread_blocks");
 
         public static final Tags.IOptionalNamedTag<Item> CANDY_CANE_BLOCKS = itemTag("candy_cane_blocks");
+
+        public static final Tags.IOptionalNamedTag<Item> SANTA_ELF_BASIC_REQUESTABLES = itemTag("santa_elf_basic_requestables");
+
+        public static final Tags.IOptionalNamedTag<Item> SANTA_ELF_INTERMEDIATE_REQUESTABLES = itemTag("santa_elf_intermediate_requestables");
+
+        public static final Tags.IOptionalNamedTag<Item> SANTA_ELF_ADVANCED_REQUESTABLES = itemTag("santa_elf_advanced_requestables");
+
+        public static final Tags.IOptionalNamedTag<Item> SANTA_ELF_ADVANCED_REQUESTABLES_ALTERNATE = itemTag("santa_elf_advanced_requestables_alternate");
     }
 
     public class Entities {
