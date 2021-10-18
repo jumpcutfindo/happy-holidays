@@ -21,6 +21,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntitie
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
 import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
 import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
 import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
@@ -235,9 +236,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
             if (!isValidTime) {
                 long timeRemaining = santaData.getNextSummonTime() - serverWorld.getGameTime();
 
-
-                // FIXME: Fix message not including time remaining
-                GameplayMessage message = new GameplayMessage(MessageType.ERROR, "chat.happyholidays.christmas_star.santa_not_ready");
+                GameplayMessage message = new GameplayMessage(MessageType.ERROR, "chat.happyholidays.christmas_star.santa_not_ready", StringUtils.convertTicksToString(timeRemaining));
                 Messenger.sendChatMessage(message, serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position())));
 
                 return;
