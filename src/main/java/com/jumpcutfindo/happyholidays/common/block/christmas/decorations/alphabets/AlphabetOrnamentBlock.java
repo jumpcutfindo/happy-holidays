@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphab
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ChristmasBlockColor;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -13,7 +14,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -95,13 +95,12 @@ public class AlphabetOrnamentBlock extends OrnamentBlock {
         if (!world.isClientSide()) {
             ItemStack heldItem = playerEntity.getItemInHand(hand);
 
-            // TODO: Change to Christmas Dyes
-            if (heldItem.is(Items.RED_DYE)) stainGlass(world, blockState, blockPos, ChristmasBlockColor.RED);
-            else if (heldItem.is(Items.BLUE_DYE)) stainGlass(world, blockState, blockPos, ChristmasBlockColor.BLUE);
-            else if (heldItem.is(Items.YELLOW_DYE)) stainGlass(world, blockState, blockPos, ChristmasBlockColor.YELLOW);
-            else if (heldItem.is(Items.GREEN_DYE)) stainGlass(world, blockState, blockPos, ChristmasBlockColor.GREEN);
-            else if (heldItem.is(Items.GOLD_INGOT)) stainGlass(world, blockState, blockPos, ChristmasBlockColor.GOLD);
-            else if (heldItem.is(Items.IRON_INGOT)) stainGlass(world, blockState, blockPos, ChristmasBlockColor.SILVER);
+            if (heldItem.is(ChristmasItems.RED_CHRISTMAS_DYE.get())) stainGlass(world, blockState, blockPos, ChristmasBlockColor.RED);
+            else if (heldItem.is(ChristmasItems.BLUE_CHRISTMAS_DYE.get())) stainGlass(world, blockState, blockPos, ChristmasBlockColor.BLUE);
+            else if (heldItem.is(ChristmasItems.YELLOW_CHRISTMAS_DYE.get())) stainGlass(world, blockState, blockPos, ChristmasBlockColor.YELLOW);
+            else if (heldItem.is(ChristmasItems.GREEN_CHRISTMAS_DYE.get())) stainGlass(world, blockState, blockPos, ChristmasBlockColor.GREEN);
+            else if (heldItem.is(ChristmasItems.GOLD_CHRISTMAS_DYE.get())) stainGlass(world, blockState, blockPos, ChristmasBlockColor.GOLD);
+            else if (heldItem.is(ChristmasItems.SILVER_CHRISTMAS_DYE.get())) stainGlass(world, blockState, blockPos, ChristmasBlockColor.SILVER);
         }
 
         return InteractionResult.sidedSuccess(world.isClientSide());
