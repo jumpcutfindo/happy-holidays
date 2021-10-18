@@ -129,6 +129,8 @@ public class SnowGlobeItem extends ChristmasItem {
             if (shouldReduceCharges) {
                 snowGlobe.setDamageValue(snowGlobe.getDamageValue() + 1);
 
+                player.getCooldowns().addCooldown(snowGlobe.getItem(), 20);
+
                 double d0 = player.getX() + (player.getRandom().nextDouble() * 2.0D - 1.0D) * (double) player.getBbWidth() * 0.5D;
                 double d1 = player.getY() + 0.05D + player.getRandom().nextDouble();
                 double d2 = player.getZ() + (player.getRandom().nextDouble() * 2.0D - 1.0D) * (double) player.getBbWidth() * 0.5D;
