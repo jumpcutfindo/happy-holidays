@@ -7,11 +7,11 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.AngryS
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
+import com.jumpcutfindo.happyholidays.common.events.christmas.MusicBoxEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
@@ -26,9 +26,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -98,20 +96,6 @@ public class ChristmasEvents {
 
                 ((ServerLevel) playerEntity.level).playSound(null, event.getPos(), ChristmasSounds.CHRISTMAS_STAR_BLOCK_PLACE.get(),
                         SoundSource.NEUTRAL, 1.0f, 1.0f);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public static void onItemInteract(PlayerInteractEvent.RightClickBlock event) {
-        if (event.getEntity() instanceof ServerPlayer) {
-            ServerPlayer playerEntity = (ServerPlayer) event.getEntity();
-            ItemStack itemInHand = playerEntity.getItemInHand(event.getHand());
-            BlockState blockState = playerEntity.level.getBlockState(event.getPos());
-
-            // Trigger music box playing trigger
-            if (itemInHand.getItem() instanceof SheetMusicItem && blockState.is(ChristmasBlocks.MUSIC_BOX.get())) {
-                ChristmasTriggers.CHRISTMAS_PLAY_MUSIC_BOX.trigger(playerEntity);
             }
         }
     }
@@ -190,6 +174,13 @@ public class ChristmasEvents {
             ChristmasTriggers.CHRISTMAS_STAR_SUMMON_SANTA.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof ChristmasStarEvent.ReachBonus) {
             ChristmasTriggers.CHRISTMAS_STAR_REACH_BONUS.trigger((ServerPlayer) event.getPlayer());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onMusicBoxPlay(MusicBoxEvent event) {
+        if (event instanceof MusicBoxEvent.Play) {
+            ChristmasTriggers.CHRISTMAS_PLAY_MUSIC_BOX.trigger((ServerPlayer) event.getPlayer());
         }
     }
 }

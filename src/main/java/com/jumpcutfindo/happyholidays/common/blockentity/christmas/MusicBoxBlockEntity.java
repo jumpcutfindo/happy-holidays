@@ -1,10 +1,14 @@
 package com.jumpcutfindo.happyholidays.common.blockentity.christmas;
 
+import java.util.List;
+
 import com.jumpcutfindo.happyholidays.common.container.christmas.musicbox.MusicBoxContainer;
+import com.jumpcutfindo.happyholidays.common.events.christmas.MusicBoxEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
+import com.jumpcutfindo.happyholidays.common.utils.EntityUtils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -24,6 +28,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.MinecraftForge;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -232,6 +238,15 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
         this.timeToNextTrack = ChristmasMusic.getSoundDuration(music);
 
         this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 2);
+
+        if (!this.level.isClientSide()) {
+            List<Player> players = EntityUtils.findPlayersInRadius(this.level, new Vec3(this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ()), 5.0d);
+
+            for (Player player : players) {
+                MusicBoxEvent.Play playEvent = new MusicBoxEvent.Play(player);
+                MinecraftForge.EVENT_BUS.post(playEvent);
+            }
+        }
     }
 
     public void stopMusic() {
