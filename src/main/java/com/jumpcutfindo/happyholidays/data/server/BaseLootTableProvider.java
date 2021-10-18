@@ -49,6 +49,7 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
     protected final Map<Block, LootTable.Builder> blockLootTables = new HashMap<>();
     protected final Map<EntityType<?>, LootTable.Builder> entityLootTables = new HashMap<>();
     protected final Map<ResourceLocation, LootTable.Builder> additionalLootTables = new HashMap<>();
+
     public static Map<ResourceLocation, LootTable> tables = new HashMap<>();
     protected final DataGenerator generator;
 

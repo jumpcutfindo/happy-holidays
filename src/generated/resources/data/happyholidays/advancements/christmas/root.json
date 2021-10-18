@@ -1,0 +1,37 @@
+{
+  "display": {
+    "icon": {
+      "item": "happyholidays:christmas_guide_book"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.root"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.root.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "background": "happyholidays:textures/gui/advancements/backgrounds/christmas.png"
+  },
+  "criteria": {
+    "christmas_guide_book": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:christmas_guide_book"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "christmas_guide_book"
+    ]
+  ]
+}
