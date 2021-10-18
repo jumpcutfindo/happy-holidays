@@ -2,24 +2,23 @@ package com.jumpcutfindo.happyholidays.common.blockentity.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.Container;
-import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.Container;
+import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class GiftWrapperBlockEntity extends BaseContainerBlockEntity implements ChristmasEntityBlock {
     public static final String BLOCK_ENTITY_ID = "gift_wrapping_station";
@@ -130,17 +129,17 @@ public class GiftWrapperBlockEntity extends BaseContainerBlockEntity implements 
         ContainerHelper.saveAllItems(giftItemsNBT, giftItems);
 
         ItemStack giftStack = ItemStack.EMPTY;
-        if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.RED_DYE.getDefaultInstance())) {
+        if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), ChristmasItems.RED_CHRISTMAS_DYE.get().getDefaultInstance())) {
             giftStack = ChristmasItems.RED_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
-        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.BLUE_DYE.getDefaultInstance())) {
+        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), ChristmasItems.BLUE_CHRISTMAS_DYE.get().getDefaultInstance())) {
             giftStack = ChristmasItems.BLUE_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
-        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.YELLOW_DYE.getDefaultInstance())) {
+        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), ChristmasItems.YELLOW_CHRISTMAS_DYE.get().getDefaultInstance())) {
             giftStack = ChristmasItems.YELLOW_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
-        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.GREEN_DYE.getDefaultInstance())) {
+        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), ChristmasItems.GREEN_CHRISTMAS_DYE.get().getDefaultInstance())) {
             giftStack = ChristmasItems.GREEN_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
-        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), Items.GOLD_INGOT.getDefaultInstance())) {
+        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), ChristmasItems.GOLD_CHRISTMAS_DYE.get().getDefaultInstance())) {
             giftStack = ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
-        } else {
+        } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), ChristmasItems.SILVER_CHRISTMAS_DYE.get().getDefaultInstance())) {
             giftStack = ChristmasItems.SILVER_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
         }
 
@@ -153,11 +152,11 @@ public class GiftWrapperBlockEntity extends BaseContainerBlockEntity implements 
     }
 
     public static boolean isValidColourModifier(ItemStack itemStack) {
-        return ItemStack.isSame(itemStack, Items.RED_DYE.getDefaultInstance())
-                || ItemStack.isSame(itemStack, Items.BLUE_DYE.getDefaultInstance())
-                || ItemStack.isSame(itemStack, Items.YELLOW_DYE.getDefaultInstance())
-                || ItemStack.isSame(itemStack, Items.GREEN_DYE.getDefaultInstance())
-                || ItemStack.isSame(itemStack, Items.IRON_INGOT.getDefaultInstance())
-                || ItemStack.isSame(itemStack, Items.GOLD_INGOT.getDefaultInstance());
+        return ItemStack.isSame(itemStack, ChristmasItems.RED_CHRISTMAS_DYE.get().getDefaultInstance())
+                || ItemStack.isSame(itemStack, ChristmasItems.BLUE_CHRISTMAS_DYE.get().getDefaultInstance())
+                || ItemStack.isSame(itemStack, ChristmasItems.YELLOW_CHRISTMAS_DYE.get().getDefaultInstance())
+                || ItemStack.isSame(itemStack, ChristmasItems.GREEN_CHRISTMAS_DYE.get().getDefaultInstance())
+                || ItemStack.isSame(itemStack, ChristmasItems.SILVER_CHRISTMAS_DYE.get().getDefaultInstance())
+                || ItemStack.isSame(itemStack, ChristmasItems.GOLD_CHRISTMAS_DYE.get().getDefaultInstance());
     }
 }
