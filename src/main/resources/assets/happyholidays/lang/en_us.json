@@ -111,9 +111,10 @@
     "block.happyholidays.christmas_star.summon_tooltip": "Summon Santa",
     "block.happyholidays.christmas_star.block_place_in_radius": "Christmas block placed",
     "block.happyholidays.christmas_star.effect_apply": "Christmas Spirit received",
-    "container.happyholidays.christmas_star": "Christmas Star",
 
+    "container.happyholidays.christmas_star": "Christmas Star",
     "container.happyholidays.gift_wrapping_station": "Gift Wrapping Station",
+    "container.happyholidays.music_box": "Music Box",
 
     "block.happyholidays.music_box": "Music Box",
     "block.happyholidays.music_box.play_button_tooltip": "Play Music",
@@ -121,7 +122,6 @@
     "block.happyholidays.music_box.next_button_tooltip": "Next Track",
     "block.happyholidays.music_box.previous_button_tooltip": "Previous Track",
     "block.happyholidays.music_box.loop_button_tooltip": "Toggle Looping",
-    "container.happyholidays.music_box": "Music Box",
     "block.happyholidays.music_box.now_playing": "Now Playing - %s",
 
     "block.happyholidays.gift_wrapping_station": "Gift Wrapping Station",

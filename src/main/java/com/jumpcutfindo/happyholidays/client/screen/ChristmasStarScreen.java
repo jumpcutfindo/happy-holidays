@@ -93,9 +93,8 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
     }
 
     @Override
-    protected void renderLabels(PoseStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
-        this.font.draw(p_230451_1_, this.getBlockEntity().getDisplayName(), (float) this.inventoryLabelX,
-                (float) this.inventoryLabelY, 4210752);
+    protected void renderLabels(PoseStack matrixStack, int p_230451_2_, int p_230451_3_) {
+        this.font.draw(matrixStack, this.playerInventoryTitle, (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
     }
 
     private void createMenuControls() {

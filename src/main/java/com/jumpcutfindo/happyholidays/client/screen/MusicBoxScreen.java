@@ -30,7 +30,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
     private NextButton nextButton;
 
     public MusicBoxScreen(MusicBoxContainer screenContainer, Inventory inventory, Component title) {
-        super(screenContainer, inventory, title);
+        super(screenContainer, inventory, new TranslatableComponent("container.happyholidays.music_box"));
         this.leftPos = 0;
         this.topPos = 0;
         this.imageWidth = 176;
