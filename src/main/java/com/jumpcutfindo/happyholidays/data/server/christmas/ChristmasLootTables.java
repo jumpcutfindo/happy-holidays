@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.data.server;
+package com.jumpcutfindo.happyholidays.data.server.christmas;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.BaseCandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
@@ -10,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
+import com.jumpcutfindo.happyholidays.data.server.BaseLootTableProvider;
 
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
@@ -48,8 +49,8 @@ import net.minecraft.world.level.storage.loot.predicates.MatchTool;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
-public class LootTables extends BaseLootTableProvider {
-    public LootTables(DataGenerator generator) {
+public class ChristmasLootTables extends BaseLootTableProvider {
+    public ChristmasLootTables(DataGenerator generator) {
         super(generator);
     }
 

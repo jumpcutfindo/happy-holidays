@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.data.server;
+package com.jumpcutfindo.happyholidays.data.server.christmas;
 
 import javax.annotation.Nullable;
 
@@ -10,8 +10,8 @@ import net.minecraft.data.tags.EntityTypeTagsProvider;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class EntityTags extends EntityTypeTagsProvider {
-    public EntityTags(DataGenerator p_126517_, @Nullable ExistingFileHelper existingFileHelper) {
+public class ChristmasEntityTags extends EntityTypeTagsProvider {
+    public ChristmasEntityTags(DataGenerator p_126517_, @Nullable ExistingFileHelper existingFileHelper) {
         super(p_126517_, HappyHolidaysMod.MOD_ID, existingFileHelper);
     }
 

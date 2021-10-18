@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.data.server;
+package com.jumpcutfindo.happyholidays.data.server.christmas;
 
 import javax.annotation.Nullable;
 
@@ -10,8 +10,8 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class BlockTags extends BlockTagsProvider {
-    public BlockTags(DataGenerator p_126511_, @Nullable ExistingFileHelper existingFileHelper) {
+public class ChristmasBlockTags extends BlockTagsProvider {
+    public ChristmasBlockTags(DataGenerator p_126511_, @Nullable ExistingFileHelper existingFileHelper) {
         super(p_126511_, HappyHolidaysMod.MOD_ID, existingFileHelper);
     }
 

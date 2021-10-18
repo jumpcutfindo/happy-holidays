@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.data.client;
+package com.jumpcutfindo.happyholidays.data.client.christmas;
 
 import java.util.List;
 import java.util.Set;
@@ -16,10 +16,10 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class ItemModels extends ItemModelProvider {
+public class ChristmasItemModels extends ItemModelProvider {
     public static final String ITEM_GENERATED = "item/generated";
 
-    public ItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
+    public ChristmasItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, HappyHolidaysMod.MOD_ID, existingFileHelper);
     }
 

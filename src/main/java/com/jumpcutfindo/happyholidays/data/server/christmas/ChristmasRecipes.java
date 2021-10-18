@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.data.server;
+package com.jumpcutfindo.happyholidays.data.server.christmas;
 
 import java.util.function.Consumer;
 
@@ -23,8 +23,8 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
-public class Recipes extends RecipeProvider {
-    public Recipes(DataGenerator generator) {
+public class ChristmasRecipes extends RecipeProvider {
+    public ChristmasRecipes(DataGenerator generator) {
         super(generator);
     }
 

@@ -1,14 +1,14 @@
 package com.jumpcutfindo.happyholidays.data;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.data.client.BlockStates;
-import com.jumpcutfindo.happyholidays.data.client.ItemModels;
+import com.jumpcutfindo.happyholidays.data.client.christmas.ChristmasBlockStates;
+import com.jumpcutfindo.happyholidays.data.client.christmas.ChristmasItemModels;
 import com.jumpcutfindo.happyholidays.data.server.BaseAdvancementProvider;
-import com.jumpcutfindo.happyholidays.data.server.BlockTags;
-import com.jumpcutfindo.happyholidays.data.server.EntityTags;
-import com.jumpcutfindo.happyholidays.data.server.ItemTags;
-import com.jumpcutfindo.happyholidays.data.server.LootTables;
-import com.jumpcutfindo.happyholidays.data.server.Recipes;
+import com.jumpcutfindo.happyholidays.data.server.christmas.ChristmasBlockTags;
+import com.jumpcutfindo.happyholidays.data.server.christmas.ChristmasEntityTags;
+import com.jumpcutfindo.happyholidays.data.server.christmas.ChristmasItemTags;
+import com.jumpcutfindo.happyholidays.data.server.christmas.ChristmasLootTables;
+import com.jumpcutfindo.happyholidays.data.server.christmas.ChristmasRecipes;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -28,16 +28,16 @@ public class DataGenerators {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
         // Client-side providers
-        gen.addProvider(new BlockStates(gen, existingFileHelper));
-        gen.addProvider(new ItemModels(gen, existingFileHelper));
+        gen.addProvider(new ChristmasBlockStates(gen, existingFileHelper));
+        gen.addProvider(new ChristmasItemModels(gen, existingFileHelper));
 
         // Server-side providers
-        BlockTags blockTags = new BlockTags(gen, existingFileHelper);
-        gen.addProvider(blockTags);
-        gen.addProvider(new ItemTags(gen, blockTags, existingFileHelper));
-        gen.addProvider(new EntityTags(gen, existingFileHelper));
-        gen.addProvider(new Recipes(gen));
-        gen.addProvider(new LootTables(gen));
+        ChristmasBlockTags christmasBlockTags = new ChristmasBlockTags(gen, existingFileHelper);
+        gen.addProvider(christmasBlockTags);
+        gen.addProvider(new ChristmasItemTags(gen, christmasBlockTags, existingFileHelper));
+        gen.addProvider(new ChristmasEntityTags(gen, existingFileHelper));
+        gen.addProvider(new ChristmasRecipes(gen));
+        gen.addProvider(new ChristmasLootTables(gen));
 
         gen.addProvider(new BaseAdvancementProvider(gen));
     }

@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.data.server;
+package com.jumpcutfindo.happyholidays.data.server.christmas;
 
 import static com.jumpcutfindo.happyholidays.data.server.BaseAdvancementProvider.createAdvancement;
 import static com.jumpcutfindo.happyholidays.data.server.BaseAdvancementProvider.createRootAdvancement;
@@ -22,7 +22,7 @@ import net.minecraft.advancements.critereon.PlacedBlockTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 
-public class Advancements implements Consumer<Consumer<Advancement>> {
+public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
     private Advancement christmasRoot = null;
 
     @Override

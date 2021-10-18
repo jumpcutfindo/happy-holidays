@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.data.client;
+package com.jumpcutfindo.happyholidays.data.client.christmas;
 
 import java.util.Set;
 import java.util.function.BiFunction;
@@ -37,8 +37,8 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
-public class BlockStates extends BlockStateProvider {
-    public BlockStates(DataGenerator gen, ExistingFileHelper exFileHelper) {
+public class ChristmasBlockStates extends BlockStateProvider {
+    public ChristmasBlockStates(DataGenerator gen, ExistingFileHelper exFileHelper) {
         super(gen, HappyHolidaysMod.MOD_ID, exFileHelper);
     }
 

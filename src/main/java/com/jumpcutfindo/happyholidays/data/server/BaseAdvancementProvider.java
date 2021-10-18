@@ -9,6 +9,7 @@ import com.google.common.collect.Sets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.data.server.christmas.ChristmasAdvancements;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;
@@ -50,7 +51,7 @@ public class BaseAdvancementProvider extends AdvancementProvider {
             }
         };
 
-        new Advancements().accept(consumer);
+        new ChristmasAdvancements().accept(consumer);
     }
 
     public static Advancement.Builder createRootAdvancement(ItemLike displayItem, String advancementComponent, ResourceLocation backgroundResource, FrameType frameType, boolean showToast, boolean announceToChat, boolean hidden) {

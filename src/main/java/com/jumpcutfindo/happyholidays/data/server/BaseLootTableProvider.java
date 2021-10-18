@@ -96,7 +96,7 @@ public abstract class BaseLootTableProvider extends LootTableProvider {
 
     @Override
     public String getName() {
-        return "Happy Holidays LootTables";
+        return "Happy Holidays ChristmasLootTables";
     }
 
     @Override
