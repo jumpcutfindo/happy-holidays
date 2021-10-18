@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "happyholidays:christmas_guide_book"
+      "item": "happyholidays:red_christmas_gift"
     },
     "title": {
       "translate": "advancements.happyholidays.christmas.root"
@@ -16,22 +16,18 @@
     "background": "happyholidays:textures/gui/advancements/backgrounds/christmas.png"
   },
   "criteria": {
-    "christmas_guide_book": {
+    "has_any": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
-          {
-            "items": [
-              "happyholidays:christmas_guide_book"
-            ]
-          }
+          null
         ]
       }
     }
   },
   "requirements": [
     [
-      "christmas_guide_book"
+      "has_any"
     ]
   ]
 }

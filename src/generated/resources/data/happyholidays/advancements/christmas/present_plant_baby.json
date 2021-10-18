@@ -1,0 +1,31 @@
+{
+  "parent": "happyholidays:christmas/present_obtain_baby",
+  "display": {
+    "icon": {
+      "item": "happyholidays:baby_present"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.present_plant_baby"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.present_plant_baby.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "placed_present": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "happyholidays:baby_present"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "placed_present"
+    ]
+  ]
+}

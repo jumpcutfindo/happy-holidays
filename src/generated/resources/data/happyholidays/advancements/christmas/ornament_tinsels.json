@@ -1,0 +1,112 @@
+{
+  "parent": "happyholidays:christmas/ornament_dyes",
+  "display": {
+    "icon": {
+      "item": "happyholidays:red_tinsel"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.ornament_tinsels"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.ornament_tinsels.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_red_tinsel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:red_tinsel"
+            ]
+          }
+        ]
+      }
+    },
+    "has_blue_tinsel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:blue_tinsel"
+            ]
+          }
+        ]
+      }
+    },
+    "has_yellow_tinsel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:yellow_tinsel"
+            ]
+          }
+        ]
+      }
+    },
+    "has_green_tinsel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:green_tinsel"
+            ]
+          }
+        ]
+      }
+    },
+    "has_gold_tinsel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:silver_tinsel"
+            ]
+          }
+        ]
+      }
+    },
+    "has_silver_tinsel": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gold_tinsel"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_tinsel"
+    ],
+    [
+      "has_blue_tinsel"
+    ],
+    [
+      "has_yellow_tinsel"
+    ],
+    [
+      "has_green_tinsel"
+    ],
+    [
+      "has_gold_tinsel"
+    ],
+    [
+      "has_silver_tinsel"
+    ]
+  ]
+}

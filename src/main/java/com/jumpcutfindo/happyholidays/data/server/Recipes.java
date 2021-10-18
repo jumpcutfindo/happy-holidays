@@ -158,7 +158,7 @@ public class Recipes extends RecipeProvider {
     }
 
     private void christmasLights(Consumer<FinishedRecipe> consumer, Block block, Item christmasDye) {
-        ShapedRecipeBuilder.shaped(block, 2)
+        ShapedRecipeBuilder.shaped(block, 4)
                 .group(groupOf("christmas_lights"))
                 .define('S', Items.STRING).define('R', Items.GLASS).define('G', Items.GLOWSTONE_DUST).define('A', christmasDye)
                 .pattern(" S ").pattern("RGR").pattern(" A ")
@@ -313,7 +313,12 @@ public class Recipes extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get())
                 .requires(Items.BOOK).requires(ChristmasItems.GREEN_CHRISTMAS_DYE.get()).requires(ChristmasItems.RED_CHRISTMAS_DYE.get())
                 .unlockedBy(getHasName(Items.DIRT), has(Items.DIRT)).unlockedBy(getHasName(Items.BOOK), has(Items.BOOK))
-                .save(consumer, recipeResourceOf(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get()));
+                .save(consumer, recipeResourceOf(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get()) + "_happyholidays");
+
+        ShapelessRecipeBuilder.shapeless(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get())
+                .requires(Items.BOOK).requires(Items.GREEN_DYE).requires(Items.RED_DYE)
+                .unlockedBy(getHasName(Items.DIRT), has(Items.DIRT)).unlockedBy(getHasName(Items.BOOK), has(Items.BOOK))
+                .save(consumer, recipeResourceOf(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get()) + "_vanilla");
     }
 
     private void mistletoeAndHolly(Consumer<FinishedRecipe> consumer) {

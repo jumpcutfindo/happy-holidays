@@ -1,0 +1,102 @@
+{
+  "parent": "happyholidays:christmas/ornament_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:red_christmas_dye"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.ornament_dyes"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.ornament_dyes.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_red_dye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:red_christmas_dye"
+            ]
+          }
+        ]
+      }
+    },
+    "has_blue_dye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:blue_christmas_dye"
+            ]
+          }
+        ]
+      }
+    },
+    "has_yellow_dye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:yellow_christmas_dye"
+            ]
+          }
+        ]
+      }
+    },
+    "has_green_dye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:green_christmas_dye"
+            ]
+          }
+        ]
+      }
+    },
+    "has_gold_dye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:silver_christmas_dye"
+            ]
+          }
+        ]
+      }
+    },
+    "has_silver_dye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gold_christmas_dye"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_dye",
+      "has_blue_dye",
+      "has_yellow_dye",
+      "has_green_dye",
+      "has_gold_dye",
+      "has_silver_dye"
+    ]
+  ]
+}

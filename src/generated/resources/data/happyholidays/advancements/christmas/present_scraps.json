@@ -1,0 +1,37 @@
+{
+  "parent": "happyholidays:christmas/root",
+  "display": {
+    "icon": {
+      "item": "happyholidays:present_scraps"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.present_scraps"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.present_scraps.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_scraps": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:present_scraps"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_scraps"
+    ]
+  ]
+}

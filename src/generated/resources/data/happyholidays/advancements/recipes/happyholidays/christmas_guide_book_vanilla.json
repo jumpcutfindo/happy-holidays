@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "happyholidays:christmas_guide_book"
+      "happyholidays:christmas_guide_book_vanilla"
     ]
   },
   "criteria": {
@@ -33,7 +33,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "happyholidays:christmas_guide_book"
+        "recipe": "happyholidays:christmas_guide_book_vanilla"
       }
     }
   },

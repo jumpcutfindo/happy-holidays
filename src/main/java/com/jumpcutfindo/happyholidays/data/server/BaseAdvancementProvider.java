@@ -60,6 +60,10 @@ public class BaseAdvancementProvider extends AdvancementProvider {
                 backgroundResource, frameType, showToast, announceToChat, hidden);
     }
 
+    public static Advancement.Builder createAdvancement(Advancement parent, ItemLike displayItem, String advancementComponent) {
+        return createAdvancement(parent, displayItem, advancementComponent, FrameType.TASK, true, false, false);
+    }
+
     public static Advancement.Builder createAdvancement(Advancement parent, ItemLike displayItem, String advancementComponent, FrameType frameType, boolean showToast, boolean announceToChat, boolean hidden) {
         return Advancement.Builder.advancement().parent(parent).display(displayItem,
                 new TranslatableComponent("advancements." + advancementComponent),
