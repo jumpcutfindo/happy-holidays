@@ -1,0 +1,32 @@
+{
+  "parent": "happyholidays:christmas/santa_summon",
+  "display": {
+    "icon": {
+      "item": "happyholidays:enchanted_santa_hat"
+    },
+    "title": {
+      "translate": "advancements.santa_no_touchy"
+    },
+    "description": {
+      "translate": "advancements.santa_no_touchy.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 200
+  },
+  "criteria": {
+    "defeat_santa_restricted": {
+      "trigger": "happyholidays:christmas_santa_no_touchy",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "defeat_santa_restricted"
+    ]
+  ]
+}

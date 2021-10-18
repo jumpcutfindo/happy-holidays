@@ -1,0 +1,29 @@
+{
+  "parent": "happyholidays:christmas/star_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:red_bauble"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.star_put_ornament"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.star_put_ornament.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "put_ornament": {
+      "trigger": "happyholidays:christmas_star_put_ornament",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "put_ornament"
+    ]
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "parent": "happyholidays:christmas/stocking_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:gold_stocking"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.stocking_fill"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.stocking_fill.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "stocking_filled": {
+      "trigger": "happyholidays:christmas_stocking_fill",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "stocking_filled"
+    ]
+  ]
+}

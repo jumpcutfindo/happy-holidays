@@ -1,0 +1,29 @@
+{
+  "parent": "happyholidays:christmas/star_max_tier",
+  "display": {
+    "icon": {
+      "item": "happyholidays:santa_hat"
+    },
+    "title": {
+      "translate": "advancements.santa_summon"
+    },
+    "description": {
+      "translate": "advancements.santa_summon.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "summon_santa": {
+      "trigger": "happyholidays:christmas_star_summon_santa",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "summon_santa"
+    ]
+  ]
+}

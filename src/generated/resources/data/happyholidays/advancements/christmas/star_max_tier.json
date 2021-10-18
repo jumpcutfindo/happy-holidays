@@ -1,0 +1,29 @@
+{
+  "parent": "happyholidays:christmas/star_put_ornament",
+  "display": {
+    "icon": {
+      "item": "happyholidays:christmas_star"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.star_max_tier"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.star_max_tier.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "max_tier": {
+      "trigger": "happyholidays:christmas_star_maxed_tier",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "max_tier"
+    ]
+  ]
+}
