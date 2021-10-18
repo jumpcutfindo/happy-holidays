@@ -498,7 +498,7 @@ public class LootTables extends BaseLootTableProvider {
                 .add(LootItem.lootTableItem(Items.COAL).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(8, 24))))
                 .add(LootItem.lootTableItem(Items.COPPER_INGOT).setWeight(40).apply(SetItemCountFunction.setCount(UniformGenerator.between(8, 24))))
                 .add(LootItem.lootTableItem(Items.GOLD_INGOT).setWeight(30).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 8))))
-                .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(20).apply(SetItemCountFunction.setCount(UniformGenerator.between(6, 12))))
+                .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(20).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 6))))
                 .add(LootItem.lootTableItem(Items.NETHERITE_SCRAP).setWeight(5).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))));
 
         LootPool.Builder toolsRewardPool = LootPool.lootPool()

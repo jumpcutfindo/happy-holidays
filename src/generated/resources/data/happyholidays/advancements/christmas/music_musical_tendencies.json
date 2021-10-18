@@ -1,28 +1,28 @@
 {
-  "parent": "happyholidays:christmas/grinch_appeasement",
+  "parent": "happyholidays:christmas/root",
   "display": {
     "icon": {
-      "item": "happyholidays:grinch_ornament"
+      "item": "happyholidays:music_box"
     },
     "title": {
-      "translate": "advancements.happyholidays.christmas.grinch_ornament"
+      "translate": "advancements.happyholidays.christmas.music_musical_tendencies"
     },
     "description": {
-      "translate": "advancements.happyholidays.christmas.grinch_ornament.desc"
+      "translate": "advancements.happyholidays.christmas.music_musical_tendencies.desc"
     },
-    "frame": "goal",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": false,
     "hidden": false
   },
   "criteria": {
-    "has_ornament": {
+    "has_music_box": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "happyholidays:grinch_ornament"
+              "happyholidays:music_box"
             ]
           }
         ]
@@ -31,7 +31,7 @@
   },
   "requirements": [
     [
-      "has_ornament"
+      "has_music_box"
     ]
   ]
 }

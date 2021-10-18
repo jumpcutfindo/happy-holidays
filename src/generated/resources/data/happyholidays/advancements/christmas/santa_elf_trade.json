@@ -1,0 +1,29 @@
+{
+  "parent": "happyholidays:christmas/santa_elf_summon",
+  "display": {
+    "icon": {
+      "item": "minecraft:emerald"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.santa_elf_trade"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.santa_elf_trade.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_trade": {
+      "trigger": "happyholidays:christmas_santa_elf_trade",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "has_trade"
+    ]
+  ]
+}

@@ -1,14 +1,14 @@
 {
-  "parent": "happyholidays:christmas/grinch_appeasement",
+  "parent": "happyholidays:christmas/gingerbread_man_turn_dry",
   "display": {
     "icon": {
-      "item": "happyholidays:grinch_ornament"
+      "item": "happyholidays:gingerbread_man_ornament"
     },
     "title": {
-      "translate": "advancements.happyholidays.christmas.grinch_ornament"
+      "translate": "advancements.happyholidays.christmas.gingerbread_man_ornament"
     },
     "description": {
-      "translate": "advancements.happyholidays.christmas.grinch_ornament.desc"
+      "translate": "advancements.happyholidays.christmas.gingerbread_man_ornament.desc"
     },
     "frame": "goal",
     "show_toast": true,
@@ -22,7 +22,7 @@
         "items": [
           {
             "items": [
-              "happyholidays:grinch_ornament"
+              "happyholidays:gingerbread_man_ornament"
             ]
           }
         ]

@@ -1,28 +1,29 @@
 {
-  "parent": "happyholidays:christmas/grinch_appeasement",
+  "parent": "happyholidays:christmas/candy_crush",
   "display": {
     "icon": {
-      "item": "happyholidays:grinch_ornament"
+      "item": "happyholidays:santa_elf_bell",
+      "nbt": "{Damage:0}"
     },
     "title": {
-      "translate": "advancements.happyholidays.christmas.grinch_ornament"
+      "translate": "advancements.happyholidays.christmas.santa_elf_bell"
     },
     "description": {
-      "translate": "advancements.happyholidays.christmas.grinch_ornament.desc"
+      "translate": "advancements.happyholidays.christmas.santa_elf_bell.desc"
     },
-    "frame": "goal",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": false,
     "hidden": false
   },
   "criteria": {
-    "has_ornament": {
+    "has_item": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "happyholidays:grinch_ornament"
+              "happyholidays:santa_elf_bell"
             ]
           }
         ]
@@ -31,7 +32,7 @@
   },
   "requirements": [
     [
-      "has_ornament"
+      "has_item"
     ]
   ]
 }
