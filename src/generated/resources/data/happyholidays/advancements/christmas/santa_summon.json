@@ -17,7 +17,7 @@
   },
   "criteria": {
     "summon_santa": {
-      "trigger": "happyholidays:christmas_star_summon_santa",
+      "trigger": "happyholidays:christmas/star_summon_santa",
       "conditions": {}
     }
   },

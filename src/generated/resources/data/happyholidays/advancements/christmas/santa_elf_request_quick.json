@@ -20,7 +20,7 @@
   },
   "criteria": {
     "done_request": {
-      "trigger": "happyholidays:christmas_santa_elf_complete_request_quick",
+      "trigger": "happyholidays:christmas/santa_elf_complete_request_quick",
       "conditions": {}
     }
   },

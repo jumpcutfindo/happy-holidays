@@ -17,7 +17,7 @@
   },
   "criteria": {
     "put_ornament": {
-      "trigger": "happyholidays:christmas_star_put_ornament",
+      "trigger": "happyholidays:christmas/star_put_ornament",
       "conditions": {}
     }
   },

@@ -17,7 +17,7 @@
   },
   "criteria": {
     "stocking_filled": {
-      "trigger": "happyholidays:christmas_stocking_fill",
+      "trigger": "happyholidays:christmas/stocking_fill",
       "conditions": {}
     }
   },

@@ -17,7 +17,7 @@
   },
   "criteria": {
     "encounter_grinch": {
-      "trigger": "happyholidays:christmas_grinch_encounter",
+      "trigger": "happyholidays:christmas/grinch_encounter",
       "conditions": {}
     }
   },

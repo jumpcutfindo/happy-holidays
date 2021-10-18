@@ -74,11 +74,11 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
 
     private void grinchBranch(Consumer<Advancement> advancementConsumer) {
         Advancement grinchStart = createAdvancement(christmasRoot, ChristmasItems.GRINCH_ORNAMENT.get(), translatable("grinch_encounter"))
-                .addCriterion("encounter_grinch", ChristmasTriggers.CHRISTMAS_GRINCH_ENCOUNTER.getInstance())
+                .addCriterion("encounter_grinch", ChristmasTriggers.GRINCH_ENCOUNTER.getInstance())
                 .save(advancementConsumer, advancementId("grinch_encounter"));
 
         Advancement grinchAppeasement = createAdvancement(grinchStart, ChristmasItems.RED_CHRISTMAS_GIFT_ITEM.get(), translatable("grinch_appeasement"))
-                .addCriterion("appease_grinch", ChristmasTriggers.CHRISTMAS_GRINCH_APPEASE.getInstance())
+                .addCriterion("appease_grinch", ChristmasTriggers.GRINCH_APPEASE.getInstance())
                 .save(advancementConsumer, advancementId("grinch_appeasement"));
 
         Advancement grinchOrnament = createAdvancement(grinchAppeasement, ChristmasItems.GRINCH_ORNAMENT.get(), translatable("grinch_ornament"), FrameType.GOAL, true, false, false)
@@ -203,7 +203,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .save(advancementConsumer, advancementId("music_musical_tendencies"));
 
         Advancement settingTheMood = createAdvancement(musicStart, ChristmasItems.MUSIC_BOX.get(), translatable("music_setting_the_mood"))
-                .addCriterion("played_music", ChristmasTriggers.CHRISTMAS_PLAY_MUSIC_BOX.getInstance())
+                .addCriterion("played_music", ChristmasTriggers.PLAY_MUSIC_BOX.getInstance())
                 .save(advancementConsumer, advancementId("music_setting_the_mood"));
 
         Advancement musicalMaestro = createAdvancement(musicStart, ChristmasItems.SHEET_MUSIC_CAROL_OF_THE_BELLS.get(), translatable("music_musical_maestro"), FrameType.CHALLENGE, true, true, false)
@@ -235,11 +235,11 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .save(advancementConsumer, advancementId("gingerbread_start"));
 
         Advancement gingerbreadManTurnSoggy = createAdvancement(gingerbreadStart, ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get(), translatable("gingerbread_man_turn_soggy"))
-                .addCriterion("turn_soggy", ChristmasTriggers.CHRISTMAS_GINGERBREAD_MAN_TURN_SOGGY.getInstance())
+                .addCriterion("turn_soggy", ChristmasTriggers.GINGERBREAD_MAN_TURN_SOGGY.getInstance())
                 .save(advancementConsumer, advancementId("gingerbread_man_turn_soggy"));
 
         Advancement gingerbreadManTurnDry = createAdvancement(gingerbreadManTurnSoggy, ChristmasItems.GINGERBREAD_BLOCK.get(), translatable("gingerbread_man_turn_dry"))
-                .addCriterion("turn_dry", ChristmasTriggers.CHRISTMAS_GINGERBREAD_MAN_TURN_DRY.getInstance())
+                .addCriterion("turn_dry", ChristmasTriggers.GINGERBREAD_MAN_TURN_DRY.getInstance())
                 .save(advancementConsumer, advancementId("gingerbread_man_turn_dry"));
 
         Advancement gingerbreadOrnament = createAdvancement(gingerbreadManTurnDry, ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get(), translatable("gingerbread_man_ornament"), FrameType.GOAL, true, false, false)
@@ -287,19 +287,19 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .save(advancementConsumer, advancementId("santa_elf_bell"));
 
         Advancement santaElfSummon = createAdvancement(santaElfBell, ChristmasItems.SANTA_ELF_ORNAMENT.get(), translatable("santa_elf_summon"))
-                .addCriterion("has_summoned", ChristmasTriggers.CHRISTMAS_SANTA_ELF_SUMMON.getInstance())
+                .addCriterion("has_summoned", ChristmasTriggers.SANTA_ELF_SUMMON.getInstance())
                 .save(advancementConsumer, advancementId("santa_elf_summon"));
 
         Advancement santaElfTrade = createAdvancement(santaElfSummon, Items.EMERALD, translatable("santa_elf_trade"))
-                .addCriterion("has_trade", ChristmasTriggers.CHRISTMAS_SANTA_ELF_TRADE.getInstance())
+                .addCriterion("has_trade", ChristmasTriggers.SANTA_ELF_TRADE.getInstance())
                 .save(advancementConsumer, advancementId("santa_elf_trade"));
 
         Advancement santaElfRequest = createAdvancement(santaElfSummon, ChristmasItems.TOY_PARTS_REQUEST.get(), translatable("santa_elf_request"))
-                .addCriterion("done_request", ChristmasTriggers.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST.getInstance())
+                .addCriterion("done_request", ChristmasTriggers.SANTA_ELF_COMPLETE_REQUEST.getInstance())
                 .save(advancementConsumer, advancementId("santa_elf_request"));
 
         Advancement santaElfRequestQuick = createAdvancement(santaElfRequest, ChristmasItems.TOY_PARTS_REQUEST.get(), translatable("santa_elf_request_quick"), FrameType.CHALLENGE, true, true, false)
-                .addCriterion("done_request", ChristmasTriggers.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST_QUICK.getInstance())
+                .addCriterion("done_request", ChristmasTriggers.SANTA_ELF_COMPLETE_REQUEST_QUICK.getInstance())
                 .rewards(AdvancementRewards.Builder.experience(150))
                 .save(advancementConsumer, advancementId("santa_elf_request_quick"));
 
@@ -340,7 +340,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .save(advancementConsumer, advancementId("stocking_start"));
 
         Advancement stockingFill = createAdvancement(stockingStart, ChristmasItems.GOLD_STOCKING.get(), translatable("stocking_fill"))
-                .addCriterion("stocking_filled", ChristmasTriggers.CHRISTMAS_STOCKING_FILL.getInstance())
+                .addCriterion("stocking_filled", ChristmasTriggers.STOCKING_FILL.getInstance())
                 .save(advancementConsumer, advancementId("stocking_fill"));
     }
 
@@ -350,15 +350,15 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .save(advancementConsumer, advancementId("star_start"));
 
         Advancement starPutOrnament = createAdvancement(starStart, ChristmasItems.RED_BAUBLE.get(), translatable("star_put_ornament"))
-                .addCriterion("put_ornament", ChristmasTriggers.CHRISTMAS_STAR_PUT_ORNAMENT.getInstance())
+                .addCriterion("put_ornament", ChristmasTriggers.STAR_PUT_ORNAMENT.getInstance())
                 .save(advancementConsumer, advancementId("star_put_ornament"));
 
         Advancement starMaxTier = createAdvancement(starPutOrnament, ChristmasItems.CHRISTMAS_STAR.get(), translatable("star_max_tier"))
-                .addCriterion("max_tier", ChristmasTriggers.CHRISTMAS_STAR_MAXED_TIER.getInstance())
+                .addCriterion("max_tier", ChristmasTriggers.STAR_MAXED_TIER.getInstance())
                 .save(advancementConsumer, advancementId("star_max_tier"));
 
         Advancement starHatMagic = createAdvancement(starMaxTier, ChristmasItems.ENCHANTED_SANTA_HAT.get(), translatable("star_hat_magic"), FrameType.GOAL, true, false, false)
-                .addCriterion("put_santa_hat", ChristmasTriggers.CHRISTMAS_STAR_REACH_BONUS.getInstance())
+                .addCriterion("put_santa_hat", ChristmasTriggers.STAR_REACH_BONUS.getInstance())
                 .rewards(AdvancementRewards.Builder.experience(100))
                 .save(advancementConsumer, advancementId("star_hat_magic"));
 
@@ -367,19 +367,19 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
 
     private void santaSubBranch(Consumer<Advancement> advancementConsumer, Advancement parent) {
         Advancement santaStart = createAdvancement(parent, ChristmasItems.SANTA_HAT.get(), "santa_summon")
-                .addCriterion("summon_santa", ChristmasTriggers.CHRISTMAS_STAR_SUMMON_SANTA.getInstance())
+                .addCriterion("summon_santa", ChristmasTriggers.STAR_SUMMON_SANTA.getInstance())
                 .save(advancementConsumer, advancementId("santa_summon"));
 
         Advancement santaDropParty = createAdvancement(santaStart, ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get(), "santa_drop_party")
-                .addCriterion("drop_party", ChristmasTriggers.CHRISTMAS_SANTA_DROP_PARTY_COMPLETE.getInstance())
+                .addCriterion("drop_party", ChristmasTriggers.SANTA_DROP_PARTY_COMPLETE.getInstance())
                 .save(advancementConsumer, advancementId("santa_drop_party"));
 
         Advancement santaAngryDefeat = createAdvancement(santaStart, ChristmasItems.ENCHANTED_SANTA_HAT.get(), "santa_angry_defeat")
-                .addCriterion("defeat_santa", ChristmasTriggers.CHRISTMAS_SANTA_ANGRY_DIE.getInstance())
+                .addCriterion("defeat_santa", ChristmasTriggers.SANTA_ANGRY_DIE.getInstance())
                 .save(advancementConsumer, advancementId("santa_angry_defeat"));
 
         Advancement noTouchy = createAdvancement(santaStart, ChristmasItems.ENCHANTED_SANTA_HAT.get(), "santa_no_touchy", FrameType.CHALLENGE, true, true, false)
-                .addCriterion("defeat_santa_restricted", ChristmasTriggers.CHRISTMAS_SANTA_NO_TOUCHY.getInstance())
+                .addCriterion("defeat_santa_restricted", ChristmasTriggers.SANTA_NO_TOUCHY.getInstance())
                 .rewards(AdvancementRewards.Builder.experience(200).build())
                 .save(advancementConsumer, advancementId("santa_no_touchy"));
     }

@@ -17,7 +17,7 @@
   },
   "criteria": {
     "played_music": {
-      "trigger": "happyholidays:christmas_play_music_box",
+      "trigger": "happyholidays:christmas/play_music_box",
       "conditions": {}
     }
   },

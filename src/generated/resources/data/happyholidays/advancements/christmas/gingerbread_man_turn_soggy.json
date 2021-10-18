@@ -17,7 +17,7 @@
   },
   "criteria": {
     "turn_soggy": {
-      "trigger": "happyholidays:christmas_gingerbread_man_turn_soggy",
+      "trigger": "happyholidays:christmas/gingerbread_man_turn_soggy",
       "conditions": {}
     }
   },

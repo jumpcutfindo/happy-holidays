@@ -17,7 +17,7 @@
   },
   "criteria": {
     "has_trade": {
-      "trigger": "happyholidays:christmas_santa_elf_trade",
+      "trigger": "happyholidays:christmas/santa_elf_trade",
       "conditions": {}
     }
   },

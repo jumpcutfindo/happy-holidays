@@ -17,7 +17,7 @@
   },
   "criteria": {
     "drop_party": {
-      "trigger": "happyholidays:christmas_santa_drop_party_complete",
+      "trigger": "happyholidays:christmas/santa_drop_party_complete",
       "conditions": {}
     }
   },

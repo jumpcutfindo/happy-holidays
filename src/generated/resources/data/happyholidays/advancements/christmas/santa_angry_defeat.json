@@ -17,7 +17,7 @@
   },
   "criteria": {
     "defeat_santa": {
-      "trigger": "happyholidays:christmas_santa_angry_die",
+      "trigger": "happyholidays:christmas/santa_angry_die",
       "conditions": {}
     }
   },

@@ -17,7 +17,7 @@
   },
   "criteria": {
     "appease_grinch": {
-      "trigger": "happyholidays:christmas_grinch_appease",
+      "trigger": "happyholidays:christmas/grinch_appease",
       "conditions": {}
     }
   },

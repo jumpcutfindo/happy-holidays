@@ -20,7 +20,7 @@
   },
   "criteria": {
     "put_santa_hat": {
-      "trigger": "happyholidays:christmas_star_reach_bonus",
+      "trigger": "happyholidays:christmas/star_reach_bonus",
       "conditions": {}
     }
   },

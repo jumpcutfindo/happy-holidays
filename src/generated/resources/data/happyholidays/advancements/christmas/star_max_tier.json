@@ -17,7 +17,7 @@
   },
   "criteria": {
     "max_tier": {
-      "trigger": "happyholidays:christmas_star_maxed_tier",
+      "trigger": "happyholidays:christmas/star_maxed_tier",
       "conditions": {}
     }
   },

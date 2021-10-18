@@ -20,7 +20,7 @@
   },
   "criteria": {
     "defeat_santa_restricted": {
-      "trigger": "happyholidays:christmas_santa_no_touchy",
+      "trigger": "happyholidays:christmas/santa_no_touchy",
       "conditions": {}
     }
   },
