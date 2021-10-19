@@ -12,6 +12,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.FluidState;
 
 public class BaseGingerbreadWall extends WallBlock implements IGingerbreadBlock {
     public static final String DOUGH_BLOCK_ID = "gingerbread_dough_wall";
@@ -47,6 +48,15 @@ public class BaseGingerbreadWall extends WallBlock implements IGingerbreadBlock 
         BlockState expectedState = super.updateShape(blockState, direction, otherBlockState, level, blockPos, otherBlockPos);
 
         return BaseGingerbreadBlock.getUpdatedState(expectedState, direction, otherBlockState, level, blockPos, otherBlockPos, soggySupplier);
+    }
+
+    @Override
+    public boolean placeLiquid(LevelAccessor level, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
+        boolean flag = super.placeLiquid(level, blockPos, blockState, fluidState);
+
+        if (flag && this.isSoggifiable()) level.setBlock(blockPos, soggySupplier.get().getBlock().withPropertiesOf(blockState), 2);
+
+        return flag;
     }
 
     public static class Builder {
