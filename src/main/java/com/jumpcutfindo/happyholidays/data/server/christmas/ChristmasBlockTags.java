@@ -78,7 +78,16 @@ public class ChristmasBlockTags extends BlockTagsProvider {
 
                 .add(ChristmasBlocks.GINGERBREAD_WALL.get())
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_WALL.get())
-                .add(ChristmasBlocks.SOGGY_GINGERBREAD_WALL.get());
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_WALL.get())
+
+                .add(ChristmasBlocks.GINGERBREAD_BRICKS.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_BRICKS.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS.get())
+
+                .add(ChristmasBlocks.GINGERBREAD_TILES.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_TILES.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get());
+
 
         tag(ChristmasTags.Blocks.CANDY_CANE_BLOCKS)
                 .add(ChristmasBlocks.CANDY_CANE_BLOCK.get())

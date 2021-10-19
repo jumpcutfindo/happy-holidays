@@ -70,7 +70,11 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
                 ChristmasBlocks.GINGERBREAD_BRICKS.get(),
                 ChristmasBlocks.GINGERBREAD_DOUGH_BRICKS.get(),
-                ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS.get()
+                ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS.get(),
+
+                ChristmasBlocks.GINGERBREAD_TILES.get(),
+                ChristmasBlocks.GINGERBREAD_DOUGH_TILES.get(),
+                ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get()
         );
 
         // For blocks with horizontal directions only

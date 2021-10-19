@@ -39,6 +39,9 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.slab.So
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs.GingerbreadStair;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs.RawGingerbreadStair;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs.SoggyGingerbreadStair;
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.tiles.GingerbreadTiles;
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.tiles.RawGingerbreadTiles;
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.tiles.SoggyGingerbreadTiles;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.wall.GingerbreadWall;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.wall.RawGingerbreadWall;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.wall.SoggyGingerbreadWall;
@@ -246,6 +249,8 @@ public class ChristmasBlocks {
             BLOCKS.register(RawGingerbreadWall.BLOCK_ID, RawGingerbreadWall::new);
     public static final RegistryObject<ChristmasBlock> GINGERBREAD_DOUGH_BRICKS =
             BLOCKS.register(RawGingerbreadBricks.BLOCK_ID, RawGingerbreadBricks::new);
+    public static final RegistryObject<ChristmasBlock> GINGERBREAD_DOUGH_TILES =
+            BLOCKS.register(RawGingerbreadTiles.BLOCK_ID, RawGingerbreadTiles::new);
 
     public static final RegistryObject<ChristmasBlock> GINGERBREAD_BLOCK =
             BLOCKS.register(GingerbreadBlock.BLOCK_ID, GingerbreadBlock::new);
@@ -257,6 +262,8 @@ public class ChristmasBlocks {
             BLOCKS.register(GingerbreadWall.BLOCK_ID, GingerbreadWall::new);
     public static final RegistryObject<ChristmasBlock> GINGERBREAD_BRICKS =
             BLOCKS.register(GingerbreadBricks.BLOCK_ID, GingerbreadBricks::new);
+    public static final RegistryObject<ChristmasBlock> GINGERBREAD_TILES =
+            BLOCKS.register(GingerbreadTiles.BLOCK_ID, GingerbreadTiles::new);
 
     public static final RegistryObject<ChristmasBlock> SOGGY_GINGERBREAD_BLOCK =
             BLOCKS.register(SoggyGingerbreadBlock.BLOCK_ID, SoggyGingerbreadBlock::new);
@@ -268,6 +275,8 @@ public class ChristmasBlocks {
             BLOCKS.register(SoggyGingerbreadWall.BLOCK_ID, SoggyGingerbreadWall::new);
     public static final RegistryObject<ChristmasBlock> SOGGY_GINGERBREAD_BRICKS =
             BLOCKS.register(SoggyGingerbreadBricks.BLOCK_ID, SoggyGingerbreadBricks::new);
+    public static final RegistryObject<ChristmasBlock> SOGGY_GINGERBREAD_TILES =
+            BLOCKS.register(SoggyGingerbreadTiles.BLOCK_ID, SoggyGingerbreadTiles::new);
 
     // Candy cane blocks
     public static final RegistryObject<ChristmasBlock> CANDY_CANE_BLOCK =

@@ -78,6 +78,14 @@ public class ChristmasLootTables extends BaseLootTableProvider {
         addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_WALL.get());
         addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_WALL.get());
 
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_BRICKS.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_BRICKS.get());
+        addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS.get());
+
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_TILES.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_TILES.get());
+        addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get());
+
         addStandardBlock(ChristmasBlocks.BABY_PRESENT_ORNAMENT.get());
         addStandardBlock(ChristmasBlocks.ADULT_PRESENT_ORNAMENT.get());
         addStandardBlock(ChristmasBlocks.ELDER_PRESENT_ORNAMENT.get());
