@@ -31,9 +31,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.BaseGin
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.slab.GingerbreadSlab;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.slab.RawGingerbreadSlab;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.slab.SoggyGingerbreadSlab;
-import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs.GingerbreadStair;
-import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs.RawGingerbreadStair;
-import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.stairs.SoggyGingerbreadStair;
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.BaseGingerbreadStairBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.wall.GingerbreadWall;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.wall.RawGingerbreadWall;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.wall.SoggyGingerbreadWall;
@@ -234,7 +232,7 @@ public class ChristmasBlocks {
     public static final RegistryObject<ChristmasBlock> GINGERBREAD_DOUGH_BLOCK =
             BLOCKS.register(BaseGingerbreadBlock.DOUGH_BLOCK_ID, BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_DOUGH_STAIRS =
-            BLOCKS.register(RawGingerbreadStair.BLOCK_ID, RawGingerbreadStair::new);
+            BLOCKS.register(BaseGingerbreadStairBlock.DOUGH_BLOCK_ID, BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_DOUGH_SLAB =
             BLOCKS.register(RawGingerbreadSlab.BLOCK_ID, RawGingerbreadSlab::new);
     public static final RegistryObject<WallBlock> GINGERBREAD_DOUGH_WALL =
@@ -249,7 +247,7 @@ public class ChristmasBlocks {
     public static final RegistryObject<ChristmasBlock> GINGERBREAD_BLOCK =
             BLOCKS.register(BaseGingerbreadBlock.COOKED_BLOCK_ID, BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_STAIRS =
-            BLOCKS.register(GingerbreadStair.BLOCK_ID, GingerbreadStair::new);
+            BLOCKS.register(BaseGingerbreadStairBlock.COOKED_BLOCK_ID, BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_SLAB =
             BLOCKS.register(GingerbreadSlab.BLOCK_ID, GingerbreadSlab::new);
     public static final RegistryObject<WallBlock> GINGERBREAD_WALL =
@@ -264,7 +262,7 @@ public class ChristmasBlocks {
     public static final RegistryObject<ChristmasBlock> SOGGY_GINGERBREAD_BLOCK =
             BLOCKS.register(BaseGingerbreadBlock.SOGGY_BLOCK_ID, BaseGingerbreadBlock.Builder.create().soggy().build());
     public static final RegistryObject<StairBlock> SOGGY_GINGERBREAD_STAIRS =
-            BLOCKS.register(SoggyGingerbreadStair.BLOCK_ID, SoggyGingerbreadStair::new);
+            BLOCKS.register(BaseGingerbreadStairBlock.SOGGY_BLOCK_ID, BaseGingerbreadStairBlock.Builder.create().soggy().build());
     public static final RegistryObject<SlabBlock> SOGGY_GINGERBREAD_SLAB =
             BLOCKS.register(SoggyGingerbreadSlab.BLOCK_ID, SoggyGingerbreadSlab::new);
     public static final RegistryObject<WallBlock> SOGGY_GINGERBREAD_WALL =
