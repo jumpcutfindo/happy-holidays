@@ -66,10 +66,17 @@ public class BaseGingerbreadBlock extends ChristmasBlock implements IGingerbread
         super(blockProperties);
     }
 
+    @Override
     public void setSoggyResult(Supplier<BlockState> soggySupplier) {
         this.soggySupplier = soggySupplier;
     }
 
+    @Override
+    public BlockState getSoggyResult() {
+        return this.soggySupplier != null ? this.soggySupplier.get() : null;
+    }
+
+    @Override
     public boolean isSoggifiable() {
         return soggySupplier != null;
     }
@@ -126,6 +133,15 @@ public class BaseGingerbreadBlock extends ChristmasBlock implements IGingerbread
         }
 
         return blockState;
+    }
+
+    public static boolean onLiquidPlaced(LevelAccessor level, BlockPos blockPos, BlockState blockState, boolean flag) {
+        if (flag && blockState.getBlock() instanceof IGingerbreadBlock gingerbreadBlock && gingerbreadBlock.isSoggifiable()) {
+            level.setBlock(blockPos, gingerbreadBlock.getSoggyResult().getBlock().withPropertiesOf(blockState).setValue(BlockStateProperties.WATERLOGGED, true), 2);
+            if (!level.isClientSide()) playSoggyEffects((ServerLevel) level, blockPos);
+        }
+
+        return flag;
     }
 
     public static void playSoggyEffects(ServerLevel level, BlockPos blockPos) {

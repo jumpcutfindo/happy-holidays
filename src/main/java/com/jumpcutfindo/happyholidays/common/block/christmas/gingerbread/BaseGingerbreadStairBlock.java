@@ -43,6 +43,11 @@ public class BaseGingerbreadStairBlock extends StairBlock implements IGingerbrea
         return soggySupplier != null;
     }
 
+    @Override
+    public BlockState getSoggyResult() {
+        return this.soggySupplier != null ? this.soggySupplier.get() : null;
+    }
+
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -61,9 +66,7 @@ public class BaseGingerbreadStairBlock extends StairBlock implements IGingerbrea
     public boolean placeLiquid(LevelAccessor level, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
         boolean flag = super.placeLiquid(level, blockPos, blockState, fluidState);
 
-        if (flag && this.isSoggifiable()) level.setBlock(blockPos, soggySupplier.get().getBlock().withPropertiesOf(blockState), 2);
-
-        return flag;
+        return BaseGingerbreadBlock.onLiquidPlaced(level, blockPos, blockState, flag);
     }
 
     public static class Builder {
