@@ -349,11 +349,15 @@ public class ChristmasItems {
             ITEMS.register(BaseGingerbreadBlock.DOUGH_BRICKS_ID, itemOf(ChristmasBlocks.GINGERBREAD_DOUGH_BRICKS, RawGingerbreadBlock.ITEM_PROPERITES));
     public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_BRICK_STAIRS =
             ITEMS.register(BaseGingerbreadStairBlock.DOUGH_BRICKS_ID, blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_STAIRS, RawGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_BRICK_SLAB =
+            ITEMS.register(BaseGingerbreadSlabBlock.DOUGH_BRICKS_ID, blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_SLAB, RawGingerbreadBlock.ITEM_PROPERITES));
 
     public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_TILES =
             ITEMS.register(BaseGingerbreadBlock.DOUGH_TILES_ID, itemOf(ChristmasBlocks.GINGERBREAD_DOUGH_TILES, RawGingerbreadBlock.ITEM_PROPERITES));
     public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_TILE_STAIRS =
             ITEMS.register(BaseGingerbreadStairBlock.DOUGH_TILES_ID, blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_STAIRS, RawGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_TILE_SLAB =
+            ITEMS.register(BaseGingerbreadSlabBlock.DOUGH_TILES_ID, blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_SLAB, RawGingerbreadBlock.ITEM_PROPERITES));
 
     public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_BLOCK =
             ITEMS.register(BaseGingerbreadBlock.COOKED_BLOCK_ID, itemOf(ChristmasBlocks.GINGERBREAD_BLOCK, GingerbreadBlock.ITEM_PROPERITES));
@@ -368,11 +372,15 @@ public class ChristmasItems {
             ITEMS.register(BaseGingerbreadBlock.COOKED_BRICKS_ID, itemOf(ChristmasBlocks.GINGERBREAD_BRICKS, GingerbreadBlock.ITEM_PROPERITES));
     public static final RegistryObject<BlockItem> GINGERBREAD_BRICK_STAIRS =
             ITEMS.register(BaseGingerbreadStairBlock.COOKED_BRICKS_ID, blockItemOf(ChristmasBlocks.GINGERBREAD_BRICK_STAIRS, GingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> GINGERBREAD_BRICK_SLAB =
+            ITEMS.register(BaseGingerbreadSlabBlock.COOKED_BRICKS_ID, blockItemOf(ChristmasBlocks.GINGERBREAD_BRICK_SLAB, GingerbreadBlock.ITEM_PROPERITES));
 
     public static final RegistryObject<BlockItem> GINGERBREAD_TILES =
             ITEMS.register(BaseGingerbreadBlock.COOKED_TILES_ID, itemOf(ChristmasBlocks.GINGERBREAD_TILES, GingerbreadBlock.ITEM_PROPERITES));
     public static final RegistryObject<BlockItem> GINGERBREAD_TILE_STAIRS =
             ITEMS.register(BaseGingerbreadStairBlock.COOKED_TILES_ID, blockItemOf(ChristmasBlocks.GINGERBREAD_TILE_STAIRS, GingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> GINGERBREAD_TILE_SLAB =
+            ITEMS.register(BaseGingerbreadSlabBlock.COOKED_TILES_ID, blockItemOf(ChristmasBlocks.GINGERBREAD_TILE_SLAB, GingerbreadBlock.ITEM_PROPERITES));
 
     public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_BLOCK =
             ITEMS.register(BaseGingerbreadBlock.SOGGY_BLOCK_ID, itemOf(ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK, SoggyGingerbreadBlock.ITEM_PROPERITES));
@@ -387,11 +395,15 @@ public class ChristmasItems {
             ITEMS.register(BaseGingerbreadBlock.SOGGY_BRICKS_ID, itemOf(ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS, SoggyGingerbreadBlock.ITEM_PROPERITES));
     public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_BRICK_STAIRS =
             ITEMS.register(BaseGingerbreadStairBlock.SOGGY_BRICKS_ID, blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_STAIRS, SoggyGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_BRICK_SLAB =
+            ITEMS.register(BaseGingerbreadSlabBlock.SOGGY_BRICKS_ID, blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_SLAB, SoggyGingerbreadBlock.ITEM_PROPERITES));
 
     public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_TILES =
             ITEMS.register(BaseGingerbreadBlock.SOGGY_TILES_ID, itemOf(ChristmasBlocks.SOGGY_GINGERBREAD_TILES, SoggyGingerbreadBlock.ITEM_PROPERITES));
     public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_TILE_STAIRS =
             ITEMS.register(BaseGingerbreadStairBlock.SOGGY_TILES_ID, blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_STAIRS, SoggyGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_TILE_SLAB =
+            ITEMS.register(BaseGingerbreadSlabBlock.SOGGY_TILES_ID, blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_SLAB, SoggyGingerbreadBlock.ITEM_PROPERITES));
 
     public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_BLOCK =
             ITEMS.register(CandyCaneBlock.BLOCK_ID, itemOf(ChristmasBlocks.CANDY_CANE_BLOCK, CandyCaneOrnamentBlock.ITEM_PROPERTIES));

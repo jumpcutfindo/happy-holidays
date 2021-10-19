@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "happyholidays:gingerbread_dough_bricks"
+  },
+  "result": "happyholidays:gingerbread_dough_brick_slab",
+  "count": 2
+}

@@ -77,21 +77,27 @@ public class ChristmasItemModels extends ItemModelProvider {
 
                 blockModelPair(ChristmasItems.GINGERBREAD_DOUGH_BRICKS.get()),
                 blockModelPair(ChristmasItems.GINGERBREAD_DOUGH_BRICK_STAIRS.get()),
+                blockModelPair(ChristmasItems.GINGERBREAD_DOUGH_BRICK_SLAB.get()),
 
                 blockModelPair(ChristmasItems.GINGERBREAD_BRICKS.get()),
                 blockModelPair(ChristmasItems.GINGERBREAD_BRICK_STAIRS.get()),
+                blockModelPair(ChristmasItems.GINGERBREAD_BRICK_SLAB.get()),
 
                 blockModelPair(ChristmasItems.SOGGY_GINGERBREAD_BRICKS.get()),
                 blockModelPair(ChristmasItems.SOGGY_GINGERBREAD_BRICK_STAIRS.get()),
+                blockModelPair(ChristmasItems.SOGGY_GINGERBREAD_BRICK_SLAB.get()),
 
                 blockModelPair(ChristmasItems.GINGERBREAD_DOUGH_TILES.get()),
                 blockModelPair(ChristmasItems.GINGERBREAD_DOUGH_TILE_STAIRS.get()),
+                blockModelPair(ChristmasItems.GINGERBREAD_DOUGH_TILE_SLAB.get()),
 
                 blockModelPair(ChristmasItems.GINGERBREAD_TILES.get()),
                 blockModelPair(ChristmasItems.GINGERBREAD_TILE_STAIRS.get()),
+                blockModelPair(ChristmasItems.GINGERBREAD_TILE_SLAB.get()),
 
                 blockModelPair(ChristmasItems.SOGGY_GINGERBREAD_TILES.get()),
                 blockModelPair(ChristmasItems.SOGGY_GINGERBREAD_TILE_STAIRS.get()),
+                blockModelPair(ChristmasItems.SOGGY_GINGERBREAD_TILE_SLAB.get()),
 
                 blockModelPair(ChristmasItems.CANDY_CANE_BLOCK.get()),
                 blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get(), "festive_candy_cane_block_xo"),

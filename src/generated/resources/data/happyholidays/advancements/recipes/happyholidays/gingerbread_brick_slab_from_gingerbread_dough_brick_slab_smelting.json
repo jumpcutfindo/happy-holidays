@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:gingerbread_brick_slab_from_gingerbread_dough_brick_slab_smelting"
+    ]
+  },
+  "criteria": {
+    "has_gingerbread_dough_brick_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gingerbread_dough_brick_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_gingerbread_brick_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gingerbread_brick_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:gingerbread_brick_slab_from_gingerbread_dough_brick_slab_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gingerbread_dough_brick_slab",
+      "has_gingerbread_brick_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:soggy_gingerbread_tiles"
+    }
+  },
+  "result": {
+    "item": "happyholidays:soggy_gingerbread_tile_slab",
+    "count": 6
+  }
+}
