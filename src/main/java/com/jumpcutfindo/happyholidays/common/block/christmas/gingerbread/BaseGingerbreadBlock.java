@@ -110,7 +110,7 @@ public class BaseGingerbreadBlock extends ChristmasBlock {
                                              LevelAccessor level, BlockPos blockPos, BlockPos otherBlockPos,
                                              Supplier<BlockState> soggyStateSupplier) {
         // Check if neighbouring blocks have become wet
-        if (blockState.getBlock() instanceof Soggifiable && BlockUtils.isWet(otherBlockState)) {
+        if (blockState.getBlock() instanceof BaseGingerbreadBlock gingerbreadBlock && gingerbreadBlock.isSoggifiable() && BlockUtils.isWet(otherBlockState)) {
             if (!level.isClientSide()) {
                 playSoggyEffects((ServerLevel) level, blockPos);
             }
