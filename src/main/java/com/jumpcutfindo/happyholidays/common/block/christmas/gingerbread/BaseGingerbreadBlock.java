@@ -101,7 +101,7 @@ public class BaseGingerbreadBlock extends ChristmasBlock implements IGingerbread
         }
 
         // Check if the block can be soggified
-        if (defaultBlockState.getBlock() instanceof BaseGingerbreadBlock gingerbreadBlock && gingerbreadBlock.isSoggifiable()) {
+        if (defaultBlockState.getBlock() instanceof IGingerbreadBlock gingerbreadBlock && gingerbreadBlock.isSoggifiable()) {
             BlockPos pos = context.getClickedPos();
 
             // Check if there's water around in the form of actual water or waterloggable blocks
@@ -118,7 +118,7 @@ public class BaseGingerbreadBlock extends ChristmasBlock implements IGingerbread
                                              LevelAccessor level, BlockPos blockPos, BlockPos otherBlockPos,
                                              Supplier<BlockState> soggyStateSupplier) {
         // Check if neighbouring blocks have become wet
-        if (blockState.getBlock() instanceof BaseGingerbreadBlock gingerbreadBlock && gingerbreadBlock.isSoggifiable() && BlockUtils.isWet(otherBlockState)) {
+        if (blockState.getBlock() instanceof IGingerbreadBlock gingerbreadBlock && gingerbreadBlock.isSoggifiable() && BlockUtils.isWet(otherBlockState)) {
             if (!level.isClientSide()) {
                 playSoggyEffects((ServerLevel) level, blockPos);
             }
