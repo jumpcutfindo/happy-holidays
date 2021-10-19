@@ -87,7 +87,7 @@ public class BaseGingerbreadStairBlock extends StairBlock implements IGingerbrea
 
         public Builder cooked() {
             this.soggifiable = true;
-            resultantBlock = new BaseGingerbreadStairBlock(ChristmasBlocks.supplierOf(ChristmasBlocks.GINGERBREAD_BLOCK), BaseGingerbreadBlock.COOKED_RPOPERTIES);
+            resultantBlock = new BaseGingerbreadStairBlock(ChristmasBlocks.supplierOf(ChristmasBlocks.GINGERBREAD_BLOCK), BaseGingerbreadBlock.COOKED_PROPERTIES);
             return this;
         }
 

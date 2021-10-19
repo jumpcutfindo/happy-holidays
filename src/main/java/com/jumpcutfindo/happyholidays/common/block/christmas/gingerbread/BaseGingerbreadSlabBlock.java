@@ -85,7 +85,7 @@ public class BaseGingerbreadSlabBlock extends SlabBlock implements IGingerbreadB
 
         public Builder cooked() {
             this.soggifiable = true;
-            resultantBlock = new BaseGingerbreadSlabBlock(BaseGingerbreadBlock.COOKED_RPOPERTIES);
+            resultantBlock = new BaseGingerbreadSlabBlock(BaseGingerbreadBlock.COOKED_PROPERTIES);
             return this;
         }
 

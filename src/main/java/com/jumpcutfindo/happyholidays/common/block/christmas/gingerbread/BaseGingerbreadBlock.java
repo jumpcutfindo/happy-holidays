@@ -33,7 +33,7 @@ public class BaseGingerbreadBlock extends ChristmasBlock implements IGingerbread
                     .strength(0.5f)
                     .sound(SoundType.FUNGUS);
 
-    public static final BlockBehaviour.Properties COOKED_RPOPERTIES =
+    public static final BlockBehaviour.Properties COOKED_PROPERTIES =
             BlockBehaviour.Properties
                     .of(Material.SNOW)
                     .strength(1.0f)
@@ -177,7 +177,7 @@ public class BaseGingerbreadBlock extends ChristmasBlock implements IGingerbread
 
         public Builder cooked() {
             this.soggifiable = true;
-            resultantBlock = new BaseGingerbreadBlock(BaseGingerbreadBlock.COOKED_RPOPERTIES);
+            resultantBlock = new BaseGingerbreadBlock(BaseGingerbreadBlock.COOKED_PROPERTIES);
             return this;
         }
 

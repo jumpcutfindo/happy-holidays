@@ -86,7 +86,7 @@ public class BaseGingerbreadWall extends WallBlock implements IGingerbreadBlock 
 
         public Builder cooked() {
             this.soggifiable = true;
-            resultantBlock = new BaseGingerbreadWall(BaseGingerbreadBlock.COOKED_RPOPERTIES);
+            resultantBlock = new BaseGingerbreadWall(BaseGingerbreadBlock.COOKED_PROPERTIES);
             return this;
         }
 
