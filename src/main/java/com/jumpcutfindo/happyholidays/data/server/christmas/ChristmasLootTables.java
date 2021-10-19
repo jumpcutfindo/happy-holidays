@@ -62,29 +62,38 @@ public class ChristmasLootTables extends BaseLootTableProvider {
     }
 
     private void registerBlocks() {
-        addStandardBlock(ChristmasBlocks.GINGERBREAD_BLOCK.get());
         addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK.get());
-        addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get());
-
-        addStandardBlock(ChristmasBlocks.GINGERBREAD_STAIRS.get());
         addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_STAIRS.get());
-        addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS.get());
-
-        addStandardBlock(ChristmasBlocks.GINGERBREAD_SLAB.get());
         addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_SLAB.get());
-        addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_SLAB.get());
-
-        addStandardBlock(ChristmasBlocks.GINGERBREAD_WALL.get());
         addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_WALL.get());
+
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_BLOCK.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_STAIRS.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_SLAB.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_WALL.get());
+
+        addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get());
+        addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS.get());
+        addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_SLAB.get());
         addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_WALL.get());
 
-        addStandardBlock(ChristmasBlocks.GINGERBREAD_BRICKS.get());
         addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_BRICKS.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_STAIRS.get());
+
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_BRICKS.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_BRICK_STAIRS.get());
+
         addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS.get());
+        addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_STAIRS.get());
+
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_TILES.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_STAIRS.get());
 
         addStandardBlock(ChristmasBlocks.GINGERBREAD_TILES.get());
-        addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_TILES.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_TILE_STAIRS.get());
+
         addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get());
+        addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_STAIRS.get());
 
         addStandardBlock(ChristmasBlocks.BABY_PRESENT_ORNAMENT.get());
         addStandardBlock(ChristmasBlocks.ADULT_PRESENT_ORNAMENT.get());

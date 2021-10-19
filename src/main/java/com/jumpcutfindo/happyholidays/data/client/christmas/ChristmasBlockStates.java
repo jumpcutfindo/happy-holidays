@@ -86,7 +86,15 @@ public class ChristmasBlockStates extends BlockStateProvider {
         Set<Pair<Block, ResourceLocation>> stairBlocks = Set.of(
                 resourcePair(ChristmasBlocks.GINGERBREAD_DOUGH_STAIRS.get(), ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK.get()),
                 resourcePair(ChristmasBlocks.GINGERBREAD_STAIRS.get(), ChristmasBlocks.GINGERBREAD_BLOCK.get()),
-                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS.get(), ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get())
+                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS.get(), ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get()),
+
+                resourcePair(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_STAIRS.get(), ChristmasBlocks.GINGERBREAD_DOUGH_BRICKS.get()),
+                resourcePair(ChristmasBlocks.GINGERBREAD_BRICK_STAIRS.get(), ChristmasBlocks.GINGERBREAD_BRICKS.get()),
+                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_STAIRS.get(), ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS.get()),
+
+                resourcePair(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_STAIRS.get(), ChristmasBlocks.GINGERBREAD_DOUGH_TILES.get()),
+                resourcePair(ChristmasBlocks.GINGERBREAD_TILE_STAIRS.get(), ChristmasBlocks.GINGERBREAD_TILES.get()),
+                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_STAIRS.get(), ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get())
         );
 
         // For blocks that are slabs

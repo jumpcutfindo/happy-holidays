@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:soggy_gingerbread_brick_stairs_from_soggy_gingerbread_bricks_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_soggy_gingerbread_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:soggy_gingerbread_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:soggy_gingerbread_brick_stairs_from_soggy_gingerbread_bricks_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_soggy_gingerbread_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

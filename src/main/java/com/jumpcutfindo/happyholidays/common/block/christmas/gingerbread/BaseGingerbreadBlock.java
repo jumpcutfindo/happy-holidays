@@ -92,17 +92,17 @@ public class BaseGingerbreadBlock extends ChristmasBlock implements IGingerbread
         // Check if can place the block at this spot (using BlockItem#canPlace but in static form)
         if (!BlockUtils.canPlace(context, defaultBlockState)) return defaultBlockState;
 
-        // For waterloggable blocks, consider the situation where we place the block inside water straightaway
-        if (defaultBlockState.hasProperty(BlockStateProperties.WATERLOGGED)) {
-            if (context.getLevel().getBlockState(context.getClickedPos()).is(Blocks.WATER)) {
-                if (!context.getLevel().isClientSide()) playSoggyEffects((ServerLevel) context.getLevel(), context.getClickedPos());
-                return soggyStateSupplier.get().getBlock().withPropertiesOf(defaultBlockState);
-            }
-        }
-
         // Check if the block can be soggified
         if (defaultBlockState.getBlock() instanceof IGingerbreadBlock gingerbreadBlock && gingerbreadBlock.isSoggifiable()) {
             BlockPos pos = context.getClickedPos();
+
+            // For waterloggable blocks, consider the situation where we place the block inside water straightaway
+            if (defaultBlockState.hasProperty(BlockStateProperties.WATERLOGGED)) {
+                if (context.getLevel().getBlockState(pos).is(Blocks.WATER)) {
+                    if (!context.getLevel().isClientSide()) playSoggyEffects((ServerLevel) context.getLevel(), pos);
+                    return soggyStateSupplier.get().getBlock().withPropertiesOf(defaultBlockState);
+                }
+            }
 
             // Check if there's water around in the form of actual water or waterloggable blocks
             if (isWaterAround(context.getLevel(), pos)) {
@@ -137,7 +137,8 @@ public class BaseGingerbreadBlock extends ChristmasBlock implements IGingerbread
     }
 
     public static boolean isWaterAround(Level level, BlockPos pos) {
-        return BlockUtils.isWet(level.getBlockState(pos.above()))
+        return BlockUtils.isWet(level.getBlockState(pos))
+                || BlockUtils.isWet(level.getBlockState(pos.above()))
                 || BlockUtils.isWet(level.getBlockState(pos.north()))
                 || BlockUtils.isWet(level.getBlockState(pos.south()))
                 || BlockUtils.isWet(level.getBlockState(pos.east()))
