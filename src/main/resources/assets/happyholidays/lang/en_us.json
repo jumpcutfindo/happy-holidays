@@ -90,10 +90,12 @@
     "block.happyholidays.gingerbread_dough_bricks": "Gingerbread Dough Bricks",
     "block.happyholidays.gingerbread_dough_brick_stairs": "Gingerbread Dough Brick Stairs",
     "block.happyholidays.gingerbread_dough_brick_slab": "Gingerbread Dough Brick Slab",
+    "block.happyholidays.gingerbread_dough_brick_wall": "Gingerbread Dough Brick Wall",
 
     "block.happyholidays.gingerbread_dough_tiles": "Gingerbread Dough Tiles",
     "block.happyholidays.gingerbread_dough_tile_stairs": "Gingerbread Dough Tile Stairs",
     "block.happyholidays.gingerbread_dough_tile_slab": "Gingerbread Dough Tile Slab",
+    "block.happyholidays.gingerbread_dough_tile_wall": "Gingerbread Dough Tile Wall",
 
     "block.happyholidays.gingerbread_block": "Block of Gingerbread",
     "block.happyholidays.gingerbread_stairs": "Gingerbread Stairs",
@@ -103,10 +105,12 @@
     "block.happyholidays.gingerbread_bricks": "Gingerbread Bricks",
     "block.happyholidays.gingerbread_brick_stairs": "Gingerbread Brick Stairs",
     "block.happyholidays.gingerbread_brick_slab": "Gingerbread Brick Slab",
+    "block.happyholidays.gingerbread_brick_wall": "Gingerbread Brick Wall",
 
     "block.happyholidays.gingerbread_tiles": "Gingerbread Tiles",
     "block.happyholidays.gingerbread_tile_stairs": "Gingerbread Tile Stairs",
     "block.happyholidays.gingerbread_tile_slab": "Gingerbread Tile Slab",
+    "block.happyholidays.gingerbread_tile_wall": "Gingerbread Tile Wall",
 
     "block.happyholidays.soggy_gingerbread_block": "Block of Soggy Gingerbread",
     "block.happyholidays.soggy_gingerbread_stairs": "Soggy Gingerbread Stairs",
@@ -116,10 +120,12 @@
     "block.happyholidays.soggy_gingerbread_bricks": "Soggy Gingerbread Bricks",
     "block.happyholidays.soggy_gingerbread_brick_stairs": "Soggy Gingerbread Brick Stairs",
     "block.happyholidays.soggy_gingerbread_brick_slab": "Soggy Gingerbread Brick Slab",
+    "block.happyholidays.soggy_gingerbread_brick_wall": "Soggy Gingerbread Brick Wall",
 
     "block.happyholidays.soggy_gingerbread_tiles": "Soggy Gingerbread Tiles",
     "block.happyholidays.soggy_gingerbread_tile_stairs": "Soggy Gingerbread Tile Stairs",
     "block.happyholidays.soggy_gingerbread_tile_slab": "Soggy Gingerbread Tile Slab",
+    "block.happyholidays.soggy_gingerbread_tile_wall": "Soggy Gingerbread Tile Wall",
 
     "block.happyholidays.gingerbread_block.gingerbread_soggified": "Block turns soggy",
 

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:gingerbread_dough_bricks"
+    }
+  },
+  "result": {
+    "item": "happyholidays:gingerbread_dough_brick_wall",
+    "count": 6
+  }
+}

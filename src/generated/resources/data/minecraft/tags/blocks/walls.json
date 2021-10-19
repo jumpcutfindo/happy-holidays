@@ -3,6 +3,12 @@
   "values": [
     "happyholidays:gingerbread_dough_wall",
     "happyholidays:gingerbread_wall",
-    "happyholidays:soggy_gingerbread_wall"
+    "happyholidays:soggy_gingerbread_wall",
+    "happyholidays:gingerbread_dough_brick_wall",
+    "happyholidays:gingerbread_brick_wall",
+    "happyholidays:soggy_gingerbread_brick_wall",
+    "happyholidays:gingerbread_dough_tile_wall",
+    "happyholidays:gingerbread_tile_wall",
+    "happyholidays:soggy_gingerbread_tile_wall"
   ]
 }

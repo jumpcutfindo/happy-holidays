@@ -16,20 +16,26 @@
     "happyholidays:gingerbread_dough_bricks",
     "happyholidays:gingerbread_dough_brick_stairs",
     "happyholidays:gingerbread_dough_brick_slab",
+    "happyholidays:gingerbread_dough_brick_wall",
     "happyholidays:gingerbread_bricks",
     "happyholidays:gingerbread_brick_stairs",
     "happyholidays:gingerbread_brick_slab",
+    "happyholidays:gingerbread_brick_wall",
     "happyholidays:soggy_gingerbread_bricks",
     "happyholidays:soggy_gingerbread_brick_stairs",
     "happyholidays:soggy_gingerbread_brick_slab",
+    "happyholidays:soggy_gingerbread_brick_wall",
     "happyholidays:gingerbread_dough_tiles",
     "happyholidays:gingerbread_dough_tile_stairs",
     "happyholidays:gingerbread_dough_tile_slab",
+    "happyholidays:gingerbread_dough_tile_wall",
     "happyholidays:gingerbread_tiles",
     "happyholidays:gingerbread_tile_stairs",
     "happyholidays:gingerbread_tile_slab",
+    "happyholidays:gingerbread_tile_wall",
     "happyholidays:soggy_gingerbread_tiles",
     "happyholidays:soggy_gingerbread_tile_stairs",
-    "happyholidays:soggy_gingerbread_tile_slab"
+    "happyholidays:soggy_gingerbread_tile_slab",
+    "happyholidays:soggy_gingerbread_tile_wall"
   ]
 }

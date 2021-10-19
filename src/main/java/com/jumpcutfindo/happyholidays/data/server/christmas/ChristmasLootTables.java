@@ -81,26 +81,32 @@ public class ChristmasLootTables extends BaseLootTableProvider {
         addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_BRICKS.get());
         addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_STAIRS.get());
         addSlabBlock(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_SLAB.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_WALL.get());
 
         addStandardBlock(ChristmasBlocks.GINGERBREAD_BRICKS.get());
         addStandardBlock(ChristmasBlocks.GINGERBREAD_BRICK_STAIRS.get());
         addSlabBlock(ChristmasBlocks.GINGERBREAD_BRICK_SLAB.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_BRICK_WALL.get());
 
         addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS.get());
         addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_STAIRS.get());
         addSlabBlock(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_SLAB.get());
+        addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_WALL.get());
 
         addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_TILES.get());
         addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_STAIRS.get());
         addSlabBlock(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_SLAB.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_WALL.get());
 
         addStandardBlock(ChristmasBlocks.GINGERBREAD_TILES.get());
         addStandardBlock(ChristmasBlocks.GINGERBREAD_TILE_STAIRS.get());
         addSlabBlock(ChristmasBlocks.GINGERBREAD_TILE_SLAB.get());
+        addStandardBlock(ChristmasBlocks.GINGERBREAD_TILE_WALL.get());
 
         addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get());
         addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_STAIRS.get());
         addSlabBlock(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_SLAB.get());
+        addStandardBlock(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_WALL.get());
 
         addStandardBlock(ChristmasBlocks.BABY_PRESENT_ORNAMENT.get());
         addStandardBlock(ChristmasBlocks.ADULT_PRESENT_ORNAMENT.get());

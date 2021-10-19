@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "happyholidays:gingerbread_tiles"
+  },
+  "result": "happyholidays:gingerbread_tile_wall",
+  "count": 1
+}

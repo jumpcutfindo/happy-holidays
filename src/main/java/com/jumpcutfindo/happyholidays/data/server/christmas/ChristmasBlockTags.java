@@ -82,26 +82,32 @@ public class ChristmasBlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_BRICKS.get())
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_STAIRS.get())
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_SLAB.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_WALL.get())
 
                 .add(ChristmasBlocks.GINGERBREAD_BRICKS.get())
                 .add(ChristmasBlocks.GINGERBREAD_BRICK_STAIRS.get())
                 .add(ChristmasBlocks.GINGERBREAD_BRICK_SLAB.get())
+                .add(ChristmasBlocks.GINGERBREAD_BRICK_WALL.get())
 
                 .add(ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS.get())
                 .add(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_STAIRS.get())
                 .add(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_SLAB.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_WALL.get())
 
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_TILES.get())
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_STAIRS.get())
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_SLAB.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_WALL.get())
 
                 .add(ChristmasBlocks.GINGERBREAD_TILES.get())
                 .add(ChristmasBlocks.GINGERBREAD_TILE_STAIRS.get())
                 .add(ChristmasBlocks.GINGERBREAD_TILE_SLAB.get())
+                .add(ChristmasBlocks.GINGERBREAD_TILE_WALL.get())
 
                 .add(ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get())
                 .add(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_STAIRS.get())
-                .add(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_SLAB.get());
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_SLAB.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_WALL.get());
 
 
         tag(ChristmasTags.Blocks.CANDY_CANE_BLOCKS)
@@ -122,17 +128,35 @@ public class ChristmasBlockTags extends BlockTagsProvider {
         tag(net.minecraft.tags.BlockTags.WALLS)
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_WALL.get())
                 .add(ChristmasBlocks.GINGERBREAD_WALL.get())
-                .add(ChristmasBlocks.SOGGY_GINGERBREAD_WALL.get());
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_WALL.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_WALL.get())
+                .add(ChristmasBlocks.GINGERBREAD_BRICK_WALL.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_WALL.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_WALL.get())
+                .add(ChristmasBlocks.GINGERBREAD_TILE_WALL.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_WALL.get());
 
         tag(net.minecraft.tags.BlockTags.STAIRS)
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_STAIRS.get())
                 .add(ChristmasBlocks.GINGERBREAD_STAIRS.get())
-                .add(ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS.get());
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_STAIRS.get())
+                .add(ChristmasBlocks.GINGERBREAD_BRICK_STAIRS.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_STAIRS.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_STAIRS.get())
+                .add(ChristmasBlocks.GINGERBREAD_TILE_STAIRS.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_STAIRS.get());
 
         tag(net.minecraft.tags.BlockTags.SLABS)
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_SLAB.get())
                 .add(ChristmasBlocks.GINGERBREAD_SLAB.get())
-                .add(ChristmasBlocks.SOGGY_GINGERBREAD_SLAB.get());
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_SLAB.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_SLAB.get())
+                .add(ChristmasBlocks.GINGERBREAD_BRICK_SLAB.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_SLAB.get())
+                .add(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_SLAB.get())
+                .add(ChristmasBlocks.GINGERBREAD_TILE_SLAB.get())
+                .add(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_SLAB.get());
 
     }
 }

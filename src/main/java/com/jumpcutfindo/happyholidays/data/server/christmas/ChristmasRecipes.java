@@ -286,26 +286,32 @@ public class ChristmasRecipes extends RecipeProvider {
         twoByTwo(consumer, ChristmasItems.GINGERBREAD_DOUGH_BRICKS.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get(), 4);
         stair(consumer, ChristmasItems.GINGERBREAD_DOUGH_BRICK_STAIRS.get(), ChristmasItems.GINGERBREAD_DOUGH_BRICKS.get());
         slab(consumer, ChristmasItems.GINGERBREAD_DOUGH_BRICK_SLAB.get(), ChristmasItems.GINGERBREAD_DOUGH_BRICKS.get());
+        wall(consumer, ChristmasItems.GINGERBREAD_DOUGH_BRICK_WALL.get(), ChristmasItems.GINGERBREAD_DOUGH_BRICKS.get());
 
         twoByTwo(consumer, ChristmasItems.GINGERBREAD_DOUGH_TILES.get(), ChristmasItems.GINGERBREAD_DOUGH_BRICKS.get(), 4);
         stair(consumer, ChristmasItems.GINGERBREAD_DOUGH_TILE_STAIRS.get(), ChristmasItems.GINGERBREAD_DOUGH_TILES.get());
         slab(consumer, ChristmasItems.GINGERBREAD_DOUGH_TILE_SLAB.get(), ChristmasItems.GINGERBREAD_DOUGH_TILES.get());
+        wall(consumer, ChristmasItems.GINGERBREAD_DOUGH_TILE_WALL.get(), ChristmasItems.GINGERBREAD_DOUGH_TILES.get());
 
         twoByTwo(consumer, ChristmasItems.GINGERBREAD_BRICKS.get(), ChristmasItems.GINGERBREAD_BLOCK.get(), 4);
         stair(consumer, ChristmasItems.GINGERBREAD_BRICK_STAIRS.get(), ChristmasItems.GINGERBREAD_BRICKS.get());
         slab(consumer, ChristmasItems.GINGERBREAD_BRICK_SLAB.get(), ChristmasItems.GINGERBREAD_BRICKS.get());
+        wall(consumer, ChristmasItems.GINGERBREAD_BRICK_WALL.get(), ChristmasItems.GINGERBREAD_BRICKS.get());
 
         twoByTwo(consumer, ChristmasItems.GINGERBREAD_TILES.get(), ChristmasItems.GINGERBREAD_BRICKS.get(), 4);
         stair(consumer, ChristmasItems.GINGERBREAD_TILE_STAIRS.get(), ChristmasItems.GINGERBREAD_TILES.get());
         slab(consumer, ChristmasItems.GINGERBREAD_TILE_SLAB.get(), ChristmasItems.GINGERBREAD_TILES.get());
+        wall(consumer, ChristmasItems.GINGERBREAD_TILE_WALL.get(), ChristmasItems.GINGERBREAD_TILES.get());
 
         twoByTwo(consumer, ChristmasItems.SOGGY_GINGERBREAD_BRICKS.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get(), 4);
         stair(consumer, ChristmasItems.SOGGY_GINGERBREAD_BRICK_STAIRS.get(), ChristmasItems.SOGGY_GINGERBREAD_BRICKS.get());
         slab(consumer, ChristmasItems.SOGGY_GINGERBREAD_BRICK_SLAB.get(), ChristmasItems.SOGGY_GINGERBREAD_BRICKS.get());
+        wall(consumer, ChristmasItems.SOGGY_GINGERBREAD_BRICK_WALL.get(), ChristmasItems.SOGGY_GINGERBREAD_BRICKS.get());
 
         twoByTwo(consumer, ChristmasItems.SOGGY_GINGERBREAD_TILES.get(), ChristmasItems.SOGGY_GINGERBREAD_BRICKS.get(), 4);
         stair(consumer, ChristmasItems.SOGGY_GINGERBREAD_TILE_STAIRS.get(), ChristmasItems.SOGGY_GINGERBREAD_TILES.get());
         slab(consumer, ChristmasItems.SOGGY_GINGERBREAD_TILE_SLAB.get(), ChristmasItems.SOGGY_GINGERBREAD_TILES.get());
+        wall(consumer, ChristmasItems.SOGGY_GINGERBREAD_TILE_WALL.get(), ChristmasItems.SOGGY_GINGERBREAD_TILES.get());
 
         // Stonecutter recipes
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_STAIRS.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get());
@@ -325,36 +331,48 @@ public class ChristmasRecipes extends RecipeProvider {
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_BRICK_STAIRS.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_BRICK_SLAB.get(), ChristmasItems.GINGERBREAD_DOUGH_BRICKS.get(), 2);
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_BRICK_SLAB.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_BRICK_WALL.get(), ChristmasItems.GINGERBREAD_DOUGH_BRICKS.get());
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_BRICK_WALL.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get());
 
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_TILES.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_TILE_STAIRS.get(), ChristmasItems.GINGERBREAD_DOUGH_TILES.get());
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_TILE_STAIRS.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_TILE_SLAB.get(), ChristmasItems.GINGERBREAD_DOUGH_TILES.get(), 2);
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_TILE_SLAB.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_TILE_WALL.get(), ChristmasItems.GINGERBREAD_DOUGH_TILES.get());
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_DOUGH_TILE_WALL.get(), ChristmasItems.GINGERBREAD_DOUGH_BLOCK.get());
 
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_BRICKS.get(), ChristmasItems.GINGERBREAD_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_BRICK_STAIRS.get(), ChristmasItems.GINGERBREAD_BRICKS.get());
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_BRICK_STAIRS.get(), ChristmasItems.GINGERBREAD_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_BRICK_SLAB.get(), ChristmasItems.GINGERBREAD_BRICKS.get(), 2);
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_BRICK_SLAB.get(), ChristmasItems.GINGERBREAD_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_BRICK_WALL.get(), ChristmasItems.GINGERBREAD_BRICKS.get());
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_BRICK_WALL.get(), ChristmasItems.GINGERBREAD_BLOCK.get());
 
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILES.get(), ChristmasItems.GINGERBREAD_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILE_STAIRS.get(), ChristmasItems.GINGERBREAD_TILES.get());
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILE_STAIRS.get(), ChristmasItems.GINGERBREAD_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILE_SLAB.get(), ChristmasItems.GINGERBREAD_TILES.get(), 2);
         stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILE_SLAB.get(), ChristmasItems.GINGERBREAD_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILE_WALL.get(), ChristmasItems.GINGERBREAD_TILES.get());
+        stonecutterResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILE_WALL.get(), ChristmasItems.GINGERBREAD_BLOCK.get());
 
         stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_BRICKS.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_BRICK_STAIRS.get(), ChristmasItems.SOGGY_GINGERBREAD_BRICKS.get());
         stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_BRICK_STAIRS.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_BRICK_SLAB.get(), ChristmasItems.SOGGY_GINGERBREAD_BRICKS.get(), 2);
         stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_BRICK_SLAB.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_BRICK_WALL.get(), ChristmasItems.SOGGY_GINGERBREAD_BRICKS.get());
+        stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_BRICK_WALL.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get());
 
         stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_TILES.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_TILE_STAIRS.get(), ChristmasItems.SOGGY_GINGERBREAD_TILES.get());
         stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_TILE_STAIRS.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_TILE_SLAB.get(), ChristmasItems.SOGGY_GINGERBREAD_TILES.get(), 2);
         stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_TILE_SLAB.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_TILE_WALL.get(), ChristmasItems.SOGGY_GINGERBREAD_TILES.get());
+        stonecutterResultFromBase(consumer, ChristmasItems.SOGGY_GINGERBREAD_TILE_WALL.get(), ChristmasItems.SOGGY_GINGERBREAD_BLOCK.get());
 
         // Cooking recipes
         cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_COOKIE.get(), ChristmasItems.RAW_GINGERBREAD.get());
@@ -380,6 +398,9 @@ public class ChristmasRecipes extends RecipeProvider {
         cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_BRICK_SLAB.get(), ChristmasItems.GINGERBREAD_DOUGH_BRICK_SLAB.get(), 0.05f, 100);
         cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_BRICK_SLAB.get(), ChristmasItems.SOGGY_GINGERBREAD_BRICK_SLAB.get(), 0.05f, 100);
 
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_BRICK_WALL.get(), ChristmasItems.GINGERBREAD_DOUGH_BRICK_WALL.get());
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_BRICK_WALL.get(), ChristmasItems.SOGGY_GINGERBREAD_BRICK_WALL.get());
+
         cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILES.get(), ChristmasItems.GINGERBREAD_DOUGH_TILES.get());
         cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILES.get(), ChristmasItems.SOGGY_GINGERBREAD_TILES.get());
 
@@ -388,6 +409,9 @@ public class ChristmasRecipes extends RecipeProvider {
 
         cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILE_SLAB.get(), ChristmasItems.GINGERBREAD_DOUGH_TILE_SLAB.get(), 0.05f, 100);
         cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILE_SLAB.get(), ChristmasItems.SOGGY_GINGERBREAD_TILE_SLAB.get(), 0.05f, 100);
+
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILE_WALL.get(), ChristmasItems.GINGERBREAD_DOUGH_TILE_WALL.get());
+        cookingResultFromBase(consumer, ChristmasItems.GINGERBREAD_TILE_WALL.get(), ChristmasItems.SOGGY_GINGERBREAD_TILE_WALL.get());
     }
 
     private void guideBook(Consumer<FinishedRecipe> consumer) {

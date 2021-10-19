@@ -19,6 +19,14 @@ public class BaseGingerbreadWall extends WallBlock implements IGingerbreadBlock 
     public static final String COOKED_BLOCK_ID = "gingerbread_wall";
     public static final String SOGGY_BLOCK_ID = "soggy_gingerbread_wall";
 
+    public static final String DOUGH_BRICKS_ID = "gingerbread_dough_brick_wall";
+    public static final String COOKED_BRICKS_ID = "gingerbread_brick_wall";
+    public static final String SOGGY_BRICKS_ID = "soggy_gingerbread_brick_wall";
+
+    public static final String DOUGH_TILES_ID = "gingerbread_dough_tile_wall";
+    public static final String COOKED_TILES_ID = "gingerbread_tile_wall";
+    public static final String SOGGY_TILES_ID = "soggy_gingerbread_tile_wall";
+
     public Supplier<BlockState> soggySupplier;
     public BaseGingerbreadWall(Properties blockProperties) {
         super(blockProperties);
@@ -98,7 +106,9 @@ public class BaseGingerbreadWall extends WallBlock implements IGingerbreadBlock 
     }
 
     public enum SoggyResult {
-        BLOCK(() -> ChristmasBlocks.SOGGY_GINGERBREAD_WALL.get().defaultBlockState());
+        BLOCK(() -> ChristmasBlocks.SOGGY_GINGERBREAD_WALL.get().defaultBlockState()),
+        BRICKS(() -> ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_WALL.get().defaultBlockState()),
+        TILES(() -> ChristmasBlocks.SOGGY_GINGERBREAD_TILE_WALL.get().defaultBlockState());
 
         private final Supplier<BlockState> soggyResultSupplier;
 
