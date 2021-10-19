@@ -59,7 +59,9 @@ public class BaseGingerbreadStairBlock extends StairBlock implements IGingerbrea
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState otherBlockState,
                                   LevelAccessor level, BlockPos blockPos, BlockPos otherBlockPos) {
-        return BaseGingerbreadBlock.getUpdatedState(blockState, direction, otherBlockState, level, blockPos, otherBlockPos, soggySupplier);
+        BlockState expectedState = super.updateShape(blockState, direction, otherBlockState, level, blockPos, otherBlockPos);
+
+        return BaseGingerbreadBlock.getUpdatedState(expectedState, direction, otherBlockState, level, blockPos, otherBlockPos, soggySupplier);
     }
 
     @Override
