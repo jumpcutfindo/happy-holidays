@@ -20,16 +20,50 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.material.Material;
 
 public class BaseGingerbreadBlock extends ChristmasBlock {
+    public static final BlockBehaviour.Properties DOUGH_PROPERTIES =
+            BlockBehaviour.Properties
+                    .of(Material.SNOW)
+                    .strength(0.5f)
+                    .sound(SoundType.FUNGUS);
+
+    public static final BlockBehaviour.Properties COOKED_RPOPERTIES =
+            BlockBehaviour.Properties
+                    .of(Material.SNOW)
+                    .strength(1.0f)
+                    .sound(SoundType.FUNGUS);
+
+    public static final BlockBehaviour.Properties SOGGY_PROPERTIES =
+            BlockBehaviour.Properties
+                    .of(Material.SNOW)
+                    .strength(0.25f)
+                    .sound(SoundType.FUNGUS);
+
     public static final Item.Properties ITEM_PROPERITES =
             new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
 
+    public static final String DOUGH_BLOCK_ID = "gingerbread_dough_block";
+    public static final String COOKED_BLOCK_ID = "gingerbread_block";
+    public static final String SOGGY_BLOCK_ID = "soggy_gingerbread_block";
+
+    public Supplier<BlockState> soggySupplier;
+
     public BaseGingerbreadBlock(BlockBehaviour.Properties blockProperties) {
         super(blockProperties);
+    }
+
+    public void setSoggyResult(Supplier<BlockState> soggySupplier) {
+        this.soggySupplier = soggySupplier;
+    }
+
+    public boolean isSoggifiable() {
+        return soggySupplier != null;
     }
 
     @Nullable
@@ -37,13 +71,13 @@ public class BaseGingerbreadBlock extends ChristmasBlock {
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState expectedState = super.getStateForPlacement(context);
 
-        return getPlacementState(context, expectedState, () -> ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get().defaultBlockState());
+        return getPlacementState(context, expectedState, soggySupplier);
     }
 
     @Override
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState otherBlockState,
                                   LevelAccessor level, BlockPos blockPos, BlockPos otherBlockPos) {
-        return getUpdatedState(blockState, direction, otherBlockState, level, blockPos, otherBlockPos, () -> ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get().defaultBlockState());
+        return getUpdatedState(blockState, direction, otherBlockState, level, blockPos, otherBlockPos, soggySupplier);
     }
 
     public static BlockState getPlacementState(BlockPlaceContext context, BlockState defaultBlockState, Supplier<BlockState> soggyStateSupplier) {
@@ -59,7 +93,7 @@ public class BaseGingerbreadBlock extends ChristmasBlock {
         }
 
         // Check if the block can be soggified
-        if (defaultBlockState.getBlock() instanceof Soggifiable) {
+        if (defaultBlockState.getBlock() instanceof BaseGingerbreadBlock gingerbreadBlock && gingerbreadBlock.isSoggifiable()) {
             BlockPos pos = context.getClickedPos();
 
             // Check if there's water around in the form of actual water or waterloggable blocks
@@ -100,5 +134,59 @@ public class BaseGingerbreadBlock extends ChristmasBlock {
                 || BlockUtils.isWet(level.getBlockState(pos.south()))
                 || BlockUtils.isWet(level.getBlockState(pos.east()))
                 || BlockUtils.isWet(level.getBlockState(pos.west()));
+    }
+
+    public static class Builder {
+        private boolean soggifiable;
+        BaseGingerbreadBlock resultantBlock;
+
+        public static Builder create() {
+            return new Builder();
+        }
+
+        public Builder dough() {
+            this.soggifiable = true;
+            resultantBlock = new BaseGingerbreadBlock(BaseGingerbreadBlock.DOUGH_PROPERTIES);
+            return this;
+        }
+
+        public Builder cooked() {
+            this.soggifiable = true;
+            resultantBlock = new BaseGingerbreadBlock(BaseGingerbreadBlock.COOKED_RPOPERTIES);
+            return this;
+        }
+
+        public Builder soggy() {
+            this.soggifiable = false;
+            resultantBlock = new BaseGingerbreadBlock(BaseGingerbreadBlock.SOGGY_PROPERTIES);
+            return this;
+        }
+
+        public Builder soggyResult(SoggyResult soggyResult) {
+            if (!soggifiable) throw new IllegalStateException("Cannot have a soggy block turn soggy again!");
+
+            resultantBlock.setSoggyResult(soggyResult.getSupplier());
+            return this;
+        }
+
+        public Supplier<ChristmasBlock> build() {
+            return () -> resultantBlock;
+        }
+    }
+
+    public enum SoggyResult {
+        BLOCK(() -> ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get().defaultBlockState()),
+        BRICKS(() -> ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS.get().defaultBlockState()),
+        TILES(() -> ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get().defaultBlockState());
+
+        private final Supplier<BlockState> soggyResultSupplier;
+
+        SoggyResult(Supplier<BlockState> soggyResultSupplier) {
+            this.soggyResultSupplier = soggyResultSupplier;
+        }
+
+        public Supplier<BlockState> getSupplier() {
+            return soggyResultSupplier;
+        }
     }
 }
