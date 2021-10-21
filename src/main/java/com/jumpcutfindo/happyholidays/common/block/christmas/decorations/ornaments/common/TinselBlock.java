@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ConnectedOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.LegendaryOrnament;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -9,7 +10,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class TinselBlock extends ConnectedOrnamentBlock {
+public class TinselBlock extends ConnectedOrnamentBlock implements LegendaryOrnament {
     public static final String RED_TINSEL_ID = "red_tinsel";
     public static final String BLUE_TINSEL_ID = "blue_tinsel";
     public static final String YELLOW_TINSEL_ID = "yellow_tinsel";

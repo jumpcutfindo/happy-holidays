@@ -1,11 +1,12 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.LegendaryOrnament;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class BigBaubleOrnamentBlock extends OrnamentBlock {
+public class BigBaubleOrnamentBlock extends OrnamentBlock implements LegendaryOrnament {
     public static final String BIG_RED_BAUBLE_ID = "big_red_bauble";
     public static final String BIG_BLUE_BAUBLE_ID = "big_blue_bauble";
     public static final String BIG_YELLOW_BAUBLE_ID = "big_yellow_bauble";

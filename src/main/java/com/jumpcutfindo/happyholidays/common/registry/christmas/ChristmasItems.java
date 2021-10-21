@@ -11,6 +11,9 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.Ch
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.FrostBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.SantaListBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.BasicOrnament;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.LegendaryOrnament;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.RareOrnament;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.BaubleOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.BigBaubleOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.ChristmasLightBlock;
@@ -21,7 +24,6 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornamen
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.ElderPresentOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.GingerbreadManOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.GrinchOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.LegendaryOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.SantaElfOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.rare.HeadOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
@@ -471,10 +473,7 @@ public class ChristmasItems {
         if (item.getItem() instanceof ChristmasBlockItem) {
             ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
 
-            return blockItem.getBlock() instanceof BaubleOrnamentBlock
-                    || blockItem.getBlock() instanceof BigBaubleOrnamentBlock
-                    || blockItem.getBlock() instanceof ChristmasLightBlock
-                    || blockItem.getBlock() instanceof TinselBlock;
+            return blockItem.getBlock() instanceof BasicOrnament;
         }
 
         return false;
@@ -484,7 +483,7 @@ public class ChristmasItems {
         if (item.getItem() instanceof ChristmasBlockItem) {
             ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
 
-            return blockItem.getBlock() instanceof HeadOrnamentBlock;
+            return blockItem.getBlock() instanceof RareOrnament;
         }
 
         return false;
@@ -494,7 +493,7 @@ public class ChristmasItems {
         if (item.getItem() instanceof ChristmasBlockItem) {
             ChristmasBlockItem blockItem = (ChristmasBlockItem) item.getItem();
 
-            return blockItem.getBlock() instanceof LegendaryOrnamentBlock;
+            return blockItem.getBlock() instanceof LegendaryOrnament;
         }
 
         return false;
