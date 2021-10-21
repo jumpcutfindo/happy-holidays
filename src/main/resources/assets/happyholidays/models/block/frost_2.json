@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "happyholidays:block/frost",
-		"particle": "happyholidays:block/frost"
+		"0": "happyholidays:block/frost_2",
+		"particle": "happyholidays:block/frost_2"
 	},
 	"elements": [
 		{

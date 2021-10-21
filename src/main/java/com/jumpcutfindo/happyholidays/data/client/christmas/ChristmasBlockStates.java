@@ -218,11 +218,15 @@ public class ChristmasBlockStates extends BlockStateProvider {
     private void registerDecorations() {
         Set<Block> decorations = Set.of(
                 ChristmasBlocks.SANTA_LIST.get(),
-                ChristmasBlocks.CHRISTMAS_WREATH.get(),
+                ChristmasBlocks.CHRISTMAS_WREATH.get()
+        );
+
+        Set<Block> variedDecorations = Set.of(
                 ChristmasBlocks.FROST.get()
         );
 
         for (Block block : decorations) wallDecorationOf(block);
+        for (Block block : variedDecorations) wallDecorationWithVariants(block, 3);
     }
 
     private void registerCustom() {
@@ -433,6 +437,35 @@ public class ChristmasBlockStates extends BlockStateProvider {
             Direction facingDirection = state.getValue(WallDecorationBlock.FACING);
 
             return builder.modelFile(modelFileOf(block)).rotationY(getRotationY.apply(facingDirection)).build();
+        }, BlockStateProperties.WATERLOGGED);
+    }
+
+    // Creates blockstate for wall decorations, where we have rotations along x-axis as well
+    private void wallDecorationWithVariants(Block block, int variationCount) {
+        String blockId = blockId(block);
+
+        Function<Direction, Integer> getRotationY = (direction) -> switch (direction) {
+            case EAST -> 270;
+            case NORTH -> 180;
+            case WEST -> 90;
+            default -> 0;
+        };
+
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+
+            Direction facingDirection = state.getValue(WallDecorationBlock.FACING);
+
+            int rotY = getRotationY.apply(facingDirection);
+
+            builder = builder.modelFile(modelFileOf(blockId + "_" + 0)).rotationY(rotY);
+
+            for (int i = 1; i < variationCount; i++) {
+                ModelFile modelFile = modelFileOf(blockId + "_" + i);
+                builder = builder.nextModel().modelFile(modelFile).rotationY(rotY);
+            }
+
+            return builder.build();
         }, BlockStateProperties.WATERLOGGED);
     }
 
