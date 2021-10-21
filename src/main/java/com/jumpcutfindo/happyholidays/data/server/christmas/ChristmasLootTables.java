@@ -175,6 +175,7 @@ public class ChristmasLootTables extends BaseLootTableProvider {
         addStandardBlock(ChristmasBlocks.CHRISTMAS_STAR.get());
         addStandardBlock(ChristmasBlocks.MUSIC_BOX.get());
         addStandardBlock(ChristmasBlocks.CHRISTMAS_WREATH.get());
+        addStandardBlock(ChristmasBlocks.FROST.get());
         addStandardBlock(ChristmasBlocks.GIFT_WRAPPING_STATION.get());
         addStandardBlock(ChristmasBlocks.SANTA_LIST.get());
 

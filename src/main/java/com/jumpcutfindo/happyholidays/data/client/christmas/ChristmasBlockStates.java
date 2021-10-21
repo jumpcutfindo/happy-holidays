@@ -218,7 +218,8 @@ public class ChristmasBlockStates extends BlockStateProvider {
     private void registerDecorations() {
         Set<Block> decorations = Set.of(
                 ChristmasBlocks.SANTA_LIST.get(),
-                ChristmasBlocks.CHRISTMAS_WREATH.get()
+                ChristmasBlocks.CHRISTMAS_WREATH.get(),
+                ChristmasBlocks.FROST.get()
         );
 
         for (Block block : decorations) wallDecorationOf(block);

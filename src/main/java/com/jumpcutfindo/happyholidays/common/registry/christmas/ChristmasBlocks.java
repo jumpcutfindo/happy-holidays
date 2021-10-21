@@ -9,6 +9,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBloc
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.ChristmasWreathBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.FrostBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.SantaListBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.BaubleOrnamentBlock;
@@ -205,6 +206,8 @@ public class ChristmasBlocks {
     // Decoration blocks
     public static final RegistryObject<ChristmasBlock> CHRISTMAS_WREATH =
             BLOCKS.register(ChristmasWreathBlock.BLOCK_ID, ChristmasWreathBlock::new);
+    public static final RegistryObject<ChristmasBlock> FROST =
+            BLOCKS.register(FrostBlock.BLOCK_ID, FrostBlock::new);
     public static final RegistryObject<ChristmasBlock> SANTA_LIST =
             BLOCKS.register(SantaListBlock.BLOCK_ID, SantaListBlock::new);
 

@@ -106,6 +106,7 @@ public class ChristmasRecipes extends RecipeProvider {
         christmasStar(consumer);
         christmasWreath(consumer);
         foods(consumer);
+        frost(consumer);
         gingerbread(consumer);
         guideBook(consumer);
         mistletoeAndHolly(consumer);
@@ -237,6 +238,14 @@ public class ChristmasRecipes extends RecipeProvider {
                 .pattern("#C#").pattern("C C").pattern("#C#")
                 .unlockedBy(getHasName(ChristmasItems.HOLLY.get()), has(ChristmasItems.HOLLY.get()))
                 .save(consumer, recipeResourceOf(ChristmasBlocks.CHRISTMAS_WREATH.get()));
+    }
+
+    private void frost(Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(ChristmasItems.FROST.get(), 16)
+                .define('#', Items.ICE)
+                .pattern("###").pattern("###")
+                .unlockedBy(getHasName(ChristmasItems.FROST.get()), has(ChristmasItems.FROST.get())).unlockedBy(getHasName(Items.ICE), has(Items.ICE))
+                .save(consumer, recipeResourceOf(ChristmasBlocks.FROST.get()));
     }
 
     private void foods(Consumer<FinishedRecipe> consumer) {

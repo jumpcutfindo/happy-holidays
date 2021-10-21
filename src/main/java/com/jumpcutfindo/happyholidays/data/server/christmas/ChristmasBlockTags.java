@@ -55,7 +55,8 @@ public class ChristmasBlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS.get());
 
         tag(ChristmasTags.Blocks.DECORATIONS)
-                .add(ChristmasBlocks.CHRISTMAS_WREATH.get());
+                .add(ChristmasBlocks.CHRISTMAS_WREATH.get())
+                .add(ChristmasBlocks.FROST.get());
 
         tag(ChristmasTags.Blocks.HEAD_ORNAMENTS)
                 .add(ChristmasBlocks.CREEPER_HEAD_ORNAMENT.get())

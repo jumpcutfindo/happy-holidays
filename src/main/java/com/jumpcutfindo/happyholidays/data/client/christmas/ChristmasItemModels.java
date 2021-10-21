@@ -146,6 +146,7 @@ public class ChristmasItemModels extends ItemModelProvider {
                 ChristmasItems.SILVER_STOCKING.get(),
 
                 ChristmasItems.CHRISTMAS_WREATH.get(),
+                ChristmasItems.FROST.get(),
                 ChristmasItems.SANTA_LIST.get(),
 
                 ChristmasItems.CHRISTMAS_HAM.get(),

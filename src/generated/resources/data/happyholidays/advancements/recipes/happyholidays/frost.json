@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:frost"
+    ]
+  },
+  "criteria": {
+    "has_frost": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:frost"
+            ]
+          }
+        ]
+      }
+    },
+    "has_ice": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ice"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:frost"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_frost",
+      "has_ice",
+      "has_the_recipe"
+    ]
+  ]
+}

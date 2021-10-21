@@ -95,6 +95,7 @@ public class SetupHandler {
                 ChristmasBlocks.ALPHABET_ORNAMENT_Z.get(),
 
                 ChristmasBlocks.CHRISTMAS_WREATH.get(),
+                ChristmasBlocks.FROST.get(),
                 ChristmasBlocks.SANTA_LIST.get(),
 
                 ChristmasBlocks.BABY_PRESENT_ORNAMENT.get(),
