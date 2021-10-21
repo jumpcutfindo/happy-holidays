@@ -16,6 +16,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornamen
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.RareOrnament;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.BaubleOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.BigBaubleOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.ChristmasBellBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.ChristmasLightBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.TinselBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.AdultPresentOrnamentBlock;
@@ -237,6 +238,19 @@ public class ChristmasItems {
             ITEMS.register(ChristmasLightBlock.GOLD_CHRISTMAS_LIGHTS_ID, itemOf(ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> SILVER_CHRISTMAS_LIGHTS =
             ITEMS.register(ChristmasLightBlock.SILVER_CHRISTMAS_LIGHTS_ID, itemOf(ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
+
+    public static final RegistryObject<ChristmasBlockItem> RED_CHRISTMAS_BELLS =
+            ITEMS.register(ChristmasBellBlock.RED_BELLS_ID, itemOf(ChristmasBlocks.RED_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> BLUE_CHRISTMAS_BELLS =
+            ITEMS.register(ChristmasBellBlock.BLUE_BELLS_ID, itemOf(ChristmasBlocks.BLUE_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> YELLOW_CHRISTMAS_BELLS =
+            ITEMS.register(ChristmasBellBlock.YELLOW_BELLS_ID, itemOf(ChristmasBlocks.YELLOW_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> GREEN_CHRISTMAS_BELLS =
+            ITEMS.register(ChristmasBellBlock.GREEN_BELLS_ID, itemOf(ChristmasBlocks.GREEN_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> GOLD_CHRISTMAS_BELLS =
+            ITEMS.register(ChristmasBellBlock.GOLD_BELLS_ID, itemOf(ChristmasBlocks.GOLD_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> SILVER_CHRISTMAS_BELLS =
+            ITEMS.register(ChristmasBellBlock.SILVER_BELLS_ID, itemOf(ChristmasBlocks.SILVER_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> CREEPER_HEAD_ORNAMENT =
             ITEMS.register(HeadOrnamentBlock.CREEPER_HEAD_ORNAMENT_ID, itemOf(ChristmasBlocks.CREEPER_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES, ChristmasRarity.RARE));

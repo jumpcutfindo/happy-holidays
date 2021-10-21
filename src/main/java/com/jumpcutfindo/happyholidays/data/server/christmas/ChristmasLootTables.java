@@ -144,6 +144,13 @@ public class ChristmasLootTables extends BaseLootTableProvider {
         addStandardBlock(ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS.get());
         addStandardBlock(ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS.get());
 
+        addStandardBlock(ChristmasBlocks.RED_CHRISTMAS_BELLS.get());
+        addStandardBlock(ChristmasBlocks.BLUE_CHRISTMAS_BELLS.get());
+        addStandardBlock(ChristmasBlocks.YELLOW_CHRISTMAS_BELLS.get());
+        addStandardBlock(ChristmasBlocks.GREEN_CHRISTMAS_BELLS.get());
+        addStandardBlock(ChristmasBlocks.GOLD_CHRISTMAS_BELLS.get());
+        addStandardBlock(ChristmasBlocks.SILVER_CHRISTMAS_BELLS.get());
+
         addStandardBlock(ChristmasBlocks.ALPHABET_ORNAMENT_TEMPLATE.get());
         addStandardBlock(ChristmasBlocks.ALPHABET_ORNAMENT_A.get());
         addStandardBlock(ChristmasBlocks.ALPHABET_ORNAMENT_B.get());

@@ -161,6 +161,13 @@ public class ChristmasBlockStates extends BlockStateProvider {
                 ChristmasBlocks.BIG_GOLD_BAUBLE.get(),
                 ChristmasBlocks.BIG_SILVER_BAUBLE.get(),
 
+                ChristmasBlocks.RED_CHRISTMAS_BELLS.get(),
+                ChristmasBlocks.BLUE_CHRISTMAS_BELLS.get(),
+                ChristmasBlocks.YELLOW_CHRISTMAS_BELLS.get(),
+                ChristmasBlocks.GREEN_CHRISTMAS_BELLS.get(),
+                ChristmasBlocks.GOLD_CHRISTMAS_BELLS.get(),
+                ChristmasBlocks.SILVER_CHRISTMAS_BELLS.get(),
+
                 ChristmasBlocks.CREEPER_HEAD_ORNAMENT.get(),
                 ChristmasBlocks.SKELETON_HEAD_ORNAMENT.get(),
                 ChristmasBlocks.WITHER_SKELETON_HEAD_ORNAMENT.get(),

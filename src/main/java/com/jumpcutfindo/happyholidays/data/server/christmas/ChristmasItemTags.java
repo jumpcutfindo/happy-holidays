@@ -23,6 +23,7 @@ public class ChristmasItemTags extends ItemTagsProvider {
         copy(ChristmasTags.Blocks.BIG_BAUBLES, ChristmasTags.Items.BIG_BAUBLES);
         copy(ChristmasTags.Blocks.TINSEL, ChristmasTags.Items.TINSEL);
         copy(ChristmasTags.Blocks.CHRISTMAS_LIGHTS, ChristmasTags.Items.CHRISTMAS_LIGHTS);
+        copy(ChristmasTags.Blocks.CHRISTMAS_BELLS, ChristmasTags.Items.CHRISTMAS_BELLS);
         copy(ChristmasTags.Blocks.DECORATIONS, ChristmasTags.Items.DECORATIONS);
         copy(ChristmasTags.Blocks.HEAD_ORNAMENTS, ChristmasTags.Items.HEAD_ORNAMENTS);
         copy(ChristmasTags.Blocks.GINGERBREAD_BLOCKS, ChristmasTags.Items.GINGERBREAD_BLOCKS);
@@ -33,6 +34,7 @@ public class ChristmasItemTags extends ItemTagsProvider {
                 .addTag(ChristmasTags.Items.BIG_BAUBLES)
                 .addTag(ChristmasTags.Items.CHRISTMAS_LIGHTS)
                 .addTag(ChristmasTags.Items.TINSEL)
+                .addTag(ChristmasTags.Items.CHRISTMAS_BELLS)
                 .addTag(ChristmasTags.Items.DECORATIONS);
 
         tag(ChristmasTags.Items.RARE_ORNAMENTS)

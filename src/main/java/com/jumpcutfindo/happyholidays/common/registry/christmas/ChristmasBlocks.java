@@ -14,6 +14,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.Sa
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.BaubleOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.BigBaubleOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.ChristmasBellBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.ChristmasLightBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common.TinselBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary.AdultPresentOrnamentBlock;
@@ -29,9 +30,9 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddi
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.MilkAndCookiesBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.BaseGingerbreadBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.BaseGingerbreadSlabBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.BaseGingerbreadStairBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.BaseGingerbreadWall;
-import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.BaseGingerbreadSlabBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.GiftWrapperBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
@@ -122,6 +123,20 @@ public class ChristmasBlocks {
             BLOCKS.register(ChristmasLightBlock.GOLD_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
     public static final RegistryObject<ChristmasBlock> SILVER_CHRISTMAS_LIGHTS =
             BLOCKS.register(ChristmasLightBlock.SILVER_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+
+    // Bells
+    public static final RegistryObject<ChristmasBlock> RED_CHRISTMAS_BELLS =
+            BLOCKS.register(ChristmasBellBlock.RED_BELLS_ID, ChristmasBellBlock::new);
+    public static final RegistryObject<ChristmasBlock> BLUE_CHRISTMAS_BELLS =
+            BLOCKS.register(ChristmasBellBlock.BLUE_BELLS_ID, ChristmasBellBlock::new);
+    public static final RegistryObject<ChristmasBlock> YELLOW_CHRISTMAS_BELLS =
+            BLOCKS.register(ChristmasBellBlock.YELLOW_BELLS_ID, ChristmasBellBlock::new);
+    public static final RegistryObject<ChristmasBlock> GREEN_CHRISTMAS_BELLS =
+            BLOCKS.register(ChristmasBellBlock.GREEN_BELLS_ID, ChristmasBellBlock::new);
+    public static final RegistryObject<ChristmasBlock> GOLD_CHRISTMAS_BELLS =
+            BLOCKS.register(ChristmasBellBlock.GOLD_BELLS_ID, ChristmasBellBlock::new);
+    public static final RegistryObject<ChristmasBlock> SILVER_CHRISTMAS_BELLS =
+            BLOCKS.register(ChristmasBellBlock.SILVER_BELLS_ID, ChristmasBellBlock::new);
 
     // Head Ornaments
     public static final RegistryObject<ChristmasBlock> CREEPER_HEAD_ORNAMENT =

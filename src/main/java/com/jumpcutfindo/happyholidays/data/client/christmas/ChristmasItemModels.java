@@ -131,6 +131,13 @@ public class ChristmasItemModels extends ItemModelProvider {
                 ChristmasItems.GOLD_CHRISTMAS_LIGHTS.get(),
                 ChristmasItems.SILVER_CHRISTMAS_LIGHTS.get(),
 
+                ChristmasItems.RED_CHRISTMAS_BELLS.get(),
+                ChristmasItems.BLUE_CHRISTMAS_BELLS.get(),
+                ChristmasItems.YELLOW_CHRISTMAS_BELLS.get(),
+                ChristmasItems.GREEN_CHRISTMAS_BELLS.get(),
+                ChristmasItems.GOLD_CHRISTMAS_BELLS.get(),
+                ChristmasItems.SILVER_CHRISTMAS_BELLS.get(),
+
                 ChristmasItems.RED_TINSEL.get(),
                 ChristmasItems.BLUE_TINSEL.get(),
                 ChristmasItems.YELLOW_TINSEL.get(),

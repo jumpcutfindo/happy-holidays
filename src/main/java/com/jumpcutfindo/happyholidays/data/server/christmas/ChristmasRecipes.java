@@ -66,6 +66,13 @@ public class ChristmasRecipes extends RecipeProvider {
         christmasLights(consumer, ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS.get(), ChristmasItems.GOLD_CHRISTMAS_DYE.get());
         christmasLights(consumer, ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS.get(), ChristmasItems.SILVER_CHRISTMAS_DYE.get());
 
+        christmasBells(consumer, ChristmasBlocks.RED_CHRISTMAS_BELLS.get(), ChristmasItems.RED_CHRISTMAS_DYE.get());
+        christmasBells(consumer, ChristmasBlocks.BLUE_CHRISTMAS_BELLS.get(), ChristmasItems.BLUE_CHRISTMAS_DYE.get());
+        christmasBells(consumer, ChristmasBlocks.YELLOW_CHRISTMAS_BELLS.get(), ChristmasItems.YELLOW_CHRISTMAS_DYE.get());
+        christmasBells(consumer, ChristmasBlocks.GREEN_CHRISTMAS_BELLS.get(), ChristmasItems.GREEN_CHRISTMAS_DYE.get());
+        christmasBells(consumer, ChristmasBlocks.GOLD_CHRISTMAS_BELLS.get(), ChristmasItems.GOLD_CHRISTMAS_DYE.get());
+        christmasBells(consumer, ChristmasBlocks.SILVER_CHRISTMAS_BELLS.get(), ChristmasItems.SILVER_CHRISTMAS_DYE.get());
+
         stocking(consumer, ChristmasBlocks.RED_STOCKING.get(), ChristmasItems.RED_CHRISTMAS_DYE.get());
         stocking(consumer, ChristmasBlocks.BLUE_STOCKING.get(), ChristmasItems.BLUE_CHRISTMAS_DYE.get());
         stocking(consumer, ChristmasBlocks.YELLOW_STOCKING.get(), ChristmasItems.YELLOW_CHRISTMAS_DYE.get());
@@ -164,6 +171,15 @@ public class ChristmasRecipes extends RecipeProvider {
                 .define('S', Items.STRING).define('R', Items.GLASS).define('G', Items.GLOWSTONE_DUST).define('A', christmasDye)
                 .pattern(" S ").pattern("RGR").pattern(" A ")
                 .unlockedBy("has_string", has(Items.STRING)).unlockedBy("has_glass", has(Items.GLASS))
+                .save(consumer, recipeResourceOf(block));
+    }
+
+    private void christmasBells(Consumer<FinishedRecipe> consumer, Block block, Item christmasDye) {
+        ShapedRecipeBuilder.shaped(block, 4)
+                .group(groupOf("christmas_bells"))
+                .define('S', Items.STRING).define('I', Items.IRON_INGOT).define('A', christmasDye)
+                .pattern(" S ").pattern("IAI")
+                .unlockedBy("has_string", has(Items.STRING)).unlockedBy("has_ingot", has(Items.IRON_INGOT))
                 .save(consumer, recipeResourceOf(block));
     }
 
