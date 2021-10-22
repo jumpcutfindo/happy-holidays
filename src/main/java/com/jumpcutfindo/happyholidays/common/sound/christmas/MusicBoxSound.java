@@ -1,9 +1,9 @@
 package com.jumpcutfindo.happyholidays.common.sound.christmas;
 
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 
 public class MusicBoxSound extends AbstractTickableSoundInstance {
     private final int duration;
@@ -15,10 +15,12 @@ public class MusicBoxSound extends AbstractTickableSoundInstance {
 
         this.looping = false;
         this.delay = 2;
-        this.volume = 1.0F;
+        this.volume = 4.0F;
         this.x = (double)((float) playPos.getX());
         this.y = (double)((float) playPos.getY());
         this.z = (double)((float) playPos.getZ());
+
+        this.attenuation = Attenuation.LINEAR;
     }
 
     public void stopTrack() {
