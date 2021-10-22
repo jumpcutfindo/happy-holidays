@@ -70,7 +70,15 @@ public class ChristmasBlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.CREEPER_HEAD_ORNAMENT.get())
                 .add(ChristmasBlocks.SKELETON_HEAD_ORNAMENT.get())
                 .add(ChristmasBlocks.WITHER_SKELETON_HEAD_ORNAMENT.get())
-                .add(ChristmasBlocks.SKELETON_HEAD_ORNAMENT.get());
+                .add(ChristmasBlocks.ZOMBIE_HEAD_ORNAMENT.get())
+                .add(ChristmasBlocks.DROWNED_HEAD_ORNAMENT.get())
+                .add(ChristmasBlocks.BLAZE_HEAD_ORNAMENT.get())
+                .add(ChristmasBlocks.GHAST_HEAD_ORNAMENT.get())
+                .add(ChristmasBlocks.PHANTOM_HEAD_ORNAMENT.get())
+                .add(ChristmasBlocks.PIG_HEAD_ORNAMENT.get())
+                .add(ChristmasBlocks.COW_HEAD_ORNAMENT.get())
+                .add(ChristmasBlocks.CHICKEN_HEAD_ORNAMENT.get())
+                .add(ChristmasBlocks.SHEEP_HEAD_ORNAMENT.get());
 
         tag(ChristmasTags.Blocks.GINGERBREAD_BLOCKS)
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK.get())

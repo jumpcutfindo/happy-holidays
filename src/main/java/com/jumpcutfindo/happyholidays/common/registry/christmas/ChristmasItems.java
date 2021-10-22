@@ -260,6 +260,22 @@ public class ChristmasItems {
             ITEMS.register(HeadOrnamentBlock.WITHER_SKELETON_HEAD_ORNAMENT_ID, itemOf(ChristmasBlocks.WITHER_SKELETON_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES, ChristmasRarity.RARE));
     public static final RegistryObject<ChristmasBlockItem> ZOMBIE_HEAD_ORNAMENT =
             ITEMS.register(HeadOrnamentBlock.ZOMBIE_HEAD_ORNAMENT_ID, itemOf(ChristmasBlocks.ZOMBIE_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES, ChristmasRarity.RARE));
+    public static final RegistryObject<ChristmasBlockItem> DROWNED_HEAD_ORNAMENT =
+            ITEMS.register(HeadOrnamentBlock.DROWNED_HEAD_ORNAMENT_ID, itemOf(ChristmasBlocks.DROWNED_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES, ChristmasRarity.RARE));
+    public static final RegistryObject<ChristmasBlockItem> BLAZE_HEAD_ORNAMENT =
+            ITEMS.register(HeadOrnamentBlock.BLAZE_HEAD_ORNAMENT_ID, itemOf(ChristmasBlocks.BLAZE_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES, ChristmasRarity.RARE));
+    public static final RegistryObject<ChristmasBlockItem> GHAST_HEAD_ORNAMENT =
+            ITEMS.register(HeadOrnamentBlock.GHAST_HEAD_ORNAMENT_ID, itemOf(ChristmasBlocks.GHAST_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES, ChristmasRarity.RARE));
+    public static final RegistryObject<ChristmasBlockItem> PHANTOM_HEAD_ORNAMENT =
+            ITEMS.register(HeadOrnamentBlock.PHANTOM_HEAD_ORNAMENT_ID, itemOf(ChristmasBlocks.PHANTOM_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES, ChristmasRarity.RARE));
+    public static final RegistryObject<ChristmasBlockItem> PIG_HEAD_ORNAMENT =
+            ITEMS.register(HeadOrnamentBlock.PIG_HEAD_ORNAMENT_ID, itemOf(ChristmasBlocks.PIG_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES, ChristmasRarity.RARE));
+    public static final RegistryObject<ChristmasBlockItem> COW_HEAD_ORNAMENT =
+            ITEMS.register(HeadOrnamentBlock.COW_HEAD_ORNAMENT_ID, itemOf(ChristmasBlocks.COW_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES, ChristmasRarity.RARE));
+    public static final RegistryObject<ChristmasBlockItem> CHICKEN_HEAD_ORNAMENT =
+            ITEMS.register(HeadOrnamentBlock.CHICKEN_HEAD_ORNAMENT_ID, itemOf(ChristmasBlocks.CHICKEN_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES, ChristmasRarity.RARE));
+    public static final RegistryObject<ChristmasBlockItem> SHEEP_HEAD_ORNAMENT =
+            ITEMS.register(HeadOrnamentBlock.SHEEP_HEAD_ORNAMENT_ID, itemOf(ChristmasBlocks.SHEEP_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES, ChristmasRarity.RARE));
 
     public static final RegistryObject<ChristmasBlockItem> RED_STOCKING =
             ITEMS.register(StockingBlock.RED_STOCKING_ID, itemOf(ChristmasBlocks.RED_STOCKING, StockingBlock.ITEM_PROPERTIES));

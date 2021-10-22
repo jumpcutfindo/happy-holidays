@@ -147,6 +147,22 @@ public class ChristmasBlocks {
             BLOCKS.register(HeadOrnamentBlock.WITHER_SKELETON_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
     public static final RegistryObject<ChristmasBlock> ZOMBIE_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.ZOMBIE_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> DROWNED_HEAD_ORNAMENT =
+            BLOCKS.register(HeadOrnamentBlock.DROWNED_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> BLAZE_HEAD_ORNAMENT =
+            BLOCKS.register(HeadOrnamentBlock.BLAZE_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> GHAST_HEAD_ORNAMENT =
+            BLOCKS.register(HeadOrnamentBlock.GHAST_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> PHANTOM_HEAD_ORNAMENT =
+            BLOCKS.register(HeadOrnamentBlock.PHANTOM_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> PIG_HEAD_ORNAMENT =
+            BLOCKS.register(HeadOrnamentBlock.PIG_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> COW_HEAD_ORNAMENT =
+            BLOCKS.register(HeadOrnamentBlock.COW_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> CHICKEN_HEAD_ORNAMENT =
+            BLOCKS.register(HeadOrnamentBlock.CHICKEN_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+    public static final RegistryObject<ChristmasBlock> SHEEP_HEAD_ORNAMENT =
+            BLOCKS.register(HeadOrnamentBlock.SHEEP_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
 
     // Stockings
     public static final RegistryObject<ChristmasBlock> RED_STOCKING =

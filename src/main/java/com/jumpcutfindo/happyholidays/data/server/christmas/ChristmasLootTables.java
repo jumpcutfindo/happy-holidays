@@ -187,9 +187,17 @@ public class ChristmasLootTables extends BaseLootTableProvider {
         addStandardBlock(ChristmasBlocks.SANTA_LIST.get());
 
         addStandardBlock(ChristmasBlocks.CREEPER_HEAD_ORNAMENT.get());
-        addStandardBlock(ChristmasBlocks.ZOMBIE_HEAD_ORNAMENT.get());
         addStandardBlock(ChristmasBlocks.SKELETON_HEAD_ORNAMENT.get());
         addStandardBlock(ChristmasBlocks.WITHER_SKELETON_HEAD_ORNAMENT.get());
+        addStandardBlock(ChristmasBlocks.ZOMBIE_HEAD_ORNAMENT.get());
+        addStandardBlock(ChristmasBlocks.DROWNED_HEAD_ORNAMENT.get());
+        addStandardBlock(ChristmasBlocks.BLAZE_HEAD_ORNAMENT.get());
+        addStandardBlock(ChristmasBlocks.GHAST_HEAD_ORNAMENT.get());
+        addStandardBlock(ChristmasBlocks.PHANTOM_HEAD_ORNAMENT.get());
+        addStandardBlock(ChristmasBlocks.PIG_HEAD_ORNAMENT.get());
+        addStandardBlock(ChristmasBlocks.COW_HEAD_ORNAMENT.get());
+        addStandardBlock(ChristmasBlocks.CHICKEN_HEAD_ORNAMENT.get());
+        addStandardBlock(ChristmasBlocks.SHEEP_HEAD_ORNAMENT.get());
 
         addStockingBlock(ChristmasBlocks.RED_STOCKING.get());
         addStockingBlock(ChristmasBlocks.BLUE_STOCKING.get());
