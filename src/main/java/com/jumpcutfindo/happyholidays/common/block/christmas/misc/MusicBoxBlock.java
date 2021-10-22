@@ -29,15 +29,12 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 public class MusicBoxBlock extends ChristmasBlock implements EntityBlock {
     public static final String BLOCK_ID = "music_box";
-
-    public static final BooleanProperty PLAYING = BooleanProperty.create("playing");
 
     public static final Properties BLOCK_PROPERTIES =
             BlockBehaviour.Properties
@@ -53,14 +50,10 @@ public class MusicBoxBlock extends ChristmasBlock implements EntityBlock {
 
     public MusicBoxBlock() {
         super(BLOCK_PROPERTIES);
-        this.registerDefaultState(this.getStateDefinition().any()
-                .setValue(PLAYING, false)
-        );
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(PLAYING);
     }
 
     @Override
@@ -83,8 +76,7 @@ public class MusicBoxBlock extends ChristmasBlock implements EntityBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState()
-                .setValue(PLAYING, false);
+        return super.getStateForPlacement(context);
     }
 
     @Override
