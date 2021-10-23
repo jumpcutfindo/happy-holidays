@@ -17,6 +17,7 @@ import net.minecraft.advancements.critereon.EntityPredicate;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -25,6 +26,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.storage.loot.IntRange;
 import net.minecraft.world.level.storage.loot.LootContext;
@@ -40,6 +42,7 @@ import net.minecraft.world.level.storage.loot.functions.LimitCount;
 import net.minecraft.world.level.storage.loot.functions.LootingEnchantFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemDamageFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -130,19 +133,19 @@ public class ChristmasLootTables extends BaseLootTableProvider {
         addStandardBlock(ChristmasBlocks.BIG_GOLD_BAUBLE.get());
         addStandardBlock(ChristmasBlocks.BIG_SILVER_BAUBLE.get());
 
-        addStandardBlock(ChristmasBlocks.RED_TINSEL.get());
-        addStandardBlock(ChristmasBlocks.BLUE_TINSEL.get());
-        addStandardBlock(ChristmasBlocks.YELLOW_TINSEL.get());
-        addStandardBlock(ChristmasBlocks.GREEN_TINSEL.get());
-        addStandardBlock(ChristmasBlocks.GOLD_TINSEL.get());
-        addStandardBlock(ChristmasBlocks.SILVER_TINSEL.get());
+        addConnectedOrnament(ChristmasBlocks.RED_TINSEL.get());
+        addConnectedOrnament(ChristmasBlocks.BLUE_TINSEL.get());
+        addConnectedOrnament(ChristmasBlocks.YELLOW_TINSEL.get());
+        addConnectedOrnament(ChristmasBlocks.GREEN_TINSEL.get());
+        addConnectedOrnament(ChristmasBlocks.GOLD_TINSEL.get());
+        addConnectedOrnament(ChristmasBlocks.SILVER_TINSEL.get());
 
-        addStandardBlock(ChristmasBlocks.RED_CHRISTMAS_LIGHTS.get());
-        addStandardBlock(ChristmasBlocks.BLUE_CHRISTMAS_LIGHTS.get());
-        addStandardBlock(ChristmasBlocks.YELLOW_CHRISTMAS_LIGHTS.get());
-        addStandardBlock(ChristmasBlocks.GREEN_CHRISTMAS_LIGHTS.get());
-        addStandardBlock(ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS.get());
-        addStandardBlock(ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS.get());
+        addConnectedOrnament(ChristmasBlocks.RED_CHRISTMAS_LIGHTS.get());
+        addConnectedOrnament(ChristmasBlocks.BLUE_CHRISTMAS_LIGHTS.get());
+        addConnectedOrnament(ChristmasBlocks.YELLOW_CHRISTMAS_LIGHTS.get());
+        addConnectedOrnament(ChristmasBlocks.GREEN_CHRISTMAS_LIGHTS.get());
+        addConnectedOrnament(ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS.get());
+        addConnectedOrnament(ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS.get());
 
         addStandardBlock(ChristmasBlocks.RED_CHRISTMAS_BELLS.get());
         addStandardBlock(ChristmasBlocks.BLUE_CHRISTMAS_BELLS.get());
@@ -238,6 +241,27 @@ public class ChristmasLootTables extends BaseLootTableProvider {
 
     private void addSlabBlock(SlabBlock block) {
         blockLootTables.put(block, slabBlock(block));
+    }
+
+    private void addConnectedOrnament(Block block) {
+        LootPool.Builder builder = LootPool.lootPool()
+                .name(id(block))
+                .setRolls(ConstantValue.exactly(1));
+
+        PipeBlock.PROPERTY_BY_DIRECTION.entrySet().forEach(e -> {
+            Direction dir = e.getKey();
+            if (dir.getAxis().isHorizontal()) {
+                builder.add(LootItem.lootTableItem(block.asItem())
+                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1), true)
+                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(e.getValue(), true))
+                                )
+                        )
+                );
+            }
+        });
+
+        blockLootTables.put(block, LootTable.lootTable().setParamSet(LootContextParamSets.BLOCK).withPool(builder));
     }
 
     private void addStockingBlock(Block block) {

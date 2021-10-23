@@ -8,15 +8,85 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "happyholidays:green_tinsel",
+                  "properties": {
+                    "north": "true"
+                  }
+                }
+              ],
+              "count": 1.0,
+              "add": true
+            }
+          ],
+          "name": "happyholidays:green_tinsel"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "happyholidays:green_tinsel",
+                  "properties": {
+                    "south": "true"
+                  }
+                }
+              ],
+              "count": 1.0,
+              "add": true
+            }
+          ],
+          "name": "happyholidays:green_tinsel"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "happyholidays:green_tinsel",
+                  "properties": {
+                    "west": "true"
+                  }
+                }
+              ],
+              "count": 1.0,
+              "add": true
+            }
+          ],
+          "name": "happyholidays:green_tinsel"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "happyholidays:green_tinsel",
+                  "properties": {
+                    "east": "true"
+                  }
+                }
+              ],
+              "count": 1.0,
+              "add": true
+            }
+          ],
           "name": "happyholidays:green_tinsel"
         }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
-      "functions": []
+      ]
     }
   ]
 }

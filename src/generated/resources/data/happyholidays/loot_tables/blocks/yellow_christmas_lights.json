@@ -8,15 +8,85 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "happyholidays:yellow_christmas_lights",
+                  "properties": {
+                    "north": "true"
+                  }
+                }
+              ],
+              "count": 1.0,
+              "add": true
+            }
+          ],
+          "name": "happyholidays:yellow_christmas_lights"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "happyholidays:yellow_christmas_lights",
+                  "properties": {
+                    "south": "true"
+                  }
+                }
+              ],
+              "count": 1.0,
+              "add": true
+            }
+          ],
+          "name": "happyholidays:yellow_christmas_lights"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "happyholidays:yellow_christmas_lights",
+                  "properties": {
+                    "west": "true"
+                  }
+                }
+              ],
+              "count": 1.0,
+              "add": true
+            }
+          ],
+          "name": "happyholidays:yellow_christmas_lights"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "happyholidays:yellow_christmas_lights",
+                  "properties": {
+                    "east": "true"
+                  }
+                }
+              ],
+              "count": 1.0,
+              "add": true
+            }
+          ],
           "name": "happyholidays:yellow_christmas_lights"
         }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ],
-      "functions": []
+      ]
     }
   ]
 }
