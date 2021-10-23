@@ -1,9 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.handlers;
 
-import java.util.Arrays;
-
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetBlockColor;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.INaughtyNiceHandler;
@@ -21,29 +18,7 @@ public class SetupHandler {
 
     @SubscribeEvent
     public static void configureBlocks(FMLCommonSetupEvent event) {
-        ChristmasBlock[] christmasBlocks = new ChristmasBlock[]{
-                ChristmasBlocks.BABY_PRESENT.get(),
-                ChristmasBlocks.ADULT_PRESENT.get(),
-                ChristmasBlocks.ELDER_PRESENT.get(),
-
-                ChristmasBlocks.GINGERBREAD_BLOCK.get(),
-                ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK.get(),
-                ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK.get(),
-
-                ChristmasBlocks.CANDY_CANE_BLOCK.get(),
-                ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(),
-
-                ChristmasBlocks.MILK_AND_COOKIES.get(),
-                ChristmasBlocks.LOG_CAKE.get(),
-                ChristmasBlocks.CHRISTMAS_HAM.get(),
-                ChristmasBlocks.CHRISTMAS_PUDDING.get(),
-
-                ChristmasBlocks.CHRISTMAS_STAR.get(),
-                ChristmasBlocks.MUSIC_BOX.get(),
-                ChristmasBlocks.GIFT_WRAPPING_STATION.get()
-        };
-
-        Arrays.stream(christmasBlocks).forEach(ChristmasBlock::configureBlock);
+        // TODO: Reimplement configuration of blocks that need it
     }
 
     @SubscribeEvent

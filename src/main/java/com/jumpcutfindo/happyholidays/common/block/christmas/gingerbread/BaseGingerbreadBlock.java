@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
@@ -19,6 +18,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -26,7 +26,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 
-public class BaseGingerbreadBlock extends ChristmasBlock implements IGingerbreadBlock {
+public class BaseGingerbreadBlock extends Block implements IGingerbreadBlock {
     public static final BlockBehaviour.Properties DOUGH_PROPERTIES =
             BlockBehaviour.Properties
                     .of(Material.SNOW)
@@ -194,7 +194,7 @@ public class BaseGingerbreadBlock extends ChristmasBlock implements IGingerbread
             return this;
         }
 
-        public Supplier<ChristmasBlock> build() {
+        public Supplier<Block> build() {
             return () -> resultantBlock;
         }
     }

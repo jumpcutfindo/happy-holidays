@@ -3,12 +3,9 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.misc;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.GiftWrapperBlockEntity;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
@@ -36,7 +33,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
-public class    GiftWrapperBlock extends ChristmasBlock implements EntityBlock {
+public class GiftWrapperBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public static final String BLOCK_ID = "gift_wrapping_station";
@@ -67,12 +64,6 @@ public class    GiftWrapperBlock extends ChristmasBlock implements EntityBlock {
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
         stateBuilder.add(FACING);
     }
-
-    @Override
-    public void configureBlock() {
-        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutoutMipped());
-    }
-
 
     @Nullable
     @Override

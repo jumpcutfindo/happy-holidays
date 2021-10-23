@@ -2,11 +2,8 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.food;
 
 import java.util.Arrays;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
@@ -21,7 +18,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ChristmasFoodBlock extends ChristmasBlock {
+public class ChristmasFoodBlock extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     
     private VoxelShape[] shape;
@@ -73,11 +70,6 @@ public class ChristmasFoodBlock extends ChristmasBlock {
 
             return BlockUtils.combineShapes(resultShapes);
         }
-    }
-
-    @Override
-    public void configureBlock() {
-        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutoutMipped());
     }
 
     @Override
