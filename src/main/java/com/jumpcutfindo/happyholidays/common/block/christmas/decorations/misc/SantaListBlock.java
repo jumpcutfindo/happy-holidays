@@ -3,13 +3,18 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
 import java.util.Optional;
 
 import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.INaughtyNiceHandler;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
 import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
 import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,7 +28,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SantaListBlock extends WallDecorationBlock {
+public class SantaListBlock extends WallDecorationBlock implements ChristmasLike, ChristmasBlock {
     public static final String CHAT_NICE_MAX = "chat.happyholidays.santa_list.max_nice";
     public static final String CHAT_NICE = "chat.happyholidays.santa_list.nice";
     public static final String CHAT_NEUTRAL = "chat.happyholidays.santa_list.neutral";
@@ -79,5 +84,13 @@ public class SantaListBlock extends WallDecorationBlock {
         return InteractionResult.sidedSuccess(world.isClientSide());
     }
 
+    @Override
+    public void configure() {
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
+    }
 
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
+    }
 }

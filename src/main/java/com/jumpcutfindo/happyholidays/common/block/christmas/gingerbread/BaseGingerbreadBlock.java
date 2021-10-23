@@ -5,6 +5,9 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
@@ -26,7 +29,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 
-public class BaseGingerbreadBlock extends Block implements IGingerbreadBlock {
+public class BaseGingerbreadBlock extends Block implements IGingerbreadBlock, ChristmasBlock, ChristmasLike {
     public static final BlockBehaviour.Properties DOUGH_PROPERTIES =
             BlockBehaviour.Properties
                     .of(Material.SNOW)
@@ -159,6 +162,15 @@ public class BaseGingerbreadBlock extends Block implements IGingerbreadBlock {
                 || BlockUtils.isWet(level.getBlockState(pos.south()))
                 || BlockUtils.isWet(level.getBlockState(pos.east()))
                 || BlockUtils.isWet(level.getBlockState(pos.west()));
+    }
+
+    @Override
+    public void configure() {
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
     }
 
     public static class Builder {

@@ -1,24 +1,35 @@
 package com.jumpcutfindo.happyholidays.common.handlers;
 
+import java.util.Collection;
+
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetBlockColor;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.INaughtyNiceHandler;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
 
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fmllegacy.RegistryObject;
 
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SetupHandler {
 
     @SubscribeEvent
     public static void configureBlocks(FMLCommonSetupEvent event) {
-        // TODO: Reimplement configuration of blocks that need it
+        event.enqueueWork(() -> {
+            Collection<RegistryObject<Block>> christmasBlocks = ChristmasBlocks.BLOCKS.getEntries();
+
+            for (RegistryObject<Block> block : christmasBlocks) {
+                if (block.get() instanceof ChristmasBlock) ((ChristmasBlock) block.get()).configure();
+            }
+        });
     }
 
     @SubscribeEvent

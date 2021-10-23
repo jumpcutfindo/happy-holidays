@@ -7,12 +7,17 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -54,7 +59,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 
-public class PresentBlock extends Block implements SimpleWaterloggedBlock {
+public class PresentBlock extends Block implements SimpleWaterloggedBlock, ChristmasBlock, ChristmasLike {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public static final Properties BLOCK_PROPERTIES =
@@ -247,5 +252,15 @@ public class PresentBlock extends Block implements SimpleWaterloggedBlock {
 
     public static boolean isGrowable(BlockState blockState) {
         return blockState.is(ChristmasBlocks.BABY_PRESENT.get()) || blockState.is(ChristmasBlocks.ADULT_PRESENT.get());
+    }
+
+    @Override
+    public void configure() {
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
     }
 }

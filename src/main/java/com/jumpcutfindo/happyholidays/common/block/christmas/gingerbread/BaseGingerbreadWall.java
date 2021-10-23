@@ -4,6 +4,9 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -14,7 +17,7 @@ import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
-public class BaseGingerbreadWall extends WallBlock implements IGingerbreadBlock {
+public class BaseGingerbreadWall extends WallBlock implements IGingerbreadBlock, ChristmasLike, ChristmasBlock {
     public static final String DOUGH_BLOCK_ID = "gingerbread_dough_wall";
     public static final String COOKED_BLOCK_ID = "gingerbread_wall";
     public static final String SOGGY_BLOCK_ID = "soggy_gingerbread_wall";
@@ -68,6 +71,15 @@ public class BaseGingerbreadWall extends WallBlock implements IGingerbreadBlock 
         boolean flag = super.placeLiquid(level, blockPos, blockState, fluidState);
 
         return BaseGingerbreadBlock.onLiquidPlaced(level, blockPos, blockState, flag);
+    }
+
+    @Override
+    public void configure() {
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
     }
 
     public static class Builder {

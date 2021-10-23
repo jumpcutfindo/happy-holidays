@@ -1,13 +1,18 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common;
 
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.BasicOrnament;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ChristmasBellBlock extends DecorationBlock implements BasicOrnament {
+public class ChristmasBellBlock extends DecorationBlock implements ChristmasLike, ChristmasBlock, BasicOrnament {
     public static final String RED_BELLS_ID = "red_christmas_bells";
     public static final String BLUE_BELLS_ID = "blue_christmas_bells";
     public static final String YELLOW_BELLS_ID = "yellow_christmas_bells";
@@ -38,5 +43,15 @@ public class ChristmasBellBlock extends DecorationBlock implements BasicOrnament
 
     public ChristmasBellBlock() {
         super(BAUBLE_SHAPES);
+    }
+
+    @Override
+    public void configure() {
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
     }
 }

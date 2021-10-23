@@ -2,8 +2,13 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.food;
 
 import java.util.Arrays;
 
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
@@ -18,7 +23,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ChristmasFoodBlock extends Block {
+public class ChristmasFoodBlock extends Block implements ChristmasLike, ChristmasBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     
     private VoxelShape[] shape;
@@ -87,5 +92,15 @@ public class ChristmasFoodBlock extends Block {
 
     public static boolean isChristmasFoodBlock(Block block) {
         return block instanceof ChristmasFoodBlock;
+    }
+
+    @Override
+    public void configure() {
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
     }
 }

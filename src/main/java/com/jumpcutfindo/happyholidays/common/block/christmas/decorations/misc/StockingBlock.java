@@ -6,13 +6,18 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.StockingBlockEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -42,7 +47,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags;
 
-public class StockingBlock extends WallDecorationBlock implements EntityBlock {
+public class StockingBlock extends WallDecorationBlock implements ChristmasLike, ChristmasBlock, EntityBlock {
     public static final String RED_STOCKING_ID = "red_stocking";
     public static final String BLUE_STOCKING_ID = "blue_stocking";
     public static final String YELLOW_STOCKING_ID = "yellow_stocking";
@@ -188,5 +193,15 @@ public class StockingBlock extends WallDecorationBlock implements EntityBlock {
         chance += isCookiesNear ? 20 : 0;
 
         return chance;
+    }
+
+    @Override
+    public void configure() {
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
     }
 }

@@ -1,12 +1,17 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.rare;
 
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.RareOrnament;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class HeadOrnamentBlock extends DecorationBlock implements RareOrnament {
+public class HeadOrnamentBlock extends DecorationBlock implements ChristmasLike, ChristmasBlock, RareOrnament {
     public static final String ZOMBIE_HEAD_ORNAMENT_ID = "zombie_head_ornament";
     public static final String SKELETON_HEAD_ORNAMENT_ID = "skeleton_head_ornament";
     public static final String WITHER_SKELETON_HEAD_ORNAMENT_ID = "wither_skeleton_head_ornament";
@@ -29,5 +34,15 @@ public class HeadOrnamentBlock extends DecorationBlock implements RareOrnament {
 
     public HeadOrnamentBlock() {
         super(HEAD_ORNAMENT_SHAPES);
+    }
+
+    @Override
+    public void configure() {
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.RARE;
     }
 }

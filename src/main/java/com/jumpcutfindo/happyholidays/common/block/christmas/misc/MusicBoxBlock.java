@@ -3,10 +3,15 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.misc;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerPlayer;
@@ -31,7 +36,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
-public class MusicBoxBlock extends Block implements EntityBlock {
+public class MusicBoxBlock extends Block implements EntityBlock, ChristmasBlock, ChristmasLike {
     public static final String BLOCK_ID = "music_box";
 
     public static final Properties BLOCK_PROPERTIES =
@@ -115,5 +120,15 @@ public class MusicBoxBlock extends Block implements EntityBlock {
 
     public static <T extends BlockEntity> BlockEntityTicker<T> createMusicBoxTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends MusicBoxBlockEntity> otherEntityType) {
         return level.isClientSide() ? null : BlockUtils.createTickerHelper(blockEntityType, otherEntityType, MusicBoxBlockEntity::serverTick);
+    }
+
+    @Override
+    public void configure() {
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.translucent());
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
     }
 }

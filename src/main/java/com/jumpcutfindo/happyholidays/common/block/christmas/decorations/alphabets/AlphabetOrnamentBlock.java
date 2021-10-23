@@ -1,9 +1,14 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets;
 
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ChristmasBlockColor;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -21,7 +26,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class AlphabetOrnamentBlock extends DecorationBlock {
+public class AlphabetOrnamentBlock extends DecorationBlock implements ChristmasLike, ChristmasBlock {
     public static final EnumProperty<ChristmasBlockColor> BLOCK_COLOR = EnumProperty.create("christmas_color",
             ChristmasBlockColor.class);
 
@@ -102,5 +107,15 @@ public class AlphabetOrnamentBlock extends DecorationBlock {
     private static void stainGlass(Level world, BlockState blockState, BlockPos blockPos, ChristmasBlockColor color) {
         world.setBlock(blockPos, blockState.setValue(BLOCK_COLOR, color), 0);
         world.playSound(null, blockPos, SoundEvents.DYE_USE, SoundSource.BLOCKS, 1.0f, 1.0f);
+    }
+
+    @Override
+    public void configure() {
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.translucent());
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
     }
 }
