@@ -6,6 +6,7 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
+import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -121,6 +122,6 @@ public class MusicBoxBlock extends ChristmasBlock implements EntityBlock {
     }
 
     public static <T extends BlockEntity> BlockEntityTicker<T> createMusicBoxTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends MusicBoxBlockEntity> otherEntityType) {
-        return level.isClientSide() ? null : ChristmasBlock.createTickerHelper(blockEntityType, otherEntityType, MusicBoxBlockEntity::serverTick);
+        return level.isClientSide() ? null : BlockUtils.createTickerHelper(blockEntityType, otherEntityType, MusicBoxBlockEntity::serverTick);
     }
 }

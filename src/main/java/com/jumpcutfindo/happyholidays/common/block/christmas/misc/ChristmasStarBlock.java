@@ -7,6 +7,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -171,6 +172,6 @@ public class ChristmasStarBlock extends ChristmasBlock implements EntityBlock {
     }
 
     protected static <T extends BlockEntity> BlockEntityTicker<T> createStarTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends ChristmasStarBlockEntity> otherEntityType) {
-        return level.isClientSide() ? null : ChristmasBlock.createTickerHelper(blockEntityType, otherEntityType, ChristmasStarBlockEntity::serverTick);
+        return level.isClientSide() ? null : BlockUtils.createTickerHelper(blockEntityType, otherEntityType, ChristmasStarBlockEntity::serverTick);
     }
 }
