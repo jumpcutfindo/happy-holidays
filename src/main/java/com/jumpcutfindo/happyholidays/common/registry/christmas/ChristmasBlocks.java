@@ -69,31 +69,32 @@ public class ChristmasBlocks {
             BLOCKS.register(ElderPresentBlock.BLOCK_ID, ElderPresentBlock::new);
 
     // Baubles
-    public static final RegistryObject<ChristmasBlock> RED_BAUBLE =
+
+    public static final RegistryObject<Block> RED_BAUBLE =
             BLOCKS.register(BaubleOrnamentBlock.RED_BAUBLE_ID, BaubleOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> BLUE_BAUBLE =
+    public static final RegistryObject<Block> BLUE_BAUBLE =
             BLOCKS.register(BaubleOrnamentBlock.BLUE_BAUBLE_ID, BaubleOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> YELLOW_BAUBLE =
+    public static final RegistryObject<Block> YELLOW_BAUBLE =
             BLOCKS.register(BaubleOrnamentBlock.YELLOW_BAUBLE_ID, BaubleOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> GREEN_BAUBLE =
+    public static final RegistryObject<Block> GREEN_BAUBLE =
             BLOCKS.register(BaubleOrnamentBlock.GREEN_BAUBLE_ID, BaubleOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> GOLD_BAUBLE =
+    public static final RegistryObject<Block> GOLD_BAUBLE =
             BLOCKS.register(BaubleOrnamentBlock.GOLD_BAUBLE_ID, BaubleOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> SILVER_BAUBLE =
+    public static final RegistryObject<Block> SILVER_BAUBLE =
             BLOCKS.register(BaubleOrnamentBlock.SILVER_BAUBLE_ID, BaubleOrnamentBlock::new);
 
     // Big Baubles
-    public static final RegistryObject<ChristmasBlock> BIG_RED_BAUBLE =
+    public static final RegistryObject<Block> BIG_RED_BAUBLE =
             BLOCKS.register(BigBaubleOrnamentBlock.BIG_RED_BAUBLE_ID, BigBaubleOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> BIG_BLUE_BAUBLE =
+    public static final RegistryObject<Block> BIG_BLUE_BAUBLE =
             BLOCKS.register(BigBaubleOrnamentBlock.BIG_BLUE_BAUBLE_ID, BigBaubleOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> BIG_YELLOW_BAUBLE =
+    public static final RegistryObject<Block> BIG_YELLOW_BAUBLE =
             BLOCKS.register(BigBaubleOrnamentBlock.BIG_YELLOW_BAUBLE_ID, BigBaubleOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> BIG_GREEN_BAUBLE =
+    public static final RegistryObject<Block> BIG_GREEN_BAUBLE =
             BLOCKS.register(BigBaubleOrnamentBlock.BIG_GREEN_BAUBLE_ID, BigBaubleOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> BIG_GOLD_BAUBLE =
+    public static final RegistryObject<Block> BIG_GOLD_BAUBLE =
             BLOCKS.register(BigBaubleOrnamentBlock.BIG_GOLD_BAUBLE_ID, BigBaubleOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> BIG_SILVER_BAUBLE =
+    public static final RegistryObject<Block> BIG_SILVER_BAUBLE =
             BLOCKS.register(BigBaubleOrnamentBlock.BIG_SILVER_BAUBLE_ID, BigBaubleOrnamentBlock::new);
 
     // Tinsels
@@ -125,137 +126,137 @@ public class ChristmasBlocks {
             BLOCKS.register(ChristmasLightBlock.SILVER_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
 
     // Bells
-    public static final RegistryObject<ChristmasBlock> RED_CHRISTMAS_BELLS =
+    public static final RegistryObject<Block> RED_CHRISTMAS_BELLS =
             BLOCKS.register(ChristmasBellBlock.RED_BELLS_ID, ChristmasBellBlock::new);
-    public static final RegistryObject<ChristmasBlock> BLUE_CHRISTMAS_BELLS =
+    public static final RegistryObject<Block> BLUE_CHRISTMAS_BELLS =
             BLOCKS.register(ChristmasBellBlock.BLUE_BELLS_ID, ChristmasBellBlock::new);
-    public static final RegistryObject<ChristmasBlock> YELLOW_CHRISTMAS_BELLS =
+    public static final RegistryObject<Block> YELLOW_CHRISTMAS_BELLS =
             BLOCKS.register(ChristmasBellBlock.YELLOW_BELLS_ID, ChristmasBellBlock::new);
-    public static final RegistryObject<ChristmasBlock> GREEN_CHRISTMAS_BELLS =
+    public static final RegistryObject<Block> GREEN_CHRISTMAS_BELLS =
             BLOCKS.register(ChristmasBellBlock.GREEN_BELLS_ID, ChristmasBellBlock::new);
-    public static final RegistryObject<ChristmasBlock> GOLD_CHRISTMAS_BELLS =
+    public static final RegistryObject<Block> GOLD_CHRISTMAS_BELLS =
             BLOCKS.register(ChristmasBellBlock.GOLD_BELLS_ID, ChristmasBellBlock::new);
-    public static final RegistryObject<ChristmasBlock> SILVER_CHRISTMAS_BELLS =
+    public static final RegistryObject<Block> SILVER_CHRISTMAS_BELLS =
             BLOCKS.register(ChristmasBellBlock.SILVER_BELLS_ID, ChristmasBellBlock::new);
 
     // Head Ornaments
-    public static final RegistryObject<ChristmasBlock> CREEPER_HEAD_ORNAMENT =
+    public static final RegistryObject<Block> CREEPER_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.CREEPER_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> SKELETON_HEAD_ORNAMENT =
+    public static final RegistryObject<Block> SKELETON_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.SKELETON_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> WITHER_SKELETON_HEAD_ORNAMENT =
+    public static final RegistryObject<Block> WITHER_SKELETON_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.WITHER_SKELETON_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ZOMBIE_HEAD_ORNAMENT =
+    public static final RegistryObject<Block> ZOMBIE_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.ZOMBIE_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> DROWNED_HEAD_ORNAMENT =
+    public static final RegistryObject<Block> DROWNED_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.DROWNED_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> BLAZE_HEAD_ORNAMENT =
+    public static final RegistryObject<Block> BLAZE_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.BLAZE_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> GHAST_HEAD_ORNAMENT =
+    public static final RegistryObject<Block> GHAST_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.GHAST_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> PHANTOM_HEAD_ORNAMENT =
+    public static final RegistryObject<Block> PHANTOM_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.PHANTOM_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> PIG_HEAD_ORNAMENT =
+    public static final RegistryObject<Block> PIG_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.PIG_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> COW_HEAD_ORNAMENT =
+    public static final RegistryObject<Block> COW_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.COW_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> CHICKEN_HEAD_ORNAMENT =
+    public static final RegistryObject<Block> CHICKEN_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.CHICKEN_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> SHEEP_HEAD_ORNAMENT =
+    public static final RegistryObject<Block> SHEEP_HEAD_ORNAMENT =
             BLOCKS.register(HeadOrnamentBlock.SHEEP_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
 
     // Stockings
-    public static final RegistryObject<ChristmasBlock> RED_STOCKING =
+    public static final RegistryObject<Block> RED_STOCKING =
             BLOCKS.register(StockingBlock.RED_STOCKING_ID, StockingBlock::new);
-    public static final RegistryObject<ChristmasBlock> BLUE_STOCKING =
+    public static final RegistryObject<Block> BLUE_STOCKING =
             BLOCKS.register(StockingBlock.BLUE_STOCKING_ID, StockingBlock::new);
-    public static final RegistryObject<ChristmasBlock> YELLOW_STOCKING =
+    public static final RegistryObject<Block> YELLOW_STOCKING =
             BLOCKS.register(StockingBlock.YELLOW_STOCKING_ID, StockingBlock::new);
-    public static final RegistryObject<ChristmasBlock> GREEN_STOCKING =
+    public static final RegistryObject<Block> GREEN_STOCKING =
             BLOCKS.register(StockingBlock.GREEN_STOCKING_ID, StockingBlock::new);
-    public static final RegistryObject<ChristmasBlock> GOLD_STOCKING =
+    public static final RegistryObject<Block> GOLD_STOCKING =
             BLOCKS.register(StockingBlock.GOLD_STOCKING_ID, StockingBlock::new);
-    public static final RegistryObject<ChristmasBlock> SILVER_STOCKING =
+    public static final RegistryObject<Block> SILVER_STOCKING =
             BLOCKS.register(StockingBlock.SILVER_STOCKING_ID, StockingBlock::new);
 
     // Alphabets
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_TEMPLATE =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_TEMPLATE =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_TEMPLATE_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_A =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_A =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_A_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_B =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_B =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_B_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_C =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_C =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_C_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_D =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_D =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_D_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_E =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_E =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_E_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_F =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_F =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_F_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_G =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_G =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_G_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_H =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_H =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_H_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_I =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_I =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_I_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_J =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_J =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_J_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_K =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_K =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_K_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_L =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_L =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_L_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_M =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_M =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_M_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_N =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_N =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_N_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_O =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_O =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_O_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_P =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_P =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_P_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_Q =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_Q =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_Q_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_R =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_R =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_R_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_S =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_S =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_S_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_T =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_T =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_T_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_U =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_U =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_U_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_V =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_V =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_V_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_W =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_W =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_W_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_X =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_X =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_X_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_Y =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_Y =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_Y_ID, AlphabetOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ALPHABET_ORNAMENT_Z =
+    public static final RegistryObject<Block> ALPHABET_ORNAMENT_Z =
             BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_Z_ID, AlphabetOrnamentBlock::new);
 
     // Decoration blocks
-    public static final RegistryObject<ChristmasBlock> CHRISTMAS_WREATH =
+    public static final RegistryObject<Block> CHRISTMAS_WREATH =
             BLOCKS.register(ChristmasWreathBlock.BLOCK_ID, ChristmasWreathBlock::new);
-    public static final RegistryObject<ChristmasBlock> FROST =
+    public static final RegistryObject<Block> FROST =
             BLOCKS.register(FrostBlock.BLOCK_ID, FrostBlock::new);
-    public static final RegistryObject<ChristmasBlock> SANTA_LIST =
+    public static final RegistryObject<Block> SANTA_LIST =
             BLOCKS.register(SantaListBlock.BLOCK_ID, SantaListBlock::new);
 
     // Legendary ornaments
-    public static final RegistryObject<ChristmasBlock> BABY_PRESENT_ORNAMENT =
+    public static final RegistryObject<Block> BABY_PRESENT_ORNAMENT =
             BLOCKS.register(BabyPresentOrnamentBlock.BLOCK_ID, BabyPresentOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ADULT_PRESENT_ORNAMENT =
+    public static final RegistryObject<Block> ADULT_PRESENT_ORNAMENT =
             BLOCKS.register(AdultPresentOrnamentBlock.BLOCK_ID, AdultPresentOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> ELDER_PRESENT_ORNAMENT =
+    public static final RegistryObject<Block> ELDER_PRESENT_ORNAMENT =
             BLOCKS.register(ElderPresentOrnamentBlock.BLOCK_ID, ElderPresentOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> CANDY_CANE_ORNAMENT =
+    public static final RegistryObject<Block> CANDY_CANE_ORNAMENT =
             BLOCKS.register(CandyCaneOrnamentBlock.BLOCK_ID, CandyCaneOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> SANTA_ELF_ORNAMENT =
+    public static final RegistryObject<Block> SANTA_ELF_ORNAMENT =
             BLOCKS.register(SantaElfOrnamentBlock.BLOCK_ID, SantaElfOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> GINGERBREAD_MAN_ORNAMENT =
+    public static final RegistryObject<Block> GINGERBREAD_MAN_ORNAMENT =
             BLOCKS.register(GingerbreadManOrnamentBlock.BLOCK_ID, GingerbreadManOrnamentBlock::new);
-    public static final RegistryObject<ChristmasBlock> GRINCH_ORNAMENT =
+    public static final RegistryObject<Block> GRINCH_ORNAMENT =
             BLOCKS.register(GrinchOrnamentBlock.BLOCK_ID, GrinchOrnamentBlock::new);
 
     // Gingerbread blocks

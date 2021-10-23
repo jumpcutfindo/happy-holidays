@@ -5,11 +5,8 @@ import java.util.Arrays;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -38,7 +35,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DecorationBlock extends ChristmasBlock implements SimpleWaterloggedBlock {
+public class DecorationBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<AttachFace> ATTACH_FACE = BlockStateProperties.ATTACH_FACE;
@@ -68,11 +65,6 @@ public class DecorationBlock extends ChristmasBlock implements SimpleWaterlogged
         this.normalShape = ornamentShapes[0];
         this.hangingShape = ornamentShapes[1];
         this.wallShape = ornamentShapes[2];
-    }
-
-    @Override
-    public void configureBlock() {
-        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
     }
 
     @Nullable

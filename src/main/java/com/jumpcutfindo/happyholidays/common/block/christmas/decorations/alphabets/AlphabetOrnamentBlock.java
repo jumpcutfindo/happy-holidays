@@ -4,8 +4,6 @@ import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ChristmasBlockColor;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -83,11 +81,6 @@ public class AlphabetOrnamentBlock extends DecorationBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
         stateBuilder.add(BLOCK_COLOR, ATTACH_FACE, FACING, WATERLOGGED);
-    }
-
-    @Override
-    public void configureBlock() {
-        ItemBlockRenderTypes.setRenderLayer(this, RenderType.translucent());
     }
 
     @Override

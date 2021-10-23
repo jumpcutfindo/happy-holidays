@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
 
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
+import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
+
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -23,10 +23,5 @@ public class FrostBlock extends WallDecorationBlock {
 
     public FrostBlock() {
         super(BLOCK_PROPERTIES, SHAPE);
-    }
-
-    @Override
-    public void configureBlock() {
-        ItemBlockRenderTypes.setRenderLayer(this, RenderType.translucent());
     }
 }
