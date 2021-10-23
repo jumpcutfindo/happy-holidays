@@ -40,20 +40,6 @@ public class SetupHandler {
                 ChristmasBlocks.BIG_GOLD_BAUBLE.get(),
                 ChristmasBlocks.BIG_SILVER_BAUBLE.get(),
 
-                ChristmasBlocks.RED_TINSEL.get(),
-                ChristmasBlocks.BLUE_TINSEL.get(),
-                ChristmasBlocks.YELLOW_TINSEL.get(),
-                ChristmasBlocks.GREEN_TINSEL.get(),
-                ChristmasBlocks.GOLD_TINSEL.get(),
-                ChristmasBlocks.SILVER_TINSEL.get(),
-
-                ChristmasBlocks.RED_CHRISTMAS_LIGHTS.get(),
-                ChristmasBlocks.BLUE_CHRISTMAS_LIGHTS.get(),
-                ChristmasBlocks.YELLOW_CHRISTMAS_LIGHTS.get(),
-                ChristmasBlocks.GREEN_CHRISTMAS_LIGHTS.get(),
-                ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS.get(),
-                ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS.get(),
-
                 ChristmasBlocks.RED_CHRISTMAS_BELLS.get(),
                 ChristmasBlocks.BLUE_CHRISTMAS_BELLS.get(),
                 ChristmasBlocks.YELLOW_CHRISTMAS_BELLS.get(),

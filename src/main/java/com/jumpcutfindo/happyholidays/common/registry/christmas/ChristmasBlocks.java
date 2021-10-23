@@ -97,31 +97,31 @@ public class ChristmasBlocks {
             BLOCKS.register(BigBaubleOrnamentBlock.BIG_SILVER_BAUBLE_ID, BigBaubleOrnamentBlock::new);
 
     // Tinsels
-    public static final RegistryObject<ChristmasBlock> RED_TINSEL =
+    public static final RegistryObject<Block> RED_TINSEL =
             BLOCKS.register(TinselBlock.RED_TINSEL_ID, TinselBlock::new);
-    public static final RegistryObject<ChristmasBlock> BLUE_TINSEL =
+    public static final RegistryObject<Block> BLUE_TINSEL =
             BLOCKS.register(TinselBlock.BLUE_TINSEL_ID, TinselBlock::new);
-    public static final RegistryObject<ChristmasBlock> YELLOW_TINSEL =
+    public static final RegistryObject<Block> YELLOW_TINSEL =
             BLOCKS.register(TinselBlock.YELLOW_TINSEL_ID, TinselBlock::new);
-    public static final RegistryObject<ChristmasBlock> GREEN_TINSEL =
+    public static final RegistryObject<Block> GREEN_TINSEL =
             BLOCKS.register(TinselBlock.GREEN_TINSEL_ID, TinselBlock::new);
-    public static final RegistryObject<ChristmasBlock> GOLD_TINSEL =
+    public static final RegistryObject<Block> GOLD_TINSEL =
             BLOCKS.register(TinselBlock.GOLD_TINSEL_ID, TinselBlock::new);
-    public static final RegistryObject<ChristmasBlock> SILVER_TINSEL =
+    public static final RegistryObject<Block> SILVER_TINSEL =
             BLOCKS.register(TinselBlock.SILVER_TINSEL_ID, TinselBlock::new);
 
     // Christmas Lights
-    public static final RegistryObject<ChristmasBlock> RED_CHRISTMAS_LIGHTS =
+    public static final RegistryObject<Block> RED_CHRISTMAS_LIGHTS =
             BLOCKS.register(ChristmasLightBlock.RED_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
-    public static final RegistryObject<ChristmasBlock> BLUE_CHRISTMAS_LIGHTS =
+    public static final RegistryObject<Block> BLUE_CHRISTMAS_LIGHTS =
             BLOCKS.register(ChristmasLightBlock.BLUE_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
-    public static final RegistryObject<ChristmasBlock> YELLOW_CHRISTMAS_LIGHTS =
+    public static final RegistryObject<Block> YELLOW_CHRISTMAS_LIGHTS =
             BLOCKS.register(ChristmasLightBlock.YELLOW_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
-    public static final RegistryObject<ChristmasBlock> GREEN_CHRISTMAS_LIGHTS =
+    public static final RegistryObject<Block> GREEN_CHRISTMAS_LIGHTS =
             BLOCKS.register(ChristmasLightBlock.GREEN_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
-    public static final RegistryObject<ChristmasBlock> GOLD_CHRISTMAS_LIGHTS =
+    public static final RegistryObject<Block> GOLD_CHRISTMAS_LIGHTS =
             BLOCKS.register(ChristmasLightBlock.GOLD_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
-    public static final RegistryObject<ChristmasBlock> SILVER_CHRISTMAS_LIGHTS =
+    public static final RegistryObject<Block> SILVER_CHRISTMAS_LIGHTS =
             BLOCKS.register(ChristmasLightBlock.SILVER_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
 
     // Bells

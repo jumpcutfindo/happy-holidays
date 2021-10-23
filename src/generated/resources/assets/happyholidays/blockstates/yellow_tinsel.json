@@ -1,76 +1,94 @@
 {
-  "variants": {
-    "decoration_shape=straight,facing=north": {
-      "model": "happyholidays:block/yellow_tinsel",
-      "y": 180
+  "multipart": [
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": "happyholidays:block/yellow_tinsel",
+        "uvlock": true
+      }
     },
-    "decoration_shape=left_face,facing=north": {
-      "model": "happyholidays:block/yellow_tinsel_left_face",
-      "y": 270
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "happyholidays:block/yellow_tinsel",
+        "uvlock": true
+      }
     },
-    "decoration_shape=right_face,facing=north": {
-      "model": "happyholidays:block/yellow_tinsel_right_face",
-      "y": 90
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "happyholidays:block/yellow_tinsel",
+        "y": 180,
+        "uvlock": true
+      }
     },
-    "decoration_shape=side_face,facing=north": {
-      "model": "happyholidays:block/yellow_tinsel_side_face",
-      "y": 180
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "happyholidays:block/yellow_tinsel",
+        "y": 180,
+        "uvlock": true
+      }
     },
-    "decoration_shape=all_face,facing=north": {
-      "model": "happyholidays:block/yellow_tinsel_all_face"
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "happyholidays:block/yellow_tinsel",
+        "y": 270,
+        "uvlock": true
+      }
     },
-    "decoration_shape=straight,facing=south": {
-      "model": "happyholidays:block/yellow_tinsel"
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "happyholidays:block/yellow_tinsel",
+        "y": 270,
+        "uvlock": true
+      }
     },
-    "decoration_shape=left_face,facing=south": {
-      "model": "happyholidays:block/yellow_tinsel_left_face",
-      "y": 90
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "happyholidays:block/yellow_tinsel",
+        "y": 90,
+        "uvlock": true
+      }
     },
-    "decoration_shape=right_face,facing=south": {
-      "model": "happyholidays:block/yellow_tinsel_right_face",
-      "y": 270
-    },
-    "decoration_shape=side_face,facing=south": {
-      "model": "happyholidays:block/yellow_tinsel_side_face"
-    },
-    "decoration_shape=all_face,facing=south": {
-      "model": "happyholidays:block/yellow_tinsel_all_face"
-    },
-    "decoration_shape=straight,facing=west": {
-      "model": "happyholidays:block/yellow_tinsel",
-      "y": 90
-    },
-    "decoration_shape=left_face,facing=west": {
-      "model": "happyholidays:block/yellow_tinsel_left_face",
-      "y": 180
-    },
-    "decoration_shape=right_face,facing=west": {
-      "model": "happyholidays:block/yellow_tinsel_right_face"
-    },
-    "decoration_shape=side_face,facing=west": {
-      "model": "happyholidays:block/yellow_tinsel_side_face",
-      "y": 90
-    },
-    "decoration_shape=all_face,facing=west": {
-      "model": "happyholidays:block/yellow_tinsel_all_face"
-    },
-    "decoration_shape=straight,facing=east": {
-      "model": "happyholidays:block/yellow_tinsel",
-      "y": 270
-    },
-    "decoration_shape=left_face,facing=east": {
-      "model": "happyholidays:block/yellow_tinsel_left_face"
-    },
-    "decoration_shape=right_face,facing=east": {
-      "model": "happyholidays:block/yellow_tinsel_right_face",
-      "y": 180
-    },
-    "decoration_shape=side_face,facing=east": {
-      "model": "happyholidays:block/yellow_tinsel_side_face",
-      "y": 270
-    },
-    "decoration_shape=all_face,facing=east": {
-      "model": "happyholidays:block/yellow_tinsel_all_face"
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "happyholidays:block/yellow_tinsel",
+        "y": 90,
+        "uvlock": true
+      }
     }
-  }
+  ]
 }

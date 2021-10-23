@@ -1,7 +1,6 @@
 package com.jumpcutfindo.happyholidays.data.client.christmas;
 
 import java.util.Set;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -9,9 +8,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyShape;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ConnectedOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.WallDecorationShape;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
@@ -26,6 +23,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
@@ -35,6 +33,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ChristmasBlockStates extends BlockStateProvider {
@@ -390,49 +389,24 @@ public class ChristmasBlockStates extends BlockStateProvider {
     // Creates blockstate for connected ornament blocks
     private void connectedOrnamentOf(Block block) {
         String blockId = blockId(block);
+        ModelFile modelFile = modelFileOf(blockId);
 
-        BiFunction<WallDecorationShape, Direction, Integer> getRotationY = (wallShape, direction) -> {
-            switch (wallShape) {
-                case STRAIGHT, SIDE_FACE -> {
-                    return direction == Direction.EAST ? 270
-                            : direction == Direction.NORTH ? 180
-                            : direction == Direction.SOUTH ? 0
-                            : 90;
-                }
-                case LEFT_FACE ->  {
-                    return direction == Direction.EAST ? 0
-                            : direction == Direction.NORTH ? 270
-                            : direction == Direction.SOUTH ? 90
-                            : 180;
-                }
-                case RIGHT_FACE -> {
-                    return direction == Direction.EAST ? 180
-                            : direction == Direction.NORTH ? 90
-                            : direction == Direction.SOUTH ? 270
-                            : 0;
-                }
-                default -> {
-                    return 0;
-                }
+        MultiPartBlockStateBuilder builder = getMultipartBuilder(block);
+
+        PipeBlock.PROPERTY_BY_DIRECTION.entrySet().forEach(e -> {
+            Direction dir = e.getKey();
+            if (dir.getAxis().isHorizontal()) {
+                builder.part().modelFile(modelFile).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel()
+                        .condition(e.getValue(), true)
+                        .end();
+
+                builder.part().modelFile(modelFile).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel()
+                        .condition(PipeBlock.NORTH, false)
+                        .condition(PipeBlock.SOUTH, false)
+                        .condition(PipeBlock.WEST, false)
+                        .condition(PipeBlock.EAST, false);
             }
-        };
-
-        getVariantBuilder(block).forAllStatesExcept(state -> {
-            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
-
-            WallDecorationShape wallShape = state.getValue(ConnectedOrnamentBlock.WALL_SHAPE);
-            Direction facingDirection = state.getValue(ConnectedOrnamentBlock.FACING);
-
-            switch (wallShape) {
-            case LEFT_FACE -> builder = builder.modelFile(modelFileOf(blockId + "_left_face"));
-            case RIGHT_FACE -> builder = builder.modelFile(modelFileOf(blockId + "_right_face"));
-            case SIDE_FACE -> builder = builder.modelFile(modelFileOf(blockId + "_side_face"));
-            case ALL_FACE -> builder = builder.modelFile(modelFileOf(blockId + "_all_face"));
-            default -> builder = builder.modelFile(modelFileOf(blockId));
-            }
-
-            return builder.rotationY(getRotationY.apply(wallShape, facingDirection)).build();
-        }, ConnectedOrnamentBlock.WATERLOGGED);
+        });
     }
 
     // Creates blockstate for wall decoration blocks

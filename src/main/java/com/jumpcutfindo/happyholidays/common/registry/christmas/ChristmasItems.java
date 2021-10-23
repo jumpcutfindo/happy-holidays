@@ -213,31 +213,31 @@ public class ChristmasItems {
     public static final RegistryObject<ChristmasBlockItem> BIG_SILVER_BAUBLE =
             ITEMS.register(BigBaubleOrnamentBlock.BIG_SILVER_BAUBLE_ID, itemOf(ChristmasBlocks.BIG_SILVER_BAUBLE, BigBaubleOrnamentBlock.ITEM_PROPERTIES));
 
-    public static final RegistryObject<ChristmasBlockItem> RED_TINSEL =
-            ITEMS.register(TinselBlock.RED_TINSEL_ID, itemOf(ChristmasBlocks.RED_TINSEL, TinselBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BLUE_TINSEL =
-            ITEMS.register(TinselBlock.BLUE_TINSEL_ID, itemOf(ChristmasBlocks.BLUE_TINSEL, TinselBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> YELLOW_TINSEL =
-            ITEMS.register(TinselBlock.YELLOW_TINSEL_ID, itemOf(ChristmasBlocks.YELLOW_TINSEL, TinselBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GREEN_TINSEL =
-            ITEMS.register(TinselBlock.GREEN_TINSEL_ID, itemOf(ChristmasBlocks.GREEN_TINSEL, TinselBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GOLD_TINSEL =
-            ITEMS.register(TinselBlock.GOLD_TINSEL_ID, itemOf(ChristmasBlocks.GOLD_TINSEL, TinselBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> SILVER_TINSEL =
-            ITEMS.register(TinselBlock.SILVER_TINSEL_ID, itemOf(ChristmasBlocks.SILVER_TINSEL, TinselBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> RED_TINSEL =
+            ITEMS.register(TinselBlock.RED_TINSEL_ID, blockItemOf(ChristmasBlocks.RED_TINSEL, TinselBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> BLUE_TINSEL =
+            ITEMS.register(TinselBlock.BLUE_TINSEL_ID, blockItemOf(ChristmasBlocks.BLUE_TINSEL, TinselBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> YELLOW_TINSEL =
+            ITEMS.register(TinselBlock.YELLOW_TINSEL_ID, blockItemOf(ChristmasBlocks.YELLOW_TINSEL, TinselBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> GREEN_TINSEL =
+            ITEMS.register(TinselBlock.GREEN_TINSEL_ID, blockItemOf(ChristmasBlocks.GREEN_TINSEL, TinselBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> GOLD_TINSEL =
+            ITEMS.register(TinselBlock.GOLD_TINSEL_ID, blockItemOf(ChristmasBlocks.GOLD_TINSEL, TinselBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> SILVER_TINSEL =
+            ITEMS.register(TinselBlock.SILVER_TINSEL_ID, blockItemOf(ChristmasBlocks.SILVER_TINSEL, TinselBlock.ITEM_PROPERTIES));
 
-    public static final RegistryObject<ChristmasBlockItem> RED_CHRISTMAS_LIGHTS =
-            ITEMS.register(ChristmasLightBlock.RED_CHRISTMAS_LIGHTS_ID, itemOf(ChristmasBlocks.RED_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BLUE_CHRISTMAS_LIGHTS =
-            ITEMS.register(ChristmasLightBlock.BLUE_CHRISTMAS_LIGHTS_ID, itemOf(ChristmasBlocks.BLUE_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> YELLOW_CHRISTMAS_LIGHTS =
-            ITEMS.register(ChristmasLightBlock.YELLOW_CHRISTMAS_LIGHTS_ID, itemOf(ChristmasBlocks.YELLOW_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GREEN_CHRISTMAS_LIGHTS =
-            ITEMS.register(ChristmasLightBlock.GREEN_CHRISTMAS_LIGHTS_ID, itemOf(ChristmasBlocks.GREEN_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GOLD_CHRISTMAS_LIGHTS =
-            ITEMS.register(ChristmasLightBlock.GOLD_CHRISTMAS_LIGHTS_ID, itemOf(ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> SILVER_CHRISTMAS_LIGHTS =
-            ITEMS.register(ChristmasLightBlock.SILVER_CHRISTMAS_LIGHTS_ID, itemOf(ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> RED_CHRISTMAS_LIGHTS =
+            ITEMS.register(ChristmasLightBlock.RED_CHRISTMAS_LIGHTS_ID, blockItemOf(ChristmasBlocks.RED_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> BLUE_CHRISTMAS_LIGHTS =
+            ITEMS.register(ChristmasLightBlock.BLUE_CHRISTMAS_LIGHTS_ID, blockItemOf(ChristmasBlocks.BLUE_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> YELLOW_CHRISTMAS_LIGHTS =
+            ITEMS.register(ChristmasLightBlock.YELLOW_CHRISTMAS_LIGHTS_ID, blockItemOf(ChristmasBlocks.YELLOW_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> GREEN_CHRISTMAS_LIGHTS =
+            ITEMS.register(ChristmasLightBlock.GREEN_CHRISTMAS_LIGHTS_ID, blockItemOf(ChristmasBlocks.GREEN_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> GOLD_CHRISTMAS_LIGHTS =
+            ITEMS.register(ChristmasLightBlock.GOLD_CHRISTMAS_LIGHTS_ID, blockItemOf(ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> SILVER_CHRISTMAS_LIGHTS =
+            ITEMS.register(ChristmasLightBlock.SILVER_CHRISTMAS_LIGHTS_ID, blockItemOf(ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> RED_CHRISTMAS_BELLS =
             ITEMS.register(ChristmasBellBlock.RED_BELLS_ID, itemOf(ChristmasBlocks.RED_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
