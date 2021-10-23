@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.ChristmasBlockColor;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class AlphabetOrnamentBlock extends OrnamentBlock {
+public class AlphabetOrnamentBlock extends DecorationBlock {
     public static final EnumProperty<ChristmasBlockColor> BLOCK_COLOR = EnumProperty.create("christmas_color",
             ChristmasBlockColor.class);
 

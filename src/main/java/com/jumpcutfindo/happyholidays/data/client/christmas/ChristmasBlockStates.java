@@ -8,9 +8,9 @@ import org.apache.commons.lang3.tuple.Pair;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyShape;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.WallDecorationBlock;
+import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
@@ -373,8 +373,8 @@ public class ChristmasBlockStates extends BlockStateProvider {
         getVariantBuilder(block).forAllStatesExcept(state -> {
             ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
 
-            Direction facingDirection = state.getValue(OrnamentBlock.FACING);
-            AttachFace attachFace = state.getValue(OrnamentBlock.ATTACH_FACE);
+            Direction facingDirection = state.getValue(DecorationBlock.FACING);
+            AttachFace attachFace = state.getValue(DecorationBlock.ATTACH_FACE);
 
             switch (attachFace) {
             case WALL -> builder = builder.modelFile(modelFileOf(blockId + "_side"));
@@ -383,7 +383,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
             }
 
             return builder.rotationY(getRotationY.apply(facingDirection)).build();
-        }, OrnamentBlock.WATERLOGGED);
+        }, DecorationBlock.WATERLOGGED);
     }
 
     // Creates blockstate for connected ornament blocks

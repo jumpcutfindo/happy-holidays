@@ -1,12 +1,12 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.rare;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.RareOrnament;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class HeadOrnamentBlock extends OrnamentBlock implements RareOrnament {
+public class HeadOrnamentBlock extends DecorationBlock implements RareOrnament {
     public static final String ZOMBIE_HEAD_ORNAMENT_ID = "zombie_head_ornament";
     public static final String SKELETON_HEAD_ORNAMENT_ID = "skeleton_head_ornament";
     public static final String WITHER_SKELETON_HEAD_ORNAMENT_ID = "wither_skeleton_head_ornament";

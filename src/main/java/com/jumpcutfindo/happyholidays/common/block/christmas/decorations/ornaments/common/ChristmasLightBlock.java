@@ -1,13 +1,13 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ConnectedOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.MultifaceDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.BasicOrnament;
 
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 
-public class ChristmasLightBlock extends ConnectedOrnamentBlock implements BasicOrnament {
+public class ChristmasLightBlock extends MultifaceDecorationBlock implements BasicOrnament {
     public static final String RED_CHRISTMAS_LIGHTS_ID = "red_christmas_lights";
     public static final String BLUE_CHRISTMAS_LIGHTS_ID = "blue_christmas_lights";
     public static final String YELLOW_CHRISTMAS_LIGHTS_ID = "yellow_christmas_lights";

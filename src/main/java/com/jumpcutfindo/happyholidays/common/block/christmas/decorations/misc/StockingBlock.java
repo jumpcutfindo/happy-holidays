@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.StockingBlockEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;

@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
+package com.jumpcutfindo.happyholidays.common.block;
 
 import javax.annotation.Nullable;
 

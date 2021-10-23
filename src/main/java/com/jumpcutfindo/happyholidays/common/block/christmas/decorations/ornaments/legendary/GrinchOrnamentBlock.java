@@ -1,12 +1,12 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.OrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.LegendaryOrnament;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class GrinchOrnamentBlock extends OrnamentBlock implements LegendaryOrnament {
+public class GrinchOrnamentBlock extends DecorationBlock implements LegendaryOrnament {
     public static final String BLOCK_ID = "grinch_ornament";
 
     public static final VoxelShape[][] ORNAMENT_SHAPES = {

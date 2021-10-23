@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
 
 import java.util.Optional;
 
+import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.INaughtyNiceHandler;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
