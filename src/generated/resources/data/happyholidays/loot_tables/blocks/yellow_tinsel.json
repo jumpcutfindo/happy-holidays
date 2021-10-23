@@ -22,13 +22,7 @@
               ],
               "count": 1.0,
               "add": true
-            }
-          ],
-          "name": "happyholidays:yellow_tinsel"
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
+            },
             {
               "function": "minecraft:set_count",
               "conditions": [
@@ -42,13 +36,7 @@
               ],
               "count": 1.0,
               "add": true
-            }
-          ],
-          "name": "happyholidays:yellow_tinsel"
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
+            },
             {
               "function": "minecraft:set_count",
               "conditions": [
@@ -62,13 +50,7 @@
               ],
               "count": 1.0,
               "add": true
-            }
-          ],
-          "name": "happyholidays:yellow_tinsel"
-        },
-        {
-          "type": "minecraft:item",
-          "functions": [
+            },
             {
               "function": "minecraft:set_count",
               "conditions": [
@@ -82,6 +64,14 @@
               ],
               "count": 1.0,
               "add": true
+            },
+            {
+              "function": "minecraft:set_count",
+              "count": -1.0,
+              "add": true
+            },
+            {
+              "function": "minecraft:explosion_decay"
             }
           ],
           "name": "happyholidays:yellow_tinsel"
