@@ -68,7 +68,7 @@ public class ConnectedOrnamentBlock extends MultifaceBlock implements SimpleWate
             }
 
             if (oldStateCount - newStateCount > 0) {
-                serverLevel.playSound(null, blockPos, this.soundType.getBreakSound(), SoundSource.BLOCKS, this.soundType.pitch - 0.5f, this.soundType.volume);
+                serverLevel.playSound(null, blockPos, this.soundType.getBreakSound(), SoundSource.BLOCKS, this.soundType.volume, this.soundType.pitch - 0.1f);
                 popResource(serverLevel, blockPos, new ItemStack(this, oldStateCount - newStateCount));
             }
         }
