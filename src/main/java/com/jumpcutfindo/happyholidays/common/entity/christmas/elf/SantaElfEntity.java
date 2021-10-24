@@ -525,12 +525,34 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
 
         @Override
         public boolean canUse() {
+            List<ItemEntity> nearbyEntities = this.santaElfEntity.level.getEntitiesOfClass(ItemEntity.class,
+                    this.santaElfEntity.getBoundingBox().inflate(4.0D, 4.0D, 4.0D));
+
+            for (ItemEntity itemEntity : nearbyEntities) {
+                if (itemEntity.getItem().is(Items.EMERALD)) {
+                    targetedEntity = itemEntity;
+                    return true;
+                }
+            }
+
             return false;
         }
 
         @Override
         public void tick() {
-            super.tick();
+            if (targetedEntity != null && targetedEntity.isAlive()) {
+                this.santaElfEntity.getNavigation().moveTo(targetedEntity.position().x, targetedEntity.position().y, targetedEntity.position().z, 1.0f);
+
+                if (targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
+                    if (!targetedEntity.hasPickUpDelay()) {
+                        this.santaElfEntity.take(targetedEntity, targetedEntity.getItem().getCount());
+                        targetedEntity.remove(RemovalReason.DISCARDED);
+                        this.targetedEntity = null;
+                    }
+                }
+            } else {
+                targetedEntity = null;
+            }
         }
     }
 
@@ -623,7 +645,7 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
 
         @Override
         public void tick() {
-            if (targetedEntity != null || !targetedEntity.isAlive()) {
+            if (targetedEntity != null && targetedEntity.isAlive()) {
                 this.santaElfEntity.getNavigation().moveTo(targetedEntity.position().x, targetedEntity.position().y, targetedEntity.position().z, 1.0f);
 
                 if (targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
@@ -662,7 +684,7 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
 
         @Override
         public void tick() {
-            if (targetedEntity != null || !targetedEntity.isAlive()) {
+            if (targetedEntity != null && targetedEntity.isAlive()) {
                 this.santaElfEntity.getNavigation().moveTo(targetedEntity, 1.0f);
 
                 if (targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
