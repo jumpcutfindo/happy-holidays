@@ -424,6 +424,9 @@ public class AngrySantaEntity extends BaseSantaEntity {
             int xpDrop = ExperienceOrb.getExperienceValue((int) ((1 / (double) numOrbs) * AMT_XP_DROP));
             this.level.addFreshEntity(new ExperienceOrb(this.level, this.getX(), this.getY(), this.getZ(), xpDrop));
         }
+        
+        // Update defeated before status
+        if (!this.level.isClientSide()) this.onDefeat((ServerLevel) this.level);
     }
 
     private List<ItemStack> generateDrops() {

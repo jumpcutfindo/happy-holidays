@@ -2,11 +2,11 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.santa;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.client.entity.SantaEntityRenderer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.server.data.SantaSavedData;
 
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -81,5 +81,15 @@ public class BaseSantaEntity extends PathfinderMob implements IAnimatable, IChri
     @Override
     protected int calculateFallDamage(float p_225508_1_, float p_225508_2_) {
         return 0;
+    }
+
+    public void onDefeat(ServerLevel serverLevel) {
+        SantaSavedData santaData = serverLevel.getDataStorage().computeIfAbsent(
+                SantaSavedData::createFromTag,
+                SantaSavedData::new,
+                SantaSavedData.DATA_NAME
+        );
+
+        santaData.setDefeated();
     }
 }

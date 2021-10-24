@@ -164,6 +164,8 @@ public class HappySantaEntity extends BaseSantaEntity {
                 SantaEvent event = new SantaEvent.CompleteDropParty(this, playerEntity);
                 MinecraftForge.EVENT_BUS.post(event);
             }
+
+            this.onDefeat((ServerLevel) this.level);
         }
     }
 

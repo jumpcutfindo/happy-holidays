@@ -25,7 +25,7 @@ import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
 import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
 import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
 import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
-import com.jumpcutfindo.happyholidays.server.data.SantaSummonSavedData;
+import com.jumpcutfindo.happyholidays.server.data.SantaSavedData;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -221,10 +221,10 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
         if (this.level != null && !this.level.isClientSide()) {
             ServerLevel serverWorld = (ServerLevel) this.level;
 
-            SantaSummonSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(
-                    SantaSummonSavedData::createFromTag,
-                    SantaSummonSavedData::new,
-                    SantaSummonSavedData.DATA_NAME
+            SantaSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(
+                    SantaSavedData::createFromTag,
+                    SantaSavedData::new,
+                    SantaSavedData.DATA_NAME
             );
 
             this.areaOfEffect = new AABB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
