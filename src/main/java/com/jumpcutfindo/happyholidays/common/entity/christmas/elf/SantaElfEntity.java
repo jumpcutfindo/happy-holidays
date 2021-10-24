@@ -3,12 +3,14 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.elf;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import javax.annotation.Nullable;
 
-import com.google.common.collect.ImmutableList;
+import org.apache.commons.lang3.ArrayUtils;
+
 import com.google.common.collect.Lists;
-import com.jumpcutfindo.happyholidays.client.entity.SantaElfEntityRenderer;
+import com.google.common.collect.Sets;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
@@ -19,7 +21,6 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
@@ -27,6 +28,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.Tag;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -276,45 +278,30 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
     protected void updateTrades() {
         MerchantOffers merchantOffers = this.getOffers();
 
-        // Standard trades
-        List<VillagerTrades.ItemListing[]> tradesList = ImmutableList.of(
-                SantaElfTrades.SMALL_BALL_ORNAMENT_TRADES,
-                SantaElfTrades.BIG_BALL_ORNAMENT_TRADES,
-                SantaElfTrades.TINSEL_TRADES,
-                SantaElfTrades.CHRISTMAS_LIGHT_TRADES
-        );
-
-        for (VillagerTrades.ItemListing[] trades : tradesList) {
-            for (int i = 0; i < 1; i++) {
-                int randInt = this.random.nextInt(trades.length);
-
-                VillagerTrades.ItemListing randomTrade = trades[randInt];
-                MerchantOffer merchantOffer = randomTrade.getOffer(this, this.random);
-
-                if (merchantOffer != null) merchantOffers.add(merchantOffer);
-            }
+        // Basic ornaments
+        Set<VillagerTrades.ItemListing> basicTradesSet = Sets.newHashSet();
+        while (basicTradesSet.size() < 4) {
+            int randInt = this.random.nextInt(SantaElfTrades.BASIC_ORNAMENT_TRADES.length);
+            basicTradesSet.add(SantaElfTrades.BASIC_ORNAMENT_TRADES[randInt]);
         }
 
-        List<VillagerTrades.ItemListing[]> rareTradesList = ImmutableList.of(
-                SantaElfTrades.HEAD_ORNAMENT_TRADES,
-                SantaElfTrades.SHEET_MUSIC_TRADES
-        );
+        basicTradesSet.forEach(listing -> {
+            MerchantOffer merchantOffer = listing.getOffer(this, this.random);
+            if (merchantOffer != null) merchantOffers.add(merchantOffer);
+        });
 
         // Rare trades
-        int rareTradeRandInt = this.random.nextInt(rareTradesList.size());
-        if (rareTradeRandInt == 0) {
-            int randInt = this.random.nextInt(rareTradesList.size());
-            MerchantOffer merchantOffer = rareTradesList.get(0)[randInt].getOffer(this, this.random);
-
-            if (merchantOffer != null) merchantOffers.add(merchantOffer);
-        } else if (rareTradeRandInt == 1) {
-            for (int i = 0; i < 2; i++) {
-                int randInt = this.random.nextInt(rareTradesList.get(1).length);
-                MerchantOffer merchantOffer = rareTradesList.get(1)[randInt].getOffer(this, this.random);
-
-                if (merchantOffer != null) merchantOffers.add(merchantOffer);
-            }
+        Set<VillagerTrades.ItemListing> rareTradesSet = Sets.newHashSet();
+        VillagerTrades.ItemListing[] rareTradeListings = ArrayUtils.addAll(SantaElfTrades.RARE_ORNAMENT_TRADES, SantaElfTrades.SHEET_MUSIC_TRADES);
+        while (rareTradesSet.size() < 2) {
+            int randInt = this.random.nextInt(rareTradeListings.length);
+            rareTradesSet.add(rareTradeListings[randInt]);
         }
+
+        rareTradesSet.forEach(listing -> {
+            MerchantOffer merchantOffer = listing.getOffer(this, this.random);
+            if (merchantOffer != null) merchantOffers.add(merchantOffer);
+        });
 
         // Food trades
         for (int i = 0; i < 2; i ++) {
@@ -732,6 +719,16 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
             ItemStack offerStack = new ItemStack(this.itemStack.getItem(), this.numberOfItems);
             offerStack.setTag(this.itemStack.getTag());
             return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), offerStack, this.maxUses, this.villagerXp, this.priceMultiplier);
+        }
+
+        public static VillagerTrades.ItemListing[] tradesFromTag(Tag<Item> itemTag, int emeraldCost, int numberOfItems, int maxUses, int xp) {
+            VillagerTrades.ItemListing[] results = new VillagerTrades.ItemListing[itemTag.getValues().size()];
+
+            for (int i = 0; i < results.length; i++) {
+                results[i] = new ItemsForEmeraldsTrade(itemTag.getValues().get(i), emeraldCost, numberOfItems, maxUses, xp);
+            }
+
+            return results;
         }
     }
 }
