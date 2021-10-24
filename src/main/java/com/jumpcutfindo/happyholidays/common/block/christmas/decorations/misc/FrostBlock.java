@@ -1,19 +1,17 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
 
-import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
+import com.jumpcutfindo.happyholidays.common.block.MultifaceDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class FrostBlock extends WallDecorationBlock implements ChristmasLike, ChristmasBlock {
+public class FrostBlock extends MultifaceDecorationBlock implements ChristmasLike, ChristmasBlock {
     public static final String BLOCK_ID = "frost";
 
     public static final BlockBehaviour.Properties BLOCK_PROPERTIES =
@@ -24,10 +22,8 @@ public class FrostBlock extends WallDecorationBlock implements ChristmasLike, Ch
                     .noOcclusion()
                     .noCollission();
 
-    public static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0 ,16.0, 16.0,0.5);
-
     public FrostBlock() {
-        super(BLOCK_PROPERTIES, SHAPE);
+        super(BLOCK_PROPERTIES);
     }
 
     @Override

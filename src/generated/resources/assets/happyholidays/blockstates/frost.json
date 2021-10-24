@@ -1,57 +1,172 @@
 {
-  "variants": {
-    "facing=north": [
-      {
+  "multipart": [
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
         "model": "happyholidays:block/frost_0",
-        "y": 180
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "true"
       },
-      {
+      "apply": {
         "model": "happyholidays:block/frost_1",
-        "y": 180
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "true"
       },
-      {
+      "apply": {
         "model": "happyholidays:block/frost_2",
-        "y": 180
+        "uvlock": true
       }
-    ],
-    "facing=south": [
-      {
-        "model": "happyholidays:block/frost_0"
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
       },
-      {
-        "model": "happyholidays:block/frost_1"
-      },
-      {
-        "model": "happyholidays:block/frost_2"
-      }
-    ],
-    "facing=west": [
-      {
+      "apply": {
         "model": "happyholidays:block/frost_0",
-        "y": 90
-      },
-      {
-        "model": "happyholidays:block/frost_1",
-        "y": 90
-      },
-      {
-        "model": "happyholidays:block/frost_2",
-        "y": 90
+        "uvlock": true
       }
-    ],
-    "facing=east": [
-      {
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
         "model": "happyholidays:block/frost_0",
-        "y": 270
-      },
-      {
-        "model": "happyholidays:block/frost_1",
-        "y": 270
-      },
-      {
-        "model": "happyholidays:block/frost_2",
-        "y": 270
+        "y": 180,
+        "uvlock": true
       }
-    ]
-  }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_1",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_2",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_0",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_0",
+        "y": 270,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_1",
+        "y": 270,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_2",
+        "y": 270,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_0",
+        "y": 270,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_0",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_1",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_2",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_0",
+        "y": 90,
+        "uvlock": true
+      }
+    }
+  ]
 }

@@ -226,7 +226,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
         );
 
         for (Block block : ornamentBlocks) ornamentOf(block);
-        for (Block block : connectedOrnamentBlocks) connectedOrnamentOf(block);
+        for (Block block : connectedOrnamentBlocks) multiFaceOrnamentOf(block, 1);
     }
 
     private void registerDecorations() {
@@ -240,7 +240,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
         );
 
         for (Block block : decorations) wallDecorationOf(block);
-        for (Block block : variedDecorations) wallDecorationWithVariants(block, 3);
+        for (Block block : variedDecorations) multiFaceOrnamentOf(block, 3);
     }
 
     private void registerCustom() {
@@ -387,7 +387,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
     }
 
     // Creates blockstate for connected ornament blocks
-    private void connectedOrnamentOf(Block block) {
+    private void multiFaceOrnamentOf(Block block, int variantCount) {
         String blockId = blockId(block);
         ModelFile modelFile = modelFileOf(blockId);
 
@@ -396,15 +396,30 @@ public class ChristmasBlockStates extends BlockStateProvider {
         PipeBlock.PROPERTY_BY_DIRECTION.entrySet().forEach(e -> {
             Direction dir = e.getKey();
             if (dir.getAxis().isHorizontal()) {
-                builder.part().modelFile(modelFile).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel()
-                        .condition(e.getValue(), true)
-                        .end();
+                if (variantCount == 0 || variantCount == 1) {
+                    builder.part().modelFile(modelFile).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel()
+                            .condition(e.getValue(), true)
+                            .end();
 
-                builder.part().modelFile(modelFile).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel()
-                        .condition(PipeBlock.NORTH, false)
-                        .condition(PipeBlock.SOUTH, false)
-                        .condition(PipeBlock.WEST, false)
-                        .condition(PipeBlock.EAST, false);
+                    builder.part().modelFile(modelFile).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel()
+                            .condition(PipeBlock.NORTH, false)
+                            .condition(PipeBlock.SOUTH, false)
+                            .condition(PipeBlock.WEST, false)
+                            .condition(PipeBlock.EAST, false);
+                } else {
+                    MultiPartBlockStateBuilder.PartBuilder tempBuilder = null;
+                    for (int i = 0; i < variantCount; i++) {
+                        tempBuilder = builder.part().modelFile(modelFileOf(blockId + "_" + i)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel();
+                        tempBuilder.condition(e.getValue(), true).end();
+                    }
+
+
+                    builder.part().modelFile(modelFileOf(blockId + "_" + 0)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel()
+                            .condition(PipeBlock.NORTH, false)
+                            .condition(PipeBlock.SOUTH, false)
+                            .condition(PipeBlock.WEST, false)
+                            .condition(PipeBlock.EAST, false);
+                }
             }
         });
     }
