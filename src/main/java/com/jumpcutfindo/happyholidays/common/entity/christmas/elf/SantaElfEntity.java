@@ -94,9 +94,6 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
     private SantaElfRequest santaElfRequest;
     private int santaElfRequestOfferIndex = -1;
 
-    private int requestItemCooldown = 0;
-    private int requestPaperCooldown = 0;
-
     private boolean isRewardThrown = false;
     private boolean isRequestOutdated = false;
     private int timeToCompleteRequest;
@@ -118,6 +115,7 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         this.goalSelector.addGoal(1, new PickupRequestedItemGoal(this));
         this.goalSelector.addGoal(1, new SwapToyPartsRequestGoal(this));
         this.goalSelector.addGoal(2, new LookAtCustomerGoal(this));
+        this.goalSelector.addGoal(3, new FollowEmeraldsGoal(this));
         this.goalSelector.addGoal(3, new FloatGoal(this));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -338,6 +336,8 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
     }
 
     public void handleRequestItemOnGround(ItemEntity itemEntity) {
+        if (itemEntity.hasPickUpDelay()) return;
+
         SantaElfRequest.SingleElfRequest completedRequest =
                 this.getRequest().tryFulfilRequest(itemEntity.getItem());
 
@@ -346,7 +346,6 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
             this.level.playSound(null, this.getX(), this.getY(), this.getZ(),
                     ChristmasSounds.SANTA_ELF_REQUEST_SINGLE_SUCCESS.get(), SoundSource.VOICE, 1.0f, 1.0f);
 
-            this.requestItemCooldown = 40;
             this.isRequestOutdated = true;
 
             itemEntity.remove(RemovalReason.DISCARDED);
@@ -354,6 +353,8 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
     }
 
     public void handleRequestPaperOnGround(ItemEntity itemEntity) {
+        if (itemEntity.hasPickUpDelay()) return;
+
         if (!this.isRewardThrown && this.santaElfRequest.isCompleted()) {
             // Set time taken to complete
             this.timeToCompleteRequest = DEFAULT_DESPAWN_DELAY - this.despawnDelay;
@@ -378,23 +379,14 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
             this.take(itemEntity, itemEntity.getItem().getCount());
             this.spawnAtLocation(this.getRequest().getRequestPaper());
 
-            this.requestPaperCooldown = 40;
             this.isRequestOutdated = false;
 
             itemEntity.remove(RemovalReason.DISCARDED);
         }
     }
 
-    public boolean isReadyToTakeRequestItem() {
-        return this.requestItemCooldown <= 0;
-    }
-
-    public boolean isReadyToTakeRequestPaper() {
-        return this.requestPaperCooldown <= 0;
-    }
-
     public MerchantOffer getSantaElfRequestOffer() {
-        return this.santaElfRequestOfferIndex == -1 ? null : this.offers.get(this.santaElfRequestOfferIndex);
+        return this.santaElfRequestOfferIndex == -1 || this.offers == null ? null : this.offers.get(this.santaElfRequestOfferIndex);
     }
 
     public void throwRequestRewards() {
@@ -450,6 +442,7 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         nbt.putBoolean("IsRequestOutdated", this.isRequestOutdated);
         nbt.putBoolean("IsRewardThrown", this.isRewardThrown);
         nbt.putInt("TimeToCompleteRequest", this.timeToCompleteRequest);
+        nbt.putInt("RequestOfferIndex", this.santaElfRequestOfferIndex);
     }
 
     @Override
@@ -471,6 +464,8 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         this.isRewardThrown = nbt.getBoolean("IsRewardThrown");
 
         this.timeToCompleteRequest = nbt.getInt("TimeToCompleteRequest");
+
+        this.santaElfRequestOfferIndex = nbt.getInt("RequestOfferIndex");
     }
 
     public void aiStep() {
@@ -478,9 +473,6 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         if (!this.level.isClientSide) {
             this.maybeDespawn();
         }
-
-        if (--requestItemCooldown > 0);
-        if (--requestPaperCooldown > 0);
     }
 
     private void maybeDespawn() {
@@ -520,6 +512,25 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
             ItemStack itemStackCopy = itemStack.copy();
             itemStackCopy.setCount(itemStack.getCount() - itemsToPickUpCount);
             this.spawnAtLocation(itemStackCopy);
+        }
+    }
+
+    private static class FollowEmeraldsGoal extends Goal {
+        private SantaElfEntity santaElfEntity;
+        private ItemEntity targetedEntity;
+
+        public FollowEmeraldsGoal(SantaElfEntity santaElfEntity) {
+            this.santaElfEntity = santaElfEntity;
+        }
+
+        @Override
+        public boolean canUse() {
+            return false;
+        }
+
+        @Override
+        public void tick() {
+            super.tick();
         }
     }
 
@@ -613,9 +624,9 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         @Override
         public void tick() {
             if (targetedEntity != null || !targetedEntity.isAlive()) {
-                this.santaElfEntity.getNavigation().moveTo(targetedEntity, 1.0f);
+                this.santaElfEntity.getNavigation().moveTo(targetedEntity.position().x, targetedEntity.position().y, targetedEntity.position().z, 1.0f);
 
-                if (this.santaElfEntity.isReadyToTakeRequestItem() && targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
+                if (targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
                     this.santaElfEntity.handleRequestItemOnGround(this.targetedEntity);
                 }
             }
@@ -654,7 +665,7 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
             if (targetedEntity != null || !targetedEntity.isAlive()) {
                 this.santaElfEntity.getNavigation().moveTo(targetedEntity, 1.0f);
 
-                if (this.santaElfEntity.isReadyToTakeRequestPaper() && targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
+                if (targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
                     this.santaElfEntity.handleRequestPaperOnGround(targetedEntity);
                 }
             }
