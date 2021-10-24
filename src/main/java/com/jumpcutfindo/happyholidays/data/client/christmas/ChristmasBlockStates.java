@@ -407,12 +407,12 @@ public class ChristmasBlockStates extends BlockStateProvider {
                             .condition(PipeBlock.WEST, false)
                             .condition(PipeBlock.EAST, false);
                 } else {
-                    MultiPartBlockStateBuilder.PartBuilder tempBuilder = null;
-                    for (int i = 0; i < variantCount; i++) {
-                        tempBuilder = builder.part().modelFile(modelFileOf(blockId + "_" + i)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel();
-                        tempBuilder.condition(e.getValue(), true).end();
+                    ConfiguredModel.Builder tempBuilder = builder.part().modelFile(modelFileOf(blockId + "_" + 0)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true);
+                    for (int i = 1; i < variantCount; i++) {
+                        tempBuilder = tempBuilder.nextModel().modelFile(modelFileOf(blockId + "_" + i)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true);
                     }
 
+                    ((MultiPartBlockStateBuilder.PartBuilder) tempBuilder.addModel()).condition(e.getValue(), true);
 
                     builder.part().modelFile(modelFileOf(blockId + "_" + 0)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel()
                             .condition(PipeBlock.NORTH, false)
