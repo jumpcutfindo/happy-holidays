@@ -180,57 +180,36 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
     }
 
     public void handleGiftOnGround(ItemEntity itemEntity) {
-        if (!this.hasReceivedGift) {
-            CompoundTag itemTag = itemEntity.getItem().getTag();
-            this.take(itemEntity, itemEntity.getItem().getCount());
+        if (!this.hasReceivedGift && !itemEntity.hasPickUpDelay()) {
+            this.pickUpItem(itemEntity);
 
-            itemEntity.remove(RemovalReason.DISCARDED);
+            // Grinch has happily received gift
+            this.hasReceivedGift = true;
+            this.isHappyWithGift = true;
 
-            if (itemTag != null && itemTag.contains("Gifts")) {
-                // Grinch has happily received gift
-                this.hasReceivedGift = true;
-                this.isHappyWithGift = true;
+            // Drop loot & items (including all the scraps gathered)
+            this.throwAppeasementRewards();
 
-                // Drop loot & items (including all the scraps gathered)
-                this.throwAppeasementRewards();
+            // Add to naughty / nice meter
+            if (itemEntity.getThrower() != null) {
+                Player thrower = this.level.getPlayerByUUID(itemEntity.getThrower());
+                NaughtyNiceMeter.evaluateAction(thrower, NaughtyNiceAction.APPEASE_GRINCH_EVENT);
 
-                // Add to naughty / nice meter
-                if (itemEntity.getThrower() != null) {
-                    Player thrower = this.level.getPlayerByUUID(itemEntity.getThrower());
-                    NaughtyNiceMeter.evaluateAction(thrower, NaughtyNiceAction.APPEASE_GRINCH_EVENT);
-
-                    // Post event for achievements
-                    MinecraftForge.EVENT_BUS.post(new GrinchEvent.Appease(this, thrower));
-                }
-
-                for (int i = 0; i < 5; i++) {
-                    double d0 = this.random.nextGaussian() * 0.02D;
-                    double d1 = this.random.nextGaussian() * 0.02D;
-                    double d2 = this.random.nextGaussian() * 0.02D;
-                    ((ServerLevel) this.level).sendParticles(ParticleTypes.HEART, this.getRandomX(1.0D), this.getRandomY() + 0.5D,
-                            this.getRandomZ(1.0D), 1, d0, d1, d2, 0.0D);
-                }
-
-                this.navigation.moveTo(this.getX() + this.random.nextDouble() * 32.0D + 128.0D, this.getY(),
-                        this.random.nextDouble() * 32.0D + 128.0D, 2.0f);
-                this.isReadyToDespawn = true;
-            } else {
-                // Grinch got an empty gift >:(
-                this.isHappyWithGift = false;
-
-                for (int i = 0; i < 5; i++) {
-                    double d0 = this.random.nextGaussian() * 0.02D;
-                    double d1 = this.random.nextGaussian() * 0.02D;
-                    double d2 = this.random.nextGaussian() * 0.02D;
-
-                    ((ServerLevel) this.level).sendParticles(ParticleTypes.ANGRY_VILLAGER, this.getRandomX(1.0D), this.getRandomY() + 0.5D,
-                            this.getRandomZ(1.0D), 1, d0, d1, d2, 0.0D);
-                }
-
-                this.navigation.moveTo(this.getX() + this.random.nextDouble() * 64.0D + 128.0D, this.getY(),
-                        this.random.nextDouble() * 64.0D + 128.0D, 2.0f);
-                this.isReadyToDespawn = true;
+                // Post event for achievements
+                MinecraftForge.EVENT_BUS.post(new GrinchEvent.Appease(this, thrower));
             }
+
+            for (int i = 0; i < 5; i++) {
+                double d0 = this.random.nextGaussian() * 0.02D;
+                double d1 = this.random.nextGaussian() * 0.02D;
+                double d2 = this.random.nextGaussian() * 0.02D;
+                ((ServerLevel) this.level).sendParticles(ParticleTypes.HEART, this.getRandomX(1.0D), this.getRandomY() + 0.5D,
+                        this.getRandomZ(1.0D), 1, d0, d1, d2, 0.0D);
+            }
+
+            this.navigation.moveTo(this.getX() + this.random.nextDouble() * 32.0D + 128.0D, this.getY(),
+                    this.random.nextDouble() * 32.0D + 128.0D, 2.0f);
+            this.isReadyToDespawn = true;
         }
     }
 
@@ -550,9 +529,11 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
         @Override
         public void tick() {
             if (targetedEntity != null && targetedEntity.isAlive()) {
-                this.grinchEntity.getNavigation().moveTo(targetedEntity, 1.0f);
+                this.grinchEntity.getNavigation().moveTo(targetedEntity.position().x, targetedEntity.position().y, targetedEntity.position().z, 1.0f);
 
-                if (targetedEntity.distanceToSqr(this.grinchEntity) < 2.0f) {
+                this.grinchEntity.lookAt(targetedEntity, 45.0f, 45.0f);
+
+                if (targetedEntity.distanceToSqr(this.grinchEntity) < 2.5f) {
                     this.grinchEntity.handleGiftOnGround(targetedEntity);
                 }
             }
