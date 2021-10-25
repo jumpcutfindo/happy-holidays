@@ -42,6 +42,10 @@ public class ChristmasTriggers {
     public static final CustomTrigger SANTA_ANGRY_DIE = christmasTrigger("santa_angry_die");
     public static final CustomTrigger SANTA_NO_TOUCHY = christmasTrigger("santa_no_touchy");
 
+    // Snow Globe triggers
+    public static final CustomTrigger SNOW_GLOBE_USE = christmasTrigger("snow_globe_use");
+    public static final CustomTrigger SNOW_GLOBE_USE_CHALLENGE = christmasTrigger("snow_globe_use_challenge");
+
     private static CustomTrigger christmasTrigger(String id) {
         CustomTrigger customTrigger = new CustomTrigger("christmas/" + id);
 

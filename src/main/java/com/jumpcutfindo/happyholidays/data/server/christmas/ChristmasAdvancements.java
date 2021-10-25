@@ -44,6 +44,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
         hollyBranch(advancementConsumer);
         stockingBranch(advancementConsumer);
         starBranch(advancementConsumer);
+        snowGlobeBranch(advancementConsumer);
     }
 
     private void presentsBranch(Consumer<Advancement> advancementConsumer) {
@@ -418,6 +419,21 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .addCriterion("defeat_santa_restricted", ChristmasTriggers.SANTA_NO_TOUCHY.getInstance())
                 .rewards(AdvancementRewards.Builder.experience(200).build())
                 .save(advancementConsumer, advancementId("santa_no_touchy"));
+    }
+
+    private void snowGlobeBranch(Consumer<Advancement> advancementConsumer) {
+        Advancement snowGlobeStart = createAdvancement(christmasRoot, ChristmasItems.SNOW_GLOBE.get(), translatable("snow_globe_start"))
+                .addCriterion("get_snow_globe", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SNOW_GLOBE.get()))
+                .save(advancementConsumer, advancementId("snow_globe_start"));
+
+        Advancement snowGlobeUse = createAdvancement(snowGlobeStart, ChristmasItems.SNOW_GLOBE.get(), translatable("snow_globe_use"))
+                .addCriterion("use_snow_globe", ChristmasTriggers.SNOW_GLOBE_USE.getInstance())
+                .save(advancementConsumer, advancementId("snow_globe_use"));
+
+        Advancement snowGlobeUseChallenge = createAdvancement(snowGlobeStart, ChristmasItems.SNOW_GLOBE.get(), translatable("snow_globe_use_challenge"), FrameType.CHALLENGE, true, true, false)
+                .addCriterion("use_snow_globe", ChristmasTriggers.SNOW_GLOBE_USE_CHALLENGE.getInstance())
+                .rewards(AdvancementRewards.Builder.experience(200).build())
+                .save(advancementConsumer, advancementId("snow_globe_use_challenge"));
     }
 
     private ResourceLocation getBackground() {

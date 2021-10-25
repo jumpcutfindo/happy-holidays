@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.misc;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.events.christmas.SnowGlobeEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PowderSnowCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.MinecraftForge;
 
 public class SnowGlobeItem extends ChristmasItem {
     public static final String ITEM_ID = "snow_globe";
@@ -127,10 +129,13 @@ public class SnowGlobeItem extends ChristmasItem {
             }
 
             if (shouldReduceCharges) {
+                // If should reduce charges, this means we've successfully used it
                 snowGlobe.setDamageValue(snowGlobe.getDamageValue() + 1);
 
+                // Add a cooldown to prevent using immediately after
                 player.getCooldowns().addCooldown(snowGlobe.getItem(), 20);
 
+                // Produce effects on Snow Globe use
                 double d0 = player.getX() + (player.getRandom().nextDouble() * 2.0D - 1.0D) * (double) player.getBbWidth() * 0.5D;
                 double d1 = player.getY() + 0.05D + player.getRandom().nextDouble();
                 double d2 = player.getZ() + (player.getRandom().nextDouble() * 2.0D - 1.0D) * (double) player.getBbWidth() * 0.5D;
@@ -142,6 +147,10 @@ public class SnowGlobeItem extends ChristmasItem {
                         25, d3, d4, d5, 0.0D);
 
                 serverLevel.playSound(null, player.blockPosition(), ChristmasSounds.SNOW_GLOBE_SUCCESS.get(), SoundSource.NEUTRAL, 1.0f, 1.0f);
+
+                // Emit use event
+                SnowGlobeEvent.Use useGlobeEvent = new SnowGlobeEvent.Use(player);
+                MinecraftForge.EVENT_BUS.post(useGlobeEvent);
             }
         }
     }

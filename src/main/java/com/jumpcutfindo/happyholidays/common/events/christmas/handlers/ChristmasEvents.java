@@ -10,12 +10,14 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.MusicBoxEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
+import com.jumpcutfindo.happyholidays.common.events.christmas.SnowGlobeEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasStats;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
 
 import net.minecraft.core.BlockPos;
@@ -23,6 +25,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -183,6 +186,21 @@ public class ChristmasEvents {
     public static void onMusicBoxPlay(MusicBoxEvent event) {
         if (event instanceof MusicBoxEvent.Play) {
             ChristmasTriggers.PLAY_MUSIC_BOX.trigger((ServerPlayer) event.getPlayer());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onSnowGlobeInteract(SnowGlobeEvent event) {
+        if (event instanceof SnowGlobeEvent.Use) {
+            ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
+
+            serverPlayer.awardStat(ChristmasStats.USE_SNOW_GLOBE);
+
+            ChristmasTriggers.SNOW_GLOBE_USE.trigger(serverPlayer);
+
+            if (serverPlayer.getStats().getValue(Stats.CUSTOM.get(ChristmasStats.USE_SNOW_GLOBE)) >= 50) {
+                ChristmasTriggers.SNOW_GLOBE_USE_CHALLENGE.trigger(serverPlayer);
+            }
         }
     }
 }
