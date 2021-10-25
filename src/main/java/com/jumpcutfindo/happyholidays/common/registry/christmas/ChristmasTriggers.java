@@ -1,12 +1,15 @@
 package com.jumpcutfindo.happyholidays.common.registry.christmas;
 
-import java.util.Arrays;
+import java.util.Set;
 
+import com.google.common.collect.Sets;
 import com.jumpcutfindo.happyholidays.common.advancements.CustomTrigger;
 
 import net.minecraft.advancements.CriteriaTriggers;
 
 public class ChristmasTriggers {
+    public static final Set<CustomTrigger> TRIGGERS = Sets.newHashSet();
+
     // Music Box triggers
     public static final CustomTrigger PLAY_MUSIC_BOX = christmasTrigger("play_music_box");
 
@@ -26,6 +29,7 @@ public class ChristmasTriggers {
 
     // Stocking triggers
     public static final CustomTrigger STOCKING_FILL = christmasTrigger("stocking_fill");
+    public static final CustomTrigger STOCKING_UPGRADE = christmasTrigger("stocking_upgrade");
 
     // Christmas Star triggers
     public static final CustomTrigger STAR_PUT_ORNAMENT = christmasTrigger("star_put_ornament");
@@ -38,31 +42,15 @@ public class ChristmasTriggers {
     public static final CustomTrigger SANTA_ANGRY_DIE = christmasTrigger("santa_angry_die");
     public static final CustomTrigger SANTA_NO_TOUCHY = christmasTrigger("santa_no_touchy");
 
-    private static final CustomTrigger[] TRIGGERS = new CustomTrigger[] {
-            PLAY_MUSIC_BOX,
-            GINGERBREAD_MAN_TURN_SOGGY,
-            GINGERBREAD_MAN_TURN_DRY,
-            SANTA_ELF_SUMMON,
-            SANTA_ELF_TRADE,
-            SANTA_ELF_COMPLETE_REQUEST,
-            SANTA_ELF_COMPLETE_REQUEST_QUICK,
-            GRINCH_ENCOUNTER,
-            GRINCH_APPEASE,
-            STOCKING_FILL,
-            STAR_PUT_ORNAMENT,
-            STAR_MAXED_TIER,
-            STAR_SUMMON_SANTA,
-            STAR_REACH_BONUS,
-            SANTA_DROP_PARTY_COMPLETE,
-            SANTA_ANGRY_DIE,
-            SANTA_NO_TOUCHY
-    };
-
     private static CustomTrigger christmasTrigger(String id) {
-        return new CustomTrigger("christmas/" + id);
+        CustomTrigger customTrigger = new CustomTrigger("christmas/" + id);
+
+        TRIGGERS.add(customTrigger);
+
+        return customTrigger;
     }
 
     public static void registerTriggers() {
-        Arrays.stream(TRIGGERS).forEach(CriteriaTriggers::register);
+        TRIGGERS.forEach(CriteriaTriggers::register);
     }
 }

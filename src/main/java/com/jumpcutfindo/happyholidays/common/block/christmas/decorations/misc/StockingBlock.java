@@ -109,6 +109,8 @@ public class StockingBlock extends WallDecorationBlock implements ChristmasLike,
             if (!blockState.getValue(ENCHANTED) && playerEntity.getItemInHand(hand).is(ChristmasItems.ENCHANTED_THREAD.get())) {
                 // Upgrade the stocking to its enchanted state
                 this.upgradeStocking((ServerLevel) level, blockPos, blockState, playerEntity, playerEntity.getItemInHand(hand));
+                StockingEvent.Upgrade upgradeEvent = new StockingEvent.Upgrade(blockState, blockPos, playerEntity);
+                MinecraftForge.EVENT_BUS.post(upgradeEvent);
             }
 
             if (!stockingBlockEntity.isEmpty()) {

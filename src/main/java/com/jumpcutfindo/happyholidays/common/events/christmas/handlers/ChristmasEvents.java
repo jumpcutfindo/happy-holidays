@@ -154,9 +154,11 @@ public class ChristmasEvents {
     }
 
     @SubscribeEvent
-    public static void onStockingFill(StockingEvent event) {
+    public static void onStockingInteract(StockingEvent event) {
         if (event instanceof StockingEvent.Fill) {
             ChristmasTriggers.STOCKING_FILL.trigger((ServerPlayer) event.getPlayer());
+        } else if (event instanceof StockingEvent.Upgrade) {
+            ChristmasTriggers.STOCKING_UPGRADE.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
