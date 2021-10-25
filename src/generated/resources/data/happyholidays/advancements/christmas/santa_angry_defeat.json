@@ -5,10 +5,10 @@
       "item": "happyholidays:enchanted_santa_hat"
     },
     "title": {
-      "translate": "advancements.santa_angry_defeat"
+      "translate": "advancements.happyholidays.christmas.santa_angry_defeat"
     },
     "description": {
-      "translate": "advancements.santa_angry_defeat.desc"
+      "translate": "advancements.happyholidays.christmas.santa_angry_defeat.desc"
     },
     "frame": "task",
     "show_toast": true,

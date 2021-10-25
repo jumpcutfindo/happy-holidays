@@ -91,21 +91,11 @@
   },
   "requirements": [
     [
-      "has_red_stocking"
-    ],
-    [
-      "has_blue_stocking"
-    ],
-    [
-      "has_yellow_stocking"
-    ],
-    [
-      "has_green_stocking"
-    ],
-    [
-      "has_gold_stocking"
-    ],
-    [
+      "has_red_stocking",
+      "has_blue_stocking",
+      "has_yellow_stocking",
+      "has_green_stocking",
+      "has_gold_stocking",
       "has_silver_stocking"
     ]
   ]

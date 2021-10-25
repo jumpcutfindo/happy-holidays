@@ -5,10 +5,10 @@
       "item": "happyholidays:santa_hat"
     },
     "title": {
-      "translate": "advancements.santa_summon"
+      "translate": "advancements.happyholidays.christmas.santa_summon"
     },
     "description": {
-      "translate": "advancements.santa_summon.desc"
+      "translate": "advancements.happyholidays.christmas.santa_summon.desc"
     },
     "frame": "task",
     "show_toast": true,

@@ -368,7 +368,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .addCriterion("has_green_stocking", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.GREEN_STOCKING.get()))
                 .addCriterion("has_gold_stocking", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SILVER_STOCKING.get()))
                 .addCriterion("has_silver_stocking", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.GOLD_STOCKING.get()))
-                .requirements(RequirementsStrategy.AND)
+                .requirements(RequirementsStrategy.OR)
                 .save(advancementConsumer, advancementId("stocking_start"));
 
         Advancement stockingFill = createAdvancement(stockingStart, ChristmasItems.GOLD_STOCKING.get(), translatable("stocking_fill"))
@@ -402,19 +402,19 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
     }
 
     private void santaSubBranch(Consumer<Advancement> advancementConsumer, Advancement parent) {
-        Advancement santaStart = createAdvancement(parent, ChristmasItems.SANTA_HAT.get(), "santa_summon")
+        Advancement santaStart = createAdvancement(parent, ChristmasItems.SANTA_HAT.get(), translatable("santa_summon"))
                 .addCriterion("summon_santa", ChristmasTriggers.STAR_SUMMON_SANTA.getInstance())
                 .save(advancementConsumer, advancementId("santa_summon"));
 
-        Advancement santaDropParty = createAdvancement(santaStart, ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get(), "santa_drop_party")
+        Advancement santaDropParty = createAdvancement(santaStart, ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get(), translatable("santa_drop_party"))
                 .addCriterion("drop_party", ChristmasTriggers.SANTA_DROP_PARTY_COMPLETE.getInstance())
                 .save(advancementConsumer, advancementId("santa_drop_party"));
 
-        Advancement santaAngryDefeat = createAdvancement(santaStart, ChristmasItems.ENCHANTED_SANTA_HAT.get(), "santa_angry_defeat")
+        Advancement santaAngryDefeat = createAdvancement(santaStart, ChristmasItems.ENCHANTED_SANTA_HAT.get(), translatable("santa_angry_defeat"))
                 .addCriterion("defeat_santa", ChristmasTriggers.SANTA_ANGRY_DIE.getInstance())
                 .save(advancementConsumer, advancementId("santa_angry_defeat"));
 
-        Advancement noTouchy = createAdvancement(santaStart, ChristmasItems.ENCHANTED_SANTA_HAT.get(), "santa_no_touchy", FrameType.CHALLENGE, true, true, false)
+        Advancement noTouchy = createAdvancement(santaStart, ChristmasItems.ENCHANTED_SANTA_HAT.get(), translatable("santa_no_touchy"), FrameType.CHALLENGE, true, true, false)
                 .addCriterion("defeat_santa_restricted", ChristmasTriggers.SANTA_NO_TOUCHY.getInstance())
                 .rewards(AdvancementRewards.Builder.experience(200).build())
                 .save(advancementConsumer, advancementId("santa_no_touchy"));

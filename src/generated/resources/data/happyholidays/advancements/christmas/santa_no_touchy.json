@@ -5,10 +5,10 @@
       "item": "happyholidays:enchanted_santa_hat"
     },
     "title": {
-      "translate": "advancements.santa_no_touchy"
+      "translate": "advancements.happyholidays.christmas.santa_no_touchy"
     },
     "description": {
-      "translate": "advancements.santa_no_touchy.desc"
+      "translate": "advancements.happyholidays.christmas.santa_no_touchy.desc"
     },
     "frame": "challenge",
     "show_toast": true,
