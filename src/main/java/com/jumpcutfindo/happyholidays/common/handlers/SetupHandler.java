@@ -8,6 +8,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabe
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.INaughtyNiceHandler;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasStats;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
 
 import net.minecraft.world.level.block.Block;
@@ -30,6 +31,8 @@ public class SetupHandler {
                 if (block.get() instanceof ChristmasBlock) ((ChristmasBlock) block.get()).configure();
             }
         });
+
+        event.enqueueWork(ChristmasStats::registerStats);
     }
 
     @SubscribeEvent
