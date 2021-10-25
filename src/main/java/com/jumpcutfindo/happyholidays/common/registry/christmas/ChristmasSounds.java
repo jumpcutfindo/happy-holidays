@@ -15,6 +15,8 @@ public class ChristmasSounds {
 
     public static final RegistryObject<SoundEvent> GINGERBREAD_SOGGIFIED = registerSound("block.gingerbread_soggified");
 
+    public static final RegistryObject<SoundEvent> CHRISTMAS_BELL_RING = registerSound("block.christmas_bell_ring");
+
     public static final RegistryObject<SoundEvent> CHRISTMAS_STAR_BLOCK_PLACE = registerSound("block.christmas_star_place");
     public static final RegistryObject<SoundEvent> CHRISTMAS_STAR_EFFECT_APPLY = registerSound("block.christmas_star_effect_apply");
 

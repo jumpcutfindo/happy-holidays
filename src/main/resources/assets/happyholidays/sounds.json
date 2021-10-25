@@ -29,6 +29,16 @@
             }
         ]
     },
+    "block.christmas_bell_ring": {
+        "category": "block",
+        "subtitle": "block.happyholidays.christmas_bell.ring",
+        "sounds": [
+            {
+                "name": "happyholidays:block/christmas_bell_ring",
+                "stream": true
+            }
+        ]
+    },
     "item.christmas_music_angels_on_high": {
         "category": "item",
         "subtitle": "Angels We Have Heard on High",

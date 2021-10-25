@@ -5,10 +5,20 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.BasicOrnament;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -53,5 +63,14 @@ public class ChristmasBellBlock extends DecorationBlock implements ChristmasLike
     @Override
     public ChristmasRarity getChristmasRarity() {
         return ChristmasRarity.COMMON;
+    }
+
+    @Override
+    public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (!level.isClientSide()) {
+            ((ServerLevel) level).playSound(null, blockPos, ChristmasSounds.CHRISTMAS_BELL_RING.get(), SoundSource.BLOCKS, 1.0f, 0.75f + (RANDOM.nextFloat() * 0.25f));
+        }
+
+        return InteractionResult.sidedSuccess(level.isClientSide());
     }
 }
