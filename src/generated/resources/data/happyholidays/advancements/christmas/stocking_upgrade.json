@@ -1,0 +1,29 @@
+{
+  "parent": "happyholidays:christmas/stocking_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:enchanted_thread"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.stocking_upgrade"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.stocking_upgrade.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "stocking_upgrade": {
+      "trigger": "happyholidays:christmas/stocking_upgrade",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "stocking_upgrade"
+    ]
+  ]
+}

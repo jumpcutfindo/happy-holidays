@@ -374,6 +374,10 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
         Advancement stockingFill = createAdvancement(stockingStart, ChristmasItems.GOLD_STOCKING.get(), translatable("stocking_fill"))
                 .addCriterion("stocking_filled", ChristmasTriggers.STOCKING_FILL.getInstance())
                 .save(advancementConsumer, advancementId("stocking_fill"));
+
+        Advancement stockingUpgrade = createAdvancement(stockingStart, ChristmasItems.ENCHANTED_THREAD.get(), translatable("stocking_upgrade"))
+                .addCriterion("stocking_upgrade", ChristmasTriggers.STOCKING_UPGRADE.getInstance())
+                .save(advancementConsumer, advancementId("stocking_upgrade"));
     }
 
     private void starBranch(Consumer<Advancement> advancementConsumer) {
