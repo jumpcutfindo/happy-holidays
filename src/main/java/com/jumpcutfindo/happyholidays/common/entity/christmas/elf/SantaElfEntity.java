@@ -174,6 +174,8 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
                     }
 
                     for (MerchantOffer merchantOffer : offers) {
+                        if (merchantOffer.getResult().is(Items.EMERALD)) continue;
+
                         merchantOffer.setSpecialPriceDiff(0);
                         int j = (int) Math.floor(discount * (double) merchantOffer.getBaseCostA().getCount());
                         merchantOffer.addToSpecialPriceDiff(-Math.max(j, 1));
