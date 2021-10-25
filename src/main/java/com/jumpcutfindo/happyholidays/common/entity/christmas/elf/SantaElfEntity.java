@@ -7,10 +7,7 @@ import java.util.Set;
 
 import javax.annotation.Nullable;
 
-import org.apache.commons.lang3.ArrayUtils;
-
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
@@ -277,58 +274,47 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         MerchantOffers merchantOffers = this.getOffers();
 
         // Basic ornaments
-        Set<VillagerTrades.ItemListing> basicTradesSet = Sets.newHashSet();
-        while (basicTradesSet.size() < 4) {
-            int randInt = this.random.nextInt(SantaElfTrades.BASIC_ORNAMENT_TRADES.length);
-            basicTradesSet.add(SantaElfTrades.BASIC_ORNAMENT_TRADES[randInt]);
-        }
-
+        Set<VillagerTrades.ItemListing> basicTradesSet = SantaElfTrades.generateBasicTrades(4);
         basicTradesSet.forEach(listing -> {
             MerchantOffer merchantOffer = listing.getOffer(this, this.random);
             if (merchantOffer != null) merchantOffers.add(merchantOffer);
         });
 
         // Rare trades
-        Set<VillagerTrades.ItemListing> rareTradesSet = Sets.newHashSet();
-        VillagerTrades.ItemListing[] rareTradeListings = ArrayUtils.addAll(SantaElfTrades.RARE_ORNAMENT_TRADES, SantaElfTrades.SHEET_MUSIC_TRADES);
-        while (rareTradesSet.size() < 2) {
-            int randInt = this.random.nextInt(rareTradeListings.length);
-            rareTradesSet.add(rareTradeListings[randInt]);
-        }
-
+        Set<VillagerTrades.ItemListing> rareTradesSet = SantaElfTrades.generateRareTrades(2);
         rareTradesSet.forEach(listing -> {
             MerchantOffer merchantOffer = listing.getOffer(this, this.random);
             if (merchantOffer != null) merchantOffers.add(merchantOffer);
         });
 
         // Food trades
-        for (int i = 0; i < 2; i ++) {
-            int randInt = this.random.nextInt(SantaElfTrades.FOOD_TRADES.length);
-            MerchantOffer merchantOffer = SantaElfTrades.FOOD_TRADES[randInt].getOffer(this, this.random);
-
+        Set<VillagerTrades.ItemListing> foodTradesSet = SantaElfTrades.generateFoodTrades(2);
+        foodTradesSet.forEach(listing -> {
+            MerchantOffer merchantOffer = listing.getOffer(this, this.random);
             if (merchantOffer != null) merchantOffers.add(merchantOffer);
-        }
+        });
 
         // Add Santa's Elf Request
-        SantaElfEntity.ItemsForEmeraldsTrade santaElfRequestTrade =
-                new SantaElfEntity.ItemsForEmeraldsTrade(this.santaElfRequest.getRequestPaper(), 1,1, 1, 2);
+        VillagerTrades.ItemListing santaElfRequestTrade = SantaElfTrades.generateRequestTrade(santaElfRequest);
         MerchantOffer santaElfRequestOffer = santaElfRequestTrade.getOffer(this, this.random);
         if (santaElfRequestOffer != null) merchantOffers.add(santaElfRequestOffer);
         this.santaElfRequestOfferIndex = merchantOffers.indexOf(santaElfRequestOffer);
 
         // Sometimes appears trades
         if (this.random.nextBoolean()) {
-            int randInt = this.random.nextInt(SantaElfTrades.SOMETIMES_APPEAR_TRADES.length);
-
-            MerchantOffer merchantOffer = SantaElfTrades.SOMETIMES_APPEAR_TRADES[randInt].getOffer(this, this.random);
-            if (merchantOffer != null) merchantOffers.add(merchantOffer);
+            Set<VillagerTrades.ItemListing> sometimesAppearTradesSet = SantaElfTrades.generateSometimesAppearTrades(1);
+            sometimesAppearTradesSet.forEach(listing -> {
+                MerchantOffer merchantOffer = listing.getOffer(this, this.random);
+                if (merchantOffer != null) merchantOffers.add(merchantOffer);
+            });
         }
 
         // Always appears trades
-        for (int i = 0; i < SantaElfTrades.ALWAYS_APPEAR_TRADES.length; i++) {
-            MerchantOffer merchantOffer = SantaElfTrades.ALWAYS_APPEAR_TRADES[i].getOffer(this, this.random);
-            if (merchantOffer != null) merchantOffers.add(merchantOffer);
-        }
+        Set<VillagerTrades.ItemListing> alwaysAppearTradesSet = SantaElfTrades.generateAlwaysAppearTrades();
+        alwaysAppearTradesSet.forEach(listing -> {
+                MerchantOffer merchantOffer = listing.getOffer(this, this.random);
+                if (merchantOffer != null) merchantOffers.add(merchantOffer);
+        });
     }
 
     public SantaElfRequest getRequest() {
