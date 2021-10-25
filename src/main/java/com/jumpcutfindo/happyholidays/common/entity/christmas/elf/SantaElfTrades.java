@@ -38,6 +38,12 @@ public class SantaElfTrades {
                     new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SANTA_ELF_BELL.get().asItem(), 64, 1, 1, 8)
             };
 
+    public static final VillagerTrades.ItemListing[] BUYBACK_TRADES =
+            ArrayUtils.addAll(
+                SantaElfEntity.EmeraldForItemsTrade.tradesFromTag(ChristmasTags.Items.BASIC_ORNAMENTS, 2, 1, 8, 2),
+                SantaElfEntity.EmeraldForItemsTrade.tradesFromTag(ChristmasTags.Items.RARE_ORNAMENTS, 1, 2, 8, 2)
+            );
+
     public static Set<VillagerTrades.ItemListing> generateBasicTrades(int numTrades) {
         return generateTradesFromListings(BASIC_ORNAMENT_TRADES, numTrades);
     }
@@ -62,6 +68,10 @@ public class SantaElfTrades {
 
     public static Set<VillagerTrades.ItemListing> generateAlwaysAppearTrades() {
         return Sets.newHashSet(ALWAYS_APPEAR_TRADES);
+    }
+
+    public static Set<VillagerTrades.ItemListing> generateBuybackTrades(int numTrades) {
+        return generateTradesFromListings(BUYBACK_TRADES, numTrades);
     }
 
     private static Set<VillagerTrades.ItemListing> generateTradesFromListings(VillagerTrades.ItemListing[] listings, int numTrades) {

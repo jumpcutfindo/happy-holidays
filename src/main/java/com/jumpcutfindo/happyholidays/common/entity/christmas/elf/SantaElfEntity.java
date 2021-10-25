@@ -17,6 +17,7 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.server.data.SantaSavedData;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -228,7 +229,8 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
     public void notifyTradeUpdated(ItemStack itemStack) {
         if (!this.level.isClientSide && this.ambientSoundTime > -this.getAmbientSoundInterval() + 20) {
             this.ambientSoundTime = -this.getAmbientSoundInterval();
-            this.playSound(this.getTradeUpdatedSound(!itemStack.isEmpty()), this.getSoundVolume(), this.getVoicePitch());
+            this.playSound(this.getTradeUpdatedSound(!itemStack.isEmpty()), this.getSoundVolume(),
+                    this.getVoicePitch());
         }
     }
 
@@ -273,6 +275,15 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
     protected void updateTrades() {
         MerchantOffers merchantOffers = this.getOffers();
 
+        // Add buyback trades if Santa has been defeated before
+        if (this.canBuyBack()) {
+            Set<VillagerTrades.ItemListing> buybackTradesSet = SantaElfTrades.generateBuybackTrades(4);
+            buybackTradesSet.forEach(listing -> {
+                MerchantOffer merchantOffer = listing.getOffer(this, this.random);
+                if (merchantOffer != null) merchantOffers.add(merchantOffer);
+            });
+        }
+
         // Basic ornaments
         Set<VillagerTrades.ItemListing> basicTradesSet = SantaElfTrades.generateBasicTrades(4);
         basicTradesSet.forEach(listing -> {
@@ -312,8 +323,8 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         // Always appears trades
         Set<VillagerTrades.ItemListing> alwaysAppearTradesSet = SantaElfTrades.generateAlwaysAppearTrades();
         alwaysAppearTradesSet.forEach(listing -> {
-                MerchantOffer merchantOffer = listing.getOffer(this, this.random);
-                if (merchantOffer != null) merchantOffers.add(merchantOffer);
+            MerchantOffer merchantOffer = listing.getOffer(this, this.random);
+            if (merchantOffer != null) merchantOffers.add(merchantOffer);
         });
     }
 
@@ -355,7 +366,8 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
                 Player playerEntity = this.level.getPlayerByUUID(itemEntity.getThrower());
                 NaughtyNiceMeter.evaluateAction(playerEntity, NaughtyNiceAction.HELP_SANTA_ELF_EVENT);
 
-                SantaElfEvent.CompleteRequest completeRequestEvent = new SantaElfEvent.CompleteRequest(this, playerEntity, this.timeToCompleteRequest);
+                SantaElfEvent.CompleteRequest completeRequestEvent = new SantaElfEvent.CompleteRequest(this,
+                        playerEntity, this.timeToCompleteRequest);
                 MinecraftForge.EVENT_BUS.post(completeRequestEvent);
             }
 
@@ -372,7 +384,8 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
     }
 
     public MerchantOffer getSantaElfRequestOffer() {
-        return this.santaElfRequestOfferIndex == -1 || this.offers == null ? null : this.offers.get(this.santaElfRequestOfferIndex);
+        return this.santaElfRequestOfferIndex == -1 || this.offers == null ? null :
+                this.offers.get(this.santaElfRequestOfferIndex);
     }
 
     public void throwRequestRewards() {
@@ -414,44 +427,18 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         return fireworkStack;
     }
 
-    @Override
-    public boolean removeWhenFarAway(double p_213397_1_) {
-        return false;
-    }
+    public boolean canBuyBack() {
+        if (this.level.isClientSide()) return false;
 
-    @Override
-    public void addAdditionalSaveData(CompoundTag nbt) {
-        super.addAdditionalSaveData(nbt);
-        nbt.putInt("DespawnDelay", this.despawnDelay);
-        nbt.put("SantaElfRequest", this.santaElfRequest.createTag());
-        nbt.put("MerchantOffers", this.getOffers().createTag());
-        nbt.putBoolean("IsRequestOutdated", this.isRequestOutdated);
-        nbt.putBoolean("IsRewardThrown", this.isRewardThrown);
-        nbt.putInt("TimeToCompleteRequest", this.timeToCompleteRequest);
-        nbt.putInt("RequestOfferIndex", this.santaElfRequestOfferIndex);
-    }
+        ServerLevel serverLevel = (ServerLevel) this.level;
 
-    @Override
-    public void readAdditionalSaveData(CompoundTag nbt) {
-        super.readAdditionalSaveData(nbt);
-        if (nbt.contains("DespawnDelay", 99)) {
-            this.despawnDelay = nbt.getInt("DespawnDelay");
-        }
+        SantaSavedData santaData = serverLevel.getDataStorage().computeIfAbsent(
+                SantaSavedData::createFromTag,
+                SantaSavedData::new,
+                SantaSavedData.DATA_NAME
+        );
 
-        if (nbt.contains("SantaElfRequest", 10)) {
-            this.santaElfRequest = SantaElfRequest.fromTag(nbt.getCompound("SantaElfRequest"));
-        }
-
-        if (nbt.contains("MerchantOffers", 10)) {
-            this.offers = new MerchantOffers(nbt.getCompound("MerchantOffers"));
-        }
-
-        this.isRequestOutdated = nbt.getBoolean("IsRequestOutdated");
-        this.isRewardThrown = nbt.getBoolean("IsRewardThrown");
-
-        this.timeToCompleteRequest = nbt.getInt("TimeToCompleteRequest");
-
-        this.santaElfRequestOfferIndex = nbt.getInt("RequestOfferIndex");
+        return santaData.isDefeated();
     }
 
     public void aiStep() {
@@ -501,6 +488,46 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         }
     }
 
+    @Override
+    public boolean removeWhenFarAway(double p_213397_1_) {
+        return false;
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
+        nbt.putInt("DespawnDelay", this.despawnDelay);
+        nbt.put("SantaElfRequest", this.santaElfRequest.createTag());
+        nbt.put("MerchantOffers", this.getOffers().createTag());
+        nbt.putBoolean("IsRequestOutdated", this.isRequestOutdated);
+        nbt.putBoolean("IsRewardThrown", this.isRewardThrown);
+        nbt.putInt("TimeToCompleteRequest", this.timeToCompleteRequest);
+        nbt.putInt("RequestOfferIndex", this.santaElfRequestOfferIndex);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
+        if (nbt.contains("DespawnDelay", 99)) {
+            this.despawnDelay = nbt.getInt("DespawnDelay");
+        }
+
+        if (nbt.contains("SantaElfRequest", 10)) {
+            this.santaElfRequest = SantaElfRequest.fromTag(nbt.getCompound("SantaElfRequest"));
+        }
+
+        if (nbt.contains("MerchantOffers", 10)) {
+            this.offers = new MerchantOffers(nbt.getCompound("MerchantOffers"));
+        }
+
+        this.isRequestOutdated = nbt.getBoolean("IsRequestOutdated");
+        this.isRewardThrown = nbt.getBoolean("IsRewardThrown");
+
+        this.timeToCompleteRequest = nbt.getInt("TimeToCompleteRequest");
+
+        this.santaElfRequestOfferIndex = nbt.getInt("RequestOfferIndex");
+    }
+
     private static class FollowEmeraldsGoal extends Goal {
         private SantaElfEntity santaElfEntity;
         private ItemEntity targetedEntity;
@@ -527,7 +554,8 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         @Override
         public void tick() {
             if (targetedEntity != null && targetedEntity.isAlive()) {
-                this.santaElfEntity.getNavigation().moveTo(targetedEntity.position().x, targetedEntity.position().y, targetedEntity.position().z, 1.0f);
+                this.santaElfEntity.getNavigation().moveTo(targetedEntity.position().x, targetedEntity.position().y,
+                        targetedEntity.position().z, 1.0f);
 
                 if (targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
                     if (!targetedEntity.hasPickUpDelay()) {
@@ -576,7 +604,7 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         }
 
         public void stop() {
-            this.mob.setTradingPlayer((Player)null);
+            this.mob.setTradingPlayer((Player) null);
         }
     }
 
@@ -632,7 +660,8 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         @Override
         public void tick() {
             if (targetedEntity != null && targetedEntity.isAlive()) {
-                this.santaElfEntity.getNavigation().moveTo(targetedEntity.position().x, targetedEntity.position().y, targetedEntity.position().z, 1.0f);
+                this.santaElfEntity.getNavigation().moveTo(targetedEntity.position().x, targetedEntity.position().y,
+                        targetedEntity.position().z, 1.0f);
 
                 if (targetedEntity.distanceToSqr(this.santaElfEntity) < 2.0f) {
                     this.santaElfEntity.handleRequestItemOnGround(this.targetedEntity);
@@ -658,7 +687,8 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
 
             if (nearbyEntities.size() != 0) {
                 for (ItemEntity entity : nearbyEntities) {
-                    if (ItemStack.isSame(entity.getItem(), ChristmasItems.TOY_PARTS_REQUEST.get().getDefaultInstance())) {
+                    if (ItemStack.isSame(entity.getItem(),
+                            ChristmasItems.TOY_PARTS_REQUEST.get().getDefaultInstance())) {
                         targetedEntity = entity;
                         return true;
                     }
@@ -683,13 +713,15 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
     static class EmeraldForItemsTrade implements VillagerTrades.ItemListing {
         private final Item item;
         private final int cost;
+        private final int emeraldsExpected;
         private final int maxUses;
         private final int villagerXp;
         private final float priceMultiplier;
 
-        public EmeraldForItemsTrade(ItemLike itemProvider, int cost, int maxUses, int xp) {
+        public EmeraldForItemsTrade(ItemLike itemProvider, int cost, int emeraldsExpected, int maxUses, int xp) {
             this.item = itemProvider.asItem();
             this.cost = cost;
+            this.emeraldsExpected = emeraldsExpected;
             this.maxUses = maxUses;
             this.villagerXp = xp;
             this.priceMultiplier = 0.05F;
@@ -697,7 +729,19 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
 
         public MerchantOffer getOffer(Entity p_221182_1_, Random p_221182_2_) {
             ItemStack itemstack = new ItemStack(this.item, this.cost);
-            return new MerchantOffer(itemstack, new ItemStack(Items.EMERALD), this.maxUses, this.villagerXp, this.priceMultiplier);
+            return new MerchantOffer(itemstack, new ItemStack(Items.EMERALD, emeraldsExpected), this.maxUses,
+                    this.villagerXp, this.priceMultiplier);
+        }
+
+        public static VillagerTrades.ItemListing[] tradesFromTag(Tag<Item> itemTag, int cost, int emeraldsExpected,
+                                                                 int maxUses, int xp) {
+            VillagerTrades.ItemListing[] results = new VillagerTrades.ItemListing[itemTag.getValues().size()];
+
+            for (int i = 0; i < results.length; i++) {
+                results[i] = new EmeraldForItemsTrade(itemTag.getValues().get(i), cost, emeraldsExpected, maxUses, xp);
+            }
+
+            return results;
         }
     }
 
@@ -725,7 +769,8 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
             this(itemStack, emeraldCost, numberOfItems, maxUses, xp, 0.05F);
         }
 
-        public ItemsForEmeraldsTrade(ItemStack itemStack, int emeraldCost, int numberOfItems, int maxUses, int xp, float priceMultiplier) {
+        public ItemsForEmeraldsTrade(ItemStack itemStack, int emeraldCost, int numberOfItems, int maxUses, int xp,
+                                     float priceMultiplier) {
             this.itemStack = itemStack;
             this.emeraldCost = emeraldCost;
             this.numberOfItems = numberOfItems;
@@ -737,14 +782,17 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         public MerchantOffer getOffer(Entity p_221182_1_, Random p_221182_2_) {
             ItemStack offerStack = new ItemStack(this.itemStack.getItem(), this.numberOfItems);
             offerStack.setTag(this.itemStack.getTag());
-            return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), offerStack, this.maxUses, this.villagerXp, this.priceMultiplier);
+            return new MerchantOffer(new ItemStack(Items.EMERALD, this.emeraldCost), offerStack, this.maxUses,
+                    this.villagerXp, this.priceMultiplier);
         }
 
-        public static VillagerTrades.ItemListing[] tradesFromTag(Tag<Item> itemTag, int emeraldCost, int numberOfItems, int maxUses, int xp) {
+        public static VillagerTrades.ItemListing[] tradesFromTag(Tag<Item> itemTag, int emeraldCost,
+                                                                 int numberOfItems, int maxUses, int xp) {
             VillagerTrades.ItemListing[] results = new VillagerTrades.ItemListing[itemTag.getValues().size()];
 
             for (int i = 0; i < results.length; i++) {
-                results[i] = new ItemsForEmeraldsTrade(itemTag.getValues().get(i), emeraldCost, numberOfItems, maxUses, xp);
+                results[i] = new ItemsForEmeraldsTrade(itemTag.getValues().get(i), emeraldCost, numberOfItems,
+                        maxUses, xp);
             }
 
             return results;

@@ -20,6 +20,10 @@ public class SantaSavedData extends SavedData {
         this.hasSummonedBefore = true;
     }
 
+    public boolean isDefeated() {
+        return hasDefeatedBefore;
+    }
+
     public void setDefeated() {
         this.hasDefeatedBefore = true;
     }
