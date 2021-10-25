@@ -143,6 +143,16 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .requirements(RequirementsStrategy.AND)
                 .save(advancementConsumer, advancementId("ornament_lights"));
 
+        Advancement ornamentBells = createAdvancement(ornamentDyes, ChristmasItems.RED_CHRISTMAS_BELLS.get(), translatable("ornament_bells"))
+                .addCriterion("has_red_bells", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.RED_CHRISTMAS_BELLS.get()))
+                .addCriterion("has_blue_bells", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.BLUE_CHRISTMAS_BELLS.get()))
+                .addCriterion("has_yellow_bells", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.YELLOW_CHRISTMAS_BELLS.get()))
+                .addCriterion("has_green_bells", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.GREEN_CHRISTMAS_BELLS.get()))
+                .addCriterion("has_gold_bells", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SILVER_CHRISTMAS_BELLS.get()))
+                .addCriterion("has_silver_bells", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.GOLD_CHRISTMAS_BELLS.get()))
+                .requirements(RequirementsStrategy.AND)
+                .save(advancementConsumer, advancementId("ornament_bells"));
+
         Advancement ornamentHoarder = createAdvancement(ornamentStart, ChristmasItems.GOLD_BAUBLE.get(), translatable("ornament_hoarder"), FrameType.CHALLENGE, true, true, false)
                 .addCriterion("has_baubles",
                         InventoryChangeTrigger.TriggerInstance.hasItems(
@@ -180,6 +190,15 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                                 ItemPredicate.Builder.item().of(ChristmasItems.GOLD_CHRISTMAS_LIGHTS.get()).withCount(MinMaxBounds.Ints.exactly(64)).build(),
                                 ItemPredicate.Builder.item().of(ChristmasItems.SILVER_CHRISTMAS_LIGHTS.get()).withCount(MinMaxBounds.Ints.exactly(64)).build()
                         ))
+                .addCriterion("has_christmas_bells",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(
+                                ItemPredicate.Builder.item().of(ChristmasItems.RED_CHRISTMAS_BELLS.get()).withCount(MinMaxBounds.Ints.exactly(64)).build(),
+                                ItemPredicate.Builder.item().of(ChristmasItems.BLUE_CHRISTMAS_BELLS.get()).withCount(MinMaxBounds.Ints.exactly(64)).build(),
+                                ItemPredicate.Builder.item().of(ChristmasItems.YELLOW_CHRISTMAS_BELLS.get()).withCount(MinMaxBounds.Ints.exactly(64)).build(),
+                                ItemPredicate.Builder.item().of(ChristmasItems.GREEN_CHRISTMAS_BELLS.get()).withCount(MinMaxBounds.Ints.exactly(64)).build(),
+                                ItemPredicate.Builder.item().of(ChristmasItems.GOLD_CHRISTMAS_BELLS.get()).withCount(MinMaxBounds.Ints.exactly(64)).build(),
+                                ItemPredicate.Builder.item().of(ChristmasItems.SILVER_CHRISTMAS_BELLS.get()).withCount(MinMaxBounds.Ints.exactly(64)).build()
+                        ))
                 .rewards(AdvancementRewards.Builder.experience(50).build())
                 .requirements(RequirementsStrategy.AND)
                 .save(advancementConsumer, advancementId("ornament_hoarder"));
@@ -195,6 +214,19 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .rewards(AdvancementRewards.Builder.experience(150).build())
                 .requirements(RequirementsStrategy.AND)
                 .save(advancementConsumer, advancementId("ornament_fancy_hoarder"));
+
+        Advancement loyalPlayer = createAdvancement(ornamentStart, ChristmasItems.ALPHABET_ORNAMENT_M.get(), translatable("ornament_loyal_player"))
+                .addCriterion("has_m_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.ALPHABET_ORNAMENT_M.get()))
+                .addCriterion("has_i_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.ALPHABET_ORNAMENT_I.get()))
+                .addCriterion("has_n_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.ALPHABET_ORNAMENT_N.get()))
+                .addCriterion("has_e_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.ALPHABET_ORNAMENT_E.get()))
+                .addCriterion("has_c_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.ALPHABET_ORNAMENT_C.get()))
+                .addCriterion("has_r_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.ALPHABET_ORNAMENT_R.get()))
+                .addCriterion("has_a_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.ALPHABET_ORNAMENT_A.get()))
+                .addCriterion("has_f_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.ALPHABET_ORNAMENT_F.get()))
+                .addCriterion("has_t_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.ALPHABET_ORNAMENT_T.get()))
+                .requirements(RequirementsStrategy.AND)
+                .save(advancementConsumer, advancementId("ornament_loyal_player"));
     }
 
     private void musicBranch(Consumer<Advancement> advancementConsumer) {

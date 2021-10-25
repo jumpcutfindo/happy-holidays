@@ -1,0 +1,157 @@
+{
+  "parent": "happyholidays:christmas/ornament_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:alphabet_ornament_m"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.ornament_loyal_player"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.ornament_loyal_player.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_m_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:alphabet_ornament_m"
+            ]
+          }
+        ]
+      }
+    },
+    "has_i_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:alphabet_ornament_i"
+            ]
+          }
+        ]
+      }
+    },
+    "has_n_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:alphabet_ornament_n"
+            ]
+          }
+        ]
+      }
+    },
+    "has_e_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:alphabet_ornament_e"
+            ]
+          }
+        ]
+      }
+    },
+    "has_c_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:alphabet_ornament_c"
+            ]
+          }
+        ]
+      }
+    },
+    "has_r_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:alphabet_ornament_r"
+            ]
+          }
+        ]
+      }
+    },
+    "has_a_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:alphabet_ornament_a"
+            ]
+          }
+        ]
+      }
+    },
+    "has_f_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:alphabet_ornament_f"
+            ]
+          }
+        ]
+      }
+    },
+    "has_t_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:alphabet_ornament_t"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_m_ornament"
+    ],
+    [
+      "has_i_ornament"
+    ],
+    [
+      "has_n_ornament"
+    ],
+    [
+      "has_e_ornament"
+    ],
+    [
+      "has_c_ornament"
+    ],
+    [
+      "has_r_ornament"
+    ],
+    [
+      "has_a_ornament"
+    ],
+    [
+      "has_f_ornament"
+    ],
+    [
+      "has_t_ornament"
+    ]
+  ]
+}

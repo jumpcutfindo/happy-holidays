@@ -190,6 +190,49 @@
           }
         ]
       }
+    },
+    "has_christmas_bells": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:red_christmas_bells"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:blue_christmas_bells"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:yellow_christmas_bells"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:green_christmas_bells"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:gold_christmas_bells"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:silver_christmas_bells"
+            ],
+            "count": 64
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -204,6 +247,9 @@
     ],
     [
       "has_christmas_lights"
+    ],
+    [
+      "has_christmas_bells"
     ]
   ]
 }
