@@ -2,14 +2,12 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.candy;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
-
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class FestiveCandyCaneBlock extends BaseCandyCaneBlock {
     public static final String BLOCK_ID = "festive_candy_cane_block";
@@ -37,7 +35,7 @@ public class FestiveCandyCaneBlock extends BaseCandyCaneBlock {
 
         for (BlockPos pos : neighbours) {
             BlockState neighbourState = context.getLevel().getBlockState(pos);
-            if (neighbourState.is(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get())) {
+            if (neighbourState.getBlock() instanceof FestiveCandyCaneBlock) {
                 return this.defaultBlockState().setValue(CANDY_SHAPE, neighbourState.getValue(CANDY_SHAPE) == FestiveCandyShape.X_O ? FestiveCandyShape.O_X : FestiveCandyShape.X_O);
             }
         }
