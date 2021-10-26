@@ -343,8 +343,17 @@ public class ChristmasBlocks {
     // Candy cane blocks
     public static final RegistryObject<Block> CANDY_CANE_BLOCK =
             BLOCKS.register(CandyCaneBlock.BLOCK_ID, CandyCaneBlock::new);
+    public static final RegistryObject<Block> CANDY_CANE_BRICKS =
+            BLOCKS.register(CandyCaneBlock.BRICKS_ID, CandyCaneBlock::new);
+    public static final RegistryObject<Block> CANDY_CANE_TILES =
+            BLOCKS.register(CandyCaneBlock.TILES_ID, CandyCaneBlock::new);
+
     public static final RegistryObject<Block> FESTIVE_CANDY_CANE_BLOCK =
             BLOCKS.register(FestiveCandyCaneBlock.BLOCK_ID, FestiveCandyCaneBlock::new);
+    public static final RegistryObject<Block> FESTIVE_CANDY_CANE_BRICKS =
+            BLOCKS.register(FestiveCandyCaneBlock.BRICKS_ID, FestiveCandyCaneBlock::new);
+    public static final RegistryObject<Block> FESTIVE_CANDY_CANE_TILES =
+            BLOCKS.register(FestiveCandyCaneBlock.TILES_ID, FestiveCandyCaneBlock::new);
 
     // Miscellaneous blocks
     public static final RegistryObject<Block> CHRISTMAS_STAR =

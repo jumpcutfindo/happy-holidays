@@ -42,10 +42,9 @@ public class BaseCandyCaneBlock extends Block implements ChristmasLike, Christma
 
     public static final double ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE = 0.005D;
 
-    public BaseCandyCaneBlock(String blockId) {
+    public BaseCandyCaneBlock() {
         super(BLOCK_PROPERTIES);
     }
-
 
     @Override
     public void onBlockExploded(BlockState state, Level level, BlockPos pos, Explosion explosion) {

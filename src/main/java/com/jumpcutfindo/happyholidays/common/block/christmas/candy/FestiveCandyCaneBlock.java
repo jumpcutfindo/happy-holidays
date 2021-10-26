@@ -12,12 +12,15 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.core.BlockPos;
 
 public class FestiveCandyCaneBlock extends BaseCandyCaneBlock {
+    public static final String BLOCK_ID = "festive_candy_cane_block";
+    public static final String BRICKS_ID = "festive_candy_cane_bricks";
+    public static final String TILES_ID = "festive_candy_cane_tiles";
+
     public static final EnumProperty<FestiveCandyShape> CANDY_SHAPE = EnumProperty.create("candy_shape",
             FestiveCandyShape.class);
-    public static final String BLOCK_ID = "festive_candy_cane_block";
 
     public FestiveCandyCaneBlock() {
-        super(BLOCK_ID);
+        super();
 
         this.registerDefaultState(this.getStateDefinition().any()
             .setValue(CANDY_SHAPE, FestiveCandyShape.X_O)

@@ -215,7 +215,12 @@ public class ChristmasLootTables extends BaseLootTableProvider {
         addPresentBlock(ChristmasBlocks.ELDER_PRESENT.get());
 
         addCandyCaneBlock(ChristmasBlocks.CANDY_CANE_BLOCK.get(), ChristmasItems.CANDY_CANE.get());
+        addStandardBlock(ChristmasBlocks.CANDY_CANE_BRICKS.get());
+        addStandardBlock(ChristmasBlocks.CANDY_CANE_TILES.get());
+
         addCandyCaneBlock(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), ChristmasItems.FESTIVE_CANDY_CANE.get());
+        addStandardBlock(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get());
+        addStandardBlock(ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get());
     }
 
     private void registerEntities() {

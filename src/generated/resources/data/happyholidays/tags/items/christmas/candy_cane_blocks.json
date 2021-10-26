@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     "happyholidays:candy_cane_block",
-    "happyholidays:festive_candy_cane_block"
+    "happyholidays:candy_cane_bricks",
+    "happyholidays:candy_cane_tiles",
+    "happyholidays:festive_candy_cane_block",
+    "happyholidays:festive_candy_cane_bricks",
+    "happyholidays:festive_candy_cane_tiles"
   ]
 }

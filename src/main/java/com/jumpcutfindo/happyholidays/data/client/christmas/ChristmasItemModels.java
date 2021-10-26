@@ -114,7 +114,12 @@ public class ChristmasItemModels extends ItemModelProvider {
                 blockModelPair(ChristmasItems.SOGGY_GINGERBREAD_TILE_WALL.get(), "soggy_gingerbread_tile_wall_inventory"),
 
                 blockModelPair(ChristmasItems.CANDY_CANE_BLOCK.get()),
+                blockModelPair(ChristmasItems.CANDY_CANE_BRICKS.get()),
+                blockModelPair(ChristmasItems.CANDY_CANE_TILES.get()),
+
                 blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get(), "festive_candy_cane_block_xo"),
+                blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_BRICKS.get(), "festive_candy_cane_bricks_xo"),
+                blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_TILES.get(), "festive_candy_cane_tiles_xo"),
 
                 blockModelPair(ChristmasItems.GIFT_WRAPPING_STATION.get()),
                 blockModelPair(ChristmasItems.MUSIC_BOX.get())

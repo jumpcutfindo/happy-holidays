@@ -62,6 +62,8 @@ public class ChristmasBlockStates extends BlockStateProvider {
         // For default blocks where all sides are the same
         Set<Block> blocksWithoutModels = Set.of(
                 ChristmasBlocks.CANDY_CANE_BLOCK.get(),
+                ChristmasBlocks.CANDY_CANE_BRICKS.get(),
+                ChristmasBlocks.CANDY_CANE_TILES.get(),
 
                 ChristmasBlocks.GINGERBREAD_BLOCK.get(),
                 ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK.get(),
@@ -245,18 +247,25 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
     private void registerCustom() {
         // Register festive candy cane block
-        Block festiveCandyCaneBlock = ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get();
-        getVariantBuilder(festiveCandyCaneBlock).forAllStates(state -> {
-            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
-            String modelId = blockId(festiveCandyCaneBlock);
+        Block[] festiveBlocks = {
+                ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(),
+                ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get(),
+                ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get()
+        };
 
-            FestiveCandyShape shape = state.getValue(FestiveCandyCaneBlock.CANDY_SHAPE);
+        for (Block festiveCandyCaneBlock : festiveBlocks) {
+            getVariantBuilder(festiveCandyCaneBlock).forAllStates(state -> {
+                ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+                String modelId = blockId(festiveCandyCaneBlock);
 
-            if (shape == FestiveCandyShape.O_X) modelId += "_ox";
-            else modelId += "_xo";
+                FestiveCandyShape shape = state.getValue(FestiveCandyCaneBlock.CANDY_SHAPE);
 
-            return builder.modelFile(modelFileOf(modelId)).build();
-        });
+                if (shape == FestiveCandyShape.O_X) modelId += "_ox";
+                else modelId += "_xo";
+
+                return builder.modelFile(modelFileOf(modelId)).build();
+            });
+        }
 
         Function<Direction, Integer> getRotationY = (direction) -> switch (direction) {
             case EAST -> 270;

@@ -238,6 +238,12 @@ public class ChristmasRecipes extends RecipeProvider {
                 .requires(Items.BELL).requires(ChristmasItems.ENCHANTED_CANDY_CANE.get())
                 .unlockedBy(getHasName(ChristmasItems.ENCHANTED_CANDY_CANE.get()), has(ChristmasItems.ENCHANTED_CANDY_CANE.get()))
                 .save(consumer, recipeResourceOf(ChristmasItems.SANTA_ELF_BELL.get()));
+
+        twoByTwo(consumer, ChristmasBlocks.CANDY_CANE_BRICKS.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get(), 4);
+        twoByTwo(consumer, ChristmasBlocks.CANDY_CANE_TILES.get(), ChristmasBlocks.CANDY_CANE_BRICKS.get(), 4);
+
+        twoByTwo(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), 4);
+        twoByTwo(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get(), 4);
     }
 
     private void christmasStar(Consumer<FinishedRecipe> consumer) {

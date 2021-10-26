@@ -147,7 +147,12 @@
     "block.happyholidays.gingerbread_block.gingerbread_soggified": "Block turns soggy",
 
     "block.happyholidays.candy_cane_block": "Candy Cane Block",
+    "block.happyholidays.candy_cane_bricks": "Candy Cane Bricks",
+    "block.happyholidays.candy_cane_tiles": "Candy Cane Tiles",
+
     "block.happyholidays.festive_candy_cane_block": "Festive Candy Cane Block",
+    "block.happyholidays.festive_candy_cane_bricks": "Festive Candy Cane Bricks",
+    "block.happyholidays.festive_candy_cane_tiles": "Festive Candy Cane Tiles",
 
     "block.happyholidays.christmas_star": "Christmas Star",
     "block.happyholidays.christmas_star.tier": "Tier %s ",
