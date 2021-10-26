@@ -72,16 +72,17 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
-        if (event.getEntity() instanceof Player && ChristmasBlocks.isInfluencedByStar(event.getPlacedBlock().getBlock())) {
-            Player playerEntity = (Player) event.getEntity();
+        if (ChristmasBlocks.isInfluencedByStar(event.getPlacedBlock().getBlock())) onStarAffectedBlockPlaced(event);
+    }
+
+    public static void onStarAffectedBlockPlaced(BlockEvent.EntityPlaceEvent event) {
+        if (event.getEntity() instanceof Player playerEntity) {
             ChristmasStarBlockEntity starBlockEntity =
                     ChristmasStarHelper.getStarInfluencingBlock(playerEntity.level, event.getPos());
 
             if (starBlockEntity != null && starBlockEntity.isPosAffected(event.getPos())) {
                 // Block is under influence of a star
                 BlockPos placedBlockPos = event.getBlockSnapshot().getPos();
-
-                int particleCount = starBlockEntity.getCurrentTier() + (starBlockEntity.isBonusActive() ? 1 : 0);
 
                 for (int i = 0; i < starBlockEntity.getCurrentTier(); i++) {
                     double d0 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;

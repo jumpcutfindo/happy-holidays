@@ -28,6 +28,7 @@ public class ChristmasItemTags extends ItemTagsProvider {
         copy(ChristmasTags.Blocks.HEAD_ORNAMENTS, ChristmasTags.Items.HEAD_ORNAMENTS);
         copy(ChristmasTags.Blocks.GINGERBREAD_BLOCKS, ChristmasTags.Items.GINGERBREAD_BLOCKS);
         copy(ChristmasTags.Blocks.CANDY_CANE_BLOCKS, ChristmasTags.Items.CANDY_CANE_BLOCKS);
+        copy(ChristmasTags.Blocks.STAR_AFFECTED_BLOCKS, ChristmasTags.Items.STAR_AFFECTED_BLOCKS);
 
         tag(ChristmasTags.Items.BASIC_ORNAMENTS)
                 .addTag(ChristmasTags.Items.BAUBLES)
