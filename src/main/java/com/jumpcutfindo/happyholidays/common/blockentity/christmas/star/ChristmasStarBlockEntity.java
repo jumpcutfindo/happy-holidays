@@ -76,7 +76,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
     private boolean isGoodSanta;
     private int summonSantaProgress;
 
-    private AABB areaOfEffect;
+    private AABB santaAOE;
     private final ServerBossEvent summonEvent = (ServerBossEvent) (new ServerBossEvent(new TranslatableComponent(
             "entity.happyholidays.santa_is_coming"),
             BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS));
@@ -227,7 +227,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
                     SantaSavedData.DATA_NAME
             );
 
-            this.areaOfEffect = new AABB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
+            this.santaAOE = new AABB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
 
             boolean isTierOK = this.getCurrentTier() >= 5;
             boolean isValidTime = santaData.canSummon(serverWorld.getGameTime());
@@ -237,7 +237,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
                 long timeRemaining = santaData.getNextSummonTime() - serverWorld.getGameTime();
 
                 GameplayMessage message = new GameplayMessage(MessageType.ERROR, "chat.happyholidays.christmas_star.santa_not_ready", StringUtils.convertTicksToString(timeRemaining));
-                Messenger.sendChatMessage(message, serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position())));
+                Messenger.sendChatMessage(message, serverWorld.getPlayers(playerEntity -> this.santaAOE.contains(playerEntity.position())));
 
                 return;
             }
@@ -248,7 +248,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
 
             // Reset naughty nice meter of players in radius
             int totalValue = 0, totalPlayers = 0;
-            for (ServerPlayer serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
+            for (ServerPlayer serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.santaAOE.contains(playerEntity.position()))) {
                 int value = NaughtyNiceMeter.getMeterValue(serverPlayerEntity);
                 totalValue += value;
 
@@ -300,7 +300,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
             summonMessage = new GameplayMessage(MessageType.NAUGHTY, "entity.happyholidays.santa_arrival_angry");
         }
 
-        List<Player> playerList = this.level.getEntitiesOfClass(Player.class, this.areaOfEffect);
+        List<Player> playerList = this.level.getEntitiesOfClass(Player.class, this.santaAOE);
         Messenger.sendChatMessage(summonMessage, playerList);
 
         playerList.forEach(playerEntity -> {
@@ -461,7 +461,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
                         2, d0, d1, d2, 0.0D);
 
                 if (level.getGameTime() % 60L == 0) {
-                    List<Player> playerList = level.getEntitiesOfClass(Player.class, blockEntity.areaOfEffect);
+                    List<Player> playerList = level.getEntitiesOfClass(Player.class, blockEntity.santaAOE);
 
                     // Remove players outside the AOE
                     for (ServerPlayer serverPlayerEntity : blockEntity.summonEvent.getPlayers()) {
