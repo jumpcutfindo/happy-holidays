@@ -241,6 +241,9 @@ public class ChristmasRecipes extends RecipeProvider {
 
         twoByTwo(consumer, ChristmasBlocks.CANDY_CANE_BRICKS.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get(), 4);
         twoByTwo(consumer, ChristmasBlocks.CANDY_CANE_TILES.get(), ChristmasBlocks.CANDY_CANE_BRICKS.get(), 4);
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_BRICKS.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILES.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get());
+
 
         twoByTwo(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), 4);
         twoByTwo(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get(), 4);
