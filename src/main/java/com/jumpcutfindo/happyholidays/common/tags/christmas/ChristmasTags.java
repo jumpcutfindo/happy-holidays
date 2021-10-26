@@ -31,6 +31,8 @@ public class ChristmasTags {
         public static final Tags.IOptionalNamedTag<Block> GINGERBREAD_BLOCKS = blockTag("gingerbread_blocks");
 
         public static final Tags.IOptionalNamedTag<Block> CANDY_CANE_BLOCKS = blockTag("candy_cane_blocks");
+
+        public static final Tags.IOptionalNamedTag<Block> STAR_AFFECTED_BLOCKS = blockTag("star_affected_blocks");
     }
 
     public class Items {
@@ -61,6 +63,8 @@ public class ChristmasTags {
         public static final Tags.IOptionalNamedTag<Item> GINGERBREAD_BLOCKS = itemTag("gingerbread_blocks");
 
         public static final Tags.IOptionalNamedTag<Item> CANDY_CANE_BLOCKS = itemTag("candy_cane_blocks");
+
+        public static final Tags.IOptionalNamedTag<Item> STAR_AFFECTED_BLOCKS = itemTag("star_affected_blocks");
 
         public static final Tags.IOptionalNamedTag<Item> SANTA_ELF_BASIC_REQUESTABLES = itemTag("santa_elf_basic_requestables");
 

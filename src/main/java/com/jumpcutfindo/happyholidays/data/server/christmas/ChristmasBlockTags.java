@@ -134,6 +134,13 @@ public class ChristmasBlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get())
                 .add(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get())
                 .add(ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get());
+
+        tag(ChristmasTags.Blocks.STAR_AFFECTED_BLOCKS)
+                .add(ChristmasBlocks.CANDY_CANE_BLOCK.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get())
+                .add(ChristmasBlocks.BABY_PRESENT.get())
+                .add(ChristmasBlocks.ADULT_PRESENT.get())
+                .add(ChristmasBlocks.ELDER_PRESENT.get());
     }
 
     private void minecraftTags() {

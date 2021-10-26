@@ -39,6 +39,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPrese
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
+import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
@@ -374,6 +375,6 @@ public class ChristmasBlocks {
             BLOCKS.register(ChristmasPuddingBlock.BLOCK_ID, ChristmasPuddingBlock::new);
 
     public static boolean isInfluencedByStar(Block block) {
-        return block instanceof PresentBlock || block instanceof BaseCandyCaneBlock;
+        return ChristmasTags.Blocks.STAR_AFFECTED_BLOCKS.contains(block);
     }
 }
