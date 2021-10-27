@@ -6,8 +6,8 @@ import java.util.function.Function;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyShape;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyShape;
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;

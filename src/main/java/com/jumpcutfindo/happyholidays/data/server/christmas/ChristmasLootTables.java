@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.data.server.christmas;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.candy.BaseCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
@@ -406,7 +406,7 @@ public class ChristmasLootTables extends BaseLootTableProvider {
                 .name(id(ChristmasItems.ENCHANTED_CANDY_CANE.get()))
                 .setRolls(ConstantValue.exactly(1))
                 .add(LootItem.lootTableItem(ChristmasItems.ENCHANTED_CANDY_CANE.get()))
-                .when(LootItemRandomChanceCondition.randomChance((float) BaseCandyCaneBlock.ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE));
+                .when(LootItemRandomChanceCondition.randomChance((float) CandyCaneBlock.ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE));
 
         blockLootTables.put(candyCaneBlock, LootTable.lootTable().withPool(pool).withPool(enchantedPool));
     }

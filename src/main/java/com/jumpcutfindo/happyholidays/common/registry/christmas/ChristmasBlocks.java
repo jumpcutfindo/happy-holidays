@@ -3,11 +3,11 @@ package com.jumpcutfindo.happyholidays.common.registry.christmas;
 import java.util.function.Supplier;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.candy.BaseCandyCaneSlabBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.candy.BaseCandyCaneStairBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.candy.BaseCandyCaneWallBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.candy.FestiveCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneSlabBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneStairBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneWallBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.ChristmasWreathBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.FrostBlock;
@@ -346,29 +346,29 @@ public class ChristmasBlocks {
     public static final RegistryObject<Block> CANDY_CANE_BLOCK =
             BLOCKS.register(CandyCaneBlock.BLOCK_ID, CandyCaneBlock::new);
     public static final RegistryObject<StairBlock> CANDY_CANE_STAIRS =
-            BLOCKS.register(CandyCaneBlock.STAIR_BLOCK_ID, () -> new BaseCandyCaneStairBlock(supplierOf(CANDY_CANE_BLOCK)));
+            BLOCKS.register(CandyCaneStairBlock.BLOCK_ID, () -> new CandyCaneStairBlock(supplierOf(CANDY_CANE_BLOCK)));
     public static final RegistryObject<SlabBlock> CANDY_CANE_SLAB =
-            BLOCKS.register(CandyCaneBlock.SLAB_BLOCK_ID, BaseCandyCaneSlabBlock::new);
+            BLOCKS.register(CandyCaneSlabBlock.BLOCK_ID, CandyCaneSlabBlock::new);
     public static final RegistryObject<WallBlock> CANDY_CANE_WALL =
-            BLOCKS.register(CandyCaneBlock.WALL_BLOCK_ID, BaseCandyCaneWallBlock::new);
+            BLOCKS.register(CandyCaneWallBlock.BLOCK_ID, CandyCaneWallBlock::new);
 
     public static final RegistryObject<Block> CANDY_CANE_BRICKS =
             BLOCKS.register(CandyCaneBlock.BRICKS_ID, CandyCaneBlock::new);
     public static final RegistryObject<StairBlock> CANDY_CANE_BRICK_STAIRS =
-            BLOCKS.register(CandyCaneBlock.STAIR_BRICKS_ID, () -> new BaseCandyCaneStairBlock(supplierOf(CANDY_CANE_BRICKS)));
+            BLOCKS.register(CandyCaneStairBlock.BRICKS_ID, () -> new CandyCaneStairBlock(supplierOf(CANDY_CANE_BRICKS)));
     public static final RegistryObject<SlabBlock> CANDY_CANE_BRICK_SLAB =
-            BLOCKS.register(CandyCaneBlock.SLAB_BRICKS_ID, BaseCandyCaneSlabBlock::new);
+            BLOCKS.register(CandyCaneSlabBlock.BRICKS_ID, CandyCaneSlabBlock::new);
     public static final RegistryObject<WallBlock> CANDY_CANE_BRICK_WALL =
-            BLOCKS.register(CandyCaneBlock.WALL_BRICKS_ID, BaseCandyCaneWallBlock::new);
+            BLOCKS.register(CandyCaneWallBlock.BRICKS_ID, CandyCaneWallBlock::new);
 
     public static final RegistryObject<Block> CANDY_CANE_TILES =
             BLOCKS.register(CandyCaneBlock.TILES_ID, CandyCaneBlock::new);
     public static final RegistryObject<StairBlock> CANDY_CANE_TILE_STAIRS =
-            BLOCKS.register(CandyCaneBlock.STAIR_TILES_ID, () -> new BaseCandyCaneStairBlock(supplierOf(CANDY_CANE_TILES)));
+            BLOCKS.register(CandyCaneStairBlock.TILES_ID, () -> new CandyCaneStairBlock(supplierOf(CANDY_CANE_TILES)));
     public static final RegistryObject<SlabBlock> CANDY_CANE_TILE_SLAB =
-            BLOCKS.register(CandyCaneBlock.SLAB_TILES_ID, BaseCandyCaneSlabBlock::new);
+            BLOCKS.register(CandyCaneSlabBlock.TILES_ID, CandyCaneSlabBlock::new);
     public static final RegistryObject<WallBlock> CANDY_CANE_TILE_WALL =
-            BLOCKS.register(CandyCaneBlock.WALL_TILES_ID, BaseCandyCaneWallBlock::new);
+            BLOCKS.register(CandyCaneWallBlock.TILES_ID, CandyCaneWallBlock::new);
 
     public static final RegistryObject<Block> FESTIVE_CANDY_CANE_BLOCK =
             BLOCKS.register(FestiveCandyCaneBlock.BLOCK_ID, FestiveCandyCaneBlock::new);
