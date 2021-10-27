@@ -244,9 +244,37 @@ public class ChristmasRecipes extends RecipeProvider {
         stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_BRICKS.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILES.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get());
 
+        slab(consumer, ChristmasItems.CANDY_CANE_SLAB.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
+        stair(consumer, ChristmasItems.CANDY_CANE_STAIRS.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
+        wall(consumer, ChristmasItems.CANDY_CANE_WALL.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
 
         twoByTwo(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), 4);
+        slab(consumer, ChristmasItems.CANDY_CANE_BRICK_SLAB.get(), ChristmasItems.CANDY_CANE_BRICKS.get());
+        stair(consumer, ChristmasItems.CANDY_CANE_BRICK_STAIRS.get(), ChristmasItems.CANDY_CANE_BRICKS.get());
+        wall(consumer, ChristmasItems.CANDY_CANE_BRICK_WALL.get(), ChristmasItems.CANDY_CANE_BRICKS.get());
+
         twoByTwo(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get(), 4);
+        slab(consumer, ChristmasItems.CANDY_CANE_TILE_SLAB.get(), ChristmasItems.CANDY_CANE_TILES.get());
+        stair(consumer, ChristmasItems.CANDY_CANE_TILE_STAIRS.get(), ChristmasItems.CANDY_CANE_TILES.get());
+        wall(consumer, ChristmasItems.CANDY_CANE_TILE_WALL.get(), ChristmasItems.CANDY_CANE_TILES.get());
+
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_STAIRS.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_SLAB.get(), ChristmasItems.CANDY_CANE_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_WALL.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
+
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_BRICK_STAIRS.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_BRICK_SLAB.get(), ChristmasItems.CANDY_CANE_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_BRICK_WALL.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_BRICK_STAIRS.get(), ChristmasItems.CANDY_CANE_BRICKS.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_BRICK_SLAB.get(), ChristmasItems.CANDY_CANE_BRICKS.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_BRICK_WALL.get(), ChristmasItems.CANDY_CANE_BRICKS.get());
+
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILE_STAIRS.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILE_SLAB.get(), ChristmasItems.CANDY_CANE_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILE_WALL.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILE_STAIRS.get(), ChristmasItems.CANDY_CANE_TILES.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILE_SLAB.get(), ChristmasItems.CANDY_CANE_TILES.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILE_WALL.get(), ChristmasItems.CANDY_CANE_TILES.get());
     }
 
     private void christmasStar(Consumer<FinishedRecipe> consumer) {

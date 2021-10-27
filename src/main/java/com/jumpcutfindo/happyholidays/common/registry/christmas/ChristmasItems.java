@@ -343,7 +343,6 @@ public class ChristmasItems {
     public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_Z =
             ITEMS.register(AlphabetOrnamentBlock.ALPHABET_Z_ID, blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_Z, AlphabetOrnamentBlock.ITEM_PROPERTIES));
 
-
     public static final RegistryObject<ChristmasBlockItem> CHRISTMAS_WREATH =
             ITEMS.register(ChristmasWreathBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.CHRISTMAS_WREATH, ChristmasWreathBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> FROST =
@@ -448,11 +447,31 @@ public class ChristmasItems {
             ITEMS.register(BaseGingerbreadWall.SOGGY_TILES_ID, blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_WALL, BaseGingerbreadBlock.ITEM_PROPERITES));
 
     public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_BLOCK =
-            ITEMS.register(CandyCaneBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_BLOCK, CandyCaneOrnamentBlock.ITEM_PROPERTIES));
+            ITEMS.register(CandyCaneBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_BLOCK, CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_STAIRS =
+            ITEMS.register(CandyCaneBlock.STAIR_BLOCK_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_STAIRS, CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_SLAB =
+            ITEMS.register(CandyCaneBlock.SLAB_BLOCK_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_SLAB, CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_WALL =
+            ITEMS.register(CandyCaneBlock.WALL_BLOCK_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_WALL, CandyCaneBlock.ITEM_PROPERTIES));
+
     public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_BRICKS =
-            ITEMS.register(CandyCaneBlock.BRICKS_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_BRICKS, CandyCaneOrnamentBlock.ITEM_PROPERTIES));
+            ITEMS.register(CandyCaneBlock.BRICKS_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_BRICKS, CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_BRICK_STAIRS =
+            ITEMS.register(CandyCaneBlock.STAIR_BRICKS_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_BRICK_STAIRS, CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_BRICK_SLAB =
+            ITEMS.register(CandyCaneBlock.SLAB_BRICKS_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_BRICK_SLAB, CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_BRICK_WALL =
+            ITEMS.register(CandyCaneBlock.WALL_BRICKS_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_BRICK_WALL, CandyCaneBlock.ITEM_PROPERTIES));
+
     public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_TILES =
-            ITEMS.register(CandyCaneBlock.TILES_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_TILES, CandyCaneOrnamentBlock.ITEM_PROPERTIES));
+            ITEMS.register(CandyCaneBlock.TILES_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_TILES, CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_TILE_STAIRS =
+            ITEMS.register(CandyCaneBlock.STAIR_TILES_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_TILE_STAIRS, CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_TILE_SLAB =
+            ITEMS.register(CandyCaneBlock.SLAB_TILES_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_TILE_SLAB, CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_TILE_WALL =
+            ITEMS.register(CandyCaneBlock.WALL_TILES_ID, blockItemOf(ChristmasBlocks.CANDY_CANE_TILE_WALL, CandyCaneBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_BLOCK =
             ITEMS.register(FestiveCandyCaneBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK, FestiveCandyCaneBlock.ITEM_PROPERTIES));

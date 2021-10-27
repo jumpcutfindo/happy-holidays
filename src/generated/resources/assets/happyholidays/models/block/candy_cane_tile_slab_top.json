@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "happyholidays:block/candy_cane_tiles",
+    "bottom": "happyholidays:block/candy_cane_tiles",
+    "top": "happyholidays:block/candy_cane_tiles"
+  }
+}

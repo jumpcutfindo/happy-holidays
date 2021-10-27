@@ -95,7 +95,11 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
                 resourcePair(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_STAIRS.get(), ChristmasBlocks.GINGERBREAD_DOUGH_TILES.get()),
                 resourcePair(ChristmasBlocks.GINGERBREAD_TILE_STAIRS.get(), ChristmasBlocks.GINGERBREAD_TILES.get()),
-                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_STAIRS.get(), ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get())
+                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_STAIRS.get(), ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get()),
+
+                resourcePair(ChristmasBlocks.CANDY_CANE_STAIRS.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get()),
+                resourcePair(ChristmasBlocks.CANDY_CANE_BRICK_STAIRS.get(), ChristmasBlocks.CANDY_CANE_BRICKS.get()),
+                resourcePair(ChristmasBlocks.CANDY_CANE_TILE_STAIRS.get(), ChristmasBlocks.CANDY_CANE_TILES.get())
         );
 
         // For blocks that are slabs
@@ -110,7 +114,11 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
                 resourcePair(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_SLAB.get(), ChristmasBlocks.GINGERBREAD_DOUGH_TILES.get()),
                 resourcePair(ChristmasBlocks.GINGERBREAD_TILE_SLAB.get(), ChristmasBlocks.GINGERBREAD_TILES.get()),
-                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_SLAB.get(), ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get())
+                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_SLAB.get(), ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get()),
+
+                resourcePair(ChristmasBlocks.CANDY_CANE_SLAB.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get()),
+                resourcePair(ChristmasBlocks.CANDY_CANE_BRICK_SLAB.get(), ChristmasBlocks.CANDY_CANE_BRICKS.get()),
+                resourcePair(ChristmasBlocks.CANDY_CANE_TILE_SLAB.get(), ChristmasBlocks.CANDY_CANE_TILES.get())
         );
 
         // For blocks that are walls
@@ -125,7 +133,11 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
                 resourcePair(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_WALL.get(), ChristmasBlocks.GINGERBREAD_DOUGH_TILES.get()),
                 resourcePair(ChristmasBlocks.GINGERBREAD_TILE_WALL.get(), ChristmasBlocks.GINGERBREAD_TILES.get()),
-                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_WALL.get(), ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get())
+                resourcePair(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_WALL.get(), ChristmasBlocks.SOGGY_GINGERBREAD_TILES.get()),
+
+                resourcePair(ChristmasBlocks.CANDY_CANE_WALL.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get()),
+                resourcePair(ChristmasBlocks.CANDY_CANE_BRICK_WALL.get(), ChristmasBlocks.CANDY_CANE_BRICKS.get()),
+                resourcePair(ChristmasBlocks.CANDY_CANE_TILE_WALL.get(), ChristmasBlocks.CANDY_CANE_TILES.get())
         );
 
         for (Block block : blocksWithoutModels) simpleBlock(block);

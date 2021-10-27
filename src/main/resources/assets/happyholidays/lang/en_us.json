@@ -147,8 +147,19 @@
     "block.happyholidays.gingerbread_block.gingerbread_soggified": "Block turns soggy",
 
     "block.happyholidays.candy_cane_block": "Candy Cane Block",
+    "block.happyholidays.candy_cane_stairs": "Candy Cane Stairs",
+    "block.happyholidays.candy_cane_slab": "Candy Cane Slab",
+    "block.happyholidays.candy_cane_wall": "Candy Cane Wall",
+
     "block.happyholidays.candy_cane_bricks": "Candy Cane Bricks",
+    "block.happyholidays.candy_cane_brick_stairs": "Candy Cane Brick Stairs",
+    "block.happyholidays.candy_cane_brick_slab": "Candy Cane Brick Slab",
+    "block.happyholidays.candy_cane_brick_wall": "Candy Cane Brick Wall",
+
     "block.happyholidays.candy_cane_tiles": "Candy Cane Tiles",
+    "block.happyholidays.candy_cane_tile_stairs": "Candy Cane Tile Stairs",
+    "block.happyholidays.candy_cane_tile_slab": "Candy Cane Tile Slab",
+    "block.happyholidays.candy_cane_tile_wall": "Candy Cane Tile Wall",
 
     "block.happyholidays.festive_candy_cane_block": "Festive Candy Cane Block",
     "block.happyholidays.festive_candy_cane_bricks": "Festive Candy Cane Bricks",

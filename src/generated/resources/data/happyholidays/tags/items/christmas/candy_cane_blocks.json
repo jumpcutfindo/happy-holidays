@@ -2,8 +2,17 @@
   "replace": false,
   "values": [
     "happyholidays:candy_cane_block",
+    "happyholidays:candy_cane_stairs",
+    "happyholidays:candy_cane_slab",
+    "happyholidays:candy_cane_wall",
     "happyholidays:candy_cane_bricks",
+    "happyholidays:candy_cane_brick_stairs",
+    "happyholidays:candy_cane_brick_slab",
+    "happyholidays:candy_cane_brick_wall",
     "happyholidays:candy_cane_tiles",
+    "happyholidays:candy_cane_tile_stairs",
+    "happyholidays:candy_cane_tile_slab",
+    "happyholidays:candy_cane_tile_wall",
     "happyholidays:festive_candy_cane_block",
     "happyholidays:festive_candy_cane_bricks",
     "happyholidays:festive_candy_cane_tiles"
