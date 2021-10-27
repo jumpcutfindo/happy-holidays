@@ -13,6 +13,7 @@ import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.Christma
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.utils.MathUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +21,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -112,6 +114,30 @@ public class BaseCandyCaneBlock extends Block implements ChristmasLike, Christma
     @Override
     public ChristmasRarity getChristmasRarity() {
         return ChristmasRarity.COMMON;
+    }
+
+    public static BlockState updateFestiveBlockForPlacement(BlockPlaceContext blockPlaceContext, BlockState expectedBlockState) {
+        if (expectedBlockState == null) {
+            return expectedBlockState;
+        } else if (!expectedBlockState.hasProperty(FestiveCandyCaneBlock.CANDY_SHAPE)) {
+            HappyHolidaysMod.LOGGER.debug("Non-festive block was passed into this method!");
+            return expectedBlockState;
+        }
+
+        boolean shouldChange = false;
+        BlockState resultantBlockState = expectedBlockState.setValue(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.O_X);
+
+        BlockPos blockPos = blockPlaceContext.getClickedPos();
+
+        if (MathUtils.isEven(blockPos.getX()) && MathUtils.isEven(blockPos.getZ()) || MathUtils.isOdd(blockPos.getX()) && MathUtils.isOdd(blockPos.getZ())) {
+            shouldChange = true;
+        }
+
+        if (MathUtils.isOdd(blockPos.getY())) shouldChange = !shouldChange;
+
+        if (shouldChange) resultantBlockState = resultantBlockState.setValue(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.X_O);
+
+        return resultantBlockState;
     }
 
     private enum DestroyReason {

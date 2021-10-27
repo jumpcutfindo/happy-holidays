@@ -29,18 +29,9 @@ public class FestiveCandyCaneBlock extends BaseCandyCaneBlock {
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockPos blockPos = context.getClickedPos();
 
-        BlockPos[] neighbours = new BlockPos[] {
-                blockPos.above(), blockPos.below(), blockPos.north(), blockPos.south(), blockPos.east(), blockPos.west()
-        };
+        BlockState expectedBlockState = super.getStateForPlacement(context);
 
-        for (BlockPos pos : neighbours) {
-            BlockState neighbourState = context.getLevel().getBlockState(pos);
-            if (neighbourState.getBlock() instanceof FestiveCandyCaneBlock) {
-                return this.defaultBlockState().setValue(CANDY_SHAPE, neighbourState.getValue(CANDY_SHAPE) == FestiveCandyShape.X_O ? FestiveCandyShape.O_X : FestiveCandyShape.X_O);
-            }
-        }
-
-        return this.defaultBlockState().setValue(CANDY_SHAPE, FestiveCandyShape.X_O);
+        return BaseCandyCaneBlock.updateFestiveBlockForPlacement(context, expectedBlockState);
     }
 
     @Override
