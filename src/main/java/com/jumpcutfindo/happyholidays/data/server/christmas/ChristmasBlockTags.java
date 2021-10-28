@@ -143,8 +143,19 @@ public class ChristmasBlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.CANDY_CANE_TILE_WALL.get())
 
                 .add(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_STAIRS.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_SLAB.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_WALL.get())
+
                 .add(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get())
-                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get());
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_STAIRS.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_SLAB.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_WALL.get())
+
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_STAIRS.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_SLAB.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_WALL.get());
 
         tag(ChristmasTags.Blocks.STAR_AFFECTED_BLOCKS)
                 .add(ChristmasBlocks.CANDY_CANE_BLOCK.get())
@@ -176,7 +187,10 @@ public class ChristmasBlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_WALL.get())
                 .add(ChristmasBlocks.CANDY_CANE_WALL.get())
                 .add(ChristmasBlocks.CANDY_CANE_BRICK_WALL.get())
-                .add(ChristmasBlocks.CANDY_CANE_TILE_WALL.get());
+                .add(ChristmasBlocks.CANDY_CANE_TILE_WALL.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_WALL.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_WALL.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_WALL.get());
 
         tag(net.minecraft.tags.BlockTags.STAIRS)
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_STAIRS.get())
@@ -190,7 +204,10 @@ public class ChristmasBlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_STAIRS.get())
                 .add(ChristmasBlocks.CANDY_CANE_STAIRS.get())
                 .add(ChristmasBlocks.CANDY_CANE_BRICK_STAIRS.get())
-                .add(ChristmasBlocks.CANDY_CANE_TILE_STAIRS.get());
+                .add(ChristmasBlocks.CANDY_CANE_TILE_STAIRS.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_STAIRS.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_STAIRS.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_STAIRS.get());
 
         tag(net.minecraft.tags.BlockTags.SLABS)
                 .add(ChristmasBlocks.GINGERBREAD_DOUGH_SLAB.get())
@@ -204,7 +221,10 @@ public class ChristmasBlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_SLAB.get())
                 .add(ChristmasBlocks.CANDY_CANE_SLAB.get())
                 .add(ChristmasBlocks.CANDY_CANE_BRICK_SLAB.get())
-                .add(ChristmasBlocks.CANDY_CANE_TILE_SLAB.get());
+                .add(ChristmasBlocks.CANDY_CANE_TILE_SLAB.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_SLAB.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_SLAB.get())
+                .add(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_SLAB.get());
 
     }
 }

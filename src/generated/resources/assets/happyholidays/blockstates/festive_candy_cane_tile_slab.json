@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "candy_shape=x_o,type=top": {
+      "model": "happyholidays:block/festive_candy_cane_tile_slab_top_xo"
+    },
+    "candy_shape=o_x,type=top": {
+      "model": "happyholidays:block/festive_candy_cane_tile_slab_top_ox"
+    },
+    "candy_shape=x_o,type=bottom": {
+      "model": "happyholidays:block/festive_candy_cane_tile_slab_xo"
+    },
+    "candy_shape=o_x,type=bottom": {
+      "model": "happyholidays:block/festive_candy_cane_tile_slab_ox"
+    },
+    "candy_shape=x_o,type=double": {
+      "model": "happyholidays:block/festive_candy_cane_tiles_xo"
+    },
+    "candy_shape=o_x,type=double": {
+      "model": "happyholidays:block/festive_candy_cane_tiles_ox"
+    }
+  }
+}

@@ -1,7 +1,5 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive;
 
-import static com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneBlock.CANDY_SHAPE;
-
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
@@ -11,14 +9,17 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class FestiveCandyCaneWallBlock extends CandyCaneWallBlock {
+    public static final String BLOCK_ID = "festive_candy_cane_wall";
+    public static final String BRICKS_ID = "festive_candy_cane_brick_wall";
+    public static final String TILES_ID = "festive_candy_cane_tile_wall";
+
+    public static final EnumProperty<FestiveCandyShape> CANDY_SHAPE = EnumProperty.create("candy_shape", FestiveCandyShape.class);
+
     public FestiveCandyCaneWallBlock() {
         super();
-
-        this.registerDefaultState(this.getStateDefinition().any()
-                .setValue(CANDY_SHAPE, FestiveCandyShape.X_O)
-        );
     }
 
     @Nullable
@@ -30,6 +31,6 @@ public class FestiveCandyCaneWallBlock extends CandyCaneWallBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
-        stateBuilder.add(CANDY_SHAPE);
+        super.createBlockStateDefinition(stateBuilder);
     }
 }

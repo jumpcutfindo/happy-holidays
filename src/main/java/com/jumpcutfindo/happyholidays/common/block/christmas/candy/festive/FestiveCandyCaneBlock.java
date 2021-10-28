@@ -15,8 +15,7 @@ public class FestiveCandyCaneBlock extends CandyCaneBlock {
     public static final String BRICKS_ID = "festive_candy_cane_bricks";
     public static final String TILES_ID = "festive_candy_cane_tiles";
 
-    public static final EnumProperty<FestiveCandyShape> CANDY_SHAPE = EnumProperty.create("candy_shape",
-            FestiveCandyShape.class);
+    public static final EnumProperty<FestiveCandyShape> CANDY_SHAPE = EnumProperty.create("candy_shape", FestiveCandyShape.class);
 
     public FestiveCandyCaneBlock() {
         super();
@@ -35,6 +34,7 @@ public class FestiveCandyCaneBlock extends CandyCaneBlock {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
+        super.createBlockStateDefinition(stateBuilder);
         stateBuilder.add(CANDY_SHAPE);
     }
 }

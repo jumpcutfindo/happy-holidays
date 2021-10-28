@@ -162,8 +162,19 @@
     "block.happyholidays.candy_cane_tile_wall": "Candy Cane Tile Wall",
 
     "block.happyholidays.festive_candy_cane_block": "Festive Candy Cane Block",
+    "block.happyholidays.festive_candy_cane_stairs": "Festive Candy Cane Stairs",
+    "block.happyholidays.festive_candy_cane_slab": "Festive Candy Cane Slab",
+    "block.happyholidays.festive_candy_cane_wall": "Festive Candy Cane Wall",
+
     "block.happyholidays.festive_candy_cane_bricks": "Festive Candy Cane Bricks",
+    "block.happyholidays.festive_candy_cane_brick_stairs": "Festive Candy Cane Brick Stairs",
+    "block.happyholidays.festive_candy_cane_brick_slab": "Festive Candy Cane Brick Slab",
+    "block.happyholidays.festive_candy_cane_brick_wall": "Festive Candy Cane Brick Wall",
+
     "block.happyholidays.festive_candy_cane_tiles": "Festive Candy Cane Tiles",
+    "block.happyholidays.festive_candy_cane_tile_stairs": "Festive Candy Cane Tile Stairs",
+    "block.happyholidays.festive_candy_cane_tile_slab": "Festive Candy Cane Tile Slab",
+    "block.happyholidays.festive_candy_cane_tile_wall": "Festive Candy Cane Tile Wall",
 
     "block.happyholidays.christmas_star": "Christmas Star",
     "block.happyholidays.christmas_star.tier": "Tier %s ",

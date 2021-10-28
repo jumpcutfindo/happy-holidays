@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:festive_candy_cane_block"
+    }
+  },
+  "result": {
+    "item": "happyholidays:festive_candy_cane_slab",
+    "count": 6
+  }
+}

@@ -8,6 +8,9 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneSlab
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneStairBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneWallBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneSlabBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneStairBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneWallBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.ChristmasWreathBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.FrostBlock;
@@ -478,10 +481,30 @@ public class ChristmasItems {
 
     public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_BLOCK =
             ITEMS.register(FestiveCandyCaneBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_STAIRS =
+            ITEMS.register(FestiveCandyCaneStairBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_STAIRS, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_SLAB =
+            ITEMS.register(FestiveCandyCaneSlabBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_SLAB, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_WALL =
+            ITEMS.register(FestiveCandyCaneWallBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_WALL, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+
     public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_BRICKS =
             ITEMS.register(FestiveCandyCaneBlock.BRICKS_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_BRICK_STAIRS =
+            ITEMS.register(FestiveCandyCaneStairBlock.BRICKS_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_STAIRS, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_BRICK_SLAB =
+            ITEMS.register(FestiveCandyCaneSlabBlock.BRICKS_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_SLAB, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_BRICK_WALL =
+            ITEMS.register(FestiveCandyCaneWallBlock.BRICKS_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_WALL, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+
     public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_TILES =
             ITEMS.register(FestiveCandyCaneBlock.TILES_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_TILES, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_TILE_STAIRS =
+            ITEMS.register(FestiveCandyCaneStairBlock.TILES_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_STAIRS, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_TILE_SLAB =
+            ITEMS.register(FestiveCandyCaneSlabBlock.TILES_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_SLAB, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_TILE_WALL =
+            ITEMS.register(FestiveCandyCaneWallBlock.TILES_ID, blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_WALL, FestiveCandyCaneBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> CHRISTMAS_STAR =
             ITEMS.register(ChristmasStarBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.CHRISTMAS_STAR, ChristmasStarBlock.ITEM_PROPERTIES));

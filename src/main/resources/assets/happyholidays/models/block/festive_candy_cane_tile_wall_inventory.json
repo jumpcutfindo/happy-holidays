@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "happyholidays:block/festive_candy_cane_tiles_xo"
+  }
+}

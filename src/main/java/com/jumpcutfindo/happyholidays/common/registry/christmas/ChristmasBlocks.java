@@ -8,6 +8,9 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneSlab
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneStairBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneWallBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneSlabBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneStairBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneWallBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.ChristmasWreathBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.FrostBlock;
@@ -372,10 +375,30 @@ public class ChristmasBlocks {
 
     public static final RegistryObject<Block> FESTIVE_CANDY_CANE_BLOCK =
             BLOCKS.register(FestiveCandyCaneBlock.BLOCK_ID, FestiveCandyCaneBlock::new);
+    public static final RegistryObject<StairBlock> FESTIVE_CANDY_CANE_STAIRS =
+            BLOCKS.register(FestiveCandyCaneStairBlock.BLOCK_ID, () -> new FestiveCandyCaneStairBlock(supplierOf(FESTIVE_CANDY_CANE_BLOCK)));
+    public static final RegistryObject<SlabBlock> FESTIVE_CANDY_CANE_SLAB =
+            BLOCKS.register(FestiveCandyCaneSlabBlock.BLOCK_ID, FestiveCandyCaneSlabBlock::new);
+    public static final RegistryObject<WallBlock> FESTIVE_CANDY_CANE_WALL =
+            BLOCKS.register(FestiveCandyCaneWallBlock.BLOCK_ID, FestiveCandyCaneWallBlock::new);
+
     public static final RegistryObject<Block> FESTIVE_CANDY_CANE_BRICKS =
             BLOCKS.register(FestiveCandyCaneBlock.BRICKS_ID, FestiveCandyCaneBlock::new);
+    public static final RegistryObject<StairBlock> FESTIVE_CANDY_CANE_BRICK_STAIRS =
+            BLOCKS.register(FestiveCandyCaneStairBlock.BRICKS_ID, () -> new FestiveCandyCaneStairBlock(supplierOf(FESTIVE_CANDY_CANE_BRICKS)));
+    public static final RegistryObject<SlabBlock> FESTIVE_CANDY_CANE_BRICK_SLAB =
+            BLOCKS.register(FestiveCandyCaneSlabBlock.BRICKS_ID, FestiveCandyCaneSlabBlock::new);
+    public static final RegistryObject<WallBlock> FESTIVE_CANDY_CANE_BRICK_WALL =
+            BLOCKS.register(FestiveCandyCaneWallBlock.BRICKS_ID, FestiveCandyCaneWallBlock::new);
+
     public static final RegistryObject<Block> FESTIVE_CANDY_CANE_TILES =
             BLOCKS.register(FestiveCandyCaneBlock.TILES_ID, FestiveCandyCaneBlock::new);
+    public static final RegistryObject<StairBlock> FESTIVE_CANDY_CANE_TILE_STAIRS =
+            BLOCKS.register(FestiveCandyCaneStairBlock.TILES_ID, () -> new FestiveCandyCaneStairBlock(supplierOf(FESTIVE_CANDY_CANE_TILES)));
+    public static final RegistryObject<SlabBlock> FESTIVE_CANDY_CANE_TILE_SLAB =
+            BLOCKS.register(FestiveCandyCaneSlabBlock.TILES_ID, FestiveCandyCaneSlabBlock::new);
+    public static final RegistryObject<WallBlock> FESTIVE_CANDY_CANE_TILE_WALL =
+            BLOCKS.register(FestiveCandyCaneWallBlock.TILES_ID, FestiveCandyCaneWallBlock::new);
 
     // Miscellaneous blocks
     public static final RegistryObject<Block> CHRISTMAS_STAR =

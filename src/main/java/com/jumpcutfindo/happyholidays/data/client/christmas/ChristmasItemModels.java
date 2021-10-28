@@ -129,8 +129,19 @@ public class ChristmasItemModels extends ItemModelProvider {
                 blockModelPair(ChristmasItems.CANDY_CANE_TILE_WALL.get(), "candy_cane_tile_wall_inventory"),
 
                 blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get(), "festive_candy_cane_block_xo"),
+                blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_STAIRS.get(), "festive_candy_cane_stairs_xo"),
+                blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_SLAB.get(), "festive_candy_cane_slab_xo"),
+                blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_WALL.get(), "festive_candy_cane_wall_inventory"),
+
                 blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_BRICKS.get(), "festive_candy_cane_bricks_xo"),
+                blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_BRICK_STAIRS.get(), "festive_candy_cane_brick_stairs_xo"),
+                blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_BRICK_SLAB.get(), "festive_candy_cane_brick_slab_xo"),
+                blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_BRICK_WALL.get(), "festive_candy_cane_brick_wall_inventory"),
+
                 blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_TILES.get(), "festive_candy_cane_tiles_xo"),
+                blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_TILE_STAIRS.get(), "festive_candy_cane_tile_stairs_xo"),
+                blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_TILE_SLAB.get(), "festive_candy_cane_tile_slab_xo"),
+                blockModelPair(ChristmasItems.FESTIVE_CANDY_CANE_TILE_WALL.get(), "festive_candy_cane_tile_wall_inventory"),
 
                 blockModelPair(ChristmasItems.GIFT_WRAPPING_STATION.get()),
                 blockModelPair(ChristmasItems.MUSIC_BOX.get())

@@ -201,62 +201,50 @@ public class ChristmasRecipes extends RecipeProvider {
     }
 
     private void candyCane(Consumer<FinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shaped(ChristmasBlocks.CANDY_CANE_BLOCK.get(), 1)
-                .group("christmas_candy_cane_block")
-                .define('#', ChristmasItems.CANDY_CANE.get())
-                .pattern("##").pattern("##")
-                .unlockedBy(getHasName(ChristmasItems.CANDY_CANE.get()), has(ChristmasItems.CANDY_CANE.get()))
-                .save(consumer, recipeResourceOf(ChristmasBlocks.CANDY_CANE_BLOCK.get()));
-
+        twoByTwo(consumer, ChristmasBlocks.CANDY_CANE_BLOCK.get(), ChristmasItems.CANDY_CANE.get(), 1);
         ShapedRecipeBuilder.shaped(ChristmasBlocks.CANDY_CANE_BLOCK.get(), 4)
                 .group("christmas_candy_cane_block")
                 .define('#', Items.SUGAR).define('R', Items.RED_DYE)
                 .pattern("R#").pattern("#R")
                 .unlockedBy(getHasName(Items.SUGAR), has(Items.SUGAR)).unlockedBy(getHasName(Items.RED_DYE), has(Items.RED_DYE))
                 .save(consumer, recipeResourceOf(ChristmasBlocks.CANDY_CANE_BLOCK.get()) + "_from_raw_items");
+        slab(consumer, ChristmasItems.CANDY_CANE_SLAB.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
+        stair(consumer, ChristmasItems.CANDY_CANE_STAIRS.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
+        wall(consumer, ChristmasItems.CANDY_CANE_WALL.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
 
-        ShapedRecipeBuilder.shaped(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), 1)
-                .group("christmas_festive_candy_cane_block")
-                .define('#', ChristmasItems.FESTIVE_CANDY_CANE.get())
-                .pattern("##").pattern("##")
-                .unlockedBy(getHasName(ChristmasItems.FESTIVE_CANDY_CANE.get()), has(ChristmasItems.FESTIVE_CANDY_CANE.get()))
-                .save(consumer, recipeResourceOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get()));
+        twoByTwo(consumer, ChristmasBlocks.CANDY_CANE_BRICKS.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get(), 4);
+        slab(consumer, ChristmasItems.CANDY_CANE_BRICK_SLAB.get(), ChristmasItems.CANDY_CANE_BRICKS.get());
+        stair(consumer, ChristmasItems.CANDY_CANE_BRICK_STAIRS.get(), ChristmasItems.CANDY_CANE_BRICKS.get());
+        wall(consumer, ChristmasItems.CANDY_CANE_BRICK_WALL.get(), ChristmasItems.CANDY_CANE_BRICKS.get());
 
+        twoByTwo(consumer, ChristmasBlocks.CANDY_CANE_TILES.get(), ChristmasBlocks.CANDY_CANE_BRICKS.get(), 4);
+        slab(consumer, ChristmasItems.CANDY_CANE_TILE_SLAB.get(), ChristmasItems.CANDY_CANE_TILES.get());
+        stair(consumer, ChristmasItems.CANDY_CANE_TILE_STAIRS.get(), ChristmasItems.CANDY_CANE_TILES.get());
+        wall(consumer, ChristmasItems.CANDY_CANE_TILE_WALL.get(), ChristmasItems.CANDY_CANE_TILES.get());
+
+        twoByTwo(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), ChristmasItems.FESTIVE_CANDY_CANE.get(), 1);
         ShapedRecipeBuilder.shaped(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), 4)
                 .group("christmas_festive_candy_cane_block")
                 .define('#', Items.SUGAR).define('R', Items.RED_DYE).define('G', Items.GREEN_DYE)
                 .pattern("R#").pattern("#G")
                 .unlockedBy(getHasName(Items.SUGAR), has(Items.SUGAR)).unlockedBy(getHasName(Items.RED_DYE), has(Items.RED_DYE)).unlockedBy(getHasName(Items.GREEN_DYE), has(Items.GREEN_DYE))
                 .save(consumer, recipeResourceOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get()) + "_from_raw_items");
-
-        ShapelessRecipeBuilder.shapeless(ChristmasItems.CANDY_CANE_ORNAMENT.get(), 1)
-                .requires(Items.STRING).requires(ChristmasItems.ENCHANTED_CANDY_CANE.get())
-                .unlockedBy(getHasName(ChristmasItems.ENCHANTED_CANDY_CANE.get()), has(ChristmasItems.ENCHANTED_CANDY_CANE.get()))
-                .save(consumer, recipeResourceOf(ChristmasItems.CANDY_CANE_ORNAMENT.get()));
-
-        ShapelessRecipeBuilder.shapeless(ChristmasItems.SANTA_ELF_BELL.get(), 1)
-                .requires(Items.BELL).requires(ChristmasItems.ENCHANTED_CANDY_CANE.get())
-                .unlockedBy(getHasName(ChristmasItems.ENCHANTED_CANDY_CANE.get()), has(ChristmasItems.ENCHANTED_CANDY_CANE.get()))
-                .save(consumer, recipeResourceOf(ChristmasItems.SANTA_ELF_BELL.get()));
-
-        twoByTwo(consumer, ChristmasBlocks.CANDY_CANE_BRICKS.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get(), 4);
-        twoByTwo(consumer, ChristmasBlocks.CANDY_CANE_TILES.get(), ChristmasBlocks.CANDY_CANE_BRICKS.get(), 4);
-        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_BRICKS.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get());
-        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILES.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get());
-
-        slab(consumer, ChristmasItems.CANDY_CANE_SLAB.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
-        stair(consumer, ChristmasItems.CANDY_CANE_STAIRS.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
-        wall(consumer, ChristmasItems.CANDY_CANE_WALL.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
+        slab(consumer, ChristmasItems.FESTIVE_CANDY_CANE_SLAB.get(), ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get());
+        stair(consumer, ChristmasItems.FESTIVE_CANDY_CANE_STAIRS.get(), ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get());
+        wall(consumer, ChristmasItems.FESTIVE_CANDY_CANE_WALL.get(), ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get());
 
         twoByTwo(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), 4);
-        slab(consumer, ChristmasItems.CANDY_CANE_BRICK_SLAB.get(), ChristmasItems.CANDY_CANE_BRICKS.get());
-        stair(consumer, ChristmasItems.CANDY_CANE_BRICK_STAIRS.get(), ChristmasItems.CANDY_CANE_BRICKS.get());
-        wall(consumer, ChristmasItems.CANDY_CANE_BRICK_WALL.get(), ChristmasItems.CANDY_CANE_BRICKS.get());
+        slab(consumer, ChristmasItems.FESTIVE_CANDY_CANE_BRICK_SLAB.get(), ChristmasItems.FESTIVE_CANDY_CANE_BRICKS.get());
+        stair(consumer, ChristmasItems.FESTIVE_CANDY_CANE_BRICK_STAIRS.get(), ChristmasItems.FESTIVE_CANDY_CANE_BRICKS.get());
+        wall(consumer, ChristmasItems.FESTIVE_CANDY_CANE_BRICK_WALL.get(), ChristmasItems.FESTIVE_CANDY_CANE_BRICKS.get());
 
         twoByTwo(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get(), 4);
-        slab(consumer, ChristmasItems.CANDY_CANE_TILE_SLAB.get(), ChristmasItems.CANDY_CANE_TILES.get());
-        stair(consumer, ChristmasItems.CANDY_CANE_TILE_STAIRS.get(), ChristmasItems.CANDY_CANE_TILES.get());
-        wall(consumer, ChristmasItems.CANDY_CANE_TILE_WALL.get(), ChristmasItems.CANDY_CANE_TILES.get());
+        slab(consumer, ChristmasItems.FESTIVE_CANDY_CANE_TILE_SLAB.get(), ChristmasItems.FESTIVE_CANDY_CANE_TILES.get());
+        stair(consumer, ChristmasItems.FESTIVE_CANDY_CANE_TILE_STAIRS.get(), ChristmasItems.FESTIVE_CANDY_CANE_TILES.get());
+        wall(consumer, ChristmasItems.FESTIVE_CANDY_CANE_TILE_WALL.get(), ChristmasItems.FESTIVE_CANDY_CANE_TILES.get());
+
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_BRICKS.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILES.get(), ChristmasBlocks.CANDY_CANE_BLOCK.get());
 
         stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_STAIRS.get(), ChristmasItems.CANDY_CANE_BLOCK.get());
         stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_SLAB.get(), ChristmasItems.CANDY_CANE_BLOCK.get(), 2);
@@ -275,6 +263,37 @@ public class ChristmasRecipes extends RecipeProvider {
         stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILE_STAIRS.get(), ChristmasItems.CANDY_CANE_TILES.get());
         stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILE_SLAB.get(), ChristmasItems.CANDY_CANE_TILES.get(), 2);
         stonecutterResultFromBase(consumer, ChristmasBlocks.CANDY_CANE_TILE_WALL.get(), ChristmasItems.CANDY_CANE_TILES.get());
+
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get());
+
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_STAIRS.get(), ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_SLAB.get(), ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_WALL.get(), ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get());
+
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_STAIRS.get(), ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_SLAB.get(), ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_WALL.get(), ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_STAIRS.get(), ChristmasItems.FESTIVE_CANDY_CANE_BRICKS.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_SLAB.get(), ChristmasItems.FESTIVE_CANDY_CANE_BRICKS.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_WALL.get(), ChristmasItems.FESTIVE_CANDY_CANE_BRICKS.get());
+
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_STAIRS.get(), ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_SLAB.get(), ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_WALL.get(), ChristmasItems.FESTIVE_CANDY_CANE_BLOCK.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_STAIRS.get(), ChristmasItems.FESTIVE_CANDY_CANE_TILES.get());
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_SLAB.get(), ChristmasItems.FESTIVE_CANDY_CANE_TILES.get(), 2);
+        stonecutterResultFromBase(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_WALL.get(), ChristmasItems.FESTIVE_CANDY_CANE_TILES.get());
+
+        ShapelessRecipeBuilder.shapeless(ChristmasItems.CANDY_CANE_ORNAMENT.get(), 1)
+                .requires(Items.STRING).requires(ChristmasItems.ENCHANTED_CANDY_CANE.get())
+                .unlockedBy(getHasName(ChristmasItems.ENCHANTED_CANDY_CANE.get()), has(ChristmasItems.ENCHANTED_CANDY_CANE.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.CANDY_CANE_ORNAMENT.get()));
+
+        ShapelessRecipeBuilder.shapeless(ChristmasItems.SANTA_ELF_BELL.get(), 1)
+                .requires(Items.BELL).requires(ChristmasItems.ENCHANTED_CANDY_CANE.get())
+                .unlockedBy(getHasName(ChristmasItems.ENCHANTED_CANDY_CANE.get()), has(ChristmasItems.ENCHANTED_CANDY_CANE.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SANTA_ELF_BELL.get()));
     }
 
     private void christmasStar(Consumer<FinishedRecipe> consumer) {

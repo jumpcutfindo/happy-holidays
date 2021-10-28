@@ -1,16 +1,17 @@
 package com.jumpcutfindo.happyholidays.data.client.christmas;
 
+import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
+import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyShape;
-import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
-import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
@@ -29,7 +30,11 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.SlabType;
+import net.minecraft.world.level.block.state.properties.StairsShape;
+import net.minecraft.world.level.block.state.properties.WallSide;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -277,6 +282,116 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
                 return builder.modelFile(modelFileOf(modelId)).build();
             });
+        }
+
+        // Register festive candy cane stairs
+        List<Pair<Block, ResourceLocation>> festiveStairBlocks = List.of(
+                resourcePair(ChristmasBlocks.FESTIVE_CANDY_CANE_STAIRS.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get()),
+                resourcePair(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_STAIRS.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get()),
+                resourcePair(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_STAIRS.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get())
+        );
+
+        for (Pair<Block, ResourceLocation> stairPair : festiveStairBlocks) {
+            String baseName = blockId(stairPair.getKey());
+
+            getVariantBuilder(stairPair.getKey()).forAllStatesExcept(state -> {
+                ResourceLocation side, bottom, top;
+                ModelFile stairs, stairsInner, stairsOuter;
+                if (state.getValue(FestiveCandyCaneBlock.CANDY_SHAPE) == FestiveCandyShape.O_X) {
+                    side = bottom = top = new ResourceLocation(stairPair.getValue() + "_ox");
+                    stairs = models().stairs(baseName + "_ox", side, bottom, top);
+                    stairsInner = models().stairsInner(baseName + "_inner_ox", side, bottom, top);
+                    stairsOuter = models().stairsOuter(baseName + "_outer_ox", side, bottom, top);
+                } else {
+                    side = bottom = top = new ResourceLocation(stairPair.getValue() + "_xo");
+                    stairs = models().stairs(baseName + "_xo", side, bottom, top);
+                    stairsInner = models().stairsInner(baseName + "_inner_xo", side, bottom, top);
+                    stairsOuter = models().stairsOuter(baseName + "_outer_xo", side, bottom, top);
+                }
+
+                Direction facing = state.getValue(StairBlock.FACING);
+                Half half = state.getValue(StairBlock.HALF);
+                StairsShape shape = state.getValue(StairBlock.SHAPE);
+                int yRot = (int) facing.getClockWise().toYRot(); // Stairs model is rotated 90 degrees clockwise for some reason
+                if (shape == StairsShape.INNER_LEFT || shape == StairsShape.OUTER_LEFT) {
+                    yRot += 270; // Left facing stairs are rotated 90 degrees clockwise
+                }
+                if (shape != StairsShape.STRAIGHT && half == Half.TOP) {
+                    yRot += 90; // Top stairs are rotated 90 degrees clockwise
+                }
+                yRot %= 360;
+                boolean uvlock = yRot != 0 || half == Half.TOP; // Don't set uvlock for states that have no rotation
+                return ConfiguredModel.builder()
+                        .modelFile(shape == StairsShape.STRAIGHT ? stairs : shape == StairsShape.INNER_LEFT || shape == StairsShape.INNER_RIGHT ? stairsInner : stairsOuter)
+                        .rotationX(half == Half.BOTTOM ? 0 : 180)
+                        .rotationY(yRot)
+                        .uvLock(uvlock)
+                        .build();
+            }, StairBlock.WATERLOGGED);
+        }
+
+        // Register festive candy cane slabs
+        List<Pair<Block, ResourceLocation>> festiveSlabBlocks = List.of(
+                resourcePair(ChristmasBlocks.FESTIVE_CANDY_CANE_SLAB.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get()),
+                resourcePair(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_SLAB.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get()),
+                resourcePair(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_SLAB.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get())
+        );
+
+        for (Pair<Block, ResourceLocation> slabPair : festiveSlabBlocks) {
+            String blockId = blockId(slabPair.getKey());
+            getVariantBuilder(slabPair.getKey()).forAllStatesExcept(state -> {
+                ResourceLocation side, bottom, top;
+                ModelFile bottomslab, topslab, doubleslab;
+                if (state.getValue(FestiveCandyCaneBlock.CANDY_SHAPE) == FestiveCandyShape.O_X) {
+                    side = bottom = top = new ResourceLocation(slabPair.getValue() + "_ox");
+                    bottomslab = models().slab(blockId + "_ox", side, bottom, top);
+                    topslab = models().slabTop(blockId + "_top_ox", side, bottom, top);
+                    doubleslab = models().getExistingFile(new ResourceLocation(slabPair.getValue().toString() + "_ox"));
+                } else {
+                    side = bottom = top = new ResourceLocation(slabPair.getValue() + "_xo");
+                    bottomslab = models().slab(blockId + "_xo", side, bottom, top);
+                    topslab = models().slabTop(blockId + "_top_xo", side, bottom, top);
+                    doubleslab = models().getExistingFile(new ResourceLocation(slabPair.getValue().toString() + "_xo"));
+                }
+
+                return state.getValue(SlabBlock.TYPE) == SlabType.BOTTOM ? ConfiguredModel.builder().modelFile(bottomslab).build()
+                        : state.getValue(SlabBlock.TYPE) == SlabType.TOP ? ConfiguredModel.builder().modelFile(topslab).build()
+                        : ConfiguredModel.builder().modelFile(doubleslab).build();
+
+            }, StairBlock.WATERLOGGED);
+        }
+
+        // Register festive candy cane walls
+        List<Pair<Block, ResourceLocation>> festiveWallBlocks = List.of(
+                resourcePair(ChristmasBlocks.FESTIVE_CANDY_CANE_WALL.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get()),
+                resourcePair(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_WALL.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS.get()),
+                resourcePair(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_WALL.get(), ChristmasBlocks.FESTIVE_CANDY_CANE_TILES.get())
+        );
+
+        for (Pair<Block, ResourceLocation> wallPair : festiveWallBlocks) {
+            MultiPartBlockStateBuilder builder = getMultipartBuilder(wallPair.getKey())
+                    .part().modelFile(models().wallPost(blockId(wallPair.getKey()) + "_post_ox", new ResourceLocation(wallPair.getValue().toString() + "_ox"))).addModel()
+                    .condition(WallBlock.UP, true).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.O_X).end()
+                    .part().modelFile(models().wallPost(blockId(wallPair.getKey()) + "_post_xo", new ResourceLocation(wallPair.getValue().toString() + "_xo"))).addModel()
+                    .condition(WallBlock.UP, true).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.X_O).end();
+
+            WALL_PROPS.entrySet().stream()
+                    .filter(e -> e.getKey().getAxis().isHorizontal())
+                    .forEach(e -> {
+                        builder.part().modelFile(models().wallSide(blockId(wallPair.getKey()) + "_side_ox", new ResourceLocation(wallPair.getValue().toString() + "_ox")))
+                                .rotationY((((int) e.getKey().toYRot()) + 180) % 360).uvLock(true).addModel()
+                                .condition(e.getValue(), WallSide.LOW).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.O_X).end()
+                                .part().modelFile(models().wallSide(blockId(wallPair.getKey()) + "_side_ox", new ResourceLocation(wallPair.getValue().toString() + "_xo")))
+                                .rotationY((((int) e.getKey().toYRot()) + 180) % 360).uvLock(true).addModel()
+                                .condition(e.getValue(), WallSide.LOW).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.X_O).end();
+
+                        builder.part().modelFile(models().wallSide(blockId(wallPair.getKey()) + "_side_tall_ox", new ResourceLocation(wallPair.getValue().toString() + "_ox")))
+                                .rotationY((((int) e.getKey().toYRot()) + 180) % 360).uvLock(true).addModel()
+                                .condition(e.getValue(), WallSide.TALL).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.O_X).end()
+                                .part().modelFile(models().wallSide(blockId(wallPair.getKey()) + "_side_tall_ox", new ResourceLocation(wallPair.getValue().toString() + "_xo")))
+                                .rotationY((((int) e.getKey().toYRot()) + 180) % 360).uvLock(true).addModel()
+                                .condition(e.getValue(), WallSide.TALL).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.X_O).end();
+                    });
         }
 
         Function<Direction, Integer> getRotationY = (direction) -> switch (direction) {

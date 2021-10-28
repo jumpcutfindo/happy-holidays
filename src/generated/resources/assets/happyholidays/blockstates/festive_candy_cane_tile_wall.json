@@ -1,0 +1,194 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "up": "true",
+        "candy_shape": "o_x"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_post_ox"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "candy_shape": "x_o"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_post_xo"
+      }
+    },
+    {
+      "when": {
+        "east": "low",
+        "candy_shape": "o_x"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_ox",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "east": "low",
+        "candy_shape": "x_o"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_ox",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "east": "tall",
+        "candy_shape": "o_x"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_ox",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "east": "tall",
+        "candy_shape": "x_o"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_ox",
+        "y": 90,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "low",
+        "candy_shape": "o_x"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_ox",
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "low",
+        "candy_shape": "x_o"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_ox",
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "tall",
+        "candy_shape": "o_x"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_ox",
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "north": "tall",
+        "candy_shape": "x_o"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_ox",
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "south": "low",
+        "candy_shape": "o_x"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_ox",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "south": "low",
+        "candy_shape": "x_o"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_ox",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "south": "tall",
+        "candy_shape": "o_x"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_ox",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "south": "tall",
+        "candy_shape": "x_o"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_ox",
+        "y": 180,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "low",
+        "candy_shape": "o_x"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_ox",
+        "y": 270,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "low",
+        "candy_shape": "x_o"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_ox",
+        "y": 270,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "tall",
+        "candy_shape": "o_x"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_ox",
+        "y": 270,
+        "uvlock": true
+      }
+    },
+    {
+      "when": {
+        "west": "tall",
+        "candy_shape": "x_o"
+      },
+      "apply": {
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_ox",
+        "y": 270,
+        "uvlock": true
+      }
+    }
+  ]
+}
