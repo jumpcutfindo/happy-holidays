@@ -125,6 +125,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
     @Override
     public void clearRemoved() {
         // FIXME: This is to be called by onLoad(), but the method is not being called (Forge issue)
+        // Update: Forge has actually fixed this, but it's only in the later versions, will be fixed in 1.18
         ChristmasStarHelper.cacheStarLocation(this.getBlockPos());
 
         super.clearRemoved();
