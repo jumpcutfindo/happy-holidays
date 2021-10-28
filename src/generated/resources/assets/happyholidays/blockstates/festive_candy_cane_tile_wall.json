@@ -35,7 +35,7 @@
         "candy_shape": "x_o"
       },
       "apply": {
-        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_ox",
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_xo",
         "y": 90,
         "uvlock": true
       }
@@ -57,7 +57,7 @@
         "candy_shape": "x_o"
       },
       "apply": {
-        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_ox",
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_xo",
         "y": 90,
         "uvlock": true
       }
@@ -78,7 +78,7 @@
         "candy_shape": "x_o"
       },
       "apply": {
-        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_ox",
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_xo",
         "uvlock": true
       }
     },
@@ -98,7 +98,7 @@
         "candy_shape": "x_o"
       },
       "apply": {
-        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_ox",
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_xo",
         "uvlock": true
       }
     },
@@ -119,7 +119,7 @@
         "candy_shape": "x_o"
       },
       "apply": {
-        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_ox",
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_xo",
         "y": 180,
         "uvlock": true
       }
@@ -141,7 +141,7 @@
         "candy_shape": "x_o"
       },
       "apply": {
-        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_ox",
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_xo",
         "y": 180,
         "uvlock": true
       }
@@ -163,7 +163,7 @@
         "candy_shape": "x_o"
       },
       "apply": {
-        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_ox",
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_xo",
         "y": 270,
         "uvlock": true
       }
@@ -185,7 +185,7 @@
         "candy_shape": "x_o"
       },
       "apply": {
-        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_ox",
+        "model": "happyholidays:block/festive_candy_cane_tile_wall_side_tall_xo",
         "y": 270,
         "uvlock": true
       }

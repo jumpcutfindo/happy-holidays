@@ -381,14 +381,14 @@ public class ChristmasBlockStates extends BlockStateProvider {
                         builder.part().modelFile(models().wallSide(blockId(wallPair.getKey()) + "_side_ox", new ResourceLocation(wallPair.getValue().toString() + "_ox")))
                                 .rotationY((((int) e.getKey().toYRot()) + 180) % 360).uvLock(true).addModel()
                                 .condition(e.getValue(), WallSide.LOW).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.O_X).end()
-                                .part().modelFile(models().wallSide(blockId(wallPair.getKey()) + "_side_ox", new ResourceLocation(wallPair.getValue().toString() + "_xo")))
+                                .part().modelFile(models().wallSide(blockId(wallPair.getKey()) + "_side_xo", new ResourceLocation(wallPair.getValue().toString() + "_xo")))
                                 .rotationY((((int) e.getKey().toYRot()) + 180) % 360).uvLock(true).addModel()
                                 .condition(e.getValue(), WallSide.LOW).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.X_O).end();
 
-                        builder.part().modelFile(models().wallSide(blockId(wallPair.getKey()) + "_side_tall_ox", new ResourceLocation(wallPair.getValue().toString() + "_ox")))
+                        builder.part().modelFile(models().wallSideTall(blockId(wallPair.getKey()) + "_side_tall_ox", new ResourceLocation(wallPair.getValue().toString() + "_ox")))
                                 .rotationY((((int) e.getKey().toYRot()) + 180) % 360).uvLock(true).addModel()
                                 .condition(e.getValue(), WallSide.TALL).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.O_X).end()
-                                .part().modelFile(models().wallSide(blockId(wallPair.getKey()) + "_side_tall_ox", new ResourceLocation(wallPair.getValue().toString() + "_xo")))
+                                .part().modelFile(models().wallSideTall(blockId(wallPair.getKey()) + "_side_tall_xo", new ResourceLocation(wallPair.getValue().toString() + "_xo")))
                                 .rotationY((((int) e.getKey().toYRot()) + 180) % 360).uvLock(true).addModel()
                                 .condition(e.getValue(), WallSide.TALL).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.X_O).end();
                     });

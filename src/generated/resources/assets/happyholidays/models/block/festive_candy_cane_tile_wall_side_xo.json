@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_wall_side",
   "textures": {
-    "wall": "happyholidays:block/festive_candy_cane_bricks_ox"
+    "wall": "happyholidays:block/festive_candy_cane_tiles_xo"
   }
 }
