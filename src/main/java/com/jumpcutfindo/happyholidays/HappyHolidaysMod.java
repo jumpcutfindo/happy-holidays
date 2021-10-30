@@ -28,7 +28,7 @@ public class HappyHolidaysMod {
     public static final String MOD_ID = "happyholidays";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
-    public static CommonProxy PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+    public static Proxy PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
     public static final CreativeModeTab HAPPY_HOLIDAYS_GROUP = new HappyHolidaysMod.HappyHolidaysGroup("happyholidays");
 

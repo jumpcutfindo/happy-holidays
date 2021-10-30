@@ -12,8 +12,12 @@ import net.minecraftforge.fml.common.Mod;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, value = Dist.CLIENT)
-public class ClientProxy extends CommonProxy {
+public class ClientProxy implements Proxy {
     public ClientProxy() {
+    }
+
+    @Override
+    public void initClient() {
 
     }
 
