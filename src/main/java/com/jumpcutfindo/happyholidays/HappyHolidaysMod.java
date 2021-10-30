@@ -16,6 +16,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import software.bernie.example.GeckoLibMod;
@@ -26,6 +27,8 @@ import software.bernie.geckolib3.GeckoLib;
 public class HappyHolidaysMod {
     public static final String MOD_ID = "happyholidays";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+
+    public static CommonProxy PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
     public static final CreativeModeTab HAPPY_HOLIDAYS_GROUP = new HappyHolidaysMod.HappyHolidaysGroup("happyholidays");
 
