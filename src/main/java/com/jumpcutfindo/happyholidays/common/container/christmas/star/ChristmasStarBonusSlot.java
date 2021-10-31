@@ -7,7 +7,6 @@ import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
 import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
 import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
@@ -17,10 +16,12 @@ import net.minecraftforge.common.MinecraftForge;
 
 public class ChristmasStarBonusSlot extends Slot {
     private final ChristmasStarBlockEntity starBlockEntity;
+    private final Player interactingPlayer;
 
-    public ChristmasStarBonusSlot(ChristmasStarBlockEntity starBlockEntity, int p_i1824_2_, int p_i1824_3_, int p_i1824_4_) {
+    public ChristmasStarBonusSlot(ChristmasStarBlockEntity starBlockEntity, Player player, int p_i1824_2_, int p_i1824_3_, int p_i1824_4_) {
         super(starBlockEntity, p_i1824_2_, p_i1824_3_, p_i1824_4_);
         this.starBlockEntity = starBlockEntity;
+        this.interactingPlayer = player;
     }
 
     @Override
@@ -28,27 +29,24 @@ public class ChristmasStarBonusSlot extends Slot {
         boolean isTierOK = starBlockEntity.getCurrentTier() == 5;
 
         // If cannot place, we notify the user; if can, we emit an event
-        if (starBlockEntity.getLevel() != null && !starBlockEntity.getLevel().isClientSide()) {
+        Level level = starBlockEntity.getLevel();
+        if (level != null && !level.isClientSide()) {
             if (isTierOK) {
-                Level level = starBlockEntity.getLevel();
-                if (level != null && !level.isClientSide()) {
-                    BlockPos blockPos = starBlockEntity.getBlockPos();
+                BlockPos blockPos = starBlockEntity.getBlockPos();
 
-                    Player playerEntity = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(),
-                            10.0D, false);
+                Player playerEntity = level.getNearestPlayer(blockPos.getX(), blockPos.getY(), blockPos.getZ(),
+                        10.0D, false);
 
-                    if (playerEntity != null) {
-                        ChristmasStarEvent event = new ChristmasStarEvent.ReachBonus(starBlockEntity, playerEntity);
-                        MinecraftForge.EVENT_BUS.post(event);
-                    }
+                if (playerEntity != null) {
+                    ChristmasStarEvent event = new ChristmasStarEvent.ReachBonus(starBlockEntity, playerEntity);
+                    MinecraftForge.EVENT_BUS.post(event);
                 }
             } else {
-                Player player = Minecraft.getInstance().player;
-                if (player != null) {
+                if (interactingPlayer != null) {
                     GameplayMessage message = new GameplayMessage(
                             MessageType.ERROR, "chat.happyholidays.christmas_star.tier_not_ok"
                     );
-                    Messenger.sendChatMessage(message, player);
+                    Messenger.sendChatMessage(message, interactingPlayer);
                 }
             }
         }
