@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays;
 
 import java.util.Map;
+import java.util.UUID;
 
 import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
@@ -9,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.handlers.GuideHandler;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
+import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaSummonSound;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -22,6 +24,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, value = Dist.CLIENT)
 public class ClientProxy implements Proxy {
     private Map<BlockPos, MusicBoxSound> christmasMusicMap = Maps.newHashMap();
+    private Map<UUID, SantaSummonSound> happySantaSummonSoundMap = Maps.newHashMap();
 
     public ClientProxy() {
     }
@@ -51,7 +54,27 @@ public class ClientProxy implements Proxy {
     @Override
     public void stopChristmasMusic(LevelAccessor level, BlockPos blockPos) {
         MusicBoxSound musicSound = christmasMusicMap.get(blockPos);
-        if (musicSound != null) musicSound.stopTrack();
-        christmasMusicMap.remove(blockPos);
+        if (musicSound != null) {
+            musicSound.stopTrack();
+            christmasMusicMap.remove(blockPos);
+        }
+    }
+
+    @Override
+    public void playHappySantaSummoningSound(UUID santaUUID, BlockPos pos) {
+        if (happySantaSummonSoundMap.containsKey(santaUUID)) return;
+
+        SantaSummonSound summonSound = new SantaSummonSound(pos);
+        happySantaSummonSoundMap.put(santaUUID, summonSound);
+        Minecraft.getInstance().getSoundManager().play(summonSound);
+    }
+
+    @Override
+    public void stopHappySantaSummoningSound(UUID santaUUID) {
+        SantaSummonSound summonSound = happySantaSummonSoundMap.get(santaUUID);
+        if (summonSound != null) {
+            summonSound.stopTrack();
+            happySantaSummonSoundMap.remove(santaUUID);
+        }
     }
 }

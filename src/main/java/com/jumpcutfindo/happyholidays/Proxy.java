@@ -1,5 +1,7 @@
 package com.jumpcutfindo.happyholidays;
 
+import java.util.UUID;
+
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 
 import net.minecraft.core.BlockPos;
@@ -15,7 +17,7 @@ public interface Proxy {
 
     void stopChristmasMusic(LevelAccessor level, BlockPos blockPos);
 
-    void playHappySantaSummoningSound(BlockPos blockPos);
+    void playHappySantaSummoningSound(UUID santaUUID, BlockPos pos);
 
-    void stopHappySantaSummoningSound(BlockPos blockPos);
+    void stopHappySantaSummoningSound(UUID santaUUID);
 }

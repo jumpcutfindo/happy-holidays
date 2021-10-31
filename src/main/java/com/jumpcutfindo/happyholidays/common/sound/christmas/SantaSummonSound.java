@@ -15,7 +15,7 @@ public class SantaSummonSound extends AbstractTickableSoundInstance {
 
         this.looping = true;
 
-        this.volume = 1.0F;
+        this.volume = 4.0F;
         this.x = (double)((float) playPos.getX());
         this.y = (double)((float) playPos.getY());
         this.z = (double)((float) playPos.getZ());
