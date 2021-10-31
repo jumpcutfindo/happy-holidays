@@ -5,7 +5,10 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.core.BlockPos;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class SantaSummonSound extends AbstractTickableSoundInstance {
     public SantaSummonSound(BlockPos playPos) {
         super(ChristmasSounds.SANTA_SUMMONING.get(), SoundSource.NEUTRAL);

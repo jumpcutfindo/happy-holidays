@@ -2,15 +2,14 @@ package com.jumpcutfindo.happyholidays.common.blockentity.christmas;
 
 import java.util.List;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.container.christmas.musicbox.MusicBoxContainer;
 import com.jumpcutfindo.happyholidays.common.events.christmas.MusicBoxEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
-import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
 import com.jumpcutfindo.happyholidays.common.utils.EntityUtils;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -43,12 +42,14 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
 
     public static final int SLOTS = 27;
 
-    private MusicBoxSound currentMusic = null;
-
     private NonNullList<ItemStack> items = NonNullList.withSize(27, ItemStack.EMPTY);
+
+    private ChristmasMusic currentMusic;
 
     private boolean isPlaying = false;
     private boolean isLooping = false;
+
+    private int latestAction = -1;
 
     private int currentSelectedSlot = 0;
 
@@ -114,6 +115,9 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
 
         nbtTag.putInt("CurrentSelectedSlot", this.currentSelectedSlot);
 
+        // Store the latest action in the update packet to notify clients
+        nbtTag.putInt("LatestAction", this.latestAction);
+
         return new ClientboundBlockEntityDataPacket(getBlockPos(), -1, nbtTag);
     }
 
@@ -125,6 +129,11 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
         this.isLooping = nbtTag.getBoolean("IsLooping");
 
         this.currentSelectedSlot = nbtTag.getInt("CurrentSelectedSlot");
+
+        // Receive a packet from the server to let the client know what's that latest action, then execute it
+        this.latestAction = nbtTag.getInt("LatestAction");
+
+        this.runAction(this.latestAction);
     }
 
     public int getSelectedSlot() {
@@ -141,6 +150,8 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     }
 
     public void toggleLoop() {
+        this.latestAction = 5;
+
         this.isLooping = !this.isLooping;
         this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 2);
     }
@@ -163,6 +174,7 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     }
 
     public void playCurrent() {
+        this.stopMusic();
         ItemStack sheetMusic = ItemStack.EMPTY;
 
         for (int i = currentSelectedSlot; i < SLOTS; i++) {
@@ -230,8 +242,12 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     }
 
     public void playMusic(ChristmasMusic music) {
-        currentMusic = SheetMusicItem.createMusicBoxSound(music, this.worldPosition);
-        Minecraft.getInstance().getSoundManager().play(currentMusic);
+        this.latestAction = 0;
+        if (this.level.isClientSide()) {
+            HappyHolidaysMod.PROXY.playChristmasMusic(this.level, this.getBlockPos(), music);
+        }
+
+        this.currentMusic = music;
 
         this.isPlaying = true;
 
@@ -250,15 +266,24 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     }
 
     public void stopMusic() {
-        if (currentMusic != null) {
-            currentMusic.stopTrack();
-            currentMusic = null;
-
-            this.isPlaying = false;
-            this.timeToNextTrack = -1;
+        this.latestAction = 1;
+        if (this.level.isClientSide()) {
+            HappyHolidaysMod.PROXY.stopChristmasMusic(this.level, this.getBlockPos());
         }
 
+        this.isPlaying = false;
+        this.timeToNextTrack = -1;
+
         this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 2);
+    }
+
+    private void runAction(int actionId) {
+        if (!this.level.isClientSide()) return;
+
+        switch (actionId) {
+        case 0 -> playCurrent();
+        case 1 -> stopMusic();
+        }
     }
 
     public boolean isLooping() {

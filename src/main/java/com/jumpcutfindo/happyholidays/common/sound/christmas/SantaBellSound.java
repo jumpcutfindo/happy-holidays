@@ -5,7 +5,10 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import net.minecraft.client.resources.sounds.AbstractTickableSoundInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.sounds.SoundSource;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
+@OnlyIn(Dist.CLIENT)
 public class SantaBellSound extends AbstractTickableSoundInstance {
     public static final int DURATION = 40;
     private int currentTick = 0;
