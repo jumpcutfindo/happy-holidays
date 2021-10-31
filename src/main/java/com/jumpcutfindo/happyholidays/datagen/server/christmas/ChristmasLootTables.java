@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.data.server.christmas;
+package com.jumpcutfindo.happyholidays.datagen.server.christmas;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
@@ -10,7 +10,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
-import com.jumpcutfindo.happyholidays.data.server.BaseLootTableProvider;
+import com.jumpcutfindo.happyholidays.datagen.server.BaseLootTableProvider;
 
 import net.minecraft.advancements.critereon.EnchantmentPredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;

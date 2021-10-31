@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.data.server.christmas;
+package com.jumpcutfindo.happyholidays.datagen.server.christmas;
 
 import javax.annotation.Nullable;
 

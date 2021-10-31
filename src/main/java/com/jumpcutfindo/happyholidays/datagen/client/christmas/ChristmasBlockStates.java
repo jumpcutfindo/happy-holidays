@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.data.client.christmas;
+package com.jumpcutfindo.happyholidays.datagen.client.christmas;
 
 import java.util.List;
 import java.util.Set;

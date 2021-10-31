@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.data.server;
+package com.jumpcutfindo.happyholidays.datagen.server;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -9,7 +9,7 @@ import com.google.common.collect.Sets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.data.server.christmas.ChristmasAdvancements;
+import com.jumpcutfindo.happyholidays.datagen.server.christmas.ChristmasAdvancements;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.FrameType;

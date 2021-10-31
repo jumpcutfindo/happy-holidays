@@ -1,7 +1,7 @@
-package com.jumpcutfindo.happyholidays.data.server.christmas;
+package com.jumpcutfindo.happyholidays.datagen.server.christmas;
 
-import static com.jumpcutfindo.happyholidays.data.server.BaseAdvancementProvider.createAdvancement;
-import static com.jumpcutfindo.happyholidays.data.server.BaseAdvancementProvider.createRootAdvancement;
+import static com.jumpcutfindo.happyholidays.datagen.server.BaseAdvancementProvider.createAdvancement;
+import static com.jumpcutfindo.happyholidays.datagen.server.BaseAdvancementProvider.createRootAdvancement;
 
 import java.util.function.Consumer;
 

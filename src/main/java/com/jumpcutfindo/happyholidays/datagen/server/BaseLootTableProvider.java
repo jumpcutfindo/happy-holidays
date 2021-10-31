@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.data.server;
+package com.jumpcutfindo.happyholidays.datagen.server;
 
 import java.io.IOException;
 import java.nio.file.Path;

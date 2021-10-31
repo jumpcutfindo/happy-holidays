@@ -1,14 +1,14 @@
-package com.jumpcutfindo.happyholidays.data;
+package com.jumpcutfindo.happyholidays.datagen;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.data.client.christmas.ChristmasBlockStates;
-import com.jumpcutfindo.happyholidays.data.client.christmas.ChristmasItemModels;
-import com.jumpcutfindo.happyholidays.data.server.BaseAdvancementProvider;
-import com.jumpcutfindo.happyholidays.data.server.christmas.ChristmasBlockTags;
-import com.jumpcutfindo.happyholidays.data.server.christmas.ChristmasEntityTags;
-import com.jumpcutfindo.happyholidays.data.server.christmas.ChristmasItemTags;
-import com.jumpcutfindo.happyholidays.data.server.christmas.ChristmasLootTables;
-import com.jumpcutfindo.happyholidays.data.server.christmas.ChristmasRecipes;
+import com.jumpcutfindo.happyholidays.datagen.client.christmas.ChristmasBlockStates;
+import com.jumpcutfindo.happyholidays.datagen.client.christmas.ChristmasItemModels;
+import com.jumpcutfindo.happyholidays.datagen.server.BaseAdvancementProvider;
+import com.jumpcutfindo.happyholidays.datagen.server.christmas.ChristmasBlockTags;
+import com.jumpcutfindo.happyholidays.datagen.server.christmas.ChristmasEntityTags;
+import com.jumpcutfindo.happyholidays.datagen.server.christmas.ChristmasItemTags;
+import com.jumpcutfindo.happyholidays.datagen.server.christmas.ChristmasLootTables;
+import com.jumpcutfindo.happyholidays.datagen.server.christmas.ChristmasRecipes;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
