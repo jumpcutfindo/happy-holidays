@@ -1,12 +1,8 @@
 package com.jumpcutfindo.happyholidays.proxies;
 
-import java.util.UUID;
+import com.jumpcutfindo.happyholidays.proxies.client.ChristmasProxy;
 
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
-
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.LevelAccessor;
 
 public class CommonProxy implements Proxy {
     public CommonProxy() {
@@ -21,22 +17,7 @@ public class CommonProxy implements Proxy {
     }
 
     @Override
-    public void playChristmasMusic(LevelAccessor level, BlockPos blockPos, ChristmasMusic christmasMusic) {
-
-    }
-
-    @Override
-    public void stopChristmasMusic(LevelAccessor level, BlockPos blockPos) {
-
-    }
-
-    @Override
-    public void playHappySantaSummoningSound(UUID santaUUID, BlockPos pos) {
-
-    }
-
-    @Override
-    public void stopHappySantaSummoningSound(UUID santaUUID) {
-
+    public ChristmasProxy getChristmasProxy() {
+        return null;
     }
 }

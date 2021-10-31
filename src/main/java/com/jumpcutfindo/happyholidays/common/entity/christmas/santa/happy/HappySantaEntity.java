@@ -165,11 +165,11 @@ public class HappySantaEntity extends BaseSantaEntity {
     }
 
     public void playDropPartySummonSound() {
-        HappyHolidaysMod.PROXY.playHappySantaSummoningSound(this.getUUID(), this.blockPosition());
+        HappyHolidaysMod.PROXY.getChristmasProxy().playHappySantaSummoningSound(this.getUUID(), this.blockPosition());
     }
 
     public void stopDropPartySummonSound() {
-        HappyHolidaysMod.PROXY.stopHappySantaSummoningSound(this.getUUID());
+        HappyHolidaysMod.PROXY.getChristmasProxy().stopHappySantaSummoningSound(this.getUUID());
     }
 
     public void summonGift() {

@@ -244,7 +244,7 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     public void playMusic(ChristmasMusic music) {
         this.latestAction = 0;
         if (this.level.isClientSide()) {
-            HappyHolidaysMod.PROXY.playChristmasMusic(this.level, this.getBlockPos(), music);
+            HappyHolidaysMod.PROXY.getChristmasProxy().playChristmasMusic(this.level, this.getBlockPos(), music);
         }
 
         this.currentMusic = music;
@@ -268,7 +268,7 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     public void stopMusic() {
         this.latestAction = 1;
         if (this.level.isClientSide()) {
-            HappyHolidaysMod.PROXY.stopChristmasMusic(this.level, this.getBlockPos());
+            HappyHolidaysMod.PROXY.getChristmasProxy().stopChristmasMusic(this.level, this.getBlockPos());
         }
 
         this.isPlaying = false;
