@@ -193,7 +193,7 @@ public class ChristmasRecipes extends RecipeProvider {
     }
 
     private void babyPresent(Consumer<FinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shaped(ChristmasBlocks.BABY_PRESENT.get(), 2)
+        ShapedRecipeBuilder.shaped(ChristmasBlocks.BABY_PRESENT.get(), 1)
                 .define('S', Items.STRING).define('#', ChristmasItems.PRESENT_SCRAPS.get()).define('W', ItemTags.WOOL)
                 .pattern("S#S").pattern("WWW")
                 .unlockedBy("has_scraps", has(ChristmasItems.PRESENT_SCRAPS.get())).unlockedBy("has_string", has(Items.STRING)).unlockedBy("has_wool", has(ItemTags.WOOL))
@@ -201,7 +201,12 @@ public class ChristmasRecipes extends RecipeProvider {
     }
 
     private void candyCane(Consumer<FinishedRecipe> consumer) {
-        twoByTwo(consumer, ChristmasBlocks.CANDY_CANE_BLOCK.get(), ChristmasItems.CANDY_CANE.get(), 1);
+        ShapedRecipeBuilder.shaped(ChristmasBlocks.CANDY_CANE_BLOCK.get(), 1)
+                .group("christmas_candy_cane_block")
+                .define('#', ChristmasItems.CANDY_CANE.get())
+                .pattern("##").pattern("##")
+                .unlockedBy(getHasName(ChristmasItems.CANDY_CANE.get()), has(ChristmasItems.CANDY_CANE.get()))
+                .save(consumer, recipeResourceOf(ChristmasBlocks.CANDY_CANE_BLOCK.get()));
         ShapedRecipeBuilder.shaped(ChristmasBlocks.CANDY_CANE_BLOCK.get(), 4)
                 .group("christmas_candy_cane_block")
                 .define('#', Items.SUGAR).define('R', Items.RED_DYE)
@@ -222,7 +227,12 @@ public class ChristmasRecipes extends RecipeProvider {
         stair(consumer, ChristmasItems.CANDY_CANE_TILE_STAIRS.get(), ChristmasItems.CANDY_CANE_TILES.get());
         wall(consumer, ChristmasItems.CANDY_CANE_TILE_WALL.get(), ChristmasItems.CANDY_CANE_TILES.get());
 
-        twoByTwo(consumer, ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), ChristmasItems.FESTIVE_CANDY_CANE.get(), 1);
+        ShapedRecipeBuilder.shaped(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), 1)
+                .group("christmas_festive_candy_cane_block")
+                .define('#', ChristmasItems.FESTIVE_CANDY_CANE.get())
+                .pattern("##").pattern("##")
+                .unlockedBy(getHasName(ChristmasItems.FESTIVE_CANDY_CANE.get()), has(ChristmasItems.FESTIVE_CANDY_CANE.get()))
+                .save(consumer, recipeResourceOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get()));
         ShapedRecipeBuilder.shaped(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK.get(), 4)
                 .group("christmas_festive_candy_cane_block")
                 .define('#', Items.SUGAR).define('R', Items.RED_DYE).define('G', Items.GREEN_DYE)
@@ -497,11 +507,13 @@ public class ChristmasRecipes extends RecipeProvider {
 
     private void guideBook(Consumer<FinishedRecipe> consumer) {
         ShapelessRecipeBuilder.shapeless(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get())
+                .group("christmas_guide_book")
                 .requires(Items.BOOK).requires(ChristmasItems.GREEN_CHRISTMAS_DYE.get()).requires(ChristmasItems.RED_CHRISTMAS_DYE.get())
                 .unlockedBy(getHasName(Items.DIRT), has(Items.DIRT)).unlockedBy(getHasName(Items.BOOK), has(Items.BOOK))
                 .save(consumer, recipeResourceOf(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get()) + "_happyholidays");
 
         ShapelessRecipeBuilder.shapeless(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get())
+                .group("christmas_guide_book")
                 .requires(Items.BOOK).requires(Items.GREEN_DYE).requires(Items.RED_DYE)
                 .unlockedBy(getHasName(Items.DIRT), has(Items.DIRT)).unlockedBy(getHasName(Items.BOOK), has(Items.BOOK))
                 .save(consumer, recipeResourceOf(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get()) + "_vanilla");

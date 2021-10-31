@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "christmas_guide_book",
   "ingredients": [
     {
       "item": "minecraft:book"
