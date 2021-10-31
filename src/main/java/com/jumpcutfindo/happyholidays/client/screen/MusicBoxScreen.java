@@ -87,12 +87,12 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
     }
 
     public void nextTrack() {
-        PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+        PacketHandler.NETWORK.send(PacketDistributor.SERVER.noArg(),
                 MusicBoxPacket.createNextRequestPacket(this.container.blockEntity.getBlockPos()));
     }
 
     public void previousTrack() {
-        PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+        PacketHandler.NETWORK.send(PacketDistributor.SERVER.noArg(),
                 MusicBoxPacket.createPreviousRequestPacket(this.container.blockEntity.getBlockPos()));
     }
 
@@ -100,12 +100,12 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
         if (this.playStopButton.isPlay()) {
             this.playStopButton.setPlay(false);
 
-            PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+            PacketHandler.NETWORK.send(PacketDistributor.SERVER.noArg(),
                     MusicBoxPacket.createStopRequestPacket(this.container.blockEntity.getBlockPos()));
         } else {
             this.playStopButton.setPlay(true);
 
-            PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+            PacketHandler.NETWORK.send(PacketDistributor.SERVER.noArg(),
                     MusicBoxPacket.createPlayRequestPacket(this.container.blockEntity.getBlockPos()));
         }
     }
@@ -113,7 +113,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
     public void toggleLoop() {
         this.loopButton.setLoop(!this.loopButton.isLoop());
 
-        PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+        PacketHandler.NETWORK.send(PacketDistributor.SERVER.noArg(),
                 MusicBoxPacket.createToggleLoopRequestPacket(this.container.blockEntity.getBlockPos()));
     }
 

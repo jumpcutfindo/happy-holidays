@@ -105,7 +105,7 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
             if (this.menu.blockEntity.getCurrentTier() >= 5) {
                 Minecraft.getInstance().setScreen((Screen) null);
 
-                PacketHandler.INSTANCE.send(PacketDistributor.SERVER.noArg(),
+                PacketHandler.NETWORK.send(PacketDistributor.SERVER.noArg(),
                         new SummonSantaPacket(this.menu.blockEntity.getBlockPos()));
             }
 

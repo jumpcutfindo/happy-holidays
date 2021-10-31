@@ -48,9 +48,10 @@ public class MusicBoxPacket {
     }
 
     public static void handle(MusicBoxPacket packet, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() ->
-                // Make sure it's only executed on the physical client
-                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MusicBoxPacketHandler.handlePacket(packet, ctx))
+        ctx.get().enqueueWork(() -> {
+                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> MusicBoxPacketHandler.handlePacket(packet, ctx));
+                DistExecutor.unsafeRunWhenOn(Dist.DEDICATED_SERVER, () -> () -> MusicBoxPacketHandler.handlePacket(packet, ctx));
+            }
         );
         ctx.get().setPacketHandled(true);
     }
