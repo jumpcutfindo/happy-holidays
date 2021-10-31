@@ -11,7 +11,6 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaBellSound;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
 import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
@@ -48,8 +47,6 @@ public class SantaElfBellItem extends ChristmasItem {
                     .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP)
                     .stacksTo(1)
                     .defaultDurability(ITEM_COOLDOWN);
-
-    private SantaBellSound bellSound;
 
     public SantaElfBellItem() {
         super(ITEM_PROPERTIES);

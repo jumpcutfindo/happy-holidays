@@ -14,4 +14,8 @@ public interface Proxy {
     void playChristmasMusic(LevelAccessor level, BlockPos blockPos, ChristmasMusic christmasMusic);
 
     void stopChristmasMusic(LevelAccessor level, BlockPos blockPos);
+
+    void playHappySantaSummoningSound(BlockPos blockPos);
+
+    void stopHappySantaSummoningSound(BlockPos blockPos);
 }
