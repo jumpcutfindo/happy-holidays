@@ -533,24 +533,24 @@ public class ChristmasBlockStates extends BlockStateProvider {
             Direction dir = e.getKey();
             if (dir.getAxis().isHorizontal()) {
                 if (variantCount == 0 || variantCount == 1) {
-                    builder.part().modelFile(modelFile).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel()
+                    builder.part().modelFile(modelFile).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(false).addModel()
                             .condition(e.getValue(), true)
                             .end();
 
-                    builder.part().modelFile(modelFile).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel()
+                    builder.part().modelFile(modelFile).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(false).addModel()
                             .condition(PipeBlock.NORTH, false)
                             .condition(PipeBlock.SOUTH, false)
                             .condition(PipeBlock.WEST, false)
                             .condition(PipeBlock.EAST, false);
                 } else {
-                    ConfiguredModel.Builder tempBuilder = builder.part().modelFile(modelFileOf(blockId + "_" + 0)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true);
+                    ConfiguredModel.Builder tempBuilder = builder.part().modelFile(modelFileOf(blockId + "_" + 0)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(false);
                     for (int i = 1; i < variantCount; i++) {
-                        tempBuilder = tempBuilder.nextModel().modelFile(modelFileOf(blockId + "_" + i)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true);
+                        tempBuilder = tempBuilder.nextModel().modelFile(modelFileOf(blockId + "_" + i)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(false);
                     }
 
                     ((MultiPartBlockStateBuilder.PartBuilder) tempBuilder.addModel()).condition(e.getValue(), true);
 
-                    builder.part().modelFile(modelFileOf(blockId + "_" + 0)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(true).addModel()
+                    builder.part().modelFile(modelFileOf(blockId + "_" + 0)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(false).addModel()
                             .condition(PipeBlock.NORTH, false)
                             .condition(PipeBlock.SOUTH, false)
                             .condition(PipeBlock.WEST, false)

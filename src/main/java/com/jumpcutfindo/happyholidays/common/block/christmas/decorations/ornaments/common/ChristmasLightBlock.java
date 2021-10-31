@@ -35,7 +35,7 @@ public class ChristmasLightBlock extends MultifaceDecorationBlock implements Chr
 
     @Override
     public void configure() {
-        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.translucent());
     }
 
     @Override

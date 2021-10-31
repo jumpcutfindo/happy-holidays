@@ -5,8 +5,7 @@
         "north": "true"
       },
       "apply": {
-        "model": "happyholidays:block/red_tinsel",
-        "uvlock": true
+        "model": "happyholidays:block/red_tinsel"
       }
     },
     {
@@ -17,8 +16,7 @@
         "east": "false"
       },
       "apply": {
-        "model": "happyholidays:block/red_tinsel",
-        "uvlock": true
+        "model": "happyholidays:block/red_tinsel"
       }
     },
     {
@@ -27,8 +25,7 @@
       },
       "apply": {
         "model": "happyholidays:block/red_tinsel",
-        "y": 180,
-        "uvlock": true
+        "y": 180
       }
     },
     {
@@ -40,8 +37,7 @@
       },
       "apply": {
         "model": "happyholidays:block/red_tinsel",
-        "y": 180,
-        "uvlock": true
+        "y": 180
       }
     },
     {
@@ -50,8 +46,7 @@
       },
       "apply": {
         "model": "happyholidays:block/red_tinsel",
-        "y": 270,
-        "uvlock": true
+        "y": 270
       }
     },
     {
@@ -63,8 +58,7 @@
       },
       "apply": {
         "model": "happyholidays:block/red_tinsel",
-        "y": 270,
-        "uvlock": true
+        "y": 270
       }
     },
     {
@@ -73,8 +67,7 @@
       },
       "apply": {
         "model": "happyholidays:block/red_tinsel",
-        "y": 90,
-        "uvlock": true
+        "y": 90
       }
     },
     {
@@ -86,8 +79,7 @@
       },
       "apply": {
         "model": "happyholidays:block/red_tinsel",
-        "y": 90,
-        "uvlock": true
+        "y": 90
       }
     }
   ]

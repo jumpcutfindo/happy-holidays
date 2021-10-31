@@ -6,16 +6,13 @@
       },
       "apply": [
         {
-          "model": "happyholidays:block/frost_0",
-          "uvlock": true
+          "model": "happyholidays:block/frost_0"
         },
         {
-          "model": "happyholidays:block/frost_1",
-          "uvlock": true
+          "model": "happyholidays:block/frost_1"
         },
         {
-          "model": "happyholidays:block/frost_2",
-          "uvlock": true
+          "model": "happyholidays:block/frost_2"
         }
       ]
     },
@@ -27,8 +24,7 @@
         "east": "false"
       },
       "apply": {
-        "model": "happyholidays:block/frost_0",
-        "uvlock": true
+        "model": "happyholidays:block/frost_0"
       }
     },
     {
@@ -38,18 +34,15 @@
       "apply": [
         {
           "model": "happyholidays:block/frost_0",
-          "y": 180,
-          "uvlock": true
+          "y": 180
         },
         {
           "model": "happyholidays:block/frost_1",
-          "y": 180,
-          "uvlock": true
+          "y": 180
         },
         {
           "model": "happyholidays:block/frost_2",
-          "y": 180,
-          "uvlock": true
+          "y": 180
         }
       ]
     },
@@ -62,8 +55,7 @@
       },
       "apply": {
         "model": "happyholidays:block/frost_0",
-        "y": 180,
-        "uvlock": true
+        "y": 180
       }
     },
     {
@@ -73,18 +65,15 @@
       "apply": [
         {
           "model": "happyholidays:block/frost_0",
-          "y": 270,
-          "uvlock": true
+          "y": 270
         },
         {
           "model": "happyholidays:block/frost_1",
-          "y": 270,
-          "uvlock": true
+          "y": 270
         },
         {
           "model": "happyholidays:block/frost_2",
-          "y": 270,
-          "uvlock": true
+          "y": 270
         }
       ]
     },
@@ -97,8 +86,7 @@
       },
       "apply": {
         "model": "happyholidays:block/frost_0",
-        "y": 270,
-        "uvlock": true
+        "y": 270
       }
     },
     {
@@ -108,18 +96,15 @@
       "apply": [
         {
           "model": "happyholidays:block/frost_0",
-          "y": 90,
-          "uvlock": true
+          "y": 90
         },
         {
           "model": "happyholidays:block/frost_1",
-          "y": 90,
-          "uvlock": true
+          "y": 90
         },
         {
           "model": "happyholidays:block/frost_2",
-          "y": 90,
-          "uvlock": true
+          "y": 90
         }
       ]
     },
@@ -132,8 +117,7 @@
       },
       "apply": {
         "model": "happyholidays:block/frost_0",
-        "y": 90,
-        "uvlock": true
+        "y": 90
       }
     }
   ]
