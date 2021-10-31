@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays;
+package com.jumpcutfindo.happyholidays.proxies;
 
 import java.util.UUID;
 

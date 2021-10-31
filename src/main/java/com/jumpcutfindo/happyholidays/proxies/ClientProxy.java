@@ -1,9 +1,10 @@
-package com.jumpcutfindo.happyholidays;
+package com.jumpcutfindo.happyholidays.proxies;
 
 import java.util.Map;
 import java.util.UUID;
 
 import com.google.common.collect.Maps;
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
 import com.jumpcutfindo.happyholidays.common.handlers.GuideHandler;
