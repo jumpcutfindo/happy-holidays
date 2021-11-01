@@ -31,7 +31,7 @@ public class BaseSantaEntity extends PathfinderMob implements IAnimatable, IChri
                     .add(Attributes.MOVEMENT_SPEED, 0.30D)
                     .add(Attributes.ATTACK_DAMAGE, 8.0D)
                     .add(Attributes.ATTACK_KNOCKBACK, 2.0D)
-                    .add(Attributes.ARMOR, 6.0D)
+                    .add(Attributes.ARMOR, 3.0D)
                     .build();
 
     public static final float ENTITY_BOX_SIZE = 18.0f / 16.0f;
