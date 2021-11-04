@@ -18,25 +18,25 @@
         ]
       }
     },
-    "has_red_dye": {
+    "has_red_christmas_dye": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:red_dye"
+              "happyholidays:red_christmas_dye"
             ]
           }
         ]
       }
     },
-    "has_green_dye": {
+    "has_green_christmas_dye": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:green_dye"
+              "happyholidays:green_christmas_dye"
             ]
           }
         ]
@@ -52,8 +52,8 @@
   "requirements": [
     [
       "has_sugar",
-      "has_red_dye",
-      "has_green_dye",
+      "has_red_christmas_dye",
+      "has_green_christmas_dye",
       "has_the_recipe"
     ]
   ]

@@ -10,10 +10,10 @@
       "item": "minecraft:sugar"
     },
     "R": {
-      "item": "minecraft:red_dye"
+      "item": "happyholidays:red_christmas_dye"
     },
     "G": {
-      "item": "minecraft:green_dye"
+      "item": "happyholidays:green_christmas_dye"
     }
   },
   "result": {

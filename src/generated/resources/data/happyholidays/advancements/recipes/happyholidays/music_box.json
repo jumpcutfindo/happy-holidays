@@ -30,6 +30,18 @@
         ]
       }
     },
+    "has_jukebox": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:jukebox"
+            ]
+          }
+        ]
+      }
+    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -41,6 +53,7 @@
     [
       "has_glass",
       "has_gold_ingot",
+      "has_jukebox",
       "has_the_recipe"
     ]
   ]
