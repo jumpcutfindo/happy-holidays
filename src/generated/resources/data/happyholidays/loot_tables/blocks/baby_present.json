@@ -119,6 +119,23 @@
         },
         {
           "type": "minecraft:tag",
+          "weight": 150,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 2.0
+              },
+              "add": false
+            }
+          ],
+          "name": "happyholidays:christmas/stockings",
+          "expand": true
+        },
+        {
+          "type": "minecraft:tag",
           "weight": 10,
           "functions": [
             {

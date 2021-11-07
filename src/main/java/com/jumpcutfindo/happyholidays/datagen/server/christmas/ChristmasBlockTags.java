@@ -62,6 +62,14 @@ public class ChristmasBlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.GOLD_CHRISTMAS_BELLS.get())
                 .add(ChristmasBlocks.SILVER_CHRISTMAS_BELLS.get());
 
+        tag(ChristmasTags.Blocks.STOCKINGS)
+                .add(ChristmasBlocks.RED_STOCKING.get())
+                .add(ChristmasBlocks.BLUE_STOCKING.get())
+                .add(ChristmasBlocks.YELLOW_STOCKING.get())
+                .add(ChristmasBlocks.GREEN_STOCKING.get())
+                .add(ChristmasBlocks.GOLD_STOCKING.get())
+                .add(ChristmasBlocks.SILVER_STOCKING.get());
+
         tag(ChristmasTags.Blocks.DECORATIONS)
                 .add(ChristmasBlocks.CHRISTMAS_WREATH.get())
                 .add(ChristmasBlocks.FROST.get());

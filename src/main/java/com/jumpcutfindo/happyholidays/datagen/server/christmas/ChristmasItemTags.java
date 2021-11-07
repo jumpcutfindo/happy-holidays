@@ -24,6 +24,7 @@ public class ChristmasItemTags extends ItemTagsProvider {
         copy(ChristmasTags.Blocks.TINSEL, ChristmasTags.Items.TINSEL);
         copy(ChristmasTags.Blocks.CHRISTMAS_LIGHTS, ChristmasTags.Items.CHRISTMAS_LIGHTS);
         copy(ChristmasTags.Blocks.CHRISTMAS_BELLS, ChristmasTags.Items.CHRISTMAS_BELLS);
+        copy(ChristmasTags.Blocks.STOCKINGS, ChristmasTags.Items.STOCKINGS);
         copy(ChristmasTags.Blocks.DECORATIONS, ChristmasTags.Items.DECORATIONS);
         copy(ChristmasTags.Blocks.HEAD_ORNAMENTS, ChristmasTags.Items.HEAD_ORNAMENTS);
         copy(ChristmasTags.Blocks.GINGERBREAD_BLOCKS, ChristmasTags.Items.GINGERBREAD_BLOCKS);

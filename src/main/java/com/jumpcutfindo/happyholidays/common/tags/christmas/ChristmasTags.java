@@ -24,6 +24,8 @@ public class ChristmasTags {
 
         public static final Tags.IOptionalNamedTag<Block> CHRISTMAS_BELLS = blockTag("bells");
 
+        public static final Tags.IOptionalNamedTag<Block> STOCKINGS = blockTag("stockings");
+
         public static final Tags.IOptionalNamedTag<Block> DECORATIONS = blockTag("decorations");
 
         public static final Tags.IOptionalNamedTag<Block> HEAD_ORNAMENTS = blockTag("head_ornaments");
@@ -45,6 +47,8 @@ public class ChristmasTags {
         public static final Tags.IOptionalNamedTag<Item> CHRISTMAS_LIGHTS = itemTag("lights");
 
         public static final Tags.IOptionalNamedTag<Item> CHRISTMAS_BELLS = itemTag("bells");
+
+        public static final Tags.IOptionalNamedTag<Item> STOCKINGS = itemTag("stockings");
 
         public static final Tags.IOptionalNamedTag<Item> DECORATIONS = itemTag("decorations");
 
