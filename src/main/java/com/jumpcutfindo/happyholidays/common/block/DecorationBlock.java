@@ -164,7 +164,8 @@ public class DecorationBlock extends Block implements SimpleWaterloggedBlock {
                 : attachFace == AttachFace.CEILING ? Block.canSupportCenter(world, position.relative(Direction.UP), Direction.DOWN)
                 : Block.canSupportCenter(world, position.relative(connectedDirection), connectedDirection.getOpposite());
 
-        BlockState onBlockState = facingDirection == Direction.NORTH ? world.getBlockState(position.south())
+        BlockState onBlockState = attachFace == AttachFace.CEILING ? world.getBlockState(position.above())
+                : facingDirection == Direction.NORTH ? world.getBlockState(position.south())
                 : facingDirection == Direction.SOUTH ? world.getBlockState(position.north())
                 : facingDirection == Direction.EAST ? world.getBlockState(position.west())
                 : facingDirection == Direction.WEST ? world.getBlockState(position.east()) : null;
