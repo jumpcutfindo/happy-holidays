@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:candy_cane_brick_slab_from_candy_cane_block_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_candy_cane_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:candy_cane_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:candy_cane_brick_slab_from_candy_cane_block_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_candy_cane_block",
+      "has_the_recipe"
+    ]
+  ]
+}

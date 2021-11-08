@@ -1,0 +1,37 @@
+{
+  "parent": "happyholidays:christmas/candy_crush",
+  "display": {
+    "icon": {
+      "item": "happyholidays:candy_cane_ornament"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.candy_cane_ornament"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.candy_cane_ornament.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:candy_cane_ornament"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ]
+}

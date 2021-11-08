@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:festive_candy_cane_brick_stairs_from_festive_candy_cane_block_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_festive_candy_cane_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:festive_candy_cane_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:festive_candy_cane_brick_stairs_from_festive_candy_cane_block_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_festive_candy_cane_block",
+      "has_the_recipe"
+    ]
+  ]
+}

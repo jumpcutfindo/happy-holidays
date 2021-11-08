@@ -7,15 +7,17 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.AngryS
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
+import com.jumpcutfindo.happyholidays.common.events.christmas.MusicBoxEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
+import com.jumpcutfindo.happyholidays.common.events.christmas.SnowGlobeEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasStats;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
 
 import net.minecraft.core.BlockPos;
@@ -23,12 +25,11 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -71,16 +72,17 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
-        if (event.getEntity() instanceof Player && ChristmasBlocks.isInfluencedByStar(event.getPlacedBlock().getBlock())) {
-            Player playerEntity = (Player) event.getEntity();
+        if (ChristmasBlocks.isInfluencedByStar(event.getPlacedBlock().getBlock())) onStarAffectedBlockPlaced(event);
+    }
+
+    public static void onStarAffectedBlockPlaced(BlockEvent.EntityPlaceEvent event) {
+        if (event.getEntity() instanceof Player playerEntity) {
             ChristmasStarBlockEntity starBlockEntity =
                     ChristmasStarHelper.getStarInfluencingBlock(playerEntity.level, event.getPos());
 
             if (starBlockEntity != null && starBlockEntity.isPosAffected(event.getPos())) {
                 // Block is under influence of a star
                 BlockPos placedBlockPos = event.getBlockSnapshot().getPos();
-
-                int particleCount = starBlockEntity.getCurrentTier() + (starBlockEntity.isBonusActive() ? 1 : 0);
 
                 for (int i = 0; i < starBlockEntity.getCurrentTier(); i++) {
                     double d0 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
@@ -103,20 +105,6 @@ public class ChristmasEvents {
     }
 
     @SubscribeEvent
-    public static void onItemInteract(PlayerInteractEvent.RightClickBlock event) {
-        if (event.getEntity() instanceof ServerPlayer) {
-            ServerPlayer playerEntity = (ServerPlayer) event.getEntity();
-            ItemStack itemInHand = playerEntity.getItemInHand(event.getHand());
-            BlockState blockState = playerEntity.level.getBlockState(event.getPos());
-
-            // Trigger music box playing trigger
-            if (itemInHand.getItem() instanceof SheetMusicItem && blockState.is(ChristmasBlocks.MUSIC_BOX.get())) {
-                ChristmasTriggers.CHRISTMAS_PLAY_MUSIC_BOX.trigger(playerEntity);
-            }
-        }
-    }
-
-    @SubscribeEvent
     public static void onWorldLoad(WorldEvent.Load event) {
         ChristmasStarHelper.onWorldLoad(event);
     }
@@ -124,23 +112,23 @@ public class ChristmasEvents {
     @SubscribeEvent
     public static void onGingerbreadConversion(GingerbreadConversionEvent event) {
         if (event instanceof GingerbreadConversionEvent.ToSoggy) {
-            ChristmasTriggers.CHRISTMAS_GINGERBREAD_MAN_TURN_SOGGY.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.GINGERBREAD_MAN_TURN_SOGGY.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof GingerbreadConversionEvent.ToDry) {
-            ChristmasTriggers.CHRISTMAS_GINGERBREAD_MAN_TURN_DRY.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.GINGERBREAD_MAN_TURN_DRY.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
     @SubscribeEvent
     public static void onSantaElfInteract(SantaElfEvent event) {
         if (event instanceof SantaElfEvent.Summon) {
-            ChristmasTriggers.CHRISTMAS_SANTA_ELF_SUMMON.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.SANTA_ELF_SUMMON.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof SantaElfEvent.Trade) {
-            ChristmasTriggers.CHRISTMAS_SANTA_ELF_TRADE.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.SANTA_ELF_TRADE.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof SantaElfEvent.CompleteRequest) {
-            ChristmasTriggers.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.SANTA_ELF_COMPLETE_REQUEST.trigger((ServerPlayer) event.getPlayer());
 
             if (((SantaElfEvent.CompleteRequest) event).getTimeTaken() <= 6000) {
-                ChristmasTriggers.CHRISTMAS_SANTA_ELF_COMPLETE_REQUEST_QUICK.trigger((ServerPlayer) event.getPlayer());
+                ChristmasTriggers.SANTA_ELF_COMPLETE_REQUEST_QUICK.trigger((ServerPlayer) event.getPlayer());
             }
         }
     }
@@ -148,48 +136,72 @@ public class ChristmasEvents {
     @SubscribeEvent
     public static void onGrinchInteract(GrinchEvent event) {
         if (event instanceof GrinchEvent.Encounter) {
-            ChristmasTriggers.CHRISTMAS_GRINCH_ENCOUNTER.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.GRINCH_ENCOUNTER.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof GrinchEvent.Appease) {
-            ChristmasTriggers.CHRISTMAS_GRINCH_APPEASE.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.GRINCH_APPEASE.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
     @SubscribeEvent
     public static void onSantaInteract(SantaEvent event) {
         if (event instanceof SantaEvent.AngryDie) {
-            ChristmasTriggers.CHRISTMAS_SANTA_ANGRY_DIE.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.SANTA_ANGRY_DIE.trigger((ServerPlayer) event.getPlayer());
 
             AngrySantaEntity angrySantaEntity = (AngrySantaEntity) event.getSantaEntity();
             if (!angrySantaEntity.isDamagedByPlayer()) {
-                ChristmasTriggers.CHRISTMAS_SANTA_NO_TOUCHY.trigger((ServerPlayer) event.getPlayer());
+                ChristmasTriggers.SANTA_NO_TOUCHY.trigger((ServerPlayer) event.getPlayer());
             }
 
         } else if (event instanceof SantaEvent.CompleteDropParty) {
-            ChristmasTriggers.CHRISTMAS_SANTA_DROP_PARTY_COMPLETE.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.SANTA_DROP_PARTY_COMPLETE.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
     @SubscribeEvent
-    public static void onStockingFill(StockingEvent event) {
+    public static void onStockingInteract(StockingEvent event) {
         if (event instanceof StockingEvent.Fill) {
-            ChristmasTriggers.CHRISTMAS_STOCKING_FILL.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.STOCKING_FILL.trigger((ServerPlayer) event.getPlayer());
+        } else if (event instanceof StockingEvent.Upgrade) {
+            ChristmasTriggers.STOCKING_UPGRADE.trigger((ServerPlayer) event.getPlayer());
         }
     }
 
     @SubscribeEvent
     public static void onChristmasStarInteract(ChristmasStarEvent event) {
         if (event instanceof ChristmasStarEvent.PutOrnament) {
-            ChristmasTriggers.CHRISTMAS_STAR_PUT_ORNAMENT.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.STAR_PUT_ORNAMENT.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof ChristmasStarEvent.IncreaseTier) {
             ChristmasStarEvent.IncreaseTier increaseTierEvent = (ChristmasStarEvent.IncreaseTier) event;
 
             if (increaseTierEvent.getTier() == 5) {
-                ChristmasTriggers.CHRISTMAS_STAR_MAXED_TIER.trigger((ServerPlayer) event.getPlayer());
+                ChristmasTriggers.STAR_MAXED_TIER.trigger((ServerPlayer) event.getPlayer());
             }
         } else if (event instanceof ChristmasStarEvent.SummonSanta) {
-            ChristmasTriggers.CHRISTMAS_STAR_SUMMON_SANTA.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.STAR_SUMMON_SANTA.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof ChristmasStarEvent.ReachBonus) {
-            ChristmasTriggers.CHRISTMAS_STAR_REACH_BONUS.trigger((ServerPlayer) event.getPlayer());
+            ChristmasTriggers.STAR_REACH_BONUS.trigger((ServerPlayer) event.getPlayer());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onMusicBoxPlay(MusicBoxEvent event) {
+        if (event instanceof MusicBoxEvent.Play) {
+            ChristmasTriggers.PLAY_MUSIC_BOX.trigger((ServerPlayer) event.getPlayer());
+        }
+    }
+
+    @SubscribeEvent
+    public static void onSnowGlobeInteract(SnowGlobeEvent event) {
+        if (event instanceof SnowGlobeEvent.Use) {
+            ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
+
+            serverPlayer.awardStat(ChristmasStats.USE_SNOW_GLOBE);
+
+            ChristmasTriggers.SNOW_GLOBE_USE.trigger(serverPlayer);
+
+            if (serverPlayer.getStats().getValue(Stats.CUSTOM.get(ChristmasStats.USE_SNOW_GLOBE)) >= 50) {
+                ChristmasTriggers.SNOW_GLOBE_USE_CHALLENGE.trigger(serverPlayer);
+            }
         }
     }
 }

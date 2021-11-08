@@ -1,0 +1,32 @@
+{
+  "parent": "happyholidays:christmas/star_max_tier",
+  "display": {
+    "icon": {
+      "item": "happyholidays:enchanted_santa_hat"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.star_hat_magic"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.star_hat_magic.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "criteria": {
+    "put_santa_hat": {
+      "trigger": "happyholidays:christmas/star_reach_bonus",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "put_santa_hat"
+    ]
+  ]
+}

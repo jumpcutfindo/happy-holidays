@@ -1,0 +1,37 @@
+{
+  "parent": "happyholidays:christmas/root",
+  "display": {
+    "icon": {
+      "item": "happyholidays:gingerbread_dough"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.gingerbread_start"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.gingerbread_start.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_dough": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gingerbread_dough"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dough"
+    ]
+  ]
+}

@@ -25,4 +25,10 @@ public class StockingEvent extends ChristmasEvent {
             super(blockState, blockPos, playerEntity);
         }
     }
+
+    public static class Upgrade extends StockingEvent {
+        public Upgrade(BlockState blockState, BlockPos blockPos, Player playerEntity) {
+            super(blockState, blockPos, playerEntity);
+        }
+    }
 }

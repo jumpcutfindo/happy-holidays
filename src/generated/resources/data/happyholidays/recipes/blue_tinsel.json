@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "happyholidays:christmas_tinsel",
+  "pattern": [
+    "SSS",
+    "WAW"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:string"
+    },
+    "W": {
+      "item": "minecraft:white_wool"
+    },
+    "A": {
+      "item": "happyholidays:blue_christmas_dye"
+    }
+  },
+  "result": {
+    "item": "happyholidays:blue_tinsel",
+    "count": 4
+  }
+}

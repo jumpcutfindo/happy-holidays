@@ -11,8 +11,11 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaBellSound;
-import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
+import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
+import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
+import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
+import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
+import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -45,8 +48,6 @@ public class SantaElfBellItem extends ChristmasItem {
                     .stacksTo(1)
                     .defaultDurability(ITEM_COOLDOWN);
 
-    private SantaBellSound bellSound;
-
     public SantaElfBellItem() {
         super(ITEM_PROPERTIES);
     }
@@ -67,11 +68,14 @@ public class SantaElfBellItem extends ChristmasItem {
             return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), world.isClientSide());
         } else {
             long timeRemaining = nbt.getLong("NextUseTime") - world.getGameTime();
-            MutableComponent chatComponent =
-                    new TranslatableComponent("chat.happyholidays." + ITEM_ID + ".not_ready",
-                            HappyHolidaysUtils.convertTicksToString(timeRemaining));
-            chatComponent.withStyle(ChatFormatting.RED);
-            player.displayClientMessage(chatComponent, true);
+
+            GameplayMessage message = new GameplayMessage(
+                    MessageType.ERROR,
+                    "chat.happyholidays.santa_elf_bell.not_ready",
+                    StringUtils.convertTicksToString(timeRemaining)
+            );
+
+            Messenger.sendClientMessage(message, player);
             return InteractionResultHolder.fail(player.getItemInHand(hand));
         }
 
@@ -86,7 +90,7 @@ public class SantaElfBellItem extends ChristmasItem {
             CompoundTag nbt = stack.getOrCreateTag();
             nbt.putLong("NextUseTime", world.getGameTime() + (long) ITEM_COOLDOWN);
 
-            BlockPos posAhead = HappyHolidaysUtils.getPosInFront(playerEntity.getDirection(), playerPos, 4.0D);
+            BlockPos posAhead = BlockUtils.getPosInFront(playerEntity.getDirection(), playerPos, 4.0D);
 
             double spawnX, spawnY, spawnZ;
             spawnX = posAhead.getX();
@@ -133,7 +137,7 @@ public class SantaElfBellItem extends ChristmasItem {
                 MutableComponent textComponent =
                         new TranslatableComponent(
                                 "item.happyholidays."+ ITEM_ID +".cooldown",
-                                HappyHolidaysUtils.convertTicksToString(timeRemaining)
+                                StringUtils.convertTicksToString(timeRemaining)
                         );
                 textComponent.withStyle(ChatFormatting.GRAY);
                 textComponents.add(textComponent);

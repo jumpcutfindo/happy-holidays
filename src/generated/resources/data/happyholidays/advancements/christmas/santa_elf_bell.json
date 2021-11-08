@@ -1,0 +1,38 @@
+{
+  "parent": "happyholidays:christmas/candy_crush",
+  "display": {
+    "icon": {
+      "item": "happyholidays:santa_elf_bell",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.santa_elf_bell"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.santa_elf_bell.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:santa_elf_bell"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ]
+}

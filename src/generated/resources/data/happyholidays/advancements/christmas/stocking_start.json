@@ -1,0 +1,102 @@
+{
+  "parent": "happyholidays:christmas/root",
+  "display": {
+    "icon": {
+      "item": "happyholidays:red_stocking"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.stocking_start"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.stocking_start.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_red_stocking": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:red_stocking"
+            ]
+          }
+        ]
+      }
+    },
+    "has_blue_stocking": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:blue_stocking"
+            ]
+          }
+        ]
+      }
+    },
+    "has_yellow_stocking": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:yellow_stocking"
+            ]
+          }
+        ]
+      }
+    },
+    "has_green_stocking": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:green_stocking"
+            ]
+          }
+        ]
+      }
+    },
+    "has_gold_stocking": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:silver_stocking"
+            ]
+          }
+        ]
+      }
+    },
+    "has_silver_stocking": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gold_stocking"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_stocking",
+      "has_blue_stocking",
+      "has_yellow_stocking",
+      "has_green_stocking",
+      "has_gold_stocking",
+      "has_silver_stocking"
+    ]
+  ]
+}

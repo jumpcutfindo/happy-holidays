@@ -1,0 +1,124 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": [
+        {
+          "model": "happyholidays:block/frost_0"
+        },
+        {
+          "model": "happyholidays:block/frost_1"
+        },
+        {
+          "model": "happyholidays:block/frost_2"
+        }
+      ]
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_0"
+      }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": [
+        {
+          "model": "happyholidays:block/frost_0",
+          "y": 180
+        },
+        {
+          "model": "happyholidays:block/frost_1",
+          "y": 180
+        },
+        {
+          "model": "happyholidays:block/frost_2",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_0",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": [
+        {
+          "model": "happyholidays:block/frost_0",
+          "y": 270
+        },
+        {
+          "model": "happyholidays:block/frost_1",
+          "y": 270
+        },
+        {
+          "model": "happyholidays:block/frost_2",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_0",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "happyholidays:block/frost_0",
+          "y": 90
+        },
+        {
+          "model": "happyholidays:block/frost_1",
+          "y": 90
+        },
+        {
+          "model": "happyholidays:block/frost_2",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "happyholidays:block/frost_0",
+        "y": 90
+      }
+    }
+  ]
+}

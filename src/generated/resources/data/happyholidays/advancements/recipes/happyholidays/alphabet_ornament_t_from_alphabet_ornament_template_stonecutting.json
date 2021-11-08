@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:alphabet_ornament_t_from_alphabet_ornament_template_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_alphabet_ornament_template": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:alphabet_ornament_template"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:alphabet_ornament_t_from_alphabet_ornament_template_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_alphabet_ornament_template",
+      "has_the_recipe"
+    ]
+  ]
+}

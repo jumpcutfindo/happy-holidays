@@ -1,0 +1,255 @@
+{
+  "parent": "happyholidays:christmas/ornament_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:gold_bauble"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.ornament_hoarder"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.ornament_hoarder.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 50
+  },
+  "criteria": {
+    "has_baubles": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:red_bauble"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:blue_bauble"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:yellow_bauble"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:green_bauble"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:gold_bauble"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:silver_bauble"
+            ],
+            "count": 64
+          }
+        ]
+      }
+    },
+    "has_big_baubles": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:big_red_bauble"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:big_blue_bauble"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:big_yellow_bauble"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:big_green_bauble"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:big_gold_bauble"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:big_silver_bauble"
+            ],
+            "count": 64
+          }
+        ]
+      }
+    },
+    "has_tinsels": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:red_tinsel"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:blue_tinsel"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:yellow_tinsel"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:green_tinsel"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:gold_tinsel"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:silver_tinsel"
+            ],
+            "count": 64
+          }
+        ]
+      }
+    },
+    "has_christmas_lights": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:red_christmas_lights"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:blue_christmas_lights"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:yellow_christmas_lights"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:green_christmas_lights"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:gold_christmas_lights"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:silver_christmas_lights"
+            ],
+            "count": 64
+          }
+        ]
+      }
+    },
+    "has_christmas_bells": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:red_christmas_bells"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:blue_christmas_bells"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:yellow_christmas_bells"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:green_christmas_bells"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:gold_christmas_bells"
+            ],
+            "count": 64
+          },
+          {
+            "items": [
+              "happyholidays:silver_christmas_bells"
+            ],
+            "count": 64
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_baubles"
+    ],
+    [
+      "has_big_baubles"
+    ],
+    [
+      "has_tinsels"
+    ],
+    [
+      "has_christmas_lights"
+    ],
+    [
+      "has_christmas_bells"
+    ]
+  ]
+}

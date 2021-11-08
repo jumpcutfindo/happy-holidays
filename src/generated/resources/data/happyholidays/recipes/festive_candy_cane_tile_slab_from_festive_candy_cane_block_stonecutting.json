@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "happyholidays:festive_candy_cane_block"
+  },
+  "result": "happyholidays:festive_candy_cane_tile_slab",
+  "count": 2
+}

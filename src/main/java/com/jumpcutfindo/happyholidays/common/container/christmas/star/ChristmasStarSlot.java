@@ -1,14 +1,13 @@
 package com.jumpcutfindo.happyholidays.common.container.christmas.star;
 
-import java.util.UUID;
-
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
+import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
+import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
@@ -49,12 +48,14 @@ public class ChristmasStarSlot extends Slot {
     public boolean mayPickup(Player playerEntity) {
         boolean mayPickup = !this.starBlockEntity.isBonusActive();
 
-        if (!mayPickup && starBlockEntity.getLevel() != null && starBlockEntity.getLevel().isClientSide())
-            playerEntity.sendMessage(
-                new TranslatableComponent("chat.happyholidays.christmas_star.bonus_still_active")
-                        .withStyle(ChatFormatting.RED),
-                UUID.randomUUID()
-        );
+        if (!mayPickup && starBlockEntity.getLevel() != null && starBlockEntity.getLevel().isClientSide()) {
+            GameplayMessage message = new GameplayMessage(
+                    MessageType.ERROR,
+                    "chat.happyholidays.christmas_star.bonus_still_active"
+            );
+
+            Messenger.sendChatMessage(message, playerEntity);
+        }
 
         return mayPickup;
     }

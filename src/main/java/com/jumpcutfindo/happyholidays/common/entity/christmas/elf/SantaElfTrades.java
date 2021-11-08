@@ -1,89 +1,31 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.elf;
 
+import java.util.Random;
+import java.util.Set;
+
+import org.apache.commons.lang3.ArrayUtils;
+
+import com.google.common.collect.Sets;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
 import net.minecraft.world.entity.npc.VillagerTrades;
 
 public class SantaElfTrades {
-    public static final VillagerTrades.ItemListing[] SMALL_BALL_ORNAMENT_TRADES =
-            new VillagerTrades.ItemListing[] {
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.RED_BAUBLE.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.BLUE_BAUBLE.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.YELLOW_BAUBLE.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.GREEN_BAUBLE.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.GOLD_BAUBLE.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.SILVER_BAUBLE.get().asItem(), 2, 4, 2)
-            };
+    private static final Random RANDOM = new Random();
 
-    public static final VillagerTrades.ItemListing[] BIG_BALL_ORNAMENT_TRADES =
-            new VillagerTrades.ItemListing[] {
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.BIG_RED_BAUBLE.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.BIG_BLUE_BAUBLE.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.BIG_YELLOW_BAUBLE.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.BIG_GREEN_BAUBLE.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.BIG_GOLD_BAUBLE.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.BIG_SILVER_BAUBLE.get().asItem(), 2, 4, 2)
-            };
+    public static final VillagerTrades.ItemListing[] BASIC_ORNAMENT_TRADES =
+            SantaElfEntity.ItemsForEmeraldsTrade.tradesFromTag(ChristmasTags.Items.BASIC_ORNAMENTS, 1, 4, 6, 2);
 
-    public static final VillagerTrades.ItemListing[] TINSEL_TRADES =
-            new VillagerTrades.ItemListing[]{
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.RED_TINSEL.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.BLUE_TINSEL.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.YELLOW_TINSEL.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.GREEN_TINSEL.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.GOLD_TINSEL.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.SILVER_TINSEL.get().asItem(), 2, 4, 2)
-            };
-
-    public static final VillagerTrades.ItemListing[] CHRISTMAS_LIGHT_TRADES =
-            new VillagerTrades.ItemListing[] {
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.RED_CHRISTMAS_LIGHTS.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.BLUE_CHRISTMAS_LIGHTS.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.YELLOW_CHRISTMAS_LIGHTS.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.GREEN_CHRISTMAS_LIGHTS.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS.get().asItem(), 2, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS.get().asItem(), 2, 4, 2)
-            };
-
-    public static final VillagerTrades.ItemListing[] HEAD_ORNAMENT_TRADES =
-            new VillagerTrades.ItemListing[] {
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.CREEPER_HEAD_ORNAMENT.get().asItem(), 16, 1, 2, 4),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.ZOMBIE_HEAD_ORNAMENT.get().asItem(), 16, 1, 2, 4),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SKELETON_HEAD_ORNAMENT.get().asItem(), 16, 1, 2, 4),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.WITHER_SKELETON_HEAD_ORNAMENT.get().asItem(), 16, 1, 2, 4),
-            };
+    public static final VillagerTrades.ItemListing[] RARE_ORNAMENT_TRADES =
+            SantaElfEntity.ItemsForEmeraldsTrade.tradesFromTag(ChristmasTags.Items.RARE_ORNAMENTS, 8, 1, 4, 4);
 
     public static final VillagerTrades.ItemListing[] SHEET_MUSIC_TRADES =
-            new VillagerTrades.ItemListing[] {
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_ANGELS_ON_HIGH.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_CAROL_OF_THE_BELLS.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_DECK_THE_HALLS.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_FROSTY_THE_SNOWMAN.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_GOD_REST_GENTLEMEN.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_HERE_COMES_SANTA.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_JINGLE_BELL_ROCK.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_JINGLE_BELLS.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_JOY_TO_THE_WORLD.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_RUDOLPH.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_SILENT_NIGHT.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_SLEIGH_RIDE.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_THE_FIRST_NOEL.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_WE_THREE_KINGS.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_WE_WISH_YOU.get().asItem(), 24, 1, 1, 8),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SHEET_MUSIC_WHITE_CHRISTMAS.get().asItem(), 24, 1, 1, 8)
-            };
+            SantaElfEntity.ItemsForEmeraldsTrade.tradesFromTag(ChristmasTags.Items.SHEET_MUSIC, 16, 1, 1, 4);
 
     public static final VillagerTrades.ItemListing[] FOOD_TRADES =
-            new VillagerTrades.ItemListing[] {
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.CANDY_CANE.get().asItem(), 1,4, 24, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.FESTIVE_CANDY_CANE.get().asItem(), 1,4, 24, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.EGGNOG.get().asItem(), 1, 1, 4, 2),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.LOG_CAKE.get().asItem(), 4, 1, 4, 4),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.CHRISTMAS_HAM.get().asItem(), 4, 1, 4, 4),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.CHRISTMAS_PUDDING.get().asItem(), 4, 1, 4, 4),
-                    new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.MILK_AND_COOKIES.get().asItem(), 4, 1, 4, 4)
-            };
+            SantaElfEntity.ItemsForEmeraldsTrade.tradesFromTag(ChristmasTags.Items.FOODS, 2, 4, 4, 2);
 
     public static final VillagerTrades.ItemListing[] SOMETIMES_APPEAR_TRADES =
             new VillagerTrades.ItemListing[] {
@@ -95,4 +37,50 @@ public class SantaElfTrades {
                     new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasBlocks.SANTA_LIST.get().asItem(), 4, 1, 1, 4),
                     new SantaElfEntity.ItemsForEmeraldsTrade(ChristmasItems.SANTA_ELF_BELL.get().asItem(), 64, 1, 1, 8)
             };
+
+    public static final VillagerTrades.ItemListing[] BUYBACK_TRADES =
+            ArrayUtils.addAll(
+                SantaElfEntity.EmeraldForItemsTrade.tradesFromTag(ChristmasTags.Items.BASIC_ORNAMENTS, 2, 1, 8, 2),
+                SantaElfEntity.EmeraldForItemsTrade.tradesFromTag(ChristmasTags.Items.RARE_ORNAMENTS, 1, 2, 8, 2)
+            );
+
+    public static Set<VillagerTrades.ItemListing> generateBasicTrades(int numTrades) {
+        return generateTradesFromListings(BASIC_ORNAMENT_TRADES, numTrades);
+    }
+
+    public static Set<VillagerTrades.ItemListing> generateRareTrades(int numTrades) {
+        VillagerTrades.ItemListing[] rareTradeListings = ArrayUtils.addAll(SantaElfTrades.RARE_ORNAMENT_TRADES, SantaElfTrades.SHEET_MUSIC_TRADES);
+
+        return generateTradesFromListings(rareTradeListings, numTrades);
+    }
+
+    public static Set<VillagerTrades.ItemListing> generateFoodTrades(int numTrades) {
+        return generateTradesFromListings(FOOD_TRADES, numTrades);
+    }
+
+    public static VillagerTrades.ItemListing generateRequestTrade(SantaElfRequest request) {
+        return new SantaElfEntity.ItemsForEmeraldsTrade(request.getRequestPaper(), 1, 1, 1, 2);
+    }
+
+    public static Set<VillagerTrades.ItemListing> generateSometimesAppearTrades(int numTrades) {
+        return generateTradesFromListings(SOMETIMES_APPEAR_TRADES, numTrades);
+    }
+
+    public static Set<VillagerTrades.ItemListing> generateAlwaysAppearTrades() {
+        return Sets.newHashSet(ALWAYS_APPEAR_TRADES);
+    }
+
+    public static Set<VillagerTrades.ItemListing> generateBuybackTrades(int numTrades) {
+        return generateTradesFromListings(BUYBACK_TRADES, numTrades);
+    }
+
+    private static Set<VillagerTrades.ItemListing> generateTradesFromListings(VillagerTrades.ItemListing[] listings, int numTrades) {
+        Set<VillagerTrades.ItemListing> set = Sets.newHashSet();
+        while (set.size() < numTrades) {
+            int randInt = RANDOM.nextInt(listings.length);
+            set.add(listings[randInt]);
+        }
+
+        return set;
+    }
 }

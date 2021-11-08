@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "christmas_guide_book",
+  "ingredients": [
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "happyholidays:green_christmas_dye"
+    },
+    {
+      "item": "happyholidays:red_christmas_dye"
+    }
+  ],
+  "result": {
+    "item": "happyholidays:christmas_guide_book"
+  }
+}

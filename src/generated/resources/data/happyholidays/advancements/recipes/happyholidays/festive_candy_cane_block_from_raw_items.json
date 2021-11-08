@@ -1,0 +1,60 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:festive_candy_cane_block_from_raw_items"
+    ]
+  },
+  "criteria": {
+    "has_sugar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:sugar"
+            ]
+          }
+        ]
+      }
+    },
+    "has_red_christmas_dye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:red_christmas_dye"
+            ]
+          }
+        ]
+      }
+    },
+    "has_green_christmas_dye": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:green_christmas_dye"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:festive_candy_cane_block_from_raw_items"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_sugar",
+      "has_red_christmas_dye",
+      "has_green_christmas_dye",
+      "has_the_recipe"
+    ]
+  ]
+}

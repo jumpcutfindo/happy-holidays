@@ -1,0 +1,32 @@
+{
+  "parent": "happyholidays:christmas/santa_elf_request",
+  "display": {
+    "icon": {
+      "item": "happyholidays:toy_parts_request"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.santa_elf_request_quick"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.santa_elf_request_quick.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 150
+  },
+  "criteria": {
+    "done_request": {
+      "trigger": "happyholidays:christmas/santa_elf_complete_request_quick",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "done_request"
+    ]
+  ]
+}

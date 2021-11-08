@@ -1,0 +1,112 @@
+{
+  "parent": "happyholidays:christmas/ornament_dyes",
+  "display": {
+    "icon": {
+      "item": "happyholidays:red_christmas_lights"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.ornament_lights"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.ornament_lights.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_red_lights": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:red_christmas_lights"
+            ]
+          }
+        ]
+      }
+    },
+    "has_blue_lights": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:blue_christmas_lights"
+            ]
+          }
+        ]
+      }
+    },
+    "has_yellow_lights": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:yellow_christmas_lights"
+            ]
+          }
+        ]
+      }
+    },
+    "has_green_lights": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:green_christmas_lights"
+            ]
+          }
+        ]
+      }
+    },
+    "has_gold_lights": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:silver_christmas_lights"
+            ]
+          }
+        ]
+      }
+    },
+    "has_silver_lights": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gold_christmas_lights"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_lights"
+    ],
+    [
+      "has_blue_lights"
+    ],
+    [
+      "has_yellow_lights"
+    ],
+    [
+      "has_green_lights"
+    ],
+    [
+      "has_gold_lights"
+    ],
+    [
+      "has_silver_lights"
+    ]
+  ]
+}

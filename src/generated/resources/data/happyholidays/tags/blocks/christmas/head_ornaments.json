@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "happyholidays:creeper_head_ornament",
+    "happyholidays:skeleton_head_ornament",
+    "happyholidays:wither_skeleton_head_ornament",
+    "happyholidays:zombie_head_ornament",
+    "happyholidays:drowned_head_ornament",
+    "happyholidays:blaze_head_ornament",
+    "happyholidays:ghast_head_ornament",
+    "happyholidays:phantom_head_ornament",
+    "happyholidays:pig_head_ornament",
+    "happyholidays:cow_head_ornament",
+    "happyholidays:chicken_head_ornament",
+    "happyholidays:sheep_head_ornament"
+  ]
+}

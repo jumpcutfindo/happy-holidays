@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:copper_ingot",
+    "minecraft:gold_ingot",
+    "minecraft:iron_ingot",
+    "minecraft:amethyst_shard",
+    "minecraft:nether_wart",
+    "minecraft:nether_brick",
+    "minecraft:blaze_powder",
+    "minecraft:glowstone_dust",
+    "minecraft:quartz",
+    "minecraft:netherrack",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil",
+    "minecraft:crimson_stem",
+    "minecraft:crimson_planks",
+    "minecraft:warped_stem",
+    "minecraft:warped_planks",
+    "minecraft:weeping_vines",
+    "minecraft:twisting_vines",
+    "minecraft:shroomlight",
+    "minecraft:blackstone",
+    "minecraft:basalt",
+    "minecraft:obsidian",
+    "minecraft:honeycomb",
+    "minecraft:phantom_membrane",
+    "minecraft:sea_pickle"
+  ]
+}

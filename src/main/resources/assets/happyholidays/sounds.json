@@ -1,4 +1,14 @@
 {
+    "block.gingerbread_soggified": {
+        "category": "block",
+        "subtitle": "block.happyholidays.gingerbread_block.gingerbread_soggified",
+        "sounds": [
+            {
+                "name": "happyholidays:block/gingerbread_soggified",
+                "stream": true
+            }
+        ]
+    },
     "block.christmas_star_place": {
         "category": "block",
         "subtitle": "block.happyholidays.christmas_star.block_place_in_radius",
@@ -15,6 +25,16 @@
         "sounds": [
             {
                 "name": "happyholidays:block/christmas_star_effect_apply",
+                "stream": true
+            }
+        ]
+    },
+    "block.christmas_bell_ring": {
+        "category": "block",
+        "subtitle": "block.happyholidays.christmas_bell.ring",
+        "sounds": [
+            {
+                "name": "happyholidays:block/christmas_bell_ring",
                 "stream": true
             }
         ]
@@ -195,6 +215,36 @@
         "sounds": [
             {
                 "name": "happyholidays:item/christmas_gift_box_shake",
+                "stream": true
+            }
+        ]
+    },
+    "item.snow_globe_fill": {
+      "category": "item",
+        "subtitle": "item.snow_globe_fill.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/snow_globe_fill",
+                "stream": true
+            }
+        ]
+    },
+    "item.snow_globe_using": {
+        "category": "item",
+        "subtitle": "item.snow_globe_using.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/snow_globe_using",
+                "stream": true
+            }
+        ]
+    },
+    "item.snow_globe_success": {
+        "category": "item",
+        "subtitle": "item.snow_globe_success.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/snow_globe_success",
                 "stream": true
             }
         ]

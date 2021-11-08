@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "happyholidays:block/festive_candy_cane_tiles_ox",
+    "bottom": "happyholidays:block/festive_candy_cane_tiles_ox",
+    "top": "happyholidays:block/festive_candy_cane_tiles_ox"
+  }
+}

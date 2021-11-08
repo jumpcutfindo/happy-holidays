@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "happyholidays:gingerbread_dough_wall",
+    "happyholidays:gingerbread_wall",
+    "happyholidays:soggy_gingerbread_wall",
+    "happyholidays:gingerbread_dough_brick_wall",
+    "happyholidays:gingerbread_brick_wall",
+    "happyholidays:soggy_gingerbread_brick_wall",
+    "happyholidays:gingerbread_dough_tile_wall",
+    "happyholidays:gingerbread_tile_wall",
+    "happyholidays:soggy_gingerbread_tile_wall",
+    "happyholidays:candy_cane_wall",
+    "happyholidays:candy_cane_brick_wall",
+    "happyholidays:candy_cane_tile_wall",
+    "happyholidays:festive_candy_cane_wall",
+    "happyholidays:festive_candy_cane_brick_wall",
+    "happyholidays:festive_candy_cane_tile_wall"
+  ]
+}

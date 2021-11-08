@@ -1,0 +1,37 @@
+{
+  "parent": "happyholidays:christmas/root",
+  "display": {
+    "icon": {
+      "item": "happyholidays:music_box"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.music_musical_tendencies"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.music_musical_tendencies.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_music_box": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:music_box"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_music_box"
+    ]
+  ]
+}

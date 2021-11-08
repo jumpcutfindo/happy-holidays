@@ -1,15 +1,21 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
 
 import java.util.Optional;
-import java.util.UUID;
 
+import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.INaughtyNiceHandler;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
+import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
+import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
+import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
 
-import net.minecraft.ChatFormatting;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -22,7 +28,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SantaListBlock extends WallDecorationBlock {
+public class SantaListBlock extends WallDecorationBlock implements ChristmasLike, ChristmasBlock {
     public static final String CHAT_NICE_MAX = "chat.happyholidays.santa_list.max_nice";
     public static final String CHAT_NICE = "chat.happyholidays.santa_list.nice";
     public static final String CHAT_NEUTRAL = "chat.happyholidays.santa_list.neutral";
@@ -54,24 +60,37 @@ public class SantaListBlock extends WallDecorationBlock {
             if (naughtyNiceOptional.isPresent()) {
                 NaughtyNiceMeter naughtyNiceMeter = (NaughtyNiceMeter) naughtyNiceOptional.get();
 
+                GameplayMessage message = null;
+
                 if (naughtyNiceMeter.isMaxNaughty()) {
-                    playerEntity.sendMessage(new TranslatableComponent(CHAT_NAUGHTY_MAX).withStyle(ChatFormatting.RED), UUID.randomUUID());
+                    message = new GameplayMessage(MessageType.NAUGHTY, CHAT_NAUGHTY_MAX);
                 } else if (naughtyNiceMeter.isNaughty()) {
-                    playerEntity.sendMessage(new TranslatableComponent(CHAT_NAUGHTY).withStyle(ChatFormatting.RED), UUID.randomUUID());
+                    message = new GameplayMessage(MessageType.NAUGHTY, CHAT_NAUGHTY);
                 } else if (naughtyNiceMeter.isNeutral()) {
-                    playerEntity.sendMessage(new TranslatableComponent(CHAT_NEUTRAL).withStyle(ChatFormatting.DARK_GRAY), UUID.randomUUID());
+                    message = new GameplayMessage(MessageType.NEUTRAL, CHAT_NEUTRAL);
                 } else if (naughtyNiceMeter.isMaxNice()) {
-                    playerEntity.sendMessage(new TranslatableComponent(CHAT_NICE_MAX).withStyle(ChatFormatting.AQUA), UUID.randomUUID());
+                    message = new GameplayMessage(MessageType.NICE, CHAT_NICE_MAX);
                 } else if (naughtyNiceMeter.isNice()) {
-                    playerEntity.sendMessage(new TranslatableComponent(CHAT_NICE).withStyle(ChatFormatting.AQUA), UUID.randomUUID());
+                    message = new GameplayMessage(MessageType.NICE, CHAT_NICE);
                 }
+
+                if (message != null) Messenger.sendChatMessage(message, playerEntity);
             } else {
-                playerEntity.sendMessage(new TranslatableComponent(CHAT_NEUTRAL).withStyle(ChatFormatting.DARK_GRAY), UUID.randomUUID());
+                GameplayMessage message = new GameplayMessage(MessageType.NEUTRAL, CHAT_NEUTRAL);
+                Messenger.sendChatMessage(message, playerEntity);
             }
         }
 
         return InteractionResult.sidedSuccess(world.isClientSide());
     }
 
+    @Override
+    public void configure() {
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
+    }
 
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
+    }
 }

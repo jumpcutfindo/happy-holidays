@@ -1,0 +1,37 @@
+{
+  "parent": "happyholidays:christmas/root",
+  "display": {
+    "icon": {
+      "item": "happyholidays:christmas_star"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.star_start"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.star_start.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_star": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:christmas_star"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_star"
+    ]
+  ]
+}

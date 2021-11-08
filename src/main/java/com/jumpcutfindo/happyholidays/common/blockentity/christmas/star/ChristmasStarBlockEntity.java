@@ -1,7 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.blockentity.christmas.star;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Nullable;
 
@@ -22,10 +21,12 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntitie
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
-import com.jumpcutfindo.happyholidays.server.data.SantaSummonSavedData;
+import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
+import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
+import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
+import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
+import com.jumpcutfindo.happyholidays.server.data.SantaSavedData;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -75,7 +76,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
     private boolean isGoodSanta;
     private int summonSantaProgress;
 
-    private AABB areaOfEffect;
+    private AABB santaAOE;
     private final ServerBossEvent summonEvent = (ServerBossEvent) (new ServerBossEvent(new TranslatableComponent(
             "entity.happyholidays.santa_is_coming"),
             BossEvent.BossBarColor.WHITE, BossEvent.BossBarOverlay.PROGRESS));
@@ -124,6 +125,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
     @Override
     public void clearRemoved() {
         // FIXME: This is to be called by onLoad(), but the method is not being called (Forge issue)
+        // Update: Forge has actually fixed this, but it's only in the later versions, will be fixed in 1.18
         ChristmasStarHelper.cacheStarLocation(this.getBlockPos());
 
         super.clearRemoved();
@@ -220,13 +222,13 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
         if (this.level != null && !this.level.isClientSide()) {
             ServerLevel serverWorld = (ServerLevel) this.level;
 
-            SantaSummonSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(
-                    SantaSummonSavedData::createFromTag,
-                    SantaSummonSavedData::new,
-                    SantaSummonSavedData.DATA_NAME
+            SantaSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(
+                    SantaSavedData::createFromTag,
+                    SantaSavedData::new,
+                    SantaSavedData.DATA_NAME
             );
 
-            this.areaOfEffect = new AABB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
+            this.santaAOE = new AABB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
 
             boolean isTierOK = this.getCurrentTier() >= 5;
             boolean isValidTime = santaData.canSummon(serverWorld.getGameTime());
@@ -235,10 +237,8 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
             if (!isValidTime) {
                 long timeRemaining = santaData.getNextSummonTime() - serverWorld.getGameTime();
 
-                for (ServerPlayer serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
-                    serverPlayerEntity.sendMessage(new TranslatableComponent("chat.happyholidays.christmas_star"
-                            + ".santa_not_ready", HappyHolidaysUtils.convertTicksToString(timeRemaining)).withStyle(ChatFormatting.RED), UUID.randomUUID());
-                }
+                GameplayMessage message = new GameplayMessage(MessageType.ERROR, "chat.happyholidays.christmas_star.santa_not_ready", StringUtils.convertTicksToString(timeRemaining));
+                Messenger.sendChatMessage(message, serverWorld.getPlayers(playerEntity -> this.santaAOE.contains(playerEntity.position())));
 
                 return;
             }
@@ -249,7 +249,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
 
             // Reset naughty nice meter of players in radius
             int totalValue = 0, totalPlayers = 0;
-            for (ServerPlayer serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.areaOfEffect.contains(playerEntity.position()))) {
+            for (ServerPlayer serverPlayerEntity : serverWorld.getPlayers(playerEntity -> this.santaAOE.contains(playerEntity.position()))) {
                 int value = NaughtyNiceMeter.getMeterValue(serverPlayerEntity);
                 totalValue += value;
 
@@ -292,23 +292,19 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
     public void finishSummonSanta() {
         // Summon the appropriate santa
         BaseSantaEntity santaEntity = null;
-        Component santaText = null;
+        GameplayMessage summonMessage = null;
         if (this.isGoodSanta) {
             santaEntity = ChristmasEntities.HAPPY_SANTA.get().create(this.level);
-            santaText =
-                    new TranslatableComponent("entity.happyholidays.santa_arrival_happy").withStyle(ChatFormatting.AQUA);
+            summonMessage = new GameplayMessage(MessageType.NICE, "entity.happyholidays.santa_arrival_happy");
         } else {
             santaEntity = ChristmasEntities.ANGRY_SANTA.get().create(this.level);
-            santaText =
-                    new TranslatableComponent("entity.happyholidays.santa_arrival_angry").withStyle(ChatFormatting.RED);
+            summonMessage = new GameplayMessage(MessageType.NAUGHTY, "entity.happyholidays.santa_arrival_angry");
         }
 
-        List<Player> playerList = this.level.getEntitiesOfClass(Player.class, this.areaOfEffect);
+        List<Player> playerList = this.level.getEntitiesOfClass(Player.class, this.santaAOE);
+        Messenger.sendChatMessage(summonMessage, playerList);
 
-        Component finalSantaText = santaText;
         playerList.forEach(playerEntity -> {
-                playerEntity.sendMessage(finalSantaText, UUID.randomUUID());
-
                 ChristmasStarEvent summonEvent = new ChristmasStarEvent.SummonSanta(this, playerEntity);
                 MinecraftForge.EVENT_BUS.post(summonEvent);
             }
@@ -466,7 +462,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
                         2, d0, d1, d2, 0.0D);
 
                 if (level.getGameTime() % 60L == 0) {
-                    List<Player> playerList = level.getEntitiesOfClass(Player.class, blockEntity.areaOfEffect);
+                    List<Player> playerList = level.getEntitiesOfClass(Player.class, blockEntity.santaAOE);
 
                     // Remove players outside the AOE
                     for (ServerPlayer serverPlayerEntity : blockEntity.summonEvent.getPlayers()) {

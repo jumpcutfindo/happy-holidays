@@ -5,25 +5,19 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.BaseComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -71,32 +65,6 @@ public class SheetMusicItem extends ChristmasItem {
 
     public SheetMusicItem() {
         super(ITEM_PROPERTIES);
-    }
-
-    @Override
-    public InteractionResult useOn(UseOnContext itemUseContext) {
-        Level world = itemUseContext.getLevel();
-        BlockPos blockpos = itemUseContext.getClickedPos();
-        BlockState blockstate = world.getBlockState(blockpos);
-
-        if (blockstate.is(ChristmasBlocks.MUSIC_BOX.get()) && !blockstate.getValue(MusicBoxBlock.HAS_SHEET_MUSIC)) {
-            ItemStack itemstack = itemUseContext.getItemInHand();
-            if (!world.isClientSide) {
-                ((MusicBoxBlock) ChristmasBlocks.MUSIC_BOX.get()).setSheetMusic(world, blockpos, blockstate, itemstack);
-                itemstack.shrink(1);
-            }
-
-            if (itemUseContext.getPlayer() != null) {
-                BaseComponent chatComponent = new TranslatableComponent("block.happyholidays.music_box"
-                        + ".now_playing", (new TranslatableComponent(this.getDescriptionId() + ".desc")));
-                chatComponent.withStyle(ChatFormatting.AQUA);
-                itemUseContext.getPlayer().displayClientMessage(chatComponent, true);
-            }
-
-            return InteractionResult.sidedSuccess(world.isClientSide);
-        } else {
-            return InteractionResult.PASS;
-        }
     }
 
     @OnlyIn(Dist.CLIENT)

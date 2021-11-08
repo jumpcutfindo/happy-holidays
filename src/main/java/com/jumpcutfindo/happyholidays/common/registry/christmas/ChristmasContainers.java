@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.registry.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.container.christmas.musicbox.MusicBoxContainer;
 import com.jumpcutfindo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
 
@@ -21,5 +22,9 @@ public class ChristmasContainers {
     public static final RegistryObject<MenuType<GiftWrapperContainer>> GIFT_WRAPPER_CONTAINER =
             CONTAINER_TYPE.register(GiftWrapperContainer.CONTAINER_ID,
                     () -> IForgeContainerType.create(GiftWrapperContainer::new)
+            );
+    public static final RegistryObject<MenuType<MusicBoxContainer>> MUSIC_BOX_CONTAINER =
+            CONTAINER_TYPE.register(MusicBoxContainer.CONTAINER_ID,
+                    () -> IForgeContainerType.create(MusicBoxContainer::new)
             );
 }

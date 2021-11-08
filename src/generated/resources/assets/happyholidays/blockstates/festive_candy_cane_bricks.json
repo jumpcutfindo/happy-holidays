@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "candy_shape=x_o": {
+      "model": "happyholidays:block/festive_candy_cane_bricks_xo"
+    },
+    "candy_shape=o_x": {
+      "model": "happyholidays:block/festive_candy_cane_bricks_ox"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "parent": "happyholidays:christmas/candy_cane_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:candy_cane"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.candy_cane_eat"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.candy_cane_eat.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "eat_candy_cane": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "happyholidays:candy_cane"
+          ]
+        }
+      }
+    },
+    "eat_festive_candy_cane": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "happyholidays:festive_candy_cane"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "eat_candy_cane",
+      "eat_festive_candy_cane"
+    ]
+  ]
+}

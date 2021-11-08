@@ -55,7 +55,7 @@ public class ChristmasStarContainer extends AbstractContainerMenu {
         );
 
         // Special slot
-        this.bonusSlot = this.addSlot(new ChristmasStarBonusSlot(blockEntity, 5, 152, 77));
+        this.bonusSlot = this.addSlot(new ChristmasStarBonusSlot(blockEntity, playerInv.player, 5, 152, 77));
 
         // Main player inventory
         for (int row = 0; row < 3; row++) {

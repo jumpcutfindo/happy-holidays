@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:santa_elf_bell"
+    ]
+  },
+  "criteria": {
+    "has_enchanted_candy_cane": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:enchanted_candy_cane"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:santa_elf_bell"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_enchanted_candy_cane",
+      "has_the_recipe"
+    ]
+  ]
+}

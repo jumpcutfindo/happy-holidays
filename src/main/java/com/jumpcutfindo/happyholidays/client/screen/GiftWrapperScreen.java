@@ -1,8 +1,8 @@
 package com.jumpcutfindo.happyholidays.client.screen;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.GiftWrapperBlockEntity;
+import com.jumpcutfindo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -58,9 +58,7 @@ public class GiftWrapperScreen extends AbstractContainerScreen<GiftWrapperContai
 
     @Override
     protected void renderLabels(PoseStack matrixStack, int i, int j) {
-        this.font.draw(matrixStack, this.getBlockEntity().getDisplayName(), (float)this.inventoryLabelX,
-                (float)this.inventoryLabelY
-                , 4210752);
+        this.font.draw(matrixStack, this.playerInventoryTitle, (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
     }
 
     @Override

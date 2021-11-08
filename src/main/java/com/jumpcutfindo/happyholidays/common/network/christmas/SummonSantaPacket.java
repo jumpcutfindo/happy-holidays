@@ -37,9 +37,10 @@ public class SummonSantaPacket {
     }
 
     public static void handle(SummonSantaPacket packet, Supplier<NetworkEvent.Context> ctx) {
-        ctx.get().enqueueWork(() ->
-                // Make sure it's only executed on the physical client
-                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> SummonSantaPacketHandler.handlePacket(packet, ctx))
+        ctx.get().enqueueWork(() -> {
+                DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> SummonSantaPacketHandler.handlePacket(packet, ctx));
+                DistExecutor.unsafeRunWhenOn(Dist.DEDICATED_SERVER, () -> () -> SummonSantaPacketHandler.handlePacket(packet, ctx));
+            }
         );
         ctx.get().setPacketHandled(true);
     }

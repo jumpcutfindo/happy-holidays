@@ -109,7 +109,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
     private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(),
             BossEvent.BossBarColor.RED, BossEvent.BossBarOverlay.PROGRESS));
 
-    private int hitAnimTimer, sleighAnimTimer, teleportAnimTimer;
+    public int hitAnimTimer, sleighAnimTimer, teleportAnimTimer;
 
     private boolean isDamagedByPlayer;
 
@@ -121,14 +121,15 @@ public class AngrySantaEntity extends BaseSantaEntity {
     protected void registerGoals() {
         super.registerGoals();
 
-        this.goalSelector.addGoal(4, new RandomStrollGoal(this, 1.0f, 4));
-        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
-        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-
         this.goalSelector.addGoal(0, new PhaseSwitchGoal(this));
+        this.goalSelector.addGoal(0, new SwatPlayerGoal(this));
         this.goalSelector.addGoal(1, new SleighAttackGoal(this));
         this.goalSelector.addGoal(1, new ExplosivePresentsAttackGoal(this));
         this.goalSelector.addGoal(1, new TeleportGoal(this));
+
+        this.goalSelector.addGoal(4, new RandomStrollGoal(this, 1.0f, 4));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
     }
 
     @Override
@@ -264,22 +265,6 @@ public class AngrySantaEntity extends BaseSantaEntity {
             playerEntity.hurt(DamageSource.mobAttack(this), ATTACK_TELEPORT_DAMAGE * this.getAttackIntervalMultiplier());
         }
 
-    }
-
-    @Override
-    public void playerTouch(Player playerEntity) {
-        if (this.getBoundingBox().inflate(1.0D).intersects(playerEntity.getBoundingBox())) {
-            playerEntity.hurt(DamageSource.GENERIC, 12.0f);
-            playerEntity.setDeltaMovement(
-                    this.random.nextDouble() * 2.0d,
-                    this.random.nextDouble(),
-                    this.random.nextDouble() * 2.0d
-            );
-
-            this.level.playSound(null, this.blockPosition(), ChristmasSounds.SANTA_FLICK.get(), SoundSource.HOSTILE, 1.0f, 1.0f);
-
-            this.hitAnimTimer = 10;
-        }
     }
 
     public Phase getPhase() {
@@ -424,6 +409,9 @@ public class AngrySantaEntity extends BaseSantaEntity {
             int xpDrop = ExperienceOrb.getExperienceValue((int) ((1 / (double) numOrbs) * AMT_XP_DROP));
             this.level.addFreshEntity(new ExperienceOrb(this.level, this.getX(), this.getY(), this.getZ(), xpDrop));
         }
+        
+        // Update defeated before status
+        if (!this.level.isClientSide()) this.onDefeat((ServerLevel) this.level);
     }
 
     private List<ItemStack> generateDrops() {

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "happyholidays:red_bauble",
+    "happyholidays:blue_bauble",
+    "happyholidays:yellow_bauble",
+    "happyholidays:green_bauble",
+    "happyholidays:gold_bauble",
+    "happyholidays:silver_bauble"
+  ]
+}

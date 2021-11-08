@@ -3,7 +3,9 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.food;
 import java.util.Arrays;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.utils.HappyHolidaysUtils;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
+import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -21,7 +23,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ChristmasFoodBlock extends ChristmasBlock {
+public class ChristmasFoodBlock extends Block implements ChristmasLike, ChristmasBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     
     private VoxelShape[] shape;
@@ -52,32 +54,27 @@ public class ChristmasFoodBlock extends ChristmasBlock {
 
 
         if (direction == Direction.SOUTH) {
-            return HappyHolidaysUtils.combineShapes(resultShapes);
+            return BlockUtils.combineShapes(resultShapes);
         } else if (direction == Direction.NORTH) {
             for (int i = 0; i < resultShapes.length; i++) {
-                resultShapes[i] = HappyHolidaysUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_180);
+                resultShapes[i] = BlockUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_180);
             }
 
-            return HappyHolidaysUtils.combineShapes(resultShapes);
+            return BlockUtils.combineShapes(resultShapes);
         } else if (direction == Direction.WEST) {
             for (int i = 0; i < resultShapes.length; i++) {
-                resultShapes[i] = HappyHolidaysUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_90);
+                resultShapes[i] = BlockUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_90);
             }
 
-            return HappyHolidaysUtils.combineShapes(resultShapes);
+            return BlockUtils.combineShapes(resultShapes);
         } else {
             // Direction.EAST
             for (int i = 0; i < resultShapes.length; i++) {
-                resultShapes[i] = HappyHolidaysUtils.rotateShape(resultShapes[i], Rotation.COUNTERCLOCKWISE_90);
+                resultShapes[i] = BlockUtils.rotateShape(resultShapes[i], Rotation.COUNTERCLOCKWISE_90);
             }
 
-            return HappyHolidaysUtils.combineShapes(resultShapes);
+            return BlockUtils.combineShapes(resultShapes);
         }
-    }
-
-    @Override
-    public void configureBlock() {
-        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutoutMipped());
     }
 
     @Override
@@ -95,5 +92,15 @@ public class ChristmasFoodBlock extends ChristmasBlock {
 
     public static boolean isChristmasFoodBlock(Block block) {
         return block instanceof ChristmasFoodBlock;
+    }
+
+    @Override
+    public void configure() {
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
     }
 }

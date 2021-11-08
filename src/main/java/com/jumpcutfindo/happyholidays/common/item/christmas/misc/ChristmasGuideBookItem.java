@@ -1,17 +1,14 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.misc;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
-import com.jumpcutfindo.happyholidays.common.handlers.GuideHandler;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.stats.Stats;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.level.Level;
 
 public class ChristmasGuideBookItem extends ChristmasItem {
@@ -31,14 +28,14 @@ public class ChristmasGuideBookItem extends ChristmasItem {
         playerEntity.awardStat(Stats.ITEM_USED.get(this));
         ItemStack itemStack = playerEntity.getItemInHand(hand);
 
-        if (!world.isClientSide()) return InteractionResultHolder.success(itemStack);
-        else {
-            ChristmasGuideBookItem.showGuide();
-            return InteractionResultHolder.success(itemStack);
+        if (world.isClientSide()) {
+            this.showGuide();
         }
+
+        return InteractionResultHolder.success(itemStack);
     }
 
-    public static void showGuide() {
-        Minecraft.getInstance().setScreen(new GuideScreen(GuideHandler.getGuide("christmas")));
+    public void showGuide() {
+        HappyHolidaysMod.PROXY.openGuideGUI(this.getDefaultInstance());
     }
 }

@@ -1,8 +1,0 @@
-{
-    "replace": false,
-    "values": [
-        "minecraft:gold_ingot",
-        "minecraft:iron_ingot",
-        "minecraft:smooth_stone_slab"
-    ]
-}

@@ -1,12 +1,19 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
 
+import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
+
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ChristmasWreathBlock extends WallDecorationBlock {
+public class ChristmasWreathBlock extends WallDecorationBlock implements ChristmasLike, ChristmasBlock {
     public static final String BLOCK_ID = "christmas_wreath";
 
     public static final Properties BLOCK_PROPERTIES =
@@ -21,5 +28,15 @@ public class ChristmasWreathBlock extends WallDecorationBlock {
 
     public ChristmasWreathBlock() {
         super(BLOCK_PROPERTIES, SHAPE);
+    }
+
+    @Override
+    public void configure() {
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
     }
 }

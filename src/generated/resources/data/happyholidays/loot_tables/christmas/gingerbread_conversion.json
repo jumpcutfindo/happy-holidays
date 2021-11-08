@@ -1,0 +1,89 @@
+{
+  "pools": [
+    {
+      "name": "gingerbread_dough",
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 4.0
+              },
+              "add": false
+            }
+          ],
+          "name": "happyholidays:gingerbread_dough"
+        }
+      ]
+    },
+    {
+      "name": "gingerbread_cookie",
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "happyholidays:gingerbread_cookie"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.02
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "type": "minecraft:uniform",
+            "min": 1.0,
+            "max": 2.0
+          },
+          "add": false
+        }
+      ]
+    },
+    {
+      "name": "ornaments",
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 2.0
+      },
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:tag",
+          "weight": 100,
+          "name": "happyholidays:christmas/basic_ornaments",
+          "expand": true
+        },
+        {
+          "type": "minecraft:tag",
+          "weight": 10,
+          "name": "happyholidays:christmas/rare_ornaments",
+          "expand": true
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "name": "happyholidays:enchanted_thread"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance",
+          "chance": 0.05
+        }
+      ],
+      "functions": []
+    }
+  ]
+}

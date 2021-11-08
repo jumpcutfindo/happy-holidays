@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "christmas_festive_candy_cane_block",
+  "pattern": [
+    "R#",
+    "#G"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:sugar"
+    },
+    "R": {
+      "item": "happyholidays:red_christmas_dye"
+    },
+    "G": {
+      "item": "happyholidays:green_christmas_dye"
+    }
+  },
+  "result": {
+    "item": "happyholidays:festive_candy_cane_block",
+    "count": 4
+  }
+}

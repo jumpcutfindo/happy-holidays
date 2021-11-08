@@ -1,0 +1,112 @@
+{
+  "parent": "happyholidays:christmas/ornament_dyes",
+  "display": {
+    "icon": {
+      "item": "happyholidays:red_bauble"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.ornament_baubles"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.ornament_baubles.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_red_bauble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:red_bauble"
+            ]
+          }
+        ]
+      }
+    },
+    "has_blue_bauble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:blue_bauble"
+            ]
+          }
+        ]
+      }
+    },
+    "has_yellow_bauble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:yellow_bauble"
+            ]
+          }
+        ]
+      }
+    },
+    "has_green_bauble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:green_bauble"
+            ]
+          }
+        ]
+      }
+    },
+    "has_gold_bauble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:silver_bauble"
+            ]
+          }
+        ]
+      }
+    },
+    "has_silver_bauble": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gold_bauble"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_red_bauble"
+    ],
+    [
+      "has_blue_bauble"
+    ],
+    [
+      "has_yellow_bauble"
+    ],
+    [
+      "has_green_bauble"
+    ],
+    [
+      "has_gold_bauble"
+    ],
+    [
+      "has_silver_bauble"
+    ]
+  ]
+}

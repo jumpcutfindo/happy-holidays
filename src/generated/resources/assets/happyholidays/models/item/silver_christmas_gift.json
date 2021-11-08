@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "happyholidays:item/silver_christmas_gift"
+  }
+}

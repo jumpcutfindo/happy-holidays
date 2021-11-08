@@ -11,11 +11,15 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntitie
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.proxies.client.ClientProxy;
+import com.jumpcutfindo.happyholidays.proxies.CommonProxy;
+import com.jumpcutfindo.happyholidays.proxies.Proxy;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import software.bernie.example.GeckoLibMod;
@@ -27,9 +31,14 @@ public class HappyHolidaysMod {
     public static final String MOD_ID = "happyholidays";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
-    public static final CreativeModeTab HAPPY_HOLIDAYS_GROUP = new HappyHolidaysMod.HappyHolidaysGroup("happyholidaystab");
+    public static Proxy PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
+
+    public static final CreativeModeTab HAPPY_HOLIDAYS_GROUP = new HappyHolidaysMod.HappyHolidaysGroup("happyholidays");
 
     public HappyHolidaysMod() {
+        GeckoLibMod.DISABLE_IN_DEV = false;
+        GeckoLib.initialize();
+
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register ourselves for server and other game events we are interested in
@@ -44,9 +53,6 @@ public class HappyHolidaysMod {
         ChristmasSounds.SOUNDS.register(bus);
         ChristmasEffects.EFFECTS.register(bus);
         ChristmasParticles.PARTICLES.register(bus);
-
-        GeckoLib.initialize();
-        GeckoLibMod.DISABLE_IN_DEV = true;
     }
 
     public static class HappyHolidaysGroup extends CreativeModeTab {

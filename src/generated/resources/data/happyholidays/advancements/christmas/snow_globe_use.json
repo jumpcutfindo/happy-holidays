@@ -1,0 +1,30 @@
+{
+  "parent": "happyholidays:christmas/snow_globe_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:snow_globe",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.snow_globe_use"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.snow_globe_use.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "use_snow_globe": {
+      "trigger": "happyholidays:christmas/snow_globe_use",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "use_snow_globe"
+    ]
+  ]
+}

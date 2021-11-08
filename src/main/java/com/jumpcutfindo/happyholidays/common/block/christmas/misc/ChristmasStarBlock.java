@@ -4,9 +4,12 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
+import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -40,7 +43,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
-public class ChristmasStarBlock extends ChristmasBlock implements EntityBlock {
+public class ChristmasStarBlock extends Block implements EntityBlock, ChristmasBlock, ChristmasLike {
     public static final EnumProperty<ChristmasStarTier> STAR_TIER = EnumProperty.create("christmas_star_tier",
             ChristmasStarTier.class);
     public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
@@ -79,11 +82,6 @@ public class ChristmasStarBlock extends ChristmasBlock implements EntityBlock {
                 .setValue(STAR_TIER, ChristmasStarTier.TIER_0)
                 .setValue(HORIZONTAL_AXIS, Direction.Axis.X)
         );
-    }
-
-    @Override
-    public void configureBlock() {
-        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
     }
 
     @Override
@@ -171,6 +169,16 @@ public class ChristmasStarBlock extends ChristmasBlock implements EntityBlock {
     }
 
     protected static <T extends BlockEntity> BlockEntityTicker<T> createStarTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends ChristmasStarBlockEntity> otherEntityType) {
-        return level.isClientSide() ? null : ChristmasBlock.createTickerHelper(blockEntityType, otherEntityType, ChristmasStarBlockEntity::serverTick);
+        return level.isClientSide() ? null : BlockUtils.createTickerHelper(blockEntityType, otherEntityType, ChristmasStarBlockEntity::serverTick);
+    }
+
+    @Override
+    public void configure() {
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
+    }
+
+    @Override
+    public ChristmasRarity getChristmasRarity() {
+        return ChristmasRarity.COMMON;
     }
 }

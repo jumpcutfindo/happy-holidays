@@ -1,0 +1,414 @@
+{
+  "variants": {
+    "candy_shape=x_o,facing=north,half=top,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_xo",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=north,half=top,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_ox",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=south,half=top,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_xo",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=south,half=top,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_ox",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=west,half=top,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_xo",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=west,half=top,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_ox",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=east,half=top,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_xo",
+      "x": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=east,half=top,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_ox",
+      "x": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=north,half=bottom,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_xo",
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=north,half=bottom,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_ox",
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=south,half=bottom,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_xo",
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=south,half=bottom,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_ox",
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=west,half=bottom,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_xo",
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=west,half=bottom,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_ox",
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=east,half=bottom,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_xo"
+    },
+    "candy_shape=o_x,facing=east,half=bottom,shape=straight": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_ox"
+    },
+    "candy_shape=x_o,facing=north,half=top,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=north,half=top,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=south,half=top,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=south,half=top,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=west,half=top,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=west,half=top,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=east,half=top,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "x": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=east,half=top,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "x": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=north,half=bottom,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=north,half=bottom,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=south,half=bottom,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo"
+    },
+    "candy_shape=o_x,facing=south,half=bottom,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox"
+    },
+    "candy_shape=x_o,facing=west,half=bottom,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=west,half=bottom,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=east,half=bottom,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=east,half=bottom,shape=inner_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=north,half=top,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "x": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=north,half=top,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "x": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=south,half=top,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=south,half=top,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=west,half=top,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=west,half=top,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=east,half=top,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=east,half=top,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=north,half=bottom,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=north,half=bottom,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=south,half=bottom,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=south,half=bottom,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=west,half=bottom,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo",
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=west,half=bottom,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox",
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=east,half=bottom,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_xo"
+    },
+    "candy_shape=o_x,facing=east,half=bottom,shape=inner_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_inner_ox"
+    },
+    "candy_shape=x_o,facing=north,half=top,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=north,half=top,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=south,half=top,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=south,half=top,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=west,half=top,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=west,half=top,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=east,half=top,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "x": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=east,half=top,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "x": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=north,half=bottom,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=north,half=bottom,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=south,half=bottom,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo"
+    },
+    "candy_shape=o_x,facing=south,half=bottom,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox"
+    },
+    "candy_shape=x_o,facing=west,half=bottom,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=west,half=bottom,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=east,half=bottom,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=east,half=bottom,shape=outer_left": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=north,half=top,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "x": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=north,half=top,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "x": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=south,half=top,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=south,half=top,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "x": 180,
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=west,half=top,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=west,half=top,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "x": 180,
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=east,half=top,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=east,half=top,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "x": 180,
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=north,half=bottom,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=north,half=bottom,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "y": 270,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=south,half=bottom,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=south,half=bottom,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "y": 90,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=west,half=bottom,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo",
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=o_x,facing=west,half=bottom,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox",
+      "y": 180,
+      "uvlock": true
+    },
+    "candy_shape=x_o,facing=east,half=bottom,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_xo"
+    },
+    "candy_shape=o_x,facing=east,half=bottom,shape=outer_right": {
+      "model": "happyholidays:block/festive_candy_cane_brick_stairs_outer_ox"
+    }
+  }
+}

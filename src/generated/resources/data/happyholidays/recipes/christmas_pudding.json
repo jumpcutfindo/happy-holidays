@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " W ",
+    "WEW"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:mistletoe_and_holly"
+    },
+    "W": {
+      "item": "minecraft:wheat"
+    },
+    "E": {
+      "item": "minecraft:egg"
+    }
+  },
+  "result": {
+    "item": "happyholidays:christmas_pudding"
+  }
+}

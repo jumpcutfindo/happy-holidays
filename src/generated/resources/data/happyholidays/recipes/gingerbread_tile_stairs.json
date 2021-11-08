@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:gingerbread_tiles"
+    }
+  },
+  "result": {
+    "item": "happyholidays:gingerbread_tile_stairs",
+    "count": 4
+  }
+}

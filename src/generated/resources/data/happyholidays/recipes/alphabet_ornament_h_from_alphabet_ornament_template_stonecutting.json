@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "happyholidays:alphabet_ornament_template"
+  },
+  "result": "happyholidays:alphabet_ornament_h",
+  "count": 1
+}

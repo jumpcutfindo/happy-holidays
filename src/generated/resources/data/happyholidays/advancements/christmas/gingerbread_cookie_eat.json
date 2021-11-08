@@ -1,0 +1,35 @@
+{
+  "parent": "happyholidays:christmas/gingerbread_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:gingerbread_cookie"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.gingerbread_cookie_eat"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.gingerbread_cookie_eat.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "eat_cookie": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "happyholidays:gingerbread_cookie"
+          ]
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "eat_cookie"
+    ]
+  ]
+}

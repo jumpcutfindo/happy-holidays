@@ -1,0 +1,57 @@
+{
+  "parent": "happyholidays:christmas/holly_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:log_cake"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.food_glutton"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.food_glutton.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:christmas_ham"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:christmas_pudding"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:log_cake"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:milk_and_cookies"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:eggnog"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_item"
+    ]
+  ]
+}

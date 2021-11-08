@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "side": "happyholidays:block/soggy_gingerbread_tiles",
+    "bottom": "happyholidays:block/soggy_gingerbread_tiles",
+    "top": "happyholidays:block/soggy_gingerbread_tiles"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "parent": "happyholidays:christmas/gingerbread_man_turn_soggy",
+  "display": {
+    "icon": {
+      "item": "happyholidays:gingerbread_block"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.gingerbread_man_turn_dry"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.gingerbread_man_turn_dry.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "turn_dry": {
+      "trigger": "happyholidays:christmas/gingerbread_man_turn_dry",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "turn_dry"
+    ]
+  ]
+}

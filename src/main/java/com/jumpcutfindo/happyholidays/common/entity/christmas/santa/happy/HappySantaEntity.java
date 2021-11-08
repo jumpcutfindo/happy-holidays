@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGiftType;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGifts;
@@ -11,37 +12,35 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaSummonSound;
 
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.BossEvent;
-import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.BossEvent;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.MinecraftForge;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -76,8 +75,6 @@ public class HappySantaEntity extends BaseSantaEntity {
     private int giftsRemaining = -1;
 
     private int despawnDelay;
-
-    private SantaSummonSound summonSound;
 
     private AABB areaOfEffect;
     private final ServerBossEvent bossEvent = (ServerBossEvent) (new ServerBossEvent(this.getDisplayName(),
@@ -125,9 +122,7 @@ public class HappySantaEntity extends BaseSantaEntity {
 
         if (this.summoningPos == null) this.summoningPos = this.blockPosition();
 
-        // Play summoning sounds
-        this.summonSound = new SantaSummonSound(this.blockPosition());
-        Minecraft.getInstance().getSoundManager().play(this.summonSound);
+        if (this.level.isClientSide()) this.playDropPartySummonSound();
 
         // Show boss bar to all players around the area
         if (!this.level.isClientSide()) {
@@ -147,7 +142,7 @@ public class HappySantaEntity extends BaseSantaEntity {
 
         this.summoningPos = null;
 
-        if (this.summonSound != null) this.summonSound.stopTrack();
+        if (this.level.isClientSide()) this.stopDropPartySummonSound();
 
         this.bossEvent.removeAllPlayers();
 
@@ -164,7 +159,17 @@ public class HappySantaEntity extends BaseSantaEntity {
                 SantaEvent event = new SantaEvent.CompleteDropParty(this, playerEntity);
                 MinecraftForge.EVENT_BUS.post(event);
             }
+
+            this.onDefeat((ServerLevel) this.level);
         }
+    }
+
+    public void playDropPartySummonSound() {
+        HappyHolidaysMod.PROXY.getChristmasProxy().playHappySantaSummoningSound(this.getUUID(), this.blockPosition());
+    }
+
+    public void stopDropPartySummonSound() {
+        HappyHolidaysMod.PROXY.getChristmasProxy().stopHappySantaSummoningSound(this.getUUID());
     }
 
     public void summonGift() {
@@ -277,8 +282,6 @@ public class HappySantaEntity extends BaseSantaEntity {
         super.die(p_70645_1_);
         this.bossEvent.removeAllPlayers();
         this.isSummoning = false;
-
-        if (this.summonSound != null) this.summonSound.stopTrack();
     }
 
     @Override
@@ -287,6 +290,10 @@ public class HappySantaEntity extends BaseSantaEntity {
 
         if (this.level.isClientSide()) {
             this.isSummoning = this.entityData.get(IS_SUMMONING);
+            if (this.isAlive() && this.isSummoning) playDropPartySummonSound();
+            else {
+                this.stopDropPartySummonSound();
+            }
         } else {
             if (this.isSummoning) {
                 createSummoningParticle();

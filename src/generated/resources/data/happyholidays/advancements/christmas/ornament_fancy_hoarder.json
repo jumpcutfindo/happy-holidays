@@ -1,0 +1,130 @@
+{
+  "parent": "happyholidays:christmas/ornament_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:gingerbread_man_ornament"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.ornament_fancy_hoarder"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.ornament_fancy_hoarder.desc"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 150
+  },
+  "criteria": {
+    "has_gingerbread_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gingerbread_man_ornament"
+            ]
+          }
+        ]
+      }
+    },
+    "has_baby_present_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:baby_present_ornament"
+            ]
+          }
+        ]
+      }
+    },
+    "has_adult_present_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:adult_present_ornament"
+            ]
+          }
+        ]
+      }
+    },
+    "has_elder_present_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:elder_present_ornament"
+            ]
+          }
+        ]
+      }
+    },
+    "has_candy_cane_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:candy_cane_ornament"
+            ]
+          }
+        ]
+      }
+    },
+    "has_grinch_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:grinch_ornament"
+            ]
+          }
+        ]
+      }
+    },
+    "has_santa_elf_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:santa_elf_ornament"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_gingerbread_ornament"
+    ],
+    [
+      "has_baby_present_ornament"
+    ],
+    [
+      "has_adult_present_ornament"
+    ],
+    [
+      "has_elder_present_ornament"
+    ],
+    [
+      "has_candy_cane_ornament"
+    ],
+    [
+      "has_grinch_ornament"
+    ],
+    [
+      "has_santa_elf_ornament"
+    ]
+  ]
+}
