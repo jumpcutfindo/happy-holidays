@@ -1,0 +1,1 @@
+Fixed a bug where the naughty nice capability wasn't working as intended, causing some conflicts with mods (such as Curios API). Thanks to EnderPreston for pointing this issue out.
