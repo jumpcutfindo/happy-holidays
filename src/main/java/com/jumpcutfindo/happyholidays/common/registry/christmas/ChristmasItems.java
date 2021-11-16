@@ -64,11 +64,11 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.misc.EnchantedSantaH
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.MistletoeAndHollyItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PresentScrapItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SantaElfBellItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SantaHatItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SnowGlobeItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.ToyPartsRequestItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.ChristmasOutfits;
 import com.jumpcutfindo.happyholidays.common.item.christmas.thread.EnchantedThreadItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.thread.ThreadItem;
 
@@ -108,10 +108,16 @@ public class ChristmasItems {
     public static final RegistryObject<ChristmasItem> ENCHANTED_THREAD =
             ITEMS.register(EnchantedThreadItem.ITEM_ID, EnchantedThreadItem::new);
 
-    public static final RegistryObject<ChristmasItem> SANTA_HAT =
-            ITEMS.register(SantaHatItem.ITEM_ID, SantaHatItem::new);
     public static final RegistryObject<ChristmasItem> ENCHANTED_SANTA_HAT =
             ITEMS.register(EnchantedSantaHatItem.ITEM_ID, EnchantedSantaHatItem::new);
+    public static final RegistryObject<Item> SANTA_HAT =
+            ITEMS.register(ChristmasOutfits.SANTA_OUTFIT.getHeadpieceId(), ChristmasOutfits.SANTA_OUTFIT::getHeadpiece);
+    public static final RegistryObject<Item> SANTA_TOP =
+            ITEMS.register(ChristmasOutfits.SANTA_OUTFIT.getTopId(), ChristmasOutfits.SANTA_OUTFIT::getTop);
+    public static final RegistryObject<Item> SANTA_BOTTOM =
+            ITEMS.register(ChristmasOutfits.SANTA_OUTFIT.getBottomId(), ChristmasOutfits.SANTA_OUTFIT::getBottom);
+    public static final RegistryObject<Item> SANTA_BOOTS =
+            ITEMS.register(ChristmasOutfits.SANTA_OUTFIT.getFeetId(), ChristmasOutfits.SANTA_OUTFIT::getFeet);
 
     public static final RegistryObject<ChristmasItem> DYE_BOWL =
             ITEMS.register(DyeBowlItem.DYE_BOWL_ID, DyeBowlItem::new);
