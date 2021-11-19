@@ -1,7 +1,9 @@
 package com.jumpcutfindo.happyholidays.client;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SantaOutfitRenderer;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetBlockColor;
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.OutfitItem;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumBlueParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumGoldParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumGreenParticle;
@@ -25,17 +27,26 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticl
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientSetup {
     @SubscribeEvent
     public void setupClient(FMLClientSetupEvent event) {
         HappyHolidaysMod.PROXY.initClient();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @SubscribeEvent
+    public static void registerOutfitRenderers(final EntityRenderersEvent.AddLayers event) {
+        GeoArmorRenderer.registerArmorRenderer(OutfitItem.class, new SantaOutfitRenderer());
     }
 
     @SubscribeEvent

@@ -19,10 +19,10 @@ public class Outfit {
     public String bottomId;
     public String feetId;
 
-    public ArmorItem headpiece;
-    public ArmorItem top;
-    public ArmorItem bottom;
-    public ArmorItem feet;
+    public OutfitItem headpiece;
+    public OutfitItem top;
+    public OutfitItem bottom;
+    public OutfitItem feet;
 
     private Outfit(String materialId) {
         this.material = OutfitMaterial.createMaterial(materialId);
@@ -30,22 +30,22 @@ public class Outfit {
 
     public void addHeadpiece(String headpieceId) {
         this.headpieceId = headpieceId;
-        this.headpiece = new ArmorItem(material, EquipmentSlot.HEAD, DEFAULT_ITEM_PROPERTIES);
+        this.headpiece = new OutfitItem(material, EquipmentSlot.HEAD, DEFAULT_ITEM_PROPERTIES);
     }
 
     public void addTop(String topId) {
         this.topId = topId;
-        this.top = new ArmorItem(material, EquipmentSlot.CHEST, DEFAULT_ITEM_PROPERTIES);
+        this.top = new OutfitItem(material, EquipmentSlot.CHEST, DEFAULT_ITEM_PROPERTIES);
     }
 
     public void addBottom(String bottomId) {
         this.bottomId = bottomId;
-        this.bottom = new ArmorItem(material, EquipmentSlot.LEGS, DEFAULT_ITEM_PROPERTIES);
+        this.bottom = new OutfitItem(material, EquipmentSlot.LEGS, DEFAULT_ITEM_PROPERTIES);
     }
 
     public void addFeet(String feetId) {
         this.feetId = feetId;
-        this.feet = new ArmorItem(material, EquipmentSlot.FEET, DEFAULT_ITEM_PROPERTIES);
+        this.feet = new OutfitItem(material, EquipmentSlot.FEET, DEFAULT_ITEM_PROPERTIES);
     }
 
     public ArmorItem getHeadpiece() {
