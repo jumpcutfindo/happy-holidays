@@ -2,8 +2,10 @@ package com.jumpcutfindo.happyholidays.common.item.christmas.outfits;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 
+import net.minecraft.data.models.blockstates.PropertyDispatch;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 
 public class Outfit {
@@ -28,22 +30,22 @@ public class Outfit {
         this.material = OutfitMaterial.createMaterial(materialId);
     }
 
-    public void addHeadpiece(String headpieceId) {
+    public void createNewHeadpiece(String headpieceId) {
         this.headpieceId = headpieceId;
         this.headpiece = new OutfitItem(material, EquipmentSlot.HEAD, DEFAULT_ITEM_PROPERTIES);
     }
 
-    public void addTop(String topId) {
+    public void createNewTop(String topId) {
         this.topId = topId;
         this.top = new OutfitItem(material, EquipmentSlot.CHEST, DEFAULT_ITEM_PROPERTIES);
     }
 
-    public void addBottom(String bottomId) {
+    public void createNewBottom(String bottomId) {
         this.bottomId = bottomId;
         this.bottom = new OutfitItem(material, EquipmentSlot.LEGS, DEFAULT_ITEM_PROPERTIES);
     }
 
-    public void addFeet(String feetId) {
+    public void createNewFeet(String feetId) {
         this.feetId = feetId;
         this.feet = new OutfitItem(material, EquipmentSlot.FEET, DEFAULT_ITEM_PROPERTIES);
     }
@@ -80,6 +82,34 @@ public class Outfit {
         return feetId;
     }
 
+    private OutfitMaterial getMaterial() {
+        return material;
+    }
+
+    private Outfit setHeadpiece(String headpieceId, OutfitItem headpiece) {
+        this.headpieceId = headpieceId;
+        this.headpiece = headpiece;
+        return this;
+    }
+
+    private Outfit setTop(String topId, OutfitItem top) {
+        this.topId = topId;
+        this.top = top;
+        return this;
+    }
+
+    private Outfit setBottom(String bottomId, OutfitItem bottom) {
+        this.bottomId = bottomId;
+        this.bottom = bottom;
+        return this;
+    }
+
+    private Outfit setFeet(String feetId, OutfitItem feet) {
+        this.feetId = feetId;
+        this.feet = feet;
+        return this;
+    }
+
     public static class Builder {
         private Outfit outfit;
 
@@ -92,22 +122,50 @@ public class Outfit {
         }
 
         public Builder headpiece(String headpieceId) {
-            this.outfit.addHeadpiece(headpieceId);
+            this.outfit.createNewHeadpiece(headpieceId);
             return this;
         }
 
         public Builder top(String topId) {
-            this.outfit.addTop(topId);
+            this.outfit.createNewTop(topId);
             return this;
         }
 
         public Builder bottom(String bottomId) {
-            this.outfit.addBottom(bottomId);
+            this.outfit.createNewBottom(bottomId);
             return this;
         }
 
         public Builder feet(String feetId) {
-            this.outfit.addFeet(feetId);
+            this.outfit.createNewFeet(feetId);
+            return this;
+        }
+
+        public Builder headpieceSpecial(String headpieceId, PropertyDispatch.TriFunction<ArmorMaterial, EquipmentSlot, Item.Properties, OutfitItem> outfitItemConsumer) {
+            OutfitItem outfitItem = outfitItemConsumer.apply(outfit.getMaterial(), EquipmentSlot.HEAD, DEFAULT_ITEM_PROPERTIES);
+
+            this.outfit.setHeadpiece(headpieceId, outfitItem);
+            return this;
+        }
+
+        public Builder topSpecial(String topId, PropertyDispatch.TriFunction<ArmorMaterial, EquipmentSlot, Item.Properties, OutfitItem> outfitItemConsumer) {
+            OutfitItem outfitItem = outfitItemConsumer.apply(outfit.getMaterial(), EquipmentSlot.CHEST, DEFAULT_ITEM_PROPERTIES);
+
+            this.outfit.setTop(topId, outfitItem);
+            return this;
+        }
+
+        public Builder bottomSpecial(String bottomId, PropertyDispatch.TriFunction<ArmorMaterial, EquipmentSlot, Item.Properties, OutfitItem> outfitItemConsumer) {
+            OutfitItem outfitItem = outfitItemConsumer.apply(outfit.getMaterial(), EquipmentSlot.LEGS, DEFAULT_ITEM_PROPERTIES);
+
+            this.outfit.setBottom(bottomId, outfitItem);
+            return this;
+        }
+
+        public Builder feetSpecial(String feetId, PropertyDispatch.TriFunction<ArmorMaterial, EquipmentSlot, Item.Properties, OutfitItem> outfitItemConsumer) {
+            OutfitItem outfitItem = outfitItemConsumer.apply(outfit.material, EquipmentSlot.FEET, DEFAULT_ITEM_PROPERTIES);
+
+            this.outfit.setFeet(feetId, outfitItem);
             return this;
         }
 

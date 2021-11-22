@@ -119,6 +119,13 @@ public class ChristmasItems {
     public static final RegistryObject<Item> SANTA_BOOTS =
             ITEMS.register(ChristmasOutfits.SANTA_OUTFIT.getFeetId(), ChristmasOutfits.SANTA_OUTFIT::getFeet);
 
+    public static final RegistryObject<Item> SNOWMAN_HEADPIECE =
+            ITEMS.register(ChristmasOutfits.SNOWMAN_OUTFIT.getHeadpieceId(), ChristmasOutfits.SNOWMAN_OUTFIT::getHeadpiece);
+    public static final RegistryObject<Item> SNOWMAN_TOP =
+            ITEMS.register(ChristmasOutfits.SNOWMAN_OUTFIT.getTopId(), ChristmasOutfits.SNOWMAN_OUTFIT::getTop);
+    public static final RegistryObject<Item> SNOWMAN_BOTTOM =
+            ITEMS.register(ChristmasOutfits.SNOWMAN_OUTFIT.getBottomId(), ChristmasOutfits.SNOWMAN_OUTFIT::getBottom);
+
     public static final RegistryObject<ChristmasItem> DYE_BOWL =
             ITEMS.register(DyeBowlItem.DYE_BOWL_ID, DyeBowlItem::new);
     public static final RegistryObject<ChristmasItem> RED_CHRISTMAS_DYE =

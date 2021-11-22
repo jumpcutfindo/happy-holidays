@@ -18,7 +18,7 @@ public class OutfitItem extends GeoArmorItem implements IAnimatable {
     }
 
     // Predicate runs every frame
-    private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+    public <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
         return PlayState.CONTINUE;
     }
 

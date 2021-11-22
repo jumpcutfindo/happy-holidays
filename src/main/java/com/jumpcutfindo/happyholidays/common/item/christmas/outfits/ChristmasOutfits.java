@@ -13,7 +13,9 @@ public class ChristmasOutfits {
 
     public static final Outfit SNOWMAN_OUTFIT = Outfit.Builder.start()
             .material("snowman")
-            .headpiece("snowman_headpiece").top("snowman_top").bottom("snowman_bottom")
+            .headpieceSpecial("snowman_headpiece", SnowmanOutfitItem::new)
+            .topSpecial("snowman_top", SnowmanOutfitItem::new)
+            .bottomSpecial("snowman_bottom", SnowmanOutfitItem::new)
             .finish();
 
     public static final Outfit REINDEER_OUTFIT = Outfit.Builder.start()
