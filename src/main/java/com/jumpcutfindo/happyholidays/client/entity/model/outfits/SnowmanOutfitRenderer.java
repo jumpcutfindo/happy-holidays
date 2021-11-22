@@ -1,6 +1,8 @@
 package com.jumpcutfindo.happyholidays.client.entity.model.outfits;
 
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.SnowmanOutfitItem;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 
 import net.minecraft.world.entity.decoration.ArmorStand;
 import software.bernie.geckolib3.core.processor.IBone;
@@ -57,5 +59,11 @@ public class SnowmanOutfitRenderer extends GeoArmorRenderer<SnowmanOutfitItem> {
                 leftArmBone.setPositionZ(this.leftArm.z);
             }
         }
+    }
+
+    @Override
+    public void render(float partialTicks, PoseStack stack, VertexConsumer bufferIn, int packedLightIn) {
+        this.body.setRotation(0.0f, 0.0f, 0.0f);
+        super.render(partialTicks, stack, bufferIn, packedLightIn);
     }
 }
