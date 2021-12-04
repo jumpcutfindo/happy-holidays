@@ -1,11 +1,10 @@
 package com.jumpcutfindo.happyholidays.client.screen;
 
-import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
 import com.jumpcutfindo.happyholidays.common.handlers.PacketHandler;
 import com.jumpcutfindo.happyholidays.common.network.christmas.SummonSantaPacket;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -18,8 +17,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.fmlclient.gui.GuiUtils;
-import net.minecraftforge.fmllegacy.network.PacketDistributor;
+import net.minecraftforge.network.PacketDistributor;
 
 public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarContainer> {
     private static final ResourceLocation CHRISTMAS_STAR_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
@@ -117,12 +115,7 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
     }
 
     public void drawTooltip(PoseStack matrixStack, Component textComponent,  int mouseX, int mouseY) {
-        GuiUtils.drawHoveringText(matrixStack,
-                Lists.newArrayList(textComponent),
-                mouseX, mouseY,
-                this.width, this.height,
-                -1,
-                this.font);
+        Screen.drawString(matrixStack, font, textComponent, mouseX, mouseY, -1);
     }
 
     public class SummonSantaButton extends Button {

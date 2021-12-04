@@ -1,6 +1,5 @@
 package com.jumpcutfindo.happyholidays.client.screen;
 
-import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.container.christmas.musicbox.MusicBoxContainer;
 import com.jumpcutfindo.happyholidays.common.handlers.PacketHandler;
@@ -9,14 +8,14 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.fmlclient.gui.GuiUtils;
-import net.minecraftforge.fmllegacy.network.PacketDistributor;
+import net.minecraftforge.network.PacketDistributor;
 
 public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
     public static final ResourceLocation MUSIC_BOX_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
@@ -118,12 +117,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
     }
 
     public void drawTooltip(PoseStack matrixStack, Component textComponent,  int mouseX, int mouseY) {
-        GuiUtils.drawHoveringText(matrixStack,
-                Lists.newArrayList(textComponent),
-                mouseX, mouseY,
-                this.width, this.height,
-                -1,
-                this.font);
+        Screen.drawString(matrixStack, font, textComponent, mouseX, mouseY, -1);
     }
 
     public class PlayStopButton extends Button {
@@ -154,7 +148,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
 
             blit(matrixStack, this.x, this.y, i, j, 16, 16, 256, 256);
 
-            if (this.isHovered()) {
+            if (this.isHovered) {
                 if (this.isPlay) drawTooltip(matrixStack, new TranslatableComponent(STOP_BUTTON_TOOLTIP), mouseX, mouseY);
                 else drawTooltip(matrixStack, new TranslatableComponent(PLAY_BUTTON_TOOLTIP), mouseX, mouseY);
             }
@@ -191,7 +185,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
 
             blit(matrixStack, this.x, this.y, i, j, 16, 16, 256, 256);
 
-            if (this.isHovered()) drawTooltip(matrixStack, new TranslatableComponent(LOOP_BUTTON_TOOLTIP), mouseX, mouseY);
+            if (this.isHovered) drawTooltip(matrixStack, new TranslatableComponent(LOOP_BUTTON_TOOLTIP), mouseX, mouseY);
         }
 
         public boolean isLoop() {
@@ -221,7 +215,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
 
             blit(matrixStack, this.x, this.y, i, j, 16, 16, 256, 256);
 
-            if (this.isHovered()) drawTooltip(matrixStack, new TranslatableComponent(PREVIOUS_BUTTON_TOOLTIP), mouseX, mouseY);
+            if (this.isHovered) drawTooltip(matrixStack, new TranslatableComponent(PREVIOUS_BUTTON_TOOLTIP), mouseX, mouseY);
         }
     }
 
@@ -243,7 +237,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
 
             blit(matrixStack, this.x, this.y, i, j, 16, 16, 256, 256);
 
-            if (this.isHovered()) drawTooltip(matrixStack, new TranslatableComponent(NEXT_BUTTON_TOOLTIP), mouseX, mouseY);
+            if (this.isHovered) drawTooltip(matrixStack, new TranslatableComponent(NEXT_BUTTON_TOOLTIP), mouseX, mouseY);
         }
     }
 }

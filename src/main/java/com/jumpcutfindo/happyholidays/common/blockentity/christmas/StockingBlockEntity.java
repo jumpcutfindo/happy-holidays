@@ -123,7 +123,7 @@ public class StockingBlockEntity extends BlockEntity implements ChristmasEntityB
         nbtTag.putBoolean("IsEmpty", this.isEmpty);
         nbtTag.putBoolean("IsDoneForNight", this.isDoneForNight);
 
-        return new ClientboundBlockEntityDataPacket(getBlockPos(), -1, nbtTag);
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override

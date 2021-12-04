@@ -118,7 +118,7 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
         // Store the latest action in the update packet to notify clients
         nbtTag.putInt("LatestAction", this.latestAction);
 
-        return new ClientboundBlockEntityDataPacket(getBlockPos(), -1, nbtTag);
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override

@@ -429,7 +429,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
 
         tag.putInt("StarTier", this.currentTier);
 
-        return new ClientboundBlockEntityDataPacket(getBlockPos(), -1, tag);
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override

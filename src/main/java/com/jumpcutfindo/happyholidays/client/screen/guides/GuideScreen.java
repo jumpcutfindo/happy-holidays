@@ -1,6 +1,5 @@
 package com.jumpcutfindo.happyholidays.client.screen.guides;
 
-import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
@@ -20,7 +19,6 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraftforge.fmlclient.gui.GuiUtils;
 
 public class GuideScreen extends Screen {
     public static final ResourceLocation DEFAULT_BOOK_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
@@ -210,12 +208,7 @@ public class GuideScreen extends Screen {
     }
 
     public void drawTooltip(PoseStack matrixStack, Component textComponent,  int mouseX, int mouseY) {
-        GuiUtils.drawHoveringText(matrixStack,
-                Lists.newArrayList(textComponent),
-                mouseX, mouseY,
-                GuideScreen.this.width, GuideScreen.this.height,
-                -1,
-                GuideScreen.this.font);
+        Screen.drawString(matrixStack, font, textComponent, mouseX, mouseY, -1);
     }
 
     public class GuideCloseButton extends Button {
@@ -260,7 +253,7 @@ public class GuideScreen extends Screen {
             RenderSystem.setShaderTexture(0, guideBookGUI);
             int i = 338;
             int j = 0;
-            if (this.isHovered()) {
+            if (this.isHovered) {
                 i += 23;
             }
 
@@ -298,7 +291,7 @@ public class GuideScreen extends Screen {
             RenderSystem.setShaderTexture(0, guideBookGUI);
             int i = 338;
             int j = 44;
-            if (this.isHovered()) {
+            if (this.isHovered) {
                 i += 19;
             }
 

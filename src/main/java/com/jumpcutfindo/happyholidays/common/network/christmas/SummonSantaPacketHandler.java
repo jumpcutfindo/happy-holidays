@@ -7,7 +7,7 @@ import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.Christma
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraftforge.network.NetworkEvent;
 
 public class SummonSantaPacketHandler {
     public static void handlePacket(SummonSantaPacket pkt, Supplier<NetworkEvent.Context> ctx) {

@@ -49,7 +49,7 @@ public class MultifaceDecorationBlock extends MultifaceBlock implements SimpleWa
 
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState otherBlockState, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos otherBlockPos) {
         if (blockState.getValue(WATERLOGGED)) {
-            levelAccessor.getLiquidTicks().scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
+            levelAccessor.scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
         }
 
         BlockState newState = super.updateShape(blockState, direction, otherBlockState, levelAccessor, blockPos, otherBlockPos);

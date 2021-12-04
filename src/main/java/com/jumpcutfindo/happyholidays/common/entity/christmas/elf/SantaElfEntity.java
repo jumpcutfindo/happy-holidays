@@ -240,6 +240,11 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         return ChristmasSounds.SANTA_ELF_YES.get();
     }
 
+    @Override
+    public boolean isClientSide() {
+        return this.level.isClientSide();
+    }
+
     protected SoundEvent getTradeUpdatedSound(boolean b) {
         return b ? ChristmasSounds.SANTA_ELF_YES.get() : ChristmasSounds.SANTA_ELF_NO.get();
     }
