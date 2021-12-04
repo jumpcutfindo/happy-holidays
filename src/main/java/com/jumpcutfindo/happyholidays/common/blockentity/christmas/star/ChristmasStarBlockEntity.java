@@ -51,6 +51,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -425,11 +426,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
     @Nullable
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        CompoundTag tag = new CompoundTag();
-
-        tag.putInt("StarTier", this.currentTier);
-
-        return ClientboundBlockEntityDataPacket.create(this);
+        return ClientboundBlockEntityDataPacket.create(this, ChristmasStarBlockEntity::createUpdateTag);
     }
 
     @Override
@@ -437,6 +434,16 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
         CompoundTag tag = pkt.getTag();
 
         if (tag.contains("StarTier")) changeTier(tag.getInt("StarTier"));
+    }
+
+    public static CompoundTag createUpdateTag(BlockEntity blockEntity) {
+        CompoundTag tag = new CompoundTag();
+
+        if (blockEntity instanceof ChristmasStarBlockEntity christmasStarBlockEntity) {
+            tag.putInt("StarTier", christmasStarBlockEntity.currentTier);
+        }
+
+        return tag;
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState blockState, ChristmasStarBlockEntity blockEntity) {
@@ -508,14 +515,12 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
     }
 
     @Override
-    public CompoundTag save(CompoundTag nbt) {
-        super.save(nbt);
+    protected void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
 
-        ContainerHelper.saveAllItems(nbt, this.items);
+        ContainerHelper.saveAllItems(tag, this.items);
 
-        nbt.putInt("CurrentTier", this.currentTier);
-        nbt.putInt("CurrentPoints", this.currentPoints);
-
-        return nbt;
+        tag.putInt("CurrentTier", this.currentTier);
+        tag.putInt("CurrentPoints", this.currentPoints);
     }
 }

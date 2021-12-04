@@ -99,14 +99,11 @@ public class StockingBlockEntity extends BlockEntity implements ChristmasEntityB
     }
 
     @Override
-    public CompoundTag save(CompoundTag nbt) {
-        super.save(nbt);
-        nbt.putBoolean("IsEmpty", this.isEmpty);
-        nbt.putBoolean("IsDoneForNight", this.isDoneForNight);
-
-        return nbt;
+    protected void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+        tag.putBoolean("IsEmpty", this.isEmpty);
+        tag.putBoolean("IsDoneForNight", this.isDoneForNight);
     }
-
 
     @Override
     public void load(CompoundTag nbt) {
@@ -118,12 +115,7 @@ public class StockingBlockEntity extends BlockEntity implements ChristmasEntityB
 
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket(){
-        CompoundTag nbtTag = new CompoundTag();
-
-        nbtTag.putBoolean("IsEmpty", this.isEmpty);
-        nbtTag.putBoolean("IsDoneForNight", this.isDoneForNight);
-
-        return ClientboundBlockEntityDataPacket.create(this);
+        return ClientboundBlockEntityDataPacket.create(this, StockingBlockEntity::createUpdateTag);
     }
 
     @Override
@@ -132,5 +124,16 @@ public class StockingBlockEntity extends BlockEntity implements ChristmasEntityB
 
         this.isEmpty = nbtTag.getBoolean("IsEmpty");
         this.isDoneForNight = nbtTag.getBoolean("IsDoneForNight");
+    }
+
+    public static CompoundTag createUpdateTag(BlockEntity blockEntity) {
+        CompoundTag nbtTag = new CompoundTag();
+
+        if (blockEntity instanceof StockingBlockEntity stockingBlockEntity) {
+            nbtTag.putBoolean("IsEmpty", stockingBlockEntity.isEmpty);
+            nbtTag.putBoolean("IsDoneForNight", stockingBlockEntity.isDoneForNight);
+        }
+
+        return nbtTag;
     }
 }

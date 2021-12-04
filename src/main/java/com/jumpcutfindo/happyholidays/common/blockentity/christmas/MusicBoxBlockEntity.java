@@ -25,6 +25,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -74,13 +75,12 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
         ContainerHelper.loadAllItems(tag, items);
     }
 
-    public CompoundTag save(CompoundTag tag) {
-        super.save(tag);
+    @Override
+    protected void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
 
         tag.putBoolean("IsLooping", this.isLooping);
         ContainerHelper.saveAllItems(tag, items);
-
-        return tag;
     }
 
     @Override
@@ -108,17 +108,7 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
 
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket(){
-        CompoundTag nbtTag = new CompoundTag();
-
-        nbtTag.putBoolean("IsPlaying", this.isPlaying);
-        nbtTag.putBoolean("IsLooping", this.isLooping);
-
-        nbtTag.putInt("CurrentSelectedSlot", this.currentSelectedSlot);
-
-        // Store the latest action in the update packet to notify clients
-        nbtTag.putInt("LatestAction", this.latestAction);
-
-        return ClientboundBlockEntityDataPacket.create(this);
+        return ClientboundBlockEntityDataPacket.create(this, MusicBoxBlockEntity::createUpdateTag);
     }
 
     @Override
@@ -134,6 +124,22 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
         this.latestAction = nbtTag.getInt("LatestAction");
 
         this.runAction(this.latestAction);
+    }
+
+    public static CompoundTag createUpdateTag(BlockEntity blockEntity) {
+        CompoundTag nbtTag = new CompoundTag();
+
+        if (blockEntity instanceof MusicBoxBlockEntity musicBoxBlockEntity) {
+            nbtTag.putBoolean("IsPlaying", musicBoxBlockEntity.isPlaying());
+            nbtTag.putBoolean("IsLooping", musicBoxBlockEntity.isLooping());
+
+            nbtTag.putInt("CurrentSelectedSlot", musicBoxBlockEntity.currentSelectedSlot);
+
+            // Store the latest action in the update packet to notify clients
+            nbtTag.putInt("LatestAction", musicBoxBlockEntity.latestAction);
+        }
+
+        return nbtTag;
     }
 
     public int getSelectedSlot() {
