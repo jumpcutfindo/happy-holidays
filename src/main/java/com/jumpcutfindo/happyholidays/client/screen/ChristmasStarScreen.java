@@ -114,10 +114,6 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
         return this.menu.getBlockEntity();
     }
 
-    public void drawTooltip(PoseStack matrixStack, Component textComponent,  int mouseX, int mouseY) {
-        Screen.drawString(matrixStack, font, textComponent, mouseX, mouseY, -1);
-    }
-
     public class SummonSantaButton extends Button {
         private static final String SUMMON_SANTA_TOOLTIP = "block.happyholidays.christmas_star.summon_tooltip";
 
@@ -138,7 +134,7 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
                 blit(matrixStack, this.x, this.y, 176, 31, 32, 31);
 
                 if (this.isHovered) {
-                    drawTooltip(matrixStack, new TranslatableComponent(SUMMON_SANTA_TOOLTIP), mouseX, mouseY);
+                    renderTooltip(matrixStack, new TranslatableComponent(SUMMON_SANTA_TOOLTIP), mouseX, mouseY);
                 }
             }
         }

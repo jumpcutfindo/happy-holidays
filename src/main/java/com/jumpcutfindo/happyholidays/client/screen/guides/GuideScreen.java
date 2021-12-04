@@ -207,10 +207,6 @@ public class GuideScreen extends Screen {
         return false;
     }
 
-    public void drawTooltip(PoseStack matrixStack, Component textComponent,  int mouseX, int mouseY) {
-        Screen.drawString(matrixStack, font, textComponent, mouseX, mouseY, -1);
-    }
-
     public class GuideCloseButton extends Button {
         private static final String CLOSE_BUTTON_TOOLTIP = "guide.happyholidays.close_button.tooltip";
         public GuideCloseButton(int p_i232255_1_, int p_i232255_2_, int p_i232255_3_,
@@ -227,7 +223,7 @@ public class GuideScreen extends Screen {
             blit(matrixStack, this.x, this.y, i, j, 18, 18, textureWidth, textureHeight);
 
             if (this.isHovered) {
-                drawTooltip(matrixStack, new TranslatableComponent(CLOSE_BUTTON_TOOLTIP), mouseX, mouseY);
+                renderTooltip(matrixStack, new TranslatableComponent(CLOSE_BUTTON_TOOLTIP), mouseX, mouseY);
             }
         }
     }
@@ -265,9 +261,9 @@ public class GuideScreen extends Screen {
 
             if (this.isHovered) {
                 if (this.isForward) {
-                    drawTooltip(matrixStack, new TranslatableComponent(FORWARD_BUTTON_TOOLTIP), mouseX, mouseY);
+                    renderTooltip(matrixStack, new TranslatableComponent(FORWARD_BUTTON_TOOLTIP), mouseX, mouseY);
                 } else {
-                    drawTooltip(matrixStack, new TranslatableComponent(BACKWARD_BUTTON_TOOLTIP), mouseX, mouseY);
+                    renderTooltip(matrixStack, new TranslatableComponent(BACKWARD_BUTTON_TOOLTIP), mouseX, mouseY);
                 }
             }
         }
@@ -298,7 +294,7 @@ public class GuideScreen extends Screen {
             blit(matrixStack, this.x, this.y, i, j, 19, 18, textureWidth, textureHeight);
 
             if (this.isHovered) {
-                drawTooltip(matrixStack, new TranslatableComponent(TABLE_OF_CONTENTS_TOOLTIP), mouseX, mouseY);
+                renderTooltip(matrixStack, new TranslatableComponent(TABLE_OF_CONTENTS_TOOLTIP), mouseX, mouseY);
             }
         }
     }

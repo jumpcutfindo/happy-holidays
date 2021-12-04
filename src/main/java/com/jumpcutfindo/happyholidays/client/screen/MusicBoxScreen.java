@@ -8,7 +8,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -116,10 +115,6 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
                 MusicBoxPacket.createToggleLoopRequestPacket(this.container.blockEntity.getBlockPos()));
     }
 
-    public void drawTooltip(PoseStack matrixStack, Component textComponent,  int mouseX, int mouseY) {
-        Screen.drawString(matrixStack, font, textComponent, mouseX, mouseY, -1);
-    }
-
     public class PlayStopButton extends Button {
         private static final String PLAY_BUTTON_TOOLTIP = "block.happyholidays.music_box.play_button_tooltip";
         private static final String STOP_BUTTON_TOOLTIP = "block.happyholidays.music_box.stop_button_tooltip";
@@ -149,8 +144,8 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
             blit(matrixStack, this.x, this.y, i, j, 16, 16, 256, 256);
 
             if (this.isHovered) {
-                if (this.isPlay) drawTooltip(matrixStack, new TranslatableComponent(STOP_BUTTON_TOOLTIP), mouseX, mouseY);
-                else drawTooltip(matrixStack, new TranslatableComponent(PLAY_BUTTON_TOOLTIP), mouseX, mouseY);
+                if (this.isPlay) renderTooltip(matrixStack, new TranslatableComponent(STOP_BUTTON_TOOLTIP), mouseX, mouseY);
+                else renderTooltip(matrixStack, new TranslatableComponent(PLAY_BUTTON_TOOLTIP), mouseX, mouseY);
             }
         }
 
@@ -185,7 +180,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
 
             blit(matrixStack, this.x, this.y, i, j, 16, 16, 256, 256);
 
-            if (this.isHovered) drawTooltip(matrixStack, new TranslatableComponent(LOOP_BUTTON_TOOLTIP), mouseX, mouseY);
+            if (this.isHovered) renderTooltip(matrixStack, new TranslatableComponent(LOOP_BUTTON_TOOLTIP), mouseX, mouseY);
         }
 
         public boolean isLoop() {
@@ -215,7 +210,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
 
             blit(matrixStack, this.x, this.y, i, j, 16, 16, 256, 256);
 
-            if (this.isHovered) drawTooltip(matrixStack, new TranslatableComponent(PREVIOUS_BUTTON_TOOLTIP), mouseX, mouseY);
+            if (this.isHovered) renderTooltip(matrixStack, new TranslatableComponent(PREVIOUS_BUTTON_TOOLTIP), mouseX, mouseY);
         }
     }
 
@@ -237,7 +232,7 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
 
             blit(matrixStack, this.x, this.y, i, j, 16, 16, 256, 256);
 
-            if (this.isHovered) drawTooltip(matrixStack, new TranslatableComponent(NEXT_BUTTON_TOOLTIP), mouseX, mouseY);
+            if (this.isHovered) renderTooltip(matrixStack, new TranslatableComponent(NEXT_BUTTON_TOOLTIP), mouseX, mouseY);
         }
     }
 }
