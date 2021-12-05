@@ -36,7 +36,7 @@ public class HappyHolidaysMod {
     public static final CreativeModeTab HAPPY_HOLIDAYS_GROUP = new HappyHolidaysMod.HappyHolidaysGroup("happyholidays");
 
     public HappyHolidaysMod() {
-        GeckoLibMod.DISABLE_IN_DEV = false;
+        GeckoLibMod.DISABLE_IN_DEV = true;
         GeckoLib.initialize();
 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

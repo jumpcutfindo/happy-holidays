@@ -38,7 +38,10 @@ public class GenerationHandler {
     @SubscribeEvent
     public static void handleEntitySpawningStuff(BiomeLoadingEvent event) {
         // Register spawning biomes
-        if (event.getCategory() != Biome.BiomeCategory.NETHER && event.getCategory() != Biome.BiomeCategory.OCEAN && event.getCategory() != Biome.BiomeCategory.THEEND) {
+        if (event.getCategory() != Biome.BiomeCategory.NETHER
+                && event.getCategory() != Biome.BiomeCategory.OCEAN
+                && event.getCategory() != Biome.BiomeCategory.RIVER
+                && event.getCategory() != Biome.BiomeCategory.THEEND) {
             event.getSpawns().addSpawn(MobCategory.CREATURE,
                     new MobSpawnSettings.SpawnerData(ChristmasEntities.GINGERBREAD_MAN.get(),
                             GingerbreadManEntity.SPAWN_WEIGHT, GingerbreadManEntity.MIN_SPAWN_COUNT,

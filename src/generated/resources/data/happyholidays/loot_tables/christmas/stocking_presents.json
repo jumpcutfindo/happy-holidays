@@ -238,6 +238,13 @@
           ],
           "name": "happyholidays:present_scraps"
         }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": 1.0,
+          "add": false
+        }
       ]
     }
   ]

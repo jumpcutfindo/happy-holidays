@@ -8,6 +8,7 @@ import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ChristmasBlockTags extends BlockTagsProvider {
@@ -171,6 +172,11 @@ public class ChristmasBlockTags extends BlockTagsProvider {
                 .add(ChristmasBlocks.BABY_PRESENT.get())
                 .add(ChristmasBlocks.ADULT_PRESENT.get())
                 .add(ChristmasBlocks.ELDER_PRESENT.get());
+
+        tag(ChristmasTags.Blocks.GINGERBREAD_MEN_SPAWNABLE_ON)
+                .add(Blocks.GRASS_BLOCK)
+                .add(Blocks.SAND)
+                .add(Blocks.STONE);
     }
 
     private void minecraftTags() {
