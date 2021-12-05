@@ -59,8 +59,8 @@ public class AngrySantaEntity extends BaseSantaEntity {
     public static final String ENTITY_ID = "angry_santa";
 
     // Angry Santa attack variables
-    public static final int ATTACK_PHASE_SWITCH_TIMER_MAX = 200;
-    public static final int ATTACK_PHASE_SWITCH_TIMER_MIN = 80;
+    public static final int ATTACK_PHASE_SWITCH_TIMER_MAX = 100;
+    public static final int ATTACK_PHASE_SWITCH_TIMER_MIN = 40;
 
     public static final int ATTACK_SLEIGH_CHARGE_TIME = 10;
     public static final int ATTACK_SLEIGH_INTERVAL = 40;
@@ -73,7 +73,7 @@ public class AngrySantaEntity extends BaseSantaEntity {
     public static final int ATTACK_TELEPORT_INTERVAL = 60;
     public static final int ATTACK_TELEPORT_CONSIDERATION_RADIUS = 30;
     public static final float ATTACK_TELEPORT_DAMAGE = 8.0f;
-    public static final int ATTACK_TELEPORT_DAMAGE_RADIUS = 4;
+    public static final int ATTACK_TELEPORT_DAMAGE_RADIUS = 8;
 
     // Rewards for defeating Angry Santa
     public static final int NUM_LEGENDARY_PRESENTS_MIN = 6;
@@ -176,10 +176,10 @@ public class AngrySantaEntity extends BaseSantaEntity {
     public float getAttackIntervalMultiplier() {
         int currentHealth = (int) this.getHealth();
 
-        return currentHealth >= 150 ? 1.0f
-                : currentHealth >= 100 ? 1.5f
-                : currentHealth >= 50 ? 2.0f
-                : 2.5f;
+        return currentHealth >= 150 ? 2.5f
+                : currentHealth >= 100 ? 3.0f
+                : currentHealth >= 50 ? 3.5f
+                : 4.0f;
     }
 
     public void fireHorizontalSleighs() {
@@ -378,9 +378,9 @@ public class AngrySantaEntity extends BaseSantaEntity {
         SimpleParticleType particleType = ParticleTypes.CLOUD;
 
         for (int i = 0; i < 25; i++) {
-            double d0 = (Math.random() * ATTACK_TELEPORT_DAMAGE_RADIUS) * (this.random.nextBoolean() ? 1 : -1);
+            double d0 = (Math.random() * ATTACK_TELEPORT_DAMAGE_RADIUS / this.getAttackIntervalMultiplier()) * (this.random.nextBoolean() ? 1 : -1);
             double d1 = Math.random() * 1.5D;
-            double d2 = (Math.random() * ATTACK_TELEPORT_DAMAGE_RADIUS) * (this.random.nextBoolean() ? 1 : -1);
+            double d2 = (Math.random() * ATTACK_TELEPORT_DAMAGE_RADIUS / this.getAttackIntervalMultiplier()) * (this.random.nextBoolean() ? 1 : -1);
 
             double dv0 = (Math.random() * 0.1D) + 0.25D;
             double dv1 = (Math.random() * 0.1D) + 0.25D;
