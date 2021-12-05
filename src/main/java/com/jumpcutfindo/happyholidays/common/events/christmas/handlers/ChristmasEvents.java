@@ -20,6 +20,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasStats;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
 
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
@@ -111,6 +112,8 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onGingerbreadConversion(GingerbreadConversionEvent event) {
+        if (event.getPlayer() instanceof LocalPlayer) return;
+
         if (event instanceof GingerbreadConversionEvent.ToSoggy) {
             ChristmasTriggers.GINGERBREAD_MAN_TURN_SOGGY.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof GingerbreadConversionEvent.ToDry) {
@@ -120,6 +123,8 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onSantaElfInteract(SantaElfEvent event) {
+        if (event.getPlayer() instanceof LocalPlayer) return;
+
         if (event instanceof SantaElfEvent.Summon) {
             ChristmasTriggers.SANTA_ELF_SUMMON.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof SantaElfEvent.Trade) {
@@ -135,6 +140,8 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onGrinchInteract(GrinchEvent event) {
+        if (event.getPlayer() instanceof LocalPlayer) return;
+
         if (event instanceof GrinchEvent.Encounter) {
             ChristmasTriggers.GRINCH_ENCOUNTER.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof GrinchEvent.Appease) {
@@ -144,6 +151,8 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onSantaInteract(SantaEvent event) {
+        if (event.getPlayer() instanceof LocalPlayer) return;
+
         if (event instanceof SantaEvent.AngryDie) {
             ChristmasTriggers.SANTA_ANGRY_DIE.trigger((ServerPlayer) event.getPlayer());
 
@@ -159,6 +168,8 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onStockingInteract(StockingEvent event) {
+        if (event.getPlayer() instanceof LocalPlayer) return;
+
         if (event instanceof StockingEvent.Fill) {
             ChristmasTriggers.STOCKING_FILL.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof StockingEvent.Upgrade) {
@@ -168,6 +179,8 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onChristmasStarInteract(ChristmasStarEvent event) {
+        if (event.getPlayer() instanceof LocalPlayer) return;
+
         if (event instanceof ChristmasStarEvent.PutOrnament) {
             ChristmasTriggers.STAR_PUT_ORNAMENT.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof ChristmasStarEvent.IncreaseTier) {
@@ -185,6 +198,8 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onMusicBoxPlay(MusicBoxEvent event) {
+        if (event.getPlayer() instanceof LocalPlayer) return;
+
         if (event instanceof MusicBoxEvent.Play) {
             ChristmasTriggers.PLAY_MUSIC_BOX.trigger((ServerPlayer) event.getPlayer());
         }
@@ -192,6 +207,8 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onSnowGlobeInteract(SnowGlobeEvent event) {
+        if (event.getPlayer() instanceof LocalPlayer) return;
+        
         if (event instanceof SnowGlobeEvent.Use) {
             ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
 
