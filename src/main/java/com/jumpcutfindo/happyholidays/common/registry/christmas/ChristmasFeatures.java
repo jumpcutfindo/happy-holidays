@@ -1,8 +1,9 @@
 package com.jumpcutfindo.happyholidays.common.registry.christmas;
 
-import net.minecraft.core.BlockPos;
+import java.util.List;
+
+import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
@@ -10,19 +11,5 @@ import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConf
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
 public class ChristmasFeatures {
-    public static final RandomPatchConfiguration WILD_PRESENT_GENERATION_CONFIG =
-            new RandomPatchConfiguration(16, 4, 4, () -> {
-                return Feature.SIMPLE_BLOCK.configured(
-                        new SimpleBlockConfiguration(BlockStateProvider.simple(ChristmasBlocks.BABY_PRESENT.get())))
-                        .filtered(
-                                BlockPredicate.allOf(
-                                        BlockPredicate.replaceable(),
-                                        BlockPredicate.matchesBlock(Blocks.GRASS_BLOCK, new BlockPos(0, -1, 0)),
-                                        BlockPredicate.matchesBlock(Blocks.SAND, new BlockPos(0, -1, 0))
-                                )
-                        );
-            });
-
-    public static final ConfiguredFeature<?, ?> PATCH_WILD_PRESENT =
-            Feature.RANDOM_PATCH.configured(WILD_PRESENT_GENERATION_CONFIG);
+    public static final ConfiguredFeature<RandomPatchConfiguration, ?> PATCH_WILD_PRESENTS = Feature.RANDOM_PATCH.configured(FeatureUtils.simplePatchConfiguration(Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(BlockStateProvider.simple(ChristmasBlocks.BABY_PRESENT.get()))), List.of(Blocks.GRASS_BLOCK, Blocks.SAND)));
 }
