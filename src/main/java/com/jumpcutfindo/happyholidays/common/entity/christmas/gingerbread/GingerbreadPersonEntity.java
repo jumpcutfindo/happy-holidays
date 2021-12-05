@@ -156,7 +156,7 @@ public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatabl
 
     public static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, LevelAccessor world,
                                                      MobSpawnType spawnReason, BlockPos pos, Random rand) {
-        return world.getRawBrightness(pos,0) > 8;
+        return world.getRawBrightness(pos,0) > 8 && !world.getBlockState(pos.below()).is(Blocks.WATER);
     }
 
     public static boolean isValidHeatItem(ItemStack itemStack) {
