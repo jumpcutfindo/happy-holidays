@@ -245,7 +245,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
             }
 
             // Set summon time
-            santaData.setLastSummonTime(this.level.getGameTime());
+            santaData.summoned(this.level.getGameTime());
             santaData.setDirty();
 
             // Reset naughty nice meter of players in radius
