@@ -37,7 +37,7 @@ public class SantaSavedData extends SavedData {
     }
 
     public long getNextSummonTime() {
-        return lastSummonTime + 24000;
+        return lastSummonTime + 24000 * 3;
     }
 
     public boolean canSummon(long gameTime) {
