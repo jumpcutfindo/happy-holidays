@@ -52,8 +52,8 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
         this.renderBackground(matrixStack);
         this.renderBg(matrixStack, partialTicks, mouseX, mouseY);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
-        this.renderComponentHoverEffect(matrixStack, null, mouseX, mouseY);
         this.renderTooltip(matrixStack, mouseX, mouseY);
+        this.renderComponentHoverEffect(matrixStack, null, mouseX, mouseY);
     }
 
     @Override
@@ -77,11 +77,10 @@ public class MusicBoxScreen extends AbstractContainerScreen<MusicBoxContainer> {
         int x = (this.width - this.imageWidth) / 2;
         int y = (this.height - this.imageHeight) / 2;
 
-        this.playStopButton = this.addRenderableWidget(new PlayStopButton(x + 80, y + 72, 16, 16,  (onPress) -> toggleMusic()));
         this.loopButton = this.addRenderableWidget(new LoopButton(x + 116, y + 72, 16, 16,  (onPress) -> toggleLoop()));
-
-        this.previousButton = this.addRenderableWidget(new PreviousButton(x + 62, y + 72, 16, 16, (onPress) -> previousTrack()));
         this.nextButton = this.addRenderableWidget(new NextButton(x + 98, y + 72, 16, 16, (onPress) -> nextTrack()));
+        this.playStopButton = this.addRenderableWidget(new PlayStopButton(x + 80, y + 72, 16, 16,  (onPress) -> toggleMusic()));
+        this.previousButton = this.addRenderableWidget(new PreviousButton(x + 62, y + 72, 16, 16, (onPress) -> previousTrack()));
     }
 
     public void nextTrack() {
