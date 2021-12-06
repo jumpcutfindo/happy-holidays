@@ -48,7 +48,7 @@ public class ItemLine implements IPageLine {
         if (this.isHovered) {
             ItemStack itemStack = getItemAtPos(guideScreen.mouseX, guideScreen.mouseY);
 
-            if (itemStack != null) guideScreen.drawTooltip(matrixStack, itemStack.getHoverName(), (int) guideScreen.mouseX, (int) guideScreen.mouseY);
+            if (itemStack != null) guideScreen.renderTooltip(matrixStack, itemStack.getHoverName(), (int) guideScreen.mouseX, (int) guideScreen.mouseY);
         }
     }
 

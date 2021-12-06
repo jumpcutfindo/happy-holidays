@@ -11,13 +11,23 @@ public class SantaSavedData extends SavedData {
     private boolean hasSummonedBefore;
     private boolean hasDefeatedBefore;
     private long lastSummonTime;
+    private long nextSummonTime;
 
     public SantaSavedData() {
     }
 
-    public void setLastSummonTime(long lastSummonTime) {
-        this.lastSummonTime = lastSummonTime;
+    public void summoned(long currTime) {
+        this.lastSummonTime = currTime;
+        this.nextSummonTime = currTime + 24000 * 3;
         this.hasSummonedBefore = true;
+    }
+
+    public void setNextSummonTime(long time) {
+        this.nextSummonTime = time;
+    }
+
+    private void setLastSummonTime(long time) {
+        this.lastSummonTime = time;
     }
 
     public boolean isDefeated() {
@@ -37,16 +47,17 @@ public class SantaSavedData extends SavedData {
     }
 
     public long getNextSummonTime() {
-        return lastSummonTime + 24000;
+        return this.nextSummonTime;
     }
 
     public boolean canSummon(long gameTime) {
-        return gameTime > getNextSummonTime();
+        return gameTime > this.nextSummonTime;
     }
 
     @Override
     public CompoundTag save(CompoundTag nbt) {
         nbt.putLong("LastSummonTime", lastSummonTime);
+        nbt.putLong("NextSummonTime", nextSummonTime);
         nbt.putBoolean("HasSummonedBefore", hasSummonedBefore);
         nbt.putBoolean("HasDefeatedBefore", hasDefeatedBefore);
 
@@ -56,6 +67,7 @@ public class SantaSavedData extends SavedData {
     public static SantaSavedData createFromTag(CompoundTag tag) {
         SantaSavedData newData = new SantaSavedData();
 
+        newData.setNextSummonTime(tag.getLong("NextSummonTime"));
         newData.setLastSummonTime(tag.getLong("LastSummonTime"));
         newData.setHasSummonedBefore(tag.getBoolean("HasSummonedBefore"));
         newData.setHasDefeatedBefore(tag.getBoolean("HasDefeatedBefore"));

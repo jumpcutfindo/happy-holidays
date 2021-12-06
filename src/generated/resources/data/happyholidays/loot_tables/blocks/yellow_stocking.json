@@ -15,8 +15,7 @@
         {
           "condition": "minecraft:survives_explosion"
         }
-      ],
-      "functions": []
+      ]
     },
     {
       "name": "yellow_stocking_enchanted",
@@ -44,8 +43,7 @@
             "enchanted": "true"
           }
         }
-      ],
-      "functions": []
+      ]
     }
   ]
 }

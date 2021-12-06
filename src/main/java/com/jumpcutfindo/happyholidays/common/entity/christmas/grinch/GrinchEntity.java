@@ -73,10 +73,10 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
     public static final double GRINCH_SPAWN_CHANCE = 0.01d;
     public static final int MAX_GRINCHES_IN_VICINITY = 3;
 
-    private static final int BREAK_PRESENT_ANIM_DURATION = 80;
-    private static final int BREAK_PRESENT_INTERVAL = 100;
+    private static final int BREAK_PRESENT_ANIM_DURATION = 40;
+    private static final int BREAK_PRESENT_INTERVAL = 50;
     private static final float AVOID_PLAYER_RADIUS = 6.0f;
-    private static final int GRINCH_TIME_TO_DESPAWN = 200;
+    private static final int GRINCH_TIME_TO_DESPAWN = 100;
 
     public static final int PRESENT_SEARCH_RADIUS = 8;
     public static final int PRESENT_SEARCH_INTERVAL = 100;

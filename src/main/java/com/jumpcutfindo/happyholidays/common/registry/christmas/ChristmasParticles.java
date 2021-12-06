@@ -19,7 +19,7 @@ import com.jumpcutfindo.happyholidays.common.particle.christmas.star.ChristmasSt
 
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

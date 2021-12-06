@@ -153,7 +153,7 @@ public class FestiveCandyCaneWallBlock extends CandyCaneWallBlock {
     }
     public BlockState updateShape(BlockState p_58014_, Direction p_58015_, BlockState p_58016_, LevelAccessor p_58017_, BlockPos p_58018_, BlockPos p_58019_) {
         if (p_58014_.getValue(WATERLOGGED)) {
-            p_58017_.getLiquidTicks().scheduleTick(p_58018_, Fluids.WATER, Fluids.WATER.getTickDelay(p_58017_));
+            p_58017_.scheduleTick(p_58018_, Fluids.WATER, Fluids.WATER.getTickDelay(p_58017_));
         }
 
         if (p_58015_ == Direction.DOWN) {

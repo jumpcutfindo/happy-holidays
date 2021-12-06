@@ -6,6 +6,7 @@ import java.util.Random;
 
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
@@ -156,7 +157,7 @@ public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatabl
 
     public static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, LevelAccessor world,
                                                      MobSpawnType spawnReason, BlockPos pos, Random rand) {
-        return world.getRawBrightness(pos,0) > 8;
+        return world.getRawBrightness(pos,0) > 8 && world.getBlockState(pos.below()).is(ChristmasTags.Blocks.GINGERBREAD_MEN_SPAWNABLE_ON);
     }
 
     public static boolean isValidHeatItem(ItemStack itemStack) {

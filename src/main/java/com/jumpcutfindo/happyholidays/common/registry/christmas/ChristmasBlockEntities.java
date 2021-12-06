@@ -1,15 +1,15 @@
 package com.jumpcutfindo.happyholidays.common.registry.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.GiftWrapperBlockEntity;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.StockingBlockEntity;
+import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ChristmasBlockEntities {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPE =

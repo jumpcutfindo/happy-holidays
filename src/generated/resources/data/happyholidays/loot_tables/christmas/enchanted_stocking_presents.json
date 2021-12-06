@@ -326,6 +326,17 @@
           ],
           "name": "happyholidays:present_scraps"
         }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "type": "minecraft:uniform",
+            "min": 2.0,
+            "max": 12.0
+          },
+          "add": false
+        }
       ]
     }
   ]

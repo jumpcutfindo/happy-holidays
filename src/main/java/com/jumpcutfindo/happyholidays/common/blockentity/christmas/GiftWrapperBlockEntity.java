@@ -111,12 +111,10 @@ public class GiftWrapperBlockEntity extends BaseContainerBlockEntity implements 
     }
 
     @Override
-    public CompoundTag save(CompoundTag nbt) {
-        super.save(nbt);
+    protected void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
 
-        ContainerHelper.saveAllItems(nbt, this.items);
-
-        return nbt;
+        ContainerHelper.saveAllItems(tag, this.items);
     }
 
     public static ItemStack assembleGift(Player playerEntity, Container giftWrapperInv) {

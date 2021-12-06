@@ -15,7 +15,7 @@ import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SetupHandler {

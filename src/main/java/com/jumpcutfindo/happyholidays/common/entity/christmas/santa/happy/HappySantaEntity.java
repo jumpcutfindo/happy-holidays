@@ -59,8 +59,8 @@ public class HappySantaEntity extends BaseSantaEntity {
     public static final int GIFT_SUMMON_RADIUS = 20;
     public static final int GIFT_SUMMON_HEIGHT = 5;
     public static final int GIFT_LIFESPAN = 160;
-    public static final int GIFT_SPAWN_INTERVAL_MIN = 5;
-    public static final int GIFT_SPAWN_INTERVAL_MAX = 10;
+    public static final int GIFT_SPAWN_INTERVAL_MIN = 3;
+    public static final int GIFT_SPAWN_INTERVAL_MAX = 6;
 
     // Gift spawn thresholds. Basic = 75%, Rare = 20% and Legendary = 5%
     public static final double BASIC_GIFT_SPAWN_CHANCE_THRESHOLD = 1.0;

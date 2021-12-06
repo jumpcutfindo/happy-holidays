@@ -35,6 +35,8 @@ public class ChristmasTags {
         public static final Tags.IOptionalNamedTag<Block> CANDY_CANE_BLOCKS = blockTag("candy_cane_blocks");
 
         public static final Tags.IOptionalNamedTag<Block> STAR_AFFECTED_BLOCKS = blockTag("star_affected_blocks");
+
+        public static final Tags.IOptionalNamedTag<Block> GINGERBREAD_MEN_SPAWNABLE_ON = blockTag("gingerbread_men_spawnable_on");
     }
 
     public class Items {
