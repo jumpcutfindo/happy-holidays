@@ -5,7 +5,7 @@ import com.jumpcutfindo.happyholidays.common.effect.christmas.GenerosityOfChrist
 import com.jumpcutfindo.happyholidays.common.effect.christmas.SpiritOfChristmasEffect;
 
 import net.minecraft.world.effect.MobEffect;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

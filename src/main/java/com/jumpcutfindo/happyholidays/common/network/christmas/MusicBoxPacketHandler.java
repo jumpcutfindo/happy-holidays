@@ -7,7 +7,7 @@ import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlock
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraftforge.network.NetworkEvent;
 
 public class MusicBoxPacketHandler {
     public static void handlePacket(MusicBoxPacket pkt, Supplier<NetworkEvent.Context> ctx) {

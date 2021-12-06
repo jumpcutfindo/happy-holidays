@@ -112,7 +112,7 @@ public class PresentBlock extends Block implements SimpleWaterloggedBlock, Chris
     public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState1,
                                   LevelAccessor world, BlockPos pos1, BlockPos pos2) {
         if (blockState.getValue(WATERLOGGED)) {
-            world.getLiquidTicks().scheduleTick(pos1, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+            world.scheduleTick(pos1, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
 
         return this.canSurvive(blockState, world, pos1) ? blockState : Blocks.AIR.defaultBlockState();
