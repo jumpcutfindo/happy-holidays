@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.client;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SantaElfOutfitRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SantaOutfitRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SnowmanOutfitRenderer;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetBlockColor;
@@ -50,6 +51,7 @@ public class ClientSetup {
     public static void registerOutfitRenderers(final EntityRenderersEvent.AddLayers event) {
         GeoArmorRenderer.registerArmorRenderer(OutfitItem.class, new SantaOutfitRenderer());
         GeoArmorRenderer.registerArmorRenderer(SnowmanOutfitItem.class, new SnowmanOutfitRenderer());
+        GeoArmorRenderer.registerArmorRenderer(OutfitItem.class, new SantaElfOutfitRenderer());
     }
 
     @SubscribeEvent

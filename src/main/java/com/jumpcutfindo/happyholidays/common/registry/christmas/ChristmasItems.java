@@ -119,6 +119,15 @@ public class ChristmasItems {
     public static final RegistryObject<Item> SANTA_BOOTS =
             ITEMS.register(ChristmasOutfits.SANTA_OUTFIT.getFeetId(), ChristmasOutfits.SANTA_OUTFIT::getFeet);
 
+    public static final RegistryObject<Item> SANTA_ELF_HAT =
+            ITEMS.register(ChristmasOutfits.SANTA_ELF_OUTFIT.getHeadpieceId(), ChristmasOutfits.SANTA_ELF_OUTFIT::getHeadpiece);
+    public static final RegistryObject<Item> SANTA_ELF_TOP =
+            ITEMS.register(ChristmasOutfits.SANTA_ELF_OUTFIT.getTopId(), ChristmasOutfits.SANTA_ELF_OUTFIT::getTop);
+    public static final RegistryObject<Item> SANTA_ELF_BOTTOM =
+            ITEMS.register(ChristmasOutfits.SANTA_ELF_OUTFIT.getBottomId(), ChristmasOutfits.SANTA_ELF_OUTFIT::getBottom);
+    public static final RegistryObject<Item> SANTA_ELF_BOOTS =
+            ITEMS.register(ChristmasOutfits.SANTA_ELF_OUTFIT.getFeetId(), ChristmasOutfits.SANTA_ELF_OUTFIT::getFeet);
+
     public static final RegistryObject<Item> SNOWMAN_HEADPIECE =
             ITEMS.register(ChristmasOutfits.SNOWMAN_OUTFIT.getHeadpieceId(), ChristmasOutfits.SNOWMAN_OUTFIT::getHeadpiece);
     public static final RegistryObject<Item> SNOWMAN_TOP =
