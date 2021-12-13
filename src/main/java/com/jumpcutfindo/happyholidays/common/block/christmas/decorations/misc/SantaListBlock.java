@@ -59,19 +59,16 @@ public class SantaListBlock extends WallDecorationBlock implements ChristmasLike
         if (!world.isClientSide()) {
             if (naughtyNiceOptional.isPresent()) {
                 NaughtyNiceMeter naughtyNiceMeter = (NaughtyNiceMeter) naughtyNiceOptional.get();
+                NaughtyNiceMeter.State meterState = naughtyNiceMeter.getState();
 
                 GameplayMessage message = null;
 
-                if (naughtyNiceMeter.isMaxNaughty()) {
-                    message = new GameplayMessage(MessageType.NAUGHTY, CHAT_NAUGHTY_MAX);
-                } else if (naughtyNiceMeter.isNaughty()) {
-                    message = new GameplayMessage(MessageType.NAUGHTY, CHAT_NAUGHTY);
-                } else if (naughtyNiceMeter.isNeutral()) {
-                    message = new GameplayMessage(MessageType.NEUTRAL, CHAT_NEUTRAL);
-                } else if (naughtyNiceMeter.isMaxNice()) {
-                    message = new GameplayMessage(MessageType.NICE, CHAT_NICE_MAX);
-                } else if (naughtyNiceMeter.isNice()) {
-                    message = new GameplayMessage(MessageType.NICE, CHAT_NICE);
+                switch (meterState) {
+                case MAX_NAUGHTY -> message = new GameplayMessage(MessageType.NAUGHTY, CHAT_NAUGHTY_MAX);
+                case NAUGHTY -> message = new GameplayMessage(MessageType.NAUGHTY, CHAT_NAUGHTY);
+                case NEUTRAL -> message = new GameplayMessage(MessageType.NEUTRAL, CHAT_NEUTRAL);
+                case MAX_NICE -> message = new GameplayMessage(MessageType.NICE, CHAT_NICE_MAX);
+                case NICE -> message = new GameplayMessage(MessageType.NICE, CHAT_NICE);
                 }
 
                 if (message != null) Messenger.sendChatMessage(message, playerEntity);

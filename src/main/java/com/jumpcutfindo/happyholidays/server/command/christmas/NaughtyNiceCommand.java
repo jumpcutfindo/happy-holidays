@@ -82,16 +82,23 @@ public class NaughtyNiceCommand {
     }
 
     private static Component retrieveTextState(NaughtyNiceMeter naughtyNiceMeter) {
-        if (naughtyNiceMeter.isMaxNaughty()) {
+        NaughtyNiceMeter.State meterState = naughtyNiceMeter.getState();
+        switch (meterState) {
+        case MAX_NAUGHTY -> {
             return new TextComponent("MAX_NAUGHTY").withStyle(ChatFormatting.RED);
-        } else if (naughtyNiceMeter.isNaughty()) {
+        }
+        case NAUGHTY -> {
             return new TextComponent("NAUGHTY").withStyle(ChatFormatting.RED);
-        } else if (naughtyNiceMeter.isNeutral()) {
+        }
+        case NEUTRAL -> {
             return new TextComponent("NEUTRAL").withStyle(ChatFormatting.GRAY);
-        } else if (naughtyNiceMeter.isMaxNice()) {
+        }
+        case MAX_NICE -> {
             return new TextComponent("MAX_NICE").withStyle(ChatFormatting.AQUA);
-        } else  {
+        }
+        default -> {
             return new TextComponent("NICE").withStyle(ChatFormatting.AQUA);
+        }
         }
     }
 }
