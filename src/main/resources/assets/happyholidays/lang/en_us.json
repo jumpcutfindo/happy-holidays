@@ -378,9 +378,9 @@
     "chat.happyholidays.santa_list.naughty": "Santa is displeased with you.",
     "chat.happyholidays.santa_list.max_naughty": "Santa is extremely displeased with you!",
 
-    "commands.happyholidays.christmas.naughty_nice.retrieval_fail": "Unable to get the naughty-nice meter of %s!",
-    "commands.happyholidays.christmas.naughty_nice.query": "%s has naughty-nice value of %s (%s)",
-    "commands.happyholidays.christmas.naughty_nice.set": "Set naughty-nice meter of %s to value %s (%s)",
+    "commands.happyholidays.christmas.naughty_nice.retrieval_fail": "Unable to get the naughty nice meter of %s!",
+    "commands.happyholidays.christmas.naughty_nice.query": "%s has naughty nice value of %s (%s)",
+    "commands.happyholidays.christmas.naughty_nice.set": "Set naughty nice meter of %s to value %s (%s)",
 
     "effect.happyholidays.spirit_of_christmas": "Christmas Spirit",
     "effect.happyholidays.generosity_of_christmas": "Christmas Generosity",
