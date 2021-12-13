@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.handlers;
+package com.jumpcutfindo.happyholidays.handlers;
 
 import java.util.Collection;
 

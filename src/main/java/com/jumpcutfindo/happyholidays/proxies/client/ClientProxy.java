@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.proxies.client;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
-import com.jumpcutfindo.happyholidays.common.handlers.GuideHandler;
+import com.jumpcutfindo.happyholidays.handlers.GuideHandler;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.proxies.Proxy;
 

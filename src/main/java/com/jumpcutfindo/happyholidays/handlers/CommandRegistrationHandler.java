@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.handlers;
+package com.jumpcutfindo.happyholidays.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.server.command.HappyHolidaysCommand;
