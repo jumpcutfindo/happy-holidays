@@ -380,7 +380,8 @@
 
     "commands.happyholidays.christmas.naughty_nice.retrieval_fail": "Unable to get the naughty nice meter of %s!",
     "commands.happyholidays.christmas.naughty_nice.query": "%s has naughty nice value of %s (%s)",
-    "commands.happyholidays.christmas.naughty_nice.set": "Set naughty nice meter of %s to value %s (%s)",
+    "commands.happyholidays.christmas.naughty_nice.set": "Set naughty nice meter of %s players to value %s (%s)",
+    "commands.happyholidays.christmas.naughty_nice.average": "Average naughty nice value of %s selected players is %s (%s)",
 
     "effect.happyholidays.spirit_of_christmas": "Christmas Spirit",
     "effect.happyholidays.generosity_of_christmas": "Christmas Generosity",

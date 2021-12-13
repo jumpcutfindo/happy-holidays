@@ -1,5 +1,6 @@
 package com.jumpcutfindo.happyholidays.server.command.christmas;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
@@ -21,6 +22,7 @@ public class NaughtyNiceCommand {
     public static final String NAUGHTY_NICE_QUERY_MESSAGE = "commands.happyholidays.christmas.naughty_nice.query";
     public static final String NAUGHTY_NICE_FAIL_RETRIEVAL = "commands.happyholidays.christmas.naughty_nice.retrieval_fail";
     public static final String NAUGHTY_NICE_SET = "commands.happyholidays.christmas.naughty_nice.set";
+    public static final String NAUGHTY_NICE_AVERAGE = "commands.happyholidays.christmas.naughty_nice.average";
 
     public static ArgumentBuilder<CommandSourceStack, ?> register() {
         return Commands.literal("naughtyNice").requires((player) -> player.hasPermission(Commands.LEVEL_GAMEMASTERS))
@@ -28,9 +30,36 @@ public class NaughtyNiceCommand {
                                 .then(Commands.argument("target", EntityArgument.player()).executes(command -> queryNaughtyNice(command.getSource(), EntityArgument.getPlayer(command, "target"))))
                 )
                 .then(Commands.literal("set")
-                        .then(Commands.argument("target", EntityArgument.player()).then(Commands.argument("value", IntegerArgumentType.integer()).executes(command -> setNaughtyNice(command.getSource(), EntityArgument.getPlayer(command, "target"), IntegerArgumentType.getInteger(command, "value"))))
+                        .then(Commands.argument("targets", EntityArgument.players()).then(Commands.argument("value", IntegerArgumentType.integer()).executes(command -> setNaughtyNice(command.getSource(), EntityArgument.getPlayers(command, "targets"), IntegerArgumentType.getInteger(command, "value")))))
                 )
+                .then(Commands.literal("average")
+                        .then(Commands.argument("targets", EntityArgument.players()).executes(command -> averageNaughtyNice(command.getSource(), EntityArgument.getPlayers(command, "targets"))))
         );
+    }
+
+    private static int averageNaughtyNice(CommandSourceStack commandSourceStack, Collection<ServerPlayer> serverPlayers) {
+        int total = 0;
+        int playerCount = serverPlayers.size();
+
+        for (ServerPlayer serverPlayer : serverPlayers) {
+
+            Optional<INaughtyNiceHandler> naughtyNiceCapability =
+                    serverPlayer.getCapability(CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY).resolve();
+
+            if (naughtyNiceCapability.isPresent()) {
+                NaughtyNiceMeter naughtyNiceMeter = (NaughtyNiceMeter) naughtyNiceCapability.get();
+                total += naughtyNiceMeter.getValue();
+            }
+        }
+
+        int average = total / playerCount;
+
+        NaughtyNiceMeter tempMeter = new NaughtyNiceMeter();
+        tempMeter.setValue(average);
+
+        commandSourceStack.sendSuccess(new TranslatableComponent(NAUGHTY_NICE_AVERAGE, playerCount, average, retrieveTextState(tempMeter)), false);
+
+        return average;
     }
 
     private static int queryNaughtyNice(CommandSourceStack commandSourceStack, ServerPlayer serverPlayer) {
@@ -53,28 +82,35 @@ public class NaughtyNiceCommand {
         return 0;
     }
 
-    private static int setNaughtyNice(CommandSourceStack commandSourceStack, ServerPlayer serverPlayer, int value) {
+    private static int setNaughtyNice(CommandSourceStack commandSourceStack, Collection<ServerPlayer> serverPlayers, int value) {
         int finalValue = value;
+
+        // Clamp values so they don't exceed the expected amounts
         if (value <  NaughtyNiceMeter.VALUE_NAUGHTY_MAX) finalValue = NaughtyNiceMeter.VALUE_NAUGHTY_MAX;
         else if (value > NaughtyNiceMeter.VALUE_NICE_MAX) finalValue = NaughtyNiceMeter.VALUE_NICE_MAX;
 
-        Optional<INaughtyNiceHandler> naughtyNiceCapability =
-                serverPlayer.getCapability(CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY).resolve();
+        int playerCount = 0;
+        Component naughtyNiceState = null;
 
-        if (naughtyNiceCapability.isPresent()) {
-            NaughtyNiceMeter naughtyNiceMeter = (NaughtyNiceMeter) naughtyNiceCapability.get();
-            naughtyNiceMeter.setValue(finalValue);
+        for (ServerPlayer serverPlayer : serverPlayers) {
+            Optional<INaughtyNiceHandler> naughtyNiceCapability =
+                    serverPlayer.getCapability(CapabilityNaughtyNice.NAUGHTY_NICE_CAPABILITY).resolve();
 
-            Component playerName = serverPlayer.getDisplayName();
-            Component naughtyNiceState = retrieveTextState(naughtyNiceMeter);
+            if (naughtyNiceCapability.isPresent()) {
+                NaughtyNiceMeter naughtyNiceMeter = (NaughtyNiceMeter) naughtyNiceCapability.get();
+                naughtyNiceMeter.setValue(finalValue);
 
-            commandSourceStack.sendSuccess(new TranslatableComponent(NAUGHTY_NICE_SET, playerName, finalValue, naughtyNiceState), true);
-            return finalValue;
-        } else {
-            handleFailure(commandSourceStack, serverPlayer);
+                naughtyNiceState = retrieveTextState(naughtyNiceMeter);
+
+                playerCount++;
+            } else {
+                handleFailure(commandSourceStack, serverPlayer);
+            }
         }
 
-        return 0;
+        commandSourceStack.sendSuccess(new TranslatableComponent(NAUGHTY_NICE_SET, playerCount, finalValue, naughtyNiceState), true);
+
+        return finalValue;
     }
 
     private static void handleFailure(CommandSourceStack commandSourceStack, ServerPlayer serverPlayer) {
