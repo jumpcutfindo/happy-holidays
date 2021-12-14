@@ -223,11 +223,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
         if (this.level != null && !this.level.isClientSide()) {
             ServerLevel serverWorld = (ServerLevel) this.level;
 
-            SantaSavedData santaData = serverWorld.getDataStorage().computeIfAbsent(
-                    SantaSavedData::createFromTag,
-                    SantaSavedData::new,
-                    SantaSavedData.DATA_NAME
-            );
+            SantaSavedData santaData = SantaSavedData.retrieve(serverWorld);
 
             this.santaAOE = new AABB(this.getBlockPos()).inflate(HappySantaEntity.NAUGHTY_NICE_CONSIDERATION_RADIUS);
 

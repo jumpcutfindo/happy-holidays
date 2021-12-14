@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.server.data;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 
 public class SantaSavedData extends SavedData {
@@ -73,5 +74,13 @@ public class SantaSavedData extends SavedData {
         newData.setHasDefeatedBefore(tag.getBoolean("HasDefeatedBefore"));
 
         return newData;
+    }
+
+    public static SantaSavedData retrieve(ServerLevel serverLevel) {
+        return serverLevel.getDataStorage().computeIfAbsent(
+                SantaSavedData::createFromTag,
+                SantaSavedData::new,
+                SantaSavedData.DATA_NAME
+        );
     }
 }

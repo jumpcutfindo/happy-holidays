@@ -84,11 +84,7 @@ public class BaseSantaEntity extends PathfinderMob implements IAnimatable, IChri
     }
 
     public void onDefeat(ServerLevel serverLevel) {
-        SantaSavedData santaData = serverLevel.getDataStorage().computeIfAbsent(
-                SantaSavedData::createFromTag,
-                SantaSavedData::new,
-                SantaSavedData.DATA_NAME
-        );
+        SantaSavedData santaData = SantaSavedData.retrieve(serverLevel);
 
         santaData.setDefeated();
     }

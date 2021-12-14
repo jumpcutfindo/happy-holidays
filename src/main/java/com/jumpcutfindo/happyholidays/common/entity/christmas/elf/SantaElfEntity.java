@@ -439,11 +439,7 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
 
         ServerLevel serverLevel = (ServerLevel) this.level;
 
-        SantaSavedData santaData = serverLevel.getDataStorage().computeIfAbsent(
-                SantaSavedData::createFromTag,
-                SantaSavedData::new,
-                SantaSavedData.DATA_NAME
-        );
+        SantaSavedData santaData = SantaSavedData.retrieve(serverLevel);
 
         return santaData.isDefeated();
     }
