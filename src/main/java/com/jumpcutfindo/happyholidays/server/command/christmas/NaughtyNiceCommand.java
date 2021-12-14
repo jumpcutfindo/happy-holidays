@@ -32,9 +32,12 @@ public class NaughtyNiceCommand {
                 .then(Commands.literal("set")
                         .then(Commands.argument("targets", EntityArgument.players()).then(Commands.argument("value", IntegerArgumentType.integer()).executes(command -> setNaughtyNice(command.getSource(), EntityArgument.getPlayers(command, "targets"), IntegerArgumentType.getInteger(command, "value")))))
                 )
+                .then(Commands.literal("reset")
+                        .then(Commands.argument("targets", EntityArgument.players()).executes(command -> resetNaughtyNice(command.getSource(), EntityArgument.getPlayers(command, "targets"))))
+                )
                 .then(Commands.literal("average")
                         .then(Commands.argument("targets", EntityArgument.players()).executes(command -> averageNaughtyNice(command.getSource(), EntityArgument.getPlayers(command, "targets"))))
-        );
+                );
     }
 
     private static int averageNaughtyNice(CommandSourceStack commandSourceStack, Collection<ServerPlayer> serverPlayers) {
@@ -111,6 +114,10 @@ public class NaughtyNiceCommand {
         commandSourceStack.sendSuccess(new TranslatableComponent(NAUGHTY_NICE_SET, playerCount, finalValue, naughtyNiceState), true);
 
         return finalValue;
+    }
+
+    private static int resetNaughtyNice(CommandSourceStack commandSourceStack, Collection<ServerPlayer> serverPlayers) {
+        return setNaughtyNice(commandSourceStack, serverPlayers, 0);
     }
 
     private static void handleFailure(CommandSourceStack commandSourceStack, ServerPlayer serverPlayer) {
