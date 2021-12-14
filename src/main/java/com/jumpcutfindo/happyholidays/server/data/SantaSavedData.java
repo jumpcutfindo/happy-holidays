@@ -9,17 +9,20 @@ import net.minecraft.world.level.saveddata.SavedData;
 public class SantaSavedData extends SavedData {
     public static final String DATA_NAME = HappyHolidaysMod.MOD_ID + "_santa";
 
+    private static final long SUMMON_COOLDOWN = 72000; // 3 Minecraft days is the default
+
     private boolean hasSummonedBefore;
     private boolean hasDefeatedBefore;
     private long lastSummonTime;
     private long nextSummonTime;
+    private long summonCooldown = SUMMON_COOLDOWN;
 
     public SantaSavedData() {
     }
 
     public void summoned(long currTime) {
         this.lastSummonTime = currTime;
-        this.nextSummonTime = currTime + 24000 * 3;
+        this.nextSummonTime = currTime + summonCooldown;
         this.hasSummonedBefore = true;
     }
 
@@ -47,6 +50,10 @@ public class SantaSavedData extends SavedData {
         this.hasDefeatedBefore = hasDefeatedBefore;
     }
 
+    public void setSummonCooldown(long summonCooldown) {
+        this.summonCooldown = summonCooldown;
+    }
+
     public long getNextSummonTime() {
         return this.nextSummonTime;
     }
@@ -61,6 +68,7 @@ public class SantaSavedData extends SavedData {
         nbt.putLong("NextSummonTime", nextSummonTime);
         nbt.putBoolean("HasSummonedBefore", hasSummonedBefore);
         nbt.putBoolean("HasDefeatedBefore", hasDefeatedBefore);
+        nbt.putLong("SummonCooldown", summonCooldown);
 
         return nbt;
     }
@@ -72,6 +80,7 @@ public class SantaSavedData extends SavedData {
         newData.setLastSummonTime(tag.getLong("LastSummonTime"));
         newData.setHasSummonedBefore(tag.getBoolean("HasSummonedBefore"));
         newData.setHasDefeatedBefore(tag.getBoolean("HasDefeatedBefore"));
+        newData.setSummonCooldown(tag.getLong("SummonCooldown"));
 
         return newData;
     }
