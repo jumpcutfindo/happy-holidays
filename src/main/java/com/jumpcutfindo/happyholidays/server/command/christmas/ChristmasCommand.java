@@ -8,6 +8,7 @@ import net.minecraft.commands.CommandSourceStack;
 public class ChristmasCommand {
     public static ArgumentBuilder<CommandSourceStack, ?> register() {
         return LiteralArgumentBuilder.<CommandSourceStack>literal("christmas")
-                .then(NaughtyNiceCommand.register());
+                .then(NaughtyNiceCommand.register())
+                .then(SantaSummonCommand.register());
     }
 }

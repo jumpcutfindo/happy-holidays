@@ -9,7 +9,7 @@ import net.minecraft.world.level.saveddata.SavedData;
 public class SantaSavedData extends SavedData {
     public static final String DATA_NAME = HappyHolidaysMod.MOD_ID + "_santa";
 
-    private static final long SUMMON_COOLDOWN = 72000; // 3 Minecraft days is the default
+    public static final long SUMMON_COOLDOWN = 72000; // 3 Minecraft days is the default
 
     private boolean hasSummonedBefore;
     private boolean hasDefeatedBefore;
@@ -58,6 +58,14 @@ public class SantaSavedData extends SavedData {
         return this.nextSummonTime;
     }
 
+    public long getLastSummonTime() {
+        return this.lastSummonTime;
+    }
+
+    public long getSummonCooldown() {
+        return this.summonCooldown;
+    }
+
     public boolean canSummon(long gameTime) {
         return gameTime > this.nextSummonTime;
     }
@@ -80,7 +88,9 @@ public class SantaSavedData extends SavedData {
         newData.setLastSummonTime(tag.getLong("LastSummonTime"));
         newData.setHasSummonedBefore(tag.getBoolean("HasSummonedBefore"));
         newData.setHasDefeatedBefore(tag.getBoolean("HasDefeatedBefore"));
-        newData.setSummonCooldown(tag.getLong("SummonCooldown"));
+
+        if (tag.contains("SummonCooldown")) newData.setSummonCooldown(tag.getLong("SummonCooldown"));
+        else newData.setSummonCooldown(SUMMON_COOLDOWN);
 
         return newData;
     }
