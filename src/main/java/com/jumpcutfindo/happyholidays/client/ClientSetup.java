@@ -5,8 +5,9 @@ import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SantaElfOutfit
 import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SantaOutfitRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SnowmanOutfitRenderer;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetBlockColor;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.OutfitItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.SnowmanOutfitItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SantaElfOutfitItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SantaOutfitItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SnowmanOutfitItem;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumBlueParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumGoldParticle;
 import com.jumpcutfindo.happyholidays.common.particle.christmas.medium.ChristmasMediumGreenParticle;
@@ -49,9 +50,9 @@ public class ClientSetup {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerOutfitRenderers(final EntityRenderersEvent.AddLayers event) {
-        GeoArmorRenderer.registerArmorRenderer(OutfitItem.class, new SantaOutfitRenderer());
+        GeoArmorRenderer.registerArmorRenderer(SantaElfOutfitItem.class, new SantaElfOutfitRenderer());
+        GeoArmorRenderer.registerArmorRenderer(SantaOutfitItem.class, new SantaOutfitRenderer());
         GeoArmorRenderer.registerArmorRenderer(SnowmanOutfitItem.class, new SnowmanOutfitRenderer());
-        GeoArmorRenderer.registerArmorRenderer(OutfitItem.class, new SantaElfOutfitRenderer());
     }
 
     @SubscribeEvent

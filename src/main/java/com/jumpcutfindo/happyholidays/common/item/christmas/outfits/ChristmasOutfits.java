@@ -1,23 +1,34 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.outfits;
 
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SantaElfOutfitItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SantaOutfitItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SnowmanOutfitItem;
+
 public class ChristmasOutfits {
     public static final Outfit SANTA_OUTFIT = Outfit.Builder.start()
             .material("santa")
-            .headpiece("santa_hat").top("santa_top").bottom("santa_bottom").feet("santa_boots")
+            .headpiece("santa_hat", SantaOutfitItem::new)
+            .top("santa_top", SantaOutfitItem::new)
+            .bottom("santa_bottom", SantaOutfitItem::new)
+            .feet("santa_boots", SantaOutfitItem::new)
             .finish();
 
     public static final Outfit SANTA_ELF_OUTFIT = Outfit.Builder.start()
             .material("santa_elf")
-            .headpiece("santa_elf_hat").top("santa_elf_top").bottom("santa_elf_bottom").feet("santa_elf_boots")
+            .headpiece("santa_elf_hat", SantaElfOutfitItem::new)
+            .top("santa_elf_top", SantaElfOutfitItem::new)
+            .bottom("santa_elf_bottom", SantaElfOutfitItem::new)
+            .feet("santa_elf_boots", SantaElfOutfitItem::new)
             .finish();
 
     public static final Outfit SNOWMAN_OUTFIT = Outfit.Builder.start()
             .material("snowman")
-            .headpieceSpecial("snowman_headpiece", SnowmanOutfitItem::new)
-            .topSpecial("snowman_top", SnowmanOutfitItem::new)
-            .bottomSpecial("snowman_bottom", SnowmanOutfitItem::new)
+            .headpiece("snowman_headpiece", SnowmanOutfitItem::new)
+            .top("snowman_top", SnowmanOutfitItem::new)
+            .bottom("snowman_bottom", SnowmanOutfitItem::new)
             .finish();
 
+    /*
     public static final Outfit REINDEER_OUTFIT = Outfit.Builder.start()
             .material("reindeer")
             .headpiece("reindeer_headpiece").top("reindeer_top").bottom("reindeer_bottom").feet("reindeer_feet")
@@ -32,4 +43,5 @@ public class ChristmasOutfits {
             .material("gingerbread")
             .headpiece("gingerbread_headpiece").top("gingerbread_top").bottom("gingerbread_bottom").feet("gingerbread_shoes")
             .finish();
+     */
 }

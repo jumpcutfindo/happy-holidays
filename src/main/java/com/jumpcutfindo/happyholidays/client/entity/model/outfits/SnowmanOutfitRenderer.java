@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.client.entity.model.outfits;
 
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.SnowmanOutfitItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SnowmanOutfitItem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
