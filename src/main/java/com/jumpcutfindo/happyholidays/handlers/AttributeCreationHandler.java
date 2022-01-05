@@ -5,6 +5,7 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.Ginger
 import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.SoggyGingerbreadManEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.NutcrackerEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 
@@ -22,5 +23,6 @@ public class AttributeCreationHandler {
         event.put(ChristmasEntities.GRINCH.get(), GrinchEntity.ENTITY_ATTRIBUTES);
         event.put(ChristmasEntities.ANGRY_SANTA.get(), BaseSantaEntity.ENTITY_ATTRIBUTES);
         event.put(ChristmasEntities.HAPPY_SANTA.get(), BaseSantaEntity.ENTITY_ATTRIBUTES);
+        event.put(ChristmasEntities.NUTCRACKER.get(), NutcrackerEntity.ENTITY_ATTRIBUTES);
     }
 }

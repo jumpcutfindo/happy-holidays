@@ -6,6 +6,7 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.Ginger
 import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.GingerbreadPersonEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.SoggyGingerbreadManEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.NutcrackerEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.AngrySantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.ExplosivePresentEntity;
@@ -64,6 +65,13 @@ public class ChristmasEntities {
                     () -> EntityType.Builder.of(AngrySantaEntity::new, MobCategory.MISC)
                             .sized(BaseSantaEntity.ENTITY_BOX_SIZE, BaseSantaEntity.ENTITY_BOX_HEIGHT)
                             .build(AngrySantaEntity.ENTITY_ID)
+            );
+
+    public static final RegistryObject<EntityType<NutcrackerEntity>> NUTCRACKER =
+            ENTITY_TYPES.register(NutcrackerEntity.ENTITY_ID,
+                    () -> EntityType.Builder.of(NutcrackerEntity::new, MobCategory.CREATURE)
+                            .sized(NutcrackerEntity.ENTITY_BOX_SIZE, NutcrackerEntity.ENTITY_BOX_HEIGHT)
+                            .build(NutcrackerEntity.ENTITY_ID)
             );
 
     public static final RegistryObject<EntityType<SleighEntity>> SLEIGH =

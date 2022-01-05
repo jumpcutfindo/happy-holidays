@@ -5,6 +5,7 @@ import com.jumpcutfindo.happyholidays.client.block.MusicBoxRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.ExplosivePresentRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.GingerbreadPersonEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.GrinchEntityRenderer;
+import com.jumpcutfindo.happyholidays.client.entity.NutcrackerEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.SantaElfEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.SantaEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.SleighRenderer;
@@ -59,6 +60,11 @@ public class RenderEventHandler {
         event.registerEntityRenderer(
                 ChristmasEntities.EXPLOSIVE_PRESENT.get(),
                 ExplosivePresentRenderer::new
+        );
+
+        event.registerEntityRenderer(
+                ChristmasEntities.NUTCRACKER.get(),
+                NutcrackerEntityRenderer::new
         );
 
         // Register block entities
