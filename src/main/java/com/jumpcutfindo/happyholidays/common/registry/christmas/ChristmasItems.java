@@ -135,6 +135,15 @@ public class ChristmasItems {
     public static final RegistryObject<Item> SNOWMAN_BOTTOM =
             ITEMS.register(ChristmasOutfits.SNOWMAN_OUTFIT.getBottomId(), ChristmasOutfits.SNOWMAN_OUTFIT::getBottom);
 
+    public static final RegistryObject<Item> CANDY_CANE_HEADPIECE =
+            ITEMS.register(ChristmasOutfits.CANDY_CANE_OUTFIT.getHeadpieceId(), ChristmasOutfits.CANDY_CANE_OUTFIT::getHeadpiece);
+    public static final RegistryObject<Item> CANDY_CANE_TOP =
+            ITEMS.register(ChristmasOutfits.CANDY_CANE_OUTFIT.getTopId(), ChristmasOutfits.CANDY_CANE_OUTFIT::getTop);
+    public static final RegistryObject<Item> CANDY_CANE_BOTTOM =
+            ITEMS.register(ChristmasOutfits.CANDY_CANE_OUTFIT.getBottomId(), ChristmasOutfits.CANDY_CANE_OUTFIT::getBottom);
+    public static final RegistryObject<Item> CANDY_CANE_BOOTS =
+            ITEMS.register(ChristmasOutfits.CANDY_CANE_OUTFIT.getFeetId(), ChristmasOutfits.CANDY_CANE_OUTFIT::getFeet);
+
     public static final RegistryObject<ChristmasItem> DYE_BOWL =
             ITEMS.register(DyeBowlItem.DYE_BOWL_ID, DyeBowlItem::new);
     public static final RegistryObject<ChristmasItem> RED_CHRISTMAS_DYE =
