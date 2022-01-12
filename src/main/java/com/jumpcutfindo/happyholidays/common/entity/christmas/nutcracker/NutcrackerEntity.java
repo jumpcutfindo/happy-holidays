@@ -2,11 +2,15 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker;
 
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
@@ -30,6 +34,9 @@ public class NutcrackerEntity extends PathfinderMob implements IAnimatable, IChr
     public static final float ENTITY_BOX_SIZE = 0.8f;
     public static final float ENTITY_BOX_HEIGHT = 3.0f;
 
+    public static final EntityDataAccessor<Boolean> DATA_MOUTH_OPEN = SynchedEntityData.defineId(NutcrackerEntity.class,
+            EntityDataSerializers.BOOLEAN);
+
     private AnimationFactory factory = new AnimationFactory(this);
 
     public NutcrackerEntity(EntityType<? extends PathfinderMob> p_21683_, Level p_21684_) {
@@ -43,6 +50,25 @@ public class NutcrackerEntity extends PathfinderMob implements IAnimatable, IChr
         this.goalSelector.addGoal(0, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(1, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(2, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(3, new RandomMouthMovementGoal(this));
+    }
+
+    public boolean isMouthOpen() {
+        return this.entityData.get(DATA_MOUTH_OPEN);
+    }
+
+    public void openMouth() {
+        this.entityData.set(DATA_MOUTH_OPEN, true);
+    }
+
+    public void closeMouth() {
+        this.entityData.set(DATA_MOUTH_OPEN, false);
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DATA_MOUTH_OPEN, false);
     }
 
     private <E extends NutcrackerEntity> PlayState predicate(AnimationEvent<E> event) {
@@ -57,5 +83,40 @@ public class NutcrackerEntity extends PathfinderMob implements IAnimatable, IChr
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
+    }
+
+    private static class RandomMouthMovementGoal extends Goal {
+        private final NutcrackerEntity nutcracker;
+
+        private boolean isActive, isStart = true;
+        private int timer = 0;
+
+        public RandomMouthMovementGoal(NutcrackerEntity nutcracker) {
+            this.nutcracker = nutcracker;
+        }
+
+        @Override
+        public boolean canUse() {
+            boolean flag = this.nutcracker.getRandom().nextFloat() < 0.02F;
+            if (flag) this.isActive = true;
+            return flag || this.isActive;
+        }
+
+        @Override
+        public void tick() {
+            if (this.isStart) {
+                this.timer = this.nutcracker.getRandom().nextInt(40, 80);
+                this.isStart = false;
+                this.nutcracker.openMouth();
+            }
+
+            if (this.timer == 0) {
+                this.nutcracker.closeMouth();
+                this.isActive = false;
+                this.isStart = true;
+            }
+
+            this.timer--;
+        }
     }
 }
