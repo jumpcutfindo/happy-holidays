@@ -18,6 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
@@ -72,6 +73,12 @@ public class NutcrackerEntity extends PathfinderMob implements IAnimatable, IChr
     }
 
     private <E extends NutcrackerEntity> PlayState predicate(AnimationEvent<E> event) {
+        if (event.isMoving()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.walk", true));
+        } else {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.idle", true));
+        }
+
         return PlayState.CONTINUE;
     }
 
