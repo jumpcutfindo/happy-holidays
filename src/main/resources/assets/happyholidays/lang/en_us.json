@@ -247,6 +247,8 @@
     "item.happyholidays.thread": "Thread",
     "item.happyholidays.enchanted_thread": "Enchanted Thread",
 
+    "item.happyholidays.walnut": "Walnut",
+
     "item.happyholidays.eggnog": "Eggnog",
 
     "item.happyholidays.red_christmas_gift": "Red Christmas Gift",
@@ -340,6 +342,8 @@
     "entity.happyholidays.grinch_hurt.sub": "Grinch hurts",
     "entity.happyholidays.grinch_break_box.sub": "Grinch breaks a present",
     "entity.happyholidays.grinch_despawn.sub": "Grinch disappears",
+
+    "entity.happyholidays.nutcracker": "Nutcracker",
 
     "entity.happyholidays.happy_santa": "Happy Santa",
     "entity.happyholidays.santa_hurt.sub": "Santa hurts",

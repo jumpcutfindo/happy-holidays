@@ -66,6 +66,7 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PresentScrapIte
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SantaElfBellItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SnowGlobeItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.ToyPartsRequestItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.misc.WalnutItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.ChristmasOutfits;
@@ -107,6 +108,9 @@ public class ChristmasItems {
             ITEMS.register(ThreadItem.ITEM_ID, ThreadItem::new);
     public static final RegistryObject<ChristmasItem> ENCHANTED_THREAD =
             ITEMS.register(EnchantedThreadItem.ITEM_ID, EnchantedThreadItem::new);
+
+    public static final RegistryObject<ChristmasItem> WALNUT =
+            ITEMS.register(WalnutItem.ITEM_ID, WalnutItem::new);
 
     public static final RegistryObject<ChristmasItem> ENCHANTED_SANTA_HAT =
             ITEMS.register(EnchantedSantaHatItem.ITEM_ID, EnchantedSantaHatItem::new);
