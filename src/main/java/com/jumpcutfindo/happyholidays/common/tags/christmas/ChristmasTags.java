@@ -79,6 +79,8 @@ public class ChristmasTags {
         public static final Tags.IOptionalNamedTag<Item> SANTA_ELF_ADVANCED_REQUESTABLES = itemTag("santa_elf_advanced_requestables");
 
         public static final Tags.IOptionalNamedTag<Item> SANTA_ELF_ADVANCED_REQUESTABLES_ALTERNATE = itemTag("santa_elf_advanced_requestables_alternate");
+
+        public static final Tags.IOptionalNamedTag<Item> NUTCRACKER_FOOD = itemTag("nutcracker_food");
     }
 
     public class Entities {

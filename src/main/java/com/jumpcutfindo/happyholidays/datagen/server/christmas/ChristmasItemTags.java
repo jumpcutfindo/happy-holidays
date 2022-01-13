@@ -203,5 +203,8 @@ public class ChristmasItemTags extends ItemTagsProvider {
                 .add(Items.HEART_OF_THE_SEA)
                 .add(Items.SCUTE)
                 .add(Items.GHAST_TEAR);
+
+        tag(ChristmasTags.Items.NUTCRACKER_FOOD)
+                .addTag(net.minecraft.tags.ItemTags.LOGS);
     }
 }
