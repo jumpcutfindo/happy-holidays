@@ -83,4 +83,8 @@ public class NutcrackerContainer extends AbstractContainerMenu {
     public boolean stillValid(Player player) {
         return this.playerInv.stillValid(player);
     }
+
+    public int getEntityId() {
+        return this.nutcracker.getId();
+    }
 }

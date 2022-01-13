@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.network.christmas.MusicBoxPacket;
+import com.jumpcutfindo.happyholidays.common.network.christmas.NutcrackerPacket;
 import com.jumpcutfindo.happyholidays.common.network.christmas.SummonSantaPacket;
 
 import net.minecraft.resources.ResourceLocation;
@@ -14,7 +15,7 @@ import net.minecraftforge.network.simple.SimpleChannel;
 
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class PacketHandler {
-    private static final String PROTOCOL_VERSION = "1.2";
+    private static final String PROTOCOL_VERSION = "1.3";
     public static final SimpleChannel NETWORK = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(HappyHolidaysMod.MOD_ID, "main"),
             () -> PROTOCOL_VERSION,
@@ -27,6 +28,7 @@ public class PacketHandler {
 
     @SubscribeEvent
     public static void registerMessages(FMLCommonSetupEvent event) {
+        // Santa packet
         NETWORK.messageBuilder(SummonSantaPacket.class, BUILDER_ID++, NetworkDirection.PLAY_TO_SERVER)
                 .encoder(SummonSantaPacket::encode)
                 .decoder(SummonSantaPacket::new)
@@ -34,11 +36,20 @@ public class PacketHandler {
 
         NETWORK.registerMessage(MSG_ID++, SummonSantaPacket.class, SummonSantaPacket::encode, SummonSantaPacket::new, SummonSantaPacket::handle);
 
+        // Music Box packet
         NETWORK.messageBuilder(MusicBoxPacket.class, BUILDER_ID++, NetworkDirection.PLAY_TO_SERVER)
                 .encoder(MusicBoxPacket::encode)
                 .decoder(MusicBoxPacket::new)
                 .consumer(MusicBoxPacket::handle).add();
 
         NETWORK.registerMessage(MSG_ID++, MusicBoxPacket.class, MusicBoxPacket::encode, MusicBoxPacket::new, MusicBoxPacket::handle);
+
+        // Nutcracker packet
+        NETWORK.messageBuilder(NutcrackerPacket.class, BUILDER_ID++, NetworkDirection.PLAY_TO_SERVER)
+                .encoder(NutcrackerPacket::encode)
+                .decoder(NutcrackerPacket::new)
+                .consumer(NutcrackerPacket::handle).add();
+
+        NETWORK.registerMessage(MSG_ID++, NutcrackerPacket.class, NutcrackerPacket::encode, NutcrackerPacket::new, NutcrackerPacket::handle);
     }
 }

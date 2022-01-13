@@ -93,6 +93,8 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     @javax.annotation.Nullable
     private UUID persistentAngerTarget;
 
+    private Player interactingPlayer;
+
     public NutcrackerEntity(EntityType<? extends TamableAnimal> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
     }
@@ -102,6 +104,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         super.registerGoals();
 
         this.goalSelector.addGoal(0, new WalnutAttackGoal(this, 1.25D, FIRING_DELAY, 10.0F));
+        this.goalSelector.addGoal(0, new LookAndFollowInteractingPlayerGoal(this));
         this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(ChristmasItems.WALNUT.get()), false));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -114,35 +117,6 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers());
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, true));
-    }
-
-    public boolean isMouthOpen() {
-        return this.entityData.get(DATA_MOUTH_OPEN);
-    }
-
-    public void openMouth() {
-        this.entityData.set(DATA_MOUTH_OPEN, true);
-    }
-
-    public void closeMouth() {
-        this.entityData.set(DATA_MOUTH_OPEN, false);
-    }
-
-    public boolean canFire() {
-        return this.isTame() || this.getTarget() instanceof Player;
-    }
-
-    public boolean isFiring() {
-        return this.entityData.get(DATA_IS_FIRING);
-    }
-
-    public void setFiring(boolean isFiring) {
-        this.entityData.set(DATA_IS_FIRING, isFiring);
-    }
-
-    @Override
-    public boolean isFood(ItemStack foodItem) {
-        return foodItem.is(ChristmasTags.Items.NUTCRACKER_FOOD);
     }
 
     @Override
@@ -168,9 +142,22 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
         if (!this.level.isClientSide() && interactionHand == InteractionHand.MAIN_HAND && this.isTame()) {
             NetworkHooks.openGui((ServerPlayer) player, this, buf -> buf.writeInt(this.getId()));
+            this.interactingPlayer = player;
         }
 
         return super.mobInteract(player, interactionHand);
+    }
+
+    public boolean isInteractingWithPlayer() {
+        return this.interactingPlayer != null;
+    }
+
+    public void setInteractingPlayer(@Nullable Player interactingPlayer) {
+        this.interactingPlayer = interactingPlayer;
+    }
+
+    public Player getInteractingPlayer() {
+        return interactingPlayer;
     }
 
     @NotNull
@@ -189,6 +176,11 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         this.inventoryOptional.invalidate();
     }
 
+    @Override
+    public boolean isFood(ItemStack foodItem) {
+        return foodItem.is(ChristmasTags.Items.NUTCRACKER_FOOD);
+    }
+
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel p_146743_, AgeableMob p_146744_) {
@@ -201,6 +193,30 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         this.entityData.define(DATA_MOUTH_OPEN, false);
         this.entityData.define(DATA_IS_FIRING, false);
         this.entityData.define(DATA_REMAINING_ANGER_TIME, 0);
+    }
+
+    public boolean isMouthOpen() {
+        return this.entityData.get(DATA_MOUTH_OPEN);
+    }
+
+    public void openMouth() {
+        this.entityData.set(DATA_MOUTH_OPEN, true);
+    }
+
+    public void closeMouth() {
+        this.entityData.set(DATA_MOUTH_OPEN, false);
+    }
+
+    public boolean canFire() {
+        return this.isTame() || this.getTarget() instanceof Player;
+    }
+
+    public boolean isFiring() {
+        return this.entityData.get(DATA_IS_FIRING);
+    }
+
+    public void setFiring(boolean isFiring) {
+        this.entityData.set(DATA_IS_FIRING, isFiring);
     }
 
     private <E extends NutcrackerEntity> PlayState predicate(AnimationEvent<E> event) {
@@ -337,4 +353,31 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         }
     }
 
+    private static class LookAndFollowInteractingPlayerGoal extends Goal {
+        private final NutcrackerEntity nutcracker;
+
+        public LookAndFollowInteractingPlayerGoal(NutcrackerEntity nutcracker) {
+            this.nutcracker = nutcracker;
+        }
+
+        @Override
+        public boolean canUse() {
+            return this.nutcracker.isInteractingWithPlayer();
+        }
+
+        @Override
+        public void tick() {
+            super.tick();
+
+            Player player = this.nutcracker.getInteractingPlayer();
+
+            if (this.nutcracker.distanceToSqr(this.nutcracker.getInteractingPlayer()) > 2.0d) {
+                this.nutcracker.navigation.moveTo(player, 1.0d);
+            } else {
+                this.nutcracker.navigation.stop();
+            }
+
+            this.nutcracker.lookAt(player, 45.0f, 45.0f);
+        }
+    }
 }

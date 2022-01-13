@@ -2,6 +2,8 @@ package com.jumpcutfindo.happyholidays.client.screen;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.container.christmas.nutcracker.NutcrackerContainer;
+import com.jumpcutfindo.happyholidays.common.network.christmas.NutcrackerPacket;
+import com.jumpcutfindo.happyholidays.handlers.PacketHandler;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -10,13 +12,18 @@ import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraftforge.network.PacketDistributor;
 
 public class NutcrackerInventoryScreen extends AbstractContainerScreen<NutcrackerContainer> {
     private static final ResourceLocation NUTCRACKER_INVENTORY_GUI = new ResourceLocation(HappyHolidaysMod.MOD_ID,
             "textures/gui/container/nutcracker_inventory.png");
 
+    private final NutcrackerContainer nutcrackerContainer;
+
     public NutcrackerInventoryScreen(NutcrackerContainer nutcrackerContainer, Inventory inventory, Component titleComponent) {
         super(nutcrackerContainer, inventory, titleComponent);
+        this.nutcrackerContainer = nutcrackerContainer;
+
         this.passEvents = false;
         this.imageHeight = 133;
         this.inventoryLabelY = this.imageHeight - 94;
@@ -40,5 +47,7 @@ public class NutcrackerInventoryScreen extends AbstractContainerScreen<Nutcracke
     @Override
     public void onClose() {
         super.onClose();
+
+        PacketHandler.NETWORK.send(PacketDistributor.SERVER.noArg(), new NutcrackerPacket(this.nutcrackerContainer.getEntityId()));
     }
 }
