@@ -28,10 +28,21 @@ public class NutcrackerModel<T extends NutcrackerEntity> extends AnimatedGeoMode
     public void setLivingAnimations(NutcrackerEntity nutcracker, Integer uniqueID, AnimationEvent customPredicate) {
         super.setLivingAnimations(nutcracker, uniqueID, customPredicate);
 
-        // Handle mouth open / closed state
         IBone openMouthBone = this.getAnimationProcessor().getBone("openMouth");
         IBone closedMouthBone = this.getAnimationProcessor().getBone("closedMouth");
+        IBone nutBone = this.getAnimationProcessor().getBone("nut");
+
+        // Handle mouth open / closed state
         openMouthBone.setHidden(!nutcracker.isMouthOpen());
         closedMouthBone.setHidden(nutcracker.isMouthOpen());
+
+        // Handle nutcracker's firing state
+        if (nutcracker.isFiring()) {
+            openMouthBone.setHidden(false);
+            closedMouthBone.setHidden(true);
+            nutBone.setHidden(false);
+        } else {
+            nutBone.setHidden(true);
+        }
     }
 }
