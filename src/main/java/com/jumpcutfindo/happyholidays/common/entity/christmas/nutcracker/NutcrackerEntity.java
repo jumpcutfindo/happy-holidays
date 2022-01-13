@@ -2,22 +2,27 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker;
 
 import java.util.UUID;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.jumpcutfindo.happyholidays.common.container.christmas.nutcracker.NutcrackerContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
@@ -39,10 +44,17 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.RangedAttackMob;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -51,7 +63,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChristmasEntity, RangedAttackMob, NeutralMob {
+public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChristmasEntity, MenuProvider, RangedAttackMob, NeutralMob {
     public static final String ENTITY_ID = "nutcracker";
     public static final AttributeSupplier ENTITY_ATTRIBUTES =
             Mob.createMobAttributes()
@@ -74,6 +86,9 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
 
     private AnimationFactory factory = new AnimationFactory(this);
+
+    private IItemHandler inventory = new NutcrackerInventory();
+    private final LazyOptional<IItemHandler> inventoryOptional = LazyOptional.of(() -> this.inventory);
 
     @javax.annotation.Nullable
     private UUID persistentAngerTarget;
@@ -151,7 +166,27 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             }
         }
 
+        if (!this.level.isClientSide() && interactionHand == InteractionHand.MAIN_HAND && this.isTame()) {
+            NetworkHooks.openGui((ServerPlayer) player, this, buf -> buf.writeInt(this.getId()));
+        }
+
         return super.mobInteract(player, interactionHand);
+    }
+
+    @NotNull
+    @Override
+    public <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap) {
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return this.inventoryOptional.cast();
+        }
+
+        return getCapability(cap, null);
+    }
+
+    @Override
+    public void invalidateCaps() {
+        super.invalidateCaps();
+        this.inventoryOptional.invalidate();
     }
 
     @Nullable
@@ -193,7 +228,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         WalnutEntity walnutEntity = new WalnutEntity(ChristmasEntities.WALNUT.get(), this.getLevel());
         walnutEntity.setPos(this.getX(), this.getY() + 1.8d, this.getZ());
 
-        double d0 = target.getEyeY() - (double)1.4F;
+        double d0 = target.getEyeY();
         double d1 = target.getX() - this.getX();
         double d2 = d0 - walnutEntity.getY();
         double d3 = target.getZ() - this.getZ();
@@ -227,6 +262,28 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
     public void setPersistentAngerTarget(@javax.annotation.Nullable UUID p_30400_) {
         this.persistentAngerTarget = p_30400_;
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+
+        tag.put("NutInventory", ((NutcrackerInventory)this.inventory).serializeNBT());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+
+        CompoundTag invTag = tag.getCompound("NutInventory");
+        ((NutcrackerInventory)this.inventory).deserializeNBT(invTag);
+    }
+
+    @Nullable
+    @Override
+    public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
+        NutcrackerContainer container = new NutcrackerContainer(i, this.level, this.blockPosition(), playerInventory, playerEntity, this);
+        return container;
     }
 
     private static class RandomMouthMovementGoal extends Goal {

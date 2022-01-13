@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.registry.christmas;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
 import com.jumpcutfindo.happyholidays.common.container.christmas.musicbox.MusicBoxContainer;
+import com.jumpcutfindo.happyholidays.common.container.christmas.nutcracker.NutcrackerContainer;
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
 
 import net.minecraft.world.inventory.MenuType;
@@ -27,4 +28,7 @@ public class ChristmasContainers {
             CONTAINER_TYPE.register(MusicBoxContainer.CONTAINER_ID,
                     () -> IForgeMenuType.create(MusicBoxContainer::new)
             );
+    public static final RegistryObject<MenuType<NutcrackerContainer>> NUTCRACKER_CONTAINER =
+            CONTAINER_TYPE.register(NutcrackerContainer.CONTAINER_ID,
+                    () -> IForgeMenuType.create(NutcrackerContainer::createContainer));
 }

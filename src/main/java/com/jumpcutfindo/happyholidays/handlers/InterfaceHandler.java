@@ -4,6 +4,7 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.ChristmasStarScreen;
 import com.jumpcutfindo.happyholidays.client.screen.GiftWrapperScreen;
 import com.jumpcutfindo.happyholidays.client.screen.MusicBoxScreen;
+import com.jumpcutfindo.happyholidays.client.screen.NutcrackerInventoryScreen;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
 
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -18,5 +19,6 @@ public class InterfaceHandler {
         MenuScreens.register(ChristmasContainers.CHRISTMAS_STAR_CONTAINER.get(), ChristmasStarScreen::new);
         MenuScreens.register(ChristmasContainers.GIFT_WRAPPER_CONTAINER.get(), GiftWrapperScreen::new);
         MenuScreens.register(ChristmasContainers.MUSIC_BOX_CONTAINER.get(), MusicBoxScreen::new);
+        MenuScreens.register(ChristmasContainers.NUTCRACKER_CONTAINER.get(), NutcrackerInventoryScreen::new);
     }
 }
