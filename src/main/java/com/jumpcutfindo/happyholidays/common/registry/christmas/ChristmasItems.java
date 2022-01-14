@@ -66,7 +66,7 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PresentScrapIte
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SantaElfBellItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SnowGlobeItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.ToyPartsRequestItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.misc.WalnutItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.ChristmasOutfits;
@@ -110,7 +110,15 @@ public class ChristmasItems {
             ITEMS.register(EnchantedThreadItem.ITEM_ID, EnchantedThreadItem::new);
 
     public static final RegistryObject<ChristmasItem> WALNUT =
-            ITEMS.register(WalnutItem.ITEM_ID, WalnutItem::new);
+            ITEMS.register(WalnutItem.BASIC_ITEM_ID, WalnutItem::new);
+    public static final RegistryObject<ChristmasItem> EXPLOSIVE_WALNUT =
+            ITEMS.register(WalnutItem.EXPLOSIVE_ITEM_ID, WalnutItem::new);
+    public static final RegistryObject<ChristmasItem> SUGARED_WALNUT =
+            ITEMS.register(WalnutItem.SUGARED_ITEM_ID, WalnutItem::new);
+    public static final RegistryObject<ChristmasItem> METALLIC_WALNUT =
+            ITEMS.register(WalnutItem.METALLIC_ITEM_ID, WalnutItem::new);
+    public static final RegistryObject<ChristmasItem> HALVED_WALNUT =
+            ITEMS.register(WalnutItem.HALVED_ITEM_ID, WalnutItem::new);
 
     public static final RegistryObject<ChristmasItem> ENCHANTED_SANTA_HAT =
             ITEMS.register(EnchantedSantaHatItem.ITEM_ID, EnchantedSantaHatItem::new);
