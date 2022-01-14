@@ -1,12 +1,15 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker;
 
+import java.util.EnumSet;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.container.christmas.nutcracker.NutcrackerContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutAmmo;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
@@ -18,11 +21,14 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.Mth;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
@@ -36,7 +42,6 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.RangedAttackGoal;
 import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
@@ -69,12 +74,15 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             Mob.createMobAttributes()
                     .add(Attributes.MAX_HEALTH, 25.0f)
                     .add(Attributes.MOVEMENT_SPEED, 0.23f)
+                    .add(Attributes.FOLLOW_RANGE, 20.0f)
                     .build();
 
     public static final float ENTITY_BOX_SIZE = 0.8f;
     public static final float ENTITY_BOX_HEIGHT = 3.0f;
 
-    public static final int FIRING_DELAY = 10;
+    public static final int FIRING_DELAY = 20;
+
+    public static final float LOG_HEAL_AMOUNT = 2.0f;
 
     public static final EntityDataAccessor<Boolean> DATA_MOUTH_OPEN = SynchedEntityData.defineId(NutcrackerEntity.class,
             EntityDataSerializers.BOOLEAN);
@@ -87,7 +95,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
     private AnimationFactory factory = new AnimationFactory(this);
 
-    private IItemHandler inventory = new NutcrackerInventory();
+    private NutcrackerInventory inventory = new NutcrackerInventory();
     private final LazyOptional<IItemHandler> inventoryOptional = LazyOptional.of(() -> this.inventory);
 
     @javax.annotation.Nullable
@@ -103,7 +111,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     protected void registerGoals() {
         super.registerGoals();
 
-        this.goalSelector.addGoal(0, new WalnutAttackGoal(this, 1.25D, FIRING_DELAY, 10.0F));
+        this.goalSelector.addGoal(0, new WalnutAttackGoal(this, 1.25D, 10.0F));
         this.goalSelector.addGoal(0, new LookAndFollowInteractingPlayerGoal(this));
         this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(ChristmasItems.WALNUT.get()), false));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0D));
@@ -111,7 +119,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(6, new RandomMouthMovementGoal(this));
 
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Mob.class, 10, true, false, (p_29932_) -> {
+        this.targetSelector.addGoal(1, new NearestNuttableTargetGoal<>(this, Mob.class, 10, true, false, (p_29932_) -> {
             return p_29932_ instanceof Enemy;
         }));
         this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers());
@@ -138,6 +146,13 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
                 this.level.broadcastEntityEvent(this, (byte) 6);
                 return InteractionResult.CONSUME;
             }
+        }
+
+        if (this.isTame() && heldItem.is(ItemTags.LOGS) && this.getHealth() < this.getMaxHealth()) {
+            this.usePlayerItem(player, interactionHand, heldItem);
+            this.heal(LOG_HEAL_AMOUNT);
+            // TODO: Add effects when healed (drilling sound? repairing wooden toy)
+            return InteractionResult.SUCCESS;
         }
 
         if (!this.level.isClientSide() && interactionHand == InteractionHand.MAIN_HAND && this.isTame()) {
@@ -239,24 +254,34 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         return this.factory;
     }
 
+    public int getFiringDelay() {
+        return this.inventory.getCurrentAmmo() == WalnutAmmo.SUGARED ? FIRING_DELAY / 2 : FIRING_DELAY;
+    }
+
+    public int getTargetingRadius() {
+        return this.inventory.getCurrentAmmo() == WalnutAmmo.METALLIC ? 6 : this.inventory.getCurrentAmmo() == WalnutAmmo.HALVED ? 20 : 12;
+    }
+
     @Override
     public void performRangedAttack(LivingEntity target, float p_33318_) {
         WalnutEntity walnutEntity = new WalnutEntity(ChristmasEntities.WALNUT.get(), this.getLevel());
-        walnutEntity.setPos(this.getX(), this.getY() + 1.8d, this.getZ());
+        walnutEntity.setPos(this.getX(), this.getY() + 2.0d, this.getZ());
+        walnutEntity.setAmmoType(this.inventory.getCurrentAmmo());
 
-        double d0 = target.getEyeY();
-        double d1 = target.getX() - this.getX();
-        double d2 = d0 - walnutEntity.getY();
-        double d3 = target.getZ() - this.getZ();
-        double d4 = Math.sqrt(d1 * d1 + d3 * d3) * (double)0.2F;
-        walnutEntity.shoot(d1, d2 + d4, d3, 1.6F, 12.0F);
+        double d0 = target.getX() - this.getX();
+        double d1 = target.getY(0.2D) - walnutEntity.getY();
+        double d2 = target.getZ() - this.getZ();
+        double d3 = Math.sqrt(d0 * d0 + d2 * d2) * (double)0.2F;
+        walnutEntity.shoot(d0, d1 + d3, d2, 1.5F, 10.0F);
         this.playSound(SoundEvents.SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         this.level.addFreshEntity(walnutEntity);
+
+        this.inventory.useAmmo();
     }
 
     @Override
     protected float getStandingEyeHeight(Pose p_21131_, EntityDimensions p_21132_) {
-        return 41.0f / 16.0f;
+        return 42.0f / 16.0f;
     }
 
     public int getRemainingPersistentAngerTime() {
@@ -302,6 +327,15 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         return container;
     }
 
+    @Override
+    protected void dropCustomDeathLoot(DamageSource p_21385_, int p_21386_, boolean p_21387_) {
+        super.dropCustomDeathLoot(p_21385_, p_21386_, p_21387_);
+
+        for (ItemStack itemStack : this.inventory.getAllItems()) {
+            this.spawnAtLocation(itemStack);
+        }
+    }
+
     private static class RandomMouthMovementGoal extends Goal {
         private final NutcrackerEntity nutcracker;
 
@@ -337,19 +371,90 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         }
     }
 
-    private static class WalnutAttackGoal extends RangedAttackGoal {
+    private static class WalnutAttackGoal extends Goal {
+        private final Mob mob;
+        private final RangedAttackMob rangedAttackMob;
+        @javax.annotation.Nullable
+        private LivingEntity target;
+        private int attackTime = -1;
+        private final double speedModifier;
+        private int seeTime;
+        private final float attackRadius;
+        private final float attackRadiusSqr;
+
         private final NutcrackerEntity nutcracker;
 
-        public WalnutAttackGoal(NutcrackerEntity nutcracker, double p_25769_, int p_25770_, float p_25771_) {
-            super(nutcracker, p_25769_, p_25770_, p_25771_);
-            this.nutcracker = nutcracker;
+        public WalnutAttackGoal(NutcrackerEntity p_25773_, double p_25774_, float p_25777_) {
+            if (p_25773_ == null) {
+                throw new IllegalArgumentException("ArrowAttackGoal requires Mob implements RangedAttackMob");
+            } else {
+                this.rangedAttackMob = p_25773_;
+                this.mob = (Mob)p_25773_;
+                this.speedModifier = p_25774_;
+                this.attackRadius = p_25777_;
+                this.attackRadiusSqr = p_25777_ * p_25777_;
+                this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
+
+                this.nutcracker = p_25773_;
+            }
         }
 
-        @Override
         public boolean canUse() {
-            boolean flag = super.canUse() && nutcracker.canFire();
+            LivingEntity livingentity = this.mob.getTarget();
+            boolean flag = nutcracker.canFire();
+            if (livingentity != null && livingentity.isAlive()) {
+                this.target = livingentity;
+                flag = true && flag;
+            } else {
+                flag = false && flag;
+            }
+
             nutcracker.setFiring(flag);
             return flag;
+        }
+
+        public boolean canContinueToUse() {
+            return this.canUse() || !this.mob.getNavigation().isDone();
+        }
+
+        public void stop() {
+            this.target = null;
+            this.seeTime = 0;
+            this.attackTime = -1;
+        }
+
+        public boolean requiresUpdateEveryTick() {
+            return true;
+        }
+
+        public void tick() {
+            double d0 = this.mob.distanceToSqr(this.target.getX(), this.target.getY(), this.target.getZ());
+            boolean flag = this.mob.getSensing().hasLineOfSight(this.target);
+            if (flag) {
+                ++this.seeTime;
+            } else {
+                this.seeTime = 0;
+            }
+
+            if (!(d0 > (double)this.attackRadiusSqr) && this.seeTime >= 5) {
+                this.mob.getNavigation().stop();
+            } else {
+                this.mob.getNavigation().moveTo(this.target, this.speedModifier);
+            }
+
+            this.mob.getLookControl().setLookAt(this.target, 30.0F, 30.0F);
+            if (--this.attackTime == 0) {
+                if (!flag) {
+                    return;
+                }
+
+                float f = (float)Math.sqrt(d0) / this.nutcracker.getTargetingRadius();
+                float f1 = Mth.clamp(f, 0.1F, 1.0F);
+                this.rangedAttackMob.performRangedAttack(this.target, f1);
+                this.attackTime = Mth.floor((float)this.nutcracker.getFiringDelay());
+            } else if (this.attackTime < 0) {
+                this.attackTime = Mth.floor(Mth.lerp(Math.sqrt(d0) / (double)this.nutcracker.getTargetingRadius(), (double)this.nutcracker.getFiringDelay(), (double)this.nutcracker.getFiringDelay()));
+            }
         }
     }
 
@@ -378,6 +483,20 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             }
 
             this.nutcracker.lookAt(player, 45.0f, 45.0f);
+        }
+    }
+
+    private static class NearestNuttableTargetGoal<T extends LivingEntity> extends NearestAttackableTargetGoal<T> {
+        private final NutcrackerEntity nutcracker;
+        public NearestNuttableTargetGoal(NutcrackerEntity nutcracker, Class p_26054_, int p_26055_, boolean p_26056_,
+                                         boolean p_26057_, @Nullable Predicate p_26058_) {
+            super(nutcracker, p_26054_, p_26055_, p_26056_, p_26057_, p_26058_);
+            this.nutcracker = nutcracker;
+        }
+
+        @Override
+        protected double getFollowDistance() {
+            return this.nutcracker == null ? super.getFollowDistance() : this.nutcracker.getTargetingRadius();
         }
     }
 }
