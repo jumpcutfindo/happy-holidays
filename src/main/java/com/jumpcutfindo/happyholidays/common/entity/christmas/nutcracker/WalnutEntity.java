@@ -13,6 +13,7 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -182,7 +183,16 @@ public class WalnutEntity extends Projectile implements IAnimatable {
 
         this.setPos(d2, d0, d1);
 
-        //TODO: Add spawning of particles during flight
+        if (!this.level.isClientSide()) {
+            this.createParticles();
+        }
+    }
+
+    private void createParticles() {
+        ServerLevel serverLevel = (ServerLevel) this.level;
+        switch (this.getAmmoType()) {
+        case EXPLOSIVE -> serverLevel.sendParticles(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 3, 0.1, 0.0, 0.1, 0.0D);
+        }
     }
 
     protected float getGravity() {

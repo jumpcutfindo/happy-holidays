@@ -5,9 +5,9 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ChristmasSounds {
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS,
@@ -57,6 +57,12 @@ public class ChristmasSounds {
     public static final RegistryObject<SoundEvent> SANTA_TELEPORT = registerSound("entity.santa_teleport");
     public static final RegistryObject<SoundEvent> SANTA_SUMMON_SLEIGHS = registerSound("entity.santa_summon_sleighs");
     public static final RegistryObject<SoundEvent> SANTA_FLICK = registerSound("entity.santa_flick");
+
+    public static final RegistryObject<SoundEvent> NUTCRACKER_PASSIVE = registerSound("entity.nutcracker_passive");
+    public static final RegistryObject<SoundEvent> NUTCRACKER_HURT = registerSound("entity.nutcracker_hurt");
+    public static final RegistryObject<SoundEvent> NUTCRACKER_REPAIR = registerSound("entity.nutcracker_repair");
+    public static final RegistryObject<SoundEvent> NUTCRACKER_TARGET_ACQUIRED = registerSound("entity.nutcracker_target_acquired");
+    public static final RegistryObject<SoundEvent> NUTCRACKER_SHOOT = registerSound("entity.nutcracker_shoot");
 
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_ANGELS_ON_HIGH = registerSound(SheetMusicItem.ANGELS_ON_HIGH_SOUND_ID);
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_CAROL_OF_THE_BELLS = registerSound(SheetMusicItem.CAROL_OF_BELLS_SOUND_ID);

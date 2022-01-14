@@ -371,6 +371,12 @@
     "entity.happyholidays.santa_flick.sub": "Angry Santa flicks",
     "entity.happyholidays.sleigh_sliding.sub": "Sleigh skids",
 
+    "entity.happyholidays.nutcracker_passive.sub": "Nutcracker clops",
+    "entity.happyholidays.nutcracker_hurt.sub": "Nutcracker hurts",
+    "entity.happyholidays.nutcracker_repair.sub": "Nutcracker heals",
+    "entity.happyholidays.nutcracker_target_acquired.sub": "Nutcracker loads up",
+    "entity.happyholidays.nutcracker_shoot.sub": "Nutcracker shoots",
+
     "itemGroup.happyholidays": "Happy Holidays",
 
     "chat.happyholidays.snow_globe.weather_maxed": "The Snow Globe doesn't seem to respond to your shaking...",

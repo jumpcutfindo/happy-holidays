@@ -12,15 +12,17 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutAmmo;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.TimeUtil;
@@ -148,10 +150,13 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             }
         }
 
-        if (this.isTame() && heldItem.is(ItemTags.LOGS) && this.getHealth() < this.getMaxHealth()) {
-            this.usePlayerItem(player, interactionHand, heldItem);
-            this.heal(LOG_HEAL_AMOUNT);
-            // TODO: Add effects when healed (drilling sound? repairing wooden toy)
+        if (this.isTame() && heldItem.is(ItemTags.LOGS)) {
+            if (this.getHealth() < this.getMaxHealth()) {
+                this.usePlayerItem(player, interactionHand, heldItem);
+                this.heal(LOG_HEAL_AMOUNT);
+
+                this.playSound(ChristmasSounds.NUTCRACKER_REPAIR.get(), 1.0F, 1.0F);
+            }
             return InteractionResult.SUCCESS;
         }
 
@@ -234,6 +239,24 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         this.entityData.set(DATA_IS_FIRING, isFiring);
     }
 
+    @Nullable
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return ChristmasSounds.NUTCRACKER_PASSIVE.get();
+    }
+
+    @Nullable
+    @Override
+    protected SoundEvent getHurtSound(DamageSource p_21239_) {
+        return ChristmasSounds.NUTCRACKER_HURT.get();
+    }
+
+    @Override
+    public void setTarget(@Nullable LivingEntity p_21544_) {
+        if (this.getTarget() == null) this.playSound(ChristmasSounds.NUTCRACKER_TARGET_ACQUIRED.get(), 1.0f, 1.0f);
+        super.setTarget(p_21544_);
+    }
+
     private <E extends NutcrackerEntity> PlayState predicate(AnimationEvent<E> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.walk", true));
@@ -265,7 +288,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     @Override
     public void performRangedAttack(LivingEntity target, float p_33318_) {
         WalnutEntity walnutEntity = new WalnutEntity(ChristmasEntities.WALNUT.get(), this.getLevel());
-        walnutEntity.setPos(this.getX(), this.getY() + 2.0d, this.getZ());
+        walnutEntity.setPos(this.getX(), this.getY() + 2.2d, this.getZ());
         walnutEntity.setAmmoType(this.inventory.getCurrentAmmo());
 
         double d0 = target.getX() - this.getX();
@@ -273,7 +296,8 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         double d2 = target.getZ() - this.getZ();
         double d3 = Math.sqrt(d0 * d0 + d2 * d2) * (double)0.2F;
         walnutEntity.shoot(d0, d1 + d3, d2, 1.5F, 10.0F);
-        this.playSound(SoundEvents.SNOW_GOLEM_SHOOT, 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+        this.playSound(ChristmasSounds.NUTCRACKER_SHOOT.get(), 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+        if (!this.level.isClientSide()) ((ServerLevel) this.level).sendParticles(ParticleTypes.SMOKE, this.getX(), this.getY() + 2.0d, this.getZ(), 2, 0.5, 0.0, 0.5, 0.0D);
         this.level.addFreshEntity(walnutEntity);
 
         this.inventory.useAmmo();
