@@ -253,7 +253,8 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
     @Override
     public void setTarget(@Nullable LivingEntity p_21544_) {
-        if (this.getTarget() == null) this.playSound(ChristmasSounds.NUTCRACKER_TARGET_ACQUIRED.get(), 1.0f, 1.0f);
+        // Play sound if going to fire at enemy
+        if (this.getTarget() == null && this.isTame()) this.playSound(ChristmasSounds.NUTCRACKER_TARGET_ACQUIRED.get(), 1.0f, 1.0f);
         super.setTarget(p_21544_);
     }
 
@@ -292,10 +293,10 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         walnutEntity.setAmmoType(this.inventory.getCurrentAmmo());
 
         double d0 = target.getX() - this.getX();
-        double d1 = target.getY(0.2D) - walnutEntity.getY();
+        double d1 = target.getY(0.33D) - walnutEntity.getY();
         double d2 = target.getZ() - this.getZ();
         double d3 = Math.sqrt(d0 * d0 + d2 * d2) * (double)0.2F;
-        walnutEntity.shoot(d0, d1 + d3, d2, 1.5F, 10.0F);
+        walnutEntity.shoot(d0, d1 + d3, d2, 1.1F, 10.0F);
         this.playSound(ChristmasSounds.NUTCRACKER_SHOOT.get(), 1.0F, 0.4F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
         if (!this.level.isClientSide()) ((ServerLevel) this.level).sendParticles(ParticleTypes.SMOKE, this.getX(), this.getY() + 2.0d, this.getZ(), 2, 0.5, 0.0, 0.5, 0.0D);
         this.level.addFreshEntity(walnutEntity);
