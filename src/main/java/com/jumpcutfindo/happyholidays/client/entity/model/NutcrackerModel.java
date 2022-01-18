@@ -44,5 +44,37 @@ public class NutcrackerModel<T extends NutcrackerEntity> extends AnimatedGeoMode
         } else {
             nutBone.setHidden(true);
         }
+
+        // Handle damage level
+
+        NutcrackerEntity.Damage damageLevel = nutcracker.getDamageLevel();
+        this.adjustHatToDamage(damageLevel);
+    }
+
+    private void adjustHatToDamage(NutcrackerEntity.Damage damageLevel) {
+        switch (damageLevel) {
+        case NONE -> {
+            this.setHatLayerHidden(false, false, false);
+        }
+        case LOW -> {
+            this.setHatLayerHidden(true, false, false);
+        }
+        case MEDIUM -> {
+            this.setHatLayerHidden(true, true, false);
+        }
+        case HIGH -> {
+            this.setHatLayerHidden(true, true, true);
+        }
+        }
+    }
+
+    private void setHatLayerHidden(boolean layer1, boolean layer2, boolean layer3) {
+        IBone hat1 = this.getAnimationProcessor().getBone("hat_1");
+        IBone hat2 = this.getAnimationProcessor().getBone("hat_2");
+        IBone hat3 = this.getAnimationProcessor().getBone("hat_3");
+
+        hat1.setHidden(layer1);
+        hat2.setHidden(layer2);
+        hat3.setHidden(layer3);
     }
 }

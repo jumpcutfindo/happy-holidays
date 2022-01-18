@@ -143,11 +143,11 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
                 this.navigation.stop();
                 this.setTarget((LivingEntity) null);
                 this.level.broadcastEntityEvent(this, (byte) 7);
-                return InteractionResult.CONSUME;
             } else {
                 this.level.broadcastEntityEvent(this, (byte) 6);
-                return InteractionResult.CONSUME;
             }
+
+            return InteractionResult.CONSUME;
         }
 
         if (this.isTame() && heldItem.is(ItemTags.LOGS)) {
@@ -156,6 +156,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
                 this.heal(LOG_HEAL_AMOUNT);
 
                 this.playSound(ChristmasSounds.NUTCRACKER_REPAIR.get(), 1.0F, 1.0F);
+                if (!this.level.isClientSide()) ((ServerLevel) this.level).sendParticles(ParticleTypes.CLOUD, this.getX(), this.getY() + 2.0d, this.getZ(), 3, 0.5, 0.0, 0.5, 0.0D);
             }
             return InteractionResult.SUCCESS;
         }
@@ -302,6 +303,10 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         this.level.addFreshEntity(walnutEntity);
 
         this.inventory.useAmmo();
+    }
+
+    public NutcrackerEntity.Damage getDamageLevel() {
+        return NutcrackerEntity.Damage.getDamageLevel(this.getHealth() / this.getMaxHealth());
     }
 
     @Override
@@ -522,6 +527,17 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         @Override
         protected double getFollowDistance() {
             return this.nutcracker == null ? super.getFollowDistance() : this.nutcracker.getTargetingRadius();
+        }
+    }
+
+    public enum Damage {
+        NONE, LOW, MEDIUM, HIGH;
+
+        static Damage getDamageLevel(float fraction) {
+            if (fraction == 1.0f) return NONE;
+            else if (fraction > 0.66f) return LOW;
+            else if (fraction > 0.33f) return MEDIUM;
+            else return HIGH;
         }
     }
 }
