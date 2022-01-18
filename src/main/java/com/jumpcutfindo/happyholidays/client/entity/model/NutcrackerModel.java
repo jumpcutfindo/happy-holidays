@@ -16,7 +16,7 @@ public class NutcrackerModel<T extends NutcrackerEntity> extends AnimatedGeoMode
 
     @Override
     public ResourceLocation getTextureLocation(NutcrackerEntity object) {
-        return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/nutcracker.png");
+        return object.getTexture();
     }
 
     @Override

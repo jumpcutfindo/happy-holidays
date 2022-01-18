@@ -1,12 +1,15 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker;
 
 import java.util.EnumSet;
+import java.util.Map;
 import java.util.UUID;
 import java.util.function.Predicate;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.google.common.collect.Maps;
+import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.container.christmas.nutcracker.NutcrackerContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutAmmo;
@@ -15,11 +18,13 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
+import net.minecraft.Util;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -27,6 +32,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.TimeUtil;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -36,8 +42,10 @@ import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.NeutralMob;
 import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.SpawnGroupData;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -57,6 +65,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -92,6 +101,22 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             EntityDataSerializers.BOOLEAN);
     public static final EntityDataAccessor<Integer> DATA_REMAINING_ANGER_TIME = SynchedEntityData.defineId(NutcrackerEntity.class,
             EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> DATA_TYPE_ID = SynchedEntityData.defineId(NutcrackerEntity.class,
+            EntityDataSerializers.INT);
+
+    public static final Map<Integer, ResourceLocation> TAMED_TEXTURE_BY_TYPE = Util.make(Maps.newHashMap(), (map) -> {
+        map.put(0, new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/nutcracker_a.png"));
+        map.put(1, new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/nutcracker_b.png"));
+        map.put(2, new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/nutcracker_c.png"));
+        map.put(3, new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/nutcracker_d.png"));
+    });
+
+    public static final Map<Integer, ResourceLocation> UNTAMED_TEXTURE_BY_TYPE = Util.make(Maps.newHashMap(), (map) -> {
+        map.put(0, new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/nutcracker_a_untamed.png"));
+        map.put(1, new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/nutcracker_b_untamed.png"));
+        map.put(2, new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/nutcracker_c_untamed.png"));
+        map.put(3, new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/nutcracker_d_untamed.png"));
+    });
 
     private static final UniformInt PERSISTENT_ANGER_TIME = TimeUtil.rangeOfSeconds(20, 39);
 
@@ -127,6 +152,13 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers());
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, true));
+    }
+
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor p_146746_, DifficultyInstance p_146747_, MobSpawnType p_146748_, @Nullable SpawnGroupData p_146749_, @Nullable CompoundTag p_146750_) {
+        this.setNutcrackerType(this.random.nextInt(0, 4));
+
+        return super.finalizeSpawn(p_146746_, p_146747_, p_146748_, p_146749_, p_146750_);
     }
 
     @Override
@@ -211,6 +243,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
+        this.entityData.define(DATA_TYPE_ID, 0);
         this.entityData.define(DATA_MOUTH_OPEN, false);
         this.entityData.define(DATA_IS_FIRING, false);
         this.entityData.define(DATA_REMAINING_ANGER_TIME, 0);
@@ -238,6 +271,14 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
     public void setFiring(boolean isFiring) {
         this.entityData.set(DATA_IS_FIRING, isFiring);
+    }
+
+    public int getNutcrackerType() {
+        return this.entityData.get(DATA_TYPE_ID);
+    }
+
+    public void setNutcrackerType(int id) {
+        this.entityData.set(DATA_TYPE_ID, id);
     }
 
     @Nullable
@@ -272,6 +313,11 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     @Override
     public void registerControllers(AnimationData data) {
         data.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
+    }
+
+    public ResourceLocation getTexture() {
+        if (this.isTame()) return TAMED_TEXTURE_BY_TYPE.get(this.getNutcrackerType());
+        else return UNTAMED_TEXTURE_BY_TYPE.get(this.getNutcrackerType());
     }
 
     @Override
@@ -340,6 +386,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         super.addAdditionalSaveData(tag);
 
         tag.put("NutInventory", ((NutcrackerInventory)this.inventory).serializeNBT());
+        tag.putInt("NutcrackerType", this.getNutcrackerType());
     }
 
     @Override
@@ -348,6 +395,8 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
         CompoundTag invTag = tag.getCompound("NutInventory");
         ((NutcrackerInventory)this.inventory).deserializeNBT(invTag);
+
+        this.entityData.set(DATA_TYPE_ID, tag.getInt("NutcrackerType"));
     }
 
     @Nullable
@@ -444,7 +493,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         }
 
         public boolean canContinueToUse() {
-            return this.canUse() || !this.mob.getNavigation().isDone();
+            return this.canUse();
         }
 
         public void stop() {
