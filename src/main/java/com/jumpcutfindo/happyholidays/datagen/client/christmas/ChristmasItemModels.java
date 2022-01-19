@@ -256,6 +256,8 @@ public class ChristmasItemModels extends ItemModelProvider {
                 itemTexturePair(ChristmasItems.METALLIC_WALNUT.get()),
                 itemTexturePair(ChristmasItems.HALVED_WALNUT.get()),
 
+                itemTexturePair(ChristmasItems.PATROL_ORDERS.get()),
+
                 itemTexturePair(ChristmasItems.SANTA_HAT.get()),
                 itemTexturePair(ChristmasItems.ENCHANTED_SANTA_HAT.get(), "santa_hat"),
                 itemTexturePair(ChristmasItems.SANTA_TOP.get()),
