@@ -6,6 +6,7 @@ import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class PatrolRouteCache {
     private static ItemStack cachedPatrolOrders = ItemStack.EMPTY;
@@ -16,7 +17,7 @@ public class PatrolRouteCache {
         return cachedRoute;
     }
 
-    public static boolean compareAndUpdate(ItemStack patrolOrders) {
+    public static boolean compareAndUpdate(Level level, ItemStack patrolOrders) {
         if (isSame(patrolOrders)) return true;
         else {
             CompoundTag patrolOrdersTag = patrolOrders.getOrCreateTag();
@@ -28,7 +29,7 @@ public class PatrolRouteCache {
             cachedPatrolOrders = patrolOrders.copy();
             cachedRoute = patrolRoute;
 
-            generateParticleSpawnPoints();
+            generateParticleSpawnPoints(level);
 
             return false;
         }
@@ -38,7 +39,7 @@ public class PatrolRouteCache {
         return ItemStack.isSameItemSameTags(patrolOrders, cachedPatrolOrders);
     }
 
-    public static void generateParticleSpawnPoints() {
+    public static void generateParticleSpawnPoints(Level level) {
         particleSpawnLocations = new ArrayList<>();
 
         if (cachedRoute.getPoints().size() == 1) particleSpawnLocations.add(new RouteParticleSpawnPos(cachedRoute.getStart(), true));
@@ -52,27 +53,41 @@ public class PatrolRouteCache {
             if (pointA.getX() == pointB.getX()) {
                 if (pointA.getZ() >= pointB.getZ()) {
                     for (int j = pointA.getZ(); j > pointB.getZ(); j--) {
-                        particleSpawnLocations.add(new RouteParticleSpawnPos(pointA.getX(), pointA.getY(), j, false));
+                        RouteParticleSpawnPos pos = new RouteParticleSpawnPos(pointA.getX(), pointA.getY(), j, false);
+                        particleSpawnLocations.add(adjustIntermediatePoint(level, pos));
                     }
                 } else {
                     for (int j = pointA.getZ(); j < pointB.getZ(); j++) {
-                        particleSpawnLocations.add(new RouteParticleSpawnPos(pointA.getX(), pointA.getY(), j, false));
+                        RouteParticleSpawnPos pos = new RouteParticleSpawnPos(pointA.getX(), pointA.getY(), j, false);
+                        particleSpawnLocations.add(adjustIntermediatePoint(level, pos));
                     }
                 }
             } else if (pointA.getZ() == pointB.getZ()) {
                 if (pointA.getX() >= pointB.getX()) {
                     for (int j = pointA.getX(); j > pointB.getX(); j--) {
-                        particleSpawnLocations.add(new RouteParticleSpawnPos(j, pointA.getY(), pointA.getZ(), false));
+                        RouteParticleSpawnPos pos = new RouteParticleSpawnPos(j, pointA.getY(), pointA.getZ(), false);
+                        particleSpawnLocations.add(adjustIntermediatePoint(level, pos));
                     }
                 } else {
                     for (int j = pointA.getX(); j < pointB.getX(); j++) {
-                        particleSpawnLocations.add(new RouteParticleSpawnPos(j, pointA.getY(), pointA.getZ(), false));
+                        RouteParticleSpawnPos pos = new RouteParticleSpawnPos(j, pointA.getY(), pointA.getZ(), false);
+                        particleSpawnLocations.add(adjustIntermediatePoint(level, pos));
                     }
                 }
             }
 
             particleSpawnLocations.add(new RouteParticleSpawnPos(pointB,true));
         }
+    }
+
+    public static RouteParticleSpawnPos adjustIntermediatePoint(Level level, RouteParticleSpawnPos pos) {
+        RouteParticleSpawnPos intermediatePoint = pos;
+
+        while (!level.getBlockState(intermediatePoint.above()).isAir()) {
+            intermediatePoint = new RouteParticleSpawnPos(intermediatePoint.above(), false);
+        }
+
+        return intermediatePoint;
     }
 
     public static List<RouteParticleSpawnPos> getParticleSpawnLocations() {

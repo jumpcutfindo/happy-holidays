@@ -36,7 +36,7 @@ public class PatrolRouteRenderingHandler {
 
             // Send the obtained ItemStack to update the cache in the case where there is a change (e.g. changed Patrol Orders, added new point etc.)
             // If a change was detected, we also reset this handler
-            boolean isChanged = !PatrolRouteCache.compareAndUpdate(patrolOrders);
+            boolean isChanged = !PatrolRouteCache.compareAndUpdate(level, patrolOrders);
             if (isChanged) resetHandler();
 
             if (!PatrolRouteCache.getParticleSpawnLocations().isEmpty()) {
