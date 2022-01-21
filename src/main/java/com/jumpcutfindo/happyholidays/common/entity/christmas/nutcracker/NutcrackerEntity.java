@@ -131,6 +131,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     private UUID persistentAngerTarget;
 
     private Player interactingPlayer;
+    private int droppedOrdersCooldown;
 
     public NutcrackerEntity(EntityType<? extends TamableAnimal> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
@@ -198,8 +199,9 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         }
 
         // Handle retrieving of patrol orders
-        if (this.isTame() && heldItem.is(ChristmasItems.SWAGGER_STICK.get())) {
+        if (!this.level.isClientSide() && this.isTame() && heldItem.is(ChristmasItems.SWAGGER_STICK.get())) {
             this.dropPatrolOrders();
+            return InteractionResult.SUCCESS;
         }
 
         if (!this.level.isClientSide() && interactionHand == InteractionHand.MAIN_HAND && this.isTame()) {
@@ -220,6 +222,12 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
     public Player getInteractingPlayer() {
         return interactingPlayer;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (this.droppedOrdersCooldown > 0) this.droppedOrdersCooldown--;
     }
 
     @NotNull
@@ -287,15 +295,24 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     }
 
     public void pickupPatrolOrders(ItemEntity itemEntity) {
-        this.pickUpItem(itemEntity);
+        if (itemEntity.hasPickUpDelay() || this.droppedOrdersCooldown > 0) return;
+
+        this.take(itemEntity, itemEntity.getItem().getCount());
 
         ItemStack patrolOrders = itemEntity.getItem();
         this.inventory.setPatrolOrders(patrolOrders);
+
+        itemEntity.setRemoved(RemovalReason.DISCARDED);
     }
 
     public void dropPatrolOrders() {
         ItemStack patrolOrders = this.inventory.popPatrolOrders();
-        if (!patrolOrders.isEmpty()) this.spawnAtLocation(patrolOrders);
+        if (!patrolOrders.isEmpty()) {
+            this.inventory.setPatrolOrders(ItemStack.EMPTY);
+
+            this.spawnAtLocation(patrolOrders);
+            this.droppedOrdersCooldown = 40;
+        }
     }
 
     public int getNutcrackerType() {
@@ -493,7 +510,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
         @Override
         public boolean canUse() {
-            if (nutcracker.canTakePatrolOrders()) return false;
+            if (!nutcracker.canTakePatrolOrders()) return false;
 
             List<ItemEntity> nearbyEntities = this.nutcracker.level.getEntitiesOfClass(ItemEntity.class,
                     this.nutcracker.getBoundingBox().inflate(4.0D, 4.0D, 4.0D));

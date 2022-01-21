@@ -75,10 +75,7 @@ public class NutcrackerInventory extends ItemStackHandler {
     }
 
     public ItemStack popPatrolOrders() {
-        ItemStack patrolOrders = this.patrolOrders.copy();
-        this.patrolOrders = ItemStack.EMPTY;
-
-        return patrolOrders;
+        return this.patrolOrders;
     }
 
     public boolean hasPatrolOrders() {

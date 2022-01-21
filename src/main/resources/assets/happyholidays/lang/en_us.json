@@ -253,6 +253,7 @@
     "item.happyholidays.metallic_walnut": "Metallic Walnut",
     "item.happyholidays.halved_walnut": "Halved Walnut",
 
+    "item.happyholidays.swagger_stick": "Swagger Stick",
     "item.happyholidays.patrol_orders": "Patrol Orders",
     "item.happyholidays.patrol_orders.add_point_success": "Successfully added the selected point.",
     "item.happyholidays.patrol_orders.add_point_fail": "Failed to add the selected point.",
@@ -260,7 +261,8 @@
     "item.happyholidays.patrol_orders.remove_point_fail": "Failed to remove the selected point.",
     "item.happyholidays.patrol_orders.complete_route": "The patrol route has been completed!",
     "item.happyholidays.patrol_orders.locked_route": "The patrol route of this order has been locked from further changes.",
-
+    "item.happyholidays.patrol_orders.no_route": "No route",
+    "item.happyholidays.patrol_orders.route_with_length": "Route of length %s",
     "item.patrol_orders.action_success.sub": "Action succeeds",
     "item.patrol_orders.action_fail.sub": "Action fails",
     "item.patrol_orders.route_complete.sub": "Route completes",
