@@ -3,8 +3,9 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PatrolOrdersItem;
+
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
@@ -20,12 +21,7 @@ public class PatrolRouteCache {
     public static boolean compareAndUpdate(Level level, ItemStack patrolOrders) {
         if (isSame(patrolOrders)) return true;
         else {
-            CompoundTag patrolOrdersTag = patrolOrders.getOrCreateTag();
-            PatrolRoute patrolRoute = new PatrolRoute();
-            if (patrolOrdersTag.contains("PatrolRoute")) {
-                patrolRoute.deserializeTag(patrolOrdersTag.getCompound("PatrolRoute"));
-            }
-
+            PatrolRoute patrolRoute = PatrolOrdersItem.extractRoute(patrolOrders);
             cachedPatrolOrders = patrolOrders.copy();
             cachedRoute = patrolRoute;
 

@@ -131,6 +131,10 @@ public class PatrolRoute {
         return this.routePoints;
     }
 
+    public int getLength() {
+        return this.getPoints().size();
+    }
+
     public boolean isValidPoint(BlockPos pos) {
         if (this.isEmpty()) return true;
 

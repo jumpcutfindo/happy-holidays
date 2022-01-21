@@ -13,6 +13,7 @@ import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.container.christmas.nutcracker.NutcrackerContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PatrolOrdersItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutAmmo;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
@@ -20,6 +21,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
 import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -68,6 +70,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -142,6 +145,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         super.registerGoals();
 
         this.goalSelector.addGoal(0, new WalnutAttackGoal(this, 1.25D, 10.0F));
+        this.goalSelector.addGoal(1, new PatrolGoal(this));
         this.goalSelector.addGoal(1, new PickupPatrolOrdersGoal(this));
         this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(ChristmasItems.WALNUT.get()), false));
         this.goalSelector.addGoal(1, new LookAndFollowInteractingPlayerGoal(this));
@@ -300,7 +304,9 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         this.take(itemEntity, itemEntity.getItem().getCount());
 
         ItemStack patrolOrders = itemEntity.getItem();
-        this.inventory.setPatrolOrders(patrolOrders);
+        this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(inventory -> {
+            ((NutcrackerInventory) inventory).setPatrolOrders(patrolOrders);
+        });
 
         itemEntity.setRemoved(RemovalReason.DISCARDED);
     }
@@ -308,11 +314,23 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     public void dropPatrolOrders() {
         ItemStack patrolOrders = this.inventory.popPatrolOrders();
         if (!patrolOrders.isEmpty()) {
-            this.inventory.setPatrolOrders(ItemStack.EMPTY);
+            this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(inventory -> {
+                ((NutcrackerInventory) inventory).setPatrolOrders(ItemStack.EMPTY);
+            });
 
             this.spawnAtLocation(patrolOrders);
             this.droppedOrdersCooldown = 40;
+
+
         }
+    }
+
+    public ItemStack getPatrolOrders() {
+        return this.inventory.getPatrolOrders();
+    }
+
+    public boolean hasValidOrders() {
+        return this.inventory.hasPatrolOrders() && PatrolOrdersItem.isValidPatrolOrders(this.inventory.getPatrolOrders());
     }
 
     public int getNutcrackerType() {
@@ -493,10 +511,63 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     }
 
     private static class PatrolGoal extends Goal {
+        private final NutcrackerEntity nutcracker;
+
+        private PatrolRoute patrolRoute;
+        private int routeLength, currentIndex;
+
+        public PatrolGoal(NutcrackerEntity nutcracker) {
+            this.nutcracker = nutcracker;
+        }
 
         @Override
         public boolean canUse() {
-            return false;
+            if (this.nutcracker.getTarget() != null) return false;
+
+            if (!this.nutcracker.hasValidOrders()) {
+                // TODO: Move to reset function
+                this.patrolRoute = null;
+                this.currentIndex = 0;
+                this.routeLength = 0;
+
+                return false;
+            }
+
+            return true;
+        }
+
+        @Override
+        public void tick() {
+            super.tick();
+
+            if (this.patrolRoute == null) {
+                this.initialiseRoute();
+            }
+
+            BlockPos targetBlockPos = this.patrolRoute.getPoints().get(currentIndex);
+            Vec3 targetPoint = new Vec3(targetBlockPos.getX() + 0.5D, targetBlockPos.getY() + 1.0d, targetBlockPos.getZ() + 0.5D);
+            this.nutcracker.navigation.moveTo(targetPoint.x, targetPoint.y, targetPoint.z, 0.9D);
+
+            // TODO: Add some way for nutcracker to remember the next position he's moving to
+
+            if (this.nutcracker.distanceToSqr(targetPoint) < 3.0D) {
+                this.updatePoints();
+            }
+
+            if (this.nutcracker.navigation.isStuck()) this.nutcracker.jumpControl.jump();
+        }
+
+        private void initialiseRoute() {
+            ItemStack patrolOrders = nutcracker.getPatrolOrders();
+            this.patrolRoute = PatrolOrdersItem.extractRoute(patrolOrders);
+            this.routeLength = this.patrolRoute.getLength();
+
+            this.currentIndex = 0;
+        }
+
+        private void updatePoints() {
+            this.currentIndex++;
+            if (this.currentIndex >= this.routeLength) this.currentIndex = 0;
         }
     }
 

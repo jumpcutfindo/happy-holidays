@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Nullable;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.PatrolRoute;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -67,5 +68,19 @@ public class PatrolOrdersItem extends ChristmasItem {
         } else {
             textComponents.add(new TranslatableComponent(TOOLTIP_NO_ROUTE).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         }
+    }
+
+    public static boolean isValidPatrolOrders(ItemStack itemStack) {
+        return !itemStack.isEmpty() && itemStack.is(ChristmasItems.PATROL_ORDERS.get()) && itemStack.getTag() != null && itemStack.getTag().contains("PatrolRoute");
+    }
+
+    public static PatrolRoute extractRoute(ItemStack patrolOrders) {
+        CompoundTag patrolOrdersTag = patrolOrders.getOrCreateTag();
+        PatrolRoute patrolRoute = new PatrolRoute();
+        if (patrolOrdersTag.contains("PatrolRoute")) {
+            patrolRoute.deserializeTag(patrolOrdersTag.getCompound("PatrolRoute"));
+        }
+
+        return patrolRoute;
     }
 }

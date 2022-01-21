@@ -70,6 +70,10 @@ public class NutcrackerInventory extends ItemStackHandler {
         this.extractItem(slot, 1, false);
     }
 
+    public ItemStack getPatrolOrders() {
+        return this.patrolOrders;
+    }
+
     public void setPatrolOrders(ItemStack itemStack) {
         this.patrolOrders = itemStack;
     }
