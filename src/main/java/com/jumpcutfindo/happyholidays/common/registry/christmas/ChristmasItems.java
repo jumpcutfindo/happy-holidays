@@ -66,6 +66,7 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PatrolOrdersIte
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PresentScrapItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SantaElfBellItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SnowGlobeItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SwaggerStickItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.ToyPartsRequestItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
@@ -121,6 +122,8 @@ public class ChristmasItems {
     public static final RegistryObject<ChristmasItem> HALVED_WALNUT =
             ITEMS.register(WalnutItem.HALVED_ITEM_ID, WalnutItem::new);
 
+    public static final RegistryObject<Item> SWAGGER_STICK =
+            ITEMS.register(SwaggerStickItem.ITEM_ID, SwaggerStickItem::new);
     public static final RegistryObject<Item> PATROL_ORDERS =
             ITEMS.register(PatrolOrdersItem.ITEM_ID, PatrolOrdersItem::new);
 

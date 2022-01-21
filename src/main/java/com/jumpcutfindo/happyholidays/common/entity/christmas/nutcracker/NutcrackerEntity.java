@@ -185,6 +185,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             return InteractionResult.CONSUME;
         }
 
+        // Handle healing
         if (this.isTame() && heldItem.is(ItemTags.LOGS)) {
             if (this.getHealth() < this.getMaxHealth()) {
                 this.usePlayerItem(player, interactionHand, heldItem);
@@ -194,6 +195,11 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
                 if (!this.level.isClientSide()) ((ServerLevel) this.level).sendParticles(ParticleTypes.CLOUD, this.getX(), this.getY() + 2.0d, this.getZ(), 3, 0.5, 0.0, 0.5, 0.0D);
             }
             return InteractionResult.SUCCESS;
+        }
+
+        // Handle retrieving of patrol orders
+        if (this.isTame() && heldItem.is(ChristmasItems.SWAGGER_STICK.get())) {
+            this.dropPatrolOrders();
         }
 
         if (!this.level.isClientSide() && interactionHand == InteractionHand.MAIN_HAND && this.isTame()) {
@@ -285,6 +291,11 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
         ItemStack patrolOrders = itemEntity.getItem();
         this.inventory.setPatrolOrders(patrolOrders);
+    }
+
+    public void dropPatrolOrders() {
+        ItemStack patrolOrders = this.inventory.popPatrolOrders();
+        if (!patrolOrders.isEmpty()) this.spawnAtLocation(patrolOrders);
     }
 
     public int getNutcrackerType() {
