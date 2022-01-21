@@ -261,6 +261,10 @@
     "item.happyholidays.patrol_orders.complete_route": "The patrol route has been completed!",
     "item.happyholidays.patrol_orders.locked_route": "The patrol route of this order has been locked from further changes.",
 
+    "item.patrol_orders.action_success.sub": "Action succeeds",
+    "item.patrol_orders.action_fail.sub": "Action fails",
+    "item.patrol_orders.route_complete.sub": "Route completes",
+
     "item.happyholidays.eggnog": "Eggnog",
 
     "item.happyholidays.red_christmas_gift": "Red Christmas Gift",

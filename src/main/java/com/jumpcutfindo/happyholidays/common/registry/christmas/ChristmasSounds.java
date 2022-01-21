@@ -64,6 +64,10 @@ public class ChristmasSounds {
     public static final RegistryObject<SoundEvent> NUTCRACKER_TARGET_ACQUIRED = registerSound("entity.nutcracker_target_acquired");
     public static final RegistryObject<SoundEvent> NUTCRACKER_SHOOT = registerSound("entity.nutcracker_shoot");
 
+    public static final RegistryObject<SoundEvent> PATROL_ORDERS_ACTION_SUCCESS = registerSound("item.patrol_orders.action_success");
+    public static final RegistryObject<SoundEvent> PATROL_ORDERS_ACTION_FAIL = registerSound("item.patrol_orders.action_fail");
+    public static final RegistryObject<SoundEvent> PATROL_ORDERS_ROUTE_COMPLETE = registerSound("item.patrol_orders.route_complete");
+
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_ANGELS_ON_HIGH = registerSound(SheetMusicItem.ANGELS_ON_HIGH_SOUND_ID);
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_CAROL_OF_THE_BELLS = registerSound(SheetMusicItem.CAROL_OF_BELLS_SOUND_ID);
     public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_DECK_THE_HALLS = registerSound(SheetMusicItem.DECK_THE_HALLS_SOUND_ID);

@@ -38,7 +38,8 @@ public class PatrolOrdersItem extends ChristmasItem {
         Level level = context.getLevel();
         Player player = context.getPlayer();
         BlockPos clickedPos = context.getClickedPos();
-        patrolRoute.takeAction(level, player, clickedPos);
+
+        boolean isSuccess = patrolRoute.takeAction(level, player, clickedPos);
 
         patrolOrdersTag.put("PatrolRoute", patrolRoute.serializeTag());
 

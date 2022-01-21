@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
 import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
 import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
@@ -11,6 +12,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
@@ -46,6 +48,7 @@ public class PatrolRoute {
             if (level.isClientSide()) {
                 GameplayMessage message = new GameplayMessage(MessageType.NEUTRAL, ROUTE_LOCKED);
                 Messenger.sendChatMessage(message, player);
+                this.playFailSound(level, player);
             }
             return this.isComplete();
         } else if (this.isStart(pos) && !this.isComplete() && this.getPoints().size() >= 1) {
@@ -53,6 +56,7 @@ public class PatrolRoute {
             if (isComplete && level.isClientSide()) {
                 GameplayMessage message = new GameplayMessage(MessageType.SUCCESS, ROUTE_COMPLETE);
                 Messenger.sendChatMessage(message, player);
+                this.playCompleteSound(level, player);
             }
             return isComplete;
         } else if (this.hasPoint(pos)) {
@@ -62,9 +66,11 @@ public class PatrolRoute {
                 if (isRemoved) {
                     GameplayMessage message = new GameplayMessage(MessageType.SUCCESS, ROUTE_REMOVE_POINT_SUCCESS);
                     Messenger.sendChatMessage(message, player);
+                    this.playSuccessSound(level, player);
                 } else {
                     GameplayMessage message = new GameplayMessage(MessageType.ERROR, ROUTE_REMOVE_POINT_FAIL);
                     Messenger.sendChatMessage(message, player);
+                    this.playFailSound(level, player);
                 }
             }
 
@@ -76,9 +82,11 @@ public class PatrolRoute {
                 if (isAdded) {
                     GameplayMessage message = new GameplayMessage(MessageType.SUCCESS, ROUTE_ADD_POINT_SUCCESS);
                     Messenger.sendChatMessage(message, player);
+                    this.playSuccessSound(level, player);
                 } else {
                     GameplayMessage message = new GameplayMessage(MessageType.ERROR, ROUTE_ADD_POINT_FAIL);
                     Messenger.sendChatMessage(message, player);
+                    this.playFailSound(level, player);
                 }
             }
 
@@ -128,6 +136,18 @@ public class PatrolRoute {
 
         BlockPos latestPos = this.getEnd();
         return !this.hasPoint(pos) && (latestPos.getX() == pos.getX() || latestPos.getZ() == pos.getZ());
+    }
+
+    private void playSuccessSound(Level level, Player player) {
+        level.playSound(player, player.blockPosition(), ChristmasSounds.PATROL_ORDERS_ACTION_SUCCESS.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
+    }
+
+    private void playFailSound(Level level, Player player) {
+        level.playSound(player, player.blockPosition(), ChristmasSounds.PATROL_ORDERS_ACTION_FAIL.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
+    }
+
+    private void playCompleteSound(Level level, Player player) {
+        level.playSound(player, player.blockPosition(), ChristmasSounds.PATROL_ORDERS_ROUTE_COMPLETE.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
     }
 
     public CompoundTag serializeTag() {

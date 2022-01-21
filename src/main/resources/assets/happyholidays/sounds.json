@@ -249,6 +249,36 @@
             }
         ]
     },
+    "item.patrol_orders.action_success": {
+        "category": "item",
+        "subtitle": "item.patrol_orders.action_success.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/patrol_orders_action_success",
+                "stream": true
+            }
+        ]
+    },
+    "item.patrol_orders.action_fail": {
+        "category": "item",
+        "subtitle": "item.patrol_orders.action_fail.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/patrol_orders_action_fail",
+                "stream": true
+            }
+        ]
+    },
+    "item.patrol_orders.route_complete": {
+        "category": "item",
+        "subtitle": "item.patrol_orders.route_complete.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/patrol_orders_route_complete",
+                "stream": true
+            }
+        ]
+    },
     "entity.gingerbread_person_passive": {
         "category": "entity",
         "subtitle": "entity.happyholidays.gingerbread_person_passive.sub",
