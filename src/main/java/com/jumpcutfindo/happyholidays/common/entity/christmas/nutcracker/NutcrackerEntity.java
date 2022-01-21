@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker;
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Predicate;
@@ -57,6 +58,7 @@ import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Inventory;
@@ -139,8 +141,9 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         super.registerGoals();
 
         this.goalSelector.addGoal(0, new WalnutAttackGoal(this, 1.25D, 10.0F));
-        this.goalSelector.addGoal(0, new LookAndFollowInteractingPlayerGoal(this));
+        this.goalSelector.addGoal(1, new PickupPatrolOrdersGoal(this));
         this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(ChristmasItems.WALNUT.get()), false));
+        this.goalSelector.addGoal(1, new LookAndFollowInteractingPlayerGoal(this));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
@@ -271,6 +274,17 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
     public void setFiring(boolean isFiring) {
         this.entityData.set(DATA_IS_FIRING, isFiring);
+    }
+
+    public boolean canTakePatrolOrders() {
+        return this.isTame() && !this.inventory.hasPatrolOrders();
+    }
+
+    public void pickupPatrolOrders(ItemEntity itemEntity) {
+        this.pickUpItem(itemEntity);
+
+        ItemStack patrolOrders = itemEntity.getItem();
+        this.inventory.setPatrolOrders(patrolOrders);
     }
 
     public int getNutcrackerType() {
@@ -447,6 +461,54 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             }
 
             this.timer--;
+        }
+    }
+
+    private static class PatrolGoal extends Goal {
+
+        @Override
+        public boolean canUse() {
+            return false;
+        }
+    }
+
+    private static class PickupPatrolOrdersGoal extends Goal {
+        private NutcrackerEntity nutcracker;
+        private ItemEntity targetedEntity;
+
+        public PickupPatrolOrdersGoal(NutcrackerEntity nutcracker) {
+            this.nutcracker = nutcracker;
+        }
+
+        @Override
+        public boolean canUse() {
+            if (nutcracker.canTakePatrolOrders()) return false;
+
+            List<ItemEntity> nearbyEntities = this.nutcracker.level.getEntitiesOfClass(ItemEntity.class,
+                    this.nutcracker.getBoundingBox().inflate(4.0D, 4.0D, 4.0D));
+
+            if (nearbyEntities.size() != 0) {
+                for (ItemEntity entity : nearbyEntities) {
+                    if (entity.getItem().is(ChristmasItems.PATROL_ORDERS.get())) {
+                        targetedEntity = entity;
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        @Override
+        public void tick() {
+            if (targetedEntity != null && targetedEntity.isAlive()) {
+                this.nutcracker.getNavigation().moveTo(targetedEntity.position().x, targetedEntity.position().y,
+                        targetedEntity.position().z, 1.0f);
+
+                if (targetedEntity.distanceToSqr(this.nutcracker) < 2.0f) {
+                    this.nutcracker.pickupPatrolOrders(targetedEntity);
+                }
+            }
         }
     }
 
