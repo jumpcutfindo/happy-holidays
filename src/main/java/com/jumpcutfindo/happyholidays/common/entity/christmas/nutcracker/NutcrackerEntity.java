@@ -138,6 +138,8 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     private Player interactingPlayer;
     private int droppedOrdersCooldown;
 
+    private int routeNextPointIndex;
+
     public NutcrackerEntity(EntityType<? extends TamableAnimal> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
     }
@@ -352,6 +354,14 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         return this.entityData.get(DATA_IS_PATROLLING);
     }
 
+    public void updateRoutePointIndex(int index) {
+        this.routeNextPointIndex = index;
+    }
+
+    public int getRouteNextPointIndex() {
+        return this.routeNextPointIndex;
+    }
+
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
@@ -458,6 +468,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
         tag.put("NutcrackerInventory", ((NutcrackerInventory)this.inventory).serializeNBT());
         tag.putInt("NutcrackerType", this.getNutcrackerType());
+        tag.putInt("RouteNextPointIndex", this.routeNextPointIndex);
     }
 
     @Override
@@ -468,6 +479,8 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         ((NutcrackerInventory)this.inventory).deserializeNBT(invTag);
 
         this.entityData.set(DATA_TYPE_ID, tag.getInt("NutcrackerType"));
+
+        this.routeNextPointIndex = tag.getInt("RouteNextPointIndex");
     }
 
     @Nullable
@@ -555,8 +568,6 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             Vec3 targetPoint = new Vec3(targetBlockPos.getX() + 0.5D, targetBlockPos.getY() + 1.0d, targetBlockPos.getZ() + 0.5D);
             this.nutcracker.navigation.moveTo(targetPoint.x, targetPoint.y, targetPoint.z, 0.9D);
 
-            // TODO: Add some way for nutcracker to remember the next position he's moving to
-
             if (this.nutcracker.distanceToSqr(targetPoint) < 3.0D) {
                 this.updatePoints();
             }
@@ -569,7 +580,8 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             this.patrolRoute = PatrolOrdersItem.extractRoute(patrolOrders);
             this.routeLength = this.patrolRoute.getLength();
 
-            this.currentIndex = 0;
+            this.currentIndex = this.nutcracker.getRouteNextPointIndex();
+            if (this.currentIndex >= this.patrolRoute.getLength()) this.currentIndex = 0;
 
             this.nutcracker.setPatrolling(true);
         }
@@ -577,6 +589,8 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         private void updatePoints() {
             this.currentIndex++;
             if (this.currentIndex >= this.routeLength) this.currentIndex = 0;
+
+            this.nutcracker.updateRoutePointIndex(this.currentIndex);
         }
 
         private void reset() {
