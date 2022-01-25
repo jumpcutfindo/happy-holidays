@@ -108,6 +108,8 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_TYPE_ID = SynchedEntityData.defineId(NutcrackerEntity.class,
             EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Boolean> DATA_IS_PATROLLING = SynchedEntityData.defineId(NutcrackerEntity.class,
+            EntityDataSerializers.BOOLEAN);
 
     public static final Map<Integer, ResourceLocation> TAMED_TEXTURE_BY_TYPE = Util.make(Maps.newHashMap(), (map) -> {
         map.put(0, new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/entity/nutcracker_a.png"));
@@ -132,8 +134,6 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
     @javax.annotation.Nullable
     private UUID persistentAngerTarget;
-
-    private boolean isPatrolling;
 
     private Player interactingPlayer;
     private int droppedOrdersCooldown;
@@ -270,6 +270,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         this.entityData.define(DATA_MOUTH_OPEN, false);
         this.entityData.define(DATA_IS_FIRING, false);
         this.entityData.define(DATA_REMAINING_ANGER_TIME, 0);
+        this.entityData.define(DATA_IS_PATROLLING, false);
     }
 
     public boolean isMouthOpen() {
@@ -344,11 +345,11 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     }
 
     public void setPatrolling(boolean isPatrolling) {
-        this.isPatrolling = isPatrolling;
+        this.entityData.set(DATA_IS_PATROLLING, isPatrolling);
     }
 
     public boolean isPatrolling() {
-        return this.isPatrolling;
+        return this.entityData.get(DATA_IS_PATROLLING);
     }
 
     @Nullable
@@ -554,7 +555,6 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             Vec3 targetPoint = new Vec3(targetBlockPos.getX() + 0.5D, targetBlockPos.getY() + 1.0d, targetBlockPos.getZ() + 0.5D);
             this.nutcracker.navigation.moveTo(targetPoint.x, targetPoint.y, targetPoint.z, 0.9D);
 
-            // TODO: Ensure patrol orders are being saved inside the Nutcracker's inventory
             // TODO: Add some way for nutcracker to remember the next position he's moving to
 
             if (this.nutcracker.distanceToSqr(targetPoint) < 3.0D) {

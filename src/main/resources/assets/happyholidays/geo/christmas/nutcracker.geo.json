@@ -192,6 +192,37 @@
 					]
 				},
 				{
+					"name": "patrolFlag",
+					"parent": "rightArm",
+					"pivot": [-7, 38.5, 0],
+					"cubes": [
+						{
+							"origin": [-7.5, 19, -19],
+							"size": [1, 1, 24],
+							"uv": {
+								"north": {"uv": [0, 100], "uv_size": [1, 1]},
+								"east": {"uv": [2, 100], "uv_size": [24, 1]},
+								"south": {"uv": [1, 100], "uv_size": [1, 1]},
+								"west": {"uv": [2, 101], "uv_size": [24, 1]},
+								"up": {"uv": [1, 125], "uv_size": [-1, -24]},
+								"down": {"uv": [2, 125], "uv_size": [-1, -24]}
+							}
+						},
+						{
+							"origin": [-7, 8, -18.75],
+							"size": [0, 11, 9],
+							"uv": {
+								"north": {"uv": [26, 100], "uv_size": [0, 8]},
+								"east": {"uv": [35, 100], "uv_size": [9, 11]},
+								"south": {"uv": [26, 100], "uv_size": [0, 8]},
+								"west": {"uv": [26, 100], "uv_size": [9, 11]},
+								"up": {"uv": [26, 107], "uv_size": [0, -7]},
+								"down": {"uv": [26, 107], "uv_size": [0, -7]}
+							}
+						}
+					]
+				},
+				{
 					"name": "leftArm",
 					"pivot": [7, 38.5, 0],
 					"cubes": [
