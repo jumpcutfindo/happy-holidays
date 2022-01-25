@@ -445,7 +445,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
 
-        tag.put("NutInventory", ((NutcrackerInventory)this.inventory).serializeNBT());
+        tag.put("NutcrackerInventory", ((NutcrackerInventory)this.inventory).serializeNBT());
         tag.putInt("NutcrackerType", this.getNutcrackerType());
     }
 
@@ -453,7 +453,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
 
-        CompoundTag invTag = tag.getCompound("NutInventory");
+        CompoundTag invTag = tag.getCompound("NutcrackerInventory");
         ((NutcrackerInventory)this.inventory).deserializeNBT(invTag);
 
         this.entityData.set(DATA_TYPE_ID, tag.getInt("NutcrackerType"));
@@ -548,6 +548,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             Vec3 targetPoint = new Vec3(targetBlockPos.getX() + 0.5D, targetBlockPos.getY() + 1.0d, targetBlockPos.getZ() + 0.5D);
             this.nutcracker.navigation.moveTo(targetPoint.x, targetPoint.y, targetPoint.z, 0.9D);
 
+            // TODO: Ensure patrol orders are being saved inside the Nutcracker's inventory
             // TODO: Add some way for nutcracker to remember the next position he's moving to
 
             if (this.nutcracker.distanceToSqr(targetPoint) < 3.0D) {

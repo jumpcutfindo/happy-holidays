@@ -94,7 +94,7 @@ public class NutcrackerInventory extends ItemStackHandler {
     public CompoundTag serializeNBT() {
         CompoundTag tag = super.serializeNBT();
 
-        tag.put("PatrolOrders", patrolOrders.serializeNBT());
+        if (!this.patrolOrders.isEmpty()) tag.put("PatrolOrders", patrolOrders.serializeNBT());
         return tag;
     }
 
@@ -102,6 +102,7 @@ public class NutcrackerInventory extends ItemStackHandler {
     public void deserializeNBT(CompoundTag nbt) {
         super.deserializeNBT(nbt);
 
+        this.patrolOrders = ChristmasItems.PATROL_ORDERS.get().getDefaultInstance();
         if (nbt.contains("PatrolOrders")) this.patrolOrders.deserializeNBT(nbt.getCompound("PatrolOrders"));
     }
 }
