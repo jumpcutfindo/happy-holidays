@@ -63,6 +63,7 @@ public class ChristmasSounds {
     public static final RegistryObject<SoundEvent> NUTCRACKER_REPAIR = registerSound("entity.nutcracker_repair");
     public static final RegistryObject<SoundEvent> NUTCRACKER_TARGET_ACQUIRED = registerSound("entity.nutcracker_target_acquired");
     public static final RegistryObject<SoundEvent> NUTCRACKER_SHOOT = registerSound("entity.nutcracker_shoot");
+    public static final RegistryObject<SoundEvent> NUTCRACKER_RECEIVE_ORDERS = registerSound("entity.nutcracker_receive_orders");
 
     public static final RegistryObject<SoundEvent> PATROL_ORDERS_ACTION_SUCCESS = registerSound("item.patrol_orders.action_success");
     public static final RegistryObject<SoundEvent> PATROL_ORDERS_ACTION_FAIL = registerSound("item.patrol_orders.action_fail");

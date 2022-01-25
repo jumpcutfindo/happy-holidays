@@ -390,6 +390,7 @@
     "entity.happyholidays.nutcracker_repair.sub": "Nutcracker heals",
     "entity.happyholidays.nutcracker_target_acquired.sub": "Nutcracker loads up",
     "entity.happyholidays.nutcracker_shoot.sub": "Nutcracker shoots",
+    "entity.happyholidays.nutcracker_receive_orders.sub": "Nutcracker receives orders",
 
     "itemGroup.happyholidays": "Happy Holidays",
 

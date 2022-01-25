@@ -588,5 +588,15 @@
                 "stream": true
             }
         ]
+    },
+    "entity.nutcracker_receive_orders": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.nutcracker_receive_orders.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/nutcracker_receive_orders",
+                "stream": true
+            }
+        ]
     }
 }
