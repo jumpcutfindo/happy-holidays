@@ -133,6 +133,8 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     @javax.annotation.Nullable
     private UUID persistentAngerTarget;
 
+    private boolean isPatrolling;
+
     private Player interactingPlayer;
     private int droppedOrdersCooldown;
 
@@ -341,6 +343,14 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         this.entityData.set(DATA_TYPE_ID, id);
     }
 
+    public void setPatrolling(boolean isPatrolling) {
+        this.isPatrolling = isPatrolling;
+    }
+
+    public boolean isPatrolling() {
+        return this.isPatrolling;
+    }
+
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
@@ -525,11 +535,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             if (this.nutcracker.getTarget() != null) return false;
 
             if (!this.nutcracker.hasValidOrders()) {
-                // TODO: Move to reset function
-                this.patrolRoute = null;
-                this.currentIndex = 0;
-                this.routeLength = 0;
-
+                this.reset();
                 return false;
             }
 
@@ -564,11 +570,21 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             this.routeLength = this.patrolRoute.getLength();
 
             this.currentIndex = 0;
+
+            this.nutcracker.setPatrolling(true);
         }
 
         private void updatePoints() {
             this.currentIndex++;
             if (this.currentIndex >= this.routeLength) this.currentIndex = 0;
+        }
+
+        private void reset() {
+            this.patrolRoute = null;
+            this.currentIndex = 0;
+            this.routeLength = 0;
+
+            this.nutcracker.setPatrolling(false);
         }
     }
 

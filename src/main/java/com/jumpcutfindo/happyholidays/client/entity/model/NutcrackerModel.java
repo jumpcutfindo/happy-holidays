@@ -31,6 +31,7 @@ public class NutcrackerModel<T extends NutcrackerEntity> extends AnimatedGeoMode
         IBone openMouthBone = this.getAnimationProcessor().getBone("openMouth");
         IBone closedMouthBone = this.getAnimationProcessor().getBone("closedMouth");
         IBone nutBone = this.getAnimationProcessor().getBone("nut");
+        IBone patrolFlagBone = this.getAnimationProcessor().getBone("patrolFlag");
 
         // Handle mouth open / closed state
         openMouthBone.setHidden(!nutcracker.isMouthOpen());
@@ -46,9 +47,11 @@ public class NutcrackerModel<T extends NutcrackerEntity> extends AnimatedGeoMode
         }
 
         // Handle damage level
-
         NutcrackerEntity.Damage damageLevel = nutcracker.getDamageLevel();
         this.adjustHatToDamage(damageLevel);
+
+        // Handle patrol flag
+        patrolFlagBone.setHidden(!nutcracker.isPatrolling());
     }
 
     private void adjustHatToDamage(NutcrackerEntity.Damage damageLevel) {
