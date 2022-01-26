@@ -326,7 +326,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
         itemEntity.setRemoved(RemovalReason.DISCARDED);
 
-        this.playSound(ChristmasSounds.NUTCRACKER_RECEIVE_ORDERS.get(), 1.0F, 1.0F);
+        if (PatrolOrdersItem.isCompletedPatrolOrders(patrolOrders)) this.playSound(ChristmasSounds.NUTCRACKER_RECEIVE_ORDERS.get(), 1.0F, 1.0F);
     }
 
     public void dropPatrolOrders() {
