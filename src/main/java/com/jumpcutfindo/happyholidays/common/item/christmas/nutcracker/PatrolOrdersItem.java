@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.item.christmas.misc;
+package com.jumpcutfindo.happyholidays.common.item.christmas.nutcracker;
 
 import java.util.List;
 

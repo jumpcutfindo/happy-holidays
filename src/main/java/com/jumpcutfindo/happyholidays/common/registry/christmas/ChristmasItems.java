@@ -62,12 +62,12 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.gingerbread.RawGinge
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.ChristmasGuideBookItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.EnchantedSantaHatItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.MistletoeAndHollyItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PatrolOrdersItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.nutcracker.PatrolOrdersItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PresentScrapItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SantaElfBellItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.elf.SantaElfBellItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SnowGlobeItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SwaggerStickItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.misc.ToyPartsRequestItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.nutcracker.SwaggerStickItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.elf.ToyPartsRequestItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;

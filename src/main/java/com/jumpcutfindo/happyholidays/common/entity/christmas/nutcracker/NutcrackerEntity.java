@@ -15,7 +15,7 @@ import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.container.christmas.nutcracker.NutcrackerContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
-import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PatrolOrdersItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.nutcracker.PatrolOrdersItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutAmmo;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
@@ -199,9 +199,10 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
                 } else {
                     this.level.broadcastEntityEvent(this, (byte) 6);
                 }
+                return InteractionResult.SUCCESS;
+            } else {
+                return InteractionResult.PASS;
             }
-
-            return InteractionResult.SUCCESS;
         }
 
         // Handle healing
