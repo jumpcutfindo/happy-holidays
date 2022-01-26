@@ -1,8 +1,10 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker;
 
 import java.util.EnumSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -60,6 +62,7 @@ import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
+import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.monster.Monster;
@@ -71,6 +74,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -141,6 +145,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     private int droppedOrdersCooldown;
 
     private int routeNextPointIndex;
+    private int assemblyPos;
 
     public NutcrackerEntity(EntityType<? extends TamableAnimal> p_21683_, Level p_21684_) {
         super(p_21683_, p_21684_);
@@ -153,8 +158,9 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         this.goalSelector.addGoal(0, new WalnutAttackGoal(this, 1.25D, 10.0F));
         this.goalSelector.addGoal(1, new PatrolGoal(this));
         this.goalSelector.addGoal(1, new PickupPatrolOrdersGoal(this));
-        this.goalSelector.addGoal(1, new TemptGoal(this, 1.25D, Ingredient.of(ChristmasItems.WALNUT.get()), false));
         this.goalSelector.addGoal(1, new LookAndFollowInteractingPlayerGoal(this));
+        this.goalSelector.addGoal(2, new AssembleGoal(this));
+        this.goalSelector.addGoal(2, new TemptGoal(this, 1.25D, Ingredient.of(ChristmasItems.WALNUT.get()), false));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new LookAtPlayerGoal(this, Player.class, 6.0F));
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
@@ -366,6 +372,14 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         return this.routeNextPointIndex;
     }
 
+    public void setAssemblyPos(int assemblyPos) {
+        this.assemblyPos = assemblyPos;
+    }
+
+    public int getAssemblyPos() {
+        return this.assemblyPos;
+    }
+
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
@@ -544,6 +558,102 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             }
 
             this.timer--;
+        }
+    }
+
+    private static class AssembleGoal extends Goal {
+        private static final TargetingConditions TEMP_TARGETING = TargetingConditions.forNonCombat().range(20.0D).ignoreLineOfSight();
+
+        private final Ingredient items;
+        private final TargetingConditions targetingConditions;
+
+        private Queue<BlockPos> positionQueue;
+        private NutcrackerEntity nutcracker;
+        private Player player;
+        private BlockPos targetPos;
+        private boolean isInitialised;
+
+        public AssembleGoal(NutcrackerEntity nutcracker) {
+            this.items = Ingredient.of(ChristmasItems.SWAGGER_STICK.get());
+            this.nutcracker = nutcracker;
+            this.targetingConditions = TEMP_TARGETING.copy().selector(this::shouldFollow);
+        }
+
+        @Override
+        public boolean canUse() {
+            this.player = this.nutcracker.level.getNearestPlayer(this.targetingConditions, this.nutcracker);
+            boolean flag = nutcracker.isTame() && !nutcracker.isPatrolling() && this.player != null;
+
+            if (flag && !this.isInitialised) {
+                this.initialise();
+            }
+            if (!flag) {
+                this.reset();
+            }
+
+            return flag;
+        }
+
+        @Override
+        public void tick() {
+            super.tick();
+
+            if (this.nutcracker.position().x != targetPos.getX() + 0.5d || this.nutcracker.position().z != targetPos.getZ() + 0.5d) {
+                this.nutcracker.getNavigation().moveTo(targetPos.getX() + 0.5d, targetPos.getY(), targetPos.getZ() + 0.5d, 1.4f);
+            } else {
+                this.nutcracker.getNavigation().stop();
+            }
+            this.nutcracker.lookControl.setLookAt(this.nutcracker.getX(), this.nutcracker.getY() + this.nutcracker.getEyeHeight(), this.nutcracker.getZ() + 3.0d);
+        }
+
+        private boolean shouldFollow(LivingEntity p_148139_) {
+            return this.items.test(p_148139_.getMainHandItem()) || this.items.test(p_148139_.getOffhandItem());
+        }
+
+        private void initialise() {
+            this.positionQueue = new LinkedList<>();
+            this.positionQueue.add(new BlockPos(this.player.getX(), this.player.getY(), this.player.getZ() - 3.0d));
+            this.determineAssemblyPos();
+
+            this.isInitialised = true;
+        }
+
+        private void reset() {
+            this.positionQueue = new LinkedList<>();
+
+            this.targetPos = null;
+            this.isInitialised = false;
+
+            this.nutcracker.setAssemblyPos(-1);
+        }
+
+        private void determineAssemblyPos() {
+            List<NutcrackerEntity> nutcrackers = this.nutcracker.level.getEntitiesOfClass(NutcrackerEntity.class, new AABB(this.player.blockPosition()).inflate(20.0d));
+
+            int maxPos = 0;
+            for (NutcrackerEntity nutcracker : nutcrackers) {
+                if (nutcracker.getAssemblyPos() >= maxPos) maxPos = nutcracker.getAssemblyPos() + 1;
+            }
+
+            this.nutcracker.setAssemblyPos(maxPos);
+
+            for (int i = 0; i < maxPos + 1; i++) {
+                this.targetPos = this.nextPos();
+            }
+        }
+
+        private BlockPos nextPos() {
+            BlockPos pos = this.positionQueue.poll();
+
+            if (pos != null) {
+                int spacing = 4;
+
+                this.positionQueue.add(pos.north(spacing));
+                this.positionQueue.add(pos.east(spacing));
+                this.positionQueue.add(pos.west(spacing));
+            }
+
+            return pos;
         }
     }
 
