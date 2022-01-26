@@ -185,21 +185,23 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
         // Handle taming
         ItemStack heldItem = player.getItemInHand(interactionHand);
-        if (!this.level.isClientSide() && !this.isTame() && heldItem.is(ChristmasItems.WALNUT.get())) {
-            if (!player.getAbilities().instabuild) {
-                heldItem.shrink(1);
+        if (heldItem.is(ChristmasItems.WALNUT.get())) {
+            if (!this.level.isClientSide() && !this.isTame()) {
+                if (!player.getAbilities().instabuild) {
+                    heldItem.shrink(1);
+                }
+
+                if (this.random.nextInt(5) == 0) {
+                    this.tame(player);
+                    this.navigation.stop();
+                    this.setTarget((LivingEntity) null);
+                    this.level.broadcastEntityEvent(this, (byte) 7);
+                } else {
+                    this.level.broadcastEntityEvent(this, (byte) 6);
+                }
             }
 
-            if (this.random.nextInt(5) == 0) {
-                this.tame(player);
-                this.navigation.stop();
-                this.setTarget((LivingEntity) null);
-                this.level.broadcastEntityEvent(this, (byte) 7);
-            } else {
-                this.level.broadcastEntityEvent(this, (byte) 6);
-            }
-
-            return InteractionResult.CONSUME;
+            return InteractionResult.SUCCESS;
         }
 
         // Handle healing
