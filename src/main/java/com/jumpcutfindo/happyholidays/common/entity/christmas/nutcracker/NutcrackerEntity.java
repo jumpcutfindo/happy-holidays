@@ -62,6 +62,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.RangedAttackMob;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -88,9 +89,10 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     public static final String ENTITY_ID = "nutcracker";
     public static final AttributeSupplier ENTITY_ATTRIBUTES =
             Mob.createMobAttributes()
-                    .add(Attributes.MAX_HEALTH, 25.0f)
+                    .add(Attributes.MAX_HEALTH, 30.0f)
                     .add(Attributes.MOVEMENT_SPEED, 0.23f)
                     .add(Attributes.FOLLOW_RANGE, 20.0f)
+                    .add(Attributes.KNOCKBACK_RESISTANCE, 0.5f)
                     .build();
 
     public static final float ENTITY_BOX_SIZE = 0.8f;
@@ -177,7 +179,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
         // Handle taming
         ItemStack heldItem = player.getItemInHand(interactionHand);
-        if (!this.isTame() && heldItem.is(ChristmasItems.WALNUT.get())) {
+        if (!this.level.isClientSide() && !this.isTame() && heldItem.is(ChristmasItems.WALNUT.get())) {
             if (!player.getAbilities().instabuild) {
                 heldItem.shrink(1);
             }
@@ -421,6 +423,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         WalnutEntity walnutEntity = new WalnutEntity(ChristmasEntities.WALNUT.get(), this.getLevel());
         walnutEntity.setPos(this.getX(), this.getY() + 2.2d, this.getZ());
         walnutEntity.setAmmoType(this.inventory.getCurrentAmmo());
+        walnutEntity.setOwner(this);
 
         double d0 = target.getX() - this.getX();
         double d1 = target.getY(0.33D) - walnutEntity.getY();
@@ -490,6 +493,14 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     public AbstractContainerMenu createMenu(int i, Inventory playerInventory, Player playerEntity) {
         NutcrackerContainer container = new NutcrackerContainer(i, this.level, this.blockPosition(), playerInventory, playerEntity, this);
         return container;
+    }
+
+    @Override
+    public void die(DamageSource p_21809_) {
+        super.die(p_21809_);
+        if (this.getTarget() instanceof Monster monster && monster.getTarget() instanceof NutcrackerEntity nutcracker && nutcracker.is(this)) {
+            monster.setTarget(null);
+        }
     }
 
     @Override
@@ -569,6 +580,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             BlockPos targetBlockPos = this.patrolRoute.getPoints().get(currentIndex);
             Vec3 targetPoint = new Vec3(targetBlockPos.getX() + 0.5D, targetBlockPos.getY() + 1.0d, targetBlockPos.getZ() + 0.5D);
             this.nutcracker.navigation.moveTo(targetPoint.x, targetPoint.y, targetPoint.z, 0.9D);
+            this.nutcracker.lookControl.setLookAt(targetPoint.x, targetPoint.y + nutcracker.getEyeHeight(), targetPoint.z);
 
             if (this.nutcracker.distanceToSqr(targetPoint) < 3.0D) {
                 this.updatePoints();
@@ -683,6 +695,9 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
             }
 
             nutcracker.setFiring(flag);
+
+            if (flag && this.target instanceof Monster monster) monster.setTarget(this.nutcracker);
+
             return flag;
         }
 

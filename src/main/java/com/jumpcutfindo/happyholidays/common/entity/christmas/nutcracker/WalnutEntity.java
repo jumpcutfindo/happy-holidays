@@ -114,10 +114,25 @@ public class WalnutEntity extends Projectile implements IAnimatable {
         Entity entity = entityHitResult.getEntity();
 
         WalnutAmmo ammoType = this.getAmmoType();
-        if (ammoType == WalnutAmmo.HALVED) entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) BASE_DAMAGE / 2);
-        else if (ammoType == WalnutAmmo.METALLIC) entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) BASE_DAMAGE * 2);
-        else if (ammoType == WalnutAmmo.EXPLOSIVE) entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) 0);
-        else entity.hurt(DamageSource.thrown(this, this.getOwner()), (float) BASE_DAMAGE);
+        float damageValue = this.getDamageValue(ammoType);
+        entity.hurt(DamageSource.thrown(this, this.getOwner()), damageValue);
+    }
+
+    private float getDamageValue(WalnutAmmo ammoType) {
+        switch (ammoType) {
+        case HALVED -> {
+            return BASE_DAMAGE / 2;
+        }
+        case METALLIC -> {
+            return BASE_DAMAGE * 2;
+        }
+        case EXPLOSIVE -> {
+            return 0;
+        }
+        default -> {
+            return BASE_DAMAGE;
+        }
+        }
     }
 
     protected void onHit(HitResult hitResult) {
