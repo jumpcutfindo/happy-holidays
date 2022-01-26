@@ -261,11 +261,13 @@
     "item.happyholidays.patrol_orders.remove_point_fail": "Failed to remove the selected point.",
     "item.happyholidays.patrol_orders.complete_route": "The patrol route has been completed!",
     "item.happyholidays.patrol_orders.locked_route": "The patrol route of this order has been locked from further changes.",
+    "item.happyholidays.patrol_orders.reset": "The patrol route of this order has been erased.",
     "item.happyholidays.patrol_orders.no_route": "No route",
     "item.happyholidays.patrol_orders.route_with_length": "Route of length %s",
     "item.patrol_orders.action_success.sub": "Action succeeds",
     "item.patrol_orders.action_fail.sub": "Action fails",
     "item.patrol_orders.route_complete.sub": "Route completes",
+    "item.patrol_orders.crumple.sub": "Patrol Orders crumples",
 
     "item.happyholidays.eggnog": "Eggnog",
 

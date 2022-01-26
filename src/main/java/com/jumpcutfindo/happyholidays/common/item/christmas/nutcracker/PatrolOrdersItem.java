@@ -8,17 +8,26 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.PatrolRoute;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
+import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
+import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
@@ -32,8 +41,36 @@ public class PatrolOrdersItem extends ChristmasItem {
     public static final String TOOLTIP_NO_ROUTE = "item.happyholidays.patrol_orders.no_route";
     public static final String TOOLTIP_ROUTE_WITH_LENGTH = "item.happyholidays.patrol_orders.route_with_length";
 
+    public static final String MESSAGE_ROUTE_RESET = "item.happyholidays.patrol_orders.reset";
+
     public PatrolOrdersItem() {
         super(ITEM_PROPERTIES);
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        ItemStack patrolOrders = player.getItemInHand(hand);
+        if (PatrolOrdersItem.isCompletedPatrolOrders(patrolOrders)) {
+            player.startUsingItem(hand);
+            level.playSound(player, player.blockPosition(), ChristmasSounds.PATROL_ORDERS_CRUMPLE.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
+            player.getCooldowns().addCooldown(patrolOrders.getItem(), 20);
+        }
+
+        return super.use(level, player, hand);
+    }
+
+    @Override
+    public ItemStack finishUsingItem(ItemStack patrolOrders, Level level, LivingEntity entity) {
+        if (entity instanceof Player player) {
+            patrolOrders.setTag(new CompoundTag());
+
+            if (level.isClientSide()) {
+                GameplayMessage gameplayMessage = new GameplayMessage(MessageType.INFO, MESSAGE_ROUTE_RESET);
+                Messenger.sendChatMessage(gameplayMessage, player);
+            }
+        }
+
+        return super.finishUsingItem(patrolOrders, level, entity);
     }
 
     @Override
@@ -53,6 +90,8 @@ public class PatrolOrdersItem extends ChristmasItem {
         boolean isSuccess = patrolRoute.takeAction(level, player, clickedPos);
 
         patrolOrdersTag.put("PatrolRoute", patrolRoute.serializeTag());
+
+        if (player != null && patrolRoute.isComplete()) player.getCooldowns().addCooldown(patrolOrders.getItem(), 20);
 
         return super.useOn(context);
     }
@@ -74,6 +113,11 @@ public class PatrolOrdersItem extends ChristmasItem {
         return !itemStack.isEmpty() && itemStack.is(ChristmasItems.PATROL_ORDERS.get()) && itemStack.getTag() != null && itemStack.getTag().contains("PatrolRoute");
     }
 
+    public static boolean isCompletedPatrolOrders(ItemStack itemStack) {
+        PatrolRoute patrolRoute = extractRoute(itemStack);
+        return patrolRoute.isComplete();
+    }
+
     public static PatrolRoute extractRoute(ItemStack patrolOrders) {
         CompoundTag patrolOrdersTag = patrolOrders.getOrCreateTag();
         PatrolRoute patrolRoute = new PatrolRoute();
@@ -82,5 +126,15 @@ public class PatrolOrdersItem extends ChristmasItem {
         }
 
         return patrolRoute;
+    }
+
+    @Override
+    public UseAnim getUseAnimation(ItemStack itemStack) {
+        return isCompletedPatrolOrders(itemStack) ? UseAnim.BOW : super.getUseAnimation(itemStack);
+    }
+
+    @Override
+    public int getUseDuration(ItemStack p_41454_) {
+        return 60;
     }
 }

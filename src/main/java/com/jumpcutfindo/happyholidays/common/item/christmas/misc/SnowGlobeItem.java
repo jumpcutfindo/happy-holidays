@@ -166,7 +166,7 @@ public class SnowGlobeItem extends ChristmasItem {
 
         if (this.hasCharges(snowGlobe)) {
             player.startUsingItem(hand);
-            level.playSound(null, player.blockPosition(), ChristmasSounds.SNOW_GLOBE_USING.get(), SoundSource.NEUTRAL, 1.0f, 1.0f);
+            level.playSound(null, player.blockPosition(), ChristmasSounds.SNOW_GLOBE_USING.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
         } else {
             GameplayMessage message = new GameplayMessage(MessageType.ERROR, MESSAGE_TRY_USE_WHEN_EMPTY);
             Messenger.sendClientMessage(message, player);

@@ -279,6 +279,16 @@
             }
         ]
     },
+    "item.patrol_orders.crumple": {
+        "category": "item",
+        "subtitle": "item.patrol_orders.crumple.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/patrol_orders_crumple",
+                "stream": true
+            }
+        ]
+    },
     "entity.gingerbread_person_passive": {
         "category": "entity",
         "subtitle": "entity.happyholidays.gingerbread_person_passive.sub",
