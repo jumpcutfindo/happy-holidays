@@ -383,6 +383,11 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         return this.assemblyPos;
     }
 
+    @Override
+    public int getArmorValue() {
+        return this.inventory.getArmorValue();
+    }
+
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {

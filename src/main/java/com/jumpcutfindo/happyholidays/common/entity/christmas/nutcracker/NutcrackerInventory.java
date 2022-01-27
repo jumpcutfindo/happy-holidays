@@ -9,6 +9,7 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -28,7 +29,7 @@ public class NutcrackerInventory extends ItemStackHandler {
 
     @Override
     public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-        return stack.getItem() instanceof WalnutItem;
+        return stack.getItem() instanceof WalnutItem || stack.getItem() instanceof ArmorItem;
     }
 
     public WalnutAmmo getCurrentAmmo() {
@@ -88,6 +89,16 @@ public class NutcrackerInventory extends ItemStackHandler {
 
     public List<ItemStack> getAllItems() {
         return this.stacks;
+    }
+
+    public int getArmorValue() {
+        int value = 0;
+
+        for (ItemStack itemStack : this.getAllItems()) {
+            if (itemStack.getItem() instanceof ArmorItem armorItem) value += armorItem.getDefense();
+        }
+
+        return value;
     }
 
     @Override
