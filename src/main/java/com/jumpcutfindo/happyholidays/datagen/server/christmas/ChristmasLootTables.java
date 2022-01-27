@@ -248,6 +248,7 @@ public class ChristmasLootTables extends BaseLootTableProvider {
     private void registerEntities() {
         addGingerbreadMan(ChristmasEntities.GINGERBREAD_MAN.get());
         addGingerbreadMan(ChristmasEntities.SOGGY_GINGERBREAD_MAN.get());
+        addNutcracker();
 
         entityLootTables.put(ChristmasEntities.GRINCH.get(), LootTable.lootTable());
         entityLootTables.put(ChristmasEntities.SANTA_ELF.get(), LootTable.lootTable());
@@ -649,6 +650,19 @@ public class ChristmasLootTables extends BaseLootTableProvider {
 
         entityLootTables.put(gingerbreadEntity,
                 LootTable.lootTable().withPool(gingerbreadManPool).withPool(gingerbreadCookiePool).withPool(gingerbreadOrnamentPool));
+    }
+
+    private void addNutcracker() {
+        LootPool.Builder logsPool = LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .add(LootItem.lootTableItem(Items.OAK_LOG).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 12))));
+
+        LootPool.Builder nutsPool = LootPool.lootPool()
+                .setRolls(ConstantValue.exactly(1))
+                .add(LootItem.lootTableItem(ChristmasItems.WALNUT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 36))));
+
+        entityLootTables.put(ChristmasEntities.NUTCRACKER.get(),
+                LootTable.lootTable().withPool(logsPool).withPool(nutsPool));
     }
 
     private static ResourceLocation christmasResource(String id) {
