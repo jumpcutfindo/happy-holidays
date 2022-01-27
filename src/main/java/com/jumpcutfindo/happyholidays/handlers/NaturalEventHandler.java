@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.GingerbreadManEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.NutcrackerEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasFeatures;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasPlacements;
@@ -46,6 +47,12 @@ public class NaturalEventHandler {
                     new MobSpawnSettings.SpawnerData(ChristmasEntities.GINGERBREAD_MAN.get(),
                             GingerbreadManEntity.SPAWN_WEIGHT, GingerbreadManEntity.MIN_SPAWN_COUNT,
                             GingerbreadManEntity.MAX_SPAWN_COUNT)
+            );
+
+            event.getSpawns().addSpawn(MobCategory.CREATURE,
+                    new MobSpawnSettings.SpawnerData(ChristmasEntities.NUTCRACKER.get(),
+                            NutcrackerEntity.SPAWN_WEIGHT, NutcrackerEntity.MIN_SPAWN_COUNT,
+                            NutcrackerEntity.MAX_SPAWN_COUNT)
             );
         }
     }

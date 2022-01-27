@@ -334,13 +334,15 @@ public class ChristmasLootTables extends BaseLootTableProvider {
                     .add(TagEntry.expandTag(ChristmasTags.Items.SHEET_MUSIC).setWeight(10).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .add(TagEntry.expandTag(ChristmasTags.Items.RARE_ORNAMENTS).setWeight(50).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .add(LootItem.lootTableItem(ChristmasItems.ENCHANTED_THREAD.get()).setWeight(50).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
-                    .add(LootItem.lootTableItem(Items.COPPER_INGOT).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))))
+                    .add(LootItem.lootTableItem(ChristmasItems.WALNUT.get()).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
                     .add(LootItem.lootTableItem(Items.COAL).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))))
+                    .add(LootItem.lootTableItem(Items.COPPER_INGOT).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))))
                     .add(LootItem.lootTableItem(Items.IRON_INGOT).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))))
                     .add(LootItem.lootTableItem(Items.GOLD_INGOT).setWeight(40).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))))
                     .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(20).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .add(LootItem.lootTableItem(Items.NETHERITE_SCRAP).setWeight(10).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .add(LootItem.lootTableItem(ChristmasItems.SNOW_GLOBE.get()).setWeight(10).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).apply(SetItemDamageFunction.setDamage(ConstantValue.exactly(0))))
+                    .add(LootItem.lootTableItem(ChristmasItems.SWAGGER_STICK.get()).setWeight(10).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .when(InvertedLootItemCondition.invert(silkTouchCondition));
         } else if (presentBlock instanceof AdultPresentBlock) {
             scrapCount = 2;
@@ -353,6 +355,7 @@ public class ChristmasLootTables extends BaseLootTableProvider {
                     .add(TagEntry.expandTag(ChristmasTags.Items.SHEET_MUSIC).setWeight(10).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .add(TagEntry.expandTag(ChristmasTags.Items.RARE_ORNAMENTS).setWeight(50).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .add(LootItem.lootTableItem(ChristmasItems.ENCHANTED_THREAD.get()).setWeight(50).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                    .add(LootItem.lootTableItem(ChristmasItems.WALNUT.get()).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
                     .add(LootItem.lootTableItem(Items.COAL).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))))
                     .add(LootItem.lootTableItem(Items.COPPER_INGOT).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))))
                     .add(LootItem.lootTableItem(Items.IRON_INGOT).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))))
@@ -360,6 +363,7 @@ public class ChristmasLootTables extends BaseLootTableProvider {
                     .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(20).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .add(LootItem.lootTableItem(Items.NETHERITE_SCRAP).setWeight(10).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .add(LootItem.lootTableItem(ChristmasItems.SNOW_GLOBE.get()).setWeight(20).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).apply(SetItemDamageFunction.setDamage(ConstantValue.exactly(0))))
+                    .add(LootItem.lootTableItem(ChristmasItems.SWAGGER_STICK.get()).setWeight(20).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .when(InvertedLootItemCondition.invert(silkTouchCondition));
         } else if (presentBlock instanceof ElderPresentBlock) {
             scrapCount = 3;
@@ -372,6 +376,7 @@ public class ChristmasLootTables extends BaseLootTableProvider {
                     .add(TagEntry.expandTag(ChristmasTags.Items.SHEET_MUSIC).setWeight(20).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .add(TagEntry.expandTag(ChristmasTags.Items.RARE_ORNAMENTS).setWeight(100).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .add(LootItem.lootTableItem(ChristmasItems.ENCHANTED_THREAD.get()).setWeight(100).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                    .add(LootItem.lootTableItem(ChristmasItems.WALNUT.get()).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
                     .add(LootItem.lootTableItem(Items.COAL).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4))))
                     .add(LootItem.lootTableItem(Items.COPPER_INGOT).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))))
                     .add(LootItem.lootTableItem(Items.IRON_INGOT).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))))
@@ -379,6 +384,7 @@ public class ChristmasLootTables extends BaseLootTableProvider {
                     .add(LootItem.lootTableItem(Items.DIAMOND).setWeight(50).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .add(LootItem.lootTableItem(Items.NETHERITE_SCRAP).setWeight(20).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .add(LootItem.lootTableItem(ChristmasItems.SNOW_GLOBE.get()).setWeight(30).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).apply(SetItemDamageFunction.setDamage(ConstantValue.exactly(0))))
+                    .add(LootItem.lootTableItem(ChristmasItems.SWAGGER_STICK.get()).setWeight(30).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .when(InvertedLootItemCondition.invert(silkTouchCondition));
         }
 

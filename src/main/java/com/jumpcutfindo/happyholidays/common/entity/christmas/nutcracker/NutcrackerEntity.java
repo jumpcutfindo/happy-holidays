@@ -90,6 +90,10 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChristmasEntity, MenuProvider, RangedAttackMob, NeutralMob {
+    public static final int SPAWN_WEIGHT = 5;
+    public static final int MIN_SPAWN_COUNT = 2;
+    public static final int MAX_SPAWN_COUNT = 3;
+
     public static final String ENTITY_ID = "nutcracker";
     public static final AttributeSupplier ENTITY_ATTRIBUTES =
             Mob.createMobAttributes()
