@@ -40,6 +40,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.gingerbread.BaseGin
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.GiftWrapperBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.misc.WalnutPlantBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
@@ -407,6 +408,8 @@ public class ChristmasBlocks {
             BLOCKS.register(MusicBoxBlock.BLOCK_ID, MusicBoxBlock::new);
     public static final RegistryObject<Block> GIFT_WRAPPING_STATION =
             BLOCKS.register(GiftWrapperBlock.BLOCK_ID, GiftWrapperBlock::new);
+    public static final RegistryObject<Block> WALNUT_PLANT =
+            BLOCKS.register(WalnutPlantBlock.BLOCK_ID, WalnutPlantBlock::new);
 
     // Christmas foods
     public static final RegistryObject<Block> MILK_AND_COOKIES =

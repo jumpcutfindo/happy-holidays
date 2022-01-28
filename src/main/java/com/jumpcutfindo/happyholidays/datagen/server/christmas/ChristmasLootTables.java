@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.datagen.server.christmas;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.misc.WalnutPlantBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
@@ -26,6 +27,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CarrotBlock;
 import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.storage.loot.IntRange;
@@ -243,6 +245,8 @@ public class ChristmasLootTables extends BaseLootTableProvider {
         addStandardBlock(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_STAIRS.get());
         addSlabBlock(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_SLAB.get());
         addStandardBlock(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_WALL.get());
+
+        addWalnutPlant();
     }
 
     private void registerEntities() {
@@ -270,6 +274,16 @@ public class ChristmasLootTables extends BaseLootTableProvider {
 
     private void addSlabBlock(SlabBlock block) {
         blockLootTables.put(block, slabBlock(block));
+    }
+
+    private void addWalnutPlant() {
+        LootItemCondition.Builder fullyGrownCondition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ChristmasBlocks.WALNUT_PLANT.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CarrotBlock.AGE, WalnutPlantBlock.MAX_AGE));
+        LootTable.Builder walnutPlantTable = LootTable.lootTable()
+                .withPool(LootPool.lootPool().when(InvertedLootItemCondition.invert(fullyGrownCondition)).add(LootItem.lootTableItem(ChristmasItems.WALNUT.get())))
+                .withPool(LootPool.lootPool().when(fullyGrownCondition).add(LootItem.lootTableItem(ChristmasItems.WALNUT.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))
+                .apply(ApplyExplosionDecay.explosionDecay());
+
+        blockLootTables.put(ChristmasBlocks.WALNUT_PLANT.get(), walnutPlantTable);
     }
 
     private void addConnectedOrnament(Block block) {

@@ -77,6 +77,7 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.thread.ThreadItem;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
@@ -111,8 +112,8 @@ public class ChristmasItems {
     public static final RegistryObject<ChristmasItem> ENCHANTED_THREAD =
             ITEMS.register(EnchantedThreadItem.ITEM_ID, EnchantedThreadItem::new);
 
-    public static final RegistryObject<ChristmasItem> WALNUT =
-            ITEMS.register(WalnutItem.BASIC_ITEM_ID, WalnutItem::new);
+    public static final RegistryObject<BlockItem> WALNUT =
+            ITEMS.register(WalnutItem.BASIC_ITEM_ID, () -> new ItemNameBlockItem(ChristmasBlocks.WALNUT_PLANT.get(), WalnutItem.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasItem> EXPLOSIVE_WALNUT =
             ITEMS.register(WalnutItem.EXPLOSIVE_ITEM_ID, WalnutItem::new);
     public static final RegistryObject<ChristmasItem> SUGARED_WALNUT =

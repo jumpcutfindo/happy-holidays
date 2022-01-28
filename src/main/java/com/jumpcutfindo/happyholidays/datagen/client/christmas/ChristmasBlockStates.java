@@ -18,6 +18,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.MilkAndCookiesBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
+import com.jumpcutfindo.happyholidays.common.block.christmas.misc.WalnutPlantBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 
 import net.minecraft.core.Direction;
@@ -483,6 +484,21 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
             if (axis == Direction.Axis.X) return builder.modelFile(modelFileOf(modelId)).rotationY(90).build();
             else return builder.modelFile(modelFileOf(modelId)).build();
+        });
+
+        // Register Walnut Plant
+        Block walnutPlantBlock = ChristmasBlocks.WALNUT_PLANT.get();
+        getVariantBuilder(walnutPlantBlock).forAllStates(state -> {
+            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+            String modelId = blockId(walnutPlantBlock);
+
+            int age = state.getValue(WalnutPlantBlock.AGE);
+
+            if (age == 0) modelId += "_stage0";
+            else if (age == 1) modelId += "_stage1";
+            else modelId += "_stage2";
+
+            return builder.modelFile(modelFileOf(modelId)).build();
         });
     }
 
