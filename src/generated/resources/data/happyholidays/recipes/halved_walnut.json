@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "happyholidays:walnut"
+    }
+  ],
+  "result": {
+    "item": "happyholidays:halved_walnut",
+    "count": 2
+  }
+}

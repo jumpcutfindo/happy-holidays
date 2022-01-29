@@ -279,7 +279,7 @@ public class ChristmasLootTables extends BaseLootTableProvider {
     private void addWalnutPlant() {
         LootItemCondition.Builder fullyGrownCondition = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ChristmasBlocks.WALNUT_PLANT.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CarrotBlock.AGE, WalnutPlantBlock.MAX_AGE));
         LootTable.Builder walnutPlantTable = LootTable.lootTable()
-                .withPool(LootPool.lootPool().when(InvertedLootItemCondition.invert(fullyGrownCondition)).add(LootItem.lootTableItem(ChristmasItems.WALNUT.get())))
+                .withPool(LootPool.lootPool().add(LootItem.lootTableItem(ChristmasItems.WALNUT.get())))
                 .withPool(LootPool.lootPool().when(fullyGrownCondition).add(LootItem.lootTableItem(ChristmasItems.WALNUT.get()).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 3))))
                 .apply(ApplyExplosionDecay.explosionDecay());
 

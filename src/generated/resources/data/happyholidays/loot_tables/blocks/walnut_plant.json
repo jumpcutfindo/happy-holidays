@@ -8,18 +8,6 @@
           "type": "minecraft:item",
           "name": "happyholidays:walnut"
         }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:inverted",
-          "term": {
-            "condition": "minecraft:block_state_property",
-            "block": "happyholidays:walnut_plant",
-            "properties": {
-              "age": "2"
-            }
-          }
-        }
       ]
     },
     {

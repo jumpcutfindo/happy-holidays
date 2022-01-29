@@ -119,6 +119,7 @@ public class ChristmasRecipes extends RecipeProvider {
         mistletoeAndHolly(consumer);
         musicBox(consumer);
         thread(consumer);
+        walnuts(consumer);
         wrappingStation(consumer);
     }
 
@@ -548,6 +549,28 @@ public class ChristmasRecipes extends RecipeProvider {
                 .pattern("PSP").pattern("###").pattern(" # ")
                 .unlockedBy("has_planks", has(ItemTags.PLANKS)).unlockedBy(getHasName(Items.STRING), has(Items.STRING))
                 .save(consumer, recipeResourceOf(ChristmasItems.GIFT_WRAPPING_STATION.get()));
+    }
+
+    private void walnuts(Consumer<FinishedRecipe> consumer) {
+        ShapelessRecipeBuilder.shapeless(ChristmasItems.EXPLOSIVE_WALNUT.get(), 4)
+                .requires(ChristmasItems.WALNUT.get()).requires(Items.GUNPOWDER)
+                .unlockedBy("has_walnut", has(ChristmasItems.WALNUT.get())).unlockedBy("has_special_walnut", has(ChristmasItems.EXPLOSIVE_WALNUT.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.EXPLOSIVE_WALNUT.get()));
+
+        ShapelessRecipeBuilder.shapeless(ChristmasItems.SUGARED_WALNUT.get(), 4)
+                .requires(ChristmasItems.WALNUT.get()).requires(Items.SUGAR)
+                .unlockedBy("has_walnut", has(ChristmasItems.WALNUT.get())).unlockedBy("has_special_walnut", has(ChristmasItems.SUGARED_WALNUT.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SUGARED_WALNUT.get()));
+
+        ShapelessRecipeBuilder.shapeless(ChristmasItems.METALLIC_WALNUT.get(), 4)
+                .requires(ChristmasItems.WALNUT.get()).requires(Items.IRON_INGOT)
+                .unlockedBy("has_walnut", has(ChristmasItems.WALNUT.get())).unlockedBy("has_special_walnut", has(ChristmasItems.METALLIC_WALNUT.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.METALLIC_WALNUT.get()));
+
+        ShapelessRecipeBuilder.shapeless(ChristmasItems.HALVED_WALNUT.get(), 2)
+                .requires(ChristmasItems.WALNUT.get())
+                .unlockedBy("has_walnut", has(ChristmasItems.WALNUT.get())).unlockedBy("has_special_walnut", has(ChristmasItems.HALVED_WALNUT.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.HALVED_WALNUT.get()));
     }
 
     private void twoByTwo(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient, int count) {

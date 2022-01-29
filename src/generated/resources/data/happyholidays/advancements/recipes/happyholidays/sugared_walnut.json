@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:sugared_walnut"
+    ]
+  },
+  "criteria": {
+    "has_walnut": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:walnut"
+            ]
+          }
+        ]
+      }
+    },
+    "has_special_walnut": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:sugared_walnut"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:sugared_walnut"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_walnut",
+      "has_special_walnut",
+      "has_the_recipe"
+    ]
+  ]
+}
