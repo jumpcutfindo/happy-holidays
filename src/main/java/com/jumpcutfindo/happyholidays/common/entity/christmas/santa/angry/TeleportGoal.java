@@ -32,6 +32,7 @@ public class TeleportGoal extends Goal {
     @Override
     public void tick() {
         if (chargingTimer > 0) santaEntity.getNavigation().stop();
+        if (targetPosition != null) santaEntity.getLookControl().setLookAt(targetPosition);
 
         if (chargingTimer <= 0 && --attackTimer <= 0) {
             AABB box = new AABB(santaEntity.blockPosition()).inflate(AngrySantaEntity.ATTACK_TELEPORT_CONSIDERATION_RADIUS);

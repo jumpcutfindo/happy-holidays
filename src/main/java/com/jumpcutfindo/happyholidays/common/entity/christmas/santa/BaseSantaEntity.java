@@ -9,8 +9,10 @@ import com.jumpcutfindo.happyholidays.server.data.SantaSavedData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.level.Level;
@@ -48,8 +50,7 @@ public class BaseSantaEntity extends PathfinderMob implements IAnimatable, IChri
         super(entityType, world);
     }
 
-    public <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event)
-    {
+    public <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (event.isMoving()) event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.walk", true));
         else event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.santa.idle", true));
 
@@ -87,5 +88,10 @@ public class BaseSantaEntity extends PathfinderMob implements IAnimatable, IChri
         SantaSavedData santaData = SantaSavedData.retrieve(serverLevel);
 
         santaData.setDefeated();
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose p_21131_, EntityDimensions p_21132_) {
+        return 42.0f / 16.0f;
     }
 }

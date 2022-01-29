@@ -18,7 +18,7 @@
 				{
 					"name": "head",
 					"parent": "santa",
-					"pivot": [0, 35.5, -0.5],
+					"pivot": [0, 35.5, 2],
 					"cubes": [
 						{
 							"origin": [-6.5, 35, -4.5],
