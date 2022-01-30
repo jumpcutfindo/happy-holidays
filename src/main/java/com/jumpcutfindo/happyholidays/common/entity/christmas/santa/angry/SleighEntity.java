@@ -78,12 +78,12 @@ public class SleighEntity extends Entity implements IAnimatable, IChristmasEntit
             this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
         }
 
-        if (!this.isDiagonal() && this.isMoving && this.getDeltaMovement().x == 0.0d && this.getDeltaMovement().z == 0.0d) {
-            this.setDeltaMovement(getForward());
-            this.moveTo(this.position().add(0.0D, 1.0D, 0.0D));
-        } else if (this.isDiagonal() && this.isMoving && (this.getDeltaMovement().x == 0.0d || this.getDeltaMovement().z == 0.0d)) {
-            this.setDeltaMovement(getForward());
-            this.moveTo(this.position().add(0.0D, 1.0D, 0.0D));
+        if (this.isDiagonal() && (this.getDeltaMovement().x == 0.0d || this.getDeltaMovement().z == 0.0d)) {
+            this.explode(false);
+        }
+
+        if (!this.isDiagonal() && this.getDeltaMovement().x == 0.0d && this.getDeltaMovement().z == 0.0d) {
+            this.explode(false);
         }
     }
 
