@@ -61,6 +61,8 @@ import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.OwnerHurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.OwnerHurtTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.ResetUniversalAngerTargetGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -170,10 +172,12 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         this.goalSelector.addGoal(5, new RandomLookAroundGoal(this));
         this.goalSelector.addGoal(6, new RandomMouthMovementGoal(this));
 
-        this.targetSelector.addGoal(1, new NearestNuttableTargetGoal<>(this, Mob.class, 10, true, false, (p_29932_) -> {
+        this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
+        this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
+        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers());
+        this.targetSelector.addGoal(3, new NearestNuttableTargetGoal<>(this, Mob.class, 10, true, false, (p_29932_) -> {
             return p_29932_ instanceof Enemy;
         }));
-        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers());
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
         this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, true));
     }
@@ -527,6 +531,11 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         if (this.getTarget() instanceof Monster monster && monster.getTarget() instanceof NutcrackerEntity nutcracker && nutcracker.is(this)) {
             monster.setTarget(null);
         }
+    }
+
+    @Override
+    public boolean removeWhenFarAway(double p_27598_) {
+        return false;
     }
 
     @Override

@@ -94,4 +94,9 @@ public class BaseSantaEntity extends PathfinderMob implements IAnimatable, IChri
     protected float getStandingEyeHeight(Pose p_21131_, EntityDimensions p_21132_) {
         return 42.0f / 16.0f;
     }
+
+    @Override
+    public boolean removeWhenFarAway(double p_21542_) {
+        return false;
+    }
 }
