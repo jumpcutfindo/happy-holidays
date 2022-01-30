@@ -4,17 +4,21 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
@@ -93,6 +97,8 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable, IChri
         if (this.onGround) {
             this.setDeltaMovement(this.getDeltaMovement().multiply(0.7D, -0.5D, 0.7D));
         }
+
+        if (!this.level.isClientSide() && this.life > 0) this.spawnIgniteParticles();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -144,5 +150,17 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable, IChri
     @Override
     public AnimationFactory getFactory() {
         return factory;
+    }
+
+    private void spawnIgniteParticles() {
+        Vec3 pos = this.position();
+
+        double d0 = (Math.random() * 0.1D) + 0.25D;
+        double d1 = (Math.random() * 0.1D) + 0.25D;
+        double d2 = (Math.random() * 0.1D) + 0.25D;
+
+        SimpleParticleType particleType = ParticleTypes.SMOKE;
+
+        ((ServerLevel) this.level).sendParticles(particleType, pos.x, pos.y + d1, pos.z, 2, d0, d1, d2, 0.0D);
     }
 }
