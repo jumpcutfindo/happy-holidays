@@ -44,6 +44,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.WalnutPlantBlo
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ExplosivePresentBlock;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
 import net.minecraft.world.level.block.Block;
@@ -51,9 +52,9 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ChristmasBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(
@@ -73,8 +74,10 @@ public class ChristmasBlocks {
     public static final RegistryObject<Block> ELDER_PRESENT =
             BLOCKS.register(ElderPresentBlock.BLOCK_ID, ElderPresentBlock::new);
 
-    // Baubles
+    public static final RegistryObject<Block> EXPLOSIVE_PRESENT =
+            BLOCKS.register(ExplosivePresentBlock.BLOCK_ID, ExplosivePresentBlock::new);
 
+    // Baubles
     public static final RegistryObject<Block> RED_BAUBLE =
             BLOCKS.register(BaubleOrnamentBlock.RED_BAUBLE_ID, BaubleOrnamentBlock::new);
     public static final RegistryObject<Block> BLUE_BAUBLE =

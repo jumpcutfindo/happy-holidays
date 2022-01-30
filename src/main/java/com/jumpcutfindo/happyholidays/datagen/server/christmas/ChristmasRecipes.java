@@ -108,7 +108,7 @@ public class ChristmasRecipes extends RecipeProvider {
         stonecutterResultFromBase(consumer, ChristmasBlocks.ALPHABET_ORNAMENT_Y.get(), ChristmasBlocks.ALPHABET_ORNAMENT_TEMPLATE.get());
         stonecutterResultFromBase(consumer, ChristmasBlocks.ALPHABET_ORNAMENT_Z.get(), ChristmasBlocks.ALPHABET_ORNAMENT_TEMPLATE.get());
 
-        babyPresent(consumer);
+        presents(consumer);
         candyCane(consumer);
         christmasStar(consumer);
         christmasWreath(consumer);
@@ -193,12 +193,18 @@ public class ChristmasRecipes extends RecipeProvider {
                 .save(consumer, recipeResourceOf(block));
     }
 
-    private void babyPresent(Consumer<FinishedRecipe> consumer) {
+    private void presents(Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(ChristmasBlocks.BABY_PRESENT.get(), 1)
                 .define('S', Items.STRING).define('#', ChristmasItems.PRESENT_SCRAPS.get()).define('W', ItemTags.WOOL)
                 .pattern("S#S").pattern("WWW")
                 .unlockedBy("has_scraps", has(ChristmasItems.PRESENT_SCRAPS.get())).unlockedBy("has_string", has(Items.STRING)).unlockedBy("has_wool", has(ItemTags.WOOL))
                 .save(consumer, recipeResourceOf(ChristmasBlocks.BABY_PRESENT.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasBlocks.EXPLOSIVE_PRESENT.get(), 4)
+                .define('#', ChristmasItems.PRESENT_SCRAPS.get()).define( 'S', Items.IRON_INGOT).define('G', Items.GUNPOWDER).define('W', ItemTags.WOOL)
+                .pattern("WWW").pattern("SGS").pattern("S#S")
+                .unlockedBy("has_scraps", has(ChristmasItems.PRESENT_SCRAPS.get())).unlockedBy("has_gunpowder", has(Items.GUNPOWDER))
+                .save(consumer, recipeResourceOf(ChristmasBlocks.EXPLOSIVE_PRESENT.get()));
     }
 
     private void candyCane(Consumer<FinishedRecipe> consumer) {

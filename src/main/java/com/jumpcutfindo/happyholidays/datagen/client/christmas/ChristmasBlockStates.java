@@ -20,6 +20,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarB
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.WalnutPlantBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
@@ -61,6 +62,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
                 ChristmasBlocks.BABY_PRESENT.get(),
                 ChristmasBlocks.ADULT_PRESENT.get(),
                 ChristmasBlocks.ELDER_PRESENT.get(),
+                ChristmasBlocks.EXPLOSIVE_PRESENT.get(),
 
                 ChristmasBlocks.MUSIC_BOX.get()
         );

@@ -2,6 +2,7 @@
     "block.happyholidays.baby_present": "Baby Present",
     "block.happyholidays.adult_present": "Adult Present",
     "block.happyholidays.elder_present": "Elder Present",
+    "block.happyholidays.explosive_present": "Explosive Present",
 
     "block.happyholidays.red_bauble": "Red Bauble",
     "block.happyholidays.blue_bauble": "Blue Bauble",
@@ -380,6 +381,7 @@
 
     "entity.happyholidays.angry_santa": "Angry Santa",
     "entity.happyholidays.sleigh": "Sleigh",
+    "entity.happyholidays.explosive_present": "Explosive Present",
     "entity.happyholidays.santa_angry_passive.sub": "Santa grunts angrily",
     "entity.happyholidays.santa_prepare_teleport.sub": "Angry Santa charges up",
     "entity.happyholidays.santa_teleport.sub": "Angry Santa teleports",

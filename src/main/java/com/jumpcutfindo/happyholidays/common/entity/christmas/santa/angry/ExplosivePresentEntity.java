@@ -1,5 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry;
 
+import javax.annotation.Nullable;
+
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 
 import net.minecraft.nbt.CompoundTag;
@@ -9,6 +11,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -34,6 +37,9 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable, IChri
 
     private int life = 40;
 
+    @Nullable
+    private LivingEntity owner;
+
     public ExplosivePresentEntity(EntityType<?> entityType, Level world) {
         super(entityType, world);
     }
@@ -58,6 +64,15 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable, IChri
     private void explode() {
         this.level.explode(this, this.getX(), this.getY(0.0625D), this.getZ(), 2.5F, Explosion.BlockInteraction.NONE);
         this.remove(RemovalReason.DISCARDED);
+    }
+
+    public void setOwner(LivingEntity entity) {
+        this.owner = entity;
+    }
+
+    @Nullable
+    public LivingEntity getOwner() {
+        return owner;
     }
 
     @Override

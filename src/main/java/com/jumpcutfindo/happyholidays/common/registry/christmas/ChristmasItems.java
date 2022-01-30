@@ -46,6 +46,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.misc.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ExplosivePresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
@@ -241,6 +242,8 @@ public class ChristmasItems {
             ITEMS.register(AdultPresentBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.ADULT_PRESENT, AdultPresentBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> ELDER_PRESENT =
             ITEMS.register(ElderPresentBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.ELDER_PRESENT, ElderPresentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> EXPLOSIVE_PRESENT =
+            ITEMS.register(ExplosivePresentBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.EXPLOSIVE_PRESENT, ElderPresentBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> RED_BAUBLE =
             ITEMS.register(BaubleOrnamentBlock.RED_BAUBLE_ID, blockItemOf(ChristmasBlocks.RED_BAUBLE, BaubleOrnamentBlock.ITEM_PROPERTIES));

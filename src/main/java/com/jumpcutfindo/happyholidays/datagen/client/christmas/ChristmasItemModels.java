@@ -37,6 +37,7 @@ public class ChristmasItemModels extends ItemModelProvider {
                 blockModelPair(ChristmasItems.BABY_PRESENT.get()),
                 blockModelPair(ChristmasItems.ADULT_PRESENT.get()),
                 blockModelPair(ChristmasItems.ELDER_PRESENT.get()),
+                blockModelPair(ChristmasItems.EXPLOSIVE_PRESENT.get()),
 
                 blockModelPair(ChristmasItems.GRINCH_ORNAMENT.get()),
                 blockModelPair(ChristmasItems.SANTA_ELF_ORNAMENT.get()),

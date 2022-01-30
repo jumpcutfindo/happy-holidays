@@ -4,6 +4,7 @@ import com.jumpcutfindo.happyholidays.client.entity.model.ExplosivePresentModel;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.ExplosivePresentEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -21,6 +22,7 @@ public class ExplosivePresentRenderer extends GeoProjectilesRenderer<ExplosivePr
     @Override
     public void render(ExplosivePresentEntity entityIn, float entityYaw, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn) {
         matrixStackIn.pushPose();
+        matrixStackIn.mulPose(Vector3f.YN.rotationDegrees(-90.0F));
         int i = entityIn.getLife();
         if ((float)i - partialTicks + 1.0F < 10.0F) {
             float f = 1.0F - ((float)i - partialTicks + 1.0F) / 10.0F;
@@ -34,8 +36,9 @@ public class ExplosivePresentRenderer extends GeoProjectilesRenderer<ExplosivePr
         // Render white overlay
         if (i / 5 % 2 == 0) {
             matrixStackIn.pushPose();
+            matrixStackIn.mulPose(Vector3f.YN.rotationDegrees(90.0F));
             matrixStackIn.translate(-0.5d, 0.0d, -0.5d);
-            Minecraft.getInstance().getBlockRenderer().renderSingleBlock(ChristmasBlocks.ELDER_PRESENT.get().defaultBlockState(), matrixStackIn, bufferIn, packedLightIn, OverlayTexture.pack(OverlayTexture.u(1.0F), 10));
+            Minecraft.getInstance().getBlockRenderer().renderSingleBlock(ChristmasBlocks.EXPLOSIVE_PRESENT.get().defaultBlockState(), matrixStackIn, bufferIn, packedLightIn, OverlayTexture.pack(OverlayTexture.u(1.0F), 10));
             matrixStackIn.popPose();
         } else {
             super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
