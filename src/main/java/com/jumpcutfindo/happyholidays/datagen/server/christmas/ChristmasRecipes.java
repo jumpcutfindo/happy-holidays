@@ -202,7 +202,7 @@ public class ChristmasRecipes extends RecipeProvider {
 
         ShapedRecipeBuilder.shaped(ChristmasBlocks.EXPLOSIVE_PRESENT.get(), 4)
                 .define('#', ChristmasItems.PRESENT_SCRAPS.get()).define( 'S', Items.IRON_INGOT).define('G', Items.GUNPOWDER).define('W', ItemTags.WOOL)
-                .pattern("WWW").pattern("SGS").pattern("S#S")
+                .pattern("WWW").pattern("WGW").pattern("S#S")
                 .unlockedBy("has_scraps", has(ChristmasItems.PRESENT_SCRAPS.get())).unlockedBy("has_gunpowder", has(Items.GUNPOWDER))
                 .save(consumer, recipeResourceOf(ChristmasBlocks.EXPLOSIVE_PRESENT.get()));
     }
