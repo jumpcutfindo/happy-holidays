@@ -35,6 +35,7 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -48,7 +49,7 @@ import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 
-public class AngrySantaEntity extends BaseSantaEntity {
+public class AngrySantaEntity extends BaseSantaEntity implements Enemy {
     public static final EntityDataAccessor<Integer> SANTA_PHASE = SynchedEntityData.defineId(AngrySantaEntity.class,
             EntityDataSerializers.INT);
 

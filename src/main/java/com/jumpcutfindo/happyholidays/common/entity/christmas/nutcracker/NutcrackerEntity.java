@@ -392,6 +392,11 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     }
 
     @Override
+    public boolean canAttack(LivingEntity entity) {
+        return entity instanceof Enemy;
+    }
+
+    @Override
     public int getArmorValue() {
         return this.inventory.getArmorValue();
     }
