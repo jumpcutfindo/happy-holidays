@@ -22,6 +22,10 @@ public class Interval {
         return end;
     }
 
+    public boolean isValid() {
+        return start.isValid() && end.isValid();
+    }
+
     public boolean contains(YearlessDate current) {
         if (start.getMonth() > end.getMonth()) return current.isAfter(start) || current.isBefore(end);
         else return current.isAfter(start) && current.isBefore(end);

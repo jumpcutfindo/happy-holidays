@@ -6,9 +6,11 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.server.data.structs.Interval;
 
+import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
@@ -17,11 +19,15 @@ public class HolidayIntervalData extends SavedData {
     public static final Collection<String> HOLIDAY_CODES = List.of("christmas");
     public static final String DATA_NAME = HappyHolidaysMod.MOD_ID + "_intervals";
 
-    private final Map<String, Interval> holidayIntervalMap = Map.ofEntries(
-            Map.entry("christmas", Interval.all())
-    );
+    private final Map<String, Interval> holidayIntervalMap = Util.make(Maps.newHashMap(), (map) -> {
+        map.put("christmas", Interval.all());
+    });
 
     public HolidayIntervalData() {
+    }
+
+    public Interval get(String holidayCode) {
+        return holidayIntervalMap.get(holidayCode);
     }
 
     public void put(String holidayCode, Interval interval) {
