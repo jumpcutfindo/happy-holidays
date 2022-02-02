@@ -12,7 +12,7 @@ public class EnchantedCandyCaneItem extends ChristmasItem {
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public EnchantedCandyCaneItem() {
         super(ITEM_PROPERTIES);

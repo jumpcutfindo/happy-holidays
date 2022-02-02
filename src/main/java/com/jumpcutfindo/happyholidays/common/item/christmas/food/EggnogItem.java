@@ -18,7 +18,7 @@ public class EggnogItem extends ChristmasFoodItem {
 
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP)
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
                             .nutrition(4)

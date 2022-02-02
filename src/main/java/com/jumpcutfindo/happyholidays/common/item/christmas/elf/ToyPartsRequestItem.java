@@ -25,7 +25,7 @@ public class ToyPartsRequestItem extends ChristmasItem {
     public static final String ITEM_ID = "toy_parts_request";
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
+            new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP)
                     .stacksTo(1);
 
     public ToyPartsRequestItem() {

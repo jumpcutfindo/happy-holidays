@@ -35,7 +35,7 @@ public class PatrolOrdersItem extends ChristmasItem {
     public static final String ITEM_ID = "patrol_orders";
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP)
                     .stacksTo(1);
 
     public static final String TOOLTIP_NO_ROUTE = "item.happyholidays.patrol_orders.no_route";

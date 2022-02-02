@@ -17,7 +17,7 @@ public class ChristmasGuideBookItem extends ChristmasItem {
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP)
                     .stacksTo(1);
 
     public ChristmasGuideBookItem() {

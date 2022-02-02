@@ -13,7 +13,7 @@ public class GingerbreadCookieItem extends ChristmasItem {
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
+                .tab(HappyHolidaysTabs.CHRISTMAS_GROUP)
                 .food(new FoodProperties.Builder()
                         .nutrition(2)
                         .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 1), 0.5f)

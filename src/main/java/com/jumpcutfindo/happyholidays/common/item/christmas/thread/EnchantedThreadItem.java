@@ -11,7 +11,7 @@ public class EnchantedThreadItem extends ChristmasItem {
 
     private static final Properties ITEM_PROPERTIES =
             new Properties()
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP)
                     .stacksTo(64);
 
     public EnchantedThreadItem() {

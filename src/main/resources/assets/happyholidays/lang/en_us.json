@@ -397,6 +397,7 @@
     "entity.happyholidays.nutcracker_receive_orders.sub": "Nutcracker receives orders",
 
     "itemGroup.happyholidays": "Happy Holidays",
+    "itemGroup.happyholidays.christmas": "Happy Holidays - Christmas",
 
     "chat.happyholidays.snow_globe.weather_maxed": "The Snow Globe doesn't seem to respond to your shaking...",
     "chat.happyholidays.snow_globe.weather_rain_to_thunder": "The sky darkens further as your Snow Globe becomes lighter...",

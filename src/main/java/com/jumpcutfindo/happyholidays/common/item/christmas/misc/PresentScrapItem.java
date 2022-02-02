@@ -10,7 +10,7 @@ public class PresentScrapItem extends ChristmasItem {
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public PresentScrapItem() {
         super(ITEM_PROPERTIES);

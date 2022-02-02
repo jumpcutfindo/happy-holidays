@@ -43,7 +43,7 @@ public class LogCakeBlock extends ChristmasFoodBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .stacksTo(4)
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public static final VoxelShape[] SHAPE = { Block.box(1.0, 0.0, 3.0, 15.0, 6.0, 13.0) };
 

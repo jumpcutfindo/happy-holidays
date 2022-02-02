@@ -44,7 +44,7 @@ public class MilkAndCookiesBlock extends ChristmasFoodBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .stacksTo(4)
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public static final VoxelShape[] SHAPE = { Block.box(3.5, 0.0, 3.5, 12.5, 7.0, 12.5) };
 

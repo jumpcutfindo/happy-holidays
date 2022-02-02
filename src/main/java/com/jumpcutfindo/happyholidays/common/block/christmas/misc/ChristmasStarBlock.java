@@ -70,7 +70,7 @@ public class ChristmasStarBlock extends Block implements EntityBlock, ChristmasB
                     });
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public static final VoxelShape SHAPE = Shapes.or(
             Block.box(4.5, 0.0, 4.5, 11.5, 16.0, 11.5)

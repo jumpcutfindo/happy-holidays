@@ -43,7 +43,7 @@ public class ChristmasPuddingBlock extends ChristmasFoodBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .stacksTo(4)
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public static final VoxelShape[] SHAPE = { Block.box(2.5, 0.0, 2.5, 13.5, 8.0, 13.5) };
 

@@ -14,7 +14,7 @@ public class DyeBowlItem extends ChristmasItem {
     public static final String SILVER_DYE_ID = "silver_christmas_dye";
 
     private static final Properties ITEM_PROPERTIES =
-            new Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+            new Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public DyeBowlItem() {
         super(ITEM_PROPERTIES);

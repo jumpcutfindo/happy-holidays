@@ -8,7 +8,7 @@ public class MistletoeAndHollyItem extends ChristmasItem {
 
     private static final Properties ITEM_PROPERTIES =
             new Properties()
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public MistletoeAndHollyItem() {
         super(ITEM_PROPERTIES);

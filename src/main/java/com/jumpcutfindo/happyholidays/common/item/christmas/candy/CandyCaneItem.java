@@ -19,7 +19,7 @@ public class CandyCaneItem extends ChristmasFoodItem {
                             .saturationMod(0.1f)
                             .alwaysEat()
                             .build())
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public CandyCaneItem() {
         super(ITEM_PROPERTIES);

@@ -15,7 +15,7 @@ public class SwaggerStickItem extends ChristmasItem {
     public static String ITEM_ID = "swagger_stick";
     public static Item.Properties ITEM_PROPERTIES = new Item.Properties()
             .stacksTo(1)
-            .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+            .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public SwaggerStickItem() {
         super(ITEM_PROPERTIES);

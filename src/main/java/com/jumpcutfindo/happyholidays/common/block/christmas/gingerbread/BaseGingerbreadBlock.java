@@ -49,7 +49,7 @@ public class BaseGingerbreadBlock extends Block implements IGingerbreadBlock, Ch
                     .sound(SoundType.FUNGUS);
 
     public static final Item.Properties ITEM_PROPERITES =
-            new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public static final String DOUGH_BLOCK_ID = "gingerbread_dough_block";
     public static final String COOKED_BLOCK_ID = "gingerbread_block";

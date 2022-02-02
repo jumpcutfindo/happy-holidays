@@ -72,7 +72,7 @@ public class PresentBlock extends Block implements SimpleWaterloggedBlock, Chris
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .stacksTo(64)
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public static final float GROWTH_PROBABILITY = 1.0f / 64.0f;
 

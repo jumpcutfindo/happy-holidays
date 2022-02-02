@@ -28,7 +28,7 @@ public class MultifaceDecorationBlock extends MultifaceBlock implements SimpleWa
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public MultifaceDecorationBlock(Properties blockProperties) {
         super(blockProperties);

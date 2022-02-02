@@ -51,7 +51,7 @@ public class GiftWrapperBlock extends Block implements EntityBlock, ChristmasBlo
                     .noOcclusion();
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public static final VoxelShape SHAPE = Shapes.or(
             Block.box(2.0, 0.0, 2.0, 14.0, 2.0, 14.0),

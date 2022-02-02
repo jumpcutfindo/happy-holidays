@@ -11,7 +11,7 @@ import net.minecraft.world.item.Item;
 public class Outfit {
     public static final Item.Properties DEFAULT_ITEM_PROPERTIES =
             new Item.Properties()
-                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
+                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP)
                     .stacksTo(1);
 
     public final OutfitMaterial material;

@@ -49,7 +49,7 @@ public class DecorationBlock extends Block implements SimpleWaterloggedBlock {
                     .noCollission();
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public VoxelShape[] normalShape, hangingShape, wallShape;
 
