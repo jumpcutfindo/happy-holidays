@@ -83,14 +83,15 @@ public class SantaElfBellItem extends ChristmasItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity livingEntity) {
-        if (livingEntity instanceof Player) {
-            Player playerEntity = (Player) livingEntity;
-            BlockPos playerPos = playerEntity.blockPosition();
+        if (livingEntity instanceof Player player) {
+            BlockPos playerPos = player.blockPosition();
 
-            CompoundTag nbt = stack.getOrCreateTag();
-            nbt.putLong("NextUseTime", world.getGameTime() + (long) ITEM_COOLDOWN);
+            if (!player.isCreative()) {
+                CompoundTag nbt = stack.getOrCreateTag();
+                nbt.putLong("NextUseTime", world.getGameTime() + (long) ITEM_COOLDOWN);
+            }
 
-            BlockPos posAhead = BlockUtils.getPosInFront(playerEntity.getDirection(), playerPos, 4.0D);
+            BlockPos posAhead = BlockUtils.getPosInFront(player.getDirection(), playerPos, 4.0D);
 
             double spawnX, spawnY, spawnZ;
             spawnX = posAhead.getX();
@@ -104,7 +105,7 @@ public class SantaElfBellItem extends ChristmasItem {
             world.addParticle(ParticleTypes.LARGE_SMOKE, spawnX, spawnY, spawnZ, 0.0F, 0.0F, 0.0F);
             world.playSound(null, posAhead, ChristmasSounds.SANTA_ELF_ARRIVAL.get(), SoundSource.NEUTRAL, 1.0F, 1.0F);
 
-            SantaElfEvent.Summon elfSummonEvent = new SantaElfEvent.Summon(santaElfEntity, playerEntity);
+            SantaElfEvent.Summon elfSummonEvent = new SantaElfEvent.Summon(santaElfEntity, player);
             MinecraftForge.EVENT_BUS.post(elfSummonEvent);
         }
 
