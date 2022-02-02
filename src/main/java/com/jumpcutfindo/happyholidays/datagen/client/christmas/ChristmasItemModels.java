@@ -18,6 +18,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ChristmasItemModels extends ItemModelProvider {
     public static final String ITEM_GENERATED = "item/generated";
+    public static final String ITEM_SPAWN_EGG = "item/template_spawn_egg";
 
     public ChristmasItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, HappyHolidaysMod.MOD_ID, existingFileHelper);
@@ -288,6 +289,17 @@ public class ChristmasItemModels extends ItemModelProvider {
         );
 
         for (Pair<Item, String> item : items) itemWithTexture(item.getKey(), item.getValue());
+
+        Set<Item> spawnEggs = Sets.newHashSet(
+                ChristmasItems.SANTA_ELF_SPAWN_EGG.get(),
+                ChristmasItems.GINGERBREAD_MAN_SPAWN_EGG.get(),
+                ChristmasItems.GRINCH_SPAWN_EGG.get(),
+                ChristmasItems.NUTCRACKER_SPAWN_EGG.get(),
+                ChristmasItems.HAPPY_SANTA_SPAWN_EGG.get(),
+                ChristmasItems.ANGRY_SANTA_SPAWN_EGG.get()
+        );
+
+        for (Item spawnEgg : spawnEggs) spawnEggWithTemplate(spawnEgg);
     }
 
     // For items with multiple layers
@@ -359,6 +371,11 @@ public class ChristmasItemModels extends ItemModelProvider {
         for (int i = 0; i < resourceLocations.length; i++) {
             builder = builder.texture("layer" + i, resourceLocations[i]);
         }
+    }
+
+    private void spawnEggWithTemplate(Item item) {
+        String itemId = itemId(item);
+        ItemModelBuilder builder = withExistingParent(itemId, ITEM_SPAWN_EGG);
     }
 
     private void blockWithCustomModel(Item item, String customModelId) {

@@ -343,6 +343,13 @@
     "item.happyholidays.santa.rare_gift": "Rare Santa's Gift",
     "item.happyholidays.santa.legendary_gift": "Legendary Santa's Gift",
 
+    "item.happyholidays.santa_elf_spawn_egg": "Santa Elf Spawn Egg",
+    "item.happyholidays.gingerbread_man_spawn_egg": "Gingerbread Man Spawn Egg",
+    "item.happyholidays.grinch_spawn_egg": "Grinch Spawn Egg",
+    "item.happyholidays.nutcracker_spawn_egg": "Nutcracker Spawn Egg",
+    "item.happyholidays.happy_santa_spawn_egg": "Happy Santa Spawn Egg",
+    "item.happyholidays.angry_santa_spawn_egg": "Angry Santa Spawn Egg",
+
     "entity.happyholidays.gingerbread_man": "Gingerbread Man",
     "entity.happyholidays.soggy_gingerbread_man": "Soggy Gingerbread Man",
     "entity.happyholidays.gingerbread_person_passive.sub": "Gingerbread Man crumbles",

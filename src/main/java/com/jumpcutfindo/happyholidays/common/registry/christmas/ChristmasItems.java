@@ -75,12 +75,17 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.ChristmasOutfits;
 import com.jumpcutfindo.happyholidays.common.item.christmas.thread.EnchantedThreadItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.thread.ThreadItem;
+import com.jumpcutfindo.happyholidays.common.utils.ColourUtils;
 
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.registries.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -91,6 +96,7 @@ public class ChristmasItems {
             HappyHolidaysMod.MOD_ID
     );
 
+    // ================== ITEMS ==================
     public static final RegistryObject<ChristmasItem> RAW_GINGERBREAD =
             ITEMS.register(RawGingerbreadItem.ITEM_ID, RawGingerbreadItem::new);
     public static final RegistryObject<ChristmasItem> GINGERBREAD_COOKIE =
@@ -236,6 +242,20 @@ public class ChristmasItems {
     public static final RegistryObject<ChristmasItem> SILVER_CHRISTMAS_GIFT_ITEM =
             ITEMS.register(ChristmasGiftItem.SILVER_GIFT_ID, ChristmasGiftItem::new);
 
+    public static final RegistryObject<Item> SANTA_ELF_SPAWN_EGG =
+            ITEMS.register("santa_elf_spawn_egg", spawnEggOf(ChristmasEntities.SANTA_ELF::get, ColourUtils.rgbaToInt(2, 126, 16, 255), ColourUtils.rgbaToInt(255, 2, 2, 255)));
+    public static final RegistryObject<Item> GINGERBREAD_MAN_SPAWN_EGG =
+            ITEMS.register("gingerbread_man_spawn_egg", spawnEggOf(ChristmasEntities.GINGERBREAD_MAN::get, ColourUtils.rgbaToInt(123, 76, 22, 255), ColourUtils.rgbaToInt(255, 255, 255, 255)));
+    public static final RegistryObject<Item> GRINCH_SPAWN_EGG =
+            ITEMS.register("grinch_spawn_egg", spawnEggOf(ChristmasEntities.GRINCH::get, ColourUtils.rgbaToInt(43, 178, 0, 255), ColourUtils.rgbaToInt(255, 216, 0, 255)));
+    public static final RegistryObject<Item> NUTCRACKER_SPAWN_EGG =
+            ITEMS.register("nutcracker_spawn_egg", spawnEggOf(ChristmasEntities.NUTCRACKER::get, ColourUtils.rgbaToInt(206, 0, 0, 255), ColourUtils.rgbaToInt(0, 0, 0, 255)));
+    public static final RegistryObject<Item> HAPPY_SANTA_SPAWN_EGG =
+            ITEMS.register("happy_santa_spawn_egg", spawnEggOf(ChristmasEntities.HAPPY_SANTA::get, ColourUtils.rgbaToInt(242, 0, 0, 255), ColourUtils.rgbaToInt(255, 255, 255, 255)));
+    public static final RegistryObject<Item> ANGRY_SANTA_SPAWN_EGG =
+            ITEMS.register("angry_santa_spawn_egg", spawnEggOf(ChristmasEntities.ANGRY_SANTA::get, ColourUtils.rgbaToInt(112, 24, 31, 255), ColourUtils.rgbaToInt(255, 255, 255, 255)));
+
+    // ================== BLOCK ITEMS ==================
     public static final RegistryObject<ChristmasBlockItem> BABY_PRESENT =
             ITEMS.register(BabyPresentBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.BABY_PRESENT, BabyPresentBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> ADULT_PRESENT =
@@ -578,6 +598,10 @@ public class ChristmasItems {
 
     public static Supplier<ChristmasBlockItem> blockItemOf(RegistryObject<? extends Block> block, Item.Properties properties) {
         return () -> new ChristmasBlockItem(block.get(), properties);
+    }
+
+    public static Supplier<Item> spawnEggOf(Supplier<EntityType<? extends Mob>> entityType, int backgroundColor, int highlightColor) {
+        return () -> new ForgeSpawnEggItem(entityType::get, backgroundColor, highlightColor, new Item.Properties().tab(CreativeModeTab.TAB_MISC));
     }
 
     public static boolean isSheetMusicItem(ItemStack itemStack) {
