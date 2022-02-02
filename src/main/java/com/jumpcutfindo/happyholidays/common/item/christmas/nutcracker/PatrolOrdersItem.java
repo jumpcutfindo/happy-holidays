@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.PatrolRoute;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
@@ -35,7 +35,7 @@ public class PatrolOrdersItem extends ChristmasItem {
     public static final String ITEM_ID = "patrol_orders";
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP)
+                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
                     .stacksTo(1);
 
     public static final String TOOLTIP_NO_ROUTE = "item.happyholidays.patrol_orders.no_route";

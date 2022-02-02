@@ -2,10 +2,10 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.misc;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
@@ -70,7 +70,7 @@ public class ChristmasStarBlock extends Block implements EntityBlock, ChristmasB
                     });
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
 
     public static final VoxelShape SHAPE = Shapes.or(
             Block.box(4.5, 0.0, 4.5, 11.5, 16.0, 11.5)

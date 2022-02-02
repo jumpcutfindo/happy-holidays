@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.candy;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 
 import net.minecraft.world.food.FoodProperties;
@@ -19,7 +19,7 @@ public class CandyCaneItem extends ChristmasFoodItem {
                             .saturationMod(0.1f)
                             .alwaysEat()
                             .build())
-                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
 
     public CandyCaneItem() {
         super(ITEM_PROPERTIES);

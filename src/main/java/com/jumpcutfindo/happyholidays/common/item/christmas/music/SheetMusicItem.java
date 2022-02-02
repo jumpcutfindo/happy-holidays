@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
@@ -58,7 +58,7 @@ public class SheetMusicItem extends ChristmasItem {
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP)
+                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
                     .stacksTo(16);
 
     public ChristmasMusic music;

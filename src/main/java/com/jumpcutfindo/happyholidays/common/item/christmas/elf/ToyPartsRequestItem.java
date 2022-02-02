@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfRequest;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
@@ -25,7 +25,7 @@ public class ToyPartsRequestItem extends ChristmasItem {
     public static final String ITEM_ID = "toy_parts_request";
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP)
+            new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
                     .stacksTo(1);
 
     public ToyPartsRequestItem() {

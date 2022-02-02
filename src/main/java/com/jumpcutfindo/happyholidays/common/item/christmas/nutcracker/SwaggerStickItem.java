@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.nutcracker;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 
@@ -15,7 +15,7 @@ public class SwaggerStickItem extends ChristmasItem {
     public static String ITEM_ID = "swagger_stick";
     public static Item.Properties ITEM_PROPERTIES = new Item.Properties()
             .stacksTo(1)
-            .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
+            .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
 
     public SwaggerStickItem() {
         super(ITEM_PROPERTIES);

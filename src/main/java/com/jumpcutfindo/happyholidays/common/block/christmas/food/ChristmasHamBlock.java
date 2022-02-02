@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.food;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -43,7 +43,7 @@ public class ChristmasHamBlock extends ChristmasFoodBlock {
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .stacksTo(4)
-                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
 
     public static final VoxelShape[] SHAPE = { Block.box(1.0, 0.0, 1.0, 15.0, 10.0, 15.0) };
 

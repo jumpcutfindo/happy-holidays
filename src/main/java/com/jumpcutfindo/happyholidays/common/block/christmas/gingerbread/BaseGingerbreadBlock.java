@@ -4,8 +4,8 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
@@ -49,7 +49,7 @@ public class BaseGingerbreadBlock extends Block implements IGingerbreadBlock, Ch
                     .sound(SoundType.FUNGUS);
 
     public static final Item.Properties ITEM_PROPERITES =
-            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
 
     public static final String DOUGH_BLOCK_ID = "gingerbread_dough_block";
     public static final String COOKED_BLOCK_ID = "gingerbread_block";

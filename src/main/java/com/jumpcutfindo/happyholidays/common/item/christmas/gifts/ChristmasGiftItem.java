@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
@@ -35,7 +35,7 @@ public class ChristmasGiftItem extends ChristmasItem {
     public static final String GOLD_GIFT_ID = "gold_christmas_gift";
     public static final String SILVER_GIFT_ID = "silver_christmas_gift";
 
-    public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP).stacksTo(1);
+    public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP).stacksTo(1);
 
     public static final int ITEM_USE_DURATION = 30;
 

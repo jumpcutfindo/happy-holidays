@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.thread;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 
@@ -11,7 +11,7 @@ public class EnchantedThreadItem extends ChristmasItem {
 
     private static final Properties ITEM_PROPERTIES =
             new Properties()
-                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP)
+                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
                     .stacksTo(64);
 
     public EnchantedThreadItem() {

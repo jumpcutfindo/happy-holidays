@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.food;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
@@ -18,7 +18,7 @@ public class EggnogItem extends ChristmasFoodItem {
 
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
-                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP)
+                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
                     .stacksTo(16)
                     .food(new FoodProperties.Builder()
                             .nutrition(4)

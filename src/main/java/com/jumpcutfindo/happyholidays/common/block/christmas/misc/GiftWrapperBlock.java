@@ -2,9 +2,9 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.misc;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.GiftWrapperBlockEntity;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
@@ -51,7 +51,7 @@ public class GiftWrapperBlock extends Block implements EntityBlock, ChristmasBlo
                     .noOcclusion();
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
 
     public static final VoxelShape SHAPE = Shapes.or(
             Block.box(2.0, 0.0, 2.0, 14.0, 2.0, 14.0),

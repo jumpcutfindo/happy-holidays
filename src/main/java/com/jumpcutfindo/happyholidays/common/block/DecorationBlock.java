@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
 import net.minecraft.core.BlockPos;
@@ -49,7 +49,7 @@ public class DecorationBlock extends Block implements SimpleWaterloggedBlock {
                     .noCollission();
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
 
     public VoxelShape[] normalShape, hangingShape, wallShape;
 

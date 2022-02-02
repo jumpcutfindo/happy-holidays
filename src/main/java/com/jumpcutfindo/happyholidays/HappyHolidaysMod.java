@@ -33,8 +33,6 @@ public class HappyHolidaysMod {
 
     public static Proxy PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
-    public static final CreativeModeTab HAPPY_HOLIDAYS_GROUP = new HappyHolidaysMod.HappyHolidaysGroup("happyholidays");
-
     public HappyHolidaysMod() {
         GeckoLibMod.DISABLE_IN_DEV = true;
         GeckoLib.initialize();

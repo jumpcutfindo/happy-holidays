@@ -12,6 +12,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.Festi
 import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyShape;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
@@ -42,7 +43,7 @@ public class CandyCaneBlock extends Block implements ChristmasLike, ChristmasBlo
             .sound(SoundType.STONE);
 
     public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
+            new Item.Properties().tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
 
     public static final String BLOCK_ID = "candy_cane_block";
     public static final String BRICKS_ID = "candy_cane_bricks";

@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.outfits;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 
 import net.minecraft.data.models.blockstates.PropertyDispatch;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -11,7 +11,7 @@ import net.minecraft.world.item.Item;
 public class Outfit {
     public static final Item.Properties DEFAULT_ITEM_PROPERTIES =
             new Item.Properties()
-                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP)
+                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP)
                     .stacksTo(1);
 
     public final OutfitMaterial material;

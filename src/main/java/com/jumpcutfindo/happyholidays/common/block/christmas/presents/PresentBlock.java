@@ -6,11 +6,11 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
@@ -72,7 +72,7 @@ public class PresentBlock extends Block implements SimpleWaterloggedBlock, Chris
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .stacksTo(64)
-                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
+                    .tab(HappyHolidaysTabs.HAPPY_HOLIDAYS_GROUP);
 
     public static final float GROWTH_PROBABILITY = 1.0f / 64.0f;
 
