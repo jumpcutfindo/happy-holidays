@@ -128,6 +128,8 @@ public class SnowGlobeItem extends ChristmasItem {
                 Messenger.sendChatMessage(message, player);
             }
 
+            if (player.isCreative()) shouldReduceCharges = false;
+
             if (shouldReduceCharges) {
                 // If should reduce charges, this means we've successfully used it
                 snowGlobe.setDamageValue(snowGlobe.getDamageValue() + 1);
