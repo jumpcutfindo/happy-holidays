@@ -11,12 +11,10 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntitie
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.proxies.client.ClientProxy;
 import com.jumpcutfindo.happyholidays.proxies.CommonProxy;
 import com.jumpcutfindo.happyholidays.proxies.Proxy;
+import com.jumpcutfindo.happyholidays.proxies.client.ClientProxy;
 
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -51,16 +49,5 @@ public class HappyHolidaysMod {
         ChristmasSounds.SOUNDS.register(bus);
         ChristmasEffects.EFFECTS.register(bus);
         ChristmasParticles.PARTICLES.register(bus);
-    }
-
-    public static class HappyHolidaysGroup extends CreativeModeTab {
-        public HappyHolidaysGroup(String label) {
-            super(label);
-        }
-
-        @Override
-        public ItemStack makeIcon() {
-            return ChristmasBlocks.ELDER_PRESENT.get().asItem().getDefaultInstance();
-        }
     }
 }
