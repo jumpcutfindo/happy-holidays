@@ -11,5 +11,5 @@ public class HappyHolidaysTabs {
         public ItemStack makeIcon() {
             return ChristmasBlocks.ELDER_PRESENT.get().asItem().getDefaultInstance();
         }
-    };
+    }.setRecipeFolderName("christmas/recipes");
 }
