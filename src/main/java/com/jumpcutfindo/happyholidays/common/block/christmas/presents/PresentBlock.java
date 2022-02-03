@@ -6,6 +6,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
@@ -15,6 +16,8 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
+import com.jumpcutfindo.happyholidays.server.data.structs.Availability;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -213,6 +216,8 @@ public class PresentBlock extends Block implements SimpleWaterloggedBlock, Chris
     @Override
     public void randomTick(BlockState blockState, ServerLevel serverWorld, BlockPos blockPos, Random random) {
         super.randomTick(blockState, serverWorld, blockPos, random);
+
+        if (!Availability.isAvailable(serverWorld, Holiday.CHRISTMAS, HolidayAvailabilityData.CHRISTMAS_PRESENTS_GROW)) return;
 
         // Handle growing for baby / adult presents
         if (PresentBlock.isGrowable(blockState)) {

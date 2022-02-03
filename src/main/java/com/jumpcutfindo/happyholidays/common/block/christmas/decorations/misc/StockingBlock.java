@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.StockingBlockEntity;
@@ -15,6 +16,8 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEn
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
+import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
+import com.jumpcutfindo.happyholidays.server.data.structs.Availability;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -156,6 +159,8 @@ public class StockingBlock extends WallDecorationBlock implements ChristmasLike,
 
     @Override
     public void randomTick(BlockState blockState, ServerLevel world, BlockPos blockPos, Random random) {
+        if (!Availability.isAvailable(world, Holiday.CHRISTMAS, HolidayAvailabilityData.CHRISTMAS_STOCKINGS_FILL)) return;
+
         BlockEntity blockEntity = world.getBlockEntity(blockPos);
 
         if (blockEntity instanceof StockingBlockEntity) {

@@ -415,6 +415,7 @@
 
     "chat.happyholidays.santa_elf_bell.not_ready": "Santa's Elf is not available yet (%s left)",
 
+    "chat.happyholidays.christmas_star.santa_unavailable": "It looks like Santa isn't available for a visit...",
     "chat.happyholidays.christmas_star.tier_not_ok": "You need to have at least Tier 5 to add the bonus item!",
     "chat.happyholidays.christmas_star.bonus_still_active": "You need to remove the bonus item first!",
     "chat.happyholidays.christmas_star.santa_not_ready": "Santa is still resting from his last visit! You can call for him in %s.",

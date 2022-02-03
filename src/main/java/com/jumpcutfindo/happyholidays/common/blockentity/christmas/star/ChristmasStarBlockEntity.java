@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasEntityBlock;
@@ -25,7 +26,9 @@ import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
 import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
 import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
 import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
+import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
 import com.jumpcutfindo.happyholidays.server.data.SantaSavedData;
+import com.jumpcutfindo.happyholidays.server.data.structs.Availability;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -222,6 +225,12 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
     public void summonSanta() {
         if (this.level != null && !this.level.isClientSide()) {
             ServerLevel serverWorld = (ServerLevel) this.level;
+
+            if (!Availability.isAvailable(serverWorld, Holiday.CHRISTMAS, HolidayAvailabilityData.CHRISTMAS_SPAWN_SANTA_STAR)) {
+                GameplayMessage message = new GameplayMessage(MessageType.ERROR, "chat.happyholidays.christmas_star.santa_unavailable");
+                Messenger.sendChatMessage(message, serverWorld.getPlayers(playerEntity -> this.santaAOE.contains(playerEntity.position())));
+                return;
+            }
 
             SantaSavedData santaData = SantaSavedData.retrieve(serverWorld);
 
@@ -444,7 +453,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
 
     public static void serverTick(Level level, BlockPos pos, BlockState blockState, ChristmasStarBlockEntity blockEntity) {
         if (level != null && !level.isClientSide()) {
-            if (level.getGameTime() % 80L == 0L) {
+            if (level.getGameTime() % 80L == 0L && Availability.isAvailable((ServerLevel) level, Holiday.CHRISTMAS, HolidayAvailabilityData.CHRISTMAS_STAR_GIVE_BUFF)) {
                 blockEntity.applyPlayerEffects();
                 blockEntity.applyEntityEffects();
             }
