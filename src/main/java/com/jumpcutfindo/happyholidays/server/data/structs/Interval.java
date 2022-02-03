@@ -31,6 +31,10 @@ public class Interval {
         else return current.isAfter(start) && current.isBefore(end);
     }
 
+    public static boolean isValidString(String s) {
+        return s.matches("([0-9]){2}-([0-9]){2} ([0-9]){2}-([0-9]){2}");
+    }
+
     public static Interval of(int startMonth, int startDay, int endMonth, int endDay) {
         return new Interval(new YearlessDate(startMonth, startDay), new YearlessDate(endMonth, endDay));
     }

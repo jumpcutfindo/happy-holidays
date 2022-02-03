@@ -38,6 +38,10 @@ public class YearlessDate {
         return isValidMonth(month) && isValidDay(day);
     }
 
+    public static boolean isValidString(String s) {
+        return s.matches("([0-9]){2}-([0-9]){2}");
+    }
+
     public static boolean isValidMonth(int month) {
         return month >= 1 && month <= 12;
     }

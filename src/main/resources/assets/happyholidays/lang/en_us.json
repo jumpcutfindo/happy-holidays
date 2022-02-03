@@ -568,5 +568,6 @@
 
     "argument.happyholidays.yearless_date.incomplete": "Incomplete yearless date entered (usage: MM-DD)",
     "argument.happyholidays.yearless_date.invalid_month": "Invalid month entered (should be between 01 and 12 inclusive)",
-    "argument.happyholidays.yearless_date.invalid_day": "Incomplete day entered (should be between 01 and 31 inclusive)"
+    "argument.happyholidays.yearless_date.invalid_day": "Incomplete day entered (should be between 01 and 31 inclusive)",
+    "argument.happyholidays.interval.incomplete": "Incomplete interval entered (usage: MM-DD MM-DD)"
 }

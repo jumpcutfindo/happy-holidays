@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.server.command.common;
 import java.util.Map;
 
 import com.jumpcutfindo.happyholidays.common.Holiday;
-import com.jumpcutfindo.happyholidays.server.command.arguments.YearlessDateArgument;
+import com.jumpcutfindo.happyholidays.server.command.arguments.IntervalArgument;
 import com.jumpcutfindo.happyholidays.server.data.HolidayIntervalData;
 import com.jumpcutfindo.happyholidays.server.data.structs.Interval;
 import com.mojang.brigadier.builder.ArgumentBuilder;
@@ -24,19 +24,19 @@ public class IntervalCommand {
         String holidayCode = holiday.getCode();
         Map<String, Interval> presetIntervals = HolidayIntervalData.HOLIDAY_PRESETS.get(holiday);
 
-        ArgumentBuilder<CommandSourceStack, ?> setSubCommand = Commands.literal("set")
-                .then(Commands.argument("start", YearlessDateArgument.yearlessDate()).then(Commands.argument("end", YearlessDateArgument.yearlessDate()).executes(command -> adjustInterval(command.getSource(), holidayCode, new Interval(YearlessDateArgument.getYearlessDate(command, "start"), YearlessDateArgument.getYearlessDate(command, "end"))))));
+        ArgumentBuilder<CommandSourceStack, ?> presetSubCommand = Commands.literal("preset");
 
         // Include presets for set
         if (presetIntervals != null) {
             for (String presetName : presetIntervals.keySet()) {
-                setSubCommand.then(Commands.literal(presetName).executes(command -> adjustInterval(command.getSource(), holidayCode, presetIntervals.get(presetName))));
+                presetSubCommand.then(Commands.literal(presetName).executes(command -> adjustInterval(command.getSource(), holidayCode, presetIntervals.get(presetName))));
             }
         }
 
         return LiteralArgumentBuilder.<CommandSourceStack>literal("interval").requires((player) -> player.hasPermission(Commands.LEVEL_GAMEMASTERS))
                     .then(Commands.literal("query").executes(command -> query(command.getSource(), holidayCode)))
-                    .then(setSubCommand);
+                .then(Commands.literal("set").then(Commands.argument("interval", IntervalArgument.interval()).executes(command -> adjustInterval(command.getSource(), holidayCode, IntervalArgument.getInterval(command, "interval")))))
+                .then(presetSubCommand);
     }
 
     public static int query(CommandSourceStack commandSourceStack, String holidayCode) {

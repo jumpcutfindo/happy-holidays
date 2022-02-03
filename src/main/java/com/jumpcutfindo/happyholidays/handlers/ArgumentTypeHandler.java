@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.server.command.arguments.IntervalArgument;
 import com.jumpcutfindo.happyholidays.server.command.arguments.YearlessDateArgument;
 
 import net.minecraft.commands.synchronization.ArgumentTypes;
@@ -19,6 +20,7 @@ public class ArgumentTypeHandler {
 
     private static void doRegistration() {
         ArgumentTypes.register(resourceStringOf("yearless_date"), YearlessDateArgument.class, new EmptyArgumentSerializer<>(YearlessDateArgument::yearlessDate));
+        ArgumentTypes.register(resourceStringOf("interval"), IntervalArgument.class, new EmptyArgumentSerializer<>(IntervalArgument::interval));
     }
 
     private static String resourceStringOf(String resourceName) {
