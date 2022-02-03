@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.server.data.structs.Interval;
 
 import net.minecraft.Util;
@@ -16,9 +17,9 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 
 public class HolidayIntervalData extends SavedData {
-    public static final Collection<String> HOLIDAY_CODES = List.of("christmas");
-    public static final Map<String, Map<String, Interval>> HOLIDAY_PRESETS = Util.make(Maps.newHashMap(), (map) -> {
-        map.put("christmas", Util.make(Maps.newHashMap(), (intervalMap) -> {
+    public static final Collection<Holiday> HOLIDAY_CODES = List.of(Holiday.CHRISTMAS);
+    public static final Map<Holiday, Map<String, Interval>> HOLIDAY_PRESETS = Util.make(Maps.newHashMap(), (map) -> {
+        map.put(Holiday.CHRISTMAS, Util.make(Maps.newHashMap(), (intervalMap) -> {
             intervalMap.put("all_year", Interval.all());
             intervalMap.put("seasonal", Interval.of(12, 1, 12, 31));
         }));
@@ -26,30 +27,31 @@ public class HolidayIntervalData extends SavedData {
 
     public static final String DATA_NAME = HappyHolidaysMod.MOD_ID + "_intervals";
 
-    private final Map<String, Interval> holidayIntervalMap = Util.make(Maps.newHashMap(), (map) -> {
-        map.put("christmas", Interval.all());
+    private final Map<Holiday, Interval> holidayIntervalMap = Util.make(Maps.newHashMap(), (map) -> {
+        map.put(Holiday.CHRISTMAS, Interval.all());
     });
 
     public HolidayIntervalData() {
     }
 
     public Interval get(String holidayCode) {
-        return holidayIntervalMap.get(holidayCode);
+        return holidayIntervalMap.get(Holiday.ofCode(holidayCode));
     }
 
     public void put(String holidayCode, Interval interval) {
-        holidayIntervalMap.put(holidayCode, interval);
+        holidayIntervalMap.put(Holiday.ofCode(holidayCode), interval);
     }
 
     @Override
     public CompoundTag save(CompoundTag tag) {
-        for (String holidayCode : holidayIntervalMap.keySet()) {
+        for (Holiday holiday : holidayIntervalMap.keySet()) {
+            String holidayCode = holiday.getCode();
             CompoundTag holidayTag = new CompoundTag();
 
-            holidayTag.putInt("StartMonth", holidayIntervalMap.get("christmas").getStart().getMonth());
-            holidayTag.putInt("StartDay", holidayIntervalMap.get("christmas").getStart().getDay());
-            holidayTag.putInt("EndMonth", holidayIntervalMap.get("christmas").getEnd().getMonth());
-            holidayTag.putInt("EndDay", holidayIntervalMap.get("christmas").getEnd().getDay());
+            holidayTag.putInt("StartMonth", holidayIntervalMap.get(Holiday.CHRISTMAS).getStart().getMonth());
+            holidayTag.putInt("StartDay", holidayIntervalMap.get(Holiday.CHRISTMAS).getStart().getDay());
+            holidayTag.putInt("EndMonth", holidayIntervalMap.get(Holiday.CHRISTMAS).getEnd().getMonth());
+            holidayTag.putInt("EndDay", holidayIntervalMap.get(Holiday.CHRISTMAS).getEnd().getDay());
 
             tag.put(StringUtils.capitalize(holidayCode), holidayTag);
         }
@@ -59,7 +61,8 @@ public class HolidayIntervalData extends SavedData {
     public static HolidayIntervalData createFromTag(CompoundTag tag) {
         HolidayIntervalData holidayIntervalData = new HolidayIntervalData();
 
-        for (String holidayCode : HOLIDAY_CODES) {
+        for (Holiday holiday : HOLIDAY_CODES) {
+            String holidayCode = holiday.getCode();
             String tagName = StringUtils.capitalize(holidayCode);
             if (tag.contains(tagName)) {
                 CompoundTag holidayTag = tag.getCompound(tagName);

@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.server.command.common;
 
 import java.util.Map;
 
+import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.server.command.arguments.YearlessDateArgument;
 import com.jumpcutfindo.happyholidays.server.data.HolidayIntervalData;
 import com.jumpcutfindo.happyholidays.server.data.structs.Interval;
@@ -19,8 +20,9 @@ public class IntervalCommand {
     public static final String INTERVAL_SET_INCORRECT_DATE = "commands.happyholidays.intervals.set.fail";
     public static final String INTERVAL_FAIL = "commands.happyholidays.intervals.set";
 
-    public static ArgumentBuilder<CommandSourceStack, ?> register(String holidayCode) {
-        Map<String, Interval> presetIntervals = HolidayIntervalData.HOLIDAY_PRESETS.get(holidayCode);
+    public static ArgumentBuilder<CommandSourceStack, ?> register(Holiday holiday) {
+        String holidayCode = holiday.getCode();
+        Map<String, Interval> presetIntervals = HolidayIntervalData.HOLIDAY_PRESETS.get(holiday);
 
         ArgumentBuilder<CommandSourceStack, ?> setSubCommand = Commands.literal("set")
                 .then(Commands.argument("start", YearlessDateArgument.yearlessDate()).then(Commands.argument("end", YearlessDateArgument.yearlessDate()).executes(command -> adjustInterval(command.getSource(), holidayCode, new Interval(YearlessDateArgument.getYearlessDate(command, "start"), YearlessDateArgument.getYearlessDate(command, "end"))))));

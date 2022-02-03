@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.client.screen.guides;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.guides.lines.IPageLine;
+import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -65,7 +66,7 @@ public class GuideScreen extends Screen {
         this.textureWidth = 512;
         this.textureHeight = 512;
 
-        if (this.guide.getId().equals("christmas")) {
+        if (this.guide.getId().equals(Holiday.CHRISTMAS.getCode())) {
             this.guideBookGUI = CHRISTMAS_GUIDE_BOOK_GUI;
         } else {
             this.guideBookGUI = DEFAULT_BOOK_GUI;

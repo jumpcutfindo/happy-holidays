@@ -11,6 +11,7 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.guide.Guide;
 
 import net.minecraft.client.Minecraft;
@@ -30,7 +31,7 @@ public class GuideHandler {
     public static final String DEFAULT_LANGUAGE_CODE = "en_us";
     public static final String DEFAULT_GUIDE_LOCATION = "guides/%s/%s.json";
 
-    public static final String[] GUIDE_CODES = { "christmas" };
+    public static final String[] GUIDE_CODES = { Holiday.CHRISTMAS.getCode() };
 
     public static Map<String, Guide> GUIDES;
 
