@@ -206,5 +206,12 @@ public class ChristmasItemTags extends ItemTagsProvider {
 
         tag(ChristmasTags.Items.NUTCRACKER_FOOD)
                 .addTag(net.minecraft.tags.ItemTags.LOGS);
+
+        tag(ChristmasTags.Items.HEAT_EMITTING_ITEMS)
+                .add(Items.CAMPFIRE)
+                .add(Items.SOUL_CAMPFIRE)
+                .add(Items.LAVA_BUCKET)
+                .add(Items.MAGMA_BLOCK);
+
     }
 }

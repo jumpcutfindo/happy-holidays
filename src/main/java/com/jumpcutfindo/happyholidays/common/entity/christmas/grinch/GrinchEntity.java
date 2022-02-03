@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.grinch;
 import java.util.List;
 import java.util.Random;
 
+import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
@@ -16,6 +17,8 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntitie
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.utils.EntityUtils;
+import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
+import com.jumpcutfindo.happyholidays.server.data.structs.Availability;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -283,6 +286,8 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
     }
 
     public static boolean canSpawnInArea(BlockPos blockPos, ServerLevel serverWorld) {
+        if (!Availability.isAvailable(serverWorld, Holiday.CHRISTMAS, HolidayAvailabilityData.CHRISTMAS_GRINCH_SPAWN)) return false;
+
         AABB searchBox = new AABB(blockPos).inflate(40.0D);
         boolean isPlayerInVicinity = serverWorld.getEntitiesOfClass(Player.class, searchBox).size() > 0;
         boolean isGrinchesAround = serverWorld.getEntitiesOfClass(GrinchEntity.class, searchBox).size() > MAX_GRINCHES_IN_VICINITY;

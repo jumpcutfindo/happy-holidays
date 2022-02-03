@@ -437,7 +437,7 @@
     "commands.happyholidays.interval.query": "Holiday \"%s\" lasts from %s to %s",
     "commands.happyholidays.interval.set": "Set interval of holiday \"%s\" from %s to %s",
     "commands.happyholidays.interval.set.fail": "Invalid date was provided for the interval",
-    "commands.happyholidays.interval.reset": "Interval of holiday \"\" have been reset",
+    "commands.happyholidays.interval.reset": "Interval of holiday \"%s\" has been reset",
     "commands.happyholidays.interval.fail": "Failed to retrieve interval for holiday \"%s\"",
     "commands.happyholidays.availability.set": "Set availability of \"%s::%s\" to %s",
     "commands.happyholidays.availability.fail": "Failed to retrieve availability of \"%s:\"",

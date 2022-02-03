@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
 
@@ -13,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.container.christmas.nutcracker.NutcrackerContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.nutcracker.PatrolOrdersItem;
@@ -21,6 +23,8 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntitie
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
+import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
+import com.jumpcutfindo.happyholidays.server.data.structs.Availability;
 
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -75,6 +79,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -550,6 +555,15 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
         for (ItemStack itemStack : this.inventory.getAllItems()) {
             this.spawnAtLocation(itemStack);
         }
+    }
+
+    public static boolean checkNutcrackerSpawnRules(EntityType<? extends NutcrackerEntity> entity,
+                                                    LevelAccessor world, MobSpawnType spawnReason, BlockPos pos, Random rand) {
+        if (world instanceof ServerLevel serverLevel) {
+            return Availability.isAvailable(serverLevel, Holiday.CHRISTMAS, HolidayAvailabilityData.CHRISTMAS_NUTCRACKER_SPAWN);
+        }
+
+        return world.getRawBrightness(pos,0) > 8 && world.getBlockState(pos.below()).is(ChristmasTags.Blocks.NUTCRACKER_SPAWNABLE_ON);
     }
 
     private static class RandomMouthMovementGoal extends Goal {

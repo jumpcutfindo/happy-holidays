@@ -37,6 +37,10 @@ public class ChristmasTags {
         public static final Tags.IOptionalNamedTag<Block> STAR_AFFECTED_BLOCKS = blockTag("star_affected_blocks");
 
         public static final Tags.IOptionalNamedTag<Block> GINGERBREAD_MEN_SPAWNABLE_ON = blockTag("gingerbread_men_spawnable_on");
+
+        public static final Tags.IOptionalNamedTag<Block> NUTCRACKER_SPAWNABLE_ON = blockTag("nutcracker_spawnable_on");
+
+        public static final Tags.IOptionalNamedTag<Block> HEAT_EMITTING_BLOCKS = blockTag("heat_emitting_blocks");
     }
 
     public class Items {
@@ -81,6 +85,8 @@ public class ChristmasTags {
         public static final Tags.IOptionalNamedTag<Item> SANTA_ELF_ADVANCED_REQUESTABLES_ALTERNATE = itemTag("santa_elf_advanced_requestables_alternate");
 
         public static final Tags.IOptionalNamedTag<Item> NUTCRACKER_FOOD = itemTag("nutcracker_food");
+
+        public static final Tags.IOptionalNamedTag<Item> HEAT_EMITTING_ITEMS = itemTag("heat_emitting_items");
     }
 
     public class Entities {

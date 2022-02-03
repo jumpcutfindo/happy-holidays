@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.GingerbreadPersonEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.NutcrackerEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 
 import net.minecraft.world.entity.SpawnPlacements;
@@ -20,6 +21,13 @@ public class EntityPlacementEventHandler {
                 SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 GingerbreadPersonEntity::checkGingerbreadSpawnRules
+        );
+
+        SpawnPlacements.register(
+                ChristmasEntities.NUTCRACKER.get(),
+                SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                NutcrackerEntity::checkNutcrackerSpawnRules
         );
     }
 }

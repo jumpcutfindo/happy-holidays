@@ -4,11 +4,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
+import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
+import com.jumpcutfindo.happyholidays.server.data.structs.Availability;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -22,7 +26,6 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -43,10 +46,6 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatable, IChristmasEntity {
     public static final float ENTITY_BOX_SIZE = 0.8f;
     public static final float ENTITY_BOX_HEIGHT = 1.95f;
-
-    public static final Item[] HEAT_EMITTING_ITEMS = {
-            Items.CAMPFIRE, Items.SOUL_CAMPFIRE, Items.MAGMA_BLOCK, Items.LAVA_BUCKET
-    };
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -157,23 +156,22 @@ public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatabl
 
     public static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, LevelAccessor world,
                                                      MobSpawnType spawnReason, BlockPos pos, Random rand) {
+        if (world instanceof ServerLevel serverLevel) {
+            return Availability.isAvailable(serverLevel, Holiday.CHRISTMAS, HolidayAvailabilityData.CHRISTMAS_GINGERBREAD_SPAWN);
+        }
+
         return world.getRawBrightness(pos,0) > 8 && world.getBlockState(pos.below()).is(ChristmasTags.Blocks.GINGERBREAD_MEN_SPAWNABLE_ON);
     }
 
     public static boolean isValidHeatItem(ItemStack itemStack) {
-        return Arrays.stream(HEAT_EMITTING_ITEMS).anyMatch(item -> ItemStack.isSame(itemStack, item.getDefaultInstance()));
+        return itemStack.is(ChristmasTags.Items.HEAT_EMITTING_ITEMS);
     }
 
     public static boolean isValidHeatSource(BlockState blockState) {
         return blockState.is(Blocks.FURNACE) && blockState.getValue(BlockStateProperties.LIT)
                 || blockState.is(Blocks.BLAST_FURNACE) && blockState.getValue(BlockStateProperties.LIT)
                 || blockState.is(Blocks.SMOKER) && blockState.getValue(BlockStateProperties.LIT)
-                || blockState.is(Blocks.FIRE)
-                || blockState.is(Blocks.SOUL_FIRE)
-                || blockState.is(Blocks.CAMPFIRE)
-                || blockState.is(Blocks.SOUL_CAMPFIRE)
-                || blockState.is(Blocks.MAGMA_BLOCK)
-                || blockState.is(Blocks.LAVA);
+                || blockState.is(ChristmasTags.Blocks.HEAT_EMITTING_BLOCKS);
     }
 
     private static class FollowHeatSourceGoal extends Goal {
