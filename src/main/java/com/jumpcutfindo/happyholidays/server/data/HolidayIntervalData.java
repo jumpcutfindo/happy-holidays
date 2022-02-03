@@ -17,6 +17,13 @@ import net.minecraft.world.level.saveddata.SavedData;
 
 public class HolidayIntervalData extends SavedData {
     public static final Collection<String> HOLIDAY_CODES = List.of("christmas");
+    public static final Map<String, Map<String, Interval>> HOLIDAY_PRESETS = Util.make(Maps.newHashMap(), (map) -> {
+        map.put("christmas", Util.make(Maps.newHashMap(), (intervalMap) -> {
+            intervalMap.put("all_year", Interval.all());
+            intervalMap.put("seasonal", Interval.of(12, 1, 12, 31));
+        }));
+    });
+
     public static final String DATA_NAME = HappyHolidaysMod.MOD_ID + "_intervals";
 
     private final Map<String, Interval> holidayIntervalMap = Util.make(Maps.newHashMap(), (map) -> {

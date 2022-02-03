@@ -1,5 +1,7 @@
 package com.jumpcutfindo.happyholidays.server.command.common;
 
+import java.util.Map;
+
 import com.jumpcutfindo.happyholidays.server.command.arguments.YearlessDateArgument;
 import com.jumpcutfindo.happyholidays.server.data.HolidayIntervalData;
 import com.jumpcutfindo.happyholidays.server.data.structs.Interval;
@@ -18,11 +20,21 @@ public class IntervalCommand {
     public static final String INTERVAL_FAIL = "commands.happyholidays.intervals.set";
 
     public static ArgumentBuilder<CommandSourceStack, ?> register(String holidayCode) {
+        Map<String, Interval> presetIntervals = HolidayIntervalData.HOLIDAY_PRESETS.get(holidayCode);
+
+        ArgumentBuilder<CommandSourceStack, ?> setSubCommand = Commands.literal("set")
+                .then(Commands.argument("start", YearlessDateArgument.yearlessDate()).then(Commands.argument("end", YearlessDateArgument.yearlessDate()).executes(command -> adjustInterval(command.getSource(), holidayCode, new Interval(YearlessDateArgument.getYearlessDate(command, "start"), YearlessDateArgument.getYearlessDate(command, "end"))))));
+
+        // Include presets for set
+        if (presetIntervals != null) {
+            for (String presetName : presetIntervals.keySet()) {
+                setSubCommand.then(Commands.literal(presetName).executes(command -> adjustInterval(command.getSource(), holidayCode, presetIntervals.get(presetName))));
+            }
+        }
+
         return LiteralArgumentBuilder.<CommandSourceStack>literal("interval").requires((player) -> player.hasPermission(Commands.LEVEL_GAMEMASTERS))
                     .then(Commands.literal("query").executes(command -> query(command.getSource(), holidayCode)))
-                    .then(Commands.literal("set")
-                        .then(Commands.argument("start", YearlessDateArgument.yearlessDate())
-                        .then(Commands.argument("end", YearlessDateArgument.yearlessDate()).executes(command -> adjustInterval(command.getSource(), holidayCode, new Interval(YearlessDateArgument.getYearlessDate(command, "start"), YearlessDateArgument.getYearlessDate(command, "end")))))));
+                    .then(setSubCommand);
     }
 
     public static int query(CommandSourceStack commandSourceStack, String holidayCode) {
