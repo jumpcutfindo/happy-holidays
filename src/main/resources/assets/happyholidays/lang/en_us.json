@@ -435,9 +435,12 @@
     "commands.happyholidays.christmas.santa_summon.set.next_summon": "Set next available time for Santa to be summoned to %s",
     "commands.happyholidays.christmas.santa_summon.set.cooldown": "Set cooldown of Santa summoning to %s ticks",
     "commands.happyholidays.intervals.query": "Holiday \"%s\" lasts from %s to %s",
-    "commands.happyholidays.intervals.set": "Set interval of holiday \"%s\": from %s to %s",
+    "commands.happyholidays.intervals.set": "Set interval of holiday \"%s\" from %s to %s",
     "commands.happyholidays.intervals.set.fail": "Invalid date was provided for the interval",
     "commands.happyholidays.intervals.fail": "Failed to retrieve interval for holiday \"%s\"",
+    "commands.happyholidays.availability.set": "Set availability of \"%s::%s\" to %s",
+    "commands.happyholidays.availability.fail": "Failed to retrieve availability of \"%s:\"",
+    "commands.happyholidays.availability.print": "Availability \"%s::%s\" is set to %s",
 
     "effect.happyholidays.spirit_of_christmas": "Christmas Spirit",
     "effect.happyholidays.generosity_of_christmas": "Christmas Generosity",
@@ -569,5 +572,6 @@
     "argument.happyholidays.yearless_date.incomplete": "Incomplete yearless date entered (usage: MM-DD)",
     "argument.happyholidays.yearless_date.invalid_month": "Invalid month entered (should be between 01 and 12 inclusive)",
     "argument.happyholidays.yearless_date.invalid_day": "Incomplete day entered (should be between 01 and 31 inclusive)",
-    "argument.happyholidays.interval.incomplete": "Incomplete interval entered (usage: MM-DD MM-DD)"
+    "argument.happyholidays.interval.incomplete": "Incomplete interval entered (usage: MM-DD MM-DD)",
+    "argument.happyholidays.availability.not_found": "Availability type not found"
 }
