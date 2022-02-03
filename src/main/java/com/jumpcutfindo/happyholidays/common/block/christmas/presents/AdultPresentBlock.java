@@ -6,8 +6,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 public class AdultPresentBlock extends PresentBlock {
     public static final String BLOCK_ID = "adult_present";
     public static final VoxelShape SHAPE = Shapes.or(
-            box(3.5, 0.0, 3.5, 12.5, 6.0, 12.5),
-            box(2.5, 6.0, 2.5, 13.5, 8.0, 13.5)
+            box(4.0, 0.0, 4.0, 12.0, 6.0, 12.0),
+            box(3.0, 6.0, 3.0, 13.0, 8.0, 13.0)
     );
 
     public AdultPresentBlock() {

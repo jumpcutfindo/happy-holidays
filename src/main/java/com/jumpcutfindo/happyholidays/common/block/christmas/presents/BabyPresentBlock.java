@@ -8,7 +8,7 @@ public class BabyPresentBlock extends PresentBlock {
     public static final String BLOCK_ID = "baby_present";
     public static final VoxelShape SHAPE = Shapes.or(
             Block.box(5.0, 0.0, 5.0, 11.0, 4.0, 11.0),
-            Block.box(4.25, 4.0, 4.25, 11.75, 5.5 ,11.75)
+            Block.box(4.5, 4.0, 4.5, 11.5, 5.5 ,11.5)
     );
 
     public BabyPresentBlock() {
