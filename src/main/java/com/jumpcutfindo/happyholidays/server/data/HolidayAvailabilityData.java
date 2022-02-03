@@ -45,6 +45,10 @@ public class HolidayAvailabilityData extends SavedData {
         }));
     });
 
+    public Availability get(Holiday holiday, String key) {
+        return holidayAvailability.get(holiday).get(key);
+    }
+
     public Map<String, Availability> getHolidayAvailabilities(Holiday holiday) {
         return holidayAvailability.get(holiday);
     }

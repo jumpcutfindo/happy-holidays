@@ -1,5 +1,13 @@
 package com.jumpcutfindo.happyholidays.server.data.structs;
 
+import java.time.LocalDateTime;
+
+import com.jumpcutfindo.happyholidays.common.Holiday;
+import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
+import com.jumpcutfindo.happyholidays.server.data.HolidayIntervalData;
+
+import net.minecraft.server.level.ServerLevel;
+
 public enum Availability {
     ALWAYS(0),
     NEVER(1),
@@ -35,5 +43,21 @@ public enum Availability {
         }
 
         return availability;
+    }
+
+    public static boolean isAvailable(ServerLevel serverLevel, Holiday holiday, String key) {
+        HolidayAvailabilityData availabilityData = HolidayAvailabilityData.retrieve(serverLevel);
+
+        Availability availability = availabilityData.get(holiday, key);
+
+        if (availability == Availability.ALWAYS) return true;
+        else if (availability == Availability.NEVER) return false;
+        else {
+            HolidayIntervalData intervalData = HolidayIntervalData.retrieve(serverLevel);
+            Interval interval = intervalData.get(holiday);
+            YearlessDate today = new YearlessDate(LocalDateTime.now().getMonthValue(), LocalDateTime.now().getDayOfMonth());
+
+            return interval.contains(today);
+        }
     }
 }
