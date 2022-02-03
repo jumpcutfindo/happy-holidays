@@ -40,6 +40,11 @@ public class HolidayIntervalData extends SavedData {
         this.setDirty();
     }
 
+    public void reset(Holiday holiday) {
+        holidayIntervalMap.put(holiday, Interval.all());
+        this.setDirty();
+    }
+
     @Override
     public CompoundTag save(CompoundTag tag) {
         for (Holiday holiday : holidayIntervalMap.keySet()) {

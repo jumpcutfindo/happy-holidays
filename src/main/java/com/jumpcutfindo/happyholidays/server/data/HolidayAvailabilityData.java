@@ -45,6 +45,13 @@ public class HolidayAvailabilityData extends SavedData {
         }));
     });
 
+    public void reset(Holiday holiday) {
+        Map<String, Availability> holidayAvailabilityMap = holidayAvailability.get(holiday);
+        for (String key : HOLIDAY_KEYSETS.get(holiday)) {
+            holidayAvailabilityMap.put(key, Availability.INTERVAL_ONLY);
+        }
+    }
+
     public Availability get(Holiday holiday, String key) {
         return holidayAvailability.get(holiday).get(key);
     }
