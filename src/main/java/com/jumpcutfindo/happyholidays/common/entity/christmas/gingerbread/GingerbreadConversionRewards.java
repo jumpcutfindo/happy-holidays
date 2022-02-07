@@ -21,7 +21,7 @@ public class GingerbreadConversionRewards {
 
     public static List<ItemStack> generateRewards(GingerbreadPersonEntity gingerbreadPersonEntity, LootContext lootContext) {
         Level level = gingerbreadPersonEntity.level;
-        double modifier = ChristmasRewards.computeDropModifier(level, gingerbreadPersonEntity.position(), CONVERSION_REWARD_MODIFIER_STEP);
+        double modifier = ChristmasRewards.computeModifier(level, gingerbreadPersonEntity.position(), CONVERSION_REWARD_MODIFIER_STEP);
 
         // Generate loot
         LootTable lootTable = level.getServer().getLootTables().get(GINGERBREAD_CONVERSION_LOOT_TABLE);

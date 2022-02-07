@@ -10,7 +10,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
 public class ChristmasRewards {
-    public static double computeDropModifier(Level level, Vec3 position, double step) {
+    /**
+     * Computes the modifier for Christmas drops, which can be used for the drop chance or dropping more items when
+     * rewards are given. If there is a bonus Christmas Star nearby, the modifier is 2.0. If not, it will be incremented
+     * proportionally to the level of the highest-levelled Christmas Star influencing that position.
+     */
+    public static double computeModifier(Level level, Vec3 position, double step) {
         double modifier;
 
         ChristmasStarBlockEntity starBlockEntity = ChristmasStarHelper.getStarInfluencingEntity(level, position);

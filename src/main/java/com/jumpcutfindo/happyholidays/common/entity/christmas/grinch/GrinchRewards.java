@@ -28,7 +28,7 @@ public class GrinchRewards {
 
     public static List<ItemStack> generateRewards(GrinchEntity grinchEntity, LootContext lootContext) {
         Level level = grinchEntity.level;
-        double modifier = ChristmasRewards.computeDropModifier(grinchEntity.level, grinchEntity.position(), APPEASEMENT_REWARD_MODIFIER_STEP);
+        double modifier = ChristmasRewards.computeModifier(grinchEntity.level, grinchEntity.position(), APPEASEMENT_REWARD_MODIFIER_STEP);
 
         // Generate present scraps (from when Grinch broke the presents)
         ItemStack presentScraps = computePresentScraps(grinchEntity.getPresentsBrokenCount());
