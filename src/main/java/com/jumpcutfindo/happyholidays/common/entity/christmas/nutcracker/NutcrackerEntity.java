@@ -16,6 +16,7 @@ import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.container.christmas.nutcracker.NutcrackerContainer;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasRewards;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.nutcracker.PatrolOrdersItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutAmmo;
@@ -116,6 +117,9 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     public static final int FIRING_DELAY = 20;
 
     public static final float LOG_HEAL_AMOUNT = 2.0f;
+
+    public static final double ORNAMENT_DROP_BASE_CHANCE = 0.01d;
+    public static final double ORNAMENT_DROP_CHANCE_STEP = 0.1d;
 
     public static final EntityDataAccessor<Boolean> DATA_MOUTH_OPEN = SynchedEntityData.defineId(NutcrackerEntity.class,
             EntityDataSerializers.BOOLEAN);
@@ -351,8 +355,6 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
             this.spawnAtLocation(patrolOrders);
             this.droppedOrdersCooldown = 40;
-
-
         }
     }
 
@@ -394,6 +396,17 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
 
     public int getAssemblyPos() {
         return this.assemblyPos;
+    }
+
+    public void tryDroppingOrnament() {
+        double modifier = ChristmasRewards.computeModifier(this.level, this.position(), ORNAMENT_DROP_CHANCE_STEP);
+        double ornamentDropChance = ORNAMENT_DROP_BASE_CHANCE * modifier;
+
+        if (this.isPatrolling()) ornamentDropChance *= 2.0D;
+
+        if (this.random.nextDouble() <= ornamentDropChance) {
+            this.spawnAtLocation(ChristmasItems.NUTCRACKER_ORNAMENT.get());
+        }
     }
 
     @Override

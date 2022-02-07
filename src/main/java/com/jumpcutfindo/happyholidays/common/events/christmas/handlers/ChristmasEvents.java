@@ -3,6 +3,8 @@ package com.jumpcutfindo.happyholidays.common.events.christmas.handlers;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.NutcrackerEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.WalnutEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.AngrySantaEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
@@ -26,9 +28,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -218,6 +222,14 @@ public class ChristmasEvents {
             if (serverPlayer.getStats().getValue(Stats.CUSTOM.get(ChristmasStats.USE_SNOW_GLOBE)) >= 50) {
                 ChristmasTriggers.SNOW_GLOBE_USE_CHALLENGE.trigger(serverPlayer);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onNutcrackerKillsMob(LivingDeathEvent event) {
+        DamageSource source = event.getSource();
+        if (source.getEntity() != null && source.getEntity() instanceof WalnutEntity walnut && walnut.getOwner() instanceof NutcrackerEntity nutcracker) {
+            nutcracker.tryDroppingOrnament();
         }
     }
 }
