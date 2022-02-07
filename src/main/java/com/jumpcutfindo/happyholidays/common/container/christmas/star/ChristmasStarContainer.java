@@ -160,7 +160,8 @@ public class ChristmasStarContainer extends AbstractContainerMenu {
         Objects.requireNonNull(data, "Packet buffer cannot be null");
 
         final BlockEntity te = playerInv.player.getCommandSenderWorld().getBlockEntity(data.readBlockPos());
-        if (te instanceof ChristmasStarBlockEntity) {
+        if (te instanceof ChristmasStarBlockEntity starBlockEntity) {
+            starBlockEntity.setSantaNextSummonTime(data.readLong());
             return (ChristmasStarBlockEntity) te;
         }
 

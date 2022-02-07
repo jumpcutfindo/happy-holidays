@@ -10,11 +10,13 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
+import com.jumpcutfindo.happyholidays.server.data.SantaSavedData;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
@@ -137,7 +139,13 @@ public class ChristmasStarBlock extends Block implements EntityBlock, ChristmasB
         else {
             BlockEntity te = world.getBlockEntity(blockPos);
             if (te instanceof ChristmasStarBlockEntity) {
-                NetworkHooks.openGui((ServerPlayer) playerEntity, (ChristmasStarBlockEntity) te, blockPos);
+                SantaSavedData savedData = SantaSavedData.retrieve((ServerLevel) world);
+                final long nextSummonTime = savedData.getNextSummonTime();
+
+                NetworkHooks.openGui((ServerPlayer) playerEntity, (ChristmasStarBlockEntity) te, writer -> {
+                    writer.writeBlockPos(blockPos);
+                    writer.writeLong(nextSummonTime);
+                });
             }
             return InteractionResult.CONSUME;
         }

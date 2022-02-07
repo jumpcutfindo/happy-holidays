@@ -78,6 +78,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
 
     private boolean isSummoningSanta;
     private boolean isGoodSanta;
+    private long santaNextSummonTime;
     private int summonSantaProgress;
 
     private AABB santaAOE;
@@ -328,6 +329,14 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
 
         this.summonEvent.removeAllPlayers();
 
+    }
+
+    public void setSantaNextSummonTime(long santaNextSummonTime) {
+        this.santaNextSummonTime = santaNextSummonTime;
+    }
+
+    public long getSantaNextSummonTime() {
+        return this.santaNextSummonTime;
     }
 
     public int getCurrentTier() {

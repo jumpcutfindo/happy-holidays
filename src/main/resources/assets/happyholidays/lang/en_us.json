@@ -181,6 +181,8 @@
     "block.happyholidays.christmas_star.tier": "Tier %s ",
     "block.happyholidays.christmas_star.bonus": "(Bonus)",
     "block.happyholidays.christmas_star.summon_tooltip": "Summon Santa",
+    "block.happyholidays.christmas_star.summon_time_remaining_tooltip": "%s remaining before Santa can be summoned",
+    "block.happyholidays.christmas_star.cannot_summon_tooltip": "You need a Tier 5 Christmas Star to summon Santa",
     "block.happyholidays.christmas_star.block_place_in_radius": "Christmas block placed",
     "block.happyholidays.christmas_star.effect_apply": "Christmas Spirit received",
 

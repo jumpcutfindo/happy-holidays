@@ -3,8 +3,9 @@ package com.jumpcutfindo.happyholidays.client.screen;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
-import com.jumpcutfindo.happyholidays.handlers.PacketHandler;
 import com.jumpcutfindo.happyholidays.common.network.christmas.SummonSantaPacket;
+import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
+import com.jumpcutfindo.happyholidays.handlers.PacketHandler;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -129,12 +130,21 @@ public class ChristmasStarScreen extends AbstractContainerScreen<ChristmasStarCo
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
             if (this.screen.getBlockEntity().getCurrentTier() == 5) {
-                RenderSystem.setShaderTexture(0, CHRISTMAS_STAR_GUI);
+                long gameTime = screen.getBlockEntity().getLevel().getGameTime();
+                long nextSummonTime = screen.getBlockEntity().getSantaNextSummonTime();
 
-                blit(matrixStack, this.x, this.y, 176, 31, 32, 31);
+                if (gameTime >= nextSummonTime) {
+                    RenderSystem.setShaderTexture(0, CHRISTMAS_STAR_GUI);
+                    blit(matrixStack, this.x, this.y, 176, 31, 32, 31);
 
+                    if (this.isHovered) renderTooltip(matrixStack, new TranslatableComponent(SUMMON_SANTA_TOOLTIP), mouseX, mouseY);
+                } else {
+                    if (this.isHovered) renderTooltip(matrixStack, new TranslatableComponent("%s remaining before Santa can be summoned", StringUtils.convertTicksToString(nextSummonTime - gameTime)), mouseX, mouseY);
+                }
+
+            } else {
                 if (this.isHovered) {
-                    renderTooltip(matrixStack, new TranslatableComponent(SUMMON_SANTA_TOOLTIP), mouseX, mouseY);
+                    renderTooltip(matrixStack, new TranslatableComponent("block.happyholidays.christmas_star.cannot_summon_tooltip"), mouseX, mouseY);
                 }
             }
         }
