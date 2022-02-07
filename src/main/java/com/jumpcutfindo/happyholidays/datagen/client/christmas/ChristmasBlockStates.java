@@ -167,6 +167,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
                 ChristmasBlocks.SANTA_ELF_ORNAMENT.get(),
                 ChristmasBlocks.GINGERBREAD_MAN_ORNAMENT.get(),
                 ChristmasBlocks.GRINCH_ORNAMENT.get(),
+                ChristmasBlocks.NUTCRACKER_ORNAMENT.get(),
 
                 ChristmasBlocks.RED_BAUBLE.get(),
                 ChristmasBlocks.BLUE_BAUBLE.get(),

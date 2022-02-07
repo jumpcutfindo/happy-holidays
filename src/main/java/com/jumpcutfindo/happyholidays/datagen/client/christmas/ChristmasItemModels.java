@@ -42,6 +42,7 @@ public class ChristmasItemModels extends ItemModelProvider {
 
                 blockModelPair(ChristmasItems.GRINCH_ORNAMENT.get()),
                 blockModelPair(ChristmasItems.SANTA_ELF_ORNAMENT.get()),
+                blockModelPair(ChristmasItems.NUTCRACKER_ORNAMENT.get()),
 
                 blockModelPair(ChristmasItems.RED_BAUBLE.get()),
                 blockModelPair(ChristmasItems.BLUE_BAUBLE.get()),
@@ -160,6 +161,7 @@ public class ChristmasItemModels extends ItemModelProvider {
                 ChristmasItems.ELDER_PRESENT_ORNAMENT.get(),
                 ChristmasItems.CANDY_CANE_ORNAMENT.get(),
                 ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get(),
+                ChristmasItems.NUTCRACKER_ORNAMENT.get(),
 
                 ChristmasItems.RED_CHRISTMAS_LIGHTS.get(),
                 ChristmasItems.BLUE_CHRISTMAS_LIGHTS.get(),

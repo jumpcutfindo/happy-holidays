@@ -49,7 +49,8 @@ public class ChristmasItemTags extends ItemTagsProvider {
                 .add(ChristmasItems.CANDY_CANE_ORNAMENT.get())
                 .add(ChristmasItems.GRINCH_ORNAMENT.get())
                 .add(ChristmasItems.SANTA_ELF_ORNAMENT.get())
-                .add(ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get());
+                .add(ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get())
+                .add(ChristmasItems.NUTCRACKER_ORNAMENT.get());
 
         tag(ChristmasTags.Items.SHEET_MUSIC)
                 .add(ChristmasItems.SHEET_MUSIC_ANGELS_ON_HIGH.get())
