@@ -24,7 +24,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 
-public class MultifaceDecorationBlock extends MultifaceBlock implements SimpleWaterloggedBlock {
+public abstract class MultifaceDecorationBlock extends MultifaceBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public static final Item.Properties ITEM_PROPERTIES =

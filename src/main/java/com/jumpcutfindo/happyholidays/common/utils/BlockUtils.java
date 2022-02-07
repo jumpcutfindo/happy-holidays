@@ -1,6 +1,10 @@
 package com.jumpcutfindo.happyholidays.common.utils;
 
+import java.util.Collection;
+
 import javax.annotation.Nullable;
+
+import org.apache.commons.compress.utils.Lists;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -29,7 +33,21 @@ public class BlockUtils {
         return blockState.hasProperty(BlockStateProperties.WATERLOGGED) && blockState.getValue(BlockStateProperties.WATERLOGGED);
     }
 
-    public static VoxelShape rotateShape(final VoxelShape shape, final Rotation rotationDir) {
+    public static VoxelShape rotateShape(VoxelShape shape, Rotation rotation) {
+        Collection<VoxelShape> rotatedShapes = Lists.newArrayList();
+
+        shape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> {
+            rotatedShapes.add(BlockUtils.rotateBox(minX, minY, minZ, maxX, maxY, maxZ, rotation));
+        });
+
+        return Shapes.or(Shapes.empty(), rotatedShapes.toArray(new VoxelShape[0]));
+    }
+
+    public static VoxelShape rotateBox(double minX, double minY, double minZ, double maxX, double maxY, double maxZ, Rotation rotation) {
+        return rotateBox(Shapes.box(minX, minY, minZ, maxX, maxY, maxZ), rotation);
+    }
+
+    public static VoxelShape rotateBox(final VoxelShape shape, final Rotation rotationDir) {
         double x1 = shape.bounds().minX, x2 = shape.bounds().maxX;
         final double y1 = shape.bounds().minY, y2 = shape.bounds().maxY;
         double z1 = shape.bounds().minZ, z2 = shape.bounds().maxZ;

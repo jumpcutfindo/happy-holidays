@@ -1,5 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.BasicOrnament;
@@ -26,7 +28,22 @@ public class BigBaubleOrnamentBlock extends DecorationBlock implements Christmas
     };
 
     public BigBaubleOrnamentBlock() {
-        super(BIG_BAUBLE_SHAPES);
+        super();
+    }
+
+    @Override
+    public @NotNull VoxelShape getFloorShape() {
+        return Block.box(4.0, 0.0, 4.0, 12.0, 8.0, 12.0);
+    }
+
+    @Override
+    public @NotNull VoxelShape getCeilingShape() {
+        return Block.box(4.0, 3.75, 4.0, 12.0, 11.75, 12.0);
+    }
+
+    @Override
+    public @NotNull VoxelShape getWallShape() {
+        return Block.box(4.0, 0.0, 0.0, 12.0, 11.75, 8.0);
     }
 
     @Override

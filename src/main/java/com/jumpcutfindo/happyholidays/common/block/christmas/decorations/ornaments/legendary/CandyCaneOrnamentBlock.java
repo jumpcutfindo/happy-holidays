@@ -1,5 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.legendary;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.LegendaryOrnament;
@@ -14,14 +16,23 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class CandyCaneOrnamentBlock extends DecorationBlock implements ChristmasLike, ChristmasBlock, LegendaryOrnament {
     public static final String BLOCK_ID = "candy_cane_ornament";
 
-    public static final VoxelShape[][] ORNAMENT_SHAPES = {
-            { Block.box(4.0, 0.0, 3.0, 12.0, 1.0, 13.0) },
-            { Block.box(4.0, 2.0, 7.5, 12.0, 14.0, 8.5) },
-            { Block.box(3.75, 0.0, 0.0, 11.0, 11.0, 3.0) }
-    };
-
     public CandyCaneOrnamentBlock() {
-        super(ORNAMENT_SHAPES);
+        super();
+    }
+
+    @Override
+    public @NotNull VoxelShape getFloorShape() {
+        return Block.box(4.0, 0.0, 3.0, 12.0, 1.0, 13.0);
+    }
+
+    @Override
+    public @NotNull VoxelShape getCeilingShape() {
+        return Block.box(4.0, 2.0, 7.5, 12.0, 14.0, 8.5);
+    }
+
+    @Override
+    public @NotNull VoxelShape getWallShape() {
+        return Block.box(3.75, 0.0, 0.0, 11.0, 11.0, 3.0);
     }
 
     @Override

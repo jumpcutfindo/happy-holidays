@@ -57,20 +57,20 @@ public class ChristmasFoodBlock extends Block implements ChristmasLike, Christma
             return BlockUtils.combineShapes(resultShapes);
         } else if (direction == Direction.NORTH) {
             for (int i = 0; i < resultShapes.length; i++) {
-                resultShapes[i] = BlockUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_180);
+                resultShapes[i] = BlockUtils.rotateBox(resultShapes[i], Rotation.CLOCKWISE_180);
             }
 
             return BlockUtils.combineShapes(resultShapes);
         } else if (direction == Direction.WEST) {
             for (int i = 0; i < resultShapes.length; i++) {
-                resultShapes[i] = BlockUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_90);
+                resultShapes[i] = BlockUtils.rotateBox(resultShapes[i], Rotation.CLOCKWISE_90);
             }
 
             return BlockUtils.combineShapes(resultShapes);
         } else {
             // Direction.EAST
             for (int i = 0; i < resultShapes.length; i++) {
-                resultShapes[i] = BlockUtils.rotateShape(resultShapes[i], Rotation.COUNTERCLOCKWISE_90);
+                resultShapes[i] = BlockUtils.rotateBox(resultShapes[i], Rotation.COUNTERCLOCKWISE_90);
             }
 
             return BlockUtils.combineShapes(resultShapes);

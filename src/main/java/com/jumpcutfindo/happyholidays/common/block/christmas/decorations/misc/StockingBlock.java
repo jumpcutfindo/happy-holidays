@@ -5,6 +5,8 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
@@ -69,15 +71,18 @@ public class StockingBlock extends WallDecorationBlock implements ChristmasLike,
                     .noOcclusion()
                     .noCollission();
 
-    public static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0 ,16.0, 16.0,0.5);
-
     public StockingBlock() {
-        super(BLOCK_PROPERTIES, SHAPE);
+        super(BLOCK_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(FILLED, false)
                 .setValue(ENCHANTED, false)
         );
+    }
+
+    @Override
+    public @NotNull VoxelShape getVoxelShape() {
+        return Block.box(0.0, 0.0, 0.0 ,16.0, 16.0,0.5);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.common;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.BasicOrnament;
@@ -19,14 +21,23 @@ public class BaubleOrnamentBlock extends DecorationBlock implements ChristmasLik
     public static final String GOLD_BAUBLE_ID = "gold_bauble";
     public static final String SILVER_BAUBLE_ID = "silver_bauble";
 
-    public static final VoxelShape[][] BAUBLE_SHAPES = new VoxelShape[][] {
-            new VoxelShape[] { Block.box(6.0, 0.0, 6.0, 10.0, 4.0, 10.0) },
-            new VoxelShape[] { Block.box(6.0, 9.5, 6.0, 10.0, 13.5, 10.0) },
-            new VoxelShape[] { Block.box(6.0, 0.0, 0.0, 10.0, 6.0, 4.0) }
-    };
-
     public BaubleOrnamentBlock() {
-        super(BAUBLE_SHAPES);
+        super();
+    }
+
+    @Override
+    public @NotNull VoxelShape getFloorShape() {
+        return Block.box(6.0, 0.0, 6.0, 10.0, 4.0, 10.0);
+    }
+
+    @Override
+    public @NotNull VoxelShape getCeilingShape() {
+        return Block.box(6.0, 9.5, 6.0, 10.0, 13.5, 10.0);
+    }
+
+    @Override
+    public @NotNull VoxelShape getWallShape() {
+        return Block.box(6.0, 0.0, 0.0, 10.0, 6.0, 4.0);
     }
 
     @Override

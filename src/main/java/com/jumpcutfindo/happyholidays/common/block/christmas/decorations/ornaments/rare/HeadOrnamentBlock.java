@@ -1,5 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.rare;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.RareOrnament;
@@ -26,14 +28,23 @@ public class HeadOrnamentBlock extends DecorationBlock implements ChristmasLike,
     public static final String COW_HEAD_ORNAMENT_ID = "cow_head_ornament";
     public static final String SHEEP_HEAD_ORNAMENT_ID = "sheep_head_ornament";
 
-    public static final VoxelShape[][] HEAD_ORNAMENT_SHAPES = new VoxelShape[][] {
-            new VoxelShape[] { Block.box(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D) },
-            new VoxelShape[] { Block.box(4.0D, 4.5D, 4.0D, 12.0D, 12.5D, 12.0D) },
-            new VoxelShape[] { Block.box(4.0D, 0.0D, 0.0D, 12.0D, 10.0D, 8.0D) }
-    };
-
     public HeadOrnamentBlock() {
-        super(HEAD_ORNAMENT_SHAPES);
+        super();
+    }
+
+    @Override
+    public @NotNull VoxelShape getFloorShape() {
+        return Block.box(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D);
+    }
+
+    @Override
+    public @NotNull VoxelShape getCeilingShape() {
+        return Block.box(4.0D, 4.5D, 4.0D, 12.0D, 12.5D, 12.0D);
+    }
+
+    @Override
+    public @NotNull VoxelShape getWallShape() {
+        return Block.box(4.0D, 0.0D, 0.0D, 12.0D, 10.0D, 8.0D);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
@@ -24,10 +26,8 @@ public class ChristmasWreathBlock extends WallDecorationBlock implements Christm
                     .noOcclusion()
                     .noCollission();
 
-    public static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0 ,16.0, 16.0,0.5);
-
     public ChristmasWreathBlock() {
-        super(BLOCK_PROPERTIES, SHAPE);
+        super(BLOCK_PROPERTIES);
     }
 
     @Override
@@ -38,5 +38,10 @@ public class ChristmasWreathBlock extends WallDecorationBlock implements Christm
     @Override
     public ChristmasRarity getChristmasRarity() {
         return ChristmasRarity.COMMON;
+    }
+
+    @Override
+    public @NotNull VoxelShape getVoxelShape() {
+        return Block.box(0.0, 0.0, 0.0 ,16.0, 16.0,0.5);
     }
 }

@@ -1,5 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ornaments.BasicOrnament;
@@ -25,6 +27,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class AlphabetOrnamentBlock extends DecorationBlock implements BasicOrnament, ChristmasLike, ChristmasBlock {
@@ -59,22 +62,8 @@ public class AlphabetOrnamentBlock extends DecorationBlock implements BasicOrnam
     public static final String ALPHABET_Y_ID = "alphabet_ornament_y";
     public static final String ALPHABET_Z_ID = "alphabet_ornament_z";
 
-    public static final VoxelShape[][] ORNAMENT_SHAPES = new VoxelShape[][] {
-            new VoxelShape[] {
-                    Block.box(2.0D, 0.0D, 1.0D, 14.0D, 1.0D, 2.0D),
-                    Block.box(1.0D, 0.0D, 2.0D, 15.0D, 1.0D, 14.0D),
-                    Block.box(2.0D, 0.0D, 14.0D, 14.0D, 1.0D, 15.0D)
-            },
-            new VoxelShape[] {
-                    Block.box(2.0D, 13.75D, 7.5D, 14.0D, 14.75D, 8.5D),
-                    Block.box(1.0D, 1.75D, 7.5D, 15.0D, 13.75D, 8.5D),
-                    Block.box(2.0D, 0.75D, 7.5D, 14.0D, 1.75D, 8.5D)
-            },
-            new VoxelShape[] { Block.box(1.0D, 1.0D, 0.0D, 15.0D, 15.0D, 5.0D) }
-    };
-
     public AlphabetOrnamentBlock() {
-        super(ORNAMENT_SHAPES);
+        super();
 
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(ATTACH_FACE, AttachFace.FLOOR)
@@ -82,6 +71,29 @@ public class AlphabetOrnamentBlock extends DecorationBlock implements BasicOrnam
                 .setValue(BLOCK_COLOR, ChristmasBlockColor.NONE)
                 .setValue(WATERLOGGED, false)
         );
+    }
+
+    @Override
+    public @NotNull VoxelShape getFloorShape() {
+        return Shapes.or(
+                Block.box(2.0D, 0.0D, 1.0D, 14.0D, 1.0D, 2.0D),
+                Block.box(1.0D, 0.0D, 2.0D, 15.0D, 1.0D, 14.0D),
+                Block.box(2.0D, 0.0D, 14.0D, 14.0D, 1.0D, 15.0D)
+        );
+    }
+
+    @Override
+    public @NotNull VoxelShape getCeilingShape() {
+        return Shapes.or(
+                Block.box(2.0D, 13.75D, 7.5D, 14.0D, 14.75D, 8.5D),
+                Block.box(1.0D, 1.75D, 7.5D, 15.0D, 13.75D, 8.5D),
+                Block.box(2.0D, 0.75D, 7.5D, 14.0D, 1.75D, 8.5D)
+        );
+    }
+
+    @Override
+    public @NotNull VoxelShape getWallShape() {
+        return Block.box(1.0D, 1.0D, 0.0D, 15.0D, 15.0D, 5.0D);
     }
 
     @Override
