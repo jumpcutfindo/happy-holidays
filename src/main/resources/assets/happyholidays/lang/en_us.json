@@ -402,7 +402,7 @@
     "entity.happyholidays.nutcracker_passive.sub": "Nutcracker clops",
     "entity.happyholidays.nutcracker_hurt.sub": "Nutcracker hurts",
     "entity.happyholidays.nutcracker_repair.sub": "Nutcracker heals",
-    "entity.happyholidays.nutcracker_target_acquired.sub": "Nutcracker loads up",
+    "entity.happyholidays.nutcracker_tamed.sub": "Nutcracker crackles",
     "entity.happyholidays.nutcracker_shoot.sub": "Nutcracker shoots",
     "entity.happyholidays.nutcracker_receive_orders.sub": "Nutcracker receives orders",
 

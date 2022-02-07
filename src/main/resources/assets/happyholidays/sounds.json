@@ -581,10 +581,10 @@
     },
     "entity.nutcracker_target_acquired": {
         "category": "entity",
-        "subtitle": "entity.happyholidays.nutcracker_target_acquired.sub",
+        "subtitle": "entity.happyholidays.nutcracker_tamed.sub",
         "sounds": [
             {
-                "name": "happyholidays:entity/nutcracker_target_acquired",
+                "name": "happyholidays:entity/nutcracker_tamed",
                 "stream": true
             }
         ]
