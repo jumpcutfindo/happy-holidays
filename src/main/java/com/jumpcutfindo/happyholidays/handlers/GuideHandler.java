@@ -31,8 +31,6 @@ public class GuideHandler {
     public static final String DEFAULT_LANGUAGE_CODE = "en_us";
     public static final String DEFAULT_GUIDE_LOCATION = "guides/%s/%s.json";
 
-    public static final String[] GUIDE_CODES = { Holiday.CHRISTMAS.getCode() };
-
     public static Map<String, Guide> GUIDES;
 
     public static String CURRENT_LANGUAGE_CODE;
@@ -46,7 +44,9 @@ public class GuideHandler {
         CURRENT_LANGUAGE_CODE = language.getCode();
         ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
 
-        for (String guideCode : GUIDE_CODES) {
+        for (Holiday holiday : Holiday.values()) {
+            String guideCode = holiday.getCode();
+
             String defaultLocation = String.format(DEFAULT_GUIDE_LOCATION, DEFAULT_LANGUAGE_CODE, guideCode);
             String localisedLocation = String.format(DEFAULT_GUIDE_LOCATION, language.getCode(), guideCode);
 
