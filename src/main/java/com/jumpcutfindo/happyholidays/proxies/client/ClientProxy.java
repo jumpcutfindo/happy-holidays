@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.proxies.client;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.screen.guides.GuideScreen;
 import com.jumpcutfindo.happyholidays.common.Holiday;
-import com.jumpcutfindo.happyholidays.handlers.GuideHandler;
+import com.jumpcutfindo.happyholidays.client.guide.GuideManager;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.proxies.Proxy;
 
@@ -33,7 +33,7 @@ public class ClientProxy implements Proxy {
     @Override
     public void openGuideGUI(ItemStack itemStack) {
         if (itemStack.is(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get())) {
-            Minecraft.getInstance().setScreen(new GuideScreen(GuideHandler.getGuide(Holiday.CHRISTMAS.getCode())));
+            Minecraft.getInstance().setScreen(new GuideScreen(GuideManager.getGuide(Holiday.CHRISTMAS)));
         }
     }
 }
