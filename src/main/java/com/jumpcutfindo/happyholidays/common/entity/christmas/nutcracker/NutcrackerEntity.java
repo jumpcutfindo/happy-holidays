@@ -216,8 +216,6 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
                     this.navigation.stop();
                     this.setTarget((LivingEntity) null);
                     this.level.broadcastEntityEvent(this, (byte) 7);
-
-                    this.playSound(ChristmasSounds.NUTCRACKER_TAMED.get(), 1.0f, 1.0f);
                 } else {
                     this.level.broadcastEntityEvent(this, (byte) 6);
                 }

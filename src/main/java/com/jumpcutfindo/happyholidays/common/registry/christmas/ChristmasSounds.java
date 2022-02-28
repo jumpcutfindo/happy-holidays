@@ -61,7 +61,6 @@ public class ChristmasSounds {
     public static final RegistryObject<SoundEvent> NUTCRACKER_PASSIVE = registerSound("entity.nutcracker_passive");
     public static final RegistryObject<SoundEvent> NUTCRACKER_HURT = registerSound("entity.nutcracker_hurt");
     public static final RegistryObject<SoundEvent> NUTCRACKER_REPAIR = registerSound("entity.nutcracker_repair");
-    public static final RegistryObject<SoundEvent> NUTCRACKER_TAMED = registerSound("entity.nutcracker_tamed");
     public static final RegistryObject<SoundEvent> NUTCRACKER_SHOOT = registerSound("entity.nutcracker_shoot");
     public static final RegistryObject<SoundEvent> NUTCRACKER_RECEIVE_ORDERS = registerSound("entity.nutcracker_receive_orders");
 
