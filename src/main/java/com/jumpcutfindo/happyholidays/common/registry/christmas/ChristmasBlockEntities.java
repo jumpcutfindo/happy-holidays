@@ -1,10 +1,10 @@
 package com.jumpcutfindo.happyholidays.common.registry.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.GiftWrapperBlockEntity;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.StockingBlockEntity;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.GiftWrapperBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.MusicBoxBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.StockingBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;

@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.common.container.christmas.musicbox;
 
 import java.util.Objects;
 
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.MusicBoxBlockEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
 
 import net.minecraft.network.FriendlyByteBuf;

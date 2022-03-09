@@ -1,8 +1,8 @@
 package com.jumpcutfindo.happyholidays.common.events.christmas.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.NutcrackerEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.WalnutEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.AngrySantaEntity;

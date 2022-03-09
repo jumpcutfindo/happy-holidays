@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.common.network.christmas;
 
 import java.util.function.Supplier;
 
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

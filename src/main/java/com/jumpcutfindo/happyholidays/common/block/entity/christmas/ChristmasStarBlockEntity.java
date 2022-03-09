@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.blockentity.christmas.star;
+package com.jumpcutfindo.happyholidays.common.block.entity.christmas;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarTier;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.ChristmasEntityBlock;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;

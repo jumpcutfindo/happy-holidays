@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.client.model.block;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.MusicBoxBlockEntity;
 
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;

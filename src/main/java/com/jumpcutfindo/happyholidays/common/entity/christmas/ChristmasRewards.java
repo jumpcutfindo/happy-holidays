@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas;
 
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;

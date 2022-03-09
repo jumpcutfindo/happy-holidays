@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.client.renderer.block;
 
 import com.jumpcutfindo.happyholidays.client.model.block.MusicBoxModel;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.MusicBoxBlockEntity;
 
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;

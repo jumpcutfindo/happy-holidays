@@ -6,7 +6,7 @@ import java.util.Objects;
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.GiftWrapperBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.GiftWrapperBlockEntity;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;

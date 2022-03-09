@@ -2,8 +2,7 @@ package com.jumpcutfindo.happyholidays.common.block.christmas;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.GiftWrapperBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.GiftWrapperBlockEntity;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;

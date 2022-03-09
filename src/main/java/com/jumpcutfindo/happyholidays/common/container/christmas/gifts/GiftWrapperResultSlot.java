@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.container.christmas.gifts;
 
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.GiftWrapperBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.GiftWrapperBlockEntity;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.Container;

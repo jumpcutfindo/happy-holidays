@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.blockentity.christmas.star;
+package com.jumpcutfindo.happyholidays.common.block.entity.christmas;
 
 import java.util.List;
 import java.util.Set;

@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.google.common.collect.Maps;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.MusicBoxBlockEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
 import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaSummonSound;

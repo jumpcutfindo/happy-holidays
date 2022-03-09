@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.common.network.christmas;
 
 import java.util.function.Supplier;
 
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.MusicBoxBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.MusicBoxBlockEntity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
