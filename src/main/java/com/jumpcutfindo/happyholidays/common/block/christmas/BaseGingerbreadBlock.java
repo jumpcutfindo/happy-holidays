@@ -28,7 +28,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 
-public class BaseGingerbreadBlock extends Block implements IGingerbreadBlock, ChristmasBlock, ChristmasLike {
+public class BaseGingerbreadBlock extends Block implements Soggifiable, ChristmasBlock, ChristmasLike {
     public static final BlockBehaviour.Properties DOUGH_PROPERTIES =
             BlockBehaviour.Properties
                     .of(Material.SNOW)
@@ -102,7 +102,7 @@ public class BaseGingerbreadBlock extends Block implements IGingerbreadBlock, Ch
         if (!BlockUtils.canPlace(context, defaultBlockState)) return defaultBlockState;
 
         // Check if the block can be soggified
-        if (defaultBlockState.getBlock() instanceof IGingerbreadBlock gingerbreadBlock && gingerbreadBlock.isSoggifiable()) {
+        if (defaultBlockState.getBlock() instanceof Soggifiable gingerbreadBlock && gingerbreadBlock.isSoggifiable()) {
             BlockPos pos = context.getClickedPos();
 
             // For waterloggable blocks, consider the situation where we place the block inside water straightaway
@@ -127,7 +127,7 @@ public class BaseGingerbreadBlock extends Block implements IGingerbreadBlock, Ch
                                              LevelAccessor level, BlockPos blockPos, BlockPos otherBlockPos,
                                              Supplier<BlockState> soggyStateSupplier) {
         // Check if neighbouring blocks have become wet
-        if (blockState.getBlock() instanceof IGingerbreadBlock gingerbreadBlock && gingerbreadBlock.isSoggifiable() && BlockUtils.isWet(otherBlockState)) {
+        if (blockState.getBlock() instanceof Soggifiable gingerbreadBlock && gingerbreadBlock.isSoggifiable() && BlockUtils.isWet(otherBlockState)) {
             if (!level.isClientSide()) {
                 playSoggyEffects((ServerLevel) level, blockPos);
             }
@@ -138,7 +138,7 @@ public class BaseGingerbreadBlock extends Block implements IGingerbreadBlock, Ch
     }
 
     public static boolean onLiquidPlaced(LevelAccessor level, BlockPos blockPos, BlockState blockState, boolean flag) {
-        if (flag && blockState.getBlock() instanceof IGingerbreadBlock gingerbreadBlock && gingerbreadBlock.isSoggifiable()) {
+        if (flag && blockState.getBlock() instanceof Soggifiable gingerbreadBlock && gingerbreadBlock.isSoggifiable()) {
             level.setBlock(blockPos, gingerbreadBlock.getSoggyResult().getBlock().withPropertiesOf(blockState).setValue(BlockStateProperties.WATERLOGGED, true), 2);
             if (!level.isClientSide()) playSoggyEffects((ServerLevel) level, blockPos);
         }

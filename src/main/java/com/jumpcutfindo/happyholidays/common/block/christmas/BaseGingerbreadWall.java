@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
-public class BaseGingerbreadWall extends WallBlock implements IGingerbreadBlock, ChristmasLike, ChristmasBlock {
+public class BaseGingerbreadWall extends WallBlock implements Soggifiable, ChristmasLike, ChristmasBlock {
     public static final String DOUGH_BLOCK_ID = "gingerbread_dough_wall";
     public static final String COOKED_BLOCK_ID = "gingerbread_wall";
     public static final String SOGGY_BLOCK_ID = "soggy_gingerbread_wall";

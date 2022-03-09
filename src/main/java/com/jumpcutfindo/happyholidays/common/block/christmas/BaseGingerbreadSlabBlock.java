@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
-public class BaseGingerbreadSlabBlock extends SlabBlock implements IGingerbreadBlock, ChristmasBlock, ChristmasLike {
+public class BaseGingerbreadSlabBlock extends SlabBlock implements Soggifiable, ChristmasBlock, ChristmasLike {
     public static final String DOUGH_BLOCK_ID = "gingerbread_dough_slab";
     public static final String COOKED_BLOCK_ID = "gingerbread_slab";
     public static final String SOGGY_BLOCK_ID = "soggy_gingerbread_slab";
