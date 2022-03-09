@@ -293,6 +293,11 @@ public class ChristmasItemModels extends ItemModelProvider {
                 itemTexturePair(ChristmasItems.NUTCRACKER_BOTTOM.get()),
                 itemTexturePair(ChristmasItems.NUTCRACKER_BOOTS.get()),
 
+                itemTexturePair(ChristmasItems.GINGERBREAD_HEADPIECE.get()),
+                itemTexturePair(ChristmasItems.GINGERBREAD_TOP.get()),
+                itemTexturePair(ChristmasItems.GINGERBREAD_BOTTOM.get()),
+                itemTexturePair(ChristmasItems.GINGERBREAD_BOOTS.get()),
+
                 itemTexturePair(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get()),
                 itemTexturePair(ChristmasItems.HOLLY.get()),
                 itemTexturePair(ChristmasItems.PRESENT_SCRAPS.get()),

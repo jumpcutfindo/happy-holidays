@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.client;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.entity.model.outfits.CandyCaneOutfitRenderer;
+import com.jumpcutfindo.happyholidays.client.entity.model.outfits.GingerbreadOutfitRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.model.outfits.NutcrackerOutfitRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.model.outfits.ReindeerOutfitRenderer;
 import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SantaElfOutfitRenderer;
@@ -9,6 +10,7 @@ import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SantaOutfitRen
 import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SnowmanOutfitRenderer;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetBlockColor;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.CandyCaneOutfitItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.GingerbreadOutfitItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.NutcrackerOutfitItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.ReindeerOutfitItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SantaElfOutfitItem;
@@ -62,6 +64,7 @@ public class ClientSetup {
         GeoArmorRenderer.registerArmorRenderer(CandyCaneOutfitItem.class, new CandyCaneOutfitRenderer());
         GeoArmorRenderer.registerArmorRenderer(ReindeerOutfitItem.class, new ReindeerOutfitRenderer());
         GeoArmorRenderer.registerArmorRenderer(NutcrackerOutfitItem.class, new NutcrackerOutfitRenderer());
+        GeoArmorRenderer.registerArmorRenderer(GingerbreadOutfitItem.class, new GingerbreadOutfitRenderer());
     }
 
     @SubscribeEvent
