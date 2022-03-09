@@ -23,7 +23,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class GuideManager {
-    public static final String DEFAULT_GUIDE_LOCATION = "guides/%s.json";
+    public static final String DEFAULT_CONTENT_FILE = "main";
+    public static final String DEFAULT_GUIDE_LOCATION = "guides/%s/%s.json";
+
 
     public static final Map<Holiday, Guide> GUIDES = new HashMap<>();
 
@@ -38,7 +40,7 @@ public class GuideManager {
             for (Holiday holiday : Holiday.values()) {
                 String guideCode = holiday.getCode();
 
-                ResourceLocation guideLocation = new ResourceLocation(HappyHolidaysMod.MOD_ID, String.format(DEFAULT_GUIDE_LOCATION, guideCode));
+                ResourceLocation guideLocation = new ResourceLocation(HappyHolidaysMod.MOD_ID, String.format(DEFAULT_GUIDE_LOCATION, guideCode, DEFAULT_CONTENT_FILE));
                 profilerFiller.push(guideLocation::toString);
 
                 List<Resource> guideResources = null;

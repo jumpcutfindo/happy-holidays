@@ -8,7 +8,7 @@
             "title": "Prologue",
             "description": "Introduction to Christmas",
             "image": {
-                "source": "guides/images.png",
+                "source": "guides/christmas/images.png",
                 "x": 0,
                 "y": 0,
                 "width": 203,
@@ -308,7 +308,7 @@
             "title": "Gingerbread and Gingerbread Men",
             "description": "Gingerbready chapter",
             "image": {
-                "source": "guides/images.png",
+                "source": "guides/christmas/images.png",
                 "x": 0,
                 "y": 108,
                 "width": 73,
@@ -476,7 +476,7 @@
                 },
                 {
                     "type": "image",
-                    "source": "guides/images.png",
+                    "source": "guides/christmas/images.png",
                     "x": 73,
                     "y": 108,
                     "width": 37,
@@ -504,7 +504,7 @@
             "title": "Santa's Elf and his Requests",
             "description": "About Santa's Elf",
             "image": {
-                "source": "guides/images.png",
+                "source": "guides/christmas/images.png",
                 "x": 110,
                 "y": 108,
                 "width": 59,
@@ -832,7 +832,7 @@
                 },
                 {
                     "type": "image",
-                    "source": "guides/images.png",
+                    "source": "guides/christmas/images.png",
                     "x": 170,
                     "y": 108,
                     "width": 61,
@@ -848,7 +848,7 @@
                 },
                 {
                     "type": "image",
-                    "source": "guides/images.png",
+                    "source": "guides/christmas/images.png",
                     "x": 231,
                     "y": 108,
                     "width": 61,
