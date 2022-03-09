@@ -1,13 +1,13 @@
 package com.jumpcutfindo.happyholidays.client;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.client.entity.model.outfits.CandyCaneOutfitRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.model.outfits.GingerbreadOutfitRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.model.outfits.NutcrackerOutfitRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.model.outfits.ReindeerOutfitRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SantaElfOutfitRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SantaOutfitRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.model.outfits.SnowmanOutfitRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.outfit.CandyCaneOutfitRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.outfit.GingerbreadOutfitRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.outfit.NutcrackerOutfitRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.outfit.ReindeerOutfitRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.outfit.SantaElfOutfitRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.outfit.SantaOutfitRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.outfit.SnowmanOutfitRenderer;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetBlockColor;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.CandyCaneOutfitItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.GingerbreadOutfitItem;

@@ -1,15 +1,15 @@
 package com.jumpcutfindo.happyholidays.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.client.block.MusicBoxRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.ExplosivePresentRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.GingerbreadPersonEntityRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.GrinchEntityRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.NutcrackerEntityRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.SantaElfEntityRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.SantaEntityRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.SleighRenderer;
-import com.jumpcutfindo.happyholidays.client.entity.WalnutRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.block.MusicBoxRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.entity.ExplosivePresentRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.entity.GingerbreadPersonEntityRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.entity.GrinchEntityRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.entity.NutcrackerEntityRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.entity.SantaElfEntityRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.entity.SantaEntityRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.entity.SleighRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.entity.WalnutRenderer;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 
