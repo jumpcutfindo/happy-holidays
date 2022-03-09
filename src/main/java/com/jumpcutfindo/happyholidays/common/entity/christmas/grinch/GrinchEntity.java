@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.jumpcutfindo.happyholidays.common.Holiday;
-import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;

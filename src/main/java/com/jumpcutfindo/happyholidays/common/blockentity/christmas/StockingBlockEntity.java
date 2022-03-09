@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.common.blockentity.christmas;
 import java.util.Random;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 
 import net.minecraft.core.BlockPos;

@@ -1,11 +1,11 @@
 package com.jumpcutfindo.happyholidays.datagen.server.christmas;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.candy.CandyCaneBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.misc.WalnutPlantBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.presents.AdultPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.presents.BabyPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ElderPresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.WalnutPlantBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.AdultPresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.BabyPresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ElderPresentBlock;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.GingerbreadPersonEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;

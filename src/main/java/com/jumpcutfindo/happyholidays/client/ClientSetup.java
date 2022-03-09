@@ -8,7 +8,7 @@ import com.jumpcutfindo.happyholidays.client.renderer.outfit.ReindeerOutfitRende
 import com.jumpcutfindo.happyholidays.client.renderer.outfit.SantaElfOutfitRenderer;
 import com.jumpcutfindo.happyholidays.client.renderer.outfit.SantaOutfitRenderer;
 import com.jumpcutfindo.happyholidays.client.renderer.outfit.SnowmanOutfitRenderer;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.alphabets.AlphabetBlockColor;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AlphabetBlockColor;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.CandyCaneOutfitItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.GingerbreadOutfitItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.NutcrackerOutfitItem;

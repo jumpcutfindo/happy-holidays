@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
-import com.jumpcutfindo.happyholidays.common.block.christmas.presents.ExplosivePresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ExplosivePresentBlock;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGiftType;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGifts;
