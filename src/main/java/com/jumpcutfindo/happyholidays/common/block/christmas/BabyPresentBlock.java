@@ -12,6 +12,6 @@ public class BabyPresentBlock extends PresentBlock {
     );
 
     public BabyPresentBlock() {
-        super(BLOCK_ID, SHAPE);
+        super(SHAPE);
     }
 }

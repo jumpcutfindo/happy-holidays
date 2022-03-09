@@ -11,6 +11,6 @@ public class ElderPresentBlock extends PresentBlock {
     );
 
     public ElderPresentBlock() {
-        super(BLOCK_ID, SHAPE);
+        super(SHAPE);
     }
 }

@@ -80,7 +80,7 @@ public class PresentBlock extends Block implements SimpleWaterloggedBlock, Chris
 
     private VoxelShape shape;
 
-    public PresentBlock(String blockId, VoxelShape shape) {
+    public PresentBlock(VoxelShape shape) {
         super(BLOCK_PROPERTIES);
         this.shape = shape;
 

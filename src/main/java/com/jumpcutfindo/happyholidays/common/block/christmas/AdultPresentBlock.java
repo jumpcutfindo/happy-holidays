@@ -11,6 +11,6 @@ public class AdultPresentBlock extends PresentBlock {
     );
 
     public AdultPresentBlock() {
-        super(BLOCK_ID, SHAPE);
+        super(SHAPE);
     }
 }
