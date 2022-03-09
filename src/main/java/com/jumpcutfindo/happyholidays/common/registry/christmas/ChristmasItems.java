@@ -181,6 +181,15 @@ public class ChristmasItems {
     public static final RegistryObject<Item> REINDEER_BOOTS =
             ITEMS.register(ChristmasOutfits.REINDEER_OUTFIT.getFeetId(), ChristmasOutfits.REINDEER_OUTFIT::getFeet);
 
+    public static final RegistryObject<Item> NUTCRACKER_HEADPIECE =
+            ITEMS.register(ChristmasOutfits.NUTCRACKER_OUTFIT.getHeadpieceId(), ChristmasOutfits.NUTCRACKER_OUTFIT::getHeadpiece);
+    public static final RegistryObject<Item> NUTCRACKER_TOP =
+            ITEMS.register(ChristmasOutfits.NUTCRACKER_OUTFIT.getTopId(), ChristmasOutfits.NUTCRACKER_OUTFIT::getTop);
+    public static final RegistryObject<Item> NUTCRACKER_BOTTOM =
+            ITEMS.register(ChristmasOutfits.NUTCRACKER_OUTFIT.getBottomId(), ChristmasOutfits.NUTCRACKER_OUTFIT::getBottom);
+    public static final RegistryObject<Item> NUTCRACKER_BOOTS =
+            ITEMS.register(ChristmasOutfits.NUTCRACKER_OUTFIT.getFeetId(), ChristmasOutfits.NUTCRACKER_OUTFIT::getFeet);
+
     public static final RegistryObject<ChristmasItem> DYE_BOWL =
             ITEMS.register(DyeBowlItem.DYE_BOWL_ID, DyeBowlItem::new);
     public static final RegistryObject<ChristmasItem> RED_CHRISTMAS_DYE =

@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.outfits;
 
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.CandyCaneOutfitItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.NutcrackerOutfitItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.ReindeerOutfitItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SantaElfOutfitItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SantaOutfitItem;
@@ -44,6 +45,14 @@ public class ChristmasOutfits {
             .top("reindeer_top", ReindeerOutfitItem::new)
             .bottom("reindeer_bottom", ReindeerOutfitItem::new)
             .feet("reindeer_boots", ReindeerOutfitItem::new)
+            .finish();
+
+    public static final Outfit NUTCRACKER_OUTFIT = Outfit.Builder.start()
+            .material("nutcracker")
+            .headpiece("nutcracker_hat", NutcrackerOutfitItem::new)
+            .top("nutcracker_top", NutcrackerOutfitItem::new)
+            .bottom("nutcracker_bottom", NutcrackerOutfitItem::new)
+            .feet("nutcracker_boots", NutcrackerOutfitItem::new)
             .finish();
 
     /*
