@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.block.entity.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
+import com.jumpcutfindo.happyholidays.common.inventory.christmas.GiftWrapperContainer;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 

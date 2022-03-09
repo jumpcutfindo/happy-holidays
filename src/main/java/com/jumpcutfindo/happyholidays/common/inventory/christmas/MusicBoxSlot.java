@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.container.christmas.musicbox;
+package com.jumpcutfindo.happyholidays.common.inventory.christmas;
 
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 

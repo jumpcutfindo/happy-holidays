@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.Holiday;
-import com.jumpcutfindo.happyholidays.common.container.christmas.nutcracker.NutcrackerContainer;
+import com.jumpcutfindo.happyholidays.common.inventory.christmas.NutcrackerContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasRewards;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.nutcracker.PatrolOrdersItem;

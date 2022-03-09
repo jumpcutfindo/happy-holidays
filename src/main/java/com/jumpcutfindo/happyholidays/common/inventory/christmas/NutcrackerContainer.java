@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.container.christmas.nutcracker;
+package com.jumpcutfindo.happyholidays.common.inventory.christmas;
 
 import java.util.concurrent.atomic.AtomicReference;
 

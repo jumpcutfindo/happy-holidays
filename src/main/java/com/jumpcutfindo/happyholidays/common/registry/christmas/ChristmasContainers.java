@@ -1,10 +1,10 @@
 package com.jumpcutfindo.happyholidays.common.registry.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
-import com.jumpcutfindo.happyholidays.common.container.christmas.musicbox.MusicBoxContainer;
-import com.jumpcutfindo.happyholidays.common.container.christmas.nutcracker.NutcrackerContainer;
-import com.jumpcutfindo.happyholidays.common.container.christmas.star.ChristmasStarContainer;
+import com.jumpcutfindo.happyholidays.common.inventory.christmas.GiftWrapperContainer;
+import com.jumpcutfindo.happyholidays.common.inventory.christmas.MusicBoxContainer;
+import com.jumpcutfindo.happyholidays.common.inventory.christmas.NutcrackerContainer;
+import com.jumpcutfindo.happyholidays.common.inventory.christmas.ChristmasStarContainer;
 
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.common.extensions.IForgeMenuType;

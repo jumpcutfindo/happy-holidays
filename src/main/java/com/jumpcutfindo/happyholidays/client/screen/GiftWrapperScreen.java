@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.client.screen;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.GiftWrapperBlockEntity;
-import com.jumpcutfindo.happyholidays.common.container.christmas.gifts.GiftWrapperContainer;
+import com.jumpcutfindo.happyholidays.common.inventory.christmas.GiftWrapperContainer;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 

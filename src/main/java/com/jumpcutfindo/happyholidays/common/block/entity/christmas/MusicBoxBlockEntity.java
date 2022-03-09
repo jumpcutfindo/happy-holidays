@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.common.block.entity.christmas;
 import java.util.List;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.container.christmas.musicbox.MusicBoxContainer;
+import com.jumpcutfindo.happyholidays.common.inventory.christmas.MusicBoxContainer;
 import com.jumpcutfindo.happyholidays.common.events.christmas.MusicBoxEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
