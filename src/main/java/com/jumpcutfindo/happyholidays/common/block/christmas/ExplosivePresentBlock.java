@@ -2,7 +2,6 @@ package com.jumpcutfindo.happyholidays.common.block.christmas;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.ExplosivePresentEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
@@ -29,7 +28,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ExplosivePresentBlock extends TntBlock implements ChristmasLike, ChristmasBlock {
-    public static String BLOCK_ID = "explosive_present";
+    // Explosive Present Block is separated from the other present blocks since it doesn't really behave like a present
+    public static final String BLOCK_ID = "explosive_present";
 
     public static final Properties BLOCK_PROPERTIES =
             BlockBehaviour.Properties

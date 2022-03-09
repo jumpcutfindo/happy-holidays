@@ -11,6 +11,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneBlo
 import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneSlabBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneStairBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneWallBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AlphabetOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasWreathBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.FrostBlock;
@@ -42,9 +43,6 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.GiftWrapperBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.WalnutPlantBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.AdultPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.BabyPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.ElderPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ExplosivePresentBlock;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
@@ -69,11 +67,11 @@ public class ChristmasBlocks {
 
     // Presents
     public static final RegistryObject<Block> BABY_PRESENT =
-            BLOCKS.register(BabyPresentBlock.BLOCK_ID, BabyPresentBlock::new);
+            BLOCKS.register(PresentBlock.BABY_BLOCK_ID, () -> new PresentBlock(PresentBlock.BABY_SHAPE));
     public static final RegistryObject<Block> ADULT_PRESENT =
-            BLOCKS.register(AdultPresentBlock.BLOCK_ID, AdultPresentBlock::new);
+            BLOCKS.register(PresentBlock.ADULT_BLOCK_ID, () -> new PresentBlock(PresentBlock.ADULT_SHAPE));
     public static final RegistryObject<Block> ELDER_PRESENT =
-            BLOCKS.register(ElderPresentBlock.BLOCK_ID, ElderPresentBlock::new);
+            BLOCKS.register(PresentBlock.ELDER_BLOCK_ID, () -> new PresentBlock(PresentBlock.ELDER_SHAPE));
 
     public static final RegistryObject<Block> EXPLOSIVE_PRESENT =
             BLOCKS.register(ExplosivePresentBlock.BLOCK_ID, ExplosivePresentBlock::new);

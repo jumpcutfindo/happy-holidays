@@ -44,9 +44,6 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.BaseGingerbreadWall
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.GiftWrapperBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.MusicBoxBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.AdultPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.BabyPresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.ElderPresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ExplosivePresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasBlockItem;
@@ -285,13 +282,13 @@ public class ChristmasItems {
 
     // ================== BLOCK ITEMS ==================
     public static final RegistryObject<ChristmasBlockItem> BABY_PRESENT =
-            ITEMS.register(BabyPresentBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.BABY_PRESENT, BabyPresentBlock.ITEM_PROPERTIES));
+            ITEMS.register(PresentBlock.BABY_BLOCK_ID, blockItemOf(ChristmasBlocks.BABY_PRESENT, PresentBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> ADULT_PRESENT =
-            ITEMS.register(AdultPresentBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.ADULT_PRESENT, AdultPresentBlock.ITEM_PROPERTIES));
+            ITEMS.register(PresentBlock.ADULT_BLOCK_ID, blockItemOf(ChristmasBlocks.ADULT_PRESENT, PresentBlock.ITEM_PROPERTIES));
     public static final RegistryObject<ChristmasBlockItem> ELDER_PRESENT =
-            ITEMS.register(ElderPresentBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.ELDER_PRESENT, ElderPresentBlock.ITEM_PROPERTIES));
+            ITEMS.register(PresentBlock.ELDER_BLOCK_ID, blockItemOf(ChristmasBlocks.ELDER_PRESENT, PresentBlock.ITEM_PROPERTIES));
     public static final RegistryObject<BlockItem> EXPLOSIVE_PRESENT =
-            ITEMS.register(ExplosivePresentBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.EXPLOSIVE_PRESENT, ElderPresentBlock.ITEM_PROPERTIES));
+            ITEMS.register(ExplosivePresentBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.EXPLOSIVE_PRESENT, PresentBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<ChristmasBlockItem> RED_BAUBLE =
             ITEMS.register(BaubleOrnamentBlock.RED_BAUBLE_ID, blockItemOf(ChristmasBlocks.RED_BAUBLE, BaubleOrnamentBlock.ITEM_PROPERTIES));

@@ -58,12 +58,12 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 
 public class PresentBlock extends Block implements SimpleWaterloggedBlock, ChristmasBlock, ChristmasLike {
-    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-
+    // Common information
     public static final Properties BLOCK_PROPERTIES =
             BlockBehaviour.Properties
                     .of(Material.WOOL)
@@ -78,8 +78,31 @@ public class PresentBlock extends Block implements SimpleWaterloggedBlock, Chris
 
     public static final float GROWTH_PROBABILITY = 1.0f / 64.0f;
 
-    private VoxelShape shape;
+    // Baby Present information
+    public static final String BABY_BLOCK_ID = "baby_present";
+    public static final VoxelShape BABY_SHAPE = Shapes.or(
+            Block.box(5.0, 0.0, 5.0, 11.0, 4.0, 11.0),
+            Block.box(4.5, 4.0, 4.5, 11.5, 5.5 ,11.5)
+    );
 
+    // Adult Present information
+    public static final String ADULT_BLOCK_ID = "adult_present";
+    public static final VoxelShape ADULT_SHAPE = Shapes.or(
+            box(4.0, 0.0, 4.0, 12.0, 6.0, 12.0),
+            box(3.0, 6.0, 3.0, 13.0, 8.0, 13.0)
+    );
+
+    // Elder Present information
+    public static final String ELDER_BLOCK_ID = "elder_present";
+    public static final VoxelShape ELDER_SHAPE = Shapes.or(
+            box(2.0, 0.0, 2.0, 14.0, 8.0, 14.0),
+            box(1.0, 8.0, 1.0, 15.0, 11.0, 15.0)
+    );
+
+    // Block properties
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
+    private final VoxelShape shape;
     public PresentBlock(VoxelShape shape) {
         super(BLOCK_PROPERTIES);
         this.shape = shape;
@@ -236,7 +259,7 @@ public class PresentBlock extends Block implements SimpleWaterloggedBlock, Chris
 
     public static void grow(BlockState blockState, ServerLevel serverWorld, BlockPos blockPos, Random random) {
         // Determine the next block state
-        BlockState nextBlockState = blockState.getBlock() instanceof BabyPresentBlock
+        BlockState nextBlockState = blockState.is(ChristmasBlocks.BABY_PRESENT.get())
                 ? ChristmasBlocks.ADULT_PRESENT.get().defaultBlockState()
                 : ChristmasBlocks.ELDER_PRESENT.get().defaultBlockState();
 
