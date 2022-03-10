@@ -1,12 +1,12 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.outfits;
 
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.CandyCaneOutfitItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.GingerbreadOutfitItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.NutcrackerOutfitItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.ReindeerOutfitItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SantaElfOutfitItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SantaOutfitItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SnowmanOutfitItem;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import software.bernie.geckolib3.core.IAnimatable;
+import software.bernie.geckolib3.core.PlayState;
+import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
+import software.bernie.geckolib3.core.manager.AnimationData;
 
 public class ChristmasOutfits {
     public static final Outfit SANTA_OUTFIT = Outfit.Builder.start()
@@ -63,4 +63,60 @@ public class ChristmasOutfits {
             .bottom("gingerbread_bottom", GingerbreadOutfitItem::new)
             .feet("gingerbread_boots", GingerbreadOutfitItem::new)
             .finish();
+
+    public static class CandyCaneOutfitItem extends OutfitItem {
+        public CandyCaneOutfitItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
+            super(materialIn, slot, builder);
+        }
+    }
+
+    public static class GingerbreadOutfitItem extends OutfitItem {
+        public GingerbreadOutfitItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
+            super(materialIn, slot, builder);
+        }
+    }
+
+    public static class NutcrackerOutfitItem extends OutfitItem {
+        public NutcrackerOutfitItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
+            super(materialIn, slot, builder);
+        }
+    }
+
+    public static class ReindeerOutfitItem extends OutfitItem {
+        public ReindeerOutfitItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
+            super(materialIn, slot, builder);
+        }
+    }
+
+    public static class SantaElfOutfitItem extends OutfitItem {
+        public SantaElfOutfitItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
+            super(materialIn, slot, builder);
+        }
+    }
+
+    public static class SantaOutfitItem extends OutfitItem {
+        public SantaOutfitItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
+            super(materialIn, slot, builder);
+        }
+    }
+
+    public static class SnowmanOutfitItem extends OutfitItem {
+        public SnowmanOutfitItem(ArmorMaterial materialIn, EquipmentSlot slot, Properties builder) {
+            super(materialIn, slot, builder);
+        }
+
+        @Override
+        public <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
+            if (event.isMoving()) {
+                event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.snowman_outfit.walk"));
+            }
+
+            return super.predicate(event);
+        }
+
+        @Override
+        public void registerControllers(AnimationData data) {
+            super.registerControllers(data);
+        }
+    }
 }

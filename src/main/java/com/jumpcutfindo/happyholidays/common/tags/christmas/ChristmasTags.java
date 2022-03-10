@@ -89,6 +89,8 @@ public class ChristmasTags {
         public static final Tags.IOptionalNamedTag<Item> NUTCRACKER_FOOD = itemTag("nutcracker_food");
 
         public static final Tags.IOptionalNamedTag<Item> HEAT_EMITTING_ITEMS = itemTag("heat_emitting_items");
+
+        public static final Tags.IOptionalNamedTag<Item> NUTCRACKER_CARRIABLES = itemTag("nutcracker_carriables");
     }
 
     public class Entities {

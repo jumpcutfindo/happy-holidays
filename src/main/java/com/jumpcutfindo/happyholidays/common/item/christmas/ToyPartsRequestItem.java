@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.item.christmas.elf;
+package com.jumpcutfindo.happyholidays.common.item.christmas;
 
 import java.util.List;
 
@@ -6,8 +6,6 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfRequest;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
 
 import net.minecraft.ChatFormatting;
@@ -28,7 +26,7 @@ public class ToyPartsRequestItem extends ChristmasItem {
                     .stacksTo(1);
 
     public ToyPartsRequestItem() {
-        super(ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES, ChristmasRarity.UNIQUE);
     }
 
     @Override

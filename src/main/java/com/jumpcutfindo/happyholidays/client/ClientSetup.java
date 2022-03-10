@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.client;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.renderer.outfit.*;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AlphabetBlockColor;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.*;
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.ChristmasOutfits;
 import com.jumpcutfindo.happyholidays.client.particle.christmas.ChristmasParticle;
 import com.jumpcutfindo.happyholidays.client.particle.christmas.ChristmasParticleColor;
 import com.jumpcutfindo.happyholidays.client.particle.christmas.ChristmasStarParticle;
@@ -31,13 +31,13 @@ public class ClientSetup {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerOutfitRenderers(final EntityRenderersEvent.AddLayers event) {
-        GeoArmorRenderer.registerArmorRenderer(SantaElfOutfitItem.class, new SantaElfOutfitRenderer());
-        GeoArmorRenderer.registerArmorRenderer(SantaOutfitItem.class, new SantaOutfitRenderer());
-        GeoArmorRenderer.registerArmorRenderer(SnowmanOutfitItem.class, new SnowmanOutfitRenderer());
-        GeoArmorRenderer.registerArmorRenderer(CandyCaneOutfitItem.class, new CandyCaneOutfitRenderer());
-        GeoArmorRenderer.registerArmorRenderer(ReindeerOutfitItem.class, new ReindeerOutfitRenderer());
-        GeoArmorRenderer.registerArmorRenderer(NutcrackerOutfitItem.class, new NutcrackerOutfitRenderer());
-        GeoArmorRenderer.registerArmorRenderer(GingerbreadOutfitItem.class, new GingerbreadOutfitRenderer());
+        GeoArmorRenderer.registerArmorRenderer(ChristmasOutfits.SantaElfOutfitItem.class, new SantaElfOutfitRenderer());
+        GeoArmorRenderer.registerArmorRenderer(ChristmasOutfits.SantaOutfitItem.class, new SantaOutfitRenderer());
+        GeoArmorRenderer.registerArmorRenderer(ChristmasOutfits.SnowmanOutfitItem.class, new SnowmanOutfitRenderer());
+        GeoArmorRenderer.registerArmorRenderer(ChristmasOutfits.CandyCaneOutfitItem.class, new CandyCaneOutfitRenderer());
+        GeoArmorRenderer.registerArmorRenderer(ChristmasOutfits.ReindeerOutfitItem.class, new ReindeerOutfitRenderer());
+        GeoArmorRenderer.registerArmorRenderer(ChristmasOutfits.NutcrackerOutfitItem.class, new NutcrackerOutfitRenderer());
+        GeoArmorRenderer.registerArmorRenderer(ChristmasOutfits.GingerbreadOutfitItem.class, new GingerbreadOutfitRenderer());
     }
 
     @SubscribeEvent

@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.item.christmas.nutcracker;
+package com.jumpcutfindo.happyholidays.common.item.christmas;
 
 import java.util.List;
 
@@ -6,7 +6,6 @@ import org.jetbrains.annotations.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.PatrolRoute;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;

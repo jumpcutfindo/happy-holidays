@@ -5,8 +5,8 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
 import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutAmmo;
-import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ArmorItem;
@@ -29,7 +29,7 @@ public class NutcrackerInventory extends ItemStackHandler {
 
     @Override
     public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-        return stack.getItem() instanceof WalnutItem || stack.getItem() instanceof ArmorItem;
+        return stack.is(ChristmasTags.Items.NUTCRACKER_CARRIABLES) || stack.getItem() instanceof ArmorItem;
     }
 
     public WalnutAmmo getCurrentAmmo() {

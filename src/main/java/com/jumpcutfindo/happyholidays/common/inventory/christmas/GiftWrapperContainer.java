@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import com.google.common.collect.Lists;
-import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.GiftWrapperBlockEntity;
 

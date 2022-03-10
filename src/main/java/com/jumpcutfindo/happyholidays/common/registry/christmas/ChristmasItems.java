@@ -35,26 +35,18 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.TinselB
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.candy.EnchantedCandyCaneItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.dye.DyeBowlItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.elf.SantaElfBellItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.elf.ToyPartsRequestItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.food.EggnogItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.misc.ChristmasGuideBookItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.misc.EnchantedSantaHatItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.misc.MistletoeAndHollyItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.misc.PresentScrapItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.misc.SnowGlobeItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
+import com.jumpcutfindo.happyholidays.common.item.christmas.SantaElfBellItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ToyPartsRequestItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.EggnogItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasGiftItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasGuideBookItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.SnowGlobeItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.nutcracker.PatrolOrdersItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.nutcracker.SwaggerStickItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.PatrolOrdersItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.SwaggerStickItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.ChristmasOutfits;
-import com.jumpcutfindo.happyholidays.common.item.christmas.thread.EnchantedThreadItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.thread.ThreadItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutItem;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 import com.jumpcutfindo.happyholidays.common.utils.ColourUtils;
 
@@ -81,193 +73,196 @@ public class ChristmasItems {
     );
 
     // Default item properties
+    private static final Item.Properties DEFAULT_PROPS = new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
+    private static final Item.Properties ONE_IN_A_STACK_PROPS = new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP).stacksTo(1);
+
     private static final Item.Properties BIG_FOOD_PROPS = new Item.Properties().stacksTo(16).tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     // ================== ITEMS ==================
-    public static final RegistryObject<ChristmasItem> RAW_GINGERBREAD =
-            ITEMS.register("gingerbread_dough", RawGingerbreadItem::new);
+    public static final RegistryObject<Item> RAW_GINGERBREAD =
+            registerItem("gingerbread_dough", DEFAULT_PROPS);
     public static final RegistryObject<Item> GINGERBREAD_COOKIE =
             registerFood("gingerbread_cookie", new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP).food(new FoodProperties.Builder().nutrition(2).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 1), 0.5f).saturationMod(0.1f).alwaysEat().build()));
-    public static final RegistryObject<ChristmasItem> PRESENT_SCRAPS =
-            ITEMS.register("present_scraps", PresentScrapItem::new);
-    public static final RegistryObject<ChristmasItem> HOLLY =
-            ITEMS.register("mistletoe_and_holly", MistletoeAndHollyItem::new);
-    public static final RegistryObject<ChristmasItem> SANTA_ELF_BELL =
-            ITEMS.register("santa_elf_bell", SantaElfBellItem::new);
-    public static final RegistryObject<ChristmasItem> TOY_PARTS_REQUEST =
-            ITEMS.register("toy_parts_request", ToyPartsRequestItem::new);
-    public static final RegistryObject<ChristmasItem> CHRISTMAS_GUIDE_BOOK =
-            ITEMS.register("christmas_guide_book", ChristmasGuideBookItem::new);
-    public static final RegistryObject<ChristmasItem> SNOW_GLOBE =
-            ITEMS.register("snow_globe", SnowGlobeItem::new);
+    public static final RegistryObject<Item> PRESENT_SCRAPS =
+            registerItem("present_scraps", DEFAULT_PROPS);
+    public static final RegistryObject<Item> HOLLY =
+            registerItem("mistletoe_and_holly", DEFAULT_PROPS);
+    public static final RegistryObject<Item> SANTA_ELF_BELL =
+            registerCustomItem("santa_elf_bell", SantaElfBellItem::new);
+    public static final RegistryObject<Item> TOY_PARTS_REQUEST =
+            registerCustomItem("toy_parts_request", ToyPartsRequestItem::new);
+    public static final RegistryObject<Item> CHRISTMAS_GUIDE_BOOK =
+            registerCustomItem("christmas_guide_book", ChristmasGuideBookItem::new);
+    public static final RegistryObject<Item> SNOW_GLOBE =
+            registerCustomItem("snow_globe", SnowGlobeItem::new);
 
-    public static final RegistryObject<ChristmasItem> THREAD =
-            ITEMS.register("thread", ThreadItem::new);
-    public static final RegistryObject<ChristmasItem> ENCHANTED_THREAD =
-            ITEMS.register("enchanted_thread", EnchantedThreadItem::new);
+    public static final RegistryObject<Item> THREAD =
+            registerItem("thread", DEFAULT_PROPS);
+    public static final RegistryObject<Item> ENCHANTED_THREAD =
+            registerItem("enchanted_thread", DEFAULT_PROPS, ChristmasRarity.RARE);
 
     public static final RegistryObject<BlockItem> WALNUT =
-            ITEMS.register("walnut", () -> new ItemNameBlockItem(ChristmasBlocks.WALNUT_PLANT.get(), WalnutItem.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasItem> EXPLOSIVE_WALNUT =
-            ITEMS.register("explosive_walnut", WalnutItem::new);
-    public static final RegistryObject<ChristmasItem> SUGARED_WALNUT =
-            ITEMS.register("sugared_walnut", WalnutItem::new);
-    public static final RegistryObject<ChristmasItem> METALLIC_WALNUT =
-            ITEMS.register("metallic_walnut", WalnutItem::new);
-    public static final RegistryObject<ChristmasItem> HALVED_WALNUT =
-            ITEMS.register("halved_walnut", WalnutItem::new);
+            registerCustomBlockItem("walnut", () -> new ItemNameBlockItem(ChristmasBlocks.WALNUT_PLANT.get(), DEFAULT_PROPS));
+    public static final RegistryObject<Item> EXPLOSIVE_WALNUT =
+            registerItem("explosive_walnut", DEFAULT_PROPS);
+    public static final RegistryObject<Item> SUGARED_WALNUT =
+            registerItem("sugared_walnut", DEFAULT_PROPS);
+    public static final RegistryObject<Item> METALLIC_WALNUT =
+            registerItem("metallic_walnut", DEFAULT_PROPS);
+    public static final RegistryObject<Item> HALVED_WALNUT =
+            registerItem("halved_walnut", DEFAULT_PROPS);
 
     public static final RegistryObject<Item> SWAGGER_STICK =
-            ITEMS.register("swagger_stick", SwaggerStickItem::new);
+            registerCustomItem("swagger_stick", SwaggerStickItem::new);
     public static final RegistryObject<Item> PATROL_ORDERS =
-            ITEMS.register("patrol_orders", PatrolOrdersItem::new);
+            registerCustomItem("patrol_orders", PatrolOrdersItem::new);
 
-    public static final RegistryObject<ChristmasItem> ENCHANTED_SANTA_HAT =
-            ITEMS.register("enchanted_santa_hat", EnchantedSantaHatItem::new);
+    public static final RegistryObject<Item> ENCHANTED_SANTA_HAT =
+            registerItem("enchanted_santa_hat", ONE_IN_A_STACK_PROPS, ChristmasRarity.LEGENDARY);
     public static final RegistryObject<Item> SANTA_HAT =
-            ITEMS.register(ChristmasOutfits.SANTA_OUTFIT.getHeadpieceId(), ChristmasOutfits.SANTA_OUTFIT::getHeadpiece);
+            registerCustomItem(ChristmasOutfits.SANTA_OUTFIT.getHeadpieceId(), ChristmasOutfits.SANTA_OUTFIT::getHeadpiece);
     public static final RegistryObject<Item> SANTA_TOP =
-            ITEMS.register(ChristmasOutfits.SANTA_OUTFIT.getTopId(), ChristmasOutfits.SANTA_OUTFIT::getTop);
+            registerCustomItem(ChristmasOutfits.SANTA_OUTFIT.getTopId(), ChristmasOutfits.SANTA_OUTFIT::getTop);
     public static final RegistryObject<Item> SANTA_BOTTOM =
-            ITEMS.register(ChristmasOutfits.SANTA_OUTFIT.getBottomId(), ChristmasOutfits.SANTA_OUTFIT::getBottom);
+            registerCustomItem(ChristmasOutfits.SANTA_OUTFIT.getBottomId(), ChristmasOutfits.SANTA_OUTFIT::getBottom);
     public static final RegistryObject<Item> SANTA_BOOTS =
-            ITEMS.register(ChristmasOutfits.SANTA_OUTFIT.getFeetId(), ChristmasOutfits.SANTA_OUTFIT::getFeet);
+            registerCustomItem(ChristmasOutfits.SANTA_OUTFIT.getFeetId(), ChristmasOutfits.SANTA_OUTFIT::getFeet);
 
     public static final RegistryObject<Item> SANTA_ELF_HAT =
-            ITEMS.register(ChristmasOutfits.SANTA_ELF_OUTFIT.getHeadpieceId(), ChristmasOutfits.SANTA_ELF_OUTFIT::getHeadpiece);
+            registerCustomItem(ChristmasOutfits.SANTA_ELF_OUTFIT.getHeadpieceId(), ChristmasOutfits.SANTA_ELF_OUTFIT::getHeadpiece);
     public static final RegistryObject<Item> SANTA_ELF_TOP =
-            ITEMS.register(ChristmasOutfits.SANTA_ELF_OUTFIT.getTopId(), ChristmasOutfits.SANTA_ELF_OUTFIT::getTop);
+            registerCustomItem(ChristmasOutfits.SANTA_ELF_OUTFIT.getTopId(), ChristmasOutfits.SANTA_ELF_OUTFIT::getTop);
     public static final RegistryObject<Item> SANTA_ELF_BOTTOM =
-            ITEMS.register(ChristmasOutfits.SANTA_ELF_OUTFIT.getBottomId(), ChristmasOutfits.SANTA_ELF_OUTFIT::getBottom);
+            registerCustomItem(ChristmasOutfits.SANTA_ELF_OUTFIT.getBottomId(), ChristmasOutfits.SANTA_ELF_OUTFIT::getBottom);
     public static final RegistryObject<Item> SANTA_ELF_BOOTS =
-            ITEMS.register(ChristmasOutfits.SANTA_ELF_OUTFIT.getFeetId(), ChristmasOutfits.SANTA_ELF_OUTFIT::getFeet);
+            registerCustomItem(ChristmasOutfits.SANTA_ELF_OUTFIT.getFeetId(), ChristmasOutfits.SANTA_ELF_OUTFIT::getFeet);
 
     public static final RegistryObject<Item> SNOWMAN_HEADPIECE =
-            ITEMS.register(ChristmasOutfits.SNOWMAN_OUTFIT.getHeadpieceId(), ChristmasOutfits.SNOWMAN_OUTFIT::getHeadpiece);
+            registerCustomItem(ChristmasOutfits.SNOWMAN_OUTFIT.getHeadpieceId(), ChristmasOutfits.SNOWMAN_OUTFIT::getHeadpiece);
     public static final RegistryObject<Item> SNOWMAN_TOP =
-            ITEMS.register(ChristmasOutfits.SNOWMAN_OUTFIT.getTopId(), ChristmasOutfits.SNOWMAN_OUTFIT::getTop);
+            registerCustomItem(ChristmasOutfits.SNOWMAN_OUTFIT.getTopId(), ChristmasOutfits.SNOWMAN_OUTFIT::getTop);
     public static final RegistryObject<Item> SNOWMAN_BOTTOM =
-            ITEMS.register(ChristmasOutfits.SNOWMAN_OUTFIT.getBottomId(), ChristmasOutfits.SNOWMAN_OUTFIT::getBottom);
+            registerCustomItem(ChristmasOutfits.SNOWMAN_OUTFIT.getBottomId(), ChristmasOutfits.SNOWMAN_OUTFIT::getBottom);
 
     public static final RegistryObject<Item> CANDY_CANE_HEADPIECE =
-            ITEMS.register(ChristmasOutfits.CANDY_CANE_OUTFIT.getHeadpieceId(), ChristmasOutfits.CANDY_CANE_OUTFIT::getHeadpiece);
+            registerCustomItem(ChristmasOutfits.CANDY_CANE_OUTFIT.getHeadpieceId(), ChristmasOutfits.CANDY_CANE_OUTFIT::getHeadpiece);
     public static final RegistryObject<Item> CANDY_CANE_TOP =
-            ITEMS.register(ChristmasOutfits.CANDY_CANE_OUTFIT.getTopId(), ChristmasOutfits.CANDY_CANE_OUTFIT::getTop);
+            registerCustomItem(ChristmasOutfits.CANDY_CANE_OUTFIT.getTopId(), ChristmasOutfits.CANDY_CANE_OUTFIT::getTop);
     public static final RegistryObject<Item> CANDY_CANE_BOTTOM =
-            ITEMS.register(ChristmasOutfits.CANDY_CANE_OUTFIT.getBottomId(), ChristmasOutfits.CANDY_CANE_OUTFIT::getBottom);
+            registerCustomItem(ChristmasOutfits.CANDY_CANE_OUTFIT.getBottomId(), ChristmasOutfits.CANDY_CANE_OUTFIT::getBottom);
     public static final RegistryObject<Item> CANDY_CANE_BOOTS =
-            ITEMS.register(ChristmasOutfits.CANDY_CANE_OUTFIT.getFeetId(), ChristmasOutfits.CANDY_CANE_OUTFIT::getFeet);
+            registerCustomItem(ChristmasOutfits.CANDY_CANE_OUTFIT.getFeetId(), ChristmasOutfits.CANDY_CANE_OUTFIT::getFeet);
 
     public static final RegistryObject<Item> REINDEER_HEADPIECE =
-            ITEMS.register(ChristmasOutfits.REINDEER_OUTFIT.getHeadpieceId(), ChristmasOutfits.REINDEER_OUTFIT::getHeadpiece);
+            registerCustomItem(ChristmasOutfits.REINDEER_OUTFIT.getHeadpieceId(), ChristmasOutfits.REINDEER_OUTFIT::getHeadpiece);
     public static final RegistryObject<Item> REINDEER_TOP =
-            ITEMS.register(ChristmasOutfits.REINDEER_OUTFIT.getTopId(), ChristmasOutfits.REINDEER_OUTFIT::getTop);
+            registerCustomItem(ChristmasOutfits.REINDEER_OUTFIT.getTopId(), ChristmasOutfits.REINDEER_OUTFIT::getTop);
     public static final RegistryObject<Item> REINDEER_BOTTOM =
-            ITEMS.register(ChristmasOutfits.REINDEER_OUTFIT.getBottomId(), ChristmasOutfits.REINDEER_OUTFIT::getBottom);
+            registerCustomItem(ChristmasOutfits.REINDEER_OUTFIT.getBottomId(), ChristmasOutfits.REINDEER_OUTFIT::getBottom);
     public static final RegistryObject<Item> REINDEER_BOOTS =
-            ITEMS.register(ChristmasOutfits.REINDEER_OUTFIT.getFeetId(), ChristmasOutfits.REINDEER_OUTFIT::getFeet);
+            registerCustomItem(ChristmasOutfits.REINDEER_OUTFIT.getFeetId(), ChristmasOutfits.REINDEER_OUTFIT::getFeet);
 
     public static final RegistryObject<Item> NUTCRACKER_HEADPIECE =
-            ITEMS.register(ChristmasOutfits.NUTCRACKER_OUTFIT.getHeadpieceId(), ChristmasOutfits.NUTCRACKER_OUTFIT::getHeadpiece);
+            registerCustomItem(ChristmasOutfits.NUTCRACKER_OUTFIT.getHeadpieceId(), ChristmasOutfits.NUTCRACKER_OUTFIT::getHeadpiece);
     public static final RegistryObject<Item> NUTCRACKER_TOP =
-            ITEMS.register(ChristmasOutfits.NUTCRACKER_OUTFIT.getTopId(), ChristmasOutfits.NUTCRACKER_OUTFIT::getTop);
+            registerCustomItem(ChristmasOutfits.NUTCRACKER_OUTFIT.getTopId(), ChristmasOutfits.NUTCRACKER_OUTFIT::getTop);
     public static final RegistryObject<Item> NUTCRACKER_BOTTOM =
-            ITEMS.register(ChristmasOutfits.NUTCRACKER_OUTFIT.getBottomId(), ChristmasOutfits.NUTCRACKER_OUTFIT::getBottom);
+            registerCustomItem(ChristmasOutfits.NUTCRACKER_OUTFIT.getBottomId(), ChristmasOutfits.NUTCRACKER_OUTFIT::getBottom);
     public static final RegistryObject<Item> NUTCRACKER_BOOTS =
-            ITEMS.register(ChristmasOutfits.NUTCRACKER_OUTFIT.getFeetId(), ChristmasOutfits.NUTCRACKER_OUTFIT::getFeet);
+            registerCustomItem(ChristmasOutfits.NUTCRACKER_OUTFIT.getFeetId(), ChristmasOutfits.NUTCRACKER_OUTFIT::getFeet);
 
     public static final RegistryObject<Item> GINGERBREAD_HEADPIECE =
-            ITEMS.register(ChristmasOutfits.GINGERBREAD_OUTFIT.getHeadpieceId(), ChristmasOutfits.GINGERBREAD_OUTFIT::getHeadpiece);
+            registerCustomItem(ChristmasOutfits.GINGERBREAD_OUTFIT.getHeadpieceId(), ChristmasOutfits.GINGERBREAD_OUTFIT::getHeadpiece);
     public static final RegistryObject<Item> GINGERBREAD_TOP =
-            ITEMS.register(ChristmasOutfits.GINGERBREAD_OUTFIT.getTopId(), ChristmasOutfits.GINGERBREAD_OUTFIT::getTop);
+            registerCustomItem(ChristmasOutfits.GINGERBREAD_OUTFIT.getTopId(), ChristmasOutfits.GINGERBREAD_OUTFIT::getTop);
     public static final RegistryObject<Item> GINGERBREAD_BOTTOM =
-            ITEMS.register(ChristmasOutfits.GINGERBREAD_OUTFIT.getBottomId(), ChristmasOutfits.GINGERBREAD_OUTFIT::getBottom);
+            registerCustomItem(ChristmasOutfits.GINGERBREAD_OUTFIT.getBottomId(), ChristmasOutfits.GINGERBREAD_OUTFIT::getBottom);
     public static final RegistryObject<Item> GINGERBREAD_BOOTS =
-            ITEMS.register(ChristmasOutfits.GINGERBREAD_OUTFIT.getFeetId(), ChristmasOutfits.GINGERBREAD_OUTFIT::getFeet);
+            registerCustomItem(ChristmasOutfits.GINGERBREAD_OUTFIT.getFeetId(), ChristmasOutfits.GINGERBREAD_OUTFIT::getFeet);
 
-    public static final RegistryObject<ChristmasItem> DYE_BOWL =
-            ITEMS.register("dye_bowl", DyeBowlItem::new);
-    public static final RegistryObject<ChristmasItem> RED_CHRISTMAS_DYE =
-            ITEMS.register("red_christmas_dye", DyeBowlItem::new);
-    public static final RegistryObject<ChristmasItem> BLUE_CHRISTMAS_DYE =
-            ITEMS.register("blue_christmas_dye", DyeBowlItem::new);
-    public static final RegistryObject<ChristmasItem> YELLOW_CHRISTMAS_DYE =
-            ITEMS.register("yellow_christmas_dye", DyeBowlItem::new);
-    public static final RegistryObject<ChristmasItem> GREEN_CHRISTMAS_DYE =
-            ITEMS.register("green_christmas_dye", DyeBowlItem::new);
-    public static final RegistryObject<ChristmasItem> GOLD_CHRISTMAS_DYE =
-            ITEMS.register("gold_christmas_dye", DyeBowlItem::new);
-    public static final RegistryObject<ChristmasItem> SILVER_CHRISTMAS_DYE =
-            ITEMS.register("silver_christmas_dye", DyeBowlItem::new);
+    public static final RegistryObject<Item> DYE_BOWL =
+            registerItem("dye_bowl", DEFAULT_PROPS);
+    public static final RegistryObject<Item> RED_CHRISTMAS_DYE =
+            registerItem("red_christmas_dye", DEFAULT_PROPS);
+    public static final RegistryObject<Item> BLUE_CHRISTMAS_DYE =
+            registerItem("blue_christmas_dye", DEFAULT_PROPS);
+    public static final RegistryObject<Item> YELLOW_CHRISTMAS_DYE =
+            registerItem("yellow_christmas_dye", DEFAULT_PROPS);
+    public static final RegistryObject<Item> GREEN_CHRISTMAS_DYE =
+            registerItem("green_christmas_dye", DEFAULT_PROPS);
+    public static final RegistryObject<Item> GOLD_CHRISTMAS_DYE =
+            registerItem("gold_christmas_dye", DEFAULT_PROPS);
+    public static final RegistryObject<Item> SILVER_CHRISTMAS_DYE =
+            registerItem("silver_christmas_dye", DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_ANGELS_ON_HIGH =
-            ITEMS.register("christmas_sheet_music_angels_on_high", () -> new SheetMusicItem().setMusic(ChristmasMusic.ANGELS_ON_HIGH));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_CAROL_OF_THE_BELLS =
-            ITEMS.register("christmas_sheet_music_carol_of_the_bells", () -> new SheetMusicItem().setMusic(ChristmasMusic.CAROL_OF_THE_BELLS));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_DECK_THE_HALLS =
-            ITEMS.register("christmas_sheet_music_deck_the_halls", () -> new SheetMusicItem().setMusic(ChristmasMusic.DECK_THE_HALLS));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_FROSTY_THE_SNOWMAN =
-            ITEMS.register("christmas_sheet_music_frosty_the_snowman", () -> new SheetMusicItem().setMusic(ChristmasMusic.FROSTY_THE_SNOWMAN));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_GOD_REST_GENTLEMEN =
-            ITEMS.register("christmas_sheet_music_god_rest_gentlemen", () -> new SheetMusicItem().setMusic(ChristmasMusic.GOD_REST_GENTLEMEN));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_HERE_COMES_SANTA =
-            ITEMS.register("christmas_sheet_music_here_comes_santa", () -> new SheetMusicItem().setMusic(ChristmasMusic.HERE_COMES_SANTA));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_JINGLE_BELL_ROCK =
-            ITEMS.register("christmas_sheet_music_jingle_bell_rock", () -> new SheetMusicItem().setMusic(ChristmasMusic.JINGLE_BELL_ROCK));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_JINGLE_BELLS =
-            ITEMS.register("christmas_sheet_music_jingle_bells", () -> new SheetMusicItem().setMusic(ChristmasMusic.JINGLE_BELLS));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_JOY_TO_THE_WORLD =
-            ITEMS.register("christmas_sheet_music_joy_to_the_world", () -> new SheetMusicItem().setMusic(ChristmasMusic.JOY_TO_THE_WORLD));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_RUDOLPH =
-            ITEMS.register("christmas_sheet_music_rudolph", () -> new SheetMusicItem().setMusic(ChristmasMusic.RUDOLPH));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_SILENT_NIGHT =
-            ITEMS.register("christmas_sheet_music_silent_night", () -> new SheetMusicItem().setMusic(ChristmasMusic.SILENT_NIGHT));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_SLEIGH_RIDE =
-            ITEMS.register("christmas_sheet_music_sleigh_ride", () -> new SheetMusicItem().setMusic(ChristmasMusic.SLEIGH_RIDE));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_THE_FIRST_NOEL =
-            ITEMS.register("christmas_sheet_music_the_first_noel", () -> new SheetMusicItem().setMusic(ChristmasMusic.THE_FIRST_NOEL));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_WE_THREE_KINGS =
-            ITEMS.register("christmas_sheet_music_we_three_kings", () -> new SheetMusicItem().setMusic(ChristmasMusic.WE_THREE_KINGS));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_WE_WISH_YOU =
-            ITEMS.register("christmas_sheet_music_we_wish_you", () -> new SheetMusicItem().setMusic(ChristmasMusic.WE_WISH_YOU));
-    public static final RegistryObject<ChristmasItem> SHEET_MUSIC_WHITE_CHRISTMAS =
-            ITEMS.register("christmas_sheet_music_white_christmas", () -> new SheetMusicItem().setMusic(ChristmasMusic.WHITE_CHRISTMAS));
+    public static final RegistryObject<Item> SHEET_MUSIC_ANGELS_ON_HIGH =
+            registerCustomItem("christmas_sheet_music_angels_on_high", () -> new SheetMusicItem().setMusic(ChristmasMusic.ANGELS_ON_HIGH));
+    public static final RegistryObject<Item> SHEET_MUSIC_CAROL_OF_THE_BELLS =
+            registerCustomItem("christmas_sheet_music_carol_of_the_bells", () -> new SheetMusicItem().setMusic(ChristmasMusic.CAROL_OF_THE_BELLS));
+    public static final RegistryObject<Item> SHEET_MUSIC_DECK_THE_HALLS =
+            registerCustomItem("christmas_sheet_music_deck_the_halls", () -> new SheetMusicItem().setMusic(ChristmasMusic.DECK_THE_HALLS));
+    public static final RegistryObject<Item> SHEET_MUSIC_FROSTY_THE_SNOWMAN =
+            registerCustomItem("christmas_sheet_music_frosty_the_snowman", () -> new SheetMusicItem().setMusic(ChristmasMusic.FROSTY_THE_SNOWMAN));
+    public static final RegistryObject<Item> SHEET_MUSIC_GOD_REST_GENTLEMEN =
+            registerCustomItem("christmas_sheet_music_god_rest_gentlemen", () -> new SheetMusicItem().setMusic(ChristmasMusic.GOD_REST_GENTLEMEN));
+    public static final RegistryObject<Item> SHEET_MUSIC_HERE_COMES_SANTA =
+            registerCustomItem("christmas_sheet_music_here_comes_santa", () -> new SheetMusicItem().setMusic(ChristmasMusic.HERE_COMES_SANTA));
+    public static final RegistryObject<Item> SHEET_MUSIC_JINGLE_BELL_ROCK =
+            registerCustomItem("christmas_sheet_music_jingle_bell_rock", () -> new SheetMusicItem().setMusic(ChristmasMusic.JINGLE_BELL_ROCK));
+    public static final RegistryObject<Item> SHEET_MUSIC_JINGLE_BELLS =
+            registerCustomItem("christmas_sheet_music_jingle_bells", () -> new SheetMusicItem().setMusic(ChristmasMusic.JINGLE_BELLS));
+    public static final RegistryObject<Item> SHEET_MUSIC_JOY_TO_THE_WORLD =
+            registerCustomItem("christmas_sheet_music_joy_to_the_world", () -> new SheetMusicItem().setMusic(ChristmasMusic.JOY_TO_THE_WORLD));
+    public static final RegistryObject<Item> SHEET_MUSIC_RUDOLPH =
+            registerCustomItem("christmas_sheet_music_rudolph", () -> new SheetMusicItem().setMusic(ChristmasMusic.RUDOLPH));
+    public static final RegistryObject<Item> SHEET_MUSIC_SILENT_NIGHT =
+            registerCustomItem("christmas_sheet_music_silent_night", () -> new SheetMusicItem().setMusic(ChristmasMusic.SILENT_NIGHT));
+    public static final RegistryObject<Item> SHEET_MUSIC_SLEIGH_RIDE =
+            registerCustomItem("christmas_sheet_music_sleigh_ride", () -> new SheetMusicItem().setMusic(ChristmasMusic.SLEIGH_RIDE));
+    public static final RegistryObject<Item> SHEET_MUSIC_THE_FIRST_NOEL =
+            registerCustomItem("christmas_sheet_music_the_first_noel", () -> new SheetMusicItem().setMusic(ChristmasMusic.THE_FIRST_NOEL));
+    public static final RegistryObject<Item> SHEET_MUSIC_WE_THREE_KINGS =
+            registerCustomItem("christmas_sheet_music_we_three_kings", () -> new SheetMusicItem().setMusic(ChristmasMusic.WE_THREE_KINGS));
+    public static final RegistryObject<Item> SHEET_MUSIC_WE_WISH_YOU =
+            registerCustomItem("christmas_sheet_music_we_wish_you", () -> new SheetMusicItem().setMusic(ChristmasMusic.WE_WISH_YOU));
+    public static final RegistryObject<Item> SHEET_MUSIC_WHITE_CHRISTMAS =
+            registerCustomItem("christmas_sheet_music_white_christmas", () -> new SheetMusicItem().setMusic(ChristmasMusic.WHITE_CHRISTMAS));
 
     public static final RegistryObject<Item> CANDY_CANE =
             registerFood("candy_cane", new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP).food(new FoodProperties.Builder().nutrition(2).effect(() -> new MobEffectInstance(MobEffects.JUMP, 100, 1), 0.5f).saturationMod(0.1f).alwaysEat().build()));
     public static final RegistryObject<Item> FESTIVE_CANDY_CANE =
             registerFood("festive_candy_cane", new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP).food(new FoodProperties.Builder().nutrition(2).effect(() -> new MobEffectInstance(MobEffects.JUMP, 100, 1), 0.5f).saturationMod(0.1f).alwaysEat().build()));
-    public static final RegistryObject<ChristmasItem> ENCHANTED_CANDY_CANE =
-            ITEMS.register("enchanted_candy_cane", EnchantedCandyCaneItem::new);
+    public static final RegistryObject<Item> ENCHANTED_CANDY_CANE =
+            registerItem("enchanted_candy_cane", DEFAULT_PROPS, ChristmasRarity.LEGENDARY);
 
     public static final RegistryObject<Item> EGGNOG =
-            ITEMS.register("eggnog", EggnogItem::new);
+            registerCustomItem("eggnog", EggnogItem::new);
 
-    public static final RegistryObject<ChristmasItem> RED_CHRISTMAS_GIFT_ITEM =
-            ITEMS.register("red_christmas_gift", ChristmasGiftItem::new);
-    public static final RegistryObject<ChristmasItem> BLUE_CHRISTMAS_GIFT_ITEM =
-            ITEMS.register("blue_christmas_gift", ChristmasGiftItem::new);
-    public static final RegistryObject<ChristmasItem> YELLOW_CHRISTMAS_GIFT_ITEM =
-            ITEMS.register("yellow_christmas_gift", ChristmasGiftItem::new);
-    public static final RegistryObject<ChristmasItem> GREEN_CHRISTMAS_GIFT_ITEM =
-            ITEMS.register("green_christmas_gift", ChristmasGiftItem::new);
-    public static final RegistryObject<ChristmasItem> GOLD_CHRISTMAS_GIFT_ITEM =
-            ITEMS.register("gold_christmas_gift", ChristmasGiftItem::new);
-    public static final RegistryObject<ChristmasItem> SILVER_CHRISTMAS_GIFT_ITEM =
-            ITEMS.register("silver_christmas_gift", ChristmasGiftItem::new);
+    public static final RegistryObject<Item> RED_CHRISTMAS_GIFT_ITEM =
+            registerCustomItem("red_christmas_gift", ChristmasGiftItem::new);
+    public static final RegistryObject<Item> BLUE_CHRISTMAS_GIFT_ITEM =
+            registerCustomItem("blue_christmas_gift", ChristmasGiftItem::new);
+    public static final RegistryObject<Item> YELLOW_CHRISTMAS_GIFT_ITEM =
+            registerCustomItem("yellow_christmas_gift", ChristmasGiftItem::new);
+    public static final RegistryObject<Item> GREEN_CHRISTMAS_GIFT_ITEM =
+            registerCustomItem("green_christmas_gift", ChristmasGiftItem::new);
+    public static final RegistryObject<Item> GOLD_CHRISTMAS_GIFT_ITEM =
+            registerCustomItem("gold_christmas_gift", ChristmasGiftItem::new);
+    public static final RegistryObject<Item> SILVER_CHRISTMAS_GIFT_ITEM =
+            registerCustomItem("silver_christmas_gift", ChristmasGiftItem::new);
 
     public static final RegistryObject<Item> SANTA_ELF_SPAWN_EGG =
-            ITEMS.register("santa_elf_spawn_egg", spawnEggOf(ChristmasEntities.SANTA_ELF::get, ColourUtils.rgbaToInt(2, 126, 16, 255), ColourUtils.rgbaToInt(255, 2, 2, 255)));
+            registerCustomItem("santa_elf_spawn_egg", spawnEggOf(ChristmasEntities.SANTA_ELF::get, ColourUtils.rgbaToInt(2, 126, 16, 255), ColourUtils.rgbaToInt(255, 2, 2, 255)));
     public static final RegistryObject<Item> GINGERBREAD_MAN_SPAWN_EGG =
-            ITEMS.register("gingerbread_man_spawn_egg", spawnEggOf(ChristmasEntities.GINGERBREAD_MAN::get, ColourUtils.rgbaToInt(123, 76, 22, 255), ColourUtils.rgbaToInt(255, 255, 255, 255)));
+            registerCustomItem("gingerbread_man_spawn_egg", spawnEggOf(ChristmasEntities.GINGERBREAD_MAN::get, ColourUtils.rgbaToInt(123, 76, 22, 255), ColourUtils.rgbaToInt(255, 255, 255, 255)));
     public static final RegistryObject<Item> GRINCH_SPAWN_EGG =
-            ITEMS.register("grinch_spawn_egg", spawnEggOf(ChristmasEntities.GRINCH::get, ColourUtils.rgbaToInt(43, 178, 0, 255), ColourUtils.rgbaToInt(255, 216, 0, 255)));
+            registerCustomItem("grinch_spawn_egg", spawnEggOf(ChristmasEntities.GRINCH::get, ColourUtils.rgbaToInt(43, 178, 0, 255), ColourUtils.rgbaToInt(255, 216, 0, 255)));
     public static final RegistryObject<Item> NUTCRACKER_SPAWN_EGG =
-            ITEMS.register("nutcracker_spawn_egg", spawnEggOf(ChristmasEntities.NUTCRACKER::get, ColourUtils.rgbaToInt(206, 0, 0, 255), ColourUtils.rgbaToInt(0, 0, 0, 255)));
+            registerCustomItem("nutcracker_spawn_egg", spawnEggOf(ChristmasEntities.NUTCRACKER::get, ColourUtils.rgbaToInt(206, 0, 0, 255), ColourUtils.rgbaToInt(0, 0, 0, 255)));
     public static final RegistryObject<Item> HAPPY_SANTA_SPAWN_EGG =
-            ITEMS.register("happy_santa_spawn_egg", spawnEggOf(ChristmasEntities.HAPPY_SANTA::get, ColourUtils.rgbaToInt(242, 0, 0, 255), ColourUtils.rgbaToInt(255, 255, 255, 255)));
+            registerCustomItem("happy_santa_spawn_egg", spawnEggOf(ChristmasEntities.HAPPY_SANTA::get, ColourUtils.rgbaToInt(242, 0, 0, 255), ColourUtils.rgbaToInt(255, 255, 255, 255)));
     public static final RegistryObject<Item> ANGRY_SANTA_SPAWN_EGG =
-            ITEMS.register("angry_santa_spawn_egg", spawnEggOf(ChristmasEntities.ANGRY_SANTA::get, ColourUtils.rgbaToInt(112, 24, 31, 255), ColourUtils.rgbaToInt(255, 255, 255, 255)));
+            registerCustomItem("angry_santa_spawn_egg", spawnEggOf(ChristmasEntities.ANGRY_SANTA::get, ColourUtils.rgbaToInt(112, 24, 31, 255), ColourUtils.rgbaToInt(255, 255, 255, 255)));
 
     // ================== BLOCK ITEMS ==================
     public static final RegistryObject<ChristmasBlockItem> BABY_PRESENT =
@@ -612,12 +607,36 @@ public class ChristmasItems {
     public static final RegistryObject<BlockItem> CHRISTMAS_PUDDING =
             registerFood("christmas_pudding", ChristmasBlocks.CHRISTMAS_PUDDING.get(), BIG_FOOD_PROPS);
 
+    private static RegistryObject<Item> registerItem(String itemId, Item.Properties itemProps) {
+        return ITEMS.register(itemId, () -> new ChristmasItem(itemProps));
+    }
+
+    private static RegistryObject<Item> registerItem(String itemId, Item.Properties itemProps, ChristmasRarity rarity) {
+        return ITEMS.register(itemId, () -> new ChristmasItem(itemProps, rarity));
+    }
+
+    private static RegistryObject<BlockItem> registerItem(String itemId, Block block, Item.Properties itemProps) {
+        return ITEMS.register(itemId, () -> new ChristmasBlockItem(block, itemProps));
+    }
+
+    private static RegistryObject<BlockItem> registerItem(String itemId, Block block, Item.Properties itemProps, ChristmasRarity rarity) {
+        return ITEMS.register(itemId, () -> new ChristmasBlockItem(block, itemProps, rarity));
+    }
+
     private static RegistryObject<Item> registerFood(String foodId, Item.Properties itemProps) {
         return ITEMS.register(foodId, () -> new ChristmasItem(itemProps));
     }
 
     private static RegistryObject<BlockItem> registerFood(String foodId, Block block, Item.Properties itemProps) {
         return ITEMS.register(foodId, () -> new ChristmasBlockItem(block, itemProps));
+    }
+
+    private static RegistryObject<Item> registerCustomItem(String itemId, final Supplier<? extends Item> sup) {
+        return ITEMS.register(itemId, sup);
+    }
+
+    private static RegistryObject<BlockItem> registerCustomBlockItem(String itemId, final Supplier<? extends BlockItem> sup) {
+        return ITEMS.register(itemId, sup);
     }
 
     public static Supplier<ChristmasBlockItem> blockItemOf(RegistryObject<? extends Block> block, Item.Properties properties) {

@@ -10,7 +10,7 @@ import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceA
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
-import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;

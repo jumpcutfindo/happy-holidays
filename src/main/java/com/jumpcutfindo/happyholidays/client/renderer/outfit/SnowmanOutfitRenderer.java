@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.client.renderer.outfit;
 
 import com.jumpcutfindo.happyholidays.client.model.outfit.SnowmanOutfitModel;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.subs.SnowmanOutfitItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.ChristmasOutfits;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
@@ -11,7 +11,7 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 import software.bernie.geckolib3.util.GeoUtils;
 
-public class SnowmanOutfitRenderer extends GeoArmorRenderer<SnowmanOutfitItem> {
+public class SnowmanOutfitRenderer extends GeoArmorRenderer<ChristmasOutfits.SnowmanOutfitItem> {
     public SnowmanOutfitRenderer() {
         super(new SnowmanOutfitModel());
         this.headBone = "helmet";
@@ -26,7 +26,7 @@ public class SnowmanOutfitRenderer extends GeoArmorRenderer<SnowmanOutfitItem> {
 
     @Override
     protected void fitToBiped() {
-        AnimatedGeoModel<SnowmanOutfitItem> modelProvider = getGeoModelProvider();
+        AnimatedGeoModel<ChristmasOutfits.SnowmanOutfitItem> modelProvider = getGeoModelProvider();
         if (!(this.entityLiving instanceof ArmorStand)) {
             if (this.headBone != null) {
                 IBone headBone = modelProvider.getBone(this.headBone);

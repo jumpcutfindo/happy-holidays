@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.item.christmas.elf;
+package com.jumpcutfindo.happyholidays.common.item.christmas;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
@@ -47,7 +48,7 @@ public class SantaElfBellItem extends ChristmasItem {
                     .defaultDurability(ITEM_COOLDOWN);
 
     public SantaElfBellItem() {
-        super(ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES, ChristmasRarity.LEGENDARY);
     }
 
     @Override

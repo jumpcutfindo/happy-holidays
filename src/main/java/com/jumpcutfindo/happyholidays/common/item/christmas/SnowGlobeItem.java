@@ -1,9 +1,7 @@
-package com.jumpcutfindo.happyholidays.common.item.christmas.misc;
+package com.jumpcutfindo.happyholidays.common.item.christmas;
 
 import com.jumpcutfindo.happyholidays.common.events.christmas.SnowGlobeEvent;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
 import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;

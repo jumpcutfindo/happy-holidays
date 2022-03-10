@@ -1,8 +1,6 @@
-package com.jumpcutfindo.happyholidays.common.item.christmas.nutcracker;
+package com.jumpcutfindo.happyholidays.common.item.christmas;
 
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
