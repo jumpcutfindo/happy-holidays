@@ -599,13 +599,13 @@ public class ChristmasItems {
             ITEMS.register("gift_wrapping_station", blockItemOf(ChristmasBlocks.GIFT_WRAPPING_STATION, GiftWrapperBlock.ITEM_PROPERTIES));
 
     public static final RegistryObject<BlockItem> MILK_AND_COOKIES =
-            registerFood("milk_and_cookies", ChristmasBlocks.MILK_AND_COOKIES.get(), BIG_FOOD_PROPS);
+            registerFood("milk_and_cookies", ChristmasBlocks.MILK_AND_COOKIES, BIG_FOOD_PROPS);
     public static final RegistryObject<BlockItem> LOG_CAKE =
-            registerFood("log_cake", ChristmasBlocks.LOG_CAKE.get(), BIG_FOOD_PROPS);
+            registerFood("log_cake", ChristmasBlocks.LOG_CAKE, BIG_FOOD_PROPS);
     public static final RegistryObject<BlockItem> CHRISTMAS_HAM =
-            registerFood("christmas_ham", ChristmasBlocks.CHRISTMAS_HAM.get(), BIG_FOOD_PROPS);
+            registerFood("christmas_ham", ChristmasBlocks.CHRISTMAS_HAM, BIG_FOOD_PROPS);
     public static final RegistryObject<BlockItem> CHRISTMAS_PUDDING =
-            registerFood("christmas_pudding", ChristmasBlocks.CHRISTMAS_PUDDING.get(), BIG_FOOD_PROPS);
+            registerFood("christmas_pudding", ChristmasBlocks.CHRISTMAS_PUDDING, BIG_FOOD_PROPS);
 
     private static RegistryObject<Item> registerItem(String itemId, Item.Properties itemProps) {
         return ITEMS.register(itemId, () -> new ChristmasItem(itemProps));
@@ -615,20 +615,20 @@ public class ChristmasItems {
         return ITEMS.register(itemId, () -> new ChristmasItem(itemProps, rarity));
     }
 
-    private static RegistryObject<BlockItem> registerItem(String itemId, Block block, Item.Properties itemProps) {
-        return ITEMS.register(itemId, () -> new ChristmasBlockItem(block, itemProps));
+    private static RegistryObject<BlockItem> registerItem(String itemId, Supplier<Block> block, Item.Properties itemProps) {
+        return ITEMS.register(itemId, () -> new ChristmasBlockItem(block.get(), itemProps));
     }
 
-    private static RegistryObject<BlockItem> registerItem(String itemId, Block block, Item.Properties itemProps, ChristmasRarity rarity) {
-        return ITEMS.register(itemId, () -> new ChristmasBlockItem(block, itemProps, rarity));
+    private static RegistryObject<BlockItem> registerItem(String itemId, Supplier<Block> block, Item.Properties itemProps, ChristmasRarity rarity) {
+        return ITEMS.register(itemId, () -> new ChristmasBlockItem(block.get(), itemProps, rarity));
     }
 
     private static RegistryObject<Item> registerFood(String foodId, Item.Properties itemProps) {
         return ITEMS.register(foodId, () -> new ChristmasItem(itemProps));
     }
 
-    private static RegistryObject<BlockItem> registerFood(String foodId, Block block, Item.Properties itemProps) {
-        return ITEMS.register(foodId, () -> new ChristmasBlockItem(block, itemProps));
+    private static RegistryObject<BlockItem> registerFood(String foodId, Supplier<Block> block, Item.Properties itemProps) {
+        return ITEMS.register(foodId, () -> new ChristmasBlockItem(block.get(), itemProps));
     }
 
     private static RegistryObject<Item> registerCustomItem(String itemId, final Supplier<? extends Item> sup) {

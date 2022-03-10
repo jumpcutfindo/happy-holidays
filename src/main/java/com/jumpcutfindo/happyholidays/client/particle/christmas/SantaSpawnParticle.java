@@ -14,9 +14,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class SantaSpawnParticle extends TextureSheetParticle {
-    public static final String RED_ID = "christmas_santa_red";
-    public static final String GREEN_ID = "christmas_santa_green";
-
     private final SpriteSet sprites;
     private final int color;
     private final double destX, destY, destZ;

@@ -11,7 +11,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ChristmasStarParticle extends SimpleAnimatedParticle {
-    public static final String PARTICLE_ID = "christmas_star_particle";
     public static final ChristmasParticleColor STAR_PARTICLE_COLOUR = ChristmasParticleColor.GOLD;
 
     public ChristmasStarParticle(ClientLevel p_106531_, double p_106532_, double p_106533_, double p_106534_,

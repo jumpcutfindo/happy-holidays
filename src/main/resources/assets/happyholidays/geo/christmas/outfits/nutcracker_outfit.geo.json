@@ -34,19 +34,19 @@
 				{
 					"name": "rightArm",
 					"parent": "armor",
-					"pivot": [-5, 22, 0],
+					"pivot": [-4, 22, 0],
 					"cubes": [
-						{"origin": [-9, 14, -2], "size": [4, 8, 4], "inflate": 0.5, "uv": [16, 39]},
-						{"origin": [-9.5, 23, -2.5], "size": [5, 2, 5], "inflate": 0.5, "uv": [20, 51]}
+						{"origin": [-8, 14, -2], "size": [4, 8, 4], "inflate": 0.5, "uv": [16, 39]},
+						{"origin": [-8.5, 23, -2.5], "size": [5, 2, 5], "inflate": 0.5, "uv": [20, 51]}
 					]
 				},
 				{
 					"name": "leftArm",
 					"parent": "armor",
-					"pivot": [5, 22, 0],
+					"pivot": [4, 22, 0],
 					"cubes": [
-						{"origin": [5, 14, -2], "size": [4, 8, 4], "inflate": 0.5, "uv": [0, 39]},
-						{"origin": [4.5, 23, -2.5], "size": [5, 2, 5], "inflate": 0.6, "uv": [0, 51]}
+						{"origin": [4, 14, -2], "size": [4, 8, 4], "inflate": 0.5, "uv": [0, 39]},
+						{"origin": [3.5, 23, -2.5], "size": [5, 2, 5], "inflate": 0.6, "uv": [0, 51]}
 					]
 				},
 				{
