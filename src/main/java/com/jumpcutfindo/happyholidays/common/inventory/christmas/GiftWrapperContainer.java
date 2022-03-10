@@ -35,7 +35,7 @@ public class GiftWrapperContainer extends AbstractContainerMenu {
 
     public GiftWrapperContainer(final int windowId, final Inventory playerInv,
                                 final GiftWrapperBlockEntity blockEntity) {
-        super(ChristmasContainers.GIFT_WRAPPER_CONTAINER.get(), windowId);
+        super(ChristmasContainers.GIFT_WRAPPER.get(), windowId);
 
         this.blockEntity = blockEntity;
         this.playerInv = playerInv;

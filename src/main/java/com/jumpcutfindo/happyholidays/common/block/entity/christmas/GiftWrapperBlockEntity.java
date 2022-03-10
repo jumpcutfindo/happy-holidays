@@ -42,7 +42,7 @@ public class GiftWrapperBlockEntity extends BaseContainerBlockEntity implements 
     }
 
     public GiftWrapperBlockEntity(BlockPos pos, BlockState state) {
-        this(ChristmasBlockEntities.GIFT_WRAPPER_ENTITY_TYPE.get(), pos, state);
+        this(ChristmasBlockEntities.GIFT_WRAPPER.get(), pos, state);
     }
 
     @Override

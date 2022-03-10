@@ -35,7 +35,7 @@ public class ChristmasStarContainer extends AbstractContainerMenu {
 
     public ChristmasStarContainer(final int windowId, final Inventory playerInv,
                                   final ChristmasStarBlockEntity blockEntity) {
-        super(ChristmasContainers.CHRISTMAS_STAR_CONTAINER.get(), windowId);
+        super(ChristmasContainers.CHRISTMAS_STAR.get(), windowId);
 
         this.blockEntity = blockEntity;
         this.container = playerInv;

@@ -93,7 +93,7 @@ public class ChristmasStarBlock extends Block implements EntityBlock, ChristmasB
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ChristmasBlockEntities.CHRISTMAS_STAR_ENTITY_TYPE.get().create(pos, state);
+        return ChristmasBlockEntities.CHRISTMAS_STAR.get().create(pos, state);
     }
 
     @Override
@@ -172,7 +172,7 @@ public class ChristmasStarBlock extends Block implements EntityBlock, ChristmasB
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState,
                                                                   BlockEntityType<T> blockEntityType) {
-        return createStarTicker(level, blockEntityType, ChristmasBlockEntities.CHRISTMAS_STAR_ENTITY_TYPE.get());
+        return createStarTicker(level, blockEntityType, ChristmasBlockEntities.CHRISTMAS_STAR.get());
     }
 
     protected static <T extends BlockEntity> BlockEntityTicker<T> createStarTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends ChristmasStarBlockEntity> otherEntityType) {

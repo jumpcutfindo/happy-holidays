@@ -161,7 +161,7 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         } else {
             if (!this.level.isClientSide) {
                 // Set prices based on debuff placed on elf
-                MobEffectInstance christmasDebuff = this.getEffect(ChristmasEffects.DEBUFF_OF_CHRISTMAS_EFFECT.get());
+                MobEffectInstance christmasDebuff = this.getEffect(ChristmasEffects.DEBUFF_OF_CHRISTMAS.get());
                 if (christmasDebuff != null) {
                     double discount;
 

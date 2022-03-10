@@ -72,7 +72,7 @@ public class GiftWrapperBlock extends Block implements EntityBlock, ChristmasBlo
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ChristmasBlockEntities.GIFT_WRAPPER_ENTITY_TYPE.get().create(pos, state);
+        return ChristmasBlockEntities.GIFT_WRAPPER.get().create(pos, state);
     }
 
     @Override

@@ -154,7 +154,7 @@ public class StockingBlock extends WallDecorationBlock implements ChristmasLike,
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ChristmasBlockEntities.STOCKING_ENTITY_TYPE.get().create(pos, state);
+        return ChristmasBlockEntities.STOCKING.get().create(pos, state);
     }
 
     @Override

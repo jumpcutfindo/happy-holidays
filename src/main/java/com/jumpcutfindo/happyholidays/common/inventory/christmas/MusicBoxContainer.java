@@ -24,7 +24,7 @@ public class MusicBoxContainer extends AbstractContainerMenu {
 
     public MusicBoxContainer(final int windowId, final Inventory playerInv,
                                 final MusicBoxBlockEntity blockEntity) {
-        super(ChristmasContainers.MUSIC_BOX_CONTAINER.get(), windowId);
+        super(ChristmasContainers.MUSIC_BOX.get(), windowId);
 
         this.blockEntity = blockEntity;
         this.playerInv = playerInv;

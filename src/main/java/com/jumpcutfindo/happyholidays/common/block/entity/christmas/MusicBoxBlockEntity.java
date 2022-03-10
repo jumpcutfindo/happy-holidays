@@ -63,7 +63,7 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
     }
 
     public MusicBoxBlockEntity(BlockPos pos, BlockState state) {
-        this(ChristmasBlockEntities.MUSIC_BOX_ENTITY_TYPE.get(), pos, state);
+        this(ChristmasBlockEntities.MUSIC_BOX.get(), pos, state);
     }
 
     @Override

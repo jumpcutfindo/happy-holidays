@@ -15,9 +15,9 @@ public class ChristmasEffects {
             HappyHolidaysMod.MOD_ID
     );
 
-    public static final RegistryObject<MobEffect> SPIRIT_OF_CHRISTMAS_EFFECT =
+    public static final RegistryObject<MobEffect> SPIRIT_OF_CHRISTMAS =
             EFFECTS.register(SpiritOfChristmasEffect.EFFECT_ID, SpiritOfChristmasEffect::new);
 
-    public static final RegistryObject<MobEffect> DEBUFF_OF_CHRISTMAS_EFFECT =
+    public static final RegistryObject<MobEffect> DEBUFF_OF_CHRISTMAS =
             EFFECTS.register(GenerosityOfChristmasEffect.EFFECT_ID, GenerosityOfChristmasEffect::new);
 }

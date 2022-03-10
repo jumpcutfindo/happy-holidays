@@ -50,7 +50,7 @@ public class ChristmasEvents {
     public static void onFoodEaten(LivingEntityUseItemEvent.Finish event) {
         if (event.getEntity() instanceof Player && event.getItem().isEdible()) {
             Player playerEntity = (Player) event.getEntity();
-            MobEffectInstance effectInstance = playerEntity.getEffect(ChristmasEffects.SPIRIT_OF_CHRISTMAS_EFFECT.get());
+            MobEffectInstance effectInstance = playerEntity.getEffect(ChristmasEffects.SPIRIT_OF_CHRISTMAS.get());
 
             if (effectInstance != null) {
                 ItemStack foodItemStack = event.getItem();

@@ -23,7 +23,7 @@ public class NutcrackerContainer extends AbstractContainerMenu {
     private final NutcrackerEntity nutcracker;
 
     public NutcrackerContainer(int windowId, Level level, BlockPos pos, Inventory playerInv, Player player, NutcrackerEntity nutcracker) {
-        super(ChristmasContainers.NUTCRACKER_CONTAINER.get(), windowId);
+        super(ChristmasContainers.NUTCRACKER_INVENTORY.get(), windowId);
 
         this.playerInv = playerInv;
         this.nutcracker = nutcracker;

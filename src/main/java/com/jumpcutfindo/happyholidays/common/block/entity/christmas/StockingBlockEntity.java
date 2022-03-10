@@ -39,7 +39,7 @@ public class StockingBlockEntity extends BlockEntity implements ChristmasEntityB
     }
 
     public StockingBlockEntity(BlockPos pos, BlockState state) {
-        this(ChristmasBlockEntities.STOCKING_ENTITY_TYPE.get(), pos, state);
+        this(ChristmasBlockEntities.STOCKING.get(), pos, state);
     }
 
     public boolean isEmpty() {

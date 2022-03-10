@@ -75,7 +75,7 @@ public class RenderEventHandler {
 
         // Register block entities
         event.registerBlockEntityRenderer(
-                ChristmasBlockEntities.MUSIC_BOX_ENTITY_TYPE.get(),
+                ChristmasBlockEntities.MUSIC_BOX.get(),
                 MusicBoxRenderer::new
         );
     }

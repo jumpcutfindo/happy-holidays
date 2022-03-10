@@ -123,7 +123,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
     }
 
     public ChristmasStarBlockEntity(BlockPos pos, BlockState state) {
-        this(ChristmasBlockEntities.CHRISTMAS_STAR_ENTITY_TYPE.get(), pos, state);
+        this(ChristmasBlockEntities.CHRISTMAS_STAR.get(), pos, state);
     }
 
     @Override
@@ -195,13 +195,13 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
             List<Player> playerList = this.level.getEntitiesOfClass(Player.class, axisAlignedBB);
 
             for (Player playerEntity : playerList) {
-                if (playerEntity.getEffect(ChristmasEffects.SPIRIT_OF_CHRISTMAS_EFFECT.get()) == null) {
+                if (playerEntity.getEffect(ChristmasEffects.SPIRIT_OF_CHRISTMAS.get()) == null) {
                     // Fresh application of effect, play sound
                     ((ServerLevel) this.level).playSound(null, playerEntity.blockPosition(),
                             ChristmasSounds.CHRISTMAS_STAR_EFFECT_APPLY.get(), SoundSource.NEUTRAL, 1.0f, 1.0f);
                 }
 
-                playerEntity.addEffect(new MobEffectInstance(ChristmasEffects.SPIRIT_OF_CHRISTMAS_EFFECT.get(),
+                playerEntity.addEffect(new MobEffectInstance(ChristmasEffects.SPIRIT_OF_CHRISTMAS.get(),
                         200, this.currentTier - 1, true, true));
             }
         }
@@ -215,7 +215,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
                     axisAlignedBB, entity -> entity instanceof IChristmasEntity);
 
             for (LivingEntity entity : christmasEntities) {
-                entity.addEffect(new MobEffectInstance(ChristmasEffects.DEBUFF_OF_CHRISTMAS_EFFECT.get(), 200,
+                entity.addEffect(new MobEffectInstance(ChristmasEffects.DEBUFF_OF_CHRISTMAS.get(), 200,
                         this.currentTier - 1, true, true));
             }
 

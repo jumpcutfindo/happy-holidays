@@ -16,9 +16,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 public class InterfaceHandler {
     @SubscribeEvent
     public static void registerScreens(FMLClientSetupEvent event) {
-        MenuScreens.register(ChristmasContainers.CHRISTMAS_STAR_CONTAINER.get(), ChristmasStarScreen::new);
-        MenuScreens.register(ChristmasContainers.GIFT_WRAPPER_CONTAINER.get(), GiftWrapperScreen::new);
-        MenuScreens.register(ChristmasContainers.MUSIC_BOX_CONTAINER.get(), MusicBoxScreen::new);
-        MenuScreens.register(ChristmasContainers.NUTCRACKER_CONTAINER.get(), NutcrackerInventoryScreen::new);
+        MenuScreens.register(ChristmasContainers.CHRISTMAS_STAR.get(), ChristmasStarScreen::new);
+        MenuScreens.register(ChristmasContainers.GIFT_WRAPPER.get(), GiftWrapperScreen::new);
+        MenuScreens.register(ChristmasContainers.MUSIC_BOX.get(), MusicBoxScreen::new);
+        MenuScreens.register(ChristmasContainers.NUTCRACKER_INVENTORY.get(), NutcrackerInventoryScreen::new);
     }
 }

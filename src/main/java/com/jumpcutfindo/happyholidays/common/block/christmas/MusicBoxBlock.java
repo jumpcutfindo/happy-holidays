@@ -67,7 +67,7 @@ public class MusicBoxBlock extends Block implements EntityBlock, ChristmasBlock,
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        this.musicBoxBlockEntity = ChristmasBlockEntities.MUSIC_BOX_ENTITY_TYPE.get().create(pos, state);
+        this.musicBoxBlockEntity = ChristmasBlockEntities.MUSIC_BOX.get().create(pos, state);
         return musicBoxBlockEntity;
     }
 
@@ -114,7 +114,7 @@ public class MusicBoxBlock extends Block implements EntityBlock, ChristmasBlock,
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        return createMusicBoxTicker(level, blockEntityType, ChristmasBlockEntities.MUSIC_BOX_ENTITY_TYPE.get());
+        return createMusicBoxTicker(level, blockEntityType, ChristmasBlockEntities.MUSIC_BOX.get());
     }
 
     public static <T extends BlockEntity> BlockEntityTicker<T> createMusicBoxTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends MusicBoxBlockEntity> otherEntityType) {

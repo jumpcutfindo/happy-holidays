@@ -44,8 +44,8 @@ public class HappyHolidaysMod {
         ChristmasEntities.ENTITY_TYPES.register(bus);
         ChristmasBlocks.BLOCKS.register(bus);
         ChristmasItems.ITEMS.register(bus);
-        ChristmasBlockEntities.BLOCK_ENTITY_TYPE.register(bus);
-        ChristmasContainers.CONTAINER_TYPE.register(bus);
+        ChristmasBlockEntities.BLOCK_ENTITY.register(bus);
+        ChristmasContainers.CONTAINER.register(bus);
         ChristmasSounds.SOUNDS.register(bus);
         ChristmasEffects.EFFECTS.register(bus);
         ChristmasParticles.PARTICLES.register(bus);
