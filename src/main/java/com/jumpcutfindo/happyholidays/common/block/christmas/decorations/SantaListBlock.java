@@ -36,8 +36,6 @@ public class SantaListBlock extends WallDecorationBlock implements ChristmasBloc
     public static final String CHAT_NAUGHTY = "chat.happyholidays.santa_list.naughty";
     public static final String CHAT_NAUGHTY_MAX = "chat.happyholidays.santa_list.max_naughty";
 
-    public static final String BLOCK_ID = "santa_list";
-
     public static final Properties BLOCK_PROPERTIES =
             BlockBehaviour.Properties
                     .of(Material.WOOL)

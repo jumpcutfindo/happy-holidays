@@ -16,18 +16,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
 public class BaseGingerbreadWall extends WallBlock implements Soggifiable, ChristmasBlock {
-    public static final String DOUGH_BLOCK_ID = "gingerbread_dough_wall";
-    public static final String COOKED_BLOCK_ID = "gingerbread_wall";
-    public static final String SOGGY_BLOCK_ID = "soggy_gingerbread_wall";
-
-    public static final String DOUGH_BRICKS_ID = "gingerbread_dough_brick_wall";
-    public static final String COOKED_BRICKS_ID = "gingerbread_brick_wall";
-    public static final String SOGGY_BRICKS_ID = "soggy_gingerbread_brick_wall";
-
-    public static final String DOUGH_TILES_ID = "gingerbread_dough_tile_wall";
-    public static final String COOKED_TILES_ID = "gingerbread_tile_wall";
-    public static final String SOGGY_TILES_ID = "soggy_gingerbread_tile_wall";
-
     public Supplier<BlockState> soggySupplier;
     public BaseGingerbreadWall(Properties blockProperties) {
         super(blockProperties);

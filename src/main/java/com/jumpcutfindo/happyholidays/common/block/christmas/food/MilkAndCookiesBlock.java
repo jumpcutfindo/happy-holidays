@@ -18,8 +18,6 @@ public class MilkAndCookiesBlock extends ChristmasFoodBlock {
 
     public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, MAX_BITES);
 
-    public static final String BLOCK_ID = "milk_and_cookies";
-
     public static final Properties BLOCK_PROPERTIES =
             BlockBehaviour.Properties
                     .of(Material.GLASS)

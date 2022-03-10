@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -13,8 +12,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BabyPresentOrnamentBlock extends DecorationBlock implements ChristmasBlock, LegendaryOrnament {
-    public static final String BLOCK_ID = "baby_present_ornament";
-
     public BabyPresentOrnamentBlock() {
         super();
     }

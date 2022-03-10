@@ -29,7 +29,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
 
 public class SnowGlobeItem extends ChristmasItem {
-    public static final String ITEM_ID = "snow_globe";
 
     public static final String MESSAGE_WEATHER_MAXED = "chat.happyholidays.snow_globe.weather_maxed";
     public static final String MESSAGE_WEATHER_RAIN_TO_THUNDER = "chat.happyholidays.snow_globe.weather_rain_to_thunder";

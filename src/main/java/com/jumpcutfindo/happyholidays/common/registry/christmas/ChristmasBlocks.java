@@ -3,47 +3,47 @@ package com.jumpcutfindo.happyholidays.common.registry.christmas;
 import java.util.function.Supplier;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneSlabBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneStairBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneWallBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneSlabBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneStairBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneWallBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.PresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AlphabetOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasWreathBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.FrostBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.SantaListBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BaubleOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BigBaubleOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasBellBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasLightBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.TinselBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AdultPresentOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BabyPresentOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.CandyCaneOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ElderPresentOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.GingerbreadManOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.GrinchOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.NutcrackerOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.SantaElfOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.HeadOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.food.MilkAndCookiesBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.BaseGingerbreadBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.BaseGingerbreadSlabBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.BaseGingerbreadStairBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.BaseGingerbreadWall;
+import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneSlabBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneStairBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneWallBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ExplosivePresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneSlabBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneStairBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneWallBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.GiftWrapperBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.MusicBoxBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.WalnutPlantBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.ExplosivePresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AdultPresentOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AlphabetOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BabyPresentOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BaubleOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BigBaubleOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.CandyCaneOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasBellBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasLightBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasWreathBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ElderPresentOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.FrostBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.GingerbreadManOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.GrinchOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.HeadOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.NutcrackerOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.SantaElfOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.SantaListBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.TinselBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.food.MilkAndCookiesBlock;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
 import net.minecraft.world.level.block.Block;
@@ -67,363 +67,363 @@ public class ChristmasBlocks {
 
     // Presents
     public static final RegistryObject<Block> BABY_PRESENT =
-            BLOCKS.register(PresentBlock.BABY_BLOCK_ID, () -> new PresentBlock(PresentBlock.BABY_SHAPE));
+            BLOCKS.register("baby_present", () -> new PresentBlock(PresentBlock.BABY_SHAPE));
     public static final RegistryObject<Block> ADULT_PRESENT =
-            BLOCKS.register(PresentBlock.ADULT_BLOCK_ID, () -> new PresentBlock(PresentBlock.ADULT_SHAPE));
+            BLOCKS.register("adult_present", () -> new PresentBlock(PresentBlock.ADULT_SHAPE));
     public static final RegistryObject<Block> ELDER_PRESENT =
-            BLOCKS.register(PresentBlock.ELDER_BLOCK_ID, () -> new PresentBlock(PresentBlock.ELDER_SHAPE));
+            BLOCKS.register("elder_present", () -> new PresentBlock(PresentBlock.ELDER_SHAPE));
 
     public static final RegistryObject<Block> EXPLOSIVE_PRESENT =
-            BLOCKS.register(ExplosivePresentBlock.BLOCK_ID, ExplosivePresentBlock::new);
+            BLOCKS.register("explosive_present", ExplosivePresentBlock::new);
 
     // Baubles
     public static final RegistryObject<Block> RED_BAUBLE =
-            BLOCKS.register(BaubleOrnamentBlock.RED_BAUBLE_ID, BaubleOrnamentBlock::new);
+            BLOCKS.register("red_bauble", BaubleOrnamentBlock::new);
     public static final RegistryObject<Block> BLUE_BAUBLE =
-            BLOCKS.register(BaubleOrnamentBlock.BLUE_BAUBLE_ID, BaubleOrnamentBlock::new);
+            BLOCKS.register("blue_bauble", BaubleOrnamentBlock::new);
     public static final RegistryObject<Block> YELLOW_BAUBLE =
-            BLOCKS.register(BaubleOrnamentBlock.YELLOW_BAUBLE_ID, BaubleOrnamentBlock::new);
+            BLOCKS.register("yellow_bauble", BaubleOrnamentBlock::new);
     public static final RegistryObject<Block> GREEN_BAUBLE =
-            BLOCKS.register(BaubleOrnamentBlock.GREEN_BAUBLE_ID, BaubleOrnamentBlock::new);
+            BLOCKS.register("green_bauble", BaubleOrnamentBlock::new);
     public static final RegistryObject<Block> GOLD_BAUBLE =
-            BLOCKS.register(BaubleOrnamentBlock.GOLD_BAUBLE_ID, BaubleOrnamentBlock::new);
+            BLOCKS.register("gold_bauble", BaubleOrnamentBlock::new);
     public static final RegistryObject<Block> SILVER_BAUBLE =
-            BLOCKS.register(BaubleOrnamentBlock.SILVER_BAUBLE_ID, BaubleOrnamentBlock::new);
+            BLOCKS.register("silver_bauble", BaubleOrnamentBlock::new);
 
     // Big Baubles
     public static final RegistryObject<Block> BIG_RED_BAUBLE =
-            BLOCKS.register(BigBaubleOrnamentBlock.BIG_RED_BAUBLE_ID, BigBaubleOrnamentBlock::new);
+            BLOCKS.register("big_red_bauble", BigBaubleOrnamentBlock::new);
     public static final RegistryObject<Block> BIG_BLUE_BAUBLE =
-            BLOCKS.register(BigBaubleOrnamentBlock.BIG_BLUE_BAUBLE_ID, BigBaubleOrnamentBlock::new);
+            BLOCKS.register("big_blue_bauble", BigBaubleOrnamentBlock::new);
     public static final RegistryObject<Block> BIG_YELLOW_BAUBLE =
-            BLOCKS.register(BigBaubleOrnamentBlock.BIG_YELLOW_BAUBLE_ID, BigBaubleOrnamentBlock::new);
+            BLOCKS.register("big_yellow_bauble", BigBaubleOrnamentBlock::new);
     public static final RegistryObject<Block> BIG_GREEN_BAUBLE =
-            BLOCKS.register(BigBaubleOrnamentBlock.BIG_GREEN_BAUBLE_ID, BigBaubleOrnamentBlock::new);
+            BLOCKS.register("big_green_bauble", BigBaubleOrnamentBlock::new);
     public static final RegistryObject<Block> BIG_GOLD_BAUBLE =
-            BLOCKS.register(BigBaubleOrnamentBlock.BIG_GOLD_BAUBLE_ID, BigBaubleOrnamentBlock::new);
+            BLOCKS.register("big_gold_bauble", BigBaubleOrnamentBlock::new);
     public static final RegistryObject<Block> BIG_SILVER_BAUBLE =
-            BLOCKS.register(BigBaubleOrnamentBlock.BIG_SILVER_BAUBLE_ID, BigBaubleOrnamentBlock::new);
+            BLOCKS.register("big_silver_bauble", BigBaubleOrnamentBlock::new);
 
     // Tinsels
     public static final RegistryObject<Block> RED_TINSEL =
-            BLOCKS.register(TinselBlock.RED_TINSEL_ID, TinselBlock::new);
+            BLOCKS.register("red_tinsel", TinselBlock::new);
     public static final RegistryObject<Block> BLUE_TINSEL =
-            BLOCKS.register(TinselBlock.BLUE_TINSEL_ID, TinselBlock::new);
+            BLOCKS.register("blue_tinsel", TinselBlock::new);
     public static final RegistryObject<Block> YELLOW_TINSEL =
-            BLOCKS.register(TinselBlock.YELLOW_TINSEL_ID, TinselBlock::new);
+            BLOCKS.register("yellow_tinsel", TinselBlock::new);
     public static final RegistryObject<Block> GREEN_TINSEL =
-            BLOCKS.register(TinselBlock.GREEN_TINSEL_ID, TinselBlock::new);
+            BLOCKS.register("green_tinsel", TinselBlock::new);
     public static final RegistryObject<Block> GOLD_TINSEL =
-            BLOCKS.register(TinselBlock.GOLD_TINSEL_ID, TinselBlock::new);
+            BLOCKS.register("gold_tinsel", TinselBlock::new);
     public static final RegistryObject<Block> SILVER_TINSEL =
-            BLOCKS.register(TinselBlock.SILVER_TINSEL_ID, TinselBlock::new);
+            BLOCKS.register("silver_tinsel", TinselBlock::new);
 
     // Christmas Lights
     public static final RegistryObject<Block> RED_CHRISTMAS_LIGHTS =
-            BLOCKS.register(ChristmasLightBlock.RED_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+            BLOCKS.register("red_christmas_lights", ChristmasLightBlock::new);
     public static final RegistryObject<Block> BLUE_CHRISTMAS_LIGHTS =
-            BLOCKS.register(ChristmasLightBlock.BLUE_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+            BLOCKS.register("blue_christmas_lights", ChristmasLightBlock::new);
     public static final RegistryObject<Block> YELLOW_CHRISTMAS_LIGHTS =
-            BLOCKS.register(ChristmasLightBlock.YELLOW_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+            BLOCKS.register("yellow_christmas_lights", ChristmasLightBlock::new);
     public static final RegistryObject<Block> GREEN_CHRISTMAS_LIGHTS =
-            BLOCKS.register(ChristmasLightBlock.GREEN_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+            BLOCKS.register("green_christmas_lights", ChristmasLightBlock::new);
     public static final RegistryObject<Block> GOLD_CHRISTMAS_LIGHTS =
-            BLOCKS.register(ChristmasLightBlock.GOLD_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+            BLOCKS.register("gold_christmas_lights", ChristmasLightBlock::new);
     public static final RegistryObject<Block> SILVER_CHRISTMAS_LIGHTS =
-            BLOCKS.register(ChristmasLightBlock.SILVER_CHRISTMAS_LIGHTS_ID, ChristmasLightBlock::new);
+            BLOCKS.register("silver_christmas_lights", ChristmasLightBlock::new);
 
     // Bells
     public static final RegistryObject<Block> RED_CHRISTMAS_BELLS =
-            BLOCKS.register(ChristmasBellBlock.RED_BELLS_ID, ChristmasBellBlock::new);
+            BLOCKS.register("red_christmas_bells", ChristmasBellBlock::new);
     public static final RegistryObject<Block> BLUE_CHRISTMAS_BELLS =
-            BLOCKS.register(ChristmasBellBlock.BLUE_BELLS_ID, ChristmasBellBlock::new);
+            BLOCKS.register("blue_christmas_bells", ChristmasBellBlock::new);
     public static final RegistryObject<Block> YELLOW_CHRISTMAS_BELLS =
-            BLOCKS.register(ChristmasBellBlock.YELLOW_BELLS_ID, ChristmasBellBlock::new);
+            BLOCKS.register("yellow_christmas_bells", ChristmasBellBlock::new);
     public static final RegistryObject<Block> GREEN_CHRISTMAS_BELLS =
-            BLOCKS.register(ChristmasBellBlock.GREEN_BELLS_ID, ChristmasBellBlock::new);
+            BLOCKS.register("green_christmas_bells", ChristmasBellBlock::new);
     public static final RegistryObject<Block> GOLD_CHRISTMAS_BELLS =
-            BLOCKS.register(ChristmasBellBlock.GOLD_BELLS_ID, ChristmasBellBlock::new);
+            BLOCKS.register("gold_christmas_bells", ChristmasBellBlock::new);
     public static final RegistryObject<Block> SILVER_CHRISTMAS_BELLS =
-            BLOCKS.register(ChristmasBellBlock.SILVER_BELLS_ID, ChristmasBellBlock::new);
+            BLOCKS.register("silver_christmas_bells", ChristmasBellBlock::new);
 
     // Head Ornaments
     public static final RegistryObject<Block> CREEPER_HEAD_ORNAMENT =
-            BLOCKS.register(HeadOrnamentBlock.CREEPER_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+            BLOCKS.register("creeper_head_ornament", HeadOrnamentBlock::new);
     public static final RegistryObject<Block> SKELETON_HEAD_ORNAMENT =
-            BLOCKS.register(HeadOrnamentBlock.SKELETON_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+            BLOCKS.register("skeleton_head_ornament", HeadOrnamentBlock::new);
     public static final RegistryObject<Block> WITHER_SKELETON_HEAD_ORNAMENT =
-            BLOCKS.register(HeadOrnamentBlock.WITHER_SKELETON_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+            BLOCKS.register("wither_skeleton_head_ornament", HeadOrnamentBlock::new);
     public static final RegistryObject<Block> ZOMBIE_HEAD_ORNAMENT =
-            BLOCKS.register(HeadOrnamentBlock.ZOMBIE_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+            BLOCKS.register("zombie_head_ornament", HeadOrnamentBlock::new);
     public static final RegistryObject<Block> DROWNED_HEAD_ORNAMENT =
-            BLOCKS.register(HeadOrnamentBlock.DROWNED_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+            BLOCKS.register("drowned_head_ornament", HeadOrnamentBlock::new);
     public static final RegistryObject<Block> BLAZE_HEAD_ORNAMENT =
-            BLOCKS.register(HeadOrnamentBlock.BLAZE_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+            BLOCKS.register("blaze_head_ornament", HeadOrnamentBlock::new);
     public static final RegistryObject<Block> GHAST_HEAD_ORNAMENT =
-            BLOCKS.register(HeadOrnamentBlock.GHAST_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+            BLOCKS.register("ghast_head_ornament", HeadOrnamentBlock::new);
     public static final RegistryObject<Block> PHANTOM_HEAD_ORNAMENT =
-            BLOCKS.register(HeadOrnamentBlock.PHANTOM_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+            BLOCKS.register("phantom_head_ornament", HeadOrnamentBlock::new);
     public static final RegistryObject<Block> PIG_HEAD_ORNAMENT =
-            BLOCKS.register(HeadOrnamentBlock.PIG_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+            BLOCKS.register("pig_head_ornament", HeadOrnamentBlock::new);
     public static final RegistryObject<Block> COW_HEAD_ORNAMENT =
-            BLOCKS.register(HeadOrnamentBlock.COW_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+            BLOCKS.register("cow_head_ornament", HeadOrnamentBlock::new);
     public static final RegistryObject<Block> CHICKEN_HEAD_ORNAMENT =
-            BLOCKS.register(HeadOrnamentBlock.CHICKEN_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+            BLOCKS.register("chicken_head_ornament", HeadOrnamentBlock::new);
     public static final RegistryObject<Block> SHEEP_HEAD_ORNAMENT =
-            BLOCKS.register(HeadOrnamentBlock.SHEEP_HEAD_ORNAMENT_ID, HeadOrnamentBlock::new);
+            BLOCKS.register("sheep_head_ornament", HeadOrnamentBlock::new);
 
     // Stockings
     public static final RegistryObject<Block> RED_STOCKING =
-            BLOCKS.register(StockingBlock.RED_STOCKING_ID, StockingBlock::new);
+            BLOCKS.register("red_stocking", StockingBlock::new);
     public static final RegistryObject<Block> BLUE_STOCKING =
-            BLOCKS.register(StockingBlock.BLUE_STOCKING_ID, StockingBlock::new);
+            BLOCKS.register("blue_stocking", StockingBlock::new);
     public static final RegistryObject<Block> YELLOW_STOCKING =
-            BLOCKS.register(StockingBlock.YELLOW_STOCKING_ID, StockingBlock::new);
+            BLOCKS.register("yellow_stocking", StockingBlock::new);
     public static final RegistryObject<Block> GREEN_STOCKING =
-            BLOCKS.register(StockingBlock.GREEN_STOCKING_ID, StockingBlock::new);
+            BLOCKS.register("green_stocking", StockingBlock::new);
     public static final RegistryObject<Block> GOLD_STOCKING =
-            BLOCKS.register(StockingBlock.GOLD_STOCKING_ID, StockingBlock::new);
+            BLOCKS.register("gold_stocking", StockingBlock::new);
     public static final RegistryObject<Block> SILVER_STOCKING =
-            BLOCKS.register(StockingBlock.SILVER_STOCKING_ID, StockingBlock::new);
+            BLOCKS.register("silver_stocking", StockingBlock::new);
 
     // Alphabets
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_TEMPLATE =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_TEMPLATE_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_template", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_A =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_A_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_a", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_B =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_B_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_b", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_C =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_C_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_c", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_D =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_D_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_d", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_E =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_E_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_e", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_F =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_F_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_f", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_G =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_G_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_g", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_H =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_H_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_h", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_I =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_I_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_i", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_J =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_J_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_j", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_K =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_K_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_k", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_L =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_L_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_l", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_M =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_M_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_m", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_N =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_N_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_n", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_O =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_O_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_o", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_P =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_P_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_p", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_Q =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_Q_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_q", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_R =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_R_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_r", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_S =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_S_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_s", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_T =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_T_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_t", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_U =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_U_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_u", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_V =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_V_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_v", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_W =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_W_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_w", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_X =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_X_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_x", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_Y =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_Y_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_y", AlphabetOrnamentBlock::new);
     public static final RegistryObject<Block> ALPHABET_ORNAMENT_Z =
-            BLOCKS.register(AlphabetOrnamentBlock.ALPHABET_Z_ID, AlphabetOrnamentBlock::new);
+            BLOCKS.register("alphabet_ornament_z", AlphabetOrnamentBlock::new);
 
     // Decoration blocks
     public static final RegistryObject<Block> CHRISTMAS_WREATH =
-            BLOCKS.register(ChristmasWreathBlock.BLOCK_ID, ChristmasWreathBlock::new);
+            BLOCKS.register("christmas_wreath", ChristmasWreathBlock::new);
     public static final RegistryObject<Block> FROST =
-            BLOCKS.register(FrostBlock.BLOCK_ID, FrostBlock::new);
+            BLOCKS.register("frost", FrostBlock::new);
     public static final RegistryObject<Block> SANTA_LIST =
-            BLOCKS.register(SantaListBlock.BLOCK_ID, SantaListBlock::new);
+            BLOCKS.register("santa_list", SantaListBlock::new);
 
     // Legendary ornaments
     public static final RegistryObject<Block> BABY_PRESENT_ORNAMENT =
-            BLOCKS.register(BabyPresentOrnamentBlock.BLOCK_ID, BabyPresentOrnamentBlock::new);
+            BLOCKS.register("baby_present_ornament", BabyPresentOrnamentBlock::new);
     public static final RegistryObject<Block> ADULT_PRESENT_ORNAMENT =
-            BLOCKS.register(AdultPresentOrnamentBlock.BLOCK_ID, AdultPresentOrnamentBlock::new);
+            BLOCKS.register("adult_present_ornament", AdultPresentOrnamentBlock::new);
     public static final RegistryObject<Block> ELDER_PRESENT_ORNAMENT =
-            BLOCKS.register(ElderPresentOrnamentBlock.BLOCK_ID, ElderPresentOrnamentBlock::new);
+            BLOCKS.register("elder_present_ornament", ElderPresentOrnamentBlock::new);
     public static final RegistryObject<Block> CANDY_CANE_ORNAMENT =
-            BLOCKS.register(CandyCaneOrnamentBlock.BLOCK_ID, CandyCaneOrnamentBlock::new);
+            BLOCKS.register("candy_cane_ornament", CandyCaneOrnamentBlock::new);
     public static final RegistryObject<Block> SANTA_ELF_ORNAMENT =
-            BLOCKS.register(SantaElfOrnamentBlock.BLOCK_ID, SantaElfOrnamentBlock::new);
+            BLOCKS.register("santa_elf_ornament", SantaElfOrnamentBlock::new);
     public static final RegistryObject<Block> GINGERBREAD_MAN_ORNAMENT =
-            BLOCKS.register(GingerbreadManOrnamentBlock.BLOCK_ID, GingerbreadManOrnamentBlock::new);
+            BLOCKS.register("gingerbread_man_ornament", GingerbreadManOrnamentBlock::new);
     public static final RegistryObject<Block> GRINCH_ORNAMENT =
-            BLOCKS.register(GrinchOrnamentBlock.BLOCK_ID, GrinchOrnamentBlock::new);
+            BLOCKS.register("grinch_ornament", GrinchOrnamentBlock::new);
     public static final RegistryObject<Block> NUTCRACKER_ORNAMENT =
-            BLOCKS.register(NutcrackerOrnamentBlock.BLOCK_ID, NutcrackerOrnamentBlock::new);
+            BLOCKS.register("nutcracker_ornament", NutcrackerOrnamentBlock::new);
 
     // Gingerbread blocks
     public static final RegistryObject<Block> GINGERBREAD_DOUGH_BLOCK =
-            BLOCKS.register(BaseGingerbreadBlock.DOUGH_BLOCK_ID, BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_dough_block", BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_DOUGH_STAIRS =
-            BLOCKS.register(BaseGingerbreadStairBlock.DOUGH_BLOCK_ID, BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_dough_stairs", BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_DOUGH_SLAB =
-            BLOCKS.register(BaseGingerbreadSlabBlock.DOUGH_BLOCK_ID, BaseGingerbreadSlabBlock.Builder.create().dough().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_dough_slab", BaseGingerbreadSlabBlock.Builder.create().dough().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<WallBlock> GINGERBREAD_DOUGH_WALL =
-            BLOCKS.register(BaseGingerbreadWall.DOUGH_BLOCK_ID, BaseGingerbreadWall.Builder.create().dough().soggyResult(BaseGingerbreadWall.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_dough_wall", BaseGingerbreadWall.Builder.create().dough().soggyResult(BaseGingerbreadWall.SoggyResult.BLOCK).build());
 
     public static final RegistryObject<Block> GINGERBREAD_DOUGH_BRICKS =
-            BLOCKS.register(BaseGingerbreadBlock.DOUGH_BRICKS_ID, BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_dough_bricks", BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.BRICKS).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_DOUGH_BRICK_STAIRS =
-            BLOCKS.register(BaseGingerbreadStairBlock.DOUGH_BRICKS_ID, BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_dough_brick_stairs", BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BRICKS).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_DOUGH_BRICK_SLAB =
-            BLOCKS.register(BaseGingerbreadSlabBlock.DOUGH_BRICKS_ID, BaseGingerbreadSlabBlock.Builder.create().dough().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_dough_brick_slab", BaseGingerbreadSlabBlock.Builder.create().dough().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BRICKS).build());
     public static final RegistryObject<WallBlock> GINGERBREAD_DOUGH_BRICK_WALL =
-            BLOCKS.register(BaseGingerbreadWall.DOUGH_BRICKS_ID, BaseGingerbreadWall.Builder.create().dough().soggyResult(BaseGingerbreadWall.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_dough_brick_wall", BaseGingerbreadWall.Builder.create().dough().soggyResult(BaseGingerbreadWall.SoggyResult.BRICKS).build());
 
     public static final RegistryObject<Block> GINGERBREAD_DOUGH_TILES =
-            BLOCKS.register(BaseGingerbreadBlock.DOUGH_TILES_ID, BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_dough_tiles", BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.TILES).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_DOUGH_TILE_STAIRS =
-            BLOCKS.register(BaseGingerbreadStairBlock.DOUGH_TILES_ID, BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_dough_tile_stairs", BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.TILES).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_DOUGH_TILE_SLAB =
-            BLOCKS.register(BaseGingerbreadSlabBlock.DOUGH_TILES_ID, BaseGingerbreadSlabBlock.Builder.create().dough().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_dough_tile_slab", BaseGingerbreadSlabBlock.Builder.create().dough().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.TILES).build());
     public static final RegistryObject<WallBlock> GINGERBREAD_DOUGH_TILE_WALL =
-            BLOCKS.register(BaseGingerbreadWall.DOUGH_TILES_ID, BaseGingerbreadWall.Builder.create().dough().soggyResult(BaseGingerbreadWall.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_dough_tile_wall", BaseGingerbreadWall.Builder.create().dough().soggyResult(BaseGingerbreadWall.SoggyResult.TILES).build());
 
     public static final RegistryObject<Block> GINGERBREAD_BLOCK =
-            BLOCKS.register(BaseGingerbreadBlock.COOKED_BLOCK_ID, BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_block", BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_STAIRS =
-            BLOCKS.register(BaseGingerbreadStairBlock.COOKED_BLOCK_ID, BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_stairs", BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_SLAB =
-            BLOCKS.register(BaseGingerbreadSlabBlock.COOKED_BLOCK_ID, BaseGingerbreadSlabBlock.Builder.create().cooked().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_slab", BaseGingerbreadSlabBlock.Builder.create().cooked().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<WallBlock> GINGERBREAD_WALL =
-            BLOCKS.register(BaseGingerbreadWall.COOKED_BLOCK_ID, BaseGingerbreadWall.Builder.create().cooked().soggyResult(BaseGingerbreadWall.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_wall", BaseGingerbreadWall.Builder.create().cooked().soggyResult(BaseGingerbreadWall.SoggyResult.BLOCK).build());
 
     public static final RegistryObject<Block> GINGERBREAD_BRICKS =
-            BLOCKS.register(BaseGingerbreadBlock.COOKED_BRICKS_ID, BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_bricks", BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.BRICKS).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_BRICK_STAIRS =
-            BLOCKS.register(BaseGingerbreadStairBlock.COOKED_BRICKS_ID, BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_brick_stairs", BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BRICKS).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_BRICK_SLAB =
-            BLOCKS.register(BaseGingerbreadSlabBlock.COOKED_BRICKS_ID, BaseGingerbreadSlabBlock.Builder.create().cooked().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_brick_slab", BaseGingerbreadSlabBlock.Builder.create().cooked().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BRICKS).build());
     public static final RegistryObject<WallBlock> GINGERBREAD_BRICK_WALL =
-            BLOCKS.register(BaseGingerbreadWall.COOKED_BRICKS_ID, BaseGingerbreadWall.Builder.create().cooked().soggyResult(BaseGingerbreadWall.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_brick_wall", BaseGingerbreadWall.Builder.create().cooked().soggyResult(BaseGingerbreadWall.SoggyResult.BRICKS).build());
 
     public static final RegistryObject<Block> GINGERBREAD_TILES =
-            BLOCKS.register(BaseGingerbreadBlock.COOKED_TILES_ID, BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_tiles", BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.TILES).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_TILE_STAIRS =
-            BLOCKS.register(BaseGingerbreadStairBlock.COOKED_TILES_ID, BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_tile_stairs", BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.TILES).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_TILE_SLAB =
-            BLOCKS.register(BaseGingerbreadSlabBlock.COOKED_TILES_ID, BaseGingerbreadSlabBlock.Builder.create().cooked().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_tile_slab", BaseGingerbreadSlabBlock.Builder.create().cooked().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.TILES).build());
     public static final RegistryObject<WallBlock> GINGERBREAD_TILE_WALL =
-            BLOCKS.register(BaseGingerbreadWall.COOKED_TILES_ID, BaseGingerbreadWall.Builder.create().cooked().soggyResult(BaseGingerbreadWall.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_tile_wall", BaseGingerbreadWall.Builder.create().cooked().soggyResult(BaseGingerbreadWall.SoggyResult.TILES).build());
 
     public static final RegistryObject<Block> SOGGY_GINGERBREAD_BLOCK =
-            BLOCKS.register(BaseGingerbreadBlock.SOGGY_BLOCK_ID, BaseGingerbreadBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_block", BaseGingerbreadBlock.Builder.create().soggy().build());
     public static final RegistryObject<StairBlock> SOGGY_GINGERBREAD_STAIRS =
-            BLOCKS.register(BaseGingerbreadStairBlock.SOGGY_BLOCK_ID, BaseGingerbreadStairBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_stairs", BaseGingerbreadStairBlock.Builder.create().soggy().build());
     public static final RegistryObject<SlabBlock> SOGGY_GINGERBREAD_SLAB =
-            BLOCKS.register(BaseGingerbreadSlabBlock.SOGGY_BLOCK_ID, BaseGingerbreadSlabBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_slab", BaseGingerbreadSlabBlock.Builder.create().soggy().build());
     public static final RegistryObject<WallBlock> SOGGY_GINGERBREAD_WALL =
-            BLOCKS.register(BaseGingerbreadWall.SOGGY_BLOCK_ID, BaseGingerbreadWall.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_wall", BaseGingerbreadWall.Builder.create().soggy().build());
 
     public static final RegistryObject<Block> SOGGY_GINGERBREAD_BRICKS =
-            BLOCKS.register(BaseGingerbreadBlock.SOGGY_BRICKS_ID, BaseGingerbreadBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_bricks", BaseGingerbreadBlock.Builder.create().soggy().build());
     public static final RegistryObject<StairBlock> SOGGY_GINGERBREAD_BRICK_STAIRS =
-            BLOCKS.register(BaseGingerbreadStairBlock.SOGGY_BRICKS_ID, BaseGingerbreadStairBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_brick_stairs", BaseGingerbreadStairBlock.Builder.create().soggy().build());
     public static final RegistryObject<SlabBlock> SOGGY_GINGERBREAD_BRICK_SLAB =
-            BLOCKS.register(BaseGingerbreadSlabBlock.SOGGY_BRICKS_ID, BaseGingerbreadSlabBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_brick_slab", BaseGingerbreadSlabBlock.Builder.create().soggy().build());
     public static final RegistryObject<WallBlock> SOGGY_GINGERBREAD_BRICK_WALL =
-            BLOCKS.register(BaseGingerbreadWall.SOGGY_BRICKS_ID, BaseGingerbreadWall.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_brick_wall", BaseGingerbreadWall.Builder.create().soggy().build());
 
     public static final RegistryObject<Block> SOGGY_GINGERBREAD_TILES =
-            BLOCKS.register(BaseGingerbreadBlock.SOGGY_TILES_ID, BaseGingerbreadBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_tiles", BaseGingerbreadBlock.Builder.create().soggy().build());
     public static final RegistryObject<StairBlock> SOGGY_GINGERBREAD_TILE_STAIRS =
-            BLOCKS.register(BaseGingerbreadStairBlock.SOGGY_TILES_ID, BaseGingerbreadStairBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_tile_stairs", BaseGingerbreadStairBlock.Builder.create().soggy().build());
     public static final RegistryObject<SlabBlock> SOGGY_GINGERBREAD_TILE_SLAB =
-            BLOCKS.register(BaseGingerbreadSlabBlock.SOGGY_TILES_ID, BaseGingerbreadSlabBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_tile_slab", BaseGingerbreadSlabBlock.Builder.create().soggy().build());
     public static final RegistryObject<WallBlock> SOGGY_GINGERBREAD_TILE_WALL =
-            BLOCKS.register(BaseGingerbreadWall.SOGGY_TILES_ID, BaseGingerbreadWall.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_tile_wall", BaseGingerbreadWall.Builder.create().soggy().build());
 
     // Candy cane blocks
     public static final RegistryObject<Block> CANDY_CANE_BLOCK =
-            BLOCKS.register(CandyCaneBlock.BLOCK_ID, CandyCaneBlock::new);
+            BLOCKS.register("candy_cane_block", CandyCaneBlock::new);
     public static final RegistryObject<StairBlock> CANDY_CANE_STAIRS =
-            BLOCKS.register(CandyCaneStairBlock.BLOCK_ID, () -> new CandyCaneStairBlock(supplierOf(CANDY_CANE_BLOCK)));
+            BLOCKS.register("candy_cane_stairs", () -> new CandyCaneStairBlock(supplierOf(CANDY_CANE_BLOCK)));
     public static final RegistryObject<SlabBlock> CANDY_CANE_SLAB =
-            BLOCKS.register(CandyCaneSlabBlock.BLOCK_ID, CandyCaneSlabBlock::new);
+            BLOCKS.register("candy_cane_slab", CandyCaneSlabBlock::new);
     public static final RegistryObject<WallBlock> CANDY_CANE_WALL =
-            BLOCKS.register(CandyCaneWallBlock.BLOCK_ID, CandyCaneWallBlock::new);
+            BLOCKS.register("candy_cane_wall", CandyCaneWallBlock::new);
 
     public static final RegistryObject<Block> CANDY_CANE_BRICKS =
-            BLOCKS.register(CandyCaneBlock.BRICKS_ID, CandyCaneBlock::new);
+            BLOCKS.register("candy_cane_bricks", CandyCaneBlock::new);
     public static final RegistryObject<StairBlock> CANDY_CANE_BRICK_STAIRS =
-            BLOCKS.register(CandyCaneStairBlock.BRICKS_ID, () -> new CandyCaneStairBlock(supplierOf(CANDY_CANE_BRICKS)));
+            BLOCKS.register("candy_cane_brick_stairs", () -> new CandyCaneStairBlock(supplierOf(CANDY_CANE_BRICKS)));
     public static final RegistryObject<SlabBlock> CANDY_CANE_BRICK_SLAB =
-            BLOCKS.register(CandyCaneSlabBlock.BRICKS_ID, CandyCaneSlabBlock::new);
+            BLOCKS.register("candy_cane_brick_slab", CandyCaneSlabBlock::new);
     public static final RegistryObject<WallBlock> CANDY_CANE_BRICK_WALL =
-            BLOCKS.register(CandyCaneWallBlock.BRICKS_ID, CandyCaneWallBlock::new);
+            BLOCKS.register("candy_cane_brick_wall", CandyCaneWallBlock::new);
 
     public static final RegistryObject<Block> CANDY_CANE_TILES =
-            BLOCKS.register(CandyCaneBlock.TILES_ID, CandyCaneBlock::new);
+            BLOCKS.register("candy_cane_tiles", CandyCaneBlock::new);
     public static final RegistryObject<StairBlock> CANDY_CANE_TILE_STAIRS =
-            BLOCKS.register(CandyCaneStairBlock.TILES_ID, () -> new CandyCaneStairBlock(supplierOf(CANDY_CANE_TILES)));
+            BLOCKS.register("candy_cane_tile_stairs", () -> new CandyCaneStairBlock(supplierOf(CANDY_CANE_TILES)));
     public static final RegistryObject<SlabBlock> CANDY_CANE_TILE_SLAB =
-            BLOCKS.register(CandyCaneSlabBlock.TILES_ID, CandyCaneSlabBlock::new);
+            BLOCKS.register("candy_cane_tile_slab", CandyCaneSlabBlock::new);
     public static final RegistryObject<WallBlock> CANDY_CANE_TILE_WALL =
-            BLOCKS.register(CandyCaneWallBlock.TILES_ID, CandyCaneWallBlock::new);
+            BLOCKS.register("candy_cane_tile_wall", CandyCaneWallBlock::new);
 
     public static final RegistryObject<Block> FESTIVE_CANDY_CANE_BLOCK =
-            BLOCKS.register(FestiveCandyCaneBlock.BLOCK_ID, FestiveCandyCaneBlock::new);
+            BLOCKS.register("festive_candy_cane_block", FestiveCandyCaneBlock::new);
     public static final RegistryObject<StairBlock> FESTIVE_CANDY_CANE_STAIRS =
-            BLOCKS.register(FestiveCandyCaneStairBlock.BLOCK_ID, () -> new FestiveCandyCaneStairBlock(supplierOf(FESTIVE_CANDY_CANE_BLOCK)));
+            BLOCKS.register("festive_candy_cane_stairs", () -> new FestiveCandyCaneStairBlock(supplierOf(FESTIVE_CANDY_CANE_BLOCK)));
     public static final RegistryObject<SlabBlock> FESTIVE_CANDY_CANE_SLAB =
-            BLOCKS.register(FestiveCandyCaneSlabBlock.BLOCK_ID, FestiveCandyCaneSlabBlock::new);
+            BLOCKS.register("festive_candy_cane_slab", FestiveCandyCaneSlabBlock::new);
     public static final RegistryObject<WallBlock> FESTIVE_CANDY_CANE_WALL =
-            BLOCKS.register(FestiveCandyCaneWallBlock.BLOCK_ID, FestiveCandyCaneWallBlock::new);
+            BLOCKS.register("festive_candy_cane_wall", FestiveCandyCaneWallBlock::new);
 
     public static final RegistryObject<Block> FESTIVE_CANDY_CANE_BRICKS =
-            BLOCKS.register(FestiveCandyCaneBlock.BRICKS_ID, FestiveCandyCaneBlock::new);
+            BLOCKS.register("festive_candy_cane_bricks", FestiveCandyCaneBlock::new);
     public static final RegistryObject<StairBlock> FESTIVE_CANDY_CANE_BRICK_STAIRS =
-            BLOCKS.register(FestiveCandyCaneStairBlock.BRICKS_ID, () -> new FestiveCandyCaneStairBlock(supplierOf(FESTIVE_CANDY_CANE_BRICKS)));
+            BLOCKS.register("festive_candy_cane_brick_stairs", () -> new FestiveCandyCaneStairBlock(supplierOf(FESTIVE_CANDY_CANE_BRICKS)));
     public static final RegistryObject<SlabBlock> FESTIVE_CANDY_CANE_BRICK_SLAB =
-            BLOCKS.register(FestiveCandyCaneSlabBlock.BRICKS_ID, FestiveCandyCaneSlabBlock::new);
+            BLOCKS.register("festive_candy_cane_brick_slab", FestiveCandyCaneSlabBlock::new);
     public static final RegistryObject<WallBlock> FESTIVE_CANDY_CANE_BRICK_WALL =
-            BLOCKS.register(FestiveCandyCaneWallBlock.BRICKS_ID, FestiveCandyCaneWallBlock::new);
+            BLOCKS.register("festive_candy_cane_brick_wall", FestiveCandyCaneWallBlock::new);
 
     public static final RegistryObject<Block> FESTIVE_CANDY_CANE_TILES =
-            BLOCKS.register(FestiveCandyCaneBlock.TILES_ID, FestiveCandyCaneBlock::new);
+            BLOCKS.register("festive_candy_cane_tiles", FestiveCandyCaneBlock::new);
     public static final RegistryObject<StairBlock> FESTIVE_CANDY_CANE_TILE_STAIRS =
-            BLOCKS.register(FestiveCandyCaneStairBlock.TILES_ID, () -> new FestiveCandyCaneStairBlock(supplierOf(FESTIVE_CANDY_CANE_TILES)));
+            BLOCKS.register("festive_candy_cane_tile_stairs", () -> new FestiveCandyCaneStairBlock(supplierOf(FESTIVE_CANDY_CANE_TILES)));
     public static final RegistryObject<SlabBlock> FESTIVE_CANDY_CANE_TILE_SLAB =
-            BLOCKS.register(FestiveCandyCaneSlabBlock.TILES_ID, FestiveCandyCaneSlabBlock::new);
+            BLOCKS.register("festive_candy_cane_tile_slab", FestiveCandyCaneSlabBlock::new);
     public static final RegistryObject<WallBlock> FESTIVE_CANDY_CANE_TILE_WALL =
-            BLOCKS.register(FestiveCandyCaneWallBlock.TILES_ID, FestiveCandyCaneWallBlock::new);
+            BLOCKS.register("festive_candy_cane_tile_wall", FestiveCandyCaneWallBlock::new);
 
     // Miscellaneous blocks
     public static final RegistryObject<Block> CHRISTMAS_STAR =
-            BLOCKS.register(ChristmasStarBlock.BLOCK_ID, ChristmasStarBlock::new);
+            BLOCKS.register("christmas_star", ChristmasStarBlock::new);
     public static final RegistryObject<Block> MUSIC_BOX =
-            BLOCKS.register(MusicBoxBlock.BLOCK_ID, MusicBoxBlock::new);
+            BLOCKS.register("music_box", MusicBoxBlock::new);
     public static final RegistryObject<Block> GIFT_WRAPPING_STATION =
-            BLOCKS.register(GiftWrapperBlock.BLOCK_ID, GiftWrapperBlock::new);
+            BLOCKS.register("gift_wrapping_station", GiftWrapperBlock::new);
     public static final RegistryObject<Block> WALNUT_PLANT =
-            BLOCKS.register(WalnutPlantBlock.BLOCK_ID, WalnutPlantBlock::new);
+            BLOCKS.register("walnut_plant", WalnutPlantBlock::new);
 
     // Christmas foods
     public static final RegistryObject<Block> MILK_AND_COOKIES =
-            BLOCKS.register(MilkAndCookiesBlock.BLOCK_ID, MilkAndCookiesBlock::new);
+            BLOCKS.register("milk_and_cookies", MilkAndCookiesBlock::new);
     public static final RegistryObject<Block> LOG_CAKE =
-            BLOCKS.register(LogCakeBlock.BLOCK_ID, LogCakeBlock::new);
+            BLOCKS.register("log_cake", LogCakeBlock::new);
     public static final RegistryObject<Block> CHRISTMAS_HAM =
-            BLOCKS.register(ChristmasHamBlock.BLOCK_ID, ChristmasHamBlock::new);
+            BLOCKS.register("christmas_ham", ChristmasHamBlock::new);
     public static final RegistryObject<Block> CHRISTMAS_PUDDING =
-            BLOCKS.register(ChristmasPuddingBlock.BLOCK_ID, ChristmasPuddingBlock::new);
+            BLOCKS.register("christmas_pudding", ChristmasPuddingBlock::new);
 
     public static boolean isInfluencedByStar(Block block) {
         return ChristmasTags.Blocks.STAR_AFFECTED_BLOCKS.contains(block);

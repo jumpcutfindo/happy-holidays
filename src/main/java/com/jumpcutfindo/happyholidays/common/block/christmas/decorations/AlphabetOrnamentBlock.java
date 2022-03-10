@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -30,34 +29,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class AlphabetOrnamentBlock extends DecorationBlock implements BasicOrnament, ChristmasBlock {
     public static final EnumProperty<ChristmasBlockColor> BLOCK_COLOR = EnumProperty.create("christmas_color",
             ChristmasBlockColor.class);
-
-    public static final String ALPHABET_TEMPLATE_ID = "alphabet_ornament_template";
-    public static final String ALPHABET_A_ID = "alphabet_ornament_a";
-    public static final String ALPHABET_B_ID = "alphabet_ornament_b";
-    public static final String ALPHABET_C_ID = "alphabet_ornament_c";
-    public static final String ALPHABET_D_ID = "alphabet_ornament_d";
-    public static final String ALPHABET_E_ID = "alphabet_ornament_e";
-    public static final String ALPHABET_F_ID = "alphabet_ornament_f";
-    public static final String ALPHABET_G_ID = "alphabet_ornament_g";
-    public static final String ALPHABET_H_ID = "alphabet_ornament_h";
-    public static final String ALPHABET_I_ID = "alphabet_ornament_i";
-    public static final String ALPHABET_J_ID = "alphabet_ornament_j";
-    public static final String ALPHABET_K_ID = "alphabet_ornament_k";
-    public static final String ALPHABET_L_ID = "alphabet_ornament_l";
-    public static final String ALPHABET_M_ID = "alphabet_ornament_m";
-    public static final String ALPHABET_N_ID = "alphabet_ornament_n";
-    public static final String ALPHABET_O_ID = "alphabet_ornament_o";
-    public static final String ALPHABET_P_ID = "alphabet_ornament_p";
-    public static final String ALPHABET_Q_ID = "alphabet_ornament_q";
-    public static final String ALPHABET_R_ID = "alphabet_ornament_r";
-    public static final String ALPHABET_S_ID = "alphabet_ornament_s";
-    public static final String ALPHABET_T_ID = "alphabet_ornament_t";
-    public static final String ALPHABET_U_ID = "alphabet_ornament_u";
-    public static final String ALPHABET_V_ID = "alphabet_ornament_v";
-    public static final String ALPHABET_W_ID = "alphabet_ornament_w";
-    public static final String ALPHABET_X_ID = "alphabet_ornament_x";
-    public static final String ALPHABET_Y_ID = "alphabet_ornament_y";
-    public static final String ALPHABET_Z_ID = "alphabet_ornament_z";
 
     public AlphabetOrnamentBlock() {
         super();

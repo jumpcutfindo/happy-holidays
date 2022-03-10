@@ -12,8 +12,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class GingerbreadManOrnamentBlock extends DecorationBlock implements ChristmasBlock, LegendaryOrnament {
-    public static final String BLOCK_ID = "gingerbread_man_ornament";
-
     public GingerbreadManOrnamentBlock() {
         super();
     }

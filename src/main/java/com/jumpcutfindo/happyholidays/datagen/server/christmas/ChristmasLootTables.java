@@ -1,7 +1,6 @@
 package com.jumpcutfindo.happyholidays.datagen.server.christmas;
 
 import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.WalnutPlantBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.GingerbreadPersonEntity;
@@ -339,7 +338,7 @@ public class ChristmasLootTables extends BaseLootTableProvider {
 
         ResourceLocation registryName = presentBlock.getRegistryName();
 
-        if (registryName.equals(resourceOf(PresentBlock.BABY_BLOCK_ID))) {
+        if (registryName.equals(resourceOf("baby_present"))) {
             scrapCount = 1;
             ornamentItem = ChristmasItems.BABY_PRESENT_ORNAMENT.get();
             presentsPool = LootPool.lootPool()
@@ -360,7 +359,7 @@ public class ChristmasLootTables extends BaseLootTableProvider {
                     .add(LootItem.lootTableItem(ChristmasItems.SNOW_GLOBE.get()).setWeight(10).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).apply(SetItemDamageFunction.setDamage(ConstantValue.exactly(0))))
                     .add(LootItem.lootTableItem(ChristmasItems.SWAGGER_STICK.get()).setWeight(10).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .when(InvertedLootItemCondition.invert(silkTouchCondition));
-        } else if (registryName.equals(resourceOf(PresentBlock.ADULT_BLOCK_ID))) {
+        } else if (registryName.equals(resourceOf("adult_present"))) {
             scrapCount = 2;
             ornamentItem = ChristmasItems.ADULT_PRESENT_ORNAMENT.get();
             presentsPool = LootPool.lootPool()
@@ -381,7 +380,7 @@ public class ChristmasLootTables extends BaseLootTableProvider {
                     .add(LootItem.lootTableItem(ChristmasItems.SNOW_GLOBE.get()).setWeight(20).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))).apply(SetItemDamageFunction.setDamage(ConstantValue.exactly(0))))
                     .add(LootItem.lootTableItem(ChristmasItems.SWAGGER_STICK.get()).setWeight(20).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                     .when(InvertedLootItemCondition.invert(silkTouchCondition));
-        } else if (registryName.equals(resourceOf(PresentBlock.ELDER_BLOCK_ID))) {
+        } else if (registryName.equals(resourceOf("elder_present"))) {
             scrapCount = 3;
             ornamentItem = ChristmasItems.ELDER_PRESENT_ORNAMENT.get();
             presentsPool = LootPool.lootPool()

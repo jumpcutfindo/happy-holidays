@@ -9,10 +9,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class FestiveCandyCaneBlock extends CandyCaneBlock {
-    public static final String BLOCK_ID = "festive_candy_cane_block";
-    public static final String BRICKS_ID = "festive_candy_cane_bricks";
-    public static final String TILES_ID = "festive_candy_cane_tiles";
-
     public static final EnumProperty<FestiveCandyShape> CANDY_SHAPE = EnumProperty.create("candy_shape", FestiveCandyShape.class);
 
     public FestiveCandyCaneBlock() {

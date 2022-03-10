@@ -6,7 +6,6 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import net.minecraft.world.item.Item;
 
 public class ThreadItem extends ChristmasItem {
-    public static final String ITEM_ID = "thread";
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()

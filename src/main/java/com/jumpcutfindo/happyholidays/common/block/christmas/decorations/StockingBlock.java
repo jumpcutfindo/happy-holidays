@@ -12,7 +12,6 @@ import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.StockingBlockEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
@@ -52,13 +51,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags;
 
 public class StockingBlock extends WallDecorationBlock implements ChristmasBlock, EntityBlock {
-    public static final String RED_STOCKING_ID = "red_stocking";
-    public static final String BLUE_STOCKING_ID = "blue_stocking";
-    public static final String YELLOW_STOCKING_ID = "yellow_stocking";
-    public static final String GREEN_STOCKING_ID = "green_stocking";
-    public static final String GOLD_STOCKING_ID = "gold_stocking";
-    public static final String SILVER_STOCKING_ID = "silver_stocking";
-
     public static final BooleanProperty ENCHANTED = BooleanProperty.create("enchanted");
     public static final BooleanProperty FILLED = BooleanProperty.create("filled");
 

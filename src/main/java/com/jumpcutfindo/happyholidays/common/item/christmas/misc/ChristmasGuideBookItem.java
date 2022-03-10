@@ -13,7 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
 public class ChristmasGuideBookItem extends ChristmasItem {
-    public static final String ITEM_ID = "christmas_guide_book";
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()

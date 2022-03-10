@@ -8,7 +8,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class EnchantedCandyCaneItem extends ChristmasItem {
-    public static final String ITEM_ID = "enchanted_candy_cane";
 
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()

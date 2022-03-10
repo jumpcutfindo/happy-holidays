@@ -35,10 +35,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class FestiveCandyCaneWallBlock extends CandyCaneWallBlock {
-    public static final String BLOCK_ID = "festive_candy_cane_wall";
-    public static final String BRICKS_ID = "festive_candy_cane_brick_wall";
-    public static final String TILES_ID = "festive_candy_cane_tile_wall";
-
     public static final BooleanProperty UP = BlockStateProperties.UP;
     public static final EnumProperty<WallSide> EAST_WALL = BlockStateProperties.EAST_WALL;
     public static final EnumProperty<WallSide> NORTH_WALL = BlockStateProperties.NORTH_WALL;

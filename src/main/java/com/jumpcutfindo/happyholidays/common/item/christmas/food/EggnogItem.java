@@ -15,8 +15,6 @@ import net.minecraft.world.level.Level;
 
 public class EggnogItem extends ChristmasItem {
 
-    public static final String ITEM_ID = "eggnog";
-
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .tab(HappyHolidaysTabs.CHRISTMAS_GROUP)

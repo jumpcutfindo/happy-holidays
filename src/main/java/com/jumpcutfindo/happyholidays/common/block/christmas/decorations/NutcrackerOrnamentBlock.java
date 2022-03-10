@@ -12,8 +12,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class NutcrackerOrnamentBlock extends DecorationBlock implements ChristmasBlock, LegendaryOrnament {
-    public static final String BLOCK_ID = "nutcracker_ornament";
-
     public NutcrackerOrnamentBlock() {
         super();
     }

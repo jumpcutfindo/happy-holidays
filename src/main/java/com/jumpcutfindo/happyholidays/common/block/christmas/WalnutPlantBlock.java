@@ -28,8 +28,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class WalnutPlantBlock extends BushBlock implements BonemealableBlock, ChristmasBlock {
-    public static String BLOCK_ID = "walnut_plant";
-
     public static final Properties BLOCK_PROPERTIES =
             BlockBehaviour.Properties
                     .of(Material.VEGETABLE)

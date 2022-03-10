@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.GiftWrapperBlockEntity;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -38,8 +37,6 @@ import net.minecraftforge.network.NetworkHooks;
 
 public class GiftWrapperBlock extends Block implements EntityBlock, ChristmasBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-
-    public static final String BLOCK_ID = "gift_wrapping_station";
 
     public static final Properties BLOCK_PROPERTIES =
             BlockBehaviour.Properties

@@ -22,7 +22,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 public class ToyPartsRequestItem extends ChristmasItem {
-    public static final String ITEM_ID = "toy_parts_request";
 
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP)

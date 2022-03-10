@@ -10,7 +10,6 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.utils.MathUtils;
 
@@ -40,10 +39,6 @@ public class CandyCaneBlock extends Block implements ChristmasBlock {
 
     public static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
-
-    public static final String BLOCK_ID = "candy_cane_block";
-    public static final String BRICKS_ID = "candy_cane_bricks";
-    public static final String TILES_ID = "candy_cane_tiles";
 
     public static final double ENCHANTED_CANDY_CANE_DROP_BASE_CHANCE = 0.005D;
 

@@ -32,7 +32,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
 public class PatrolOrdersItem extends ChristmasItem {
-    public static final String ITEM_ID = "patrol_orders";
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .tab(HappyHolidaysTabs.CHRISTMAS_GROUP)

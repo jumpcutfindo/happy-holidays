@@ -17,8 +17,6 @@ public class ChristmasHamBlock extends ChristmasFoodBlock {
 
     public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, MAX_BITES - 1);
 
-    public static final String BLOCK_ID = "christmas_ham";
-
     public static final Properties BLOCK_PROPERTIES =
             Properties
                     .of(Material.WOOL)

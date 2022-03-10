@@ -11,7 +11,6 @@ import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasSta
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
@@ -78,21 +77,18 @@ public class PresentBlock extends Block implements SimpleWaterloggedBlock, Chris
     public static final float GROWTH_PROBABILITY = 1.0f / 64.0f;
 
     // Baby Present information
-    public static final String BABY_BLOCK_ID = "baby_present";
     public static final VoxelShape BABY_SHAPE = Shapes.or(
             Block.box(5.0, 0.0, 5.0, 11.0, 4.0, 11.0),
             Block.box(4.5, 4.0, 4.5, 11.5, 5.5 ,11.5)
     );
 
     // Adult Present information
-    public static final String ADULT_BLOCK_ID = "adult_present";
     public static final VoxelShape ADULT_SHAPE = Shapes.or(
             box(4.0, 0.0, 4.0, 12.0, 6.0, 12.0),
             box(3.0, 6.0, 3.0, 13.0, 8.0, 13.0)
     );
 
     // Elder Present information
-    public static final String ELDER_BLOCK_ID = "elder_present";
     public static final VoxelShape ELDER_SHAPE = Shapes.or(
             box(2.0, 0.0, 2.0, 14.0, 8.0, 14.0),
             box(1.0, 8.0, 1.0, 15.0, 11.0, 15.0)

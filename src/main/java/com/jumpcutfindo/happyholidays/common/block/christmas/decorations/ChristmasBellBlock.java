@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -23,13 +22,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ChristmasBellBlock extends DecorationBlock implements ChristmasBlock, BasicOrnament {
-    public static final String RED_BELLS_ID = "red_christmas_bells";
-    public static final String BLUE_BELLS_ID = "blue_christmas_bells";
-    public static final String YELLOW_BELLS_ID = "yellow_christmas_bells";
-    public static final String GREEN_BELLS_ID = "green_christmas_bells";
-    public static final String GOLD_BELLS_ID = "gold_christmas_bells";
-    public static final String SILVER_BELLS_ID = "silver_christmas_bells";
-
     public ChristmasBellBlock() {
         super();
     }

@@ -16,18 +16,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
 public class BaseGingerbreadSlabBlock extends SlabBlock implements Soggifiable, ChristmasBlock {
-    public static final String DOUGH_BLOCK_ID = "gingerbread_dough_slab";
-    public static final String COOKED_BLOCK_ID = "gingerbread_slab";
-    public static final String SOGGY_BLOCK_ID = "soggy_gingerbread_slab";
-
-    public static final String DOUGH_BRICKS_ID = "gingerbread_dough_brick_slab";
-    public static final String COOKED_BRICKS_ID = "gingerbread_brick_slab";
-    public static final String SOGGY_BRICKS_ID = "soggy_gingerbread_brick_slab";
-
-    public static final String DOUGH_TILES_ID = "gingerbread_dough_tile_slab";
-    public static final String COOKED_TILES_ID = "gingerbread_tile_slab";
-    public static final String SOGGY_TILES_ID = "soggy_gingerbread_tile_slab";
-
     public Supplier<BlockState> soggySupplier;
 
     public BaseGingerbreadSlabBlock(Properties blockProperties) {

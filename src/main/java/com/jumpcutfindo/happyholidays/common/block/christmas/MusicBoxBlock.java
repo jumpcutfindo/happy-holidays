@@ -35,8 +35,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 
 public class MusicBoxBlock extends Block implements EntityBlock, ChristmasBlock {
-    public static final String BLOCK_ID = "music_box";
-
     public static final Properties BLOCK_PROPERTIES =
             BlockBehaviour.Properties
                     .of(Material.DECORATION)

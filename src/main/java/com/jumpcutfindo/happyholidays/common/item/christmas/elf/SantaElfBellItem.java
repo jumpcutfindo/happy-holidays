@@ -8,7 +8,6 @@ import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
@@ -37,7 +36,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 
 public class SantaElfBellItem extends ChristmasItem {
-    public static final String ITEM_ID = "santa_elf_bell";
 
     public static final int ITEM_USE_DURATION = 35;
     public static final int ITEM_COOLDOWN = 24000;
@@ -132,7 +130,7 @@ public class SantaElfBellItem extends ChristmasItem {
             if (timeRemaining > 0) {
                 MutableComponent textComponent =
                         new TranslatableComponent(
-                                "item.happyholidays."+ ITEM_ID +".cooldown",
+                                "item.happyholidays."+ "santa_elf_bell" +".cooldown",
                                 StringUtils.convertTicksToString(timeRemaining)
                         );
                 textComponent.withStyle(ChatFormatting.GRAY);

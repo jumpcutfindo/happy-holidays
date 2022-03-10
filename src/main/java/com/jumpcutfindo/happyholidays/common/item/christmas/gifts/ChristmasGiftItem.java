@@ -28,12 +28,6 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.Level;
 
 public class ChristmasGiftItem extends ChristmasItem {
-    public static final String RED_GIFT_ID = "red_christmas_gift";
-    public static final String BLUE_GIFT_ID = "blue_christmas_gift";
-    public static final String YELLOW_GIFT_ID = "yellow_christmas_gift";
-    public static final String GREEN_GIFT_ID = "green_christmas_gift";
-    public static final String GOLD_GIFT_ID = "gold_christmas_gift";
-    public static final String SILVER_GIFT_ID = "silver_christmas_gift";
 
     public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP).stacksTo(1);
 

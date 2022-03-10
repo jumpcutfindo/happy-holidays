@@ -13,8 +13,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ElderPresentOrnamentBlock extends DecorationBlock implements ChristmasBlock, LegendaryOrnament {
-    public static final String BLOCK_ID = "elder_present_ornament";
-
     public static final VoxelShape[][] ORNAMENT_SHAPES = {
             {
                     Block.box(6.0, 0.0, 6.0, 10.0, 3.0, 10.0),

@@ -7,7 +7,6 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import net.minecraft.world.item.ItemStack;
 
 public class EnchantedThreadItem extends ChristmasItem {
-    public static final String ITEM_ID = "enchanted_thread";
 
     private static final Properties ITEM_PROPERTIES =
             new Properties()

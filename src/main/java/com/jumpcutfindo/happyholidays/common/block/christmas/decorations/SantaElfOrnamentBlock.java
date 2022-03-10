@@ -13,8 +13,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SantaElfOrnamentBlock extends DecorationBlock implements ChristmasBlock, LegendaryOrnament {
-    public static final String BLOCK_ID = "santa_elf_ornament";
-
     public SantaElfOrnamentBlock() {
         super();
     }

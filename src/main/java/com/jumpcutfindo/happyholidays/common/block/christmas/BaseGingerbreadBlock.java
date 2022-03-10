@@ -49,18 +49,6 @@ public class BaseGingerbreadBlock extends Block implements Soggifiable, Christma
     public static final Item.Properties ITEM_PROPERITES =
             new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
-    public static final String DOUGH_BLOCK_ID = "gingerbread_dough_block";
-    public static final String COOKED_BLOCK_ID = "gingerbread_block";
-    public static final String SOGGY_BLOCK_ID = "soggy_gingerbread_block";
-
-    public static final String DOUGH_BRICKS_ID = "gingerbread_dough_bricks";
-    public static final String COOKED_BRICKS_ID = "gingerbread_bricks";
-    public static final String SOGGY_BRICKS_ID = "soggy_gingerbread_bricks";
-
-    public static final String DOUGH_TILES_ID = "gingerbread_dough_tiles";
-    public static final String COOKED_TILES_ID = "gingerbread_tiles";
-    public static final String SOGGY_TILES_ID = "soggy_gingerbread_tiles";
-
     public Supplier<BlockState> soggySupplier;
 
     public BaseGingerbreadBlock(BlockBehaviour.Properties blockProperties) {
