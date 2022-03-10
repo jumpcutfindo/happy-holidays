@@ -2,7 +2,6 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.decorations;
 
 import com.jumpcutfindo.happyholidays.common.block.MultifaceDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -11,7 +10,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 
-public class FrostBlock extends MultifaceDecorationBlock implements ChristmasLike, ChristmasBlock {
+public class FrostBlock extends MultifaceDecorationBlock implements ChristmasBlock {
     public static final String BLOCK_ID = "frost";
 
     public static final BlockBehaviour.Properties BLOCK_PROPERTIES =
@@ -29,10 +28,5 @@ public class FrostBlock extends MultifaceDecorationBlock implements ChristmasLik
     @Override
     public void configure() {
         ItemBlockRenderTypes.setRenderLayer(this, RenderType.translucent());
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 }

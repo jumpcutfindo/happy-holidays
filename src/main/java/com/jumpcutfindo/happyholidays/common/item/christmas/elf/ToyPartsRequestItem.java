@@ -33,11 +33,6 @@ public class ToyPartsRequestItem extends ChristmasItem {
     }
 
     @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.UNIQUE;
-    }
-
-    @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level world, List<Component> textComponents, TooltipFlag tooltipFlag) {
         CompoundTag nbt = itemStack.getTag();
 

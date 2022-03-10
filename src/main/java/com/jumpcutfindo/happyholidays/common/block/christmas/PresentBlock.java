@@ -11,7 +11,6 @@ import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasSta
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
@@ -62,7 +61,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 
-public class PresentBlock extends Block implements SimpleWaterloggedBlock, ChristmasBlock, ChristmasLike {
+public class PresentBlock extends Block implements SimpleWaterloggedBlock, ChristmasBlock {
     // Common information
     public static final Properties BLOCK_PROPERTIES =
             BlockBehaviour.Properties
@@ -284,10 +283,5 @@ public class PresentBlock extends Block implements SimpleWaterloggedBlock, Chris
     @Override
     public void configure() {
         ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 }

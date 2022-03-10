@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
@@ -28,7 +27,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 
-public class BaseGingerbreadBlock extends Block implements Soggifiable, ChristmasBlock, ChristmasLike {
+public class BaseGingerbreadBlock extends Block implements Soggifiable, ChristmasBlock {
     public static final BlockBehaviour.Properties DOUGH_PROPERTIES =
             BlockBehaviour.Properties
                     .of(Material.SNOW)
@@ -165,11 +164,6 @@ public class BaseGingerbreadBlock extends Block implements Soggifiable, Christma
 
     @Override
     public void configure() {
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 
     public static class Builder {

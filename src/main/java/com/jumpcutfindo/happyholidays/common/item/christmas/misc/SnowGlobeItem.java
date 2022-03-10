@@ -49,7 +49,7 @@ public class SnowGlobeItem extends ChristmasItem {
                     .durability(MAX_DURABILITY);
 
     public SnowGlobeItem() {
-        super(ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES, ChristmasRarity.LEGENDARY);
     }
 
     @Override
@@ -189,10 +189,5 @@ public class SnowGlobeItem extends ChristmasItem {
     @Override
     public int getUseDuration(ItemStack p_41454_) {
         return 50;
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.LEGENDARY;
     }
 }

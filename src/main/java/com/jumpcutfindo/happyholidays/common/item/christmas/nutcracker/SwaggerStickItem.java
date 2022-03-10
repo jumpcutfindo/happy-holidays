@@ -18,16 +18,11 @@ public class SwaggerStickItem extends ChristmasItem {
             .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public SwaggerStickItem() {
-        super(ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES, ChristmasRarity.LEGENDARY);
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level p_41432_, Player p_41433_, InteractionHand p_41434_) {
         return InteractionResultHolder.success(p_41433_.getItemInHand(p_41434_));
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.LEGENDARY;
     }
 }

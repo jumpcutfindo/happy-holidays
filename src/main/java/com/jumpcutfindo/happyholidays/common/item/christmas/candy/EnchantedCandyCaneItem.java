@@ -19,11 +19,6 @@ public class EnchantedCandyCaneItem extends ChristmasItem {
     }
 
     @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.LEGENDARY;
-    }
-
-    @Override
     public boolean isFoil(ItemStack p_77636_1_) {
         return true;
     }

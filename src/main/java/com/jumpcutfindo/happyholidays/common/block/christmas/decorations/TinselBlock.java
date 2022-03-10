@@ -2,7 +2,6 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.decorations;
 
 import com.jumpcutfindo.happyholidays.common.block.MultifaceDecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -11,7 +10,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 
-public class TinselBlock extends MultifaceDecorationBlock implements ChristmasLike, ChristmasBlock, BasicOrnament {
+public class TinselBlock extends MultifaceDecorationBlock implements ChristmasBlock, BasicOrnament {
     public static final String RED_TINSEL_ID = "red_tinsel";
     public static final String BLUE_TINSEL_ID = "blue_tinsel";
     public static final String YELLOW_TINSEL_ID = "yellow_tinsel";
@@ -34,10 +33,5 @@ public class TinselBlock extends MultifaceDecorationBlock implements ChristmasLi
     @Override
     public void configure() {
         ItemBlockRenderTypes.setRenderLayer(this, RenderType.translucent());
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 }

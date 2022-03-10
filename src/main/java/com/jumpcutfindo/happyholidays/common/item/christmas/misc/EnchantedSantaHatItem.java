@@ -15,12 +15,7 @@ public class EnchantedSantaHatItem extends ChristmasItem {
                     .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public EnchantedSantaHatItem() {
-        super(ITEM_PROPERTIES);
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.LEGENDARY;
+        super(ITEM_PROPERTIES, ChristmasRarity.LEGENDARY);
     }
 
     @Override

@@ -4,7 +4,6 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 
@@ -16,7 +15,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
-public class BaseGingerbreadStairBlock extends StairBlock implements Soggifiable, ChristmasLike, ChristmasBlock {
+public class BaseGingerbreadStairBlock extends StairBlock implements Soggifiable, ChristmasBlock {
     public static final String DOUGH_BLOCK_ID = "gingerbread_dough_stairs";
     public static final String COOKED_BLOCK_ID = "gingerbread_stairs";
     public static final String SOGGY_BLOCK_ID = "soggy_gingerbread_stairs";
@@ -75,11 +74,6 @@ public class BaseGingerbreadStairBlock extends StairBlock implements Soggifiable
 
     @Override
     public void configure() {
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 
     public static class Builder {

@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ChristmasBlockItem extends BlockItem implements ChristmasLike {
+public class ChristmasBlockItem extends BlockItem {
     public Block block;
     public Properties properties;
 
@@ -35,7 +35,7 @@ public class ChristmasBlockItem extends BlockItem implements ChristmasLike {
     @Override
     public Component getName(ItemStack itemStack) {
         TranslatableComponent name = new TranslatableComponent(this.getDescriptionId(itemStack));
-        return ChristmasLike.createStyledComponent(name, getChristmasRarity());
+        return ChristmasItem.createStyledComponent(name, this.christmasRarity);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -43,10 +43,5 @@ public class ChristmasBlockItem extends BlockItem implements ChristmasLike {
         for (String description : tooltipDescriptions) {
             textComponents.add(new TextComponent(description));
         }
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ((ChristmasLike) block).getChristmasRarity();
     }
 }

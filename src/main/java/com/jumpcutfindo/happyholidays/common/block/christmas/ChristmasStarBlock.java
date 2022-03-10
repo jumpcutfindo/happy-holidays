@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
@@ -44,7 +43,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 
-public class ChristmasStarBlock extends Block implements EntityBlock, ChristmasBlock, ChristmasLike {
+public class ChristmasStarBlock extends Block implements EntityBlock, ChristmasBlock {
     public static final EnumProperty<ChristmasStarTier> STAR_TIER = EnumProperty.create("christmas_star_tier",
             ChristmasStarTier.class);
     public static final EnumProperty<Direction.Axis> HORIZONTAL_AXIS = BlockStateProperties.HORIZONTAL_AXIS;
@@ -182,10 +181,5 @@ public class ChristmasStarBlock extends Block implements EntityBlock, ChristmasB
     @Override
     public void configure() {
         ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 }

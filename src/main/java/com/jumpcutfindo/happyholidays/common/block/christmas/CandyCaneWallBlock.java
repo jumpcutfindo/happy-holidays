@@ -1,11 +1,10 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas;
 
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 
 import net.minecraft.world.level.block.WallBlock;
 
-public class CandyCaneWallBlock extends WallBlock implements ChristmasLike, ChristmasBlock {
+public class CandyCaneWallBlock extends WallBlock implements ChristmasBlock {
     public static final String BLOCK_ID = "candy_cane_wall";
     public static final String BRICKS_ID = "candy_cane_brick_wall";
     public static final String TILES_ID = "candy_cane_tile_wall";
@@ -16,10 +15,5 @@ public class CandyCaneWallBlock extends WallBlock implements ChristmasLike, Chri
 
     @Override
     public void configure() {
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 }

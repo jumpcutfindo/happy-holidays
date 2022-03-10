@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.GiftWrapperBlockEntity;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 
@@ -37,7 +36,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 
-public class GiftWrapperBlock extends Block implements EntityBlock, ChristmasBlock, ChristmasLike {
+public class GiftWrapperBlock extends Block implements EntityBlock, ChristmasBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public static final String BLOCK_ID = "gift_wrapping_station";
@@ -113,10 +112,5 @@ public class GiftWrapperBlock extends Block implements EntityBlock, ChristmasBlo
     @Override
     public void configure() {
         ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutoutMipped());
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 }

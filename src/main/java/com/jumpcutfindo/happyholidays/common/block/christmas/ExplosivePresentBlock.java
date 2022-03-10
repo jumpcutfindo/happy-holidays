@@ -3,7 +3,6 @@ package com.jumpcutfindo.happyholidays.common.block.christmas;
 import org.jetbrains.annotations.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.ExplosivePresentEntity;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 
@@ -27,7 +26,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ExplosivePresentBlock extends TntBlock implements ChristmasLike, ChristmasBlock {
+public class ExplosivePresentBlock extends TntBlock implements ChristmasBlock {
     // Explosive Present Block is separated from the other present blocks since it doesn't really behave like a present
     public static final String BLOCK_ID = "explosive_present";
 
@@ -56,11 +55,6 @@ public class ExplosivePresentBlock extends TntBlock implements ChristmasLike, Ch
     @Override
     public void configure() {
         ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 
     @Override

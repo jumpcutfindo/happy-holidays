@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.network.chat.BaseComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -15,16 +16,20 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ChristmasItem extends Item implements ChristmasLike {
+public class ChristmasItem extends Item {
     public final Item.Properties properties;
 
-    public ChristmasRarity christmasRarity = ChristmasRarity.COMMON;
+    public final ChristmasRarity christmasRarity;
     public List<String> tooltipDescriptions;
 
     public ChristmasItem(Item.Properties properties) {
-        super(properties);
+        this(properties, ChristmasRarity.COMMON);
+    }
 
+    public ChristmasItem(Item.Properties properties, ChristmasRarity rarity) {
+        super(properties);
         this.properties = properties;
+        this.christmasRarity = rarity;
 
         this.tooltipDescriptions = new ArrayList<>();
     }
@@ -32,7 +37,7 @@ public class ChristmasItem extends Item implements ChristmasLike {
     @Override
     public Component getName(ItemStack itemStack) {
         TranslatableComponent name = new TranslatableComponent(this.getDescriptionId(itemStack));
-        return ChristmasLike.createStyledComponent(name, getChristmasRarity());
+        return createStyledComponent(name, this.christmasRarity);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -42,8 +47,7 @@ public class ChristmasItem extends Item implements ChristmasLike {
         }
     }
 
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
+    public static Component createStyledComponent(BaseComponent component, ChristmasRarity rarity) {
+        return component.withStyle(rarity.color);
     }
 }

@@ -15,12 +15,7 @@ public class EnchantedThreadItem extends ChristmasItem {
                     .stacksTo(64);
 
     public EnchantedThreadItem() {
-        super(ITEM_PROPERTIES);
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.RARE;
+        super(ITEM_PROPERTIES, ChristmasRarity.RARE);
     }
 
     @Override

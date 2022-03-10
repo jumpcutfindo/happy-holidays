@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
@@ -28,7 +27,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class AlphabetOrnamentBlock extends DecorationBlock implements BasicOrnament, ChristmasLike, ChristmasBlock {
+public class AlphabetOrnamentBlock extends DecorationBlock implements BasicOrnament, ChristmasBlock {
     public static final EnumProperty<ChristmasBlockColor> BLOCK_COLOR = EnumProperty.create("christmas_color",
             ChristmasBlockColor.class);
 
@@ -123,10 +122,5 @@ public class AlphabetOrnamentBlock extends DecorationBlock implements BasicOrnam
     @Override
     public void configure() {
         ItemBlockRenderTypes.setRenderLayer(this, RenderType.translucent());
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 }

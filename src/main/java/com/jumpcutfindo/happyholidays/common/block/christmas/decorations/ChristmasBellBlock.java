@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
@@ -23,7 +22,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ChristmasBellBlock extends DecorationBlock implements ChristmasLike, ChristmasBlock, BasicOrnament {
+public class ChristmasBellBlock extends DecorationBlock implements ChristmasBlock, BasicOrnament {
     public static final String RED_BELLS_ID = "red_christmas_bells";
     public static final String BLUE_BELLS_ID = "blue_christmas_bells";
     public static final String YELLOW_BELLS_ID = "yellow_christmas_bells";
@@ -66,11 +65,6 @@ public class ChristmasBellBlock extends DecorationBlock implements ChristmasLike
     @Override
     public void configure() {
         ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 
     @Override

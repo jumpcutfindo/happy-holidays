@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -12,7 +11,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class CandyCaneOrnamentBlock extends DecorationBlock implements ChristmasLike, ChristmasBlock, LegendaryOrnament {
+public class CandyCaneOrnamentBlock extends DecorationBlock implements ChristmasBlock, LegendaryOrnament {
     public static final String BLOCK_ID = "candy_cane_ornament";
 
     public CandyCaneOrnamentBlock() {
@@ -37,10 +36,5 @@ public class CandyCaneOrnamentBlock extends DecorationBlock implements Christmas
     @Override
     public void configure() {
         ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.LEGENDARY;
     }
 }

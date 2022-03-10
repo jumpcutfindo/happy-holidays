@@ -10,7 +10,6 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.utils.MathUtils;
@@ -33,7 +32,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 
-public class CandyCaneBlock extends Block implements ChristmasLike, ChristmasBlock {
+public class CandyCaneBlock extends Block implements ChristmasBlock {
     public static final Properties BLOCK_PROPERTIES = BlockBehaviour.Properties
             .of(Material.STONE)
             .strength(1.0f)
@@ -113,11 +112,6 @@ public class CandyCaneBlock extends Block implements ChristmasLike, ChristmasBlo
 
     @Override
     public void configure() {
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 
     public static BlockState updateFestiveBlockForPlacement(BlockPlaceContext blockPlaceContext, BlockState expectedBlockState) {

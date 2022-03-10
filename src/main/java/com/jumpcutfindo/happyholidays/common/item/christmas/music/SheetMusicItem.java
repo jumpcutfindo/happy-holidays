@@ -64,7 +64,7 @@ public class SheetMusicItem extends ChristmasItem {
     public ChristmasMusic music;
 
     public SheetMusicItem() {
-        super(ITEM_PROPERTIES);
+        super(ITEM_PROPERTIES, ChristmasRarity.RARE);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -75,11 +75,6 @@ public class SheetMusicItem extends ChristmasItem {
     @OnlyIn(Dist.CLIENT)
     public MutableComponent getDisplayName() {
         return new TranslatableComponent(this.getDescriptionId() + ".desc");
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.RARE;
     }
 
     public SheetMusicItem setMusic(ChristmasMusic music) {

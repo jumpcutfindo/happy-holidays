@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.MusicBoxBlockEntity;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasLike;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
@@ -35,7 +34,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 
-public class MusicBoxBlock extends Block implements EntityBlock, ChristmasBlock, ChristmasLike {
+public class MusicBoxBlock extends Block implements EntityBlock, ChristmasBlock {
     public static final String BLOCK_ID = "music_box";
 
     public static final Properties BLOCK_PROPERTIES =
@@ -124,10 +123,5 @@ public class MusicBoxBlock extends Block implements EntityBlock, ChristmasBlock,
     @Override
     public void configure() {
         ItemBlockRenderTypes.setRenderLayer(this, RenderType.translucent());
-    }
-
-    @Override
-    public ChristmasRarity getChristmasRarity() {
-        return ChristmasRarity.COMMON;
     }
 }
