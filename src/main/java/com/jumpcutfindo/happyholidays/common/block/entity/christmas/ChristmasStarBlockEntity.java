@@ -472,8 +472,8 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
                 double d2 = (Math.random() * 0.1D) + 0.25D;
 
                 double d = Math.random();
-                SimpleParticleType particleType = d < 0.5 ? ChristmasParticles.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
-                        ChristmasParticles.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get();
+                SimpleParticleType particleType = d < 0.5 ? ChristmasParticles.CHRISTMAS_SANTA_GREEN.get() :
+                        ChristmasParticles.CHRISTMAS_SANTA_RED.get();
 
                 ((ServerLevel) level).sendParticles(particleType,
                         blockEntity.getBlockPos().getX() + 0.5D,
@@ -505,7 +505,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
 
             if (blockEntity.isBonusActive() && level.getGameTime() % 80L == 0) {
 
-                ((ServerLevel) level).sendParticles(ChristmasParticles.CHRISTMAS_STAR_PARTICLE.get(),
+                ((ServerLevel) level).sendParticles(ChristmasParticles.CHRISTMAS_STAR.get(),
                         blockEntity.getBlockPos().getX() + 0.5,
                         blockEntity.getBlockPos().getY() + 0.5,
                         blockEntity.getBlockPos().getZ() + 0.5,

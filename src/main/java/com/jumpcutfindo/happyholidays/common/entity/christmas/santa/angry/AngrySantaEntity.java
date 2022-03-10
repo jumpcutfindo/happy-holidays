@@ -345,8 +345,8 @@ public class AngrySantaEntity extends BaseSantaEntity implements Enemy {
         double d2 = (Math.random() * 0.1D) + 0.25D;
 
         double d = Math.random();
-        SimpleParticleType particleType = d < 0.5 ? ChristmasParticles.CHRISTMAS_SANTA_GREEN_SPAWN_PARTICLE.get() :
-                ChristmasParticles.CHRISTMAS_SANTA_RED_SPAWN_PARTICLE.get();
+        SimpleParticleType particleType = d < 0.5 ? ChristmasParticles.CHRISTMAS_SANTA_GREEN.get() :
+                ChristmasParticles.CHRISTMAS_SANTA_RED.get();
 
         ((ServerLevel) this.level).sendParticles(particleType,
                 pos.x,

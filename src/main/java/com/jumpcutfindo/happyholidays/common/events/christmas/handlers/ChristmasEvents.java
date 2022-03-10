@@ -94,7 +94,7 @@ public class ChristmasEvents {
                     double d2 = (double)(playerEntity.getRandom().nextFloat() * 0.1F) + 0.25D;
 
                     SimpleParticleType particleType =
-                            playerEntity.getRandom().nextBoolean() ? ChristmasParticles.CHRISTMAS_MEDIUM_RED_PARTICLE.get() : ChristmasParticles.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get();
+                            playerEntity.getRandom().nextBoolean() ? ChristmasParticles.CHRISTMAS_MEDIUM_RED.get() : ChristmasParticles.CHRISTMAS_MEDIUM_GREEN.get();
 
                     ((ServerLevel) playerEntity.level).sendParticles(particleType,
                             placedBlockPos.getX() + 0.5D,

@@ -1,6 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.particle.christmas.star;
-
-import com.jumpcutfindo.happyholidays.common.particle.christmas.ParticleColor;
+package com.jumpcutfindo.happyholidays.common.particle.christmas;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
@@ -14,7 +12,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class ChristmasStarParticle extends SimpleAnimatedParticle {
     public static final String PARTICLE_ID = "christmas_star_particle";
-    public static final ParticleColor STAR_PARTICLE_COLOUR = ParticleColor.GOLD;
+    public static final ChristmasParticleColor STAR_PARTICLE_COLOUR = ChristmasParticleColor.GOLD;
 
     public ChristmasStarParticle(ClientLevel p_106531_, double p_106532_, double p_106533_, double p_106534_,
                            double p_106535_, double p_106536_, double p_106537_, SpriteSet p_106538_) {

@@ -68,7 +68,7 @@ public class PatrolRouteRenderingHandler {
         addCounter();
     }
     private static void spawnStartPointParticles(Level level, BlockPos pos) {
-        level.addParticle(ChristmasParticles.CHRISTMAS_MEDIUM_RED_PARTICLE.get(), pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, 0.0D, 0.02D, 0.0D);
+        level.addParticle(ChristmasParticles.CHRISTMAS_MEDIUM_RED.get(), pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, 0.0D, 0.02D, 0.0D);
     }
 
     private static void spawnPrimaryPointParticles(Level level, BlockPos pos) {
@@ -80,7 +80,7 @@ public class PatrolRouteRenderingHandler {
     }
 
     private static void spawnCurrentPointParticles(Level level, BlockPos pos) {
-        level.addParticle(ChristmasParticles.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get(), pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, 0.0D, 0.02D, 0.0D);
+        level.addParticle(ChristmasParticles.CHRISTMAS_MEDIUM_GREEN.get(), pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, 0.0D, 0.02D, 0.0D);
     }
 
     private static void addCounter() {
