@@ -7,7 +7,7 @@ import javax.annotation.Nullable;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
-import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
+import com.jumpcutfindo.happyholidays.client.sound.christmas.MusicBoxSound;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;

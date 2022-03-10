@@ -6,8 +6,8 @@ import java.util.UUID;
 import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.MusicBoxBlockEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
-import com.jumpcutfindo.happyholidays.common.sound.christmas.MusicBoxSound;
-import com.jumpcutfindo.happyholidays.common.sound.christmas.SantaSummonSound;
+import com.jumpcutfindo.happyholidays.client.sound.christmas.MusicBoxSound;
+import com.jumpcutfindo.happyholidays.client.sound.christmas.SantaSummonSound;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
