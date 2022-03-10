@@ -20,14 +20,20 @@ public class ChristmasBlockItem extends BlockItem {
     public Block block;
     public Properties properties;
 
-    public ChristmasRarity christmasRarity = ChristmasRarity.COMMON;
+    public final ChristmasRarity christmasRarity;
     public List<String> tooltipDescriptions;
 
     public ChristmasBlockItem(Block block, Properties properties) {
+        this(block, properties, ChristmasRarity.COMMON);
+    }
+
+    public ChristmasBlockItem(Block block, Properties properties, ChristmasRarity rarity) {
         super(block, properties);
 
         this.block = block;
         this.properties = properties;
+
+        this.christmasRarity = rarity;
 
         this.tooltipDescriptions = new ArrayList<>();
     }
