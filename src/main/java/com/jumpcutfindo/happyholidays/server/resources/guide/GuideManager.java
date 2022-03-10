@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.client.guide;
+package com.jumpcutfindo.happyholidays.server.resources.guide;
 
 import java.io.IOException;
 import java.io.InputStream;
