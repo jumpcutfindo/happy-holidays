@@ -1,9 +1,9 @@
 package com.jumpcutfindo.happyholidays.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.network.christmas.MusicBoxPacket;
-import com.jumpcutfindo.happyholidays.common.network.christmas.NutcrackerPacket;
-import com.jumpcutfindo.happyholidays.common.network.christmas.SummonSantaPacket;
+import com.jumpcutfindo.happyholidays.network.christmas.MusicBoxPacket;
+import com.jumpcutfindo.happyholidays.network.christmas.NutcrackerPacket;
+import com.jumpcutfindo.happyholidays.network.christmas.SummonSantaPacket;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

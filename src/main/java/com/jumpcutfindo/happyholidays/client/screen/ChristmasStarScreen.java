@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.client.screen;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.inventory.christmas.ChristmasStarContainer;
-import com.jumpcutfindo.happyholidays.common.network.christmas.SummonSantaPacket;
+import com.jumpcutfindo.happyholidays.network.christmas.SummonSantaPacket;
 import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
 import com.jumpcutfindo.happyholidays.handlers.PacketHandler;
 import com.mojang.blaze3d.systems.RenderSystem;

@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.client.screen;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.inventory.christmas.NutcrackerContainer;
-import com.jumpcutfindo.happyholidays.common.network.christmas.NutcrackerPacket;
+import com.jumpcutfindo.happyholidays.network.christmas.NutcrackerPacket;
 import com.jumpcutfindo.happyholidays.handlers.PacketHandler;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

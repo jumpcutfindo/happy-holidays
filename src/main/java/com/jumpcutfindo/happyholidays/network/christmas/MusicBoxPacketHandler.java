@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.network.christmas;
+package com.jumpcutfindo.happyholidays.network.christmas;
 
 import java.util.function.Supplier;
 
