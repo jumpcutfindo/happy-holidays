@@ -1,10 +1,10 @@
 package com.jumpcutfindo.happyholidays.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.client.screen.ChristmasStarScreen;
-import com.jumpcutfindo.happyholidays.client.screen.GiftWrapperScreen;
-import com.jumpcutfindo.happyholidays.client.screen.MusicBoxScreen;
-import com.jumpcutfindo.happyholidays.client.screen.NutcrackerInventoryScreen;
+import com.jumpcutfindo.happyholidays.client.screen.christmas.ChristmasStarScreen;
+import com.jumpcutfindo.happyholidays.client.screen.christmas.GiftWrapperScreen;
+import com.jumpcutfindo.happyholidays.client.screen.christmas.MusicBoxScreen;
+import com.jumpcutfindo.happyholidays.client.screen.christmas.NutcrackerInventoryScreen;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasContainers;
 
 import net.minecraft.client.gui.screens.MenuScreens;

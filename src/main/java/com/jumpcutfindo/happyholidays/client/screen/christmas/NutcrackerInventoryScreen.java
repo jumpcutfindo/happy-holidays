@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.client.screen;
+package com.jumpcutfindo.happyholidays.client.screen.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.inventory.christmas.NutcrackerContainer;
