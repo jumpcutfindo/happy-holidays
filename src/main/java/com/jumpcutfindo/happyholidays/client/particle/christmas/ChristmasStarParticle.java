@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.particle.christmas;
+package com.jumpcutfindo.happyholidays.client.particle.christmas;
 
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;

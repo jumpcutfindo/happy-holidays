@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.particle.christmas;
+package com.jumpcutfindo.happyholidays.client.particle.christmas;
 
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 

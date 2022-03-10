@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.particle.christmas;
+package com.jumpcutfindo.happyholidays.client.particle.christmas;
 
 public enum ChristmasParticleColor {
     RED(16711680),

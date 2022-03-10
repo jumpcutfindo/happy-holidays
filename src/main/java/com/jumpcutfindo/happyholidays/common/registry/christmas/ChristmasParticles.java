@@ -1,9 +1,9 @@
 package com.jumpcutfindo.happyholidays.common.registry.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.particle.christmas.ChristmasParticle;
-import com.jumpcutfindo.happyholidays.common.particle.christmas.ChristmasStarParticle;
-import com.jumpcutfindo.happyholidays.common.particle.christmas.SantaSpawnParticle;
+import com.jumpcutfindo.happyholidays.client.particle.christmas.ChristmasParticle;
+import com.jumpcutfindo.happyholidays.client.particle.christmas.ChristmasStarParticle;
+import com.jumpcutfindo.happyholidays.client.particle.christmas.SantaSpawnParticle;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraftforge.registries.DeferredRegister;
