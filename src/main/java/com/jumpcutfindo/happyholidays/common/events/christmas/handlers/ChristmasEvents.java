@@ -14,9 +14,9 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SnowGlobeEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
-import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasStats;
@@ -58,7 +58,7 @@ public class ChristmasEvents {
                 int effectAmplifier = effectInstance.getAmplifier();
                 int nutritionValue = foodItemStack.getItem().getFoodProperties().getNutrition();
 
-                if (ChristmasFoodItem.isChristmasFood(foodItemStack)) {
+                if (ChristmasItems.isFoodItem(foodItemStack)) {
                     playerEntity.getFoodData().eat(
                             (int) ((effectAmplifier + 1) * 0.2 * nutritionValue),
                             0.0f

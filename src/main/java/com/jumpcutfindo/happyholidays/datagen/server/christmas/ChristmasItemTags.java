@@ -80,6 +80,12 @@ public class ChristmasItemTags extends ItemTagsProvider {
                 .add(ChristmasItems.CANDY_CANE.get())
                 .add(ChristmasItems.FESTIVE_CANDY_CANE.get());
 
+        tag(ChristmasTags.Items.LARGE_FOODS)
+                .add(ChristmasItems.CHRISTMAS_HAM.get())
+                .add(ChristmasItems.CHRISTMAS_PUDDING.get())
+                .add(ChristmasItems.MILK_AND_COOKIES.get())
+                .add(ChristmasItems.LOG_CAKE.get());
+
         santaElfRequestables();
     }
 

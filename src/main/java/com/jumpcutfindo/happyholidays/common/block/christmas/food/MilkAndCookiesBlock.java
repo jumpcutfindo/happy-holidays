@@ -2,10 +2,7 @@ package com.jumpcutfindo.happyholidays.common.block.christmas.food;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -30,11 +27,6 @@ public class MilkAndCookiesBlock extends ChristmasFoodBlock {
                     .sound(SoundType.GLASS)
                     .noOcclusion()
                     .randomTicks();
-
-    public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties()
-                    .stacksTo(16)
-                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public MilkAndCookiesBlock() {
         super(BLOCK_PROPERTIES);

@@ -1,18 +1,19 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas.food;
 
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
 
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.UseAnim;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.item.ItemUtils;
-import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.level.Level;
 
-public class EggnogItem extends ChristmasFoodItem {
+public class EggnogItem extends ChristmasItem {
 
     public static final String ITEM_ID = "eggnog";
 

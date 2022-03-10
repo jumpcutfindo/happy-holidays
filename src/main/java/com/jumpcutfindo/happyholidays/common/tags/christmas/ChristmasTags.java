@@ -68,6 +68,8 @@ public class ChristmasTags {
 
         public static final Tags.IOptionalNamedTag<Item> FOODS = itemTag("foods");
 
+        public static final Tags.IOptionalNamedTag<Item> LARGE_FOODS = itemTag("large_foods");
+
         public static final Tags.IOptionalNamedTag<Item> SHEET_MUSIC = itemTag("sheet_music");
 
         public static final Tags.IOptionalNamedTag<Item> GINGERBREAD_BLOCKS = itemTag("gingerbread_blocks");

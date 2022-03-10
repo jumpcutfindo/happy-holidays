@@ -3,62 +3,58 @@ package com.jumpcutfindo.happyholidays.common.registry.christmas;
 import java.util.function.Supplier;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneSlabBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneStairBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneWallBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneSlabBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneStairBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneWallBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AlphabetOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasWreathBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.FrostBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.SantaListBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BasicOrnament;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.LegendaryOrnament;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.RareOrnament;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BaubleOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BigBaubleOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasBellBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasLightBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.TinselBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AdultPresentOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BabyPresentOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.CandyCaneOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ElderPresentOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.GingerbreadManOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.GrinchOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.NutcrackerOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.SantaElfOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.HeadOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.food.MilkAndCookiesBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.BaseGingerbreadBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.BaseGingerbreadSlabBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.BaseGingerbreadStairBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.BaseGingerbreadWall;
+import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneSlabBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneStairBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneWallBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ExplosivePresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneSlabBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneStairBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneWallBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.GiftWrapperBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.MusicBoxBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.ExplosivePresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.PresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AdultPresentOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AlphabetOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BabyPresentOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BasicOrnament;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BaubleOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BigBaubleOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.CandyCaneOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasBellBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasLightBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasWreathBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ElderPresentOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.FrostBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.GingerbreadManOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.GrinchOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.HeadOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.LegendaryOrnament;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.NutcrackerOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.RareOrnament;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.SantaElfOrnamentBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.SantaListBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.TinselBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.food.MilkAndCookiesBlock;
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasBlockItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.candy.CandyCaneItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.candy.EnchantedCandyCaneItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.candy.FestiveCandyCaneItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.dye.DyeBowlItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.elf.SantaElfBellItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.elf.ToyPartsRequestItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodBlockItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.food.ChristmasFoodItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.food.EggnogItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.gingerbread.GingerbreadCookieItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.gingerbread.RawGingerbreadItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.ChristmasGuideBookItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.misc.EnchantedSantaHatItem;
@@ -73,10 +69,14 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.ChristmasOut
 import com.jumpcutfindo.happyholidays.common.item.christmas.thread.EnchantedThreadItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.thread.ThreadItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutItem;
+import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 import com.jumpcutfindo.happyholidays.common.utils.ColourUtils;
 
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -94,11 +94,14 @@ public class ChristmasItems {
             HappyHolidaysMod.MOD_ID
     );
 
+    // Default item properties
+    private static final Item.Properties BIG_FOOD_PROPS = new Item.Properties().stacksTo(16).tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
+
     // ================== ITEMS ==================
     public static final RegistryObject<ChristmasItem> RAW_GINGERBREAD =
             ITEMS.register(RawGingerbreadItem.ITEM_ID, RawGingerbreadItem::new);
-    public static final RegistryObject<ChristmasItem> GINGERBREAD_COOKIE =
-            ITEMS.register(GingerbreadCookieItem.ITEM_ID, GingerbreadCookieItem::new);
+    public static final RegistryObject<Item> GINGERBREAD_COOKIE =
+            registerFood("gingerbread_cookie", new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP).food(new FoodProperties.Builder().nutrition(2).effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100, 1), 0.5f).saturationMod(0.1f).alwaysEat().build()));
     public static final RegistryObject<ChristmasItem> PRESENT_SCRAPS =
             ITEMS.register(PresentScrapItem.ITEM_ID, PresentScrapItem::new);
     public static final RegistryObject<ChristmasItem> HOLLY =
@@ -244,14 +247,14 @@ public class ChristmasItems {
     public static final RegistryObject<ChristmasItem> SHEET_MUSIC_WHITE_CHRISTMAS =
             ITEMS.register(SheetMusicItem.WHITE_CHRISTMAS_ID, () -> new SheetMusicItem().setMusic(ChristmasMusic.WHITE_CHRISTMAS));
 
-    public static final RegistryObject<ChristmasFoodItem> CANDY_CANE =
-            ITEMS.register(CandyCaneItem.ITEM_ID, CandyCaneItem::new);
-    public static final RegistryObject<ChristmasFoodItem> FESTIVE_CANDY_CANE =
-            ITEMS.register(FestiveCandyCaneItem.ITEM_ID, FestiveCandyCaneItem::new);
+    public static final RegistryObject<Item> CANDY_CANE =
+            registerFood("candy_cane", new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP).food(new FoodProperties.Builder().nutrition(2).effect(() -> new MobEffectInstance(MobEffects.JUMP, 100, 1), 0.5f).saturationMod(0.1f).alwaysEat().build()));
+    public static final RegistryObject<Item> FESTIVE_CANDY_CANE =
+            registerFood("festive_candy_cane", new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP).food(new FoodProperties.Builder().nutrition(2).effect(() -> new MobEffectInstance(MobEffects.JUMP, 100, 1), 0.5f).saturationMod(0.1f).alwaysEat().build()));
     public static final RegistryObject<ChristmasItem> ENCHANTED_CANDY_CANE =
             ITEMS.register(EnchantedCandyCaneItem.ITEM_ID, EnchantedCandyCaneItem::new);
 
-    public static final RegistryObject<ChristmasFoodItem> EGGNOG =
+    public static final RegistryObject<Item> EGGNOG =
             ITEMS.register(EggnogItem.ITEM_ID, EggnogItem::new);
 
     public static final RegistryObject<ChristmasItem> RED_CHRISTMAS_GIFT_ITEM =
@@ -614,14 +617,22 @@ public class ChristmasItems {
     public static final RegistryObject<ChristmasBlockItem> GIFT_WRAPPING_STATION =
             ITEMS.register(GiftWrapperBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.GIFT_WRAPPING_STATION, GiftWrapperBlock.ITEM_PROPERTIES));
 
-    public static final RegistryObject<ChristmasBlockItem> MILK_AND_COOKIES =
-            ITEMS.register(MilkAndCookiesBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.MILK_AND_COOKIES, MilkAndCookiesBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> LOG_CAKE =
-            ITEMS.register(LogCakeBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.LOG_CAKE, LogCakeBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CHRISTMAS_HAM =
-            ITEMS.register(ChristmasHamBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.CHRISTMAS_HAM, ChristmasHamBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CHRISTMAS_PUDDING =
-            ITEMS.register(ChristmasPuddingBlock.BLOCK_ID, blockItemOf(ChristmasBlocks.CHRISTMAS_PUDDING, ChristmasPuddingBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> MILK_AND_COOKIES =
+            registerFood(MilkAndCookiesBlock.BLOCK_ID, ChristmasBlocks.MILK_AND_COOKIES.get(), BIG_FOOD_PROPS);
+    public static final RegistryObject<BlockItem> LOG_CAKE =
+            registerFood(LogCakeBlock.BLOCK_ID, ChristmasBlocks.LOG_CAKE.get(), BIG_FOOD_PROPS);
+    public static final RegistryObject<BlockItem> CHRISTMAS_HAM =
+            registerFood(ChristmasHamBlock.BLOCK_ID, ChristmasBlocks.CHRISTMAS_HAM.get(), BIG_FOOD_PROPS);
+    public static final RegistryObject<BlockItem> CHRISTMAS_PUDDING =
+            registerFood(ChristmasPuddingBlock.BLOCK_ID, ChristmasBlocks.CHRISTMAS_PUDDING.get(), BIG_FOOD_PROPS);
+
+    private static RegistryObject<Item> registerFood(String foodId, Item.Properties itemProps) {
+        return ITEMS.register(foodId, () -> new ChristmasItem(itemProps));
+    }
+
+    private static RegistryObject<BlockItem> registerFood(String foodId, Block block, Item.Properties itemProps) {
+        return ITEMS.register(foodId, () -> new ChristmasBlockItem(block, itemProps));
+    }
 
     public static Supplier<ChristmasBlockItem> blockItemOf(RegistryObject<? extends Block> block, Item.Properties properties) {
         return () -> new ChristmasBlockItem(block.get(), properties);
@@ -636,12 +647,11 @@ public class ChristmasItems {
     }
 
     public static boolean isFoodItem(ItemStack itemStack) {
-        return itemStack.getItem() instanceof ChristmasFoodItem
-                || itemStack.getItem() instanceof ChristmasFoodBlockItem;
+        return itemStack.is(ChristmasTags.Items.FOODS);
     }
 
     public static boolean isLargeFoodItem(ItemStack itemStack) {
-        return itemStack.getItem() instanceof ChristmasFoodBlockItem;
+        return itemStack.is(ChristmasTags.Items.LARGE_FOODS);
     }
 
     public static boolean isOrnamentItem(ItemStack item) {
