@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.item.christmas.outfits;
+package com.jumpcutfindo.happyholidays.common.item.outfits;
 
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 

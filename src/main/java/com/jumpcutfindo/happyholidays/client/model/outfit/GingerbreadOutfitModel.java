@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.client.model.outfit;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.OutfitItem;
+import com.jumpcutfindo.happyholidays.common.item.outfits.OutfitItem;
 
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;

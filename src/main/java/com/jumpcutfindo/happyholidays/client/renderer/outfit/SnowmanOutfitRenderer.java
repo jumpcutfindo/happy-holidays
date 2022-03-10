@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.client.renderer.outfit;
 
 import com.jumpcutfindo.happyholidays.client.model.outfit.SnowmanOutfitModel;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.ChristmasOutfits;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasOutfits;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 

@@ -46,7 +46,6 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.PatrolOrdersItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.SwaggerStickItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.ChristmasOutfits;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 import com.jumpcutfindo.happyholidays.common.utils.ColourUtils;
 

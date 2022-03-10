@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.client.renderer.outfit;
 
 import com.jumpcutfindo.happyholidays.client.model.outfit.SantaOutfitModel;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.OutfitItem;
+import com.jumpcutfindo.happyholidays.common.item.outfits.OutfitItem;
 
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 

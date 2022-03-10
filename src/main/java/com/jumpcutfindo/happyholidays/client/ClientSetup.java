@@ -3,7 +3,7 @@ package com.jumpcutfindo.happyholidays.client;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.renderer.outfit.*;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AlphabetBlockColor;
-import com.jumpcutfindo.happyholidays.common.item.christmas.outfits.ChristmasOutfits;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasOutfits;
 import com.jumpcutfindo.happyholidays.client.particle.christmas.ChristmasParticle;
 import com.jumpcutfindo.happyholidays.client.particle.christmas.ChristmasParticleColor;
 import com.jumpcutfindo.happyholidays.client.particle.christmas.ChristmasStarParticle;
