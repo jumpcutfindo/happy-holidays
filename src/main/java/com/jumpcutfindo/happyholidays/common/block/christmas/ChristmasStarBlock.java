@@ -4,8 +4,6 @@ import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
-import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 import com.jumpcutfindo.happyholidays.server.data.SantaSavedData;
@@ -20,7 +18,6 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -66,9 +63,6 @@ public class ChristmasStarBlock extends Block implements EntityBlock, ChristmasB
                         default: return 0;
                         }
                     });
-
-    public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public static final VoxelShape SHAPE = Shapes.or(
             Block.box(4.5, 0.0, 4.5, 11.5, 16.0, 11.5)

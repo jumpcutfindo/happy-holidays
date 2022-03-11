@@ -3,7 +3,6 @@ package com.jumpcutfindo.happyholidays.common.block.christmas;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.GiftWrapperBlockEntity;
-import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -15,7 +14,6 @@ import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -44,9 +42,6 @@ public class GiftWrapperBlock extends Block implements EntityBlock, ChristmasBlo
                     .strength(0.5f)
                     .sound(SoundType.WOOD)
                     .noOcclusion();
-
-    public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public static final VoxelShape SHAPE = Shapes.or(
             Block.box(2.0, 0.0, 2.0, 14.0, 2.0, 14.0),

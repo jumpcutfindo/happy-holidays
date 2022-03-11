@@ -10,7 +10,6 @@ import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.grinch.GrinchEntity;
-import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
@@ -28,7 +27,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -68,11 +66,6 @@ public class PresentBlock extends Block implements SimpleWaterloggedBlock, Chris
                     .strength(0.25f)
                     .sound(SoundType.WOOL)
                     .randomTicks();
-
-    public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties()
-                    .stacksTo(64)
-                    .tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public static final float GROWTH_PROBABILITY = 1.0f / 64.0f;
 

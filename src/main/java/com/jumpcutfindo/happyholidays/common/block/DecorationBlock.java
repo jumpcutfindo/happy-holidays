@@ -48,9 +48,6 @@ public abstract class DecorationBlock extends Block implements SimpleWaterlogged
                     .noOcclusion()
                     .noCollission();
 
-    public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
-
     public DecorationBlock() {
         super(BLOCK_PROPERTIES);
 

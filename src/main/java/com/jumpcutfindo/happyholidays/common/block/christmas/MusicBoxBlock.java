@@ -3,8 +3,6 @@ package com.jumpcutfindo.happyholidays.common.block.christmas;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.MusicBoxBlockEntity;
-import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
@@ -16,7 +14,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
@@ -41,9 +38,6 @@ public class MusicBoxBlock extends Block implements EntityBlock, ChristmasBlock 
                     .strength(0.25f)
                     .sound(SoundType.GLASS)
                     .noOcclusion();
-
-    public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public MusicBoxBlockEntity musicBoxBlockEntity;
 

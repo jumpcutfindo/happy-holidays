@@ -3,49 +3,24 @@ package com.jumpcutfindo.happyholidays.common.registry.christmas;
 import java.util.function.Supplier;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.block.christmas.BaseGingerbreadBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.CandyCaneBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.GiftWrapperBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.MusicBoxBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.PresentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AdultPresentOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.AlphabetOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BabyPresentOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BasicOrnament;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BaubleOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.BigBaubleOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.CandyCaneOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasBellBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasLightBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ChristmasWreathBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.ElderPresentOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.FrostBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.GingerbreadManOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.GrinchOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.HeadOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.LegendaryOrnament;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.NutcrackerOrnamentBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.RareOrnament;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.SantaElfOrnamentBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.SantaListBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.TinselBlock;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasBlockItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
-import com.jumpcutfindo.happyholidays.common.item.christmas.SantaElfBellItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ToyPartsRequestItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.EggnogItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasGuideBookItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
+import com.jumpcutfindo.happyholidays.common.item.christmas.EggnogItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.PatrolOrdersItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.SantaElfBellItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.SnowGlobeItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.SwaggerStickItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ToyPartsRequestItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.PatrolOrdersItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.SwaggerStickItem;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 import com.jumpcutfindo.happyholidays.common.utils.ColourUtils;
 
@@ -264,338 +239,339 @@ public class ChristmasItems {
             registerCustomItem("angry_santa_spawn_egg", spawnEggOf(ChristmasEntities.ANGRY_SANTA::get, ColourUtils.rgbaToInt(112, 24, 31, 255), ColourUtils.rgbaToInt(255, 255, 255, 255)));
 
     // ================== BLOCK ITEMS ==================
-    public static final RegistryObject<ChristmasBlockItem> BABY_PRESENT =
-            ITEMS.register("baby_present", blockItemOf(ChristmasBlocks.BABY_PRESENT, PresentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ADULT_PRESENT =
-            ITEMS.register("adult_present", blockItemOf(ChristmasBlocks.ADULT_PRESENT, PresentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ELDER_PRESENT =
-            ITEMS.register("elder_present", blockItemOf(ChristmasBlocks.ELDER_PRESENT, PresentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> BABY_PRESENT =
+            registerItem("baby_present", ChristmasBlocks.BABY_PRESENT, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ADULT_PRESENT =
+            registerItem("adult_present",ChristmasBlocks.ADULT_PRESENT, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ELDER_PRESENT =
+            registerItem("elder_present", ChristmasBlocks.ELDER_PRESENT, DEFAULT_PROPS);
     public static final RegistryObject<BlockItem> EXPLOSIVE_PRESENT =
-            ITEMS.register("explosive_present", blockItemOf(ChristmasBlocks.EXPLOSIVE_PRESENT, PresentBlock.ITEM_PROPERTIES));
+            registerItem("explosive_present", ChristmasBlocks.EXPLOSIVE_PRESENT, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> RED_BAUBLE =
-            ITEMS.register("red_bauble", blockItemOf(ChristmasBlocks.RED_BAUBLE, BaubleOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BLUE_BAUBLE =
-            ITEMS.register("blue_bauble", blockItemOf(ChristmasBlocks.BLUE_BAUBLE, BaubleOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> YELLOW_BAUBLE =
-            ITEMS.register("yellow_bauble", blockItemOf(ChristmasBlocks.YELLOW_BAUBLE, BaubleOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GREEN_BAUBLE =
-            ITEMS.register("green_bauble", blockItemOf(ChristmasBlocks.GREEN_BAUBLE, BaubleOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GOLD_BAUBLE =
-            ITEMS.register("gold_bauble", blockItemOf(ChristmasBlocks.GOLD_BAUBLE, BaubleOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> SILVER_BAUBLE =
-            ITEMS.register("silver_bauble", blockItemOf(ChristmasBlocks.SILVER_BAUBLE, BaubleOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> RED_BAUBLE =
+            registerItem("red_bauble", ChristmasBlocks.RED_BAUBLE, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> BLUE_BAUBLE =
+            registerItem("blue_bauble", ChristmasBlocks.BLUE_BAUBLE, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> YELLOW_BAUBLE =
+            registerItem("yellow_bauble", ChristmasBlocks.YELLOW_BAUBLE, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GREEN_BAUBLE =
+            registerItem("green_bauble", ChristmasBlocks.GREEN_BAUBLE, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GOLD_BAUBLE =
+            registerItem("gold_bauble", ChristmasBlocks.GOLD_BAUBLE, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SILVER_BAUBLE =
+            registerItem("silver_bauble", ChristmasBlocks.SILVER_BAUBLE, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> BIG_RED_BAUBLE =
-            ITEMS.register("big_red_bauble", blockItemOf(ChristmasBlocks.BIG_RED_BAUBLE, BigBaubleOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BIG_BLUE_BAUBLE =
-            ITEMS.register("big_blue_bauble", blockItemOf(ChristmasBlocks.BIG_BLUE_BAUBLE, BigBaubleOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BIG_YELLOW_BAUBLE =
-            ITEMS.register("big_yellow_bauble", blockItemOf(ChristmasBlocks.BIG_YELLOW_BAUBLE, BigBaubleOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BIG_GREEN_BAUBLE =
-            ITEMS.register("big_green_bauble", blockItemOf(ChristmasBlocks.BIG_GREEN_BAUBLE, BigBaubleOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BIG_GOLD_BAUBLE =
-            ITEMS.register("big_gold_bauble", blockItemOf(ChristmasBlocks.BIG_GOLD_BAUBLE, BigBaubleOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BIG_SILVER_BAUBLE =
-            ITEMS.register("big_silver_bauble", blockItemOf(ChristmasBlocks.BIG_SILVER_BAUBLE, BigBaubleOrnamentBlock.ITEM_PROPERTIES));
 
-    public static final RegistryObject<ChristmasBlockItem> RED_TINSEL =
-            ITEMS.register("red_tinsel", blockItemOf(ChristmasBlocks.RED_TINSEL, TinselBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BLUE_TINSEL =
-            ITEMS.register("blue_tinsel", blockItemOf(ChristmasBlocks.BLUE_TINSEL, TinselBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> YELLOW_TINSEL =
-            ITEMS.register("yellow_tinsel", blockItemOf(ChristmasBlocks.YELLOW_TINSEL, TinselBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GREEN_TINSEL =
-            ITEMS.register("green_tinsel", blockItemOf(ChristmasBlocks.GREEN_TINSEL, TinselBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GOLD_TINSEL =
-            ITEMS.register("gold_tinsel", blockItemOf(ChristmasBlocks.GOLD_TINSEL, TinselBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> SILVER_TINSEL =
-            ITEMS.register("silver_tinsel", blockItemOf(ChristmasBlocks.SILVER_TINSEL, TinselBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> BIG_RED_BAUBLE =
+            registerItem("big_red_bauble", ChristmasBlocks.BIG_RED_BAUBLE, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> BIG_BLUE_BAUBLE =
+            registerItem("big_blue_bauble", ChristmasBlocks.BIG_BLUE_BAUBLE, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> BIG_YELLOW_BAUBLE =
+            registerItem("big_yellow_bauble", ChristmasBlocks.BIG_YELLOW_BAUBLE, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> BIG_GREEN_BAUBLE =
+            registerItem("big_green_bauble", ChristmasBlocks.BIG_GREEN_BAUBLE, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> BIG_GOLD_BAUBLE =
+            registerItem("big_gold_bauble", ChristmasBlocks.BIG_GOLD_BAUBLE, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> BIG_SILVER_BAUBLE =
+            registerItem("big_silver_bauble", ChristmasBlocks.BIG_SILVER_BAUBLE, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> RED_CHRISTMAS_LIGHTS =
-            ITEMS.register("red_christmas_lights", blockItemOf(ChristmasBlocks.RED_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BLUE_CHRISTMAS_LIGHTS =
-            ITEMS.register("blue_christmas_lights", blockItemOf(ChristmasBlocks.BLUE_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> YELLOW_CHRISTMAS_LIGHTS =
-            ITEMS.register("yellow_christmas_lights", blockItemOf(ChristmasBlocks.YELLOW_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GREEN_CHRISTMAS_LIGHTS =
-            ITEMS.register("green_christmas_lights", blockItemOf(ChristmasBlocks.GREEN_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GOLD_CHRISTMAS_LIGHTS =
-            ITEMS.register("gold_christmas_lights", blockItemOf(ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> SILVER_CHRISTMAS_LIGHTS =
-            ITEMS.register("silver_christmas_lights", blockItemOf(ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS, ChristmasLightBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> RED_TINSEL =
+            registerItem("red_tinsel", ChristmasBlocks.RED_TINSEL, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> BLUE_TINSEL =
+            registerItem("blue_tinsel", ChristmasBlocks.BLUE_TINSEL, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> YELLOW_TINSEL =
+            registerItem("yellow_tinsel", ChristmasBlocks.YELLOW_TINSEL, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GREEN_TINSEL =
+            registerItem("green_tinsel", ChristmasBlocks.GREEN_TINSEL, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GOLD_TINSEL =
+            registerItem("gold_tinsel", ChristmasBlocks.GOLD_TINSEL, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SILVER_TINSEL =
+            registerItem("silver_tinsel", ChristmasBlocks.SILVER_TINSEL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> RED_CHRISTMAS_BELLS =
-            ITEMS.register("red_christmas_bells", blockItemOf(ChristmasBlocks.RED_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BLUE_CHRISTMAS_BELLS =
-            ITEMS.register("blue_christmas_bells", blockItemOf(ChristmasBlocks.BLUE_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> YELLOW_CHRISTMAS_BELLS =
-            ITEMS.register("yellow_christmas_bells", blockItemOf(ChristmasBlocks.YELLOW_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GREEN_CHRISTMAS_BELLS =
-            ITEMS.register("green_christmas_bells", blockItemOf(ChristmasBlocks.GREEN_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GOLD_CHRISTMAS_BELLS =
-            ITEMS.register("gold_christmas_bells", blockItemOf(ChristmasBlocks.GOLD_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> SILVER_CHRISTMAS_BELLS =
-            ITEMS.register("silver_christmas_bells", blockItemOf(ChristmasBlocks.SILVER_CHRISTMAS_BELLS, ChristmasBellBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> RED_CHRISTMAS_LIGHTS =
+            registerItem("red_christmas_lights", ChristmasBlocks.RED_CHRISTMAS_LIGHTS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> BLUE_CHRISTMAS_LIGHTS =
+            registerItem("blue_christmas_lights", ChristmasBlocks.BLUE_CHRISTMAS_LIGHTS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> YELLOW_CHRISTMAS_LIGHTS =
+            registerItem("yellow_christmas_lights", ChristmasBlocks.YELLOW_CHRISTMAS_LIGHTS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GREEN_CHRISTMAS_LIGHTS =
+            registerItem("green_christmas_lights", ChristmasBlocks.GREEN_CHRISTMAS_LIGHTS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GOLD_CHRISTMAS_LIGHTS =
+            registerItem("gold_christmas_lights", ChristmasBlocks.GOLD_CHRISTMAS_LIGHTS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SILVER_CHRISTMAS_LIGHTS =
+            registerItem("silver_christmas_lights", ChristmasBlocks.SILVER_CHRISTMAS_LIGHTS, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> CREEPER_HEAD_ORNAMENT =
-            ITEMS.register("creeper_head_ornament", blockItemOf(ChristmasBlocks.CREEPER_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> SKELETON_HEAD_ORNAMENT =
-            ITEMS.register("skeleton_head_ornament", blockItemOf(ChristmasBlocks.SKELETON_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> WITHER_SKELETON_HEAD_ORNAMENT =
-            ITEMS.register("wither_skeleton_head_ornament", blockItemOf(ChristmasBlocks.WITHER_SKELETON_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ZOMBIE_HEAD_ORNAMENT =
-            ITEMS.register("zombie_head_ornament", blockItemOf(ChristmasBlocks.ZOMBIE_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> DROWNED_HEAD_ORNAMENT =
-            ITEMS.register("drowned_head_ornament", blockItemOf(ChristmasBlocks.DROWNED_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BLAZE_HEAD_ORNAMENT =
-            ITEMS.register("blaze_head_ornament", blockItemOf(ChristmasBlocks.BLAZE_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GHAST_HEAD_ORNAMENT =
-            ITEMS.register("ghast_head_ornament", blockItemOf(ChristmasBlocks.GHAST_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> PHANTOM_HEAD_ORNAMENT =
-            ITEMS.register("phantom_head_ornament", blockItemOf(ChristmasBlocks.PHANTOM_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> PIG_HEAD_ORNAMENT =
-            ITEMS.register("pig_head_ornament", blockItemOf(ChristmasBlocks.PIG_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> COW_HEAD_ORNAMENT =
-            ITEMS.register("cow_head_ornament", blockItemOf(ChristmasBlocks.COW_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CHICKEN_HEAD_ORNAMENT =
-            ITEMS.register("chicken_head_ornament", blockItemOf(ChristmasBlocks.CHICKEN_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> SHEEP_HEAD_ORNAMENT =
-            ITEMS.register("sheep_head_ornament", blockItemOf(ChristmasBlocks.SHEEP_HEAD_ORNAMENT, HeadOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> RED_CHRISTMAS_BELLS =
+            registerItem("red_christmas_bells", ChristmasBlocks.RED_CHRISTMAS_BELLS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> BLUE_CHRISTMAS_BELLS =
+            registerItem("blue_christmas_bells", ChristmasBlocks.BLUE_CHRISTMAS_BELLS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> YELLOW_CHRISTMAS_BELLS =
+            registerItem("yellow_christmas_bells", ChristmasBlocks.YELLOW_CHRISTMAS_BELLS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GREEN_CHRISTMAS_BELLS =
+            registerItem("green_christmas_bells", ChristmasBlocks.GREEN_CHRISTMAS_BELLS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GOLD_CHRISTMAS_BELLS =
+            registerItem("gold_christmas_bells", ChristmasBlocks.GOLD_CHRISTMAS_BELLS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SILVER_CHRISTMAS_BELLS =
+            registerItem("silver_christmas_bells", ChristmasBlocks.SILVER_CHRISTMAS_BELLS, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> RED_STOCKING =
-            ITEMS.register("red_stocking", blockItemOf(ChristmasBlocks.RED_STOCKING, StockingBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> BLUE_STOCKING =
-            ITEMS.register("blue_stocking", blockItemOf(ChristmasBlocks.BLUE_STOCKING, StockingBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> YELLOW_STOCKING =
-            ITEMS.register("yellow_stocking", blockItemOf(ChristmasBlocks.YELLOW_STOCKING, StockingBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GREEN_STOCKING =
-            ITEMS.register("green_stocking", blockItemOf(ChristmasBlocks.GREEN_STOCKING, StockingBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GOLD_STOCKING =
-            ITEMS.register("gold_stocking", blockItemOf(ChristmasBlocks.GOLD_STOCKING, StockingBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> SILVER_STOCKING =
-            ITEMS.register("silver_stocking", blockItemOf(ChristmasBlocks.SILVER_STOCKING, StockingBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> CREEPER_HEAD_ORNAMENT =
+            registerItem("creeper_head_ornament", ChristmasBlocks.CREEPER_HEAD_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.RARE);
+    public static final RegistryObject<BlockItem> SKELETON_HEAD_ORNAMENT =
+            registerItem("skeleton_head_ornament", ChristmasBlocks.SKELETON_HEAD_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.RARE);
+    public static final RegistryObject<BlockItem> WITHER_SKELETON_HEAD_ORNAMENT =
+            registerItem("wither_skeleton_head_ornament", ChristmasBlocks.WITHER_SKELETON_HEAD_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.RARE);
+    public static final RegistryObject<BlockItem> ZOMBIE_HEAD_ORNAMENT =
+            registerItem("zombie_head_ornament", ChristmasBlocks.ZOMBIE_HEAD_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.RARE);
+    public static final RegistryObject<BlockItem> DROWNED_HEAD_ORNAMENT =
+            registerItem("drowned_head_ornament", ChristmasBlocks.DROWNED_HEAD_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.RARE);
+    public static final RegistryObject<BlockItem> BLAZE_HEAD_ORNAMENT =
+            registerItem("blaze_head_ornament", ChristmasBlocks.BLAZE_HEAD_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.RARE);
+    public static final RegistryObject<BlockItem> GHAST_HEAD_ORNAMENT =
+            registerItem("ghast_head_ornament", ChristmasBlocks.GHAST_HEAD_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.RARE);
+    public static final RegistryObject<BlockItem> PHANTOM_HEAD_ORNAMENT =
+            registerItem("phantom_head_ornament", ChristmasBlocks.PHANTOM_HEAD_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.RARE);
+    public static final RegistryObject<BlockItem> PIG_HEAD_ORNAMENT =
+            registerItem("pig_head_ornament", ChristmasBlocks.PIG_HEAD_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.RARE);
+    public static final RegistryObject<BlockItem> COW_HEAD_ORNAMENT =
+            registerItem("cow_head_ornament", ChristmasBlocks.COW_HEAD_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.RARE);
+    public static final RegistryObject<BlockItem> CHICKEN_HEAD_ORNAMENT =
+            registerItem("chicken_head_ornament", ChristmasBlocks.CHICKEN_HEAD_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.RARE);
+    public static final RegistryObject<BlockItem> SHEEP_HEAD_ORNAMENT =
+            registerItem("sheep_head_ornament", ChristmasBlocks.SHEEP_HEAD_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.RARE);
 
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_TEMPLATE =
-            ITEMS.register("alphabet_ornament_template", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_TEMPLATE, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_A =
-            ITEMS.register("alphabet_ornament_a", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_A, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_B =
-            ITEMS.register("alphabet_ornament_b", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_B, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_C =
-            ITEMS.register("alphabet_ornament_c", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_C, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_D =
-            ITEMS.register("alphabet_ornament_d", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_D, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_E =
-            ITEMS.register("alphabet_ornament_e", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_E, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_F =
-            ITEMS.register("alphabet_ornament_f", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_F, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_G =
-            ITEMS.register("alphabet_ornament_g", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_G, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_H =
-            ITEMS.register("alphabet_ornament_h", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_H, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_I =
-            ITEMS.register("alphabet_ornament_i", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_I, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_J =
-            ITEMS.register("alphabet_ornament_j", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_J, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_K =
-            ITEMS.register("alphabet_ornament_k", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_K, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_L =
-            ITEMS.register("alphabet_ornament_l", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_L, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_M =
-            ITEMS.register("alphabet_ornament_m", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_M, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_N =
-            ITEMS.register("alphabet_ornament_n", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_N, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_O =
-            ITEMS.register("alphabet_ornament_o", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_O, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_P =
-            ITEMS.register("alphabet_ornament_p", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_P, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_Q =
-            ITEMS.register("alphabet_ornament_q", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_Q, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_R =
-            ITEMS.register("alphabet_ornament_r", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_R, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_S =
-            ITEMS.register("alphabet_ornament_s", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_S, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_T =
-            ITEMS.register("alphabet_ornament_t", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_T, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_U =
-            ITEMS.register("alphabet_ornament_u", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_U, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_V =
-            ITEMS.register("alphabet_ornament_v", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_V, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_W =
-            ITEMS.register("alphabet_ornament_w", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_W, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_X =
-            ITEMS.register("alphabet_ornament_x", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_X, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_Y =
-            ITEMS.register("alphabet_ornament_y", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_Y, AlphabetOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ALPHABET_ORNAMENT_Z =
-            ITEMS.register("alphabet_ornament_z", blockItemOf(ChristmasBlocks.ALPHABET_ORNAMENT_Z, AlphabetOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> RED_STOCKING =
+            registerItem("red_stocking", ChristmasBlocks.RED_STOCKING, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> BLUE_STOCKING =
+            registerItem("blue_stocking", ChristmasBlocks.BLUE_STOCKING, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> YELLOW_STOCKING =
+            registerItem("yellow_stocking", ChristmasBlocks.YELLOW_STOCKING, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GREEN_STOCKING =
+            registerItem("green_stocking", ChristmasBlocks.GREEN_STOCKING, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GOLD_STOCKING =
+            registerItem("gold_stocking", ChristmasBlocks.GOLD_STOCKING, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SILVER_STOCKING =
+            registerItem("silver_stocking", ChristmasBlocks.SILVER_STOCKING, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> CHRISTMAS_WREATH =
-            ITEMS.register("christmas_wreath", blockItemOf(ChristmasBlocks.CHRISTMAS_WREATH, ChristmasWreathBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> FROST =
-            ITEMS.register("frost", blockItemOf(ChristmasBlocks.FROST, FrostBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> SANTA_LIST =
-            ITEMS.register("santa_list", blockItemOf(ChristmasBlocks.SANTA_LIST, SantaListBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_TEMPLATE =
+            registerItem("alphabet_ornament_template", ChristmasBlocks.ALPHABET_ORNAMENT_TEMPLATE, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_A =
+            registerItem("alphabet_ornament_a", ChristmasBlocks.ALPHABET_ORNAMENT_A, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_B =
+            registerItem("alphabet_ornament_b", ChristmasBlocks.ALPHABET_ORNAMENT_B, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_C =
+            registerItem("alphabet_ornament_c", ChristmasBlocks.ALPHABET_ORNAMENT_C, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_D =
+            registerItem("alphabet_ornament_d", ChristmasBlocks.ALPHABET_ORNAMENT_D, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_E =
+            registerItem("alphabet_ornament_e", ChristmasBlocks.ALPHABET_ORNAMENT_E, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_F =
+            registerItem("alphabet_ornament_f", ChristmasBlocks.ALPHABET_ORNAMENT_F, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_G =
+            registerItem("alphabet_ornament_g", ChristmasBlocks.ALPHABET_ORNAMENT_G, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_H =
+            registerItem("alphabet_ornament_h", ChristmasBlocks.ALPHABET_ORNAMENT_H, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_I =
+            registerItem("alphabet_ornament_i", ChristmasBlocks.ALPHABET_ORNAMENT_I, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_J =
+            registerItem("alphabet_ornament_j", ChristmasBlocks.ALPHABET_ORNAMENT_J, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_K =
+            registerItem("alphabet_ornament_k", ChristmasBlocks.ALPHABET_ORNAMENT_K, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_L =
+            registerItem("alphabet_ornament_l", ChristmasBlocks.ALPHABET_ORNAMENT_L, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_M =
+            registerItem("alphabet_ornament_m", ChristmasBlocks.ALPHABET_ORNAMENT_M, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_N =
+            registerItem("alphabet_ornament_n", ChristmasBlocks.ALPHABET_ORNAMENT_N, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_O =
+            registerItem("alphabet_ornament_o", ChristmasBlocks.ALPHABET_ORNAMENT_O, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_P =
+            registerItem("alphabet_ornament_p", ChristmasBlocks.ALPHABET_ORNAMENT_P, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_Q =
+            registerItem("alphabet_ornament_q", ChristmasBlocks.ALPHABET_ORNAMENT_Q, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_R =
+            registerItem("alphabet_ornament_r", ChristmasBlocks.ALPHABET_ORNAMENT_R, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_S =
+            registerItem("alphabet_ornament_s", ChristmasBlocks.ALPHABET_ORNAMENT_S, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_T =
+            registerItem("alphabet_ornament_t", ChristmasBlocks.ALPHABET_ORNAMENT_T, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_U =
+            registerItem("alphabet_ornament_u", ChristmasBlocks.ALPHABET_ORNAMENT_U, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_V =
+            registerItem("alphabet_ornament_v", ChristmasBlocks.ALPHABET_ORNAMENT_V, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_W =
+            registerItem("alphabet_ornament_w", ChristmasBlocks.ALPHABET_ORNAMENT_W, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_X =
+            registerItem("alphabet_ornament_x", ChristmasBlocks.ALPHABET_ORNAMENT_X, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_Y =
+            registerItem("alphabet_ornament_y", ChristmasBlocks.ALPHABET_ORNAMENT_Y, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> ALPHABET_ORNAMENT_Z =
+            registerItem("alphabet_ornament_z", ChristmasBlocks.ALPHABET_ORNAMENT_Z, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> BABY_PRESENT_ORNAMENT =
-            ITEMS.register("baby_present_ornament", blockItemOf(ChristmasBlocks.BABY_PRESENT_ORNAMENT, BabyPresentOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ADULT_PRESENT_ORNAMENT =
-            ITEMS.register("adult_present_ornament", blockItemOf(ChristmasBlocks.ADULT_PRESENT_ORNAMENT, AdultPresentOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> ELDER_PRESENT_ORNAMENT =
-            ITEMS.register("elder_present_ornament", blockItemOf(ChristmasBlocks.ELDER_PRESENT_ORNAMENT, ElderPresentOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_ORNAMENT =
-            ITEMS.register("candy_cane_ornament", blockItemOf(ChristmasBlocks.CANDY_CANE_ORNAMENT, CandyCaneOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> SANTA_ELF_ORNAMENT =
-            ITEMS.register("santa_elf_ornament", blockItemOf(ChristmasBlocks.SANTA_ELF_ORNAMENT, SantaElfOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_MAN_ORNAMENT =
-            ITEMS.register("gingerbread_man_ornament", blockItemOf(ChristmasBlocks.GINGERBREAD_MAN_ORNAMENT, GingerbreadManOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GRINCH_ORNAMENT =
-            ITEMS.register("grinch_ornament", blockItemOf(ChristmasBlocks.GRINCH_ORNAMENT, GrinchOrnamentBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> NUTCRACKER_ORNAMENT =
-            ITEMS.register("nutcracker_ornament", blockItemOf(ChristmasBlocks.NUTCRACKER_ORNAMENT, NutcrackerOrnamentBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> CHRISTMAS_WREATH =
+            registerItem("christmas_wreath", ChristmasBlocks.CHRISTMAS_WREATH, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> FROST =
+            registerItem("frost", ChristmasBlocks.FROST, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SANTA_LIST =
+            registerItem("santa_list", ChristmasBlocks.SANTA_LIST, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_DOUGH_BLOCK =
-            ITEMS.register("gingerbread_dough_block", blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_DOUGH_STAIRS =
-            ITEMS.register("gingerbread_dough_stairs", blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_STAIRS, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_DOUGH_SLAB =
-            ITEMS.register("gingerbread_dough_slab", blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_SLAB, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_DOUGH_WALL =
-            ITEMS.register("gingerbread_dough_wall", blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_WALL, BaseGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> BABY_PRESENT_ORNAMENT =
+            registerItem("baby_present_ornament", ChristmasBlocks.BABY_PRESENT_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.LEGENDARY);
+    public static final RegistryObject<BlockItem> ADULT_PRESENT_ORNAMENT =
+            registerItem("adult_present_ornament", ChristmasBlocks.ADULT_PRESENT_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.LEGENDARY);
+    public static final RegistryObject<BlockItem> ELDER_PRESENT_ORNAMENT =
+            registerItem("elder_present_ornament", ChristmasBlocks.ELDER_PRESENT_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.LEGENDARY);
+    public static final RegistryObject<BlockItem> CANDY_CANE_ORNAMENT =
+            registerItem("candy_cane_ornament", ChristmasBlocks.CANDY_CANE_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.LEGENDARY);
+    public static final RegistryObject<BlockItem> SANTA_ELF_ORNAMENT =
+            registerItem("santa_elf_ornament", ChristmasBlocks.SANTA_ELF_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.LEGENDARY);
+    public static final RegistryObject<BlockItem> GINGERBREAD_MAN_ORNAMENT =
+            registerItem("gingerbread_man_ornament", ChristmasBlocks.GINGERBREAD_MAN_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.LEGENDARY);
+    public static final RegistryObject<BlockItem> GRINCH_ORNAMENT =
+            registerItem("grinch_ornament", ChristmasBlocks.GRINCH_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.LEGENDARY);
+    public static final RegistryObject<BlockItem> NUTCRACKER_ORNAMENT =
+            registerItem("nutcracker_ornament", ChristmasBlocks.NUTCRACKER_ORNAMENT, DEFAULT_PROPS, ChristmasRarity.LEGENDARY);
 
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_DOUGH_BRICKS =
-            ITEMS.register("gingerbread_dough_bricks", blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_BRICKS, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_DOUGH_BRICK_STAIRS =
-            ITEMS.register("gingerbread_dough_brick_stairs", blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_STAIRS, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_DOUGH_BRICK_SLAB =
-            ITEMS.register("gingerbread_dough_brick_slab", blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_SLAB, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_DOUGH_BRICK_WALL =
-            ITEMS.register("gingerbread_dough_brick_wall", blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_WALL, BaseGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_BLOCK =
+            registerItem("gingerbread_dough_block", ChristmasBlocks.GINGERBREAD_DOUGH_BLOCK, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_STAIRS =
+            registerItem("gingerbread_dough_stairs", ChristmasBlocks.GINGERBREAD_DOUGH_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_SLAB =
+            registerItem("gingerbread_dough_slab", ChristmasBlocks.GINGERBREAD_DOUGH_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_WALL =
+            registerItem("gingerbread_dough_wall", ChristmasBlocks.GINGERBREAD_DOUGH_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_DOUGH_TILES =
-            ITEMS.register("gingerbread_dough_tiles", blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_TILES, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_DOUGH_TILE_STAIRS =
-            ITEMS.register("gingerbread_dough_tile_stairs", blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_STAIRS, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_DOUGH_TILE_SLAB =
-            ITEMS.register("gingerbread_dough_tile_slab", blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_SLAB, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_DOUGH_TILE_WALL =
-            ITEMS.register("gingerbread_dough_tile_wall", blockItemOf(ChristmasBlocks.GINGERBREAD_DOUGH_TILE_WALL, BaseGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_BRICKS =
+            registerItem("gingerbread_dough_bricks", ChristmasBlocks.GINGERBREAD_DOUGH_BRICKS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_BRICK_STAIRS =
+            registerItem("gingerbread_dough_brick_stairs", ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_BRICK_SLAB =
+            registerItem("gingerbread_dough_brick_slab", ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_BRICK_WALL =
+            registerItem("gingerbread_dough_brick_wall", ChristmasBlocks.GINGERBREAD_DOUGH_BRICK_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_BLOCK =
-            ITEMS.register("gingerbread_block", blockItemOf(ChristmasBlocks.GINGERBREAD_BLOCK, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_STAIRS =
-            ITEMS.register("gingerbread_stairs", blockItemOf(ChristmasBlocks.GINGERBREAD_STAIRS, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_SLAB =
-            ITEMS.register("gingerbread_slab", blockItemOf(ChristmasBlocks.GINGERBREAD_SLAB, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_WALL =
-            ITEMS.register("gingerbread_wall", blockItemOf(ChristmasBlocks.GINGERBREAD_WALL, BaseGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_TILES =
+            registerItem("gingerbread_dough_tiles", ChristmasBlocks.GINGERBREAD_DOUGH_TILES, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_TILE_STAIRS =
+            registerItem("gingerbread_dough_tile_stairs", ChristmasBlocks.GINGERBREAD_DOUGH_TILE_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_TILE_SLAB =
+            registerItem("gingerbread_dough_tile_slab", ChristmasBlocks.GINGERBREAD_DOUGH_TILE_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_DOUGH_TILE_WALL =
+            registerItem("gingerbread_dough_tile_wall", ChristmasBlocks.GINGERBREAD_DOUGH_TILE_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_BRICKS =
-            ITEMS.register("gingerbread_bricks", blockItemOf(ChristmasBlocks.GINGERBREAD_BRICKS, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_BRICK_STAIRS =
-            ITEMS.register("gingerbread_brick_stairs", blockItemOf(ChristmasBlocks.GINGERBREAD_BRICK_STAIRS, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_BRICK_SLAB =
-            ITEMS.register("gingerbread_brick_slab", blockItemOf(ChristmasBlocks.GINGERBREAD_BRICK_SLAB, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_BRICK_WALL =
-            ITEMS.register("gingerbread_brick_wall", blockItemOf(ChristmasBlocks.GINGERBREAD_BRICK_WALL, BaseGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> GINGERBREAD_BLOCK =
+            registerItem("gingerbread_block", ChristmasBlocks.GINGERBREAD_BLOCK, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_STAIRS =
+            registerItem("gingerbread_stairs", ChristmasBlocks.GINGERBREAD_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_SLAB =
+            registerItem("gingerbread_slab", ChristmasBlocks.GINGERBREAD_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_WALL =
+            registerItem("gingerbread_wall", ChristmasBlocks.GINGERBREAD_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_TILES =
-            ITEMS.register("gingerbread_tiles", blockItemOf(ChristmasBlocks.GINGERBREAD_TILES, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_TILE_STAIRS =
-            ITEMS.register("gingerbread_tile_stairs", blockItemOf(ChristmasBlocks.GINGERBREAD_TILE_STAIRS, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_TILE_SLAB =
-            ITEMS.register("gingerbread_tile_slab", blockItemOf(ChristmasBlocks.GINGERBREAD_TILE_SLAB, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> GINGERBREAD_TILE_WALL =
-            ITEMS.register("gingerbread_tile_wall", blockItemOf(ChristmasBlocks.GINGERBREAD_TILE_WALL, BaseGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> GINGERBREAD_BRICKS =
+            registerItem("gingerbread_bricks", ChristmasBlocks.GINGERBREAD_BRICKS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_BRICK_STAIRS =
+            registerItem("gingerbread_brick_stairs", ChristmasBlocks.GINGERBREAD_BRICK_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_BRICK_SLAB =
+            registerItem("gingerbread_brick_slab", ChristmasBlocks.GINGERBREAD_BRICK_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_BRICK_WALL =
+            registerItem("gingerbread_brick_wall", ChristmasBlocks.GINGERBREAD_BRICK_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_BLOCK =
-            ITEMS.register("soggy_gingerbread_block", blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_STAIRS =
-            ITEMS.register("soggy_gingerbread_stairs", blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_SLAB =
-            ITEMS.register("soggy_gingerbread_slab", blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_SLAB, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_WALL =
-            ITEMS.register("soggy_gingerbread_wall", blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_WALL, BaseGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> GINGERBREAD_TILES =
+            registerItem("gingerbread_tiles", ChristmasBlocks.GINGERBREAD_TILES, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_TILE_STAIRS =
+            registerItem("gingerbread_tile_stairs", ChristmasBlocks.GINGERBREAD_TILE_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_TILE_SLAB =
+            registerItem("gingerbread_tile_slab", ChristmasBlocks.GINGERBREAD_TILE_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GINGERBREAD_TILE_WALL =
+            registerItem("gingerbread_tile_wall", ChristmasBlocks.GINGERBREAD_TILE_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_BRICKS =
-            ITEMS.register("soggy_gingerbread_bricks", blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_BRICK_STAIRS =
-            ITEMS.register("soggy_gingerbread_brick_stairs", blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_STAIRS, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_BRICK_SLAB =
-            ITEMS.register("soggy_gingerbread_brick_slab", blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_SLAB, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_BRICK_WALL =
-            ITEMS.register("soggy_gingerbread_brick_wall", blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_WALL, BaseGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_BLOCK =
+            registerItem("soggy_gingerbread_block", ChristmasBlocks.SOGGY_GINGERBREAD_BLOCK, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_STAIRS =
+            registerItem("soggy_gingerbread_stairs", ChristmasBlocks.SOGGY_GINGERBREAD_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_SLAB =
+            registerItem("soggy_gingerbread_slab", ChristmasBlocks.SOGGY_GINGERBREAD_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_WALL =
+            registerItem("soggy_gingerbread_wall", ChristmasBlocks.SOGGY_GINGERBREAD_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_TILES =
-            ITEMS.register("soggy_gingerbread_tiles", blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_TILES, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_TILE_STAIRS =
-            ITEMS.register("soggy_gingerbread_tile_stairs", blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_STAIRS, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_TILE_SLAB =
-            ITEMS.register("soggy_gingerbread_tile_slab", blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_SLAB, BaseGingerbreadBlock.ITEM_PROPERITES));
-    public static final RegistryObject<ChristmasBlockItem> SOGGY_GINGERBREAD_TILE_WALL =
-            ITEMS.register("soggy_gingerbread_tile_wall", blockItemOf(ChristmasBlocks.SOGGY_GINGERBREAD_TILE_WALL, BaseGingerbreadBlock.ITEM_PROPERITES));
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_BRICKS =
+            registerItem("soggy_gingerbread_bricks", ChristmasBlocks.SOGGY_GINGERBREAD_BRICKS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_BRICK_STAIRS =
+            registerItem("soggy_gingerbread_brick_stairs", ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_BRICK_SLAB =
+            registerItem("soggy_gingerbread_brick_slab", ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_BRICK_WALL =
+            registerItem("soggy_gingerbread_brick_wall", ChristmasBlocks.SOGGY_GINGERBREAD_BRICK_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_BLOCK =
-            ITEMS.register("candy_cane_block", blockItemOf(ChristmasBlocks.CANDY_CANE_BLOCK, CandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_STAIRS =
-            ITEMS.register("candy_cane_stairs", blockItemOf(ChristmasBlocks.CANDY_CANE_STAIRS, CandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_SLAB =
-            ITEMS.register("candy_cane_slab", blockItemOf(ChristmasBlocks.CANDY_CANE_SLAB, CandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_WALL =
-            ITEMS.register("candy_cane_wall", blockItemOf(ChristmasBlocks.CANDY_CANE_WALL, CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_TILES =
+            registerItem("soggy_gingerbread_tiles", ChristmasBlocks.SOGGY_GINGERBREAD_TILES, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_TILE_STAIRS =
+            registerItem("soggy_gingerbread_tile_stairs", ChristmasBlocks.SOGGY_GINGERBREAD_TILE_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_TILE_SLAB =
+            registerItem("soggy_gingerbread_tile_slab", ChristmasBlocks.SOGGY_GINGERBREAD_TILE_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> SOGGY_GINGERBREAD_TILE_WALL =
+            registerItem("soggy_gingerbread_tile_wall", ChristmasBlocks.SOGGY_GINGERBREAD_TILE_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_BRICKS =
-            ITEMS.register("candy_cane_bricks", blockItemOf(ChristmasBlocks.CANDY_CANE_BRICKS, CandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_BRICK_STAIRS =
-            ITEMS.register("candy_cane_brick_stairs", blockItemOf(ChristmasBlocks.CANDY_CANE_BRICK_STAIRS, CandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_BRICK_SLAB =
-            ITEMS.register("candy_cane_brick_slab", blockItemOf(ChristmasBlocks.CANDY_CANE_BRICK_SLAB, CandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_BRICK_WALL =
-            ITEMS.register("candy_cane_brick_wall", blockItemOf(ChristmasBlocks.CANDY_CANE_BRICK_WALL, CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> CANDY_CANE_BLOCK =
+            registerItem("candy_cane_block", ChristmasBlocks.CANDY_CANE_BLOCK, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> CANDY_CANE_STAIRS =
+            registerItem("candy_cane_stairs", ChristmasBlocks.CANDY_CANE_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> CANDY_CANE_SLAB =
+            registerItem("candy_cane_slab", ChristmasBlocks.CANDY_CANE_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> CANDY_CANE_WALL =
+            registerItem("candy_cane_wall", ChristmasBlocks.CANDY_CANE_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_TILES =
-            ITEMS.register("candy_cane_tiles", blockItemOf(ChristmasBlocks.CANDY_CANE_TILES, CandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_TILE_STAIRS =
-            ITEMS.register("candy_cane_tile_stairs", blockItemOf(ChristmasBlocks.CANDY_CANE_TILE_STAIRS, CandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_TILE_SLAB =
-            ITEMS.register("candy_cane_tile_slab", blockItemOf(ChristmasBlocks.CANDY_CANE_TILE_SLAB, CandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> CANDY_CANE_TILE_WALL =
-            ITEMS.register("candy_cane_tile_wall", blockItemOf(ChristmasBlocks.CANDY_CANE_TILE_WALL, CandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> CANDY_CANE_BRICKS =
+            registerItem("candy_cane_bricks", ChristmasBlocks.CANDY_CANE_BRICKS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> CANDY_CANE_BRICK_STAIRS =
+            registerItem("candy_cane_brick_stairs", ChristmasBlocks.CANDY_CANE_BRICK_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> CANDY_CANE_BRICK_SLAB =
+            registerItem("candy_cane_brick_slab", ChristmasBlocks.CANDY_CANE_BRICK_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> CANDY_CANE_BRICK_WALL =
+            registerItem("candy_cane_brick_wall", ChristmasBlocks.CANDY_CANE_BRICK_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_BLOCK =
-            ITEMS.register("festive_candy_cane_block", blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK, FestiveCandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_STAIRS =
-            ITEMS.register("festive_candy_cane_stairs", blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_STAIRS, FestiveCandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_SLAB =
-            ITEMS.register("festive_candy_cane_slab", blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_SLAB, FestiveCandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_WALL =
-            ITEMS.register("festive_candy_cane_wall", blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_WALL, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> CANDY_CANE_TILES =
+            registerItem("candy_cane_tiles", ChristmasBlocks.CANDY_CANE_TILES, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> CANDY_CANE_TILE_STAIRS =
+            registerItem("candy_cane_tile_stairs", ChristmasBlocks.CANDY_CANE_TILE_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> CANDY_CANE_TILE_SLAB =
+            registerItem("candy_cane_tile_slab", ChristmasBlocks.CANDY_CANE_TILE_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> CANDY_CANE_TILE_WALL =
+            registerItem("candy_cane_tile_wall", ChristmasBlocks.CANDY_CANE_TILE_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_BRICKS =
-            ITEMS.register("festive_candy_cane_bricks", blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS, FestiveCandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_BRICK_STAIRS =
-            ITEMS.register("festive_candy_cane_brick_stairs", blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_STAIRS, FestiveCandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_BRICK_SLAB =
-            ITEMS.register("festive_candy_cane_brick_slab", blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_SLAB, FestiveCandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_BRICK_WALL =
-            ITEMS.register("festive_candy_cane_brick_wall", blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_WALL, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_BLOCK =
+            registerItem("festive_candy_cane_block", ChristmasBlocks.FESTIVE_CANDY_CANE_BLOCK, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_STAIRS =
+            registerItem("festive_candy_cane_stairs", ChristmasBlocks.FESTIVE_CANDY_CANE_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_SLAB =
+            registerItem("festive_candy_cane_slab", ChristmasBlocks.FESTIVE_CANDY_CANE_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_WALL =
+            registerItem("festive_candy_cane_wall", ChristmasBlocks.FESTIVE_CANDY_CANE_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_TILES =
-            ITEMS.register("festive_candy_cane_tiles", blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_TILES, FestiveCandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_TILE_STAIRS =
-            ITEMS.register("festive_candy_cane_tile_stairs", blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_STAIRS, FestiveCandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_TILE_SLAB =
-            ITEMS.register("festive_candy_cane_tile_slab", blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_SLAB, FestiveCandyCaneBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> FESTIVE_CANDY_CANE_TILE_WALL =
-            ITEMS.register("festive_candy_cane_tile_wall", blockItemOf(ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_WALL, FestiveCandyCaneBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_BRICKS =
+            registerItem("festive_candy_cane_bricks", ChristmasBlocks.FESTIVE_CANDY_CANE_BRICKS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_BRICK_STAIRS =
+            registerItem("festive_candy_cane_brick_stairs", ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_BRICK_SLAB =
+            registerItem("festive_candy_cane_brick_slab", ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_BRICK_WALL =
+            registerItem("festive_candy_cane_brick_wall", ChristmasBlocks.FESTIVE_CANDY_CANE_BRICK_WALL, DEFAULT_PROPS);
 
-    public static final RegistryObject<ChristmasBlockItem> CHRISTMAS_STAR =
-            ITEMS.register("christmas_star", blockItemOf(ChristmasBlocks.CHRISTMAS_STAR, ChristmasStarBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> MUSIC_BOX =
-            ITEMS.register("music_box", blockItemOf(ChristmasBlocks.MUSIC_BOX, MusicBoxBlock.ITEM_PROPERTIES));
-    public static final RegistryObject<ChristmasBlockItem> GIFT_WRAPPING_STATION =
-            ITEMS.register("gift_wrapping_station", blockItemOf(ChristmasBlocks.GIFT_WRAPPING_STATION, GiftWrapperBlock.ITEM_PROPERTIES));
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_TILES =
+            registerItem("festive_candy_cane_tiles", ChristmasBlocks.FESTIVE_CANDY_CANE_TILES, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_TILE_STAIRS =
+            registerItem("festive_candy_cane_tile_stairs", ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_STAIRS, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_TILE_SLAB =
+            registerItem("festive_candy_cane_tile_slab", ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_SLAB, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> FESTIVE_CANDY_CANE_TILE_WALL =
+            registerItem("festive_candy_cane_tile_wall", ChristmasBlocks.FESTIVE_CANDY_CANE_TILE_WALL, DEFAULT_PROPS);
+
+    public static final RegistryObject<BlockItem> CHRISTMAS_STAR =
+            registerItem("christmas_star", ChristmasBlocks.CHRISTMAS_STAR, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> MUSIC_BOX =
+            registerItem("music_box", ChristmasBlocks.MUSIC_BOX, DEFAULT_PROPS);
+    public static final RegistryObject<BlockItem> GIFT_WRAPPING_STATION =
+            registerItem("gift_wrapping_station", ChristmasBlocks.GIFT_WRAPPING_STATION, DEFAULT_PROPS);
 
     public static final RegistryObject<BlockItem> MILK_AND_COOKIES =
             registerFood("milk_and_cookies", ChristmasBlocks.MILK_AND_COOKIES, BIG_FOOD_PROPS);
@@ -614,11 +590,11 @@ public class ChristmasItems {
         return ITEMS.register(itemId, () -> new ChristmasItem(itemProps, rarity));
     }
 
-    private static RegistryObject<BlockItem> registerItem(String itemId, Supplier<Block> block, Item.Properties itemProps) {
+    private static RegistryObject<BlockItem> registerItem(String itemId, Supplier<? extends Block> block, Item.Properties itemProps) {
         return ITEMS.register(itemId, () -> new ChristmasBlockItem(block.get(), itemProps));
     }
 
-    private static RegistryObject<BlockItem> registerItem(String itemId, Supplier<Block> block, Item.Properties itemProps, ChristmasRarity rarity) {
+    private static RegistryObject<BlockItem> registerItem(String itemId, Supplier<? extends Block> block, Item.Properties itemProps, ChristmasRarity rarity) {
         return ITEMS.register(itemId, () -> new ChristmasBlockItem(block.get(), itemProps, rarity));
     }
 
@@ -638,16 +614,8 @@ public class ChristmasItems {
         return ITEMS.register(itemId, sup);
     }
 
-    public static Supplier<ChristmasBlockItem> blockItemOf(RegistryObject<? extends Block> block, Item.Properties properties) {
-        return () -> new ChristmasBlockItem(block.get(), properties);
-    }
-
     public static Supplier<Item> spawnEggOf(Supplier<EntityType<? extends Mob>> entityType, int backgroundColor, int highlightColor) {
         return () -> new ForgeSpawnEggItem(entityType::get, backgroundColor, highlightColor, new Item.Properties().tab(CreativeModeTab.TAB_MISC));
-    }
-
-    public static boolean isSheetMusicItem(ItemStack itemStack) {
-        return itemStack.getItem() instanceof SheetMusicItem;
     }
 
     public static boolean isFoodItem(ItemStack itemStack) {

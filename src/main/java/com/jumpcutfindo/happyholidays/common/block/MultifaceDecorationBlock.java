@@ -2,13 +2,10 @@ package com.jumpcutfindo.happyholidays.common.block;
 
 import java.util.Map;
 
-import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -26,9 +23,6 @@ import net.minecraft.world.level.material.Fluids;
 
 public abstract class MultifaceDecorationBlock extends MultifaceBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-
-    public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP);
 
     public MultifaceDecorationBlock(Properties blockProperties) {
         super(blockProperties);
