@@ -4,7 +4,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.WalnutEntity;
-import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutAmmo;
+import com.jumpcutfindo.happyholidays.common.item.christmas.WalnutAmmo;
 
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutAmmo;
+import com.jumpcutfindo.happyholidays.common.item.christmas.WalnutAmmo;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 

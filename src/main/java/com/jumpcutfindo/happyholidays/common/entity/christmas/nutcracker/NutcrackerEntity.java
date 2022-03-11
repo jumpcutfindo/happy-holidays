@@ -19,7 +19,7 @@ import com.jumpcutfindo.happyholidays.common.inventory.christmas.NutcrackerConta
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasRewards;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.PatrolOrdersItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutAmmo;
+import com.jumpcutfindo.happyholidays.common.item.christmas.WalnutAmmo;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;

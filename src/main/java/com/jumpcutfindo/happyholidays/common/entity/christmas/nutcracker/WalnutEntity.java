@@ -4,7 +4,7 @@ import java.util.Map;
 
 import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.item.christmas.walnut.WalnutAmmo;
+import com.jumpcutfindo.happyholidays.common.item.christmas.WalnutAmmo;
 
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;

@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.common.item.christmas.walnut;
+package com.jumpcutfindo.happyholidays.common.item.christmas;
 
 public enum WalnutAmmo {
     PLAIN, EXPLOSIVE, SUGARED, METALLIC, HALVED;
