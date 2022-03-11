@@ -214,7 +214,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
                     axisAlignedBB, entity -> entity instanceof IChristmasEntity);
 
             for (LivingEntity entity : christmasEntities) {
-                entity.addEffect(new MobEffectInstance(ChristmasEffects.DEBUFF_OF_CHRISTMAS.get(), 200,
+                entity.addEffect(new MobEffectInstance(ChristmasEffects.GENEROSITY_OF_CHRISTMAS.get(), 200,
                         this.currentTier - 1, true, true));
             }
 
