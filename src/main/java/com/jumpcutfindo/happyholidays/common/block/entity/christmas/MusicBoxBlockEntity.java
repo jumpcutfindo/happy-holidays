@@ -39,7 +39,6 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements ChristmasEntityBlock, Clearable, IAnimatable {
-    public static final String BLOCK_ENTITY_ID = "music_box";
 
     public static final int SLOTS = 27;
 
@@ -85,7 +84,7 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
 
     @Override
     protected Component getDefaultName() {
-        return new TranslatableComponent(BLOCK_ENTITY_ID);
+        return new TranslatableComponent("music_box");
     }
 
     @Override

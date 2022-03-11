@@ -25,7 +25,6 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 
 public class StockingBlockEntity extends BlockEntity implements ChristmasEntityBlock {
-    public static final String BLOCK_ENTITY_ID = "stocking";
 
     private static final ResourceLocation STOCKING_PRESENTS_LOOT_TABLE = new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/stocking_presents");
     private static final ResourceLocation ENCHANTED_STOCKING_PRESENTS_LOOT_TABLE = new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/enchanted_stocking_presents");

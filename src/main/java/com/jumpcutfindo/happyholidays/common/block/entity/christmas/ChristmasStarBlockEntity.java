@@ -60,7 +60,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implements ChristmasEntityBlock {
-    public static final String BLOCK_ENTITY_ID = "christmas_star";
     public static final int SLOTS = 6;
 
     public static final int BONUS_SLOT_INDEX = 5;
@@ -137,7 +136,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
 
     @Override
     protected Component getDefaultName() {
-        return new TranslatableComponent("container." + HappyHolidaysMod.MOD_ID + "." + BLOCK_ENTITY_ID);
+        return new TranslatableComponent("container." + HappyHolidaysMod.MOD_ID + "." + "christmas_star");
     }
 
     @Override
