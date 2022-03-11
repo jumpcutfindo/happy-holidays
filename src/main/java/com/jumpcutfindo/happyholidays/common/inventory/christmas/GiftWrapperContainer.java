@@ -23,7 +23,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class GiftWrapperContainer extends AbstractContainerMenu {
-    public static final String CONTAINER_ID = "gift_wrapping_station";
 
     public final GiftWrapperBlockEntity blockEntity;
     private final ContainerLevelAccess canInteractWithCallable;

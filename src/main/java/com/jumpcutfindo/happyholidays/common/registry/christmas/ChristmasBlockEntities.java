@@ -27,7 +27,7 @@ public class ChristmasBlockEntities {
 
     public static final RegistryObject<BlockEntityType<GiftWrapperBlockEntity>> GIFT_WRAPPER =
             registerBlockEntity("gift_wrapping_station", GiftWrapperBlockEntity::new, ChristmasBlocks.GIFT_WRAPPING_STATION);
-    
+
     public static final RegistryObject<BlockEntityType<StockingBlockEntity>> STOCKING =
             registerBlockEntity("stocking", StockingBlockEntity::new, ChristmasBlocks.RED_STOCKING);
 

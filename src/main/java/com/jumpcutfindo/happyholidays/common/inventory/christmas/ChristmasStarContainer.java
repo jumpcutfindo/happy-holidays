@@ -22,7 +22,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ChristmasStarContainer extends AbstractContainerMenu {
-    public static final String CONTAINER_ID = "christmas_star";
 
     public final ChristmasStarBlockEntity blockEntity;
     private final ContainerLevelAccess canInteractWithCallable;

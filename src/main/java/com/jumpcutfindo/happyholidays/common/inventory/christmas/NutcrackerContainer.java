@@ -17,7 +17,6 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class NutcrackerContainer extends AbstractContainerMenu {
-    public static final String CONTAINER_ID = "nutcracker";
 
     private final Inventory playerInv;
     private final NutcrackerEntity nutcracker;

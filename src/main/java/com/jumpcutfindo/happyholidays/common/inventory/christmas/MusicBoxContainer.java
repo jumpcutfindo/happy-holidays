@@ -15,7 +15,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class MusicBoxContainer extends AbstractContainerMenu {
-    public static final String CONTAINER_ID = "music_box";
 
     public final MusicBoxBlockEntity blockEntity;
     private final ContainerLevelAccess canInteractWithCallable;
