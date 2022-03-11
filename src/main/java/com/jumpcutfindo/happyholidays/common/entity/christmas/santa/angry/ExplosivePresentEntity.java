@@ -32,8 +32,6 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 public class ExplosivePresentEntity extends Entity implements IAnimatable, IChristmasEntity {
     private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(ExplosivePresentEntity.class, EntityDataSerializers.INT);
 
-    public static final String ENTITY_ID = "explosive_present";
-
     public static final float ENTITY_BOX_SIZE = 1.0f;
     public static final float ENTITY_BOX_HEIGHT = 1.0f;
 

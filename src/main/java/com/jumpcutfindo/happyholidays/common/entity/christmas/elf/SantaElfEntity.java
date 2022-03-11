@@ -69,7 +69,6 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class SantaElfEntity extends PathfinderMob implements IAnimatable, Merchant, IChristmasEntity {
-    public static final String ENTITY_ID = "santa_elf";
     public static final AttributeSupplier ENTITY_ATTRIBUTES =
             Mob.createMobAttributes()
                     .add(Attributes.MAX_HEALTH, 20.0f)

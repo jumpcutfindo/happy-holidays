@@ -38,7 +38,6 @@ import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class WalnutEntity extends Projectile implements IAnimatable {
-    public static final String ENTITY_ID = "walnut";
 
     public static final float ENTITY_BOX_SIZE = 0.25f;
     public static final float ENTITY_BOX_HEIGHT = 0.25f;

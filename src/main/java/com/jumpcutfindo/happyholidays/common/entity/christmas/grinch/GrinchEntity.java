@@ -65,7 +65,6 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
     public static final EntityDataAccessor<Integer> BREAK_ANIM_PROGRESS = SynchedEntityData.defineId(GrinchEntity.class,
             EntityDataSerializers.INT);
 
-    public static final String ENTITY_ID = "grinch";
     public static final AttributeSupplier ENTITY_ATTRIBUTES =
             Mob.createMobAttributes()
                     .add(Attributes.MAX_HEALTH, 20.0f)

@@ -51,8 +51,6 @@ public class HappySantaEntity extends BaseSantaEntity {
     public static final EntityDataAccessor<Boolean> IS_SUMMONING = SynchedEntityData.defineId(HappySantaEntity.class,
             EntityDataSerializers.BOOLEAN);
 
-    public static final String ENTITY_ID = "happy_santa";
-
     public static final int DEFAULT_DESPAWN_DELAY = 12000;
 
     public static final int NUM_GIFTS_TO_SUMMON = 150;

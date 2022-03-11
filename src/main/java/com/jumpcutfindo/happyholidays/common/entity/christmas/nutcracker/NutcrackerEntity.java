@@ -102,7 +102,6 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChr
     public static final int MIN_SPAWN_COUNT = 2;
     public static final int MAX_SPAWN_COUNT = 3;
 
-    public static final String ENTITY_ID = "nutcracker";
     public static final AttributeSupplier ENTITY_ATTRIBUTES =
             Mob.createMobAttributes()
                     .add(Attributes.MAX_HEALTH, 30.0f)

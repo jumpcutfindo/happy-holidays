@@ -57,8 +57,6 @@ public class AngrySantaEntity extends BaseSantaEntity implements Enemy {
     public static final EntityDataAccessor<Integer> ATTACK_SLEIGHS_ANIM_TIMER = SynchedEntityData.defineId(AngrySantaEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> ATTACK_TELEPORT_ANIM_TIMER = SynchedEntityData.defineId(AngrySantaEntity.class, EntityDataSerializers.INT);
 
-    public static final String ENTITY_ID = "angry_santa";
-
     // Angry Santa attack variables
     public static final int ATTACK_PHASE_SWITCH_TIMER_MAX = 100;
     public static final int ATTACK_PHASE_SWITCH_TIMER_MIN = 40;

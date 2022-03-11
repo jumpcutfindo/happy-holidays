@@ -19,7 +19,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 
 public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
-    public static final String ENTITY_ID = "soggy_gingerbread_man";
 
     public static final AttributeSupplier ENTITY_ATTRIBUTES =
             createMobAttributes()
