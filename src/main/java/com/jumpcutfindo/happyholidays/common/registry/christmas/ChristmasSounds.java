@@ -1,7 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.registry.christmas;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -69,22 +68,22 @@ public class ChristmasSounds {
     public static final RegistryObject<SoundEvent> PATROL_ORDERS_ROUTE_COMPLETE = registerSound("item.patrol_orders.route_complete");
     public static final RegistryObject<SoundEvent> PATROL_ORDERS_CRUMPLE = registerSound("item.patrol_orders.crumple");
 
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_ANGELS_ON_HIGH = registerSound(SheetMusicItem.ANGELS_ON_HIGH_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_CAROL_OF_THE_BELLS = registerSound(SheetMusicItem.CAROL_OF_BELLS_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_DECK_THE_HALLS = registerSound(SheetMusicItem.DECK_THE_HALLS_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_FROSTY_THE_SNOWMAN = registerSound(SheetMusicItem.FROSTY_THE_SNOWMAN_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_GOD_REST_GENTLEMEN = registerSound(SheetMusicItem.GOD_REST_GENTLEMEN_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_HERE_COMES_SANTA = registerSound(SheetMusicItem.HERE_COMES_SANTA_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_JINGLE_BELL_ROCK = registerSound(SheetMusicItem.JINGLE_BELL_ROCK_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_JINGLE_BELLS = registerSound(SheetMusicItem.JINGLE_BELLS_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_JOY_TO_THE_WORLD = registerSound(SheetMusicItem.JOY_TO_THE_WORLD_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_RUDOLPH = registerSound(SheetMusicItem.RUDOLPH_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_SILENT_NIGHT = registerSound(SheetMusicItem.SILENT_NIGHT_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_SLEIGH_RIDE = registerSound(SheetMusicItem.SLEIGH_RIDE_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_THE_FIRST_NOEL = registerSound(SheetMusicItem.THE_FIRST_NOEL_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_WE_THREE_KINGS = registerSound(SheetMusicItem.WE_THREE_KINGS_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_WE_WISH_YOU = registerSound(SheetMusicItem.WE_WISH_YOU_SOUND_ID);
-    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_WHITE_CHRISTMAS = registerSound(SheetMusicItem.WHITE_CHRISTMAS_SOUND_ID);
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_ANGELS_ON_HIGH = registerSound("item.christmas_music_angels_on_high");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_CAROL_OF_THE_BELLS = registerSound("item.christmas_music_carol_of_the_bells");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_DECK_THE_HALLS = registerSound("item.christmas_music_deck_the_halls");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_FROSTY_THE_SNOWMAN = registerSound("item.christmas_music_frosty_the_snowman");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_GOD_REST_GENTLEMEN = registerSound("item.christmas_music_god_rest_gentlemen");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_HERE_COMES_SANTA = registerSound("item.christmas_music_here_comes_santa");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_JINGLE_BELL_ROCK = registerSound("item.christmas_music_jingle_bell_rock");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_JINGLE_BELLS = registerSound("item.christmas_music_jingle_bells");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_JOY_TO_THE_WORLD = registerSound("item.christmas_music_joy_to_the_world");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_RUDOLPH = registerSound("item.christmas_music_rudolph");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_SILENT_NIGHT = registerSound("item.christmas_music_silent_night");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_SLEIGH_RIDE = registerSound("item.christmas_music_sleigh_ride");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_THE_FIRST_NOEL = registerSound("item.christmas_music_the_first_noel");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_WE_THREE_KINGS = registerSound("item.christmas_music_we_three_kings");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_WE_WISH_YOU = registerSound("item.christmas_music_we_wish_you");
+    public static final RegistryObject<SoundEvent> CHRISTMAS_MUSIC_WHITE_CHRISTMAS = registerSound("item.christmas_music_white_christmas");
 
     public static RegistryObject<SoundEvent> registerSound(String soundId) {
         return SOUNDS.register(soundId, () -> new SoundEvent(new ResourceLocation(HappyHolidaysMod.MOD_ID, soundId)));
