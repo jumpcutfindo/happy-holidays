@@ -11,7 +11,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarTier;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.inventory.christmas.ChristmasStarContainer;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy.HappySantaEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
@@ -211,7 +211,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
             AABB axisAlignedBB = new AABB(this.worldPosition).inflate(ENTITY_EFFECT_RADIUS[this.currentTier]);
 
             List<LivingEntity> christmasEntities = this.level.getEntitiesOfClass(LivingEntity.class,
-                    axisAlignedBB, entity -> entity instanceof IChristmasEntity);
+                    axisAlignedBB, entity -> entity instanceof ChristmasEntity);
 
             for (LivingEntity entity : christmasEntities) {
                 entity.addEffect(new MobEffectInstance(ChristmasEffects.GENEROSITY_OF_CHRISTMAS.get(), 200,

@@ -8,7 +8,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
@@ -61,7 +61,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristmasEntity {
+public class GrinchEntity extends PathfinderMob implements IAnimatable, ChristmasEntity {
     public static final EntityDataAccessor<Integer> BREAK_ANIM_PROGRESS = SynchedEntityData.defineId(GrinchEntity.class,
             EntityDataSerializers.INT);
 

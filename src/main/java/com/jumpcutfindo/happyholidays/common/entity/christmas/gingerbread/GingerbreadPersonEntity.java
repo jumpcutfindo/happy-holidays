@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.jumpcutfindo.happyholidays.common.Holiday;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
@@ -43,7 +43,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatable, IChristmasEntity {
+public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatable, ChristmasEntity {
     public static final float ENTITY_BOX_SIZE = 0.8f;
     public static final float ENTITY_BOX_HEIGHT = 1.95f;
 

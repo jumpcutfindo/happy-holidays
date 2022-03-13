@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry;
 
-import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -21,7 +21,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class SleighEntity extends Entity implements IAnimatable, IChristmasEntity {
+public class SleighEntity extends Entity implements IAnimatable, ChristmasEntity {
 
     public static final float ENTITY_BOX_SIZE = 32.0f / 16.0f;
     public static final float ENTITY_BOX_HEIGHT = 12.0f / 16.0f;

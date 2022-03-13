@@ -17,7 +17,7 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.inventory.christmas.NutcrackerContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasRewards;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.PatrolOrdersItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.WalnutAmmo;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
@@ -97,7 +97,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class NutcrackerEntity extends TamableAnimal implements IAnimatable, IChristmasEntity, MenuProvider, RangedAttackMob, NeutralMob {
+public class NutcrackerEntity extends TamableAnimal implements IAnimatable, ChristmasEntity, MenuProvider, RangedAttackMob, NeutralMob {
     public static final int SPAWN_WEIGHT = 5;
     public static final int MIN_SPAWN_COUNT = 2;
     public static final int MAX_SPAWN_COUNT = 3;

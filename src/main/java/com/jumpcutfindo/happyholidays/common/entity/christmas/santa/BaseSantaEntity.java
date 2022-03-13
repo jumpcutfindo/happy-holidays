@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.santa;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.server.data.SantaSavedData;
 
@@ -24,7 +24,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class BaseSantaEntity extends PathfinderMob implements IAnimatable, IChristmasEntity {
+public class BaseSantaEntity extends PathfinderMob implements IAnimatable, ChristmasEntity {
     public static final float MAX_HEALTH = 200.0f;
 
     public static final AttributeSupplier ENTITY_ATTRIBUTES =

@@ -2,7 +2,7 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -29,7 +29,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class ExplosivePresentEntity extends Entity implements IAnimatable, IChristmasEntity {
+public class ExplosivePresentEntity extends Entity implements IAnimatable, ChristmasEntity {
     private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(ExplosivePresentEntity.class, EntityDataSerializers.INT);
 
     public static final float ENTITY_BOX_SIZE = 1.0f;
