@@ -130,27 +130,27 @@ public class SnowGlobeItem extends ChristmasItem {
             if (shouldReduceCharges) {
                 // If should reduce charges, this means we've successfully used it
                 snowGlobe.setDamageValue(snowGlobe.getDamageValue() + 1);
-
-                // Add a cooldown to prevent using immediately after
-                player.getCooldowns().addCooldown(snowGlobe.getItem(), 20);
-
-                // Produce effects on Snow Globe use
-                double d0 = player.getX() + (player.getRandom().nextDouble() * 2.0D - 1.0D) * (double) player.getBbWidth() * 0.5D;
-                double d1 = player.getY() + 0.05D + player.getRandom().nextDouble();
-                double d2 = player.getZ() + (player.getRandom().nextDouble() * 2.0D - 1.0D) * (double) player.getBbWidth() * 0.5D;
-                double d3 = (player.getRandom().nextDouble() * 2.0D - 1.0D) * 0.3D;
-                double d4 = 0.3D + player.getRandom().nextDouble() * 0.3D;
-                double d5 = (player.getRandom().nextDouble() * 2.0D - 1.0D) * 0.3D;
-
-                serverLevel.sendParticles(ParticleTypes.SNOWFLAKE, d0, d1 + 1.0D, d2,
-                        25, d3, d4, d5, 0.0D);
-
-                serverLevel.playSound(null, player.blockPosition(), ChristmasSounds.SNOW_GLOBE_SUCCESS.get(), SoundSource.NEUTRAL, 1.0f, 1.0f);
-
-                // Emit use event
-                SnowGlobeEvent.Use useGlobeEvent = new SnowGlobeEvent.Use(player);
-                MinecraftForge.EVENT_BUS.post(useGlobeEvent);
             }
+
+            // Add a cooldown to prevent using immediately after
+            player.getCooldowns().addCooldown(snowGlobe.getItem(), 20);
+
+            // Produce effects on Snow Globe use
+            double d0 = player.getX() + (player.getRandom().nextDouble() * 2.0D - 1.0D) * (double) player.getBbWidth() * 0.5D;
+            double d1 = player.getY() + 0.05D + player.getRandom().nextDouble();
+            double d2 = player.getZ() + (player.getRandom().nextDouble() * 2.0D - 1.0D) * (double) player.getBbWidth() * 0.5D;
+            double d3 = (player.getRandom().nextDouble() * 2.0D - 1.0D) * 0.3D;
+            double d4 = 0.3D + player.getRandom().nextDouble() * 0.3D;
+            double d5 = (player.getRandom().nextDouble() * 2.0D - 1.0D) * 0.3D;
+
+            serverLevel.sendParticles(ParticleTypes.SNOWFLAKE, d0, d1 + 1.0D, d2,
+                    25, d3, d4, d5, 0.0D);
+
+            serverLevel.playSound(null, player.blockPosition(), ChristmasSounds.SNOW_GLOBE_SUCCESS.get(), SoundSource.NEUTRAL, 1.0f, 1.0f);
+
+            // Emit use event
+            SnowGlobeEvent.Use useGlobeEvent = new SnowGlobeEvent.Use(player);
+            MinecraftForge.EVENT_BUS.post(useGlobeEvent);
         }
     }
 
