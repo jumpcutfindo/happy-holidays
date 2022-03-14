@@ -18,13 +18,13 @@
         ]
       }
     },
-    "has_string": {
+    "has_paper": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:string"
+              "minecraft:paper"
             ]
           }
         ]
@@ -50,7 +50,7 @@
   "requirements": [
     [
       "has_scraps",
-      "has_string",
+      "has_paper",
       "has_wool",
       "has_the_recipe"
     ]

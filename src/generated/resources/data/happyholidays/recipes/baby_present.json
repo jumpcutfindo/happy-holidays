@@ -1,12 +1,12 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "S#S",
-    "WWW"
+    "P#P",
+    "WPW"
   ],
   "key": {
-    "S": {
-      "item": "minecraft:string"
+    "P": {
+      "item": "minecraft:paper"
     },
     "#": {
       "item": "happyholidays:present_scraps"

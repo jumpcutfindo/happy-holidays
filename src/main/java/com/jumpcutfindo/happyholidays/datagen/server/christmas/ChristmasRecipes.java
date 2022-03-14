@@ -195,9 +195,9 @@ public class ChristmasRecipes extends RecipeProvider {
 
     private void presents(Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(ChristmasBlocks.BABY_PRESENT.get(), 1)
-                .define('S', Items.STRING).define('#', ChristmasItems.PRESENT_SCRAPS.get()).define('W', ItemTags.WOOL)
-                .pattern("S#S").pattern("WWW")
-                .unlockedBy("has_scraps", has(ChristmasItems.PRESENT_SCRAPS.get())).unlockedBy("has_string", has(Items.STRING)).unlockedBy("has_wool", has(ItemTags.WOOL))
+                .define('P', Items.PAPER).define('#', ChristmasItems.PRESENT_SCRAPS.get()).define('W', ItemTags.WOOL)
+                .pattern("P#P").pattern("WPW")
+                .unlockedBy("has_scraps", has(ChristmasItems.PRESENT_SCRAPS.get())).unlockedBy("has_paper", has(Items.PAPER)).unlockedBy("has_wool", has(ItemTags.WOOL))
                 .save(consumer, recipeResourceOf(ChristmasBlocks.BABY_PRESENT.get()));
 
         ShapedRecipeBuilder.shaped(ChristmasBlocks.EXPLOSIVE_PRESENT.get(), 4)
