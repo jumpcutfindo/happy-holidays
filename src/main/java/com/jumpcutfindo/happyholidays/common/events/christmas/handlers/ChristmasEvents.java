@@ -15,6 +15,7 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SnowGlobeEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
+import com.jumpcutfindo.happyholidays.common.registry.HappyHolidaysStats;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
@@ -29,6 +30,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.StatType;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -124,7 +126,7 @@ public class ChristmasEvents {
             ChristmasTriggers.GINGERBREAD_MAN_TURN_SOGGY.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof GingerbreadConversionEvent.ToDry) {
             ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
-            serverPlayer.awardStat(ChristmasStats.GINGERBREAD_MEN_DRIED);
+            HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.GINGERBREAD_MEN_DRIED);
 
             ChristmasTriggers.GINGERBREAD_MAN_TURN_DRY.trigger(serverPlayer);
         }
@@ -140,7 +142,8 @@ public class ChristmasEvents {
             ChristmasTriggers.SANTA_ELF_TRADE.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof SantaElfEvent.CompleteRequest) {
             ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
-            serverPlayer.awardStat(ChristmasStats.SANTA_ELVES_HELPED);
+            HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.SANTA_ELVES_HELPED);
+
             ChristmasTriggers.SANTA_ELF_COMPLETE_REQUEST.trigger(serverPlayer);
 
             if (((SantaElfEvent.CompleteRequest) event).getTimeTaken() <= 6000) {
@@ -157,7 +160,7 @@ public class ChristmasEvents {
             ChristmasTriggers.GRINCH_ENCOUNTER.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof GrinchEvent.Appease) {
             ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
-            serverPlayer.awardStat(ChristmasStats.GRINCHES_APPEASED);
+            HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.GRINCHES_APPEASED);
 
             ChristmasTriggers.GRINCH_APPEASE.trigger(serverPlayer);
         }
@@ -171,7 +174,7 @@ public class ChristmasEvents {
             ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
             AngrySantaEntity angrySantaEntity = (AngrySantaEntity) event.getSantaEntity();
 
-            serverPlayer.awardStat(ChristmasStats.ANGRY_SANTAS_DEFEATED);
+            HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.ANGRY_SANTAS_DEFEATED);
             ChristmasTriggers.SANTA_ANGRY_DIE.trigger(serverPlayer);
 
             if (!angrySantaEntity.isDamagedByPlayer()) {
@@ -181,7 +184,7 @@ public class ChristmasEvents {
         } else if (event instanceof SantaEvent.CompleteDropParty) {
             ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
 
-            serverPlayer.awardStat(ChristmasStats.HAPPY_SANTAS_RECEIVED);
+            HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.HAPPY_SANTAS_RECEIVED);
             ChristmasTriggers.SANTA_DROP_PARTY_COMPLETE.trigger(serverPlayer);
         }
     }
@@ -232,11 +235,11 @@ public class ChristmasEvents {
         if (event instanceof SnowGlobeEvent.Use) {
             ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
 
-            serverPlayer.awardStat(ChristmasStats.USE_SNOW_GLOBE);
+            HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.USE_SNOW_GLOBE);
 
             ChristmasTriggers.SNOW_GLOBE_USE.trigger(serverPlayer);
 
-            if (serverPlayer.getStats().getValue(Stats.CUSTOM.get(ChristmasStats.USE_SNOW_GLOBE)) >= 50) {
+            if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.USE_SNOW_GLOBE) >= 50) {
                 ChristmasTriggers.SNOW_GLOBE_USE_CHALLENGE.trigger(serverPlayer);
             }
         }
@@ -247,7 +250,7 @@ public class ChristmasEvents {
         if (!((event.getPlayer()) instanceof ServerPlayer serverPlayer)) return;
 
         if (event instanceof NutcrackerEvent.Tame) {
-            serverPlayer.awardStat(ChristmasStats.NUTCRACKERS_TAMED);
+            HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.NUTCRACKERS_TAMED);
         }
     }
 
@@ -263,7 +266,8 @@ public class ChristmasEvents {
     public static void onGiftPickup(PlayerEvent.ItemPickupEvent event) {
         if (event.getStack().is(ChristmasTags.Items.GIFTS)) {
             ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
-            serverPlayer.awardStat(ChristmasStats.GIFTS_RECEIVED);
+            StatType<?> temp = Stats.CUSTOM;
+            HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.GIFTS_RECEIVED);
         }
     }
 }

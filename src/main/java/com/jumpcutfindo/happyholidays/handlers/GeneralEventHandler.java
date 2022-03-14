@@ -6,8 +6,8 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasBlock;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.CapabilityNaughtyNice;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.INaughtyNiceHandler;
+import com.jumpcutfindo.happyholidays.common.registry.HappyHolidaysStats;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasStats;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
 
 import net.minecraft.world.level.block.Block;
@@ -28,8 +28,6 @@ public class GeneralEventHandler {
                 if (block.get() instanceof ChristmasBlock) ((ChristmasBlock) block.get()).configure();
             }
         });
-
-        event.enqueueWork(ChristmasStats::registerStats);
     }
 
     @SubscribeEvent
@@ -39,7 +37,8 @@ public class GeneralEventHandler {
     }
 
     @SubscribeEvent
-    public static void registerTriggers(FMLCommonSetupEvent event) {
+    public static void registerTriggersAndStats(FMLCommonSetupEvent event) {
         event.enqueueWork(ChristmasTriggers::registerTriggers);
+        event.enqueueWork(HappyHolidaysStats::registerStats);
     }
 }

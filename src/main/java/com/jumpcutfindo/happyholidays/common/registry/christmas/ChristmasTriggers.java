@@ -16,16 +16,19 @@ public class ChristmasTriggers {
     // Gingerbread Men triggers
     public static final CustomTrigger GINGERBREAD_MAN_TURN_SOGGY = christmasTrigger("gingerbread_man_turn_soggy");
     public static final CustomTrigger GINGERBREAD_MAN_TURN_DRY = christmasTrigger("gingerbread_man_turn_dry");
+    public static final CustomTrigger GINGERBREAD_MAN_DRY_CHALLENGE = christmasTrigger("gingerbread_man_dry_challenge");
 
     // Santa's Elf triggers
     public static final CustomTrigger SANTA_ELF_SUMMON = christmasTrigger("santa_elf_summon");
     public static final CustomTrigger SANTA_ELF_TRADE = christmasTrigger("santa_elf_trade");
     public static final CustomTrigger SANTA_ELF_COMPLETE_REQUEST = christmasTrigger("santa_elf_complete_request");
     public static final CustomTrigger SANTA_ELF_COMPLETE_REQUEST_QUICK = christmasTrigger("santa_elf_complete_request_quick");
+    public static final CustomTrigger SANTA_ELF_HELP_CHALLENGE = christmasTrigger("santa_elf_help_challenge");
 
     // Grinch triggers
     public static final CustomTrigger GRINCH_ENCOUNTER = christmasTrigger("grinch_encounter");
     public static final CustomTrigger GRINCH_APPEASE = christmasTrigger("grinch_appease");
+    public static final CustomTrigger GRINCH_APPEASE_CHALLENGE = christmasTrigger("grinch_appease_challenge");
 
     // Stocking triggers
     public static final CustomTrigger STOCKING_FILL = christmasTrigger("stocking_fill");
@@ -41,6 +44,8 @@ public class ChristmasTriggers {
     public static final CustomTrigger SANTA_DROP_PARTY_COMPLETE = christmasTrigger("santa_drop_party_complete");
     public static final CustomTrigger SANTA_ANGRY_DIE = christmasTrigger("santa_angry_die");
     public static final CustomTrigger SANTA_NO_TOUCHY = christmasTrigger("santa_no_touchy");
+    public static final CustomTrigger SANTA_ANGRY_CHALLENGE = christmasTrigger("santa_angry_challenge");
+    public static final CustomTrigger SANTA_HAPPY_CHALLENGE = christmasTrigger("santa_happy_challenge");
 
     // Snow Globe triggers
     public static final CustomTrigger SNOW_GLOBE_USE = christmasTrigger("snow_globe_use");
@@ -48,6 +53,7 @@ public class ChristmasTriggers {
 
     // Nutcracker triggers
     public static final CustomTrigger NUTCRACKER_TAME = christmasTrigger("nutcracker_tame");
+    public static final CustomTrigger NUTCRACKER_TAME_CHALLENGE = christmasTrigger("nutcracker_tame_challenge");
 
     private static CustomTrigger christmasTrigger(String id) {
         CustomTrigger customTrigger = new CustomTrigger("christmas/" + id);

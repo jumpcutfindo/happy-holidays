@@ -443,15 +443,12 @@ public class AngrySantaEntity extends BaseSantaEntity implements Enemy {
     public void die(DamageSource p_70645_1_) {
         super.die(p_70645_1_);
 
-        if (!this.isDamagedByPlayer) {
-            AABB searchBox =
-                    new AABB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
-            List<Player> playerEntities = this.level.getEntitiesOfClass(Player.class, searchBox);
+        AABB searchBox = new AABB(this.blockPosition()).inflate(NAUGHTY_NICE_CONSIDERATION_RADIUS);
+        List<Player> playerEntities = this.level.getEntitiesOfClass(Player.class, searchBox);
 
-            for (Player playerEntity : playerEntities) {
-                SantaEvent event = new SantaEvent.AngryDie(this, playerEntity);
-                MinecraftForge.EVENT_BUS.post(event);
-            }
+        for (Player playerEntity : playerEntities) {
+            SantaEvent event = new SantaEvent.AngryDie(this, playerEntity);
+            MinecraftForge.EVENT_BUS.post(event);
         }
 
         this.bossEvent.removeAllPlayers();
