@@ -589,6 +589,12 @@
     "advancements.happyholidays.christmas.snow_globe_use_challenge.desc": "Use the Snow Globe 50 times",
 
     "stat.happyholidays.use_snow_globe": "Snow Globe Charges Used",
+    "stat.happyholidays.christmas_gifts_received": "Christmas Gifts Received",
+    "stat.happyholidays.gingerbread_men_dried": "Gingerbread Men Dried",
+    "stat.happyholidays.santa_elves_helped": "Santa Elves Helped",
+    "stat.happyholidays.angry_santas_defeated": "Angry Santas Defeated",
+    "stat.happyholidays.happy_santas_received": "Happy Santas Received",
+    "stat.happyholidays.nutcrackers_tamed": "Nutcrackers Tamed",
 
     "argument.happyholidays.yearless_date.incomplete": "Incomplete yearless date entered (usage: MM-DD)",
     "argument.happyholidays.yearless_date.invalid_month": "Invalid month entered (should be between 01 and 12 inclusive)",
