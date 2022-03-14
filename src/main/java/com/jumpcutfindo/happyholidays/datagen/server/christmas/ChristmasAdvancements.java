@@ -27,7 +27,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
 
     @Override
     public void accept(Consumer<Advancement> advancementConsumer) {
-        christmasRoot = createRootAdvancement(ChristmasItems.RED_CHRISTMAS_GIFT_ITEM.get(), translatable("root"), getBackground(), FrameType.TASK, true, true, false)
+        christmasRoot = createRootAdvancement(ChristmasItems.RED_CHRISTMAS_GIFT.get(), translatable("root"), getBackground(), FrameType.TASK, true, true, false)
                 .addCriterion("has_any", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.ANY))
                 .save(advancementConsumer, advancementId("root"));
 
@@ -78,7 +78,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .addCriterion("encounter_grinch", ChristmasTriggers.GRINCH_ENCOUNTER.getInstance())
                 .save(advancementConsumer, advancementId("grinch_encounter"));
 
-        Advancement grinchAppeasement = createAdvancement(grinchStart, ChristmasItems.RED_CHRISTMAS_GIFT_ITEM.get(), translatable("grinch_appeasement"))
+        Advancement grinchAppeasement = createAdvancement(grinchStart, ChristmasItems.RED_CHRISTMAS_GIFT.get(), translatable("grinch_appeasement"))
                 .addCriterion("appease_grinch", ChristmasTriggers.GRINCH_APPEASE.getInstance())
                 .save(advancementConsumer, advancementId("grinch_appeasement"));
 
@@ -407,7 +407,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .addCriterion("summon_santa", ChristmasTriggers.STAR_SUMMON_SANTA.getInstance())
                 .save(advancementConsumer, advancementId("santa_summon"));
 
-        Advancement santaDropParty = createAdvancement(santaStart, ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get(), translatable("santa_drop_party"))
+        Advancement santaDropParty = createAdvancement(santaStart, ChristmasItems.GOLD_CHRISTMAS_GIFT.get(), translatable("santa_drop_party"))
                 .addCriterion("drop_party", ChristmasTriggers.SANTA_DROP_PARTY_COMPLETE.getInstance())
                 .save(advancementConsumer, advancementId("santa_drop_party"));
 

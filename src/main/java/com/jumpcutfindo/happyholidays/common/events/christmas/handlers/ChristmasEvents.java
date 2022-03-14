@@ -21,6 +21,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticl
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasStats;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
+import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -34,6 +35,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -230,6 +232,14 @@ public class ChristmasEvents {
         DamageSource source = event.getSource();
         if (source.getEntity() != null && source.getEntity() instanceof WalnutEntity walnut && walnut.getOwner() instanceof NutcrackerEntity nutcracker) {
             nutcracker.tryDroppingOrnament();
+        }
+    }
+
+    @SubscribeEvent
+    public static void onGiftPickup(PlayerEvent.ItemPickupEvent event) {
+        if (event.getStack().is(ChristmasTags.Items.GIFTS)) {
+            ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
+            serverPlayer.awardStat(ChristmasStats.GIFTS_RECEIVED);
         }
     }
 }

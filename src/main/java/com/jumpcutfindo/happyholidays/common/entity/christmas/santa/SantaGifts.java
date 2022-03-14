@@ -38,7 +38,7 @@ public class SantaGifts {
 
         switch (type) {
             case BASIC: {
-                giftItem = ChristmasItems.BLUE_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+                giftItem = ChristmasItems.BLUE_CHRISTMAS_GIFT.get().getDefaultInstance();
                 giftItem.setHoverName(new TranslatableComponent(NAME_BASIC_GIFT));
 
                 LootTable lootTable = level.getServer().getLootTables().get(BASIC_GIFT_LOOT_TABLE);
@@ -52,7 +52,7 @@ public class SantaGifts {
                 break;
             }
             case RARE: {
-                giftItem = ChristmasItems.GREEN_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+                giftItem = ChristmasItems.GREEN_CHRISTMAS_GIFT.get().getDefaultInstance();
                 giftItem.setHoverName(new TranslatableComponent(NAME_RARE_GIFT));
 
 
@@ -61,7 +61,7 @@ public class SantaGifts {
                 break;
             }
             case LEGENDARY: {
-                giftItem = ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+                giftItem = ChristmasItems.GOLD_CHRISTMAS_GIFT.get().getDefaultInstance();
                 giftItem.setHoverName(new TranslatableComponent(NAME_LEGENDARY_GIFT));
 
                 LootTable lootTable = level.getServer().getLootTables().get(LEGENDARY_GIFT_LOOT_TABLE);

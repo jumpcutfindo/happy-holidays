@@ -66,6 +66,8 @@ public class ChristmasTags {
 
         public static final Tags.IOptionalNamedTag<Item> LEGENDARY_ORNAMENTS = itemTag("legendary_ornaments");
 
+        public static final Tags.IOptionalNamedTag<Item> GIFTS = itemTag("gifts");
+
         public static final Tags.IOptionalNamedTag<Item> FOODS = itemTag("foods");
 
         public static final Tags.IOptionalNamedTag<Item> LARGE_FOODS = itemTag("large_foods");

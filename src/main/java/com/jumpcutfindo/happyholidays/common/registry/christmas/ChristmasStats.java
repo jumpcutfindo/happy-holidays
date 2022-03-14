@@ -16,6 +16,7 @@ public class ChristmasStats {
     public static final Set<Pair<String, StatFormatter>> STATS = Sets.newHashSet();
 
     public static final ResourceLocation USE_SNOW_GLOBE = makeCustomStat("use_snow_globe", StatFormatter.DEFAULT);
+    public static final ResourceLocation GIFTS_RECEIVED = makeCustomStat("christmas_gifts_received", StatFormatter.DEFAULT);
 
     public static void registerStats() {
         STATS.forEach(statPair -> {

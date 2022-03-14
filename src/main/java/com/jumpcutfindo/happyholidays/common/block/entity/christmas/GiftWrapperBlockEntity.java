@@ -127,17 +127,17 @@ public class GiftWrapperBlockEntity extends BaseContainerBlockEntity implements 
 
         ItemStack giftStack = ItemStack.EMPTY;
         if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), ChristmasItems.RED_CHRISTMAS_DYE.get().getDefaultInstance())) {
-            giftStack = ChristmasItems.RED_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+            giftStack = ChristmasItems.RED_CHRISTMAS_GIFT.get().getDefaultInstance();
         } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), ChristmasItems.BLUE_CHRISTMAS_DYE.get().getDefaultInstance())) {
-            giftStack = ChristmasItems.BLUE_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+            giftStack = ChristmasItems.BLUE_CHRISTMAS_GIFT.get().getDefaultInstance();
         } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), ChristmasItems.YELLOW_CHRISTMAS_DYE.get().getDefaultInstance())) {
-            giftStack = ChristmasItems.YELLOW_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+            giftStack = ChristmasItems.YELLOW_CHRISTMAS_GIFT.get().getDefaultInstance();
         } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), ChristmasItems.GREEN_CHRISTMAS_DYE.get().getDefaultInstance())) {
-            giftStack = ChristmasItems.GREEN_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+            giftStack = ChristmasItems.GREEN_CHRISTMAS_GIFT.get().getDefaultInstance();
         } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), ChristmasItems.GOLD_CHRISTMAS_DYE.get().getDefaultInstance())) {
-            giftStack = ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+            giftStack = ChristmasItems.GOLD_CHRISTMAS_GIFT.get().getDefaultInstance();
         } else if (ItemStack.isSame(giftWrapperInv.getItem(DYE_SLOT_INDEX), ChristmasItems.SILVER_CHRISTMAS_DYE.get().getDefaultInstance())) {
-            giftStack = ChristmasItems.SILVER_CHRISTMAS_GIFT_ITEM.get().getDefaultInstance();
+            giftStack = ChristmasItems.SILVER_CHRISTMAS_GIFT.get().getDefaultInstance();
         }
 
         CompoundTag giftTag = giftStack.getOrCreateTag();

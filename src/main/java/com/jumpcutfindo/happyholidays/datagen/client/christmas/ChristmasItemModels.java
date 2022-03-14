@@ -210,12 +210,12 @@ public class ChristmasItemModels extends ItemModelProvider {
     // For items in general
     private void registerItemsWithTexture() {
         Set<Pair<Item, String>> items = Sets.newHashSet(
-                itemTexturePair(ChristmasItems.RED_CHRISTMAS_GIFT_ITEM.get()),
-                itemTexturePair(ChristmasItems.BLUE_CHRISTMAS_GIFT_ITEM.get()),
-                itemTexturePair(ChristmasItems.YELLOW_CHRISTMAS_GIFT_ITEM.get()),
-                itemTexturePair(ChristmasItems.GREEN_CHRISTMAS_GIFT_ITEM.get()),
-                itemTexturePair(ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get()),
-                itemTexturePair(ChristmasItems.SILVER_CHRISTMAS_GIFT_ITEM.get()),
+                itemTexturePair(ChristmasItems.RED_CHRISTMAS_GIFT.get()),
+                itemTexturePair(ChristmasItems.BLUE_CHRISTMAS_GIFT.get()),
+                itemTexturePair(ChristmasItems.YELLOW_CHRISTMAS_GIFT.get()),
+                itemTexturePair(ChristmasItems.GREEN_CHRISTMAS_GIFT.get()),
+                itemTexturePair(ChristmasItems.GOLD_CHRISTMAS_GIFT.get()),
+                itemTexturePair(ChristmasItems.SILVER_CHRISTMAS_GIFT.get()),
 
                 itemTexturePair(ChristmasItems.DYE_BOWL.get()),
                 itemTexturePair(ChristmasItems.RED_CHRISTMAS_DYE.get()),

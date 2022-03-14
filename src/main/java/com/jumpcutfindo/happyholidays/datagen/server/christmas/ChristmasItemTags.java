@@ -70,6 +70,14 @@ public class ChristmasItemTags extends ItemTagsProvider {
                 .add(ChristmasItems.SHEET_MUSIC_WE_WISH_YOU.get())
                 .add(ChristmasItems.SHEET_MUSIC_WHITE_CHRISTMAS.get());
 
+        tag(ChristmasTags.Items.GIFTS)
+                .add(ChristmasItems.RED_CHRISTMAS_GIFT.get())
+                .add(ChristmasItems.BLUE_CHRISTMAS_GIFT.get())
+                .add(ChristmasItems.GREEN_CHRISTMAS_GIFT.get())
+                .add(ChristmasItems.YELLOW_CHRISTMAS_GIFT.get())
+                .add(ChristmasItems.GOLD_CHRISTMAS_GIFT.get())
+                .add(ChristmasItems.SILVER_CHRISTMAS_GIFT.get());
+
         tag(ChristmasTags.Items.FOODS)
                 .add(ChristmasItems.EGGNOG.get())
                 .add(ChristmasItems.CHRISTMAS_HAM.get())

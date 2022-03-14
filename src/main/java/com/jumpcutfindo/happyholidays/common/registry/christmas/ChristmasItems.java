@@ -213,17 +213,17 @@ public class ChristmasItems {
     public static final RegistryObject<Item> EGGNOG =
             registerCustomItem("eggnog", EggnogItem::new);
 
-    public static final RegistryObject<Item> RED_CHRISTMAS_GIFT_ITEM =
+    public static final RegistryObject<Item> RED_CHRISTMAS_GIFT =
             registerCustomItem("red_christmas_gift", ChristmasGiftItem::new);
-    public static final RegistryObject<Item> BLUE_CHRISTMAS_GIFT_ITEM =
+    public static final RegistryObject<Item> BLUE_CHRISTMAS_GIFT =
             registerCustomItem("blue_christmas_gift", ChristmasGiftItem::new);
-    public static final RegistryObject<Item> YELLOW_CHRISTMAS_GIFT_ITEM =
+    public static final RegistryObject<Item> YELLOW_CHRISTMAS_GIFT =
             registerCustomItem("yellow_christmas_gift", ChristmasGiftItem::new);
-    public static final RegistryObject<Item> GREEN_CHRISTMAS_GIFT_ITEM =
+    public static final RegistryObject<Item> GREEN_CHRISTMAS_GIFT =
             registerCustomItem("green_christmas_gift", ChristmasGiftItem::new);
-    public static final RegistryObject<Item> GOLD_CHRISTMAS_GIFT_ITEM =
+    public static final RegistryObject<Item> GOLD_CHRISTMAS_GIFT =
             registerCustomItem("gold_christmas_gift", ChristmasGiftItem::new);
-    public static final RegistryObject<Item> SILVER_CHRISTMAS_GIFT_ITEM =
+    public static final RegistryObject<Item> SILVER_CHRISTMAS_GIFT =
             registerCustomItem("silver_christmas_gift", ChristmasGiftItem::new);
 
     public static final RegistryObject<Item> SANTA_ELF_SPAWN_EGG =
