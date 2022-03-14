@@ -8,7 +8,7 @@ public enum NaughtyNiceAction {
     TAME_NUTCRACKER_EVENT(10, Type.NICE),
 
     // Naughty events
-    KILL_PASSIVE_MOB_EVENT(5, Type.NAUGHTY),
+    KILL_PASSIVE_MOB_EVENT(2, Type.NAUGHTY),
     KILL_SANTA_ELF_EVENT(200, Type.NAUGHTY);
 
     private int cost;
