@@ -19,6 +19,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class ChristmasItemModels extends ItemModelProvider {
     public static final String ITEM_GENERATED = "item/generated";
     public static final String ITEM_SPAWN_EGG = "item/template_spawn_egg";
+    public static final String ITEM_HANDHELD = "item/handheld";
 
     public ChristmasItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, HappyHolidaysMod.MOD_ID, existingFileHelper);
@@ -246,7 +247,6 @@ public class ChristmasItemModels extends ItemModelProvider {
                 itemTexturePair(ChristmasItems.CANDY_CANE.get()),
                 itemTexturePair(ChristmasItems.FESTIVE_CANDY_CANE.get()),
                 itemTexturePair(ChristmasItems.ENCHANTED_CANDY_CANE.get(), "candy_cane"),
-                itemTexturePair(ChristmasItems.SANTA_ELF_BELL.get()),
 
                 itemTexturePair(ChristmasItems.GINGERBREAD_COOKIE.get()),
                 itemTexturePair(ChristmasItems.RAW_GINGERBREAD.get()),
@@ -260,7 +260,6 @@ public class ChristmasItemModels extends ItemModelProvider {
                 itemTexturePair(ChristmasItems.METALLIC_WALNUT.get()),
                 itemTexturePair(ChristmasItems.HALVED_WALNUT.get()),
 
-                itemTexturePair(ChristmasItems.SWAGGER_STICK.get()),
                 itemTexturePair(ChristmasItems.PATROL_ORDERS.get()),
 
                 itemTexturePair(ChristmasItems.SANTA_HAT.get()),
@@ -317,6 +316,13 @@ public class ChristmasItemModels extends ItemModelProvider {
         );
 
         for (Item spawnEgg : spawnEggs) spawnEggWithTemplate(spawnEgg);
+
+        Set<Pair<Item, String>> handheldItems = Sets.newHashSet (
+                itemTexturePair(ChristmasItems.SANTA_ELF_BELL.get()),
+                itemTexturePair(ChristmasItems.SWAGGER_STICK.get())
+        );
+
+        for (Pair<Item, String> handheldItem : handheldItems) itemWithTextureHandheld(handheldItem.getKey(), handheldItem.getValue());
     }
 
     // For items with multiple layers
@@ -381,6 +387,14 @@ public class ChristmasItemModels extends ItemModelProvider {
         }
     }
 
+    private void itemWithTextureHandheld(Item item, String... textureId) {
+        String itemId = itemId(item);
+        ItemModelBuilder builder = withExistingParent(itemId, ITEM_HANDHELD);
+        for (int i = 0; i < textureId.length; i++) {
+            builder = builder.texture("layer" + i, resourceOfItem(textureId[i]));
+        }
+    }
+
     private void itemWithSpecificTextureResource(Item item, ResourceLocation... resourceLocations) {
         String itemId = itemId(item);
 
@@ -394,6 +408,8 @@ public class ChristmasItemModels extends ItemModelProvider {
         String itemId = itemId(item);
         ItemModelBuilder builder = withExistingParent(itemId, ITEM_SPAWN_EGG);
     }
+
+
 
     private void blockWithCustomModel(Item item, String customModelId) {
         withExistingParent(itemId(item), resourceOfBlock(customModelId));
