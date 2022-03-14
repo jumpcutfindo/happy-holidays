@@ -9,6 +9,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.Legenda
 import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.RareOrnament;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasBlockItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasFoiledItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasGuideBookItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
@@ -73,7 +74,7 @@ public class ChristmasItems {
     public static final RegistryObject<Item> THREAD =
             registerItem("thread", DEFAULT_PROPS);
     public static final RegistryObject<Item> ENCHANTED_THREAD =
-            registerItem("enchanted_thread", DEFAULT_PROPS, ChristmasRarity.RARE);
+            registerCustomItem("enchanted_thread", () -> new ChristmasFoiledItem(DEFAULT_PROPS, ChristmasRarity.RARE));
 
     public static final RegistryObject<BlockItem> WALNUT =
             registerCustomBlockItem("walnut", () -> new ItemNameBlockItem(ChristmasBlocks.WALNUT_PLANT.get(), DEFAULT_PROPS));
@@ -92,7 +93,7 @@ public class ChristmasItems {
             registerCustomItem("patrol_orders", PatrolOrdersItem::new);
 
     public static final RegistryObject<Item> ENCHANTED_SANTA_HAT =
-            registerItem("enchanted_santa_hat", ONE_IN_A_STACK_PROPS, ChristmasRarity.LEGENDARY);
+            registerCustomItem("enchanted_santa_hat", () -> new ChristmasFoiledItem(ONE_IN_A_STACK_PROPS, ChristmasRarity.LEGENDARY));
     public static final RegistryObject<Item> SANTA_HAT =
             registerCustomItem(ChristmasOutfits.SANTA_OUTFIT.getHeadpieceId(), ChristmasOutfits.SANTA_OUTFIT::getHeadpiece);
     public static final RegistryObject<Item> SANTA_TOP =
@@ -207,7 +208,7 @@ public class ChristmasItems {
     public static final RegistryObject<Item> FESTIVE_CANDY_CANE =
             registerFood("festive_candy_cane", new Item.Properties().tab(HappyHolidaysTabs.CHRISTMAS_GROUP).food(new FoodProperties.Builder().nutrition(2).effect(() -> new MobEffectInstance(MobEffects.JUMP, 100, 1), 0.5f).saturationMod(0.1f).alwaysEat().build()));
     public static final RegistryObject<Item> ENCHANTED_CANDY_CANE =
-            registerItem("enchanted_candy_cane", DEFAULT_PROPS, ChristmasRarity.LEGENDARY);
+            registerCustomItem("enchanted_candy_cane", () -> new ChristmasFoiledItem(DEFAULT_PROPS, ChristmasRarity.LEGENDARY));
 
     public static final RegistryObject<Item> EGGNOG =
             registerCustomItem("eggnog", EggnogItem::new);
