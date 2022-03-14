@@ -397,7 +397,7 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, Christma
         @Override
         public boolean canUse() {
             if (grinchEntity.hasReceivedGift) return false;
-            if (this.grinchEntity.getEffect(ChristmasEffects.GENEROSITY_OF_CHRISTMAS.get()) != null) {
+            if (this.grinchEntity.getEffect(ChristmasEffects.DEBUFF_OF_CHRISTMAS.get()) != null) {
                 this.targetPresentBlockPos = null;
                 this.resetPresentBreaking();
 

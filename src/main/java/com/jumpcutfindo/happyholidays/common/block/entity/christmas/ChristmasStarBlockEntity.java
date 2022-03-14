@@ -10,17 +10,17 @@ import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarTier;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
-import com.jumpcutfindo.happyholidays.common.inventory.christmas.ChristmasStarContainer;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.happy.HappySantaEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
+import com.jumpcutfindo.happyholidays.common.inventory.christmas.ChristmasStarContainer;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
 import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
 import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
@@ -211,10 +211,10 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
             AABB axisAlignedBB = new AABB(this.worldPosition).inflate(ENTITY_EFFECT_RADIUS[this.currentTier]);
 
             List<LivingEntity> christmasEntities = this.level.getEntitiesOfClass(LivingEntity.class,
-                    axisAlignedBB, entity -> entity instanceof ChristmasEntity);
+                    axisAlignedBB, entity -> ChristmasTags.Entities.DEBUFFABLE_BY_STAR.contains(entity.getType()));
 
             for (LivingEntity entity : christmasEntities) {
-                entity.addEffect(new MobEffectInstance(ChristmasEffects.GENEROSITY_OF_CHRISTMAS.get(), 200,
+                entity.addEffect(new MobEffectInstance(ChristmasEffects.DEBUFF_OF_CHRISTMAS.get(), 200,
                         this.currentTier - 1, true, true));
             }
 

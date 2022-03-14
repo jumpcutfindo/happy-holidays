@@ -26,8 +26,8 @@ public class ChristmasEffects {
                     .addAttributeModifier(Attributes.ATTACK_DAMAGE, "648D7064-6A60-4F59-8ABE-C2C23A6DD7A9", 0.1F, AttributeModifier.Operation.MULTIPLY_TOTAL)
             );
 
-    public static final RegistryObject<MobEffect> GENEROSITY_OF_CHRISTMAS =
-            registerEffect("generosity_of_christmas", () -> new HappyHolidaysEffect(MobEffectCategory.NEUTRAL, ColourUtils.rgbToInt(255, 0, 0)));
+    public static final RegistryObject<MobEffect> DEBUFF_OF_CHRISTMAS =
+            registerEffect("debuff_of_christmas", () -> new HappyHolidaysEffect(MobEffectCategory.NEUTRAL, ColourUtils.rgbToInt(255, 0, 0)));
 
     public static RegistryObject<MobEffect> registerEffect(String effectId, Supplier<MobEffect> mobEffect) {
         return EFFECTS.register(effectId, mobEffect);

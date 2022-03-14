@@ -95,6 +95,8 @@ public class ChristmasTags {
 
     public class Entities {
         public static final Tags.IOptionalNamedTag<EntityType<?>> CANDY_CANE_EXPLODERS = entityTag("candy_cane_exploders");
+
+        public static final Tags.IOptionalNamedTag<EntityType<?>> DEBUFFABLE_BY_STAR = entityTag("affected_by_star");
     }
 
     private static Tags.IOptionalNamedTag<Block> blockTag(String name) {
