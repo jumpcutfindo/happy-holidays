@@ -46,6 +46,9 @@ public class ChristmasTriggers {
     public static final CustomTrigger SNOW_GLOBE_USE = christmasTrigger("snow_globe_use");
     public static final CustomTrigger SNOW_GLOBE_USE_CHALLENGE = christmasTrigger("snow_globe_use_challenge");
 
+    // Nutcracker triggers
+    public static final CustomTrigger NUTCRACKER_TAME = christmasTrigger("nutcracker_tame");
+
     private static CustomTrigger christmasTrigger(String id) {
         CustomTrigger customTrigger = new CustomTrigger("christmas/" + id);
 

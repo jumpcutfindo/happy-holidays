@@ -15,6 +15,7 @@ import org.jetbrains.annotations.Nullable;
 import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.Holiday;
+import com.jumpcutfindo.happyholidays.common.events.christmas.NutcrackerEvent;
 import com.jumpcutfindo.happyholidays.common.inventory.christmas.NutcrackerContainer;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasRewards;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
@@ -84,6 +85,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -446,6 +448,15 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
         }
 
         return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void tame(Player player) {
+        super.tame(player);
+        if (!this.level.isClientSide()) {
+            NutcrackerEvent tameEvent = new NutcrackerEvent.Tame(this, player);
+            MinecraftForge.EVENT_BUS.post(tameEvent);
+        }
     }
 
     @Override

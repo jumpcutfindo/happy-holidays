@@ -10,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.MusicBoxEvent;
+import com.jumpcutfindo.happyholidays.common.events.christmas.NutcrackerEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SnowGlobeEvent;
@@ -122,7 +123,10 @@ public class ChristmasEvents {
         if (event instanceof GingerbreadConversionEvent.ToSoggy) {
             ChristmasTriggers.GINGERBREAD_MAN_TURN_SOGGY.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof GingerbreadConversionEvent.ToDry) {
-            ChristmasTriggers.GINGERBREAD_MAN_TURN_DRY.trigger((ServerPlayer) event.getPlayer());
+            ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
+            serverPlayer.awardStat(ChristmasStats.GINGERBREAD_MEN_DRIED);
+
+            ChristmasTriggers.GINGERBREAD_MAN_TURN_DRY.trigger(serverPlayer);
         }
     }
 
@@ -135,10 +139,12 @@ public class ChristmasEvents {
         } else if (event instanceof SantaElfEvent.Trade) {
             ChristmasTriggers.SANTA_ELF_TRADE.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof SantaElfEvent.CompleteRequest) {
-            ChristmasTriggers.SANTA_ELF_COMPLETE_REQUEST.trigger((ServerPlayer) event.getPlayer());
+            ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
+            serverPlayer.awardStat(ChristmasStats.SANTA_ELVES_HELPED);
+            ChristmasTriggers.SANTA_ELF_COMPLETE_REQUEST.trigger(serverPlayer);
 
             if (((SantaElfEvent.CompleteRequest) event).getTimeTaken() <= 6000) {
-                ChristmasTriggers.SANTA_ELF_COMPLETE_REQUEST_QUICK.trigger((ServerPlayer) event.getPlayer());
+                ChristmasTriggers.SANTA_ELF_COMPLETE_REQUEST_QUICK.trigger(serverPlayer);
             }
         }
     }
@@ -150,7 +156,10 @@ public class ChristmasEvents {
         if (event instanceof GrinchEvent.Encounter) {
             ChristmasTriggers.GRINCH_ENCOUNTER.trigger((ServerPlayer) event.getPlayer());
         } else if (event instanceof GrinchEvent.Appease) {
-            ChristmasTriggers.GRINCH_APPEASE.trigger((ServerPlayer) event.getPlayer());
+            ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
+            serverPlayer.awardStat(ChristmasStats.GRINCHES_APPEASED);
+
+            ChristmasTriggers.GRINCH_APPEASE.trigger(serverPlayer);
         }
     }
 
@@ -159,15 +168,21 @@ public class ChristmasEvents {
         if (!(event.getPlayer() instanceof ServerPlayer)) return;
 
         if (event instanceof SantaEvent.AngryDie) {
-            ChristmasTriggers.SANTA_ANGRY_DIE.trigger((ServerPlayer) event.getPlayer());
-
+            ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
             AngrySantaEntity angrySantaEntity = (AngrySantaEntity) event.getSantaEntity();
+
+            serverPlayer.awardStat(ChristmasStats.ANGRY_SANTAS_DEFEATED);
+            ChristmasTriggers.SANTA_ANGRY_DIE.trigger(serverPlayer);
+
             if (!angrySantaEntity.isDamagedByPlayer()) {
                 ChristmasTriggers.SANTA_NO_TOUCHY.trigger((ServerPlayer) event.getPlayer());
             }
 
         } else if (event instanceof SantaEvent.CompleteDropParty) {
-            ChristmasTriggers.SANTA_DROP_PARTY_COMPLETE.trigger((ServerPlayer) event.getPlayer());
+            ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
+
+            serverPlayer.awardStat(ChristmasStats.HAPPY_SANTAS_RECEIVED);
+            ChristmasTriggers.SANTA_DROP_PARTY_COMPLETE.trigger(serverPlayer);
         }
     }
 
@@ -224,6 +239,15 @@ public class ChristmasEvents {
             if (serverPlayer.getStats().getValue(Stats.CUSTOM.get(ChristmasStats.USE_SNOW_GLOBE)) >= 50) {
                 ChristmasTriggers.SNOW_GLOBE_USE_CHALLENGE.trigger(serverPlayer);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onNutcrackerInteract(NutcrackerEvent event) {
+        if (!((event.getPlayer()) instanceof ServerPlayer serverPlayer)) return;
+
+        if (event instanceof NutcrackerEvent.Tame) {
+            serverPlayer.awardStat(ChristmasStats.NUTCRACKERS_TAMED);
         }
     }
 
