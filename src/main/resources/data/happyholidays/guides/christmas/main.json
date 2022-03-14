@@ -291,7 +291,8 @@
                         "happyholidays:candy_cane_ornament",
                         "happyholidays:grinch_ornament",
                         "happyholidays:santa_elf_ornament",
-                        "happyholidays:gingerbread_man_ornament"
+                        "happyholidays:gingerbread_man_ornament",
+                        "happyholidays:nutcracker_ornament"
                     ]
                 },
                 {
@@ -501,6 +502,172 @@
             ]
         },
         {
+            "title": "Nutcrackers and Walnuts",
+            "description": "About the Nutcrackers",
+            "image": {
+                "type": "image",
+                "source": "guides/christmas/images.png",
+                "x": 0,
+                "y": 255,
+                "width": 134,
+                "height": 167
+            },
+            "sections": [
+                {
+                    "type": "text",
+                    "content": "The Nutcracker is a relatively sturdy, well-built wooden machination that was made to guard the North Pole from any impending threats."
+                },
+                {
+                    "type": "text",
+                    "content": "They used to guard the North Pole from any impending danger. However, now that they've been scattered across the land, they wander around aimlessly in search of a new leader: you!"
+                },
+                {
+                    "type": "text",
+                    "title": "Taming a Nutcracker"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:walnut"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Nutcrackers willingly follow leaders who provide them with their favorite food: Walnuts!"
+                },
+                {
+                    "type": "text",
+                    "content": "Once under your supervision, they will attack hostile monsters they see around them to ensure your safety."
+                },
+                {
+                    "type": "text",
+                    "title": "Healing a Nutcracker"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "minecraft:oak_log"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Nutcrackers do need to be repaired sometimes. You can tell if a Nutcracker needs repairs by the height of their hat."
+                },
+                {
+                    "type": "text",
+                    "content": "Right-clicking them with some logs will recover their health by a certain amount!"
+                },
+                {
+                    "type": "text",
+                    "title": "Special Walnuts"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:sugared_walnut",
+                        "happyholidays:halved_walnut",
+                        "happyholidays:explosive_walnut",
+                        "happyholidays:metallic_walnut"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Special Walnuts are modified walnuts that provide special effects to the ammo as used by the Nutcracker."
+                },
+                {
+                    "type": "text",
+                    "content": "Providing the Nutcracker with certain types of Walnuts will affect their ammo used accordingly: for instance, an Explosive Walnut used by the Nutcracker would cause an explosion where the Walnut landed!"
+                },
+                {
+                    "type": "recipes",
+                    "recipes": [
+                        "happyholidays:sugared_walnut",
+                        "happyholidays:halved_walnut",
+                        "happyholidays:explosive_walnut",
+                        "happyholidays:metallic_walnut"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "title": "Armor"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "minecraft:netherite_helmet",
+                        "minecraft:netherite_chestplate",
+                        "minecraft:netherite_leggings",
+                        "minecraft:netherite_boots"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Nutcrackers can be made more sturdy by providing them with armor increasing items to hold in their inventory."
+                },
+                {
+                    "type": "text",
+                    "title": "Patrolling and Patrol Orders"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:swagger_stick",
+                        "happyholidays:patrol_orders"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Nutcrackers are excellent guards: they are able to patrol an area as indicated by the player to ensure the safety of that area."
+                },
+                {
+                    "type": "text",
+                    "content": "Each Nutcracker comes with a set of Patrol Orders, which is obtainable by right-clicking them with a Swagger Stick."
+                },
+                {
+                    "type": "text",
+                    "content": "Swagger Sticks can be obtained as a legendary reward from Christmas Presents."
+                },
+                {
+                    "type": "text",
+                    "content": "The route by which the Nutcracker will patrol along is determined by the Patrol Orders they hold."
+                },
+                {
+                    "type": "text",
+                    "content": "You are able to set the route of the Patrol Orders by simply right-clicking on the ground each point the Nutcracker is to move towards during the patrol. A bulb of light will travel along the route to indicate the patrol route."
+                },
+                {
+                    "type": "text",
+                    "content": "Note: Patrol Orders can be erased by holding down right-click while holding that set of Patrol Orders."
+                },
+                {
+                    "type": "text",
+                    "content": "Once the patrol route has been closed, the Patrol Orders can be passed back to the Nutcracker, and he will begin his guard duty!"
+                },
+                {
+                    "type": "text",
+                    "content": "Along the route, the Nutcracker will attempt to attack any hostile mobs they encounter. Maybe an ornament will drop from the kill!"
+                },
+                {
+                    "type": "text",
+                    "title": "Assembling Nutcrackers"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:swagger_stick"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "The Swagger Stick acts as the beacon to which all your Nutcrackers around you will assemble towards."
+                },
+                {
+                    "type": "text",
+                    "content": "While holding it, the Nutcrackers around will quickly rush to an organised position in front of you, following which you will be able to inspect them!"
+                }
+            ]
+        },
+        {
             "title": "Santa's Elf and his Requests",
             "description": "About Santa's Elf",
             "image": {
@@ -654,6 +821,50 @@
                 {
                     "type": "text",
                     "content": "There are a total of 16 unique pieces of sheet music that exist in the hands of mobs or the presents; can you collect all 16 of them?"
+                }
+            ]
+        },
+        {
+            "title": "Outfits",
+            "description": "Fashioncraft!",
+            "sections": [
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:santa_hat",
+                        "happyholidays:santa_elf_hat",
+                        "happyholidays:snowman_headpiece",
+                        "happyholidays:candy_cane_headpiece",
+                        "happyholidays:reindeer_headpiece",
+                        "happyholidays:nutcracker_hat",
+                        "happyholidays:gingerbread_headpiece"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "What's Christmas without a little dressing up? Santa's magical thread has been strewn across the landscape, ready for you to gather and use in the creation of many different outfits!"
+                },
+                {
+                    "type": "text",
+                    "content": "Want to be a snowman, blending in the background alongside the magical Snow Golems? No problem!"
+                },
+                {
+                    "type": "text",
+                    "content": "You can even cosplay as Rudolph with the new Reindeer outfit!"
+                },
+                {
+                    "type": "text",
+                    "title": "Thread"
+                },
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:thread"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "These outfits are obtainable via crafting with Thread: obtain a piece of Thread to find out how you can create your own outfits!"
                 }
             ]
         },
@@ -879,6 +1090,28 @@
                 {
                     "type": "text",
                     "content": "Also, don't miss out on the Enchanted Santa Hat that he always carries on him!"
+                }
+            ]
+        },
+        {
+            "title": "Explosive Presents",
+            "description": "About the Explosive Present",
+            "sections": [
+                {
+                    "type": "items",
+                    "items": [
+                        "happyholidays:explosive_present"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Looks like Santa dropped the recipe for his experimental explosive present! These presents are meant to damage only mobs, simultaneously protecting the natural landscape from any damage."
+                },
+                {
+                    "type": "recipes",
+                    "recipes": [
+                        "happyholidays:explosive_present"
+                    ]
                 }
             ]
         },
