@@ -30,16 +30,6 @@
         ]
       }
     },
-    "has_wool": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "tag": "minecraft:wool"
-          }
-        ]
-      }
-    },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
@@ -51,7 +41,6 @@
     [
       "has_scraps",
       "has_paper",
-      "has_wool",
       "has_the_recipe"
     ]
   ]
