@@ -21,6 +21,7 @@ public class ChristmasStats {
     public static final HappyHolidaysStat ANGRY_SANTAS_DEFEATED = createStat("angry_santas_defeated", StatFormatter.DEFAULT);
     public static final HappyHolidaysStat HAPPY_SANTAS_RECEIVED = createStat("happy_santas_received", StatFormatter.DEFAULT);
     public static final HappyHolidaysStat NUTCRACKERS_TAMED = createStat("nutcrackers_tamed", StatFormatter.DEFAULT);
+    public static final HappyHolidaysStat NUTCRACKER_KILLS = createStat("nutcracker_kills", StatFormatter.DEFAULT);
 
     public static void registerStats() {
         STATS.forEach(stat -> {

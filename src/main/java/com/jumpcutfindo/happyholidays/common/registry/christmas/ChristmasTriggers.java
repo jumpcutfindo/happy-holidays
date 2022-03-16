@@ -54,6 +54,7 @@ public class ChristmasTriggers {
     // Nutcracker triggers
     public static final CustomTrigger NUTCRACKER_TAME = christmasTrigger("nutcracker_tame");
     public static final CustomTrigger NUTCRACKER_TAME_CHALLENGE = christmasTrigger("nutcracker_tame_challenge");
+    public static final CustomTrigger NUTCRACKER_KILL_CHALLENGE = christmasTrigger("nutcracker_kill_challenge");
 
     private static CustomTrigger christmasTrigger(String id) {
         CustomTrigger customTrigger = new CustomTrigger("christmas/" + id);

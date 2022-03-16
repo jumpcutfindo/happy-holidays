@@ -596,6 +596,7 @@
     "stat.happyholidays.angry_santas_defeated": "Angry Santas Defeated",
     "stat.happyholidays.happy_santas_received": "Happy Santas Received",
     "stat.happyholidays.nutcrackers_tamed": "Nutcrackers Tamed",
+    "stat.happyholidays.nutcracker_kills": "Mobs Killed By Tamed Nutcrackers",
 
     "argument.happyholidays.yearless_date.incomplete": "Incomplete yearless date entered (usage: MM-DD)",
     "argument.happyholidays.yearless_date.invalid_month": "Invalid month entered (should be between 01 and 12 inclusive)",

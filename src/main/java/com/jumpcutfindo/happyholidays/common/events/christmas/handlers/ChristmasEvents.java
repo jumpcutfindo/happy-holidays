@@ -129,6 +129,10 @@ public class ChristmasEvents {
             HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.GINGERBREAD_MEN_DRIED);
 
             ChristmasTriggers.GINGERBREAD_MAN_TURN_DRY.trigger(serverPlayer);
+
+            if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.GINGERBREAD_MEN_DRIED) >= 200) {
+                ChristmasTriggers.GINGERBREAD_MAN_DRY_CHALLENGE.trigger(serverPlayer);
+            }
         }
     }
 
@@ -149,6 +153,11 @@ public class ChristmasEvents {
             if (((SantaElfEvent.CompleteRequest) event).getTimeTaken() <= 6000) {
                 ChristmasTriggers.SANTA_ELF_COMPLETE_REQUEST_QUICK.trigger(serverPlayer);
             }
+
+            // TODO: Revert to value 50 after testing
+            if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.SANTA_ELVES_HELPED) >= 2) {
+                ChristmasTriggers.SANTA_ELF_HELP_CHALLENGE.trigger(serverPlayer);
+            }
         }
     }
 
@@ -163,6 +172,11 @@ public class ChristmasEvents {
             HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.GRINCHES_APPEASED);
 
             ChristmasTriggers.GRINCH_APPEASE.trigger(serverPlayer);
+
+            // TODO: Revert to value 50 after testing
+            if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.GRINCHES_APPEASED) >= 2) {
+                ChristmasTriggers.GRINCH_APPEASE_CHALLENGE.trigger(serverPlayer);
+            }
         }
     }
 
@@ -181,11 +195,21 @@ public class ChristmasEvents {
                 ChristmasTriggers.SANTA_NO_TOUCHY.trigger((ServerPlayer) event.getPlayer());
             }
 
+            // TODO: Revert to value 10 after testing
+            if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.ANGRY_SANTAS_DEFEATED) >= 1) {
+                ChristmasTriggers.SANTA_ANGRY_CHALLENGE.trigger(serverPlayer);
+            }
+
         } else if (event instanceof SantaEvent.CompleteDropParty) {
             ServerPlayer serverPlayer = (ServerPlayer) event.getPlayer();
 
             HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.HAPPY_SANTAS_RECEIVED);
             ChristmasTriggers.SANTA_DROP_PARTY_COMPLETE.trigger(serverPlayer);
+
+            // TODO: Revert to value 10 after testing
+            if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.HAPPY_SANTAS_RECEIVED) >= 1) {
+                ChristmasTriggers.SANTA_HAPPY_CHALLENGE.trigger(serverPlayer);
+            }
         }
     }
 
@@ -251,6 +275,13 @@ public class ChristmasEvents {
 
         if (event instanceof NutcrackerEvent.Tame) {
             HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.NUTCRACKERS_TAMED);
+
+            ChristmasTriggers.NUTCRACKER_TAME.trigger(serverPlayer);
+
+            // TODO: Revert to value 20 after testing
+            if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.NUTCRACKERS_TAMED) >= 20) {
+                ChristmasTriggers.NUTCRACKER_TAME_CHALLENGE.trigger(serverPlayer);
+            }
         }
     }
 
@@ -259,6 +290,15 @@ public class ChristmasEvents {
         DamageSource source = event.getSource();
         if (source.getEntity() != null && source.getEntity() instanceof WalnutEntity walnut && walnut.getOwner() instanceof NutcrackerEntity nutcracker) {
             nutcracker.tryDroppingOrnament();
+
+            if (nutcracker.getOwner() instanceof ServerPlayer serverPlayer) {
+                HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.NUTCRACKER_KILLS);
+
+                // TODO: Revert to value 500 after testing
+                if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.NUTCRACKER_KILLS) >= 5) {
+                    ChristmasTriggers.NUTCRACKER_KILL_CHALLENGE.trigger(serverPlayer);
+                }
+            }
         }
     }
 
