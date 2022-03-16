@@ -4,7 +4,6 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.NutcrackerEntity;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.WalnutEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry.AngrySantaEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.ChristmasStarEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
@@ -16,6 +15,7 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SnowGlobeEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.StockingEvent;
+import com.jumpcutfindo.happyholidays.common.events.christmas.SwaggerStickEvent;
 import com.jumpcutfindo.happyholidays.common.registry.HappyHolidaysStats;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
@@ -276,6 +276,15 @@ public class ChristmasEvents {
     }
 
     @SubscribeEvent
+    public static void onSwaggerStickInteract(SwaggerStickEvent event) {
+        if (!(event.getPlayer() instanceof ServerPlayer serverPlayer)) return;
+
+        if (event instanceof SwaggerStickEvent.Held) {
+            ChristmasTriggers.SWAGGER_STICK_HELD.trigger(serverPlayer);
+        }
+    }
+
+    @SubscribeEvent
     public static void onNutcrackerInteract(NutcrackerEvent event) {
         if (!((event.getPlayer()) instanceof ServerPlayer serverPlayer)) return;
 
@@ -297,17 +306,20 @@ public class ChristmasEvents {
             ChristmasTriggers.NUTCRACKER_RECEIVE_ARMOR.trigger(serverPlayer);
         } else if (event instanceof NutcrackerEvent.FullOfExplosives) {
             ChristmasTriggers.NUTCRACKER_EXPLOSIVE_INVENTORY.trigger(serverPlayer);
+        } else if (event instanceof NutcrackerEvent.HighArmorRating) {
+            ChristmasTriggers.NUTCRACKER_HIGH_ARMOR_RATING.trigger(serverPlayer);
         }
     }
 
     @SubscribeEvent
     public static void onNutcrackerKillsMob(LivingDeathEvent event) {
         DamageSource source = event.getSource();
-        if (source.getEntity() != null && source.getEntity() instanceof WalnutEntity walnut && walnut.getOwner() instanceof NutcrackerEntity nutcracker) {
+        if (source.getEntity() != null && source.getEntity() instanceof NutcrackerEntity nutcracker) {
             nutcracker.tryDroppingOrnament();
 
             if (nutcracker.getOwner() instanceof ServerPlayer serverPlayer) {
                 HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.NUTCRACKER_KILLS);
+                ChristmasTriggers.NUTCRACKER_KILLS_MOB.trigger(serverPlayer);
 
                 if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.NUTCRACKER_KILLS) >= 500) {
                     ChristmasTriggers.NUTCRACKER_KILL_CHALLENGE.trigger(serverPlayer);

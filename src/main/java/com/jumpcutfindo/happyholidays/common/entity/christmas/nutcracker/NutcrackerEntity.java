@@ -284,6 +284,10 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
             if (nutcrackerInventory.isFullOf(ChristmasItems.EXPLOSIVE_WALNUT.get())) {
                 MinecraftForge.EVENT_BUS.post(new NutcrackerEvent.FullOfExplosives(this, interactingPlayer));
             }
+
+            if (nutcrackerInventory.getArmorValue() >= 56) {
+                MinecraftForge.EVENT_BUS.post(new NutcrackerEvent.HighArmorRating(this, interactingPlayer));
+            }
         });
     }
 

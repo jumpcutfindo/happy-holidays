@@ -1,0 +1,33 @@
+{
+  "parent": "happyholidays:christmas/nutcracker_built_different",
+  "display": {
+    "icon": {
+      "item": "minecraft:netherite_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_hard_nut"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_hard_nut.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "criteria": {
+    "nutcracker_armor_rating_high": {
+      "trigger": "happyholidays:christmas/nutcracker_high_armor_rating",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "nutcracker_armor_rating_high"
+    ]
+  ]
+}

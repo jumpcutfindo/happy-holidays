@@ -54,6 +54,9 @@ public class ChristmasTriggers {
     // Patrol Order triggers
     public static final CustomTrigger PATROL_ORDERS_COMPLETE = christmasTrigger("patrol_orders_complete");
 
+    // Swagger Stick triggers
+    public static final CustomTrigger SWAGGER_STICK_HELD = christmasTrigger("swagger_stick_held");
+
     // Nutcracker triggers
     public static final CustomTrigger NUTCRACKER_ENCOUNTER = christmasTrigger("nutcracker_encounter");
     public static final CustomTrigger NUTCRACKER_TAME = christmasTrigger("nutcracker_tame");
@@ -62,6 +65,8 @@ public class ChristmasTriggers {
     public static final CustomTrigger NUTCRACKER_RECEIVE_SPECIAL_WALNUT = christmasTrigger("nutcracker_receive_special_walnut");
     public static final CustomTrigger NUTCRACKER_RECEIVE_ARMOR = christmasTrigger("nutcracker_receive_armor");
     public static final CustomTrigger NUTCRACKER_EXPLOSIVE_INVENTORY = christmasTrigger("nutcracker_explosive_inventory");
+    public static final CustomTrigger NUTCRACKER_HIGH_ARMOR_RATING = christmasTrigger("nutcracker_high_armor_rating");
+    public static final CustomTrigger NUTCRACKER_KILLS_MOB = christmasTrigger("nutcracker_kills_mob");
     public static final CustomTrigger NUTCRACKER_KILL_CHALLENGE = christmasTrigger("nutcracker_kill_challenge");
 
     private static CustomTrigger christmasTrigger(String id) {

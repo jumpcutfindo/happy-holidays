@@ -472,6 +472,19 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .rewards(AdvancementRewards.Builder.experience(200).build())
                 .save(advancementConsumer, advancementId("nutcracker_tame_challenge"));
 
+        Advancement nutcrackerKill = createAdvancement(nutcrackerTame, Items.ZOMBIE_HEAD, translatable("nutcracker_kill_mob"))
+                .addCriterion("nutcracker_kill_mobs", ChristmasTriggers.NUTCRACKER_KILLS_MOB.getInstance())
+                .save(advancementConsumer, advancementId("nutcracker_kill_mob"));
+
+        Advancement nutcrackerOrnament = createAdvancement(nutcrackerKill, ChristmasItems.NUTCRACKER_ORNAMENT.get(), translatable("nutcracker_ornament_get"), FrameType.GOAL, true, false, false)
+                .addCriterion("obtain_nutcracker_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.NUTCRACKER_ORNAMENT.get()))
+                .save(advancementConsumer, advancementId("nutcracker_ornament_get"));
+
+        Advancement nutcrackerKillsChallenge = createAdvancement(nutcrackerKill, Items.ZOMBIE_HEAD, translatable("nutcracker_kill_mob_challenge"), FrameType.CHALLENGE, true, true, false)
+                .addCriterion("nutcracker_kill_mobs", ChristmasTriggers.NUTCRACKER_KILL_CHALLENGE.getInstance())
+                .rewards(AdvancementRewards.Builder.experience(100).build())
+                .save(advancementConsumer, advancementId("nutcracker_kill_mob_challenge"));
+
         Advancement patrolDuty = createAdvancement(nutcrackerTame, ChristmasItems.PATROL_ORDERS.get(), translatable("nutcracker_patrol_duty"))
                 .addCriterion("get_patrol_orders", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.PATROL_ORDERS.get()))
                 .save(advancementConsumer, advancementId("nutcracker_patrol_duty"));
@@ -504,6 +517,23 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .addCriterion("nutcracker_filled_explosive", ChristmasTriggers.NUTCRACKER_EXPLOSIVE_INVENTORY.getInstance())
                 .rewards(AdvancementRewards.Builder.experience(100))
                 .save(advancementConsumer, advancementId("nutcracker_explosive_inventory"));
+
+        Advancement coolerStick = createAdvancement(nutcrackerStart, ChristmasItems.SWAGGER_STICK.get(), translatable("nutcracker_cooler_stick"))
+                .addCriterion("obtain_swagger_stick", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SWAGGER_STICK.get()))
+                .save(advancementConsumer, advancementId("nutcracker_cooler_stick"));
+
+        Advancement avengersAssemble = createAdvancement(coolerStick, ChristmasItems.SWAGGER_STICK.get(), translatable("nutcracker_avengers_assemble"))
+                .addCriterion("assemble_nutcrackers", ChristmasTriggers.SWAGGER_STICK_HELD.getInstance())
+                .save(advancementConsumer, advancementId("nutcracker_avengers_assemble"));
+
+        Advancement builtDifferent = createAdvancement(nutcrackerStart, Items.LEATHER_CHESTPLATE, translatable("nutcracker_built_different"))
+                .addCriterion("give_nutcracker_armor", ChristmasTriggers.NUTCRACKER_RECEIVE_ARMOR.getInstance())
+                .save(advancementConsumer, advancementId("nutcracker_built_different"));
+
+        Advancement hardNutToCrack = createAdvancement(builtDifferent, Items.NETHERITE_CHESTPLATE, translatable("nutcracker_hard_nut"), FrameType.CHALLENGE, true, true, false)
+                .addCriterion("nutcracker_armor_rating_high", ChristmasTriggers.NUTCRACKER_HIGH_ARMOR_RATING.getInstance())
+                .rewards(AdvancementRewards.Builder.experience(100))
+                .save(advancementConsumer, advancementId("nutcracker_hard_nut"));
     }
 
     private ResourceLocation getBackground() {

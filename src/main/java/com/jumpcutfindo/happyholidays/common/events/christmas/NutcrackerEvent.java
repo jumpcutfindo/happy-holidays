@@ -51,4 +51,10 @@ public class NutcrackerEvent extends ChristmasEvent{
             super(nutcracker, player);
         }
     }
+
+    public static class HighArmorRating extends NutcrackerEvent {
+        public HighArmorRating(NutcrackerEntity nutcracker, Player player) {
+            super(nutcracker, player);
+        }
+    }
 }
