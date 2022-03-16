@@ -1,0 +1,32 @@
+{
+  "parent": "happyholidays:christmas/santa_elf_request",
+  "display": {
+    "icon": {
+      "item": "happyholidays:santa_elf_ornament"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.santa_elf_help_challenge"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.santa_elf_help_challenge.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 200
+  },
+  "criteria": {
+    "complete_challenge": {
+      "trigger": "happyholidays:christmas/santa_elf_help_challenge",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "complete_challenge"
+    ]
+  ]
+}

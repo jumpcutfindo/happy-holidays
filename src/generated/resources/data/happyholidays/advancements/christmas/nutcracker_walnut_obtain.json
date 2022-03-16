@@ -1,0 +1,37 @@
+{
+  "parent": "happyholidays:christmas/nutcracker_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:walnut"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_walnut_obtain"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_walnut_obtain.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "get_walnut": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:walnut"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_walnut"
+    ]
+  ]
+}

@@ -5,6 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.PatrolRoute;
+import com.jumpcutfindo.happyholidays.common.events.christmas.PatrolOrdersEvent;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
@@ -29,6 +30,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.MinecraftForge;
 
 public class PatrolOrdersItem extends ChristmasItem {
     private static final Item.Properties ITEM_PROPERTIES =
@@ -89,7 +91,13 @@ public class PatrolOrdersItem extends ChristmasItem {
 
         patrolOrdersTag.put("PatrolRoute", patrolRoute.serializeTag());
 
-        if (player != null && patrolRoute.isComplete()) player.getCooldowns().addCooldown(patrolOrders.getItem(), 20);
+        if (player != null && patrolRoute.isComplete()) {
+            player.getCooldowns().addCooldown(patrolOrders.getItem(), 20);
+
+            if (!player.getLevel().isClientSide()) {
+                MinecraftForge.EVENT_BUS.post(new PatrolOrdersEvent.Complete(player));
+            }
+        }
 
         return super.useOn(context);
     }

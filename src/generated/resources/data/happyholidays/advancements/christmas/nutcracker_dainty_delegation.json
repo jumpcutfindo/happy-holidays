@@ -1,0 +1,29 @@
+{
+  "parent": "happyholidays:christmas/nutcracker_patrol_duty",
+  "display": {
+    "icon": {
+      "item": "happyholidays:patrol_orders"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_dainty_delegation"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_dainty_delegation.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "complete_patrol_orders": {
+      "trigger": "happyholidays:christmas/patrol_orders_complete",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "complete_patrol_orders"
+    ]
+  ]
+}

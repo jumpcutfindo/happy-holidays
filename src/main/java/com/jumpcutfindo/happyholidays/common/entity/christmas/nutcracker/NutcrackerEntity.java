@@ -17,16 +17,17 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasRewards;
 import com.jumpcutfindo.happyholidays.common.events.christmas.NutcrackerEvent;
 import com.jumpcutfindo.happyholidays.common.inventory.christmas.NutcrackerContainer;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasRewards;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.item.christmas.PatrolOrdersItem;
 import com.jumpcutfindo.happyholidays.common.item.christmas.WalnutAmmo;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
+import com.jumpcutfindo.happyholidays.common.utils.EntityUtils;
 import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
 import com.jumpcutfindo.happyholidays.server.data.structs.Availability;
 
@@ -270,6 +271,12 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
     public void tick() {
         super.tick();
         if (this.droppedOrdersCooldown > 0) this.droppedOrdersCooldown--;
+
+        if (!this.level.isClientSide() && this.level.getGameTime() % 60L == 0) {
+            List<Player> playersAround = EntityUtils.findPlayersInRadius(this.level, this.position(), 6.0f);
+
+            for (Player playerEntity : playersAround) MinecraftForge.EVENT_BUS.post(new NutcrackerEvent.Encounter(this, playerEntity));
+        }
     }
 
     @NotNull
@@ -349,7 +356,14 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
 
         itemEntity.setRemoved(RemovalReason.DISCARDED);
 
-        if (PatrolOrdersItem.isCompletedPatrolOrders(patrolOrders)) this.playSound(ChristmasSounds.NUTCRACKER_RECEIVE_ORDERS.get(), 1.0F, 1.0F);
+        if (PatrolOrdersItem.isCompletedPatrolOrders(patrolOrders)) {
+            this.playSound(ChristmasSounds.NUTCRACKER_RECEIVE_ORDERS.get(), 1.0F, 1.0F);
+
+            Player thrower = this.level.getPlayerByUUID(itemEntity.getThrower());
+            if (!this.level.isClientSide() &&  thrower != null) {
+                MinecraftForge.EVENT_BUS.post(new NutcrackerEvent.ReceiveCompleteOrders(this, thrower));
+            }
+        }
     }
 
     public void dropPatrolOrders() {
@@ -457,7 +471,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
         super.tame(player);
         if (!this.level.isClientSide()) {
             NaughtyNiceMeter.evaluateAction(player, NaughtyNiceAction.TAME_NUTCRACKER_EVENT);
-            
+
             NutcrackerEvent tameEvent = new NutcrackerEvent.Tame(this, player);
             MinecraftForge.EVENT_BUS.post(tameEvent);
         }

@@ -51,9 +51,14 @@ public class ChristmasTriggers {
     public static final CustomTrigger SNOW_GLOBE_USE = christmasTrigger("snow_globe_use");
     public static final CustomTrigger SNOW_GLOBE_USE_CHALLENGE = christmasTrigger("snow_globe_use_challenge");
 
+    // Patrol Order triggers
+    public static final CustomTrigger PATROL_ORDERS_COMPLETE = christmasTrigger("patrol_orders_complete");
+
     // Nutcracker triggers
+    public static final CustomTrigger NUTCRACKER_ENCOUNTER = christmasTrigger("nutcracker_encounter");
     public static final CustomTrigger NUTCRACKER_TAME = christmasTrigger("nutcracker_tame");
     public static final CustomTrigger NUTCRACKER_TAME_CHALLENGE = christmasTrigger("nutcracker_tame_challenge");
+    public static final CustomTrigger NUTCRACKER_RECEIVE_COMPLETE_ORDERS = christmasTrigger("nutcracker_receive_complete_orders");
     public static final CustomTrigger NUTCRACKER_KILL_CHALLENGE = christmasTrigger("nutcracker_kill_challenge");
 
     private static CustomTrigger christmasTrigger(String id) {

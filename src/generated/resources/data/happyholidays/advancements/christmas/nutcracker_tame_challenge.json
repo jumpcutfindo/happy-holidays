@@ -1,0 +1,32 @@
+{
+  "parent": "happyholidays:christmas/nutcracker_tame",
+  "display": {
+    "icon": {
+      "item": "happyholidays:walnut"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_tame_challenge"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_tame_challenge.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 200
+  },
+  "criteria": {
+    "tame_nutcracker_challenge": {
+      "trigger": "happyholidays:christmas/nutcracker_tame_challenge",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "tame_nutcracker_challenge"
+    ]
+  ]
+}

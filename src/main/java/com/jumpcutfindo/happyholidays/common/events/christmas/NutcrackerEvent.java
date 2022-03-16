@@ -16,8 +16,20 @@ public class NutcrackerEvent extends ChristmasEvent{
         return nutcracker;
     }
 
+    public static class Encounter extends NutcrackerEvent {
+        public Encounter(NutcrackerEntity nutcracker, Player player) {
+            super(nutcracker, player);
+        }
+    }
+
     public static class Tame extends NutcrackerEvent {
         public Tame(NutcrackerEntity nutcracker, Player player) {
+            super(nutcracker, player);
+        }
+    }
+
+    public static class ReceiveCompleteOrders extends NutcrackerEvent {
+        public ReceiveCompleteOrders(NutcrackerEntity nutcracker, Player player) {
             super(nutcracker, player);
         }
     }

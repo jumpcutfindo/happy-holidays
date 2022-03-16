@@ -11,6 +11,7 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConvers
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.MusicBoxEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.NutcrackerEvent;
+import com.jumpcutfindo.happyholidays.common.events.christmas.PatrolOrdersEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SnowGlobeEvent;
@@ -130,7 +131,8 @@ public class ChristmasEvents {
 
             ChristmasTriggers.GINGERBREAD_MAN_TURN_DRY.trigger(serverPlayer);
 
-            if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.GINGERBREAD_MEN_DRIED) >= 200) {
+            // TODO: Revert to 200 after testing
+            if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.GINGERBREAD_MEN_DRIED) >= 2) {
                 ChristmasTriggers.GINGERBREAD_MAN_DRY_CHALLENGE.trigger(serverPlayer);
             }
         }
@@ -270,18 +272,31 @@ public class ChristmasEvents {
     }
 
     @SubscribeEvent
+    public static void onPatrolOrdersInteract(PatrolOrdersEvent event) {
+        if (!(event.getPlayer() instanceof ServerPlayer serverPlayer)) return;
+
+        if (event instanceof PatrolOrdersEvent.Complete) {
+            ChristmasTriggers.PATROL_ORDERS_COMPLETE.trigger(serverPlayer);
+        }
+    }
+
+    @SubscribeEvent
     public static void onNutcrackerInteract(NutcrackerEvent event) {
         if (!((event.getPlayer()) instanceof ServerPlayer serverPlayer)) return;
 
-        if (event instanceof NutcrackerEvent.Tame) {
+        if (event instanceof NutcrackerEvent.Encounter) {
+            ChristmasTriggers.NUTCRACKER_ENCOUNTER.trigger(serverPlayer);
+        } else if (event instanceof NutcrackerEvent.Tame) {
             HappyHolidaysStats.awardStat(serverPlayer, ChristmasStats.NUTCRACKERS_TAMED);
 
             ChristmasTriggers.NUTCRACKER_TAME.trigger(serverPlayer);
 
             // TODO: Revert to value 20 after testing
-            if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.NUTCRACKERS_TAMED) >= 20) {
+            if (HappyHolidaysStats.valueOf(serverPlayer, ChristmasStats.NUTCRACKERS_TAMED) >= 2) {
                 ChristmasTriggers.NUTCRACKER_TAME_CHALLENGE.trigger(serverPlayer);
             }
+        } else if (event instanceof NutcrackerEvent.ReceiveCompleteOrders) {
+            ChristmasTriggers.NUTCRACKER_RECEIVE_COMPLETE_ORDERS.trigger(serverPlayer);
         }
     }
 
