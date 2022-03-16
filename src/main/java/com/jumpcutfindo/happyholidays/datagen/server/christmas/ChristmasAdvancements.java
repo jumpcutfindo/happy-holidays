@@ -487,6 +487,23 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
         Advancement walnutObtain = createAdvancement(nutcrackerStart, ChristmasItems.WALNUT.get(), translatable("nutcracker_walnut_obtain"))
                 .addCriterion("get_walnut", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.WALNUT.get()))
                 .save(advancementConsumer, advancementId("nutcracker_walnut_obtain"));
+
+        Advancement specialWalnut = createAdvancement(walnutObtain, ChristmasItems.SUGARED_WALNUT.get(), translatable("nutcracker_special_walnut"))
+                .addCriterion("obtain_sugared_walnut", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SUGARED_WALNUT.get()))
+                .addCriterion("obtain_explosive_walnut", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.EXPLOSIVE_WALNUT.get()))
+                .addCriterion("obtain_halved_walnut", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.HALVED_WALNUT.get()))
+                .addCriterion("obtain_metallic_walnut", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.METALLIC_WALNUT.get()))
+                .requirements(RequirementsStrategy.OR)
+                .save(advancementConsumer, advancementId("nutcracker_special_walnut"));
+
+        Advancement specialForces = createAdvancement(specialWalnut, ChristmasItems.METALLIC_WALNUT.get(), translatable("nutcracker_special_forces"))
+                .addCriterion("give_nutcracker_special_walnut", ChristmasTriggers.NUTCRACKER_RECEIVE_SPECIAL_WALNUT.getInstance())
+                .save(advancementConsumer, advancementId("nutcracker_special_forces"));
+
+        Advancement explosiveInventory = createAdvancement(specialWalnut, ChristmasItems.EXPLOSIVE_WALNUT.get(), translatable("nutcracker_explosive_inventory"), FrameType.CHALLENGE, true, true,false)
+                .addCriterion("nutcracker_filled_explosive", ChristmasTriggers.NUTCRACKER_EXPLOSIVE_INVENTORY.getInstance())
+                .rewards(AdvancementRewards.Builder.experience(100))
+                .save(advancementConsumer, advancementId("nutcracker_explosive_inventory"));
     }
 
     private ResourceLocation getBackground() {

@@ -10,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -99,6 +100,31 @@ public class NutcrackerInventory extends ItemStackHandler {
         }
 
         return value;
+    }
+
+    public boolean hasSpecialWalnuts() {
+        for (ItemStack itemStack : this.stacks) {
+            if (itemStack.is(ChristmasTags.Items.SPECIAL_WALNUTS)) return true;
+        }
+
+        return false;
+    }
+
+    public boolean hasArmor() {
+        for (ItemStack itemStack : this.stacks) {
+            if (itemStack.getItem() instanceof ArmorItem) return true;
+        }
+
+        return false;
+    }
+
+    public boolean isFullOf(Item item) {
+        for (ItemStack itemStack : this.stacks) {
+            if (itemStack.is(item) && itemStack.getMaxStackSize() == itemStack.getCount()) continue;
+            else return false;
+        }
+
+        return true;
     }
 
     @Override

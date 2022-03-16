@@ -247,6 +247,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
             return InteractionResult.SUCCESS;
         }
 
+        // Handle interacting with player
         if (!this.level.isClientSide() && interactionHand == InteractionHand.MAIN_HAND && this.isTame()) {
             NetworkHooks.openGui((ServerPlayer) player, this, buf -> buf.writeInt(this.getId()));
             this.interactingPlayer = player;
@@ -265,6 +266,25 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
 
     public Player getInteractingPlayer() {
         return interactingPlayer;
+    }
+
+    public void onFinishPlayerInteraction(Player interactingPlayer) {
+        if (this.level.isClientSide()) return;
+
+        this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(inventory -> {
+            NutcrackerInventory nutcrackerInventory = (NutcrackerInventory) inventory;
+            if (nutcrackerInventory.hasSpecialWalnuts()) {
+                MinecraftForge.EVENT_BUS.post(new NutcrackerEvent.ReceiveSpecialWalnuts(this, interactingPlayer));
+            }
+
+            if (nutcrackerInventory.hasArmor()) {
+                MinecraftForge.EVENT_BUS.post(new NutcrackerEvent.ReceiveArmor(this, interactingPlayer));
+            }
+
+            if (nutcrackerInventory.isFullOf(ChristmasItems.EXPLOSIVE_WALNUT.get())) {
+                MinecraftForge.EVENT_BUS.post(new NutcrackerEvent.FullOfExplosives(this, interactingPlayer));
+            }
+        });
     }
 
     @Override
@@ -942,13 +962,30 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
     private static class LookAndFollowInteractingPlayerGoal extends Goal {
         private final NutcrackerEntity nutcracker;
 
+        private Player interactingPlayer;
+        private boolean isInteractingPreviousTick;
+
         public LookAndFollowInteractingPlayerGoal(NutcrackerEntity nutcracker) {
             this.nutcracker = nutcracker;
         }
 
         @Override
         public boolean canUse() {
-            return this.nutcracker.isInteractingWithPlayer();
+            boolean isInteracting = this.nutcracker.isInteractingWithPlayer();
+
+            // Check if the player has finished interacting with the Nutcracker
+            if (isInteractingPreviousTick && !isInteracting) {
+                nutcracker.onFinishPlayerInteraction(interactingPlayer);
+                interactingPlayer = null;
+            }
+
+            if (isInteracting && interactingPlayer == null) {
+                interactingPlayer = nutcracker.getInteractingPlayer();
+            }
+
+            isInteractingPreviousTick = isInteracting;
+
+            return isInteracting;
         }
 
         @Override

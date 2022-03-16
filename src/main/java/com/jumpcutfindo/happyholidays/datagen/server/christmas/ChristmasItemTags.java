@@ -228,11 +228,14 @@ public class ChristmasItemTags extends ItemTagsProvider {
                 .add(Items.LAVA_BUCKET)
                 .add(Items.MAGMA_BLOCK);
 
-        tag(ChristmasTags.Items.NUTCRACKER_CARRIABLES)
-                .add(ChristmasItems.WALNUT.get())
+        tag(ChristmasTags.Items.SPECIAL_WALNUTS)
                 .add(ChristmasItems.METALLIC_WALNUT.get())
                 .add(ChristmasItems.HALVED_WALNUT.get())
                 .add(ChristmasItems.EXPLOSIVE_WALNUT.get())
                 .add(ChristmasItems.SUGARED_WALNUT.get());
+
+        tag(ChristmasTags.Items.NUTCRACKER_CARRIABLES)
+                .add(ChristmasItems.WALNUT.get())
+                .addTag(ChristmasTags.Items.SPECIAL_WALNUTS);
     }
 }

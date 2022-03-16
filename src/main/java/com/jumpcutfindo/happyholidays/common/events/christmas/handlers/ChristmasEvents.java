@@ -291,6 +291,12 @@ public class ChristmasEvents {
             }
         } else if (event instanceof NutcrackerEvent.ReceiveCompleteOrders) {
             ChristmasTriggers.NUTCRACKER_RECEIVE_COMPLETE_ORDERS.trigger(serverPlayer);
+        } else if (event instanceof NutcrackerEvent.ReceiveSpecialWalnuts) {
+            ChristmasTriggers.NUTCRACKER_RECEIVE_SPECIAL_WALNUT.trigger(serverPlayer);
+        } else if (event instanceof NutcrackerEvent.ReceiveArmor) {
+            ChristmasTriggers.NUTCRACKER_RECEIVE_ARMOR.trigger(serverPlayer);
+        } else if (event instanceof NutcrackerEvent.FullOfExplosives) {
+            ChristmasTriggers.NUTCRACKER_EXPLOSIVE_INVENTORY.trigger(serverPlayer);
         }
     }
 

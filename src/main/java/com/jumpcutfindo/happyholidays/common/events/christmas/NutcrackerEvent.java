@@ -33,4 +33,22 @@ public class NutcrackerEvent extends ChristmasEvent{
             super(nutcracker, player);
         }
     }
+
+    public static class ReceiveSpecialWalnuts extends NutcrackerEvent {
+        public ReceiveSpecialWalnuts(NutcrackerEntity nutcracker, Player player) {
+            super(nutcracker, player);
+        }
+    }
+
+    public static class ReceiveArmor extends NutcrackerEvent {
+        public ReceiveArmor(NutcrackerEntity nutcracker, Player player) {
+            super(nutcracker, player);
+        }
+    }
+
+    public static class FullOfExplosives extends NutcrackerEvent {
+        public FullOfExplosives(NutcrackerEntity nutcracker, Player player) {
+            super(nutcracker, player);
+        }
+    }
 }
