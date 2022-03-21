@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#B#",
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:thread"
+    },
+    "S": {
+      "item": "minecraft:snow_block"
+    },
+    "B": {
+      "item": "minecraft:polished_blackstone_button"
+    }
+  },
+  "result": {
+    "item": "happyholidays:snowman_bottom"
+  }
+}

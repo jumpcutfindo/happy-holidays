@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#",
+    "L L",
+    "#R#"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:thread"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "R": {
+      "item": "minecraft:redstone_block"
+    }
+  },
+  "result": {
+    "item": "happyholidays:reindeer_headpiece"
+  }
+}
