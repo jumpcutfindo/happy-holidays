@@ -188,7 +188,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers());
-        this.targetSelector.addGoal(3, new NearestNuttableTargetGoal<>(this, Mob.class, 10, true, false, (p_29932_) -> {
+        this.targetSelector.addGoal(3, new NearestNuttableTargetGoal<>(this, Monster.class, 10, true, false, (p_29932_) -> {
             return p_29932_ instanceof Enemy;
         }));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
@@ -456,7 +456,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
 
     @Override
     public boolean canAttack(LivingEntity entity) {
-        return entity instanceof Enemy;
+        return entity instanceof Enemy && entity.isAlive();
     }
 
     @Override
@@ -902,19 +902,21 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
         }
 
         public boolean canUse() {
-            LivingEntity livingentity = this.mob.getTarget();
+            LivingEntity livingentity = this.nutcracker.getTarget();
             boolean flag = nutcracker.canFire();
-            if (livingentity != null && livingentity.isAlive()) {
+            if (livingentity != null) {
+                if (!livingentity.isAlive()) {
+                    this.nutcracker.forgetCurrentTargetAndRefreshUniversalAnger();
+                    return false;
+                }
                 this.target = livingentity;
                 flag = true && flag;
             } else {
-                this.nutcracker.setTarget(null);
+                this.target = null;
                 flag = false && flag;
             }
 
             nutcracker.setFiring(flag);
-
-            if (flag && this.target instanceof Monster monster) monster.setTarget(this.nutcracker);
 
             return flag;
         }

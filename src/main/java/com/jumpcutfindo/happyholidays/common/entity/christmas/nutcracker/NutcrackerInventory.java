@@ -34,7 +34,7 @@ public class NutcrackerInventory extends ItemStackHandler {
     }
 
     public WalnutAmmo getCurrentAmmo() {
-        ItemStack itemStack = this.getFirstStack();
+        ItemStack itemStack = this.getFirstWalnuts();
 
         if (itemStack.is(ChristmasItems.EXPLOSIVE_WALNUT.get())) {
             return WalnutAmmo.EXPLOSIVE;
@@ -49,7 +49,7 @@ public class NutcrackerInventory extends ItemStackHandler {
         return WalnutAmmo.PLAIN;
     }
 
-    public ItemStack getFirstStack() {
+    public ItemStack getFirstWalnuts() {
         for (ItemStack stack : this.stacks) {
             if (!stack.isEmpty()) {
                 if (stack.getItem() instanceof ArmorItem) continue;
@@ -60,7 +60,7 @@ public class NutcrackerInventory extends ItemStackHandler {
         return ItemStack.EMPTY;
     }
 
-    public int getFirstFilledSlot() {
+    public int getFirstSlotOfWalnuts() {
         for (int i = 0; i < this.stacks.size(); i++) {
             if (!this.stacks.get(i).isEmpty()) {
                 if (this.stacks.get(i).getItem() instanceof ArmorItem) continue;
@@ -72,7 +72,7 @@ public class NutcrackerInventory extends ItemStackHandler {
     }
 
     public void useAmmo() {
-        int slot = this.getFirstFilledSlot();
+        int slot = this.getFirstSlotOfWalnuts();
         if (slot == -1) return;
 
         this.extractItem(slot, 1, false);
