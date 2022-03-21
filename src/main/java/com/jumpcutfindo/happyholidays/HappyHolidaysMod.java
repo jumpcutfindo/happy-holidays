@@ -10,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasRecipes;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.proxies.CommonProxy;
 import com.jumpcutfindo.happyholidays.proxies.Proxy;
@@ -44,6 +45,7 @@ public class HappyHolidaysMod {
         ChristmasEntities.ENTITY_TYPES.register(bus);
         ChristmasBlocks.BLOCKS.register(bus);
         ChristmasItems.ITEMS.register(bus);
+        ChristmasRecipes.RECIPES.register(bus);
         ChristmasBlockEntities.BLOCK_ENTITY.register(bus);
         ChristmasContainers.CONTAINER.register(bus);
         ChristmasSounds.SOUNDS.register(bus);

@@ -36,7 +36,7 @@ public class PatrolOrdersItem extends ChristmasItem {
     private static final Item.Properties ITEM_PROPERTIES =
             new Item.Properties()
                     .tab(HappyHolidaysTabs.CHRISTMAS_GROUP)
-                    .stacksTo(1);
+                    .stacksTo(64);
 
     public static final String TOOLTIP_NO_ROUTE = "item.happyholidays.patrol_orders.no_route";
     public static final String TOOLTIP_ROUTE_WITH_LENGTH = "item.happyholidays.patrol_orders.route_with_length";
@@ -113,6 +113,11 @@ public class PatrolOrdersItem extends ChristmasItem {
         } else {
             textComponents.add(new TranslatableComponent(TOOLTIP_NO_ROUTE).withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         }
+    }
+
+    @Override
+    public boolean isFoil(ItemStack itemStack) {
+        return isCompletedPatrolOrders(itemStack);
     }
 
     public static boolean isValidPatrolOrders(ItemStack itemStack) {

@@ -14,6 +14,7 @@ import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.data.recipes.SpecialRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
@@ -119,6 +120,7 @@ public class ChristmasRecipes extends RecipeProvider {
         mistletoeAndHolly(consumer);
         musicBox(consumer);
         outfits(consumer);
+        patrolOrders(consumer);
         thread(consumer);
         walnuts(consumer);
         wrappingStation(consumer);
@@ -749,6 +751,10 @@ public class ChristmasRecipes extends RecipeProvider {
                 .pattern("# #").pattern("G G")
                 .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
                 .save(consumer, recipeResourceOf(ChristmasItems.GINGERBREAD_BOOTS.get()));
+    }
+
+    private void patrolOrders(Consumer<FinishedRecipe> consumer) {
+        SpecialRecipeBuilder.special(com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasRecipes.PATROL_ORDERS_CLONING.get()).save(consumer, "patrol_orders_cloning");
     }
 
     // Helper functions
