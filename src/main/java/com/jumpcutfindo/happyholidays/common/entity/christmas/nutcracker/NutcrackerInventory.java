@@ -51,7 +51,10 @@ public class NutcrackerInventory extends ItemStackHandler {
 
     public ItemStack getFirstStack() {
         for (ItemStack stack : this.stacks) {
-            if (!stack.isEmpty()) return stack;
+            if (!stack.isEmpty()) {
+                if (stack.getItem() instanceof ArmorItem) continue;
+                else return stack;
+            }
         }
 
         return ItemStack.EMPTY;
@@ -59,7 +62,10 @@ public class NutcrackerInventory extends ItemStackHandler {
 
     public int getFirstFilledSlot() {
         for (int i = 0; i < this.stacks.size(); i++) {
-            if (!this.stacks.get(i).isEmpty()) return i;
+            if (!this.stacks.get(i).isEmpty()) {
+                if (this.stacks.get(i).getItem() instanceof ArmorItem) continue;
+                else return i;
+            }
         }
 
         return -1;
