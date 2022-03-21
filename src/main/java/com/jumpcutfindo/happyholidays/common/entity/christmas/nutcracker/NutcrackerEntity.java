@@ -251,9 +251,10 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
         if (!this.level.isClientSide() && interactionHand == InteractionHand.MAIN_HAND && this.isTame()) {
             NetworkHooks.openGui((ServerPlayer) player, this, buf -> buf.writeInt(this.getId()));
             this.interactingPlayer = player;
+            return InteractionResult.sidedSuccess(this.level.isClientSide);
         }
 
-        return super.mobInteract(player, interactionHand);
+        return InteractionResult.sidedSuccess(this.level.isClientSide);
     }
 
     public boolean isInteractingWithPlayer() {
