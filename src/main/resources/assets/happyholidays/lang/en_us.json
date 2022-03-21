@@ -630,6 +630,10 @@
     "advancements.happyholidays.christmas.nutcracker_built_different.desc": "Give a Nutcracker some armor",
     "advancements.happyholidays.christmas.nutcracker_hard_nut": "Hard Nut To Crack",
     "advancements.happyholidays.christmas.nutcracker_hard_nut.desc": "Give a Nutcracker enough armor that its armor value exceeds 56",
+    "advancements.happyholidays.christmas.outfit_start": "Thread Lightly!",
+    "advancements.happyholidays.christmas.outfit_start.desc": "Craft a piece of Thread using a Stick and some String",
+    "advancements.happyholidays.christmas.outfit_fashion_show": "Fashion Show",
+    "advancements.happyholidays.christmas.outfit_fashion_show.desc": "Create a set of each of the various Christmas outfits!",
 
     "stat.happyholidays.use_snow_globe": "Snow Globe Charges Used",
     "stat.happyholidays.christmas_gifts_received": "Christmas Gifts Received",

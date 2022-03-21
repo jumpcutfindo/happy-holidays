@@ -1,5 +1,8 @@
 package com.jumpcutfindo.happyholidays.common.item.outfits;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 
 import net.minecraft.data.models.blockstates.PropertyDispatch;
@@ -108,6 +111,17 @@ public class Outfit {
         this.feetId = feetId;
         this.feet = feet;
         return this;
+    }
+
+    public List<Item> getOutfitItems() {
+        List<Item> lst = new ArrayList<>();
+
+        if (this.headpiece != null) lst.add(this.headpiece);
+        if (this.top != null) lst.add(this.top);
+        if (this.bottom != null) lst.add(this.bottom);
+        if (this.feet != null) lst.add(this.feet);
+
+        return lst;
     }
 
     public static class Builder {

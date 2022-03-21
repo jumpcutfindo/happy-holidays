@@ -6,8 +6,10 @@ import static com.jumpcutfindo.happyholidays.datagen.server.BaseAdvancementProvi
 import java.util.function.Consumer;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.item.outfits.Outfit;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasOutfits;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
 
 import net.minecraft.advancements.Advancement;
@@ -20,6 +22,7 @@ import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.PlacedBlockTrigger;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
 public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
@@ -46,6 +49,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
         starBranch(advancementConsumer);
         snowGlobeBranch(advancementConsumer);
         nutcrackerBranch(advancementConsumer);
+        outfitBranch(advancementConsumer);
     }
 
     private void presentsBranch(Consumer<Advancement> advancementConsumer) {
@@ -536,6 +540,23 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .save(advancementConsumer, advancementId("nutcracker_hard_nut"));
     }
 
+    private void outfitBranch(Consumer<Advancement> advancementConsumer) {
+        Advancement outfitStart = createAdvancement(christmasRoot, ChristmasItems.THREAD.get(), translatable("outfit_start"))
+                .addCriterion("obtain_thread", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.THREAD.get()))
+                .save(advancementConsumer, advancementId("outfit_start"));
+
+        Advancement dressUp = createAdvancement(christmasRoot, ChristmasItems.THREAD.get(), translatable("outfit_fashion_show"), FrameType.CHALLENGE, true, true, false)
+                .addCriterion("obtain_santa_outfit", createObtainOutfitCriterion(ChristmasOutfits.SANTA_OUTFIT))
+                .addCriterion("obtain_santa_elf_outfit", createObtainOutfitCriterion(ChristmasOutfits.SANTA_ELF_OUTFIT))
+                .addCriterion("obtain_snowman_outfit", createObtainOutfitCriterion(ChristmasOutfits.SNOWMAN_OUTFIT))
+                .addCriterion("obtain_candy_cane_outfit", createObtainOutfitCriterion(ChristmasOutfits.CANDY_CANE_OUTFIT))
+                .addCriterion("obtain_reindeer_outfit", createObtainOutfitCriterion(ChristmasOutfits.REINDEER_OUTFIT))
+                .addCriterion("obtain_nutcracker_outfit", createObtainOutfitCriterion(ChristmasOutfits.NUTCRACKER_OUTFIT))
+                .addCriterion("obtain_gingerbread_outfit", createObtainOutfitCriterion(ChristmasOutfits.GINGERBREAD_OUTFIT))
+                .rewards(AdvancementRewards.Builder.experience(150))
+                .save(advancementConsumer, advancementId("outfit_fashion_show"));
+    }
+
     private ResourceLocation getBackground() {
         return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/gui/advancements/backgrounds/christmas.png");
     }
@@ -546,5 +567,9 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
 
     private String advancementId(String id) {
         return HappyHolidaysMod.MOD_ID + ":christmas/" + id;
+    }
+
+    private InventoryChangeTrigger.TriggerInstance createObtainOutfitCriterion(Outfit outfit) {
+        return InventoryChangeTrigger.TriggerInstance.hasItems(outfit.getOutfitItems().toArray(new Item[0]));
     }
 }
