@@ -70,7 +70,8 @@ public class PatrolOrdersItem extends ChristmasItem {
     @Override
     public ItemStack finishUsingItem(ItemStack patrolOrders, Level level, LivingEntity entity) {
         if (entity instanceof Player player) {
-            patrolOrders.setTag(new CompoundTag());
+            patrolOrders.shrink(1);
+            player.addItem(ChristmasItems.PATROL_ORDERS.get().getDefaultInstance());
 
             if (level.isClientSide()) {
                 GameplayMessage gameplayMessage = new GameplayMessage(MessageType.INFO, MESSAGE_ROUTE_RESET);
@@ -95,11 +96,23 @@ public class PatrolOrdersItem extends ChristmasItem {
         Player player = context.getPlayer();
         BlockPos clickedPos = context.getClickedPos();
 
-        // Process action and send to result handler
+        // Process action and send to result handler for client side effects
         PatrolRoute.ActionResult actionResult = patrolRoute.takeAction(level, player, clickedPos);
         this.handleActionResult(level, player, actionResult);
 
-        patrolOrdersTag.put("PatrolRoute", patrolRoute.serializeTag());
+        // If success, we reset the entire current stack and give the player a new item
+        // If not, we just add on to the current stack
+        if (actionResult == PatrolRoute.ActionResult.COMPLETE) {
+            patrolOrdersTag.remove("PatrolRoute");
+            patrolOrders.shrink(1);
+
+            ItemStack newPatrolOrders = ChristmasItems.PATROL_ORDERS.get().getDefaultInstance();
+            CompoundTag newTag = newPatrolOrders.getOrCreateTag();
+            newTag.put("PatrolRoute", patrolRoute.serializeTag());
+            player.addItem(newPatrolOrders);
+        } else {
+            patrolOrdersTag.put("PatrolRoute", patrolRoute.serializeTag());
+        }
 
         if (player != null && patrolRoute.isComplete()) {
             player.getCooldowns().addCooldown(patrolOrders.getItem(), 20);
