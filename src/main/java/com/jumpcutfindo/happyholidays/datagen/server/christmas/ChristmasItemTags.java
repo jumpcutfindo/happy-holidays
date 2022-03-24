@@ -36,8 +36,7 @@ public class ChristmasItemTags extends ItemTagsProvider {
                 .addTag(ChristmasTags.Items.BIG_BAUBLES)
                 .addTag(ChristmasTags.Items.CHRISTMAS_LIGHTS)
                 .addTag(ChristmasTags.Items.TINSEL)
-                .addTag(ChristmasTags.Items.CHRISTMAS_BELLS)
-                .addTag(ChristmasTags.Items.DECORATIONS);
+                .addTag(ChristmasTags.Items.CHRISTMAS_BELLS);
 
         tag(ChristmasTags.Items.RARE_ORNAMENTS)
                 .addTag(ChristmasTags.Items.HEAD_ORNAMENTS);

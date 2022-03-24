@@ -1,5 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.elf;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
@@ -735,12 +736,11 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
                     this.villagerXp, this.priceMultiplier);
         }
 
-        public static VillagerTrades.ItemListing[] tradesFromTag(Tag<Item> itemTag, int cost, int emeraldsExpected,
+        public static List<VillagerTrades.ItemListing> tradesFromTag(Tag<Item> itemTag, int cost, int emeraldsExpected,
                                                                  int maxUses, int xp) {
-            VillagerTrades.ItemListing[] results = new VillagerTrades.ItemListing[itemTag.getValues().size()];
-
-            for (int i = 0; i < results.length; i++) {
-                results[i] = new EmeraldForItemsTrade(itemTag.getValues().get(i), cost, emeraldsExpected, maxUses, xp);
+            List<VillagerTrades.ItemListing> results = new ArrayList<>();
+            for (Item item : itemTag.getValues()) {
+                results.add(new EmeraldForItemsTrade(item, cost, emeraldsExpected, maxUses, xp));
             }
 
             return results;
@@ -788,13 +788,12 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
                     this.villagerXp, this.priceMultiplier);
         }
 
-        public static VillagerTrades.ItemListing[] tradesFromTag(Tag<Item> itemTag, int emeraldCost,
+        public static List<VillagerTrades.ItemListing> tradesFromTag(Tag<Item> itemTag, int emeraldCost,
                                                                  int numberOfItems, int maxUses, int xp) {
-            VillagerTrades.ItemListing[] results = new VillagerTrades.ItemListing[itemTag.getValues().size()];
+            List<VillagerTrades.ItemListing> results = new ArrayList<>();
 
-            for (int i = 0; i < results.length; i++) {
-                results[i] = new ItemsForEmeraldsTrade(itemTag.getValues().get(i), emeraldCost, numberOfItems,
-                        maxUses, xp);
+            for (Item item : itemTag.getValues()) {
+                results.add(new ItemsForEmeraldsTrade(item, emeraldCost, numberOfItems, maxUses, xp));
             }
 
             return results;
