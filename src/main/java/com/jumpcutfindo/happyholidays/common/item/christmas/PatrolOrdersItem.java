@@ -43,6 +43,14 @@ public class PatrolOrdersItem extends ChristmasItem {
 
     public static final String MESSAGE_ROUTE_RESET = "item.happyholidays.patrol_orders.reset";
 
+    public static final String ROUTE_ADD_POINT_SUCCESS = "item.happyholidays.patrol_orders.add_point_success";
+    public static final String ROUTE_ADD_POINT_FAIL = "item.happyholidays.patrol_orders.add_point_fail";
+    public static final String ROUTE_REMOVE_POINT_SUCCESS = "item.happyholidays.patrol_orders.remove_point_success";
+    public static final String ROUTE_REMOVE_POINT_FAIL = "item.happyholidays.patrol_orders.remove_point_fail";
+    public static final String ROUTE_COMPLETE = "item.happyholidays.patrol_orders.complete_route";
+    public static final String ROUTE_LOCKED = "item.happyholidays.patrol_orders.locked_route";
+
+
     public PatrolOrdersItem() {
         super(ITEM_PROPERTIES);
     }
@@ -87,7 +95,9 @@ public class PatrolOrdersItem extends ChristmasItem {
         Player player = context.getPlayer();
         BlockPos clickedPos = context.getClickedPos();
 
-        boolean isSuccess = patrolRoute.takeAction(level, player, clickedPos);
+        // Process action and send to result handler
+        PatrolRoute.ActionResult actionResult = patrolRoute.takeAction(level, player, clickedPos);
+        this.handleActionResult(level, player, actionResult);
 
         patrolOrdersTag.put("PatrolRoute", patrolRoute.serializeTag());
 
@@ -100,6 +110,47 @@ public class PatrolOrdersItem extends ChristmasItem {
         }
 
         return super.useOn(context);
+    }
+
+    public void handleActionResult(Level level, Player player, PatrolRoute.ActionResult actionResult) {
+        // Handle playing of sounds and effects depending on the result of the action
+        if (level.isClientSide()) {
+            switch (actionResult) {
+            case ADD_POINT_SUCCESS -> {
+                GameplayMessage message = new GameplayMessage(MessageType.SUCCESS, ROUTE_ADD_POINT_SUCCESS);
+                Messenger.sendChatMessage(message, player);
+                this.playSuccessSound(level, player);
+            }
+            case ADD_POINT_FAIL -> {
+                GameplayMessage message = new GameplayMessage(MessageType.ERROR, ROUTE_ADD_POINT_FAIL);
+                Messenger.sendChatMessage(message, player);
+                this.playFailSound(level, player);
+            }
+            case REMOVE_POINT_SUCCESS -> {
+                GameplayMessage message = new GameplayMessage(MessageType.SUCCESS, ROUTE_REMOVE_POINT_SUCCESS);
+                Messenger.sendChatMessage(message, player);
+                this.playSuccessSound(level, player);
+            }
+            case REMOVE_POINT_FAIL -> {
+                GameplayMessage message = new GameplayMessage(MessageType.ERROR, ROUTE_REMOVE_POINT_FAIL);
+                Messenger.sendChatMessage(message, player);
+                this.playFailSound(level, player);
+            }
+            case COMPLETE -> {
+                GameplayMessage message = new GameplayMessage(MessageType.SUCCESS, ROUTE_COMPLETE);
+                Messenger.sendChatMessage(message, player);
+                this.playCompleteSound(level, player);
+            }
+            case LOCKED -> {
+                GameplayMessage message = new GameplayMessage(MessageType.NEUTRAL, ROUTE_LOCKED);
+                Messenger.sendChatMessage(message, player);
+                this.playFailSound(level, player);
+            }
+            default -> {
+                // We don't do anything by default
+            }
+            }
+        }
     }
 
     @Override
@@ -147,5 +198,17 @@ public class PatrolOrdersItem extends ChristmasItem {
     @Override
     public int getUseDuration(ItemStack p_41454_) {
         return 60;
+    }
+
+    private void playSuccessSound(Level level, Player player) {
+        level.playSound(player, player.blockPosition(), ChristmasSounds.PATROL_ORDERS_ACTION_SUCCESS.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
+    }
+
+    private void playFailSound(Level level, Player player) {
+        level.playSound(player, player.blockPosition(), ChristmasSounds.PATROL_ORDERS_ACTION_FAIL.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
+    }
+
+    private void playCompleteSound(Level level, Player player) {
+        level.playSound(player, player.blockPosition(), ChristmasSounds.PATROL_ORDERS_ROUTE_COMPLETE.get(), SoundSource.PLAYERS, 1.0f, 1.0f);
     }
 }
