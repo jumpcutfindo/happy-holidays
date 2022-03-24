@@ -85,9 +85,7 @@ public class PatrolRoute {
 
     public boolean isValidPoint(BlockPos pos) {
         if (this.isEmpty()) return true;
-
-        BlockPos latestPos = this.getEnd();
-        return !this.hasPoint(pos) && (latestPos.getX() == pos.getX() || latestPos.getZ() == pos.getZ());
+        return !this.hasPoint(pos);
     }
 
     public CompoundTag serializeTag() {
