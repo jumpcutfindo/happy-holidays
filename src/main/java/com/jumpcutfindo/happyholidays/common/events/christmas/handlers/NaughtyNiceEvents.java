@@ -10,6 +10,7 @@ import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceA
 import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.elf.SantaElfEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.NutcrackerEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
@@ -17,15 +18,16 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.NutcrackerEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.animal.Wolf;
+import net.minecraft.world.entity.monster.ZombieVillager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraftforge.event.VanillaGameEvent;
 import net.minecraftforge.event.entity.living.AnimalTameEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingHealEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -73,6 +75,10 @@ public class NaughtyNiceEvents {
             switch (mobCategory) {
             case CREATURE -> {
                 // Killed a non-hostile creature, give naughty points
+                if (killedEntity instanceof NutcrackerEntity) {
+                    NaughtyNiceMeter.evaluateAction(player, NaughtyNiceAction.KILL_NUTCRACKER_EVENT);
+                    return;
+                }
                 NaughtyNiceMeter.evaluateAction(player, NaughtyNiceAction.KILL_PASSIVE_MOB_EVENT);
             }
             case MONSTER -> {
@@ -134,5 +140,15 @@ public class NaughtyNiceEvents {
 
     @SubscribeEvent
     public static void onHealCreature(VanillaGameEvent event) {
+        if (event.getVanillaEvent().equals(GameEvent.MOB_INTERACT)) {
+            Entity causeEntity = event.getCause();
+            Player nearestPlayer = event.getLevel().getNearestPlayer(causeEntity, 5.0D);
+
+            if (causeEntity instanceof ZombieVillager) {
+                NaughtyNiceMeter.evaluateAction(nearestPlayer, NaughtyNiceAction.CURE_VILLAGER_EVENT);
+            } else if (causeEntity.getType().getCategory().isFriendly()) {
+                NaughtyNiceMeter.evaluateAction(nearestPlayer, NaughtyNiceAction.HEAL_MOB_EVENT);
+            }
+        }
     }
 }

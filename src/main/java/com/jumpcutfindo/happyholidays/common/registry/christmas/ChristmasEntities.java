@@ -45,14 +45,14 @@ public class ChristmasEntities {
 
     public static final RegistryObject<EntityType<SantaElfEntity>> SANTA_ELF =
             registerEntity("santa_elf",
-                    () -> EntityType.Builder.of(SantaElfEntity::new, MobCategory.AMBIENT)
+                    () -> EntityType.Builder.of(SantaElfEntity::new, MobCategory.MISC)
                             .sized(SantaElfEntity.ENTITY_BOX_SIZE, SantaElfEntity.ENTITY_BOX_HEIGHT)
                             .build("santa_elf")
             );
 
     public static final RegistryObject<EntityType<GrinchEntity>> GRINCH =
             registerEntity("grinch",
-                    () -> EntityType.Builder.of(GrinchEntity::new, MobCategory.CREATURE)
+                    () -> EntityType.Builder.of(GrinchEntity::new, MobCategory.MISC)
                             .sized(GrinchEntity.ENTITY_BOX_SIZE, GrinchEntity.ENTITY_BOX_HEIGHT)
                             .build("grinch")
             );

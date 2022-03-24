@@ -459,7 +459,9 @@ public class ChristmasLootTables extends BaseLootTableProvider {
                 .add(LootItem.lootTableItem(Items.REDSTONE).setWeight(150).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                 .add(LootItem.lootTableItem(Items.STICK).setWeight(300).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
                 .add(LootItem.lootTableItem(Items.QUARTZ).setWeight(100).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
-                .add(LootItem.lootTableItem(ChristmasItems.PRESENT_SCRAPS.get()).setWeight(50).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))));
+                .add(LootItem.lootTableItem(ChristmasItems.PRESENT_SCRAPS.get()).setWeight(50).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(ChristmasItems.WALNUT.get()).setWeight(50).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))))
+                .add(LootItem.lootTableItem(ChristmasItems.THREAD.get()).setWeight(50).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1))));
 
         LootPool.Builder enchantedStockingPool = LootPool.lootPool()
                 .name("enchanted_stocking_presents")
@@ -484,7 +486,9 @@ public class ChristmasLootTables extends BaseLootTableProvider {
                 .add(LootItem.lootTableItem(Items.REDSTONE).setWeight(200).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 8))))
                 .add(LootItem.lootTableItem(Items.STICK).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 16))))
                 .add(LootItem.lootTableItem(Items.QUARTZ).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
-                .add(LootItem.lootTableItem(ChristmasItems.PRESENT_SCRAPS.get()).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))));
+                .add(LootItem.lootTableItem(ChristmasItems.PRESENT_SCRAPS.get()).setWeight(100).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
+                .add(LootItem.lootTableItem(ChristmasItems.WALNUT.get()).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))))
+                .add(LootItem.lootTableItem(ChristmasItems.THREAD.get()).setWeight(50).apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2))));
 
         additionalLootTables.put(christmasResource("stocking_presents"),
                 LootTable.lootTable().withPool(normalStockingPool));
