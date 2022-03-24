@@ -15,8 +15,6 @@ import org.jetbrains.annotations.Nullable;
 import com.google.common.collect.Maps;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.Holiday;
-import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
-import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasRewards;
 import com.jumpcutfindo.happyholidays.common.events.christmas.NutcrackerEvent;
@@ -495,8 +493,6 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
     public void tame(Player player) {
         super.tame(player);
         if (!this.level.isClientSide()) {
-            NaughtyNiceMeter.evaluateAction(player, NaughtyNiceAction.TAME_NUTCRACKER_EVENT);
-
             NutcrackerEvent tameEvent = new NutcrackerEvent.Tame(this, player);
             MinecraftForge.EVENT_BUS.post(tameEvent);
         }

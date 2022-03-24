@@ -371,8 +371,6 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
             // Add to naughty / nice meter
             if (itemEntity.getThrower() != null) {
                 Player playerEntity = this.level.getPlayerByUUID(itemEntity.getThrower());
-                NaughtyNiceMeter.evaluateAction(playerEntity, NaughtyNiceAction.HELP_SANTA_ELF_EVENT);
-
                 SantaElfEvent.CompleteRequest completeRequestEvent = new SantaElfEvent.CompleteRequest(this,
                         playerEntity, this.timeToCompleteRequest);
                 MinecraftForge.EVENT_BUS.post(completeRequestEvent);

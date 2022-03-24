@@ -6,8 +6,6 @@ import java.util.Random;
 import com.jumpcutfindo.happyholidays.common.Holiday;
 import com.jumpcutfindo.happyholidays.common.block.christmas.PresentBlock;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
-import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
-import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasGiftItem;
@@ -197,7 +195,6 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, Christma
             // Add to naughty / nice meter
             if (itemEntity.getThrower() != null) {
                 Player thrower = this.level.getPlayerByUUID(itemEntity.getThrower());
-                NaughtyNiceMeter.evaluateAction(thrower, NaughtyNiceAction.APPEASE_GRINCH_EVENT);
 
                 // Post event for achievements
                 MinecraftForge.EVENT_BUS.post(new GrinchEvent.Appease(this, thrower));
