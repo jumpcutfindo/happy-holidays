@@ -15,6 +15,7 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -24,7 +25,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class BaseSantaEntity extends PathfinderMob implements IAnimatable, ChristmasEntity {
+public abstract class BaseSantaEntity extends PathfinderMob implements IAnimatable, ChristmasEntity {
     public static final float MAX_HEALTH = 200.0f;
 
     public static final AttributeSupplier ENTITY_ATTRIBUTES =
@@ -93,6 +94,11 @@ public class BaseSantaEntity extends PathfinderMob implements IAnimatable, Chris
     @Override
     protected float getStandingEyeHeight(Pose p_21131_, EntityDimensions p_21132_) {
         return 42.0f / 16.0f;
+    }
+
+    @Override
+    public boolean canBeLeashed(Player p_21418_) {
+        return false;
     }
 
     @Override

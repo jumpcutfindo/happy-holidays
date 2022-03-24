@@ -1,5 +1,5 @@
 {
-  "parent": "happyholidays:christmas/root",
+  "parent": "happyholidays:christmas/outfit_start",
   "display": {
     "icon": {
       "item": "happyholidays:thread"

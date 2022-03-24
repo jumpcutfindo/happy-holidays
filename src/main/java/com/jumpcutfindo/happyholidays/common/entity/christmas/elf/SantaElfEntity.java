@@ -11,8 +11,6 @@ import javax.annotation.Nullable;
 import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
 import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
-import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
-import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
@@ -491,6 +489,11 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
 
     @Override
     public boolean removeWhenFarAway(double p_213397_1_) {
+        return false;
+    }
+
+    @Override
+    public boolean canBeLeashed(Player p_21418_) {
         return false;
     }
 

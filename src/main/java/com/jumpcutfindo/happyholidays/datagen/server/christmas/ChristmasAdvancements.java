@@ -42,6 +42,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
         grinchBranch(advancementConsumer);
         ornamentsBranch(advancementConsumer);
         musicBranch(advancementConsumer);
+        miscBranch(advancementConsumer);
         gingerbreadBranch(advancementConsumer);
         candyCaneBranch(advancementConsumer);
         hollyBranch(advancementConsumer);
@@ -50,6 +51,12 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
         snowGlobeBranch(advancementConsumer);
         nutcrackerBranch(advancementConsumer);
         outfitBranch(advancementConsumer);
+    }
+
+    private void miscBranch(Consumer<Advancement> advancementConsumer) {
+        Advancement explosiveTendencies = createAdvancement(christmasRoot, ChristmasItems.EXPLOSIVE_PRESENT.get(), translatable("explosive_tendencies"))
+                .addCriterion("has_explosive_present", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.EXPLOSIVE_PRESENT.get()))
+                .save(advancementConsumer, advancementId("explosive_tendencies"));
     }
 
     private void presentsBranch(Consumer<Advancement> advancementConsumer) {
@@ -246,24 +253,22 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .save(advancementConsumer, advancementId("music_setting_the_mood"));
 
         Advancement musicalMaestro = createAdvancement(musicStart, ChristmasItems.SHEET_MUSIC_CAROL_OF_THE_BELLS.get(), translatable("music_musical_maestro"), FrameType.CHALLENGE, true, true, false)
-                .addCriterion("has_sheet_music", InventoryChangeTrigger.TriggerInstance.hasItems(
-                        ChristmasItems.SHEET_MUSIC_ANGELS_ON_HIGH.get(),
-                        ChristmasItems.SHEET_MUSIC_CAROL_OF_THE_BELLS.get(),
-                        ChristmasItems.SHEET_MUSIC_DECK_THE_HALLS.get(),
-                        ChristmasItems.SHEET_MUSIC_FROSTY_THE_SNOWMAN.get(),
-                        ChristmasItems.SHEET_MUSIC_GOD_REST_GENTLEMEN.get(),
-                        ChristmasItems.SHEET_MUSIC_HERE_COMES_SANTA.get(),
-                        ChristmasItems.SHEET_MUSIC_JINGLE_BELL_ROCK.get(),
-                        ChristmasItems.SHEET_MUSIC_JINGLE_BELLS.get(),
-                        ChristmasItems.SHEET_MUSIC_JOY_TO_THE_WORLD.get(),
-                        ChristmasItems.SHEET_MUSIC_RUDOLPH.get(),
-                        ChristmasItems.SHEET_MUSIC_SILENT_NIGHT.get(),
-                        ChristmasItems.SHEET_MUSIC_SLEIGH_RIDE.get(),
-                        ChristmasItems.SHEET_MUSIC_THE_FIRST_NOEL.get(),
-                        ChristmasItems.SHEET_MUSIC_WE_THREE_KINGS.get(),
-                        ChristmasItems.SHEET_MUSIC_WE_WISH_YOU.get(),
-                        ChristmasItems.SHEET_MUSIC_WHITE_CHRISTMAS.get()
-                ))
+                .addCriterion("has_sheet_music_0", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_ANGELS_ON_HIGH.get()))
+                .addCriterion("has_sheet_music_1", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_CAROL_OF_THE_BELLS.get()))
+                .addCriterion("has_sheet_music_2", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_DECK_THE_HALLS.get()))
+                .addCriterion("has_sheet_music_3", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_FROSTY_THE_SNOWMAN.get()))
+                .addCriterion("has_sheet_music_4", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_GOD_REST_GENTLEMEN.get()))
+                .addCriterion("has_sheet_music_5", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_HERE_COMES_SANTA.get()))
+                .addCriterion("has_sheet_music_6", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_JINGLE_BELL_ROCK.get()))
+                .addCriterion("has_sheet_music_7", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_JINGLE_BELLS.get()))
+                .addCriterion("has_sheet_music_8", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_JOY_TO_THE_WORLD.get()))
+                .addCriterion("has_sheet_music_9", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_RUDOLPH.get()))
+                .addCriterion("has_sheet_music_10", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_SILENT_NIGHT.get()))
+                .addCriterion("has_sheet_music_11", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_SLEIGH_RIDE.get()))
+                .addCriterion("has_sheet_music_12", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_THE_FIRST_NOEL.get()))
+                .addCriterion("has_sheet_music_13", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_WE_THREE_KINGS.get()))
+                .addCriterion("has_sheet_music_14", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_WE_WISH_YOU.get()))
+                .addCriterion("has_sheet_music_15", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_WHITE_CHRISTMAS.get()))
                 .rewards(AdvancementRewards.Builder.experience(100).build())
                 .save(advancementConsumer, advancementId("music_musical_maestro"));
     }
@@ -545,7 +550,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .addCriterion("obtain_thread", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.THREAD.get()))
                 .save(advancementConsumer, advancementId("outfit_start"));
 
-        Advancement dressUp = createAdvancement(christmasRoot, ChristmasItems.THREAD.get(), translatable("outfit_fashion_show"), FrameType.CHALLENGE, true, true, false)
+        Advancement dressUp = createAdvancement(outfitStart, ChristmasItems.THREAD.get(), translatable("outfit_fashion_show"), FrameType.CHALLENGE, true, true, false)
                 .addCriterion("obtain_santa_outfit", createObtainOutfitCriterion(ChristmasOutfits.SANTA_OUTFIT))
                 .addCriterion("obtain_santa_elf_outfit", createObtainOutfitCriterion(ChristmasOutfits.SANTA_ELF_OUTFIT))
                 .addCriterion("obtain_snowman_outfit", createObtainOutfitCriterion(ChristmasOutfits.SNOWMAN_OUTFIT))

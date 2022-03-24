@@ -339,6 +339,11 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
         this.entityData.define(DATA_IS_PATROLLING, false);
     }
 
+    @Override
+    public boolean canBeLeashed(Player p_21813_) {
+        return false;
+    }
+
     public boolean isMouthOpen() {
         return this.entityData.get(DATA_MOUTH_OPEN);
     }

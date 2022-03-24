@@ -43,7 +43,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatable, ChristmasEntity {
+public abstract class GingerbreadPersonEntity extends PathfinderMob implements IAnimatable, ChristmasEntity {
     public static final float ENTITY_BOX_SIZE = 0.8f;
     public static final float ENTITY_BOX_HEIGHT = 1.95f;
 
@@ -119,6 +119,11 @@ public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatabl
     }
 
     public boolean fireImmune() {
+        return false;
+    }
+
+    @Override
+    public boolean canBeLeashed(Player p_21418_) {
         return false;
     }
 

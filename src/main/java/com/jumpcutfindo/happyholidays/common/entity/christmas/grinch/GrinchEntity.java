@@ -378,6 +378,11 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, Christma
         return 25.0f / 16.0f;
     }
 
+    @Override
+    public boolean canBeLeashed(Player p_21418_) {
+        return false;
+    }
+
     private static class BreakPresentsGoal extends Goal {
         private static final float MOVE_TO_PRESENT_SPEED = 0.9f;
 
