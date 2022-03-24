@@ -86,7 +86,7 @@ public class AlphabetOrnamentBlock extends DecorationBlock implements BasicOrnam
     }
 
     private static void stainGlass(Level world, BlockState blockState, BlockPos blockPos, ChristmasBlockColor color) {
-        world.setBlock(blockPos, blockState.setValue(BLOCK_COLOR, color), 0);
+        world.setBlock(blockPos, blockState.setValue(BLOCK_COLOR, color), 2);
         world.playSound(null, blockPos, SoundEvents.DYE_USE, SoundSource.BLOCKS, 1.0f, 1.0f);
     }
 

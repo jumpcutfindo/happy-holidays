@@ -123,7 +123,7 @@ public class StockingBlock extends WallDecorationBlock implements ChristmasBlock
     }
 
     public void cutStocking(ServerLevel level, BlockPos blockPos, BlockState blockState, Player playerEntity, ItemStack shears) {
-        level.setBlock(blockPos, blockState.setValue(ENCHANTED, false), 0);
+        level.setBlock(blockPos, blockState.setValue(ENCHANTED, false), 3);
         level.playSound(null, blockPos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1.0f, 1.0f);
 
         Block.popResource(level, blockPos, ChristmasItems.ENCHANTED_THREAD.get().getDefaultInstance());
@@ -133,7 +133,7 @@ public class StockingBlock extends WallDecorationBlock implements ChristmasBlock
 
     public void upgradeStocking(ServerLevel level, BlockPos blockPos, BlockState blockState, Player playerEntity, ItemStack enchantedThreads) {
         // Apply enchanted effect
-        level.setBlock(blockPos, blockState.setValue(ENCHANTED, true), 0);
+        level.setBlock(blockPos, blockState.setValue(ENCHANTED, true), 2);
         level.playSound(null, blockPos, SoundEvents.WOOL_BREAK, SoundSource.BLOCKS, 1.0f, 1.0f);
 
         level.sendParticles(ParticleTypes.COMPOSTER, blockPos.getX() + 0.5D, blockPos.getY() + 0.5D, blockPos.getZ() + 0.5D,
