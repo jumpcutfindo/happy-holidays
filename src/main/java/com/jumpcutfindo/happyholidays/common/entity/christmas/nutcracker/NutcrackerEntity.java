@@ -474,6 +474,12 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
         return ChristmasSounds.NUTCRACKER_HURT.get();
     }
 
+    @Nullable
+    @Override
+    protected SoundEvent getDeathSound() {
+        return ChristmasSounds.NUTCRACKER_HURT.get();
+    }
+
     @Override
     public void setTarget(@Nullable LivingEntity p_21544_) {
         super.setTarget(p_21544_);
