@@ -1,10 +1,9 @@
 package com.jumpcutfindo.happyholidays.common.utils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.annotation.Nullable;
-
-import org.apache.commons.compress.utils.Lists;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,7 +33,7 @@ public class BlockUtils {
     }
 
     public static VoxelShape rotateShape(VoxelShape shape, Rotation rotation) {
-        Collection<VoxelShape> rotatedShapes = Lists.newArrayList();
+        Collection<VoxelShape> rotatedShapes = new ArrayList<>();
 
         shape.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) -> {
             rotatedShapes.add(BlockUtils.rotateBox(minX, minY, minZ, maxX, maxY, maxZ, rotation));

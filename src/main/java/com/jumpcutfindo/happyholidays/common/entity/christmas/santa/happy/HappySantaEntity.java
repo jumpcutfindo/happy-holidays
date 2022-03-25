@@ -12,7 +12,6 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
@@ -163,11 +162,11 @@ public class HappySantaEntity extends BaseSantaEntity {
     }
 
     public void playDropPartySummonSound() {
-        MinecraftForge.EVENT_BUS.post(new SantaEvent.SoundChange(this, Minecraft.getInstance().player, true));
+        MinecraftForge.EVENT_BUS.post(new SantaEvent.SoundChange(this, this.level, true));
     }
 
     public void stopDropPartySummonSound() {
-        MinecraftForge.EVENT_BUS.post(new SantaEvent.SoundChange(this, Minecraft.getInstance().player, false));
+        MinecraftForge.EVENT_BUS.post(new SantaEvent.SoundChange(this, this.level, false));
     }
 
     public void summonGift() {
