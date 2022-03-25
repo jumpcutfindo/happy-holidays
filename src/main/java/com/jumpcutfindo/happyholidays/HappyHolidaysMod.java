@@ -21,8 +21,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import software.bernie.example.GeckoLibMod;
-import software.bernie.geckolib3.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(HappyHolidaysMod.MOD_ID)
@@ -33,9 +31,6 @@ public class HappyHolidaysMod {
     public static Proxy PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
     public HappyHolidaysMod() {
-        GeckoLibMod.DISABLE_IN_DEV = true;
-        GeckoLib.initialize();
-
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // Register ourselves for server and other game events we are interested in

@@ -12,6 +12,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.common.Mod;
+import software.bernie.example.GeckoLibMod;
+import software.bernie.geckolib3.GeckoLib;
 
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, value = Dist.CLIENT)
@@ -23,6 +25,8 @@ public class ClientProxy implements Proxy {
 
     @Override
     public void initClient() {
+        GeckoLibMod.DISABLE_IN_DEV = true;
+        GeckoLib.initialize();
     }
 
     @Override
