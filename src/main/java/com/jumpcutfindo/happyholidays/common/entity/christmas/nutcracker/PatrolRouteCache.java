@@ -8,8 +8,11 @@ import com.jumpcutfindo.happyholidays.common.item.christmas.PatrolOrdersItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 public class PatrolRouteCache {
+    private static final double STEP_SIZE = 1.0d;
+
     private static ItemStack cachedPatrolOrders = ItemStack.EMPTY;
     private static PatrolRoute cachedRoute = new PatrolRoute();
     private static List<RouteParticleSpawnPos> particleSpawnLocations;
@@ -44,62 +47,49 @@ public class PatrolRouteCache {
             BlockPos pointA = cachedRoute.getPoints().get(i-1);
             BlockPos pointB = cachedRoute.getPoints().get(i);
 
-            particleSpawnLocations.add(new RouteParticleSpawnPos(pointA, true));
+            // Determine the number of steps we're gonna take
+            double startX = pointA.getX() + 0.5, startY = pointA.getY() + 1.5, startZ = pointA.getZ() + 0.5;
+            double endX = pointB.getX() + 0.5, endY = pointB.getY() + 1.5, endZ = pointB.getZ() + 0.5;
 
-            if (pointA.getX() == pointB.getX()) {
-                if (pointA.getZ() >= pointB.getZ()) {
-                    for (int j = pointA.getZ(); j > pointB.getZ(); j--) {
-                        RouteParticleSpawnPos pos = new RouteParticleSpawnPos(pointA.getX(), pointA.getY(), j, false);
-                        particleSpawnLocations.add(adjustIntermediatePoint(level, pos));
-                    }
-                } else {
-                    for (int j = pointA.getZ(); j < pointB.getZ(); j++) {
-                        RouteParticleSpawnPos pos = new RouteParticleSpawnPos(pointA.getX(), pointA.getY(), j, false);
-                        particleSpawnLocations.add(adjustIntermediatePoint(level, pos));
-                    }
-                }
-            } else if (pointA.getZ() == pointB.getZ()) {
-                if (pointA.getX() >= pointB.getX()) {
-                    for (int j = pointA.getX(); j > pointB.getX(); j--) {
-                        RouteParticleSpawnPos pos = new RouteParticleSpawnPos(j, pointA.getY(), pointA.getZ(), false);
-                        particleSpawnLocations.add(adjustIntermediatePoint(level, pos));
-                    }
-                } else {
-                    for (int j = pointA.getX(); j < pointB.getX(); j++) {
-                        RouteParticleSpawnPos pos = new RouteParticleSpawnPos(j, pointA.getY(), pointA.getZ(), false);
-                        particleSpawnLocations.add(adjustIntermediatePoint(level, pos));
-                    }
-                }
+            double dX = (endX - startX);
+            double dY = (endY - startY);
+            double dZ = (endZ - startZ);
+
+            int stepsX = (int) Math.abs(dX / STEP_SIZE);
+            int stepsY = (int) Math.abs(dY / STEP_SIZE);
+            int stepsZ = (int) Math.abs(dZ / STEP_SIZE);
+
+            int steps = Math.max(Math.max(Math.max(stepsX, stepsY), stepsZ), 2);
+            double stepX = dX / steps;
+            double stepY = dY / steps;
+            double stepZ = dZ / steps;
+
+            // Create the points for steps
+            for (int j = 0; j <= steps; j++) {
+                particleSpawnLocations.add(new RouteParticleSpawnPos(startX + stepX * j, startY + stepY * j, startZ + stepZ * j, (j == 0 || j == steps)));
             }
-
-            particleSpawnLocations.add(new RouteParticleSpawnPos(pointB,true));
         }
-    }
-
-    public static RouteParticleSpawnPos adjustIntermediatePoint(Level level, RouteParticleSpawnPos pos) {
-        RouteParticleSpawnPos intermediatePoint = pos;
-
-        while (!level.getBlockState(intermediatePoint.above()).isAir()) {
-            intermediatePoint = new RouteParticleSpawnPos(intermediatePoint.above(), false);
-        }
-
-        return intermediatePoint;
     }
 
     public static List<RouteParticleSpawnPos> getParticleSpawnLocations() {
         return particleSpawnLocations;
     }
 
-    public static class RouteParticleSpawnPos extends BlockPos {
+    public static class RouteParticleSpawnPos extends Vec3 {
         private final boolean isPrimaryPoint;
+
         public RouteParticleSpawnPos(BlockPos pos, boolean isPrimaryPoint) {
             super(pos.getX(), pos.getY(), pos.getZ());
             this.isPrimaryPoint = isPrimaryPoint;
         }
 
-        public RouteParticleSpawnPos(int x, int y, int z, boolean isPrimaryPoint) {
+        public RouteParticleSpawnPos(double x, double y, double z, boolean isPrimaryPoint) {
             super(x, y, z);
             this.isPrimaryPoint = isPrimaryPoint;
+        }
+
+        public BlockPos getApproxBlockPos() {
+            return new BlockPos((int) x, (int) y, (int) z);
         }
 
         public boolean isPrimary() {

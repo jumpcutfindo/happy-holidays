@@ -14,6 +14,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -75,8 +76,8 @@ public class PatrolRouteRenderingHandler {
         level.addParticle(ParticleTypes.SQUID_INK, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, 0.0D, 0.02D, 0.0D);
     }
 
-    private static void spawnSecondaryPointParticles(Level level, BlockPos pos) {
-        level.addParticle(ParticleTypes.ELECTRIC_SPARK, pos.getX() + 0.5D, pos.getY() + 1.5D, pos.getZ() + 0.5D, 0.0D, 0.0D, 0.0D);
+    private static void spawnSecondaryPointParticles(Level level, Vec3 pos) {
+        level.addParticle(ParticleTypes.ELECTRIC_SPARK, pos.x(), pos.y(), pos.z(), 0.0D, 0.0D, 0.0D);
     }
 
     private static void spawnCurrentPointParticles(Level level, BlockPos pos) {
