@@ -17,6 +17,25 @@ public class SantaEvent extends ChristmasEvent {
         return santaEntity;
     }
 
+    public static class SoundChange extends SantaEvent {
+        private final boolean isPlaying;
+
+        public SoundChange(BaseSantaEntity santaEntity, Player playerEntity, boolean isPlaying) {
+            super(santaEntity, playerEntity);
+            this.isPlaying = isPlaying;
+        }
+
+        public boolean isPlaying() {
+            return isPlaying;
+        }
+    }
+
+    public static class StartDropParty extends SantaEvent {
+        public StartDropParty(BaseSantaEntity santaEntity, Player playerEntity) {
+            super(santaEntity, playerEntity);
+        }
+    }
+
     public static class CompleteDropParty extends SantaEvent {
         public CompleteDropParty(BaseSantaEntity santaEntity, Player playerEntity) {
             super(santaEntity, playerEntity);

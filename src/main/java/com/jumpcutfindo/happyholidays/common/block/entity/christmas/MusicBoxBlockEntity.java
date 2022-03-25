@@ -2,9 +2,8 @@ package com.jumpcutfindo.happyholidays.common.block.entity.christmas;
 
 import java.util.List;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.common.inventory.christmas.MusicBoxContainer;
 import com.jumpcutfindo.happyholidays.common.events.christmas.MusicBoxEvent;
+import com.jumpcutfindo.happyholidays.common.inventory.christmas.MusicBoxContainer;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.SheetMusicItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
@@ -248,9 +247,6 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
 
     public void playMusic(ChristmasMusic music) {
         this.latestAction = 0;
-        if (this.level.isClientSide()) {
-            HappyHolidaysMod.PROXY.getChristmasProxy().playChristmasMusic(this.level, this.getBlockPos(), music);
-        }
 
         this.currentMusic = music;
 
@@ -260,26 +256,26 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
 
         this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 2);
 
-        if (!this.level.isClientSide()) {
-            List<Player> players = EntityUtils.findPlayersInRadius(this.level, new Vec3(this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ()), 5.0d);
-
-            for (Player player : players) {
-                MusicBoxEvent.Play playEvent = new MusicBoxEvent.Play(player);
-                MinecraftForge.EVENT_BUS.post(playEvent);
-            }
+        List<Player> players = EntityUtils.findPlayersInRadius(this.level, new Vec3(this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ()), 5.0d);
+        for (Player player : players) {
+            MusicBoxEvent.Play playEvent = new MusicBoxEvent.Play(this, this.currentMusic, player);
+            MinecraftForge.EVENT_BUS.post(playEvent);
         }
     }
 
     public void stopMusic() {
         this.latestAction = 1;
-        if (this.level.isClientSide()) {
-            HappyHolidaysMod.PROXY.getChristmasProxy().stopChristmasMusic(this.level, this.getBlockPos());
-        }
 
         this.isPlaying = false;
         this.timeToNextTrack = -1;
 
         this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 2);
+
+        List<Player> players = EntityUtils.findPlayersInRadius(this.level, new Vec3(this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ()), 5.0d);
+        for (Player player : players) {
+            MusicBoxEvent.Stop stopEvent = new MusicBoxEvent.Stop(this, this.currentMusic, player);
+            MinecraftForge.EVENT_BUS.post(stopEvent);
+        }
     }
 
     private void runAction(int actionId) {

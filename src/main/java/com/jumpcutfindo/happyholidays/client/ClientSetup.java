@@ -19,13 +19,16 @@ import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import software.bernie.example.GeckoLibMod;
+import software.bernie.geckolib3.GeckoLib;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
 @Mod.EventBusSubscriber(modid = HappyHolidaysMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientSetup {
     @SubscribeEvent
     public void setupClient(FMLClientSetupEvent event) {
-        HappyHolidaysMod.PROXY.initClient();
+        GeckoLibMod.DISABLE_IN_DEV = true;
+        GeckoLib.initialize();
     }
 
     @OnlyIn(Dist.CLIENT)

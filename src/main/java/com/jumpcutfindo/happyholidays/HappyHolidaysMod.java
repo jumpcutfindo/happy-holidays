@@ -12,13 +12,9 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasRecipes;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
-import com.jumpcutfindo.happyholidays.proxies.CommonProxy;
-import com.jumpcutfindo.happyholidays.proxies.Proxy;
-import com.jumpcutfindo.happyholidays.proxies.client.ClientProxy;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -27,8 +23,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class HappyHolidaysMod {
     public static final String MOD_ID = "happyholidays";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
-
-    public static Proxy PROXY = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
     public HappyHolidaysMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();

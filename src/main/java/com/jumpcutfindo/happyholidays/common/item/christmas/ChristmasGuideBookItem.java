@@ -1,9 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.item.christmas;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.client.events.GuideBookEvent;
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasItem;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -12,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ChristmasGuideBookItem extends ChristmasItem {
 
@@ -37,6 +36,6 @@ public class ChristmasGuideBookItem extends ChristmasItem {
     }
 
     public void showGuide() {
-        HappyHolidaysMod.PROXY.openGuideGUI(this.getDefaultInstance());
+        MinecraftForge.EVENT_BUS.post(new GuideBookEvent.Open(this.getDefaultInstance()));
     }
 }

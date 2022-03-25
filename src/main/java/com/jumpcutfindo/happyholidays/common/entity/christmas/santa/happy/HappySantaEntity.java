@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGiftType;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGifts;
@@ -13,6 +12,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
@@ -163,11 +163,11 @@ public class HappySantaEntity extends BaseSantaEntity {
     }
 
     public void playDropPartySummonSound() {
-        HappyHolidaysMod.PROXY.getChristmasProxy().playHappySantaSummoningSound(this.getUUID(), this.blockPosition());
+        MinecraftForge.EVENT_BUS.post(new SantaEvent.SoundChange(this, Minecraft.getInstance().player, true));
     }
 
     public void stopDropPartySummonSound() {
-        HappyHolidaysMod.PROXY.getChristmasProxy().stopHappySantaSummoningSound(this.getUUID());
+        MinecraftForge.EVENT_BUS.post(new SantaEvent.SoundChange(this, Minecraft.getInstance().player, false));
     }
 
     public void summonGift() {
