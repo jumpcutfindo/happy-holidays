@@ -31,8 +31,13 @@ public class NaturalEventHandler {
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void onAddingPlacements(BiomeLoadingEvent event) {
         // Handle wild present generation
-        if (event.getCategory() != Biome.BiomeCategory.NETHER && event.getCategory() != Biome.BiomeCategory.THEEND) {
-            event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ChristmasPlacements.PATCH_WILD_PRESENTS);
+        if (isOverworld(event.getCategory())) {
+            if (isCold(event.getCategory())) {
+                event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ChristmasPlacements.PATCH_WILD_PRESENTS_COLD);
+            } else {
+                event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ChristmasPlacements.PATCH_WILD_PRESENTS);
+            }
+
         }
     }
     
@@ -55,5 +60,13 @@ public class NaturalEventHandler {
                             NutcrackerEntity.MAX_SPAWN_COUNT)
             );
         }
+    }
+
+    private static boolean isOverworld(Biome.BiomeCategory category) {
+        return category != Biome.BiomeCategory.NETHER && category != Biome.BiomeCategory.THEEND;
+    }
+
+    private static boolean isCold(Biome.BiomeCategory category) {
+        return category == Biome.BiomeCategory.ICY;
     }
 }

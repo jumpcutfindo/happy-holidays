@@ -14,4 +14,11 @@ public class ChristmasPlacements {
                     PlacementUtils.HEIGHTMAP,
                     BiomeFilter.biome()
             );
+    public static final PlacedFeature PATCH_WILD_PRESENTS_COLD =
+            ChristmasFeatures.PATCH_WILD_PRESENTS.placed(
+                    RarityFilter.onAverageOnceEvery(100),
+                    InSquarePlacement.spread(),
+                    PlacementUtils.HEIGHTMAP,
+                    BiomeFilter.biome()
+            );
 }
