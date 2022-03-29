@@ -162,7 +162,9 @@ public abstract class GingerbreadPersonEntity extends PathfinderMob implements I
     public static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, LevelAccessor world,
                                                      MobSpawnType spawnReason, BlockPos pos, Random rand) {
         if (world instanceof ServerLevel serverLevel) {
-            return Availability.isAvailable(serverLevel, Holiday.CHRISTMAS, HolidayAvailabilityData.CHRISTMAS_GINGERBREAD_SPAWN);
+            if (!Availability.isAvailable(serverLevel, Holiday.CHRISTMAS, HolidayAvailabilityData.CHRISTMAS_GINGERBREAD_SPAWN)) {
+                return false;
+            }
         }
 
         return world.getRawBrightness(pos,0) > 8 && world.getBlockState(pos.below()).is(ChristmasTags.Blocks.GINGERBREAD_MEN_SPAWNABLE_ON);
