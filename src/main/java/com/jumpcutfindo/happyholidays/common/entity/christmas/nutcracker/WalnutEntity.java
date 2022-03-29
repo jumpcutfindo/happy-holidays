@@ -107,7 +107,6 @@ public class WalnutEntity extends Projectile implements IAnimatable {
     }
 
     protected void onHitEntity(EntityHitResult entityHitResult) {
-        if (entityHitResult.getEntity() instanceof NutcrackerEntity) return;
 
         super.onHitEntity(entityHitResult);
         Entity entity = entityHitResult.getEntity();

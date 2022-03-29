@@ -185,12 +185,10 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
 
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-        this.targetSelector.addGoal(2, (new HurtByTargetGoal(this)).setAlertOthers());
-        this.targetSelector.addGoal(3, new NearestNuttableTargetGoal<>(this, Monster.class, 10, true, false, (p_29932_) -> {
-            return p_29932_ instanceof Enemy;
-        }));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, 10, true, false, this::isAngryAt));
-        this.targetSelector.addGoal(4, new ResetUniversalAngerTargetGoal<>(this, true));
+        this.targetSelector.addGoal(3, (new HurtByTargetGoal(this)).setAlertOthers());
+        this.targetSelector.addGoal(4, new NearestNuttableTargetGoal<>(this, Monster.class, 10, true, false, (p_29932_) -> p_29932_ instanceof Enemy));
+        this.targetSelector.addGoal(5, new NearestNuttableTargetGoal<>(this, Player.class, 10, true, false, (p_29932_) -> p_29932_ instanceof LivingEntity livingEntity && this.isAngryAt(livingEntity)));
+        this.targetSelector.addGoal(6, new ResetUniversalAngerTargetGoal<>(this, true));
     }
 
     @Override
@@ -459,7 +457,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
 
     @Override
     public boolean canAttack(LivingEntity entity) {
-        return entity instanceof Enemy && entity.isAlive();
+        return entity.isAlive() && ((entity instanceof Player player && !this.isTame()) || entity instanceof Enemy);
     }
 
     @Override
