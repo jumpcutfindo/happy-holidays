@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.server.command.arguments.AvailabilityArgument;
 import com.jumpcutfindo.happyholidays.server.command.arguments.IntervalArgument;
 import com.jumpcutfindo.happyholidays.server.command.arguments.YearlessDateArgument;
 
@@ -21,6 +22,7 @@ public class ArgumentTypeHandler {
     private static void doRegistration() {
         ArgumentTypes.register(resourceStringOf("yearless_date"), YearlessDateArgument.class, new EmptyArgumentSerializer<>(YearlessDateArgument::yearlessDate));
         ArgumentTypes.register(resourceStringOf("interval"), IntervalArgument.class, new EmptyArgumentSerializer<>(IntervalArgument::interval));
+        ArgumentTypes.register(resourceStringOf("availability"), AvailabilityArgument.class, new EmptyArgumentSerializer<>(AvailabilityArgument::availability));
     }
 
     private static String resourceStringOf(String resourceName) {
