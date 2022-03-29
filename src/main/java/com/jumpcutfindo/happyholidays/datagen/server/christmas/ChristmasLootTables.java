@@ -669,11 +669,11 @@ public class ChristmasLootTables extends BaseLootTableProvider {
     private void addNutcracker() {
         LootPool.Builder logsPool = LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
-                .add(LootItem.lootTableItem(Items.OAK_LOG).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 12))));
+                .add(LootItem.lootTableItem(Items.OAK_LOG).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 8))));
 
         LootPool.Builder nutsPool = LootPool.lootPool()
                 .setRolls(ConstantValue.exactly(1))
-                .add(LootItem.lootTableItem(ChristmasItems.WALNUT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(4, 36))));
+                .add(LootItem.lootTableItem(ChristmasItems.WALNUT.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(2, 4))));
 
         entityLootTables.put(ChristmasEntities.NUTCRACKER.get(),
                 LootTable.lootTable().withPool(logsPool).withPool(nutsPool));
