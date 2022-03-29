@@ -457,7 +457,7 @@ public class NutcrackerEntity extends TamableAnimal implements IAnimatable, Chri
 
     @Override
     public boolean canAttack(LivingEntity entity) {
-        return entity.isAlive() && ((entity instanceof Player player && !this.isTame()) || entity instanceof Enemy);
+        return entity.isAlive() && ((entity instanceof Player player && !this.isTame()) && !player.getAbilities().instabuild || entity instanceof Enemy);
     }
 
     @Override
