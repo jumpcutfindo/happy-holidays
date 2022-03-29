@@ -33,6 +33,7 @@ public class WalnutPlantBlock extends BushBlock implements BonemealableBlock, Ch
                     .of(Material.VEGETABLE)
                     .strength(0.1f)
                     .sound(SoundType.HANGING_ROOTS)
+                    .noCollission()
                     .noOcclusion();
 
     public static final int MAX_AGE = 2;
@@ -108,7 +109,7 @@ public class WalnutPlantBlock extends BushBlock implements BonemealableBlock, Ch
     @Override
     public void randomTick(BlockState blockState, ServerLevel level, BlockPos blockPos, Random random) {
         if (!level.isAreaLoaded(blockPos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light
-        if (level.getRawBrightness(blockPos, 0) >= 9) {
+        if (level.getRawBrightness(blockPos, 0) >= 6) {
             int i = this.getAge(blockState);
             if (i < MAX_AGE) {
                 float f = getGrowthSpeed(this, level, blockPos);
