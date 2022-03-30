@@ -16,6 +16,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
@@ -64,19 +65,7 @@ public abstract class GingerbreadPersonEntity extends PathfinderMob implements I
 
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new FollowHeatSourceGoal(this));
-        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.0D, 1.25D,
-                (entity) -> {
-                    if (entity instanceof Player) {
-                        Player playerEntity = (Player) entity;
-                        ItemStack[] heldItems = new ItemStack[]{ playerEntity.getMainHandItem(), playerEntity.getOffhandItem() };
-
-                        return Arrays.stream(heldItems).anyMatch(itemStack -> ItemStack.isSame(itemStack,
-                                Items.WATER_BUCKET.getDefaultInstance()));
-                    }
-
-                    return false;
-                }
-        ));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.0D, 1.25D, this::shouldAvoidEntity));
         this.goalSelector.addGoal(3, new FollowGingerbreadLeaderGoal(this));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -124,6 +113,17 @@ public abstract class GingerbreadPersonEntity extends PathfinderMob implements I
 
     @Override
     public boolean canBeLeashed(Player p_21418_) {
+        return false;
+    }
+
+    public boolean shouldAvoidEntity(LivingEntity entity) {
+        if (entity instanceof Player player) {
+            ItemStack[] heldItems = new ItemStack[]{ player.getMainHandItem(), player.getOffhandItem() };
+
+            return Arrays.stream(heldItems).anyMatch(itemStack -> ItemStack.isSame(itemStack,
+                    Items.WATER_BUCKET.getDefaultInstance()));
+        }
+
         return false;
     }
 
