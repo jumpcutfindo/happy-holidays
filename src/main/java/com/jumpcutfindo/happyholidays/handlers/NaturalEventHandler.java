@@ -33,11 +33,10 @@ public class NaturalEventHandler {
         // Handle wild present generation
         if (isOverworld(event.getCategory())) {
             if (isCold(event.getCategory())) {
-                event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ChristmasPlacements.PATCH_WILD_PRESENTS_COLD);
+                event.getGeneration().addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ChristmasPlacements.PATCH_WILD_PRESENTS_COLD);
             } else {
-                event.getGeneration().addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, ChristmasPlacements.PATCH_WILD_PRESENTS);
+                event.getGeneration().addFeature(GenerationStep.Decoration.LOCAL_MODIFICATIONS, ChristmasPlacements.PATCH_WILD_PRESENTS);
             }
-
         }
     }
     

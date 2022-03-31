@@ -9,16 +9,16 @@ import net.minecraft.world.level.levelgen.placement.RarityFilter;
 public class ChristmasPlacements {
     public static final PlacedFeature PATCH_WILD_PRESENTS =
             ChristmasFeatures.PATCH_WILD_PRESENTS.placed(
-                    RarityFilter.onAverageOnceEvery(150),
+                    RarityFilter.onAverageOnceEvery(100),
                     InSquarePlacement.spread(),
-                    PlacementUtils.HEIGHTMAP,
+                    PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                     BiomeFilter.biome()
             );
     public static final PlacedFeature PATCH_WILD_PRESENTS_COLD =
             ChristmasFeatures.PATCH_WILD_PRESENTS.placed(
-                    RarityFilter.onAverageOnceEvery(100),
+                    RarityFilter.onAverageOnceEvery(30),
                     InSquarePlacement.spread(),
-                    PlacementUtils.HEIGHTMAP,
+                    PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                     BiomeFilter.biome()
             );
 }
