@@ -256,7 +256,7 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
 
         this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 2);
 
-        List<Player> players = EntityUtils.findPlayersInRadius(this.level, new Vec3(this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ()), 5.0d);
+        List<Player> players = EntityUtils.findPlayersInRadius(this.level, new Vec3(this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ()), 75.0d);
         for (Player player : players) {
             MusicBoxEvent.Play playEvent = new MusicBoxEvent.Play(this, this.currentMusic, player);
             MinecraftForge.EVENT_BUS.post(playEvent);
@@ -271,7 +271,7 @@ public class MusicBoxBlockEntity extends BaseContainerBlockEntity implements Chr
 
         this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 2);
 
-        List<Player> players = EntityUtils.findPlayersInRadius(this.level, new Vec3(this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ()), 5.0d);
+        List<Player> players = EntityUtils.findPlayersInRadius(this.level, new Vec3(this.getBlockPos().getX(), this.getBlockPos().getY(), this.getBlockPos().getZ()), 75.0d);
         for (Player player : players) {
             MusicBoxEvent.Stop stopEvent = new MusicBoxEvent.Stop(this, this.currentMusic, player);
             MinecraftForge.EVENT_BUS.post(stopEvent);
