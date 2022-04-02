@@ -461,7 +461,7 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, Christma
 
                     int presentX = targetPos.getX(), presentY = targetPos.getY(), presentZ = targetPos.getZ();
 
-                    if (!targetPos.closerThan(this.grinchEntity.position(), 1.5D)) {
+                    if (!targetPos.closerThan(this.grinchEntity.blockPosition(), 1.5D)) {
                         // Since Grinch is not close enough, we move him to the location & make him look at it
                         this.grinchEntity.navigation.moveTo(presentX + 0.5D, presentY, presentZ + 0.5D,
                                 MOVE_TO_PRESENT_SPEED);

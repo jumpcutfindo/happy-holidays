@@ -4,7 +4,6 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -95,8 +94,8 @@ public class BaseGingerbreadSlabBlock extends SlabBlock implements Soggifiable, 
             return this;
         }
 
-        public Supplier<SlabBlock> build() {
-            return () -> resultantBlock;
+        public SlabBlock build() {
+            return resultantBlock;
         }
     }
 

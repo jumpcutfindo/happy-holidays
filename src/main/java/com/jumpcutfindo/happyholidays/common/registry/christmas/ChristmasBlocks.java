@@ -270,85 +270,85 @@ public class ChristmasBlocks {
 
     // Gingerbread blocks
     public static final RegistryObject<Block> GINGERBREAD_DOUGH_BLOCK =
-            BLOCKS.register("gingerbread_dough_block", BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_dough_block", () -> BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_DOUGH_STAIRS =
-            BLOCKS.register("gingerbread_dough_stairs", BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_dough_stairs", () -> BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_DOUGH_SLAB =
-            BLOCKS.register("gingerbread_dough_slab", BaseGingerbreadSlabBlock.Builder.create().dough().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_dough_slab", () -> BaseGingerbreadSlabBlock.Builder.create().dough().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<WallBlock> GINGERBREAD_DOUGH_WALL =
-            BLOCKS.register("gingerbread_dough_wall", BaseGingerbreadWall.Builder.create().dough().soggyResult(BaseGingerbreadWall.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_dough_wall", () -> BaseGingerbreadWall.Builder.create().dough().soggyResult(BaseGingerbreadWall.SoggyResult.BLOCK).build());
 
     public static final RegistryObject<Block> GINGERBREAD_DOUGH_BRICKS =
-            BLOCKS.register("gingerbread_dough_bricks", BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_dough_bricks", () -> BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.BRICKS).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_DOUGH_BRICK_STAIRS =
-            BLOCKS.register("gingerbread_dough_brick_stairs", BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_dough_brick_stairs", () -> BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BRICKS).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_DOUGH_BRICK_SLAB =
-            BLOCKS.register("gingerbread_dough_brick_slab", BaseGingerbreadSlabBlock.Builder.create().dough().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_dough_brick_slab", () -> BaseGingerbreadSlabBlock.Builder.create().dough().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BRICKS).build());
     public static final RegistryObject<WallBlock> GINGERBREAD_DOUGH_BRICK_WALL =
-            BLOCKS.register("gingerbread_dough_brick_wall", BaseGingerbreadWall.Builder.create().dough().soggyResult(BaseGingerbreadWall.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_dough_brick_wall", () -> BaseGingerbreadWall.Builder.create().dough().soggyResult(BaseGingerbreadWall.SoggyResult.BRICKS).build());
 
     public static final RegistryObject<Block> GINGERBREAD_DOUGH_TILES =
-            BLOCKS.register("gingerbread_dough_tiles", BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_dough_tiles", () -> BaseGingerbreadBlock.Builder.create().dough().soggyResult(BaseGingerbreadBlock.SoggyResult.TILES).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_DOUGH_TILE_STAIRS =
-            BLOCKS.register("gingerbread_dough_tile_stairs", BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_dough_tile_stairs", () -> BaseGingerbreadStairBlock.Builder.create().dough().soggyResult(BaseGingerbreadStairBlock.SoggyResult.TILES).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_DOUGH_TILE_SLAB =
-            BLOCKS.register("gingerbread_dough_tile_slab", BaseGingerbreadSlabBlock.Builder.create().dough().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_dough_tile_slab", () -> BaseGingerbreadSlabBlock.Builder.create().dough().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.TILES).build());
     public static final RegistryObject<WallBlock> GINGERBREAD_DOUGH_TILE_WALL =
-            BLOCKS.register("gingerbread_dough_tile_wall", BaseGingerbreadWall.Builder.create().dough().soggyResult(BaseGingerbreadWall.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_dough_tile_wall", () -> BaseGingerbreadWall.Builder.create().dough().soggyResult(BaseGingerbreadWall.SoggyResult.TILES).build());
 
     public static final RegistryObject<Block> GINGERBREAD_BLOCK =
-            BLOCKS.register("gingerbread_block", BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_block", () -> BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_STAIRS =
-            BLOCKS.register("gingerbread_stairs", BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_stairs", () -> BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_SLAB =
-            BLOCKS.register("gingerbread_slab", BaseGingerbreadSlabBlock.Builder.create().cooked().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_slab", () -> BaseGingerbreadSlabBlock.Builder.create().cooked().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BLOCK).build());
     public static final RegistryObject<WallBlock> GINGERBREAD_WALL =
-            BLOCKS.register("gingerbread_wall", BaseGingerbreadWall.Builder.create().cooked().soggyResult(BaseGingerbreadWall.SoggyResult.BLOCK).build());
+            BLOCKS.register("gingerbread_wall", () -> BaseGingerbreadWall.Builder.create().cooked().soggyResult(BaseGingerbreadWall.SoggyResult.BLOCK).build());
 
     public static final RegistryObject<Block> GINGERBREAD_BRICKS =
-            BLOCKS.register("gingerbread_bricks", BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_bricks", () -> BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.BRICKS).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_BRICK_STAIRS =
-            BLOCKS.register("gingerbread_brick_stairs", BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_brick_stairs", () -> BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.BRICKS).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_BRICK_SLAB =
-            BLOCKS.register("gingerbread_brick_slab", BaseGingerbreadSlabBlock.Builder.create().cooked().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_brick_slab", () -> BaseGingerbreadSlabBlock.Builder.create().cooked().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.BRICKS).build());
     public static final RegistryObject<WallBlock> GINGERBREAD_BRICK_WALL =
-            BLOCKS.register("gingerbread_brick_wall", BaseGingerbreadWall.Builder.create().cooked().soggyResult(BaseGingerbreadWall.SoggyResult.BRICKS).build());
+            BLOCKS.register("gingerbread_brick_wall", () -> BaseGingerbreadWall.Builder.create().cooked().soggyResult(BaseGingerbreadWall.SoggyResult.BRICKS).build());
 
     public static final RegistryObject<Block> GINGERBREAD_TILES =
-            BLOCKS.register("gingerbread_tiles", BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_tiles", () -> BaseGingerbreadBlock.Builder.create().cooked().soggyResult(BaseGingerbreadBlock.SoggyResult.TILES).build());
     public static final RegistryObject<StairBlock> GINGERBREAD_TILE_STAIRS =
-            BLOCKS.register("gingerbread_tile_stairs", BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_tile_stairs", () -> BaseGingerbreadStairBlock.Builder.create().cooked().soggyResult(BaseGingerbreadStairBlock.SoggyResult.TILES).build());
     public static final RegistryObject<SlabBlock> GINGERBREAD_TILE_SLAB =
-            BLOCKS.register("gingerbread_tile_slab", BaseGingerbreadSlabBlock.Builder.create().cooked().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_tile_slab", () -> BaseGingerbreadSlabBlock.Builder.create().cooked().soggyResult(BaseGingerbreadSlabBlock.SoggyResult.TILES).build());
     public static final RegistryObject<WallBlock> GINGERBREAD_TILE_WALL =
-            BLOCKS.register("gingerbread_tile_wall", BaseGingerbreadWall.Builder.create().cooked().soggyResult(BaseGingerbreadWall.SoggyResult.TILES).build());
+            BLOCKS.register("gingerbread_tile_wall", () -> BaseGingerbreadWall.Builder.create().cooked().soggyResult(BaseGingerbreadWall.SoggyResult.TILES).build());
 
     public static final RegistryObject<Block> SOGGY_GINGERBREAD_BLOCK =
-            BLOCKS.register("soggy_gingerbread_block", BaseGingerbreadBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_block", () -> BaseGingerbreadBlock.Builder.create().soggy().build());
     public static final RegistryObject<StairBlock> SOGGY_GINGERBREAD_STAIRS =
-            BLOCKS.register("soggy_gingerbread_stairs", BaseGingerbreadStairBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_stairs", () -> BaseGingerbreadStairBlock.Builder.create().soggy().build());
     public static final RegistryObject<SlabBlock> SOGGY_GINGERBREAD_SLAB =
-            BLOCKS.register("soggy_gingerbread_slab", BaseGingerbreadSlabBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_slab", () -> BaseGingerbreadSlabBlock.Builder.create().soggy().build());
     public static final RegistryObject<WallBlock> SOGGY_GINGERBREAD_WALL =
-            BLOCKS.register("soggy_gingerbread_wall", BaseGingerbreadWall.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_wall", () -> BaseGingerbreadWall.Builder.create().soggy().build());
 
     public static final RegistryObject<Block> SOGGY_GINGERBREAD_BRICKS =
-            BLOCKS.register("soggy_gingerbread_bricks", BaseGingerbreadBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_bricks", () -> BaseGingerbreadBlock.Builder.create().soggy().build());
     public static final RegistryObject<StairBlock> SOGGY_GINGERBREAD_BRICK_STAIRS =
-            BLOCKS.register("soggy_gingerbread_brick_stairs", BaseGingerbreadStairBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_brick_stairs", () -> BaseGingerbreadStairBlock.Builder.create().soggy().build());
     public static final RegistryObject<SlabBlock> SOGGY_GINGERBREAD_BRICK_SLAB =
-            BLOCKS.register("soggy_gingerbread_brick_slab", BaseGingerbreadSlabBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_brick_slab", () -> BaseGingerbreadSlabBlock.Builder.create().soggy().build());
     public static final RegistryObject<WallBlock> SOGGY_GINGERBREAD_BRICK_WALL =
-            BLOCKS.register("soggy_gingerbread_brick_wall", BaseGingerbreadWall.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_brick_wall", () -> BaseGingerbreadWall.Builder.create().soggy().build());
 
     public static final RegistryObject<Block> SOGGY_GINGERBREAD_TILES =
-            BLOCKS.register("soggy_gingerbread_tiles", BaseGingerbreadBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_tiles", () -> BaseGingerbreadBlock.Builder.create().soggy().build());
     public static final RegistryObject<StairBlock> SOGGY_GINGERBREAD_TILE_STAIRS =
-            BLOCKS.register("soggy_gingerbread_tile_stairs", BaseGingerbreadStairBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_tile_stairs", () -> BaseGingerbreadStairBlock.Builder.create().soggy().build());
     public static final RegistryObject<SlabBlock> SOGGY_GINGERBREAD_TILE_SLAB =
-            BLOCKS.register("soggy_gingerbread_tile_slab", BaseGingerbreadSlabBlock.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_tile_slab", () -> BaseGingerbreadSlabBlock.Builder.create().soggy().build());
     public static final RegistryObject<WallBlock> SOGGY_GINGERBREAD_TILE_WALL =
-            BLOCKS.register("soggy_gingerbread_tile_wall", BaseGingerbreadWall.Builder.create().soggy().build());
+            BLOCKS.register("soggy_gingerbread_tile_wall", () -> BaseGingerbreadWall.Builder.create().soggy().build());
 
     // Candy cane blocks
     public static final RegistryObject<Block> CANDY_CANE_BLOCK =
@@ -425,7 +425,7 @@ public class ChristmasBlocks {
     public static final RegistryObject<Block> CHRISTMAS_PUDDING =
             BLOCKS.register("christmas_pudding", ChristmasPuddingBlock::new);
 
-    public static boolean isInfluencedByStar(Block block) {
-        return ChristmasTags.Blocks.STAR_AFFECTED_BLOCKS.contains(block);
+    public static boolean isInfluencedByStar(BlockState blockState) {
+        return blockState.is(ChristmasTags.Blocks.STAR_AFFECTED_BLOCKS);
     }
 }

@@ -82,7 +82,7 @@ public class ChristmasEvents {
 
     @SubscribeEvent
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
-        if (ChristmasBlocks.isInfluencedByStar(event.getPlacedBlock().getBlock())) onStarAffectedBlockPlaced(event);
+        if (ChristmasBlocks.isInfluencedByStar(event.getPlacedBlock())) onStarAffectedBlockPlaced(event);
     }
 
     public static void onStarAffectedBlockPlaced(BlockEvent.EntityPlaceEvent event) {

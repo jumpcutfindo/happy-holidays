@@ -16,6 +16,7 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.utils.TagUtils;
 import com.jumpcutfindo.happyholidays.server.data.SantaSavedData;
 
 import net.minecraft.core.particles.ParticleTypes;
@@ -25,7 +26,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -737,10 +738,10 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
                     this.villagerXp, this.priceMultiplier);
         }
 
-        public static List<VillagerTrades.ItemListing> tradesFromTag(Tag<Item> itemTag, int cost, int emeraldsExpected,
+        public static List<VillagerTrades.ItemListing> tradesFromTag(TagKey<Item> itemTag, int cost, int emeraldsExpected,
                                                                  int maxUses, int xp) {
             List<VillagerTrades.ItemListing> results = new ArrayList<>();
-            for (Item item : itemTag.getValues()) {
+            for (Item item : TagUtils.itemContents(itemTag)) {
                 results.add(new EmeraldForItemsTrade(item, cost, emeraldsExpected, maxUses, xp));
             }
 
@@ -789,11 +790,11 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
                     this.villagerXp, this.priceMultiplier);
         }
 
-        public static List<VillagerTrades.ItemListing> tradesFromTag(Tag<Item> itemTag, int emeraldCost,
-                                                                 int numberOfItems, int maxUses, int xp) {
+        public static List<VillagerTrades.ItemListing> tradesFromTag(TagKey<Item> itemTag, int emeraldCost,
+                                                                     int numberOfItems, int maxUses, int xp) {
             List<VillagerTrades.ItemListing> results = new ArrayList<>();
 
-            for (Item item : itemTag.getValues()) {
+            for (Item item : TagUtils.itemContents(itemTag)) {
                 results.add(new ItemsForEmeraldsTrade(item, emeraldCost, numberOfItems, maxUses, xp));
             }
 

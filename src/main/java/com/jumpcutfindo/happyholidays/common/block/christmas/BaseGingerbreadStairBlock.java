@@ -97,8 +97,8 @@ public class BaseGingerbreadStairBlock extends StairBlock implements Soggifiable
             return this;
         }
 
-        public Supplier<StairBlock> build() {
-            return () -> resultantBlock;
+        public StairBlock build() {
+            return resultantBlock;
         }
     }
 

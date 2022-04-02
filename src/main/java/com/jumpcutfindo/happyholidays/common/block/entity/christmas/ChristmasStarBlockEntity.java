@@ -22,6 +22,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticl
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 import com.jumpcutfindo.happyholidays.common.utils.StringUtils;
+import com.jumpcutfindo.happyholidays.common.utils.TagUtils;
 import com.jumpcutfindo.happyholidays.common.utils.message.GameplayMessage;
 import com.jumpcutfindo.happyholidays.common.utils.message.MessageType;
 import com.jumpcutfindo.happyholidays.common.utils.message.Messenger;
@@ -211,7 +212,7 @@ public class ChristmasStarBlockEntity extends BaseContainerBlockEntity implement
             AABB axisAlignedBB = new AABB(this.worldPosition).inflate(ENTITY_EFFECT_RADIUS[this.currentTier]);
 
             List<LivingEntity> christmasEntities = this.level.getEntitiesOfClass(LivingEntity.class,
-                    axisAlignedBB, entity -> ChristmasTags.Entities.DEBUFFABLE_BY_STAR.contains(entity.getType()));
+                    axisAlignedBB, entity -> TagUtils.entityTypeContents(ChristmasTags.Entities.DEBUFFABLE_BY_STAR).contains(entity.getType()));
 
             for (LivingEntity entity : christmasEntities) {
                 entity.addEffect(new MobEffectInstance(ChristmasEffects.DEBUFF_OF_CHRISTMAS.get(), 200,

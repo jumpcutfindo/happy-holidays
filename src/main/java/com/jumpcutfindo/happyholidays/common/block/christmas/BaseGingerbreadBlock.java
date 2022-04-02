@@ -5,7 +5,6 @@ import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
-import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasRarity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
@@ -187,8 +186,8 @@ public class BaseGingerbreadBlock extends Block implements Soggifiable, Christma
             return this;
         }
 
-        public Supplier<Block> build() {
-            return () -> resultantBlock;
+        public Block build() {
+            return resultantBlock;
         }
     }
 

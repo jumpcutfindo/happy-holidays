@@ -8,12 +8,10 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
-import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.data.recipes.SpecialRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -766,28 +764,8 @@ public class ChristmasRecipes extends RecipeProvider {
                 .save(consumer, recipeResourceOf(result));
     }
 
-    private void slab(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {
-        slabBuilder(result, Ingredient.of(ingredient)).unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer);
-    }
-
-    private static RecipeBuilder slabBuilder(ItemLike result, Ingredient ingredient) {
-        return ShapedRecipeBuilder.shaped(result, 6).define('#', ingredient).pattern("###");
-    }
-
     private void stair(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {
         stairBuilder(result, Ingredient.of(ingredient)).unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer);
-    }
-
-    private static RecipeBuilder stairBuilder(ItemLike result, Ingredient ingredient) {
-        return ShapedRecipeBuilder.shaped(result, 4).define('#', ingredient).pattern("#  ").pattern("## ").pattern("###");
-    }
-
-    private void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike source) {
-        stonecutterResultFromBase(consumer, result, source, 1);
-    }
-
-    private void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike source, int count) {
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(source), result, count).unlockedBy(getHasName(source), has(source)).save(consumer, stonecutterRecipeResourceOf(result, source));
     }
 
     private ResourceLocation stonecutterRecipeResourceOf(ItemLike result, ItemLike source) {
@@ -802,10 +780,6 @@ public class ChristmasRecipes extends RecipeProvider {
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(ingredient), result, xp, cookingDuration, RecipeSerializer.SMELTING_RECIPE)
                 .unlockedBy(getHasName(ingredient), has(ingredient)).unlockedBy(getHasName(result), has(result))
                 .save(consumer, recipeResourceOf(result) + "_from_" + itemId(ingredient) + "_smelting");
-    }
-
-    private String getHasName(ItemLike item) {
-        return "has_" + itemId(item);
     }
 
     private String itemId(ItemLike item) {

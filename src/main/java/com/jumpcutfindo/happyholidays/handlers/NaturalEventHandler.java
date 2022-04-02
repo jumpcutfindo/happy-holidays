@@ -4,11 +4,8 @@ import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.gingerbread.GingerbreadManEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.nutcracker.NutcrackerEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
-import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasFeatures;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasPlacements;
 
-import net.minecraft.core.Registry;
-import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.MobSpawnSettings;
@@ -24,7 +21,6 @@ public class NaturalEventHandler {
     @SubscribeEvent
     public static void registerFeatures(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, "patch_wild_presents", ChristmasFeatures.PATCH_WILD_PRESENTS);
         });
     }
 

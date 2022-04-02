@@ -96,8 +96,8 @@ public class BaseGingerbreadWall extends WallBlock implements Soggifiable, Chris
             return this;
         }
 
-        public Supplier<WallBlock> build() {
-            return () -> resultantBlock;
+        public WallBlock build() {
+            return resultantBlock;
         }
     }
 
