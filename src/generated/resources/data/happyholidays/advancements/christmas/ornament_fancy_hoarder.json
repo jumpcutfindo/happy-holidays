@@ -102,6 +102,18 @@
           }
         ]
       }
+    },
+    "has_nutcracker_ornament": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:nutcracker_ornament"
+            ]
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -125,6 +137,9 @@
     ],
     [
       "has_santa_elf_ornament"
+    ],
+    [
+      "has_nutcracker_ornament"
     ]
   ]
 }

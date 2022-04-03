@@ -1,36 +1,21 @@
 package com.jumpcutfindo.happyholidays.common.block.christmas.food;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import org.jetbrains.annotations.NotNull;
 
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ChristmasPuddingBlock extends ChristmasFoodBlock {
     public static final int MAX_BITES = 3;
-    public static final int NUTRITION = 2;
-    public static final float SATURATION = 0.2F;
 
     public static final IntegerProperty BITES = IntegerProperty.create("bites", 0, MAX_BITES - 1);
-
-    public static final String BLOCK_ID = "christmas_pudding";
 
     public static final Properties BLOCK_PROPERTIES =
             Properties
@@ -40,15 +25,8 @@ public class ChristmasPuddingBlock extends ChristmasFoodBlock {
                     .noOcclusion()
                     .randomTicks();
 
-    public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties()
-                    .stacksTo(4)
-                    .tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
-
-    public static final VoxelShape[] SHAPE = { Block.box(2.5, 0.0, 2.5, 13.5, 8.0, 13.5) };
-
     public ChristmasPuddingBlock() {
-        super(BLOCK_PROPERTIES, SHAPE, NUTRITION, SATURATION);
+        super(BLOCK_PROPERTIES);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(BITES, 0)
                 .setValue(FACING, Direction.NORTH));
@@ -67,35 +45,32 @@ public class ChristmasPuddingBlock extends ChristmasFoodBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState blockState, Level world, BlockPos blockPos, Player playerEntity, InteractionHand hand, BlockHitResult rayTraceResult) {
-        if (world.isClientSide) {
-            ItemStack itemstack = playerEntity.getItemInHand(hand);
-            if (this.eat(world, blockPos, blockState, playerEntity).consumesAction()) {
-                return InteractionResult.SUCCESS;
-            }
-
-            if (itemstack.isEmpty()) {
-                return InteractionResult.CONSUME;
-            }
-        }
-
-        return this.eat(world, blockPos, blockState, playerEntity);
+    public @NotNull VoxelShape getShape() {
+        return Block.box(2.5, 0.0, 2.5, 13.5, 8.0, 13.5);
     }
 
-    private InteractionResult eat(LevelAccessor world, BlockPos blockPos, BlockState blockState, Player playerEntity) {
-        if (!playerEntity.canEat(false)) {
-            return InteractionResult.PASS;
-        } else {
-            playerEntity.getFoodData().eat(NUTRITION, SATURATION);
-            int i = blockState.getValue(BITES);
-            if (i < MAX_BITES - 1) {
-                world.setBlock(blockPos, blockState.setValue(BITES, i + 1), 3);
-                world.playSound(null, blockPos, SoundEvents.GENERIC_EAT, SoundSource.PLAYERS, 0.0f, 0.0f);
-            } else {
-                world.removeBlock(blockPos, false);
-            }
+    @Override
+    public int getNutrition() {
+        return 2;
+    }
 
-            return InteractionResult.SUCCESS;
-        }
+    @Override
+    public float getSaturation() {
+        return 0.2F;
+    }
+
+    @Override
+    public IntegerProperty getBitesProperty() {
+        return BITES;
+    }
+
+    @Override
+    public int getBites(BlockState blockState) {
+        return blockState.getValue(BITES);
+    }
+
+    @Override
+    public int getMaxBites() {
+        return MAX_BITES;
     }
 }

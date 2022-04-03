@@ -1,0 +1,32 @@
+{
+  "parent": "happyholidays:christmas/nutcracker_kill_mob",
+  "display": {
+    "icon": {
+      "item": "minecraft:zombie_head"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_kill_mob_challenge"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_kill_mob_challenge.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "criteria": {
+    "nutcracker_kill_mobs": {
+      "trigger": "happyholidays:christmas/nutcracker_kill_challenge",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "nutcracker_kill_mobs"
+    ]
+  ]
+}

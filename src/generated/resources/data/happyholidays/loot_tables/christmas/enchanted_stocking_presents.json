@@ -14,7 +14,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 8.0
+                "max": 4.0
               },
               "add": false
             }
@@ -30,7 +30,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 8.0
+                "max": 4.0
               },
               "add": false
             }
@@ -46,7 +46,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 8.0
+                "max": 4.0
               },
               "add": false
             }
@@ -78,7 +78,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1.0,
-                "max": 4.0
+                "max": 2.0
               },
               "add": false
             }
@@ -106,7 +106,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 8.0
+                "max": 4.0
               },
               "add": false
             }
@@ -138,7 +138,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 8.0
+                "max": 6.0
               },
               "add": false
             }
@@ -154,7 +154,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 8.0
+                "max": 6.0
               },
               "add": false
             }
@@ -170,7 +170,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 8.0
+                "max": 6.0
               },
               "add": false
             }
@@ -186,7 +186,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 8.0
+                "max": 4.0
               },
               "add": false
             }
@@ -202,7 +202,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 8.0
+                "max": 4.0
               },
               "add": false
             }
@@ -218,7 +218,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 8.0
+                "max": 4.0
               },
               "add": false
             }
@@ -234,7 +234,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 8.0
+                "max": 4.0
               },
               "add": false
             }
@@ -271,7 +271,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 12.0
+                "max": 8.0
               },
               "add": false
             }
@@ -287,7 +287,7 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 4.0,
-                "max": 24.0
+                "max": 16.0
               },
               "add": false
             }
@@ -319,12 +319,44 @@
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2.0,
-                "max": 8.0
+                "max": 4.0
               },
               "add": false
             }
           ],
           "name": "happyholidays:present_scraps"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2.0,
+                "max": 4.0
+              },
+              "add": false
+            }
+          ],
+          "name": "happyholidays:walnut"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 50,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 2.0
+              },
+              "add": false
+            }
+          ],
+          "name": "happyholidays:thread"
         }
       ],
       "functions": [
@@ -333,7 +365,7 @@
           "count": {
             "type": "minecraft:uniform",
             "min": 2.0,
-            "max": 12.0
+            "max": 4.0
           },
           "add": false
         }

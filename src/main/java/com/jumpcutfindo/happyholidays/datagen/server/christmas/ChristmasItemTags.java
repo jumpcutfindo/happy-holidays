@@ -36,8 +36,7 @@ public class ChristmasItemTags extends ItemTagsProvider {
                 .addTag(ChristmasTags.Items.BIG_BAUBLES)
                 .addTag(ChristmasTags.Items.CHRISTMAS_LIGHTS)
                 .addTag(ChristmasTags.Items.TINSEL)
-                .addTag(ChristmasTags.Items.CHRISTMAS_BELLS)
-                .addTag(ChristmasTags.Items.DECORATIONS);
+                .addTag(ChristmasTags.Items.CHRISTMAS_BELLS);
 
         tag(ChristmasTags.Items.RARE_ORNAMENTS)
                 .addTag(ChristmasTags.Items.HEAD_ORNAMENTS);
@@ -49,7 +48,8 @@ public class ChristmasItemTags extends ItemTagsProvider {
                 .add(ChristmasItems.CANDY_CANE_ORNAMENT.get())
                 .add(ChristmasItems.GRINCH_ORNAMENT.get())
                 .add(ChristmasItems.SANTA_ELF_ORNAMENT.get())
-                .add(ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get());
+                .add(ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get())
+                .add(ChristmasItems.NUTCRACKER_ORNAMENT.get());
 
         tag(ChristmasTags.Items.SHEET_MUSIC)
                 .add(ChristmasItems.SHEET_MUSIC_ANGELS_ON_HIGH.get())
@@ -69,6 +69,14 @@ public class ChristmasItemTags extends ItemTagsProvider {
                 .add(ChristmasItems.SHEET_MUSIC_WE_WISH_YOU.get())
                 .add(ChristmasItems.SHEET_MUSIC_WHITE_CHRISTMAS.get());
 
+        tag(ChristmasTags.Items.GIFTS)
+                .add(ChristmasItems.RED_CHRISTMAS_GIFT.get())
+                .add(ChristmasItems.BLUE_CHRISTMAS_GIFT.get())
+                .add(ChristmasItems.GREEN_CHRISTMAS_GIFT.get())
+                .add(ChristmasItems.YELLOW_CHRISTMAS_GIFT.get())
+                .add(ChristmasItems.GOLD_CHRISTMAS_GIFT.get())
+                .add(ChristmasItems.SILVER_CHRISTMAS_GIFT.get());
+
         tag(ChristmasTags.Items.FOODS)
                 .add(ChristmasItems.EGGNOG.get())
                 .add(ChristmasItems.CHRISTMAS_HAM.get())
@@ -78,6 +86,12 @@ public class ChristmasItemTags extends ItemTagsProvider {
                 .add(ChristmasItems.GINGERBREAD_COOKIE.get())
                 .add(ChristmasItems.CANDY_CANE.get())
                 .add(ChristmasItems.FESTIVE_CANDY_CANE.get());
+
+        tag(ChristmasTags.Items.LARGE_FOODS)
+                .add(ChristmasItems.CHRISTMAS_HAM.get())
+                .add(ChristmasItems.CHRISTMAS_PUDDING.get())
+                .add(ChristmasItems.MILK_AND_COOKIES.get())
+                .add(ChristmasItems.LOG_CAKE.get());
 
         santaElfRequestables();
     }
@@ -203,5 +217,24 @@ public class ChristmasItemTags extends ItemTagsProvider {
                 .add(Items.HEART_OF_THE_SEA)
                 .add(Items.SCUTE)
                 .add(Items.GHAST_TEAR);
+
+        tag(ChristmasTags.Items.NUTCRACKER_FOOD)
+                .addTag(net.minecraft.tags.ItemTags.LOGS);
+
+        tag(ChristmasTags.Items.HEAT_EMITTING_ITEMS)
+                .add(Items.CAMPFIRE)
+                .add(Items.SOUL_CAMPFIRE)
+                .add(Items.LAVA_BUCKET)
+                .add(Items.MAGMA_BLOCK);
+
+        tag(ChristmasTags.Items.SPECIAL_WALNUTS)
+                .add(ChristmasItems.METALLIC_WALNUT.get())
+                .add(ChristmasItems.HALVED_WALNUT.get())
+                .add(ChristmasItems.EXPLOSIVE_WALNUT.get())
+                .add(ChristmasItems.SUGARED_WALNUT.get());
+
+        tag(ChristmasTags.Items.NUTCRACKER_CARRIABLES)
+                .add(ChristmasItems.WALNUT.get())
+                .addTag(ChristmasTags.Items.SPECIAL_WALNUTS);
     }
 }

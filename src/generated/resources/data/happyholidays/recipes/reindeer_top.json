@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "L L",
+    "#W#",
+    "LWL"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:thread"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "W": {
+      "item": "minecraft:white_wool"
+    }
+  },
+  "result": {
+    "item": "happyholidays:reindeer_top"
+  }
+}

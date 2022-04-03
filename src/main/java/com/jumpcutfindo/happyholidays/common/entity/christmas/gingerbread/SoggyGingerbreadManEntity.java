@@ -4,22 +4,22 @@ import java.util.List;
 
 import com.jumpcutfindo.happyholidays.common.events.christmas.GingerbreadConversionEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
+import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 import com.jumpcutfindo.happyholidays.common.utils.EntityUtils;
 
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 
 public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
-    public static final String ENTITY_ID = "soggy_gingerbread_man";
 
     public static final AttributeSupplier ENTITY_ATTRIBUTES =
             createMobAttributes()
@@ -38,12 +38,19 @@ public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
     @Override
     public void tick() {
         super.tick();
-        if (!this.level.isClientSide() && !isInWaterOrRain() && isNearFireSource()) {
-            if (--timeLeftToDry == 0.0f) convertToDry();
-        }
+        boolean isBeingWet = isInWaterOrRain();
+        boolean isNearPlacedHeat = isNearFireSource();
+        boolean isNearPlayerHeat = isNearbyPlayerHeating();
 
-        if (this.level.isClientSide() && !isInWaterOrRain() && isNearFireSource()) {
-            spawnSmokeParticles();
+        if (!isBeingWet && isNearPlacedHeat) {
+            if (this.level.isClientSide()) {
+                if (this.tickCount % 5 == 0) spawnSmokeParticles();
+                if (isNearPlayerHeat && this.tickCount % 2 == 0) spawnSmokeParticles();
+            } else {
+                timeLeftToDry--;
+                if (isNearPlayerHeat) timeLeftToDry -= 0.5f;
+                if (timeLeftToDry <= 0.0f) convertToDry();
+            }
         }
     }
 
@@ -56,7 +63,7 @@ public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
                 this.getY() + random.nextDouble() * size.height,
                 this.getZ() + random.nextDouble() * size.width - 0.5D,
                 0.0D,
-                0.0D,
+                0.05D,
                 0.0D
         );
     }
@@ -69,6 +76,16 @@ public class SoggyGingerbreadManEntity extends GingerbreadPersonEntity {
             if (GingerbreadPersonEntity.isValidHeatSource(this.level.getBlockState(pos))) return true;
         }
 
+        return false;
+    }
+
+    private boolean isNearbyPlayerHeating() {
+        List<Player> playersAround = EntityUtils.findPlayersInRadius(this.level, this.position(), 5.0d);
+        for (Player player : playersAround) {
+            if (player.getMainHandItem().is(ChristmasTags.Items.HEAT_EMITTING_ITEMS) || player.getOffhandItem().is(ChristmasTags.Items.HEAT_EMITTING_ITEMS)) {
+                return true;
+            }
+        }
         return false;
     }
 

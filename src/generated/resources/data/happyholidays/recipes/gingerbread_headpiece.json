@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "# #",
+    "GGG"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:thread"
+    },
+    "G": {
+      "item": "happyholidays:gingerbread_block"
+    }
+  },
+  "result": {
+    "item": "happyholidays:gingerbread_headpiece"
+  }
+}

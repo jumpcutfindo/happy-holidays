@@ -1,5 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.elf;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
@@ -8,15 +9,14 @@ import java.util.Set;
 import javax.annotation.Nullable;
 
 import com.google.common.collect.Lists;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarBlockEntity;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
-import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
-import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarBlockEntity;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaElfEvent;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.utils.TagUtils;
 import com.jumpcutfindo.happyholidays.server.data.SantaSavedData;
 
 import net.minecraft.core.particles.ParticleTypes;
@@ -26,7 +26,7 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -68,8 +68,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class SantaElfEntity extends PathfinderMob implements IAnimatable, Merchant, IChristmasEntity {
-    public static final String ENTITY_ID = "santa_elf";
+public class SantaElfEntity extends PathfinderMob implements IAnimatable, Merchant, ChristmasEntity {
     public static final AttributeSupplier ENTITY_ATTRIBUTES =
             Mob.createMobAttributes()
                     .add(Attributes.MAX_HEALTH, 20.0f)
@@ -161,7 +160,7 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
         } else {
             if (!this.level.isClientSide) {
                 // Set prices based on debuff placed on elf
-                MobEffectInstance christmasDebuff = this.getEffect(ChristmasEffects.DEBUFF_OF_CHRISTMAS_EFFECT.get());
+                MobEffectInstance christmasDebuff = this.getEffect(ChristmasEffects.DEBUFF_OF_CHRISTMAS.get());
                 if (christmasDebuff != null) {
                     double discount;
 
@@ -371,8 +370,6 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
             // Add to naughty / nice meter
             if (itemEntity.getThrower() != null) {
                 Player playerEntity = this.level.getPlayerByUUID(itemEntity.getThrower());
-                NaughtyNiceMeter.evaluateAction(playerEntity, NaughtyNiceAction.HELP_SANTA_ELF_EVENT);
-
                 SantaElfEvent.CompleteRequest completeRequestEvent = new SantaElfEvent.CompleteRequest(this,
                         playerEntity, this.timeToCompleteRequest);
                 MinecraftForge.EVENT_BUS.post(completeRequestEvent);
@@ -439,11 +436,7 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
 
         ServerLevel serverLevel = (ServerLevel) this.level;
 
-        SantaSavedData santaData = serverLevel.getDataStorage().computeIfAbsent(
-                SantaSavedData::createFromTag,
-                SantaSavedData::new,
-                SantaSavedData.DATA_NAME
-        );
+        SantaSavedData santaData = SantaSavedData.retrieve(serverLevel);
 
         return santaData.isDefeated();
     }
@@ -497,6 +490,11 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
 
     @Override
     public boolean removeWhenFarAway(double p_213397_1_) {
+        return false;
+    }
+
+    @Override
+    public boolean canBeLeashed(Player p_21418_) {
         return false;
     }
 
@@ -740,12 +738,11 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
                     this.villagerXp, this.priceMultiplier);
         }
 
-        public static VillagerTrades.ItemListing[] tradesFromTag(Tag<Item> itemTag, int cost, int emeraldsExpected,
+        public static List<VillagerTrades.ItemListing> tradesFromTag(TagKey<Item> itemTag, int cost, int emeraldsExpected,
                                                                  int maxUses, int xp) {
-            VillagerTrades.ItemListing[] results = new VillagerTrades.ItemListing[itemTag.getValues().size()];
-
-            for (int i = 0; i < results.length; i++) {
-                results[i] = new EmeraldForItemsTrade(itemTag.getValues().get(i), cost, emeraldsExpected, maxUses, xp);
+            List<VillagerTrades.ItemListing> results = new ArrayList<>();
+            for (Item item : TagUtils.itemContents(itemTag)) {
+                results.add(new EmeraldForItemsTrade(item, cost, emeraldsExpected, maxUses, xp));
             }
 
             return results;
@@ -793,13 +790,12 @@ public class SantaElfEntity extends PathfinderMob implements IAnimatable, Mercha
                     this.villagerXp, this.priceMultiplier);
         }
 
-        public static VillagerTrades.ItemListing[] tradesFromTag(Tag<Item> itemTag, int emeraldCost,
-                                                                 int numberOfItems, int maxUses, int xp) {
-            VillagerTrades.ItemListing[] results = new VillagerTrades.ItemListing[itemTag.getValues().size()];
+        public static List<VillagerTrades.ItemListing> tradesFromTag(TagKey<Item> itemTag, int emeraldCost,
+                                                                     int numberOfItems, int maxUses, int xp) {
+            List<VillagerTrades.ItemListing> results = new ArrayList<>();
 
-            for (int i = 0; i < results.length; i++) {
-                results[i] = new ItemsForEmeraldsTrade(itemTag.getValues().get(i), emeraldCost, numberOfItems,
-                        maxUses, xp);
+            for (Item item : TagUtils.itemContents(itemTag)) {
+                results.add(new ItemsForEmeraldsTrade(item, emeraldCost, numberOfItems, maxUses, xp));
             }
 
             return results;

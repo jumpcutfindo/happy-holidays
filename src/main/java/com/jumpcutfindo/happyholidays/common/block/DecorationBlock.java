@@ -1,10 +1,10 @@
 package com.jumpcutfindo.happyholidays.common.block;
 
-import java.util.Arrays;
-
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import org.jetbrains.annotations.NotNull;
+
+import com.jumpcutfindo.happyholidays.common.item.HappyHolidaysTabs;
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
 import net.minecraft.core.BlockPos;
@@ -35,7 +35,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DecorationBlock extends Block implements SimpleWaterloggedBlock {
+public abstract class DecorationBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<AttachFace> ATTACH_FACE = BlockStateProperties.ATTACH_FACE;
@@ -48,12 +48,7 @@ public class DecorationBlock extends Block implements SimpleWaterloggedBlock {
                     .noOcclusion()
                     .noCollission();
 
-    public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
-
-    public VoxelShape[] normalShape, hangingShape, wallShape;
-
-    public DecorationBlock(VoxelShape[][] ornamentShapes) {
+    public DecorationBlock() {
         super(BLOCK_PROPERTIES);
 
         this.registerDefaultState(this.getStateDefinition().any()
@@ -61,11 +56,16 @@ public class DecorationBlock extends Block implements SimpleWaterloggedBlock {
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false)
         );
-
-        this.normalShape = ornamentShapes[0];
-        this.hangingShape = ornamentShapes[1];
-        this.wallShape = ornamentShapes[2];
     }
+
+    @NotNull
+    public abstract VoxelShape getFloorShape();
+
+    @NotNull
+    public abstract VoxelShape getCeilingShape();
+
+    @NotNull
+    public abstract VoxelShape getWallShape();
 
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -104,37 +104,26 @@ public class DecorationBlock extends Block implements SimpleWaterloggedBlock {
         Direction direction = blockState.getValue(FACING);
         AttachFace attachFace = blockState.getValue(ATTACH_FACE);
 
-        VoxelShape[] resultShapes = null;
+        VoxelShape resultShape = null;
 
+        // Retrieve appropriate shape first
         if (attachFace == AttachFace.FLOOR) {
-            resultShapes = Arrays.copyOf(normalShape, normalShape.length);
+            resultShape = this.getFloorShape();
         } else if (attachFace == AttachFace.CEILING) {
-            resultShapes = Arrays.copyOf(hangingShape, hangingShape.length);
+            resultShape = this.getCeilingShape();
         } else {
-            resultShapes = Arrays.copyOf(wallShape, wallShape.length);
+            resultShape = this.getWallShape();
         }
 
+        // Then we rotate accordingly
         if (direction == Direction.SOUTH) {
-            return BlockUtils.combineShapes(resultShapes);
+            return resultShape;
         } else if (direction == Direction.NORTH) {
-            for (int i = 0; i < resultShapes.length; i++) {
-                resultShapes[i] = BlockUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_180);
-            }
-
-            return BlockUtils.combineShapes(resultShapes);
+            return BlockUtils.rotateShape(resultShape, Rotation.CLOCKWISE_180);
         } else if (direction == Direction.WEST) {
-            for (int i = 0; i < resultShapes.length; i++) {
-                resultShapes[i] = BlockUtils.rotateShape(resultShapes[i], Rotation.CLOCKWISE_90);
-            }
-
-            return BlockUtils.combineShapes(resultShapes);
+            return BlockUtils.rotateShape(resultShape, Rotation.CLOCKWISE_90);
         } else {
-            // Direction.EAST
-            for (int i = 0; i < resultShapes.length; i++) {
-                resultShapes[i] = BlockUtils.rotateShape(resultShapes[i], Rotation.COUNTERCLOCKWISE_90);
-            }
-
-            return BlockUtils.combineShapes(resultShapes);
+            return BlockUtils.rotateShape(resultShape, Rotation.COUNTERCLOCKWISE_90);
         }
     }
 

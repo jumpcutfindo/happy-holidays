@@ -1,0 +1,32 @@
+{
+  "parent": "happyholidays:christmas/nutcracker_special_walnut",
+  "display": {
+    "icon": {
+      "item": "happyholidays:explosive_walnut"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_explosive_inventory"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_explosive_inventory.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "criteria": {
+    "nutcracker_filled_explosive": {
+      "trigger": "happyholidays:christmas/nutcracker_explosive_inventory",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "nutcracker_filled_explosive"
+    ]
+  ]
+}

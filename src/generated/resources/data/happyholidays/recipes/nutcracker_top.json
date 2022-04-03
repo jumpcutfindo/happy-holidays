@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R R",
+    "#G#",
+    "GRG"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:thread"
+    },
+    "R": {
+      "item": "minecraft:red_wool"
+    },
+    "G": {
+      "item": "minecraft:green_wool"
+    }
+  },
+  "result": {
+    "item": "happyholidays:nutcracker_top"
+  }
+}

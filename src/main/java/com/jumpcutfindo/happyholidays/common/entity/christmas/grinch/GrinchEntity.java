@@ -3,19 +3,21 @@ package com.jumpcutfindo.happyholidays.common.entity.christmas.grinch;
 import java.util.List;
 import java.util.Random;
 
-import com.jumpcutfindo.happyholidays.common.block.christmas.presents.PresentBlock;
-import com.jumpcutfindo.happyholidays.common.blockentity.christmas.star.ChristmasStarHelper;
-import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceAction;
-import com.jumpcutfindo.happyholidays.common.capabilities.christmas.NaughtyNiceMeter;
-import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.Holiday;
+import com.jumpcutfindo.happyholidays.common.block.christmas.PresentBlock;
+import com.jumpcutfindo.happyholidays.common.block.entity.christmas.ChristmasStarHelper;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.events.christmas.GrinchEvent;
-import com.jumpcutfindo.happyholidays.common.item.christmas.gifts.ChristmasGiftItem;
+import com.jumpcutfindo.happyholidays.common.item.christmas.ChristmasGiftItem;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEffects;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 import com.jumpcutfindo.happyholidays.common.utils.EntityUtils;
+import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
+import com.jumpcutfindo.happyholidays.server.data.structs.Availability;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -28,9 +30,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
@@ -56,11 +61,12 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristmasEntity {
+public class GrinchEntity extends PathfinderMob implements IAnimatable, ChristmasEntity {
     public static final EntityDataAccessor<Integer> BREAK_ANIM_PROGRESS = SynchedEntityData.defineId(GrinchEntity.class,
             EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Boolean> IS_AVOIDING_PLAYER = SynchedEntityData.defineId(GrinchEntity.class,
+            EntityDataSerializers.BOOLEAN);
 
-    public static final String ENTITY_ID = "grinch";
     public static final AttributeSupplier ENTITY_ATTRIBUTES =
             Mob.createMobAttributes()
                     .add(Attributes.MAX_HEALTH, 20.0f)
@@ -101,6 +107,7 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
         super.defineSynchedData();
 
         this.entityData.define(BREAK_ANIM_PROGRESS, -1);
+        this.entityData.define(IS_AVOIDING_PLAYER, false);
     }
 
     @Override
@@ -108,21 +115,7 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
         super.registerGoals();
 
         this.goalSelector.addGoal(0, new PickupGiftGoal(this));
-        this.goalSelector.addGoal(0, new AvoidEntityGoal<>(
-                this, Player.class, GrinchEntity.AVOID_PLAYER_RADIUS, 1.0D, 1.5D,
-                livingEntity -> {
-                    if (GrinchEntity.this.hasReceivedGift) return false;
-
-                    if (livingEntity instanceof Player) {
-                        Player playerEntity = (Player) livingEntity;
-                        if (playerEntity.getMainHandItem().getItem() instanceof ChristmasGiftItem
-                                || playerEntity.getOffhandItem().getItem() instanceof  ChristmasGiftItem) {
-                            return false;
-                        }
-                    }
-                    return true;
-                }
-        ));
+        this.goalSelector.addGoal(0, new AvoidPlayerGoal(this, GrinchEntity.AVOID_PLAYER_RADIUS, 1.0D, 1.5D));
         this.goalSelector.addGoal(1, new BreakPresentsGoal(this));
         this.goalSelector.addGoal(2, new FloatGoal(this));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomStrollGoal(this, 1.0D));
@@ -193,7 +186,6 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
             // Add to naughty / nice meter
             if (itemEntity.getThrower() != null) {
                 Player thrower = this.level.getPlayerByUUID(itemEntity.getThrower());
-                NaughtyNiceMeter.evaluateAction(thrower, NaughtyNiceAction.APPEASE_GRINCH_EVENT);
 
                 // Post event for achievements
                 MinecraftForge.EVENT_BUS.post(new GrinchEvent.Appease(this, thrower));
@@ -281,6 +273,8 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
     }
 
     public static boolean canSpawnInArea(BlockPos blockPos, ServerLevel serverWorld) {
+        if (!Availability.isAvailable(serverWorld, Holiday.CHRISTMAS, HolidayAvailabilityData.CHRISTMAS_GRINCH_SPAWN)) return false;
+
         AABB searchBox = new AABB(blockPos).inflate(40.0D);
         boolean isPlayerInVicinity = serverWorld.getEntitiesOfClass(Player.class, searchBox).size() > 0;
         boolean isGrinchesAround = serverWorld.getEntitiesOfClass(GrinchEntity.class, searchBox).size() > MAX_GRINCHES_IN_VICINITY;
@@ -305,6 +299,14 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
             grinchEntity.moveTo(spawnPos.getX(), spawnPos.getY(), spawnPos.getZ());
             serverWorld.addFreshEntity(grinchEntity);
         }
+    }
+
+    private void setAvoiding(boolean isAvoiding) {
+        this.entityData.set(IS_AVOIDING_PLAYER, isAvoiding);
+    }
+
+    private boolean isAvoidingPlayer() {
+        return this.entityData.get(IS_AVOIDING_PLAYER);
     }
 
     @Override
@@ -351,6 +353,8 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
     private <E extends GrinchEntity> PlayState predicate(AnimationEvent<E> event) {
         if (this.presentBreakingProgress >= 0) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.break", false));
+        } else if (this.isAvoidingPlayer()) {
+            event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.run", true));
         } else if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.model.walk", true));
         } else {
@@ -370,6 +374,45 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
         return this.factory;
     }
 
+    @Override
+    protected float getStandingEyeHeight(Pose p_21131_, EntityDimensions p_21132_) {
+        return 25.0f / 16.0f;
+    }
+
+    @Override
+    public boolean canBeLeashed(Player p_21418_) {
+        return false;
+    }
+
+    private static class AvoidPlayerGoal extends AvoidEntityGoal<Player> {
+        private GrinchEntity grinch;
+
+        public AvoidPlayerGoal(GrinchEntity p_25027_, float p_25029_, double p_25030_, double p_25031_) {
+            super(p_25027_, Player.class, p_25029_, p_25030_, p_25031_, (entity) -> shouldAvoidEntity(p_25027_, entity));
+
+            this.grinch = p_25027_;
+        }
+
+        @Override
+        public boolean canUse() {
+            boolean flag = super.canUse();
+            this.grinch.setAvoiding(flag);
+
+            return flag;
+        }
+
+        private static boolean shouldAvoidEntity(GrinchEntity grinch, LivingEntity livingEntity) {
+            boolean flag = !grinch.hasReceivedGift;
+
+            if (livingEntity instanceof Player player
+                    && (player.getMainHandItem().is(ChristmasTags.Items.GIFTS) || player.getOffhandItem().is(ChristmasTags.Items.GIFTS))) {
+                flag = false;
+            }
+
+            return flag;
+        }
+    }
+
     private static class BreakPresentsGoal extends Goal {
         private static final float MOVE_TO_PRESENT_SPEED = 0.9f;
 
@@ -386,7 +429,7 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
         @Override
         public boolean canUse() {
             if (grinchEntity.hasReceivedGift) return false;
-            if (this.grinchEntity.getEffect(ChristmasEffects.DEBUFF_OF_CHRISTMAS_EFFECT.get()) != null) {
+            if (this.grinchEntity.getEffect(ChristmasEffects.DEBUFF_OF_CHRISTMAS.get()) != null) {
                 this.targetPresentBlockPos = null;
                 this.resetPresentBreaking();
 
@@ -418,7 +461,7 @@ public class GrinchEntity extends PathfinderMob implements IAnimatable, IChristm
 
                     int presentX = targetPos.getX(), presentY = targetPos.getY(), presentZ = targetPos.getZ();
 
-                    if (!targetPos.closerThan(this.grinchEntity.position(), 1.5D)) {
+                    if (!targetPos.closerThan(this.grinchEntity.blockPosition(), 1.5D)) {
                         // Since Grinch is not close enough, we move him to the location & make him look at it
                         this.grinchEntity.navigation.moveTo(presentX + 0.5D, presentY, presentZ + 0.5D,
                                 MOVE_TO_PRESENT_SPEED);

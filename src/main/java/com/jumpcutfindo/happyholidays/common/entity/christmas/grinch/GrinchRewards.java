@@ -19,7 +19,7 @@ public class GrinchRewards {
     private static final ResourceLocation GRINCH_APPEASEMENT_LOOT_TABLE = new ResourceLocation(HappyHolidaysMod.MOD_ID, "christmas/grinch_appeasement");
 
     public static final double APPEASEMENT_REWARD_MODIFIER_STEP = 0.1d;
-    public static final double APPEASEMENT_ORNAMENT_DROP_BASE_CHANCE = 0.2d;
+    public static final double APPEASEMENT_ORNAMENT_DROP_BASE_CHANCE = 0.1d;
     public static final int APPEASEMENT_EXPERIENCE = 50;
 
     public static ExperienceOrb generateAppeasementXP(Level level, Vec3 pos) {
@@ -28,7 +28,7 @@ public class GrinchRewards {
 
     public static List<ItemStack> generateRewards(GrinchEntity grinchEntity, LootContext lootContext) {
         Level level = grinchEntity.level;
-        double modifier = ChristmasRewards.computeDropModifier(grinchEntity.level, grinchEntity.position(), APPEASEMENT_REWARD_MODIFIER_STEP);
+        double modifier = ChristmasRewards.computeModifier(grinchEntity.level, grinchEntity.position(), APPEASEMENT_REWARD_MODIFIER_STEP);
 
         // Generate present scraps (from when Grinch broke the presents)
         ItemStack presentScraps = computePresentScraps(grinchEntity.getPresentsBrokenCount());

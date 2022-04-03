@@ -28,7 +28,7 @@ public class SantaElfRewards {
 
     public static List<ItemStack> generateRewards(SantaElfEntity santaElfEntity, LootContext lootContext) {
         Level level = santaElfEntity.level;
-        double modifier = ChristmasRewards.computeDropModifier(level, santaElfEntity.position(), REQUEST_REWARD_MULTIPLIER_STEP);
+        double modifier = ChristmasRewards.computeModifier(level, santaElfEntity.position(), REQUEST_REWARD_MULTIPLIER_STEP);
 
         // Generate loot
         LootTable lootTable = level.getServer().getLootTables().get(SANTA_ELF_REQUEST_LOOT_TABLE);

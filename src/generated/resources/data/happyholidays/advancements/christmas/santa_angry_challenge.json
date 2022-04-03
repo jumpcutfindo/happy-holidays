@@ -1,0 +1,33 @@
+{
+  "parent": "happyholidays:christmas/santa_angry_defeat",
+  "display": {
+    "icon": {
+      "item": "happyholidays:santa_hat",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.santa_angry_challenge"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.santa_angry_challenge.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 200
+  },
+  "criteria": {
+    "complete_challenge": {
+      "trigger": "happyholidays:christmas/santa_angry_challenge",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "complete_challenge"
+    ]
+  ]
+}

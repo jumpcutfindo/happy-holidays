@@ -1,9 +1,8 @@
 package com.jumpcutfindo.happyholidays.common.registry.christmas;
 
-import java.util.List;
-
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
+import net.minecraft.core.Holder;
+import net.minecraft.data.worldgen.features.FeatureUtils;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
@@ -11,7 +10,5 @@ import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConf
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 
 public class ChristmasFeatures {
-    public static final ConfiguredFeature<RandomPatchConfiguration, ?> PATCH_WILD_PRESENTS = Feature.RANDOM_PATCH.configured(new RandomPatchConfiguration(64, 7, 3, () -> {
-        return Feature.SIMPLE_BLOCK.configured(new SimpleBlockConfiguration(BlockStateProvider.simple(ChristmasBlocks.BABY_PRESENT.get()))).filtered(BlockPredicate.allOf(BlockPredicate.replaceable(), BlockPredicate.matchesBlocks(List.of(Blocks.GRASS, Blocks.SAND))));
-    }));
+    public static final Holder<ConfiguredFeature<RandomPatchConfiguration, ?>> PATCH_WILD_PRESENTS = FeatureUtils.register("patch_wild_presents", Feature.RANDOM_PATCH, new RandomPatchConfiguration(48, 7, 5, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(ChristmasBlocks.BABY_PRESENT.get())))));
 }
