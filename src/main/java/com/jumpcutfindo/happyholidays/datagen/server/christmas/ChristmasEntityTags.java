@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.datagen.server.christmas;
 import javax.annotation.Nullable;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
 
 import net.minecraft.data.DataGenerator;
@@ -23,5 +24,9 @@ public class ChristmasEntityTags extends EntityTypeTagsProvider {
                 .add(EntityType.FIREBALL)
                 .add(EntityType.TNT)
                 .add(EntityType.TNT_MINECART);
+
+        tag(ChristmasTags.Entities.DEBUFFABLE_BY_STAR)
+                .add(ChristmasEntities.SANTA_ELF.get())
+                .add(ChristmasEntities.GRINCH.get());
     }
 }

@@ -19,7 +19,7 @@
     "experience": 100
   },
   "criteria": {
-    "has_sheet_music": {
+    "has_sheet_music_0": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -27,77 +27,182 @@
             "items": [
               "happyholidays:christmas_sheet_music_angels_on_high"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_carol_of_the_bells"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_deck_the_halls"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_frosty_the_snowman"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_4": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_god_rest_gentlemen"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_5": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_here_comes_santa"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_6": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_jingle_bell_rock"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_7": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_jingle_bells"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_8": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_joy_to_the_world"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_9": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_rudolph"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_10": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_silent_night"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_11": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_sleigh_ride"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_12": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_the_first_noel"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_13": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_we_three_kings"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_14": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_we_wish_you"
             ]
-          },
+          }
+        ]
+      }
+    },
+    "has_sheet_music_15": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "items": [
               "happyholidays:christmas_sheet_music_white_christmas"
@@ -109,7 +214,52 @@
   },
   "requirements": [
     [
-      "has_sheet_music"
+      "has_sheet_music_0"
+    ],
+    [
+      "has_sheet_music_1"
+    ],
+    [
+      "has_sheet_music_2"
+    ],
+    [
+      "has_sheet_music_3"
+    ],
+    [
+      "has_sheet_music_4"
+    ],
+    [
+      "has_sheet_music_5"
+    ],
+    [
+      "has_sheet_music_6"
+    ],
+    [
+      "has_sheet_music_7"
+    ],
+    [
+      "has_sheet_music_8"
+    ],
+    [
+      "has_sheet_music_9"
+    ],
+    [
+      "has_sheet_music_10"
+    ],
+    [
+      "has_sheet_music_11"
+    ],
+    [
+      "has_sheet_music_12"
+    ],
+    [
+      "has_sheet_music_13"
+    ],
+    [
+      "has_sheet_music_14"
+    ],
+    [
+      "has_sheet_music_15"
     ]
   ]
 }

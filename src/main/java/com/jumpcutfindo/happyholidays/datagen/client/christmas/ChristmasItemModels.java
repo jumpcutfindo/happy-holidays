@@ -18,6 +18,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ChristmasItemModels extends ItemModelProvider {
     public static final String ITEM_GENERATED = "item/generated";
+    public static final String ITEM_SPAWN_EGG = "item/template_spawn_egg";
+    public static final String ITEM_HANDHELD = "item/handheld";
 
     public ChristmasItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper) {
         super(generator, HappyHolidaysMod.MOD_ID, existingFileHelper);
@@ -37,9 +39,11 @@ public class ChristmasItemModels extends ItemModelProvider {
                 blockModelPair(ChristmasItems.BABY_PRESENT.get()),
                 blockModelPair(ChristmasItems.ADULT_PRESENT.get()),
                 blockModelPair(ChristmasItems.ELDER_PRESENT.get()),
+                blockModelPair(ChristmasItems.EXPLOSIVE_PRESENT.get()),
 
                 blockModelPair(ChristmasItems.GRINCH_ORNAMENT.get()),
                 blockModelPair(ChristmasItems.SANTA_ELF_ORNAMENT.get()),
+                blockModelPair(ChristmasItems.NUTCRACKER_ORNAMENT.get()),
 
                 blockModelPair(ChristmasItems.RED_BAUBLE.get()),
                 blockModelPair(ChristmasItems.BLUE_BAUBLE.get()),
@@ -158,6 +162,7 @@ public class ChristmasItemModels extends ItemModelProvider {
                 ChristmasItems.ELDER_PRESENT_ORNAMENT.get(),
                 ChristmasItems.CANDY_CANE_ORNAMENT.get(),
                 ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get(),
+                ChristmasItems.NUTCRACKER_ORNAMENT.get(),
 
                 ChristmasItems.RED_CHRISTMAS_LIGHTS.get(),
                 ChristmasItems.BLUE_CHRISTMAS_LIGHTS.get(),
@@ -205,12 +210,12 @@ public class ChristmasItemModels extends ItemModelProvider {
     // For items in general
     private void registerItemsWithTexture() {
         Set<Pair<Item, String>> items = Sets.newHashSet(
-                itemTexturePair(ChristmasItems.RED_CHRISTMAS_GIFT_ITEM.get()),
-                itemTexturePair(ChristmasItems.BLUE_CHRISTMAS_GIFT_ITEM.get()),
-                itemTexturePair(ChristmasItems.YELLOW_CHRISTMAS_GIFT_ITEM.get()),
-                itemTexturePair(ChristmasItems.GREEN_CHRISTMAS_GIFT_ITEM.get()),
-                itemTexturePair(ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get()),
-                itemTexturePair(ChristmasItems.SILVER_CHRISTMAS_GIFT_ITEM.get()),
+                itemTexturePair(ChristmasItems.RED_CHRISTMAS_GIFT.get()),
+                itemTexturePair(ChristmasItems.BLUE_CHRISTMAS_GIFT.get()),
+                itemTexturePair(ChristmasItems.YELLOW_CHRISTMAS_GIFT.get()),
+                itemTexturePair(ChristmasItems.GREEN_CHRISTMAS_GIFT.get()),
+                itemTexturePair(ChristmasItems.GOLD_CHRISTMAS_GIFT.get()),
+                itemTexturePair(ChristmasItems.SILVER_CHRISTMAS_GIFT.get()),
 
                 itemTexturePair(ChristmasItems.DYE_BOWL.get()),
                 itemTexturePair(ChristmasItems.RED_CHRISTMAS_DYE.get()),
@@ -242,7 +247,6 @@ public class ChristmasItemModels extends ItemModelProvider {
                 itemTexturePair(ChristmasItems.CANDY_CANE.get()),
                 itemTexturePair(ChristmasItems.FESTIVE_CANDY_CANE.get()),
                 itemTexturePair(ChristmasItems.ENCHANTED_CANDY_CANE.get(), "candy_cane"),
-                itemTexturePair(ChristmasItems.SANTA_ELF_BELL.get()),
 
                 itemTexturePair(ChristmasItems.GINGERBREAD_COOKIE.get()),
                 itemTexturePair(ChristmasItems.RAW_GINGERBREAD.get()),
@@ -250,8 +254,48 @@ public class ChristmasItemModels extends ItemModelProvider {
                 itemTexturePair(ChristmasItems.THREAD.get()),
                 itemTexturePair(ChristmasItems.ENCHANTED_THREAD.get(), "thread"),
 
+                itemTexturePair(ChristmasItems.WALNUT.get()),
+                itemTexturePair(ChristmasItems.EXPLOSIVE_WALNUT.get()),
+                itemTexturePair(ChristmasItems.SUGARED_WALNUT.get()),
+                itemTexturePair(ChristmasItems.METALLIC_WALNUT.get()),
+                itemTexturePair(ChristmasItems.HALVED_WALNUT.get()),
+
+                itemTexturePair(ChristmasItems.PATROL_ORDERS.get()),
+
                 itemTexturePair(ChristmasItems.SANTA_HAT.get()),
                 itemTexturePair(ChristmasItems.ENCHANTED_SANTA_HAT.get(), "santa_hat"),
+                itemTexturePair(ChristmasItems.SANTA_TOP.get()),
+                itemTexturePair(ChristmasItems.SANTA_BOTTOM.get()),
+                itemTexturePair(ChristmasItems.SANTA_BOOTS.get()),
+
+                itemTexturePair(ChristmasItems.SANTA_ELF_HAT.get()),
+                itemTexturePair(ChristmasItems.SANTA_ELF_TOP.get()),
+                itemTexturePair(ChristmasItems.SANTA_ELF_BOTTOM.get()),
+                itemTexturePair(ChristmasItems.SANTA_ELF_BOOTS.get()),
+
+                itemTexturePair(ChristmasItems.SNOWMAN_HEADPIECE.get()),
+                itemTexturePair(ChristmasItems.SNOWMAN_TOP.get()),
+                itemTexturePair(ChristmasItems.SNOWMAN_BOTTOM.get()),
+
+                itemTexturePair(ChristmasItems.CANDY_CANE_HEADPIECE.get()),
+                itemTexturePair(ChristmasItems.CANDY_CANE_TOP.get()),
+                itemTexturePair(ChristmasItems.CANDY_CANE_BOTTOM.get()),
+                itemTexturePair(ChristmasItems.CANDY_CANE_BOOTS.get()),
+
+                itemTexturePair(ChristmasItems.REINDEER_HEADPIECE.get()),
+                itemTexturePair(ChristmasItems.REINDEER_TOP.get()),
+                itemTexturePair(ChristmasItems.REINDEER_BOTTOM.get()),
+                itemTexturePair(ChristmasItems.REINDEER_BOOTS.get()),
+
+                itemTexturePair(ChristmasItems.NUTCRACKER_HEADPIECE.get()),
+                itemTexturePair(ChristmasItems.NUTCRACKER_TOP.get()),
+                itemTexturePair(ChristmasItems.NUTCRACKER_BOTTOM.get()),
+                itemTexturePair(ChristmasItems.NUTCRACKER_BOOTS.get()),
+
+                itemTexturePair(ChristmasItems.GINGERBREAD_HEADPIECE.get()),
+                itemTexturePair(ChristmasItems.GINGERBREAD_TOP.get()),
+                itemTexturePair(ChristmasItems.GINGERBREAD_BOTTOM.get()),
+                itemTexturePair(ChristmasItems.GINGERBREAD_BOOTS.get()),
 
                 itemTexturePair(ChristmasItems.CHRISTMAS_GUIDE_BOOK.get()),
                 itemTexturePair(ChristmasItems.HOLLY.get()),
@@ -261,6 +305,24 @@ public class ChristmasItemModels extends ItemModelProvider {
         );
 
         for (Pair<Item, String> item : items) itemWithTexture(item.getKey(), item.getValue());
+
+        Set<Item> spawnEggs = Sets.newHashSet(
+                ChristmasItems.SANTA_ELF_SPAWN_EGG.get(),
+                ChristmasItems.GINGERBREAD_MAN_SPAWN_EGG.get(),
+                ChristmasItems.GRINCH_SPAWN_EGG.get(),
+                ChristmasItems.NUTCRACKER_SPAWN_EGG.get(),
+                ChristmasItems.HAPPY_SANTA_SPAWN_EGG.get(),
+                ChristmasItems.ANGRY_SANTA_SPAWN_EGG.get()
+        );
+
+        for (Item spawnEgg : spawnEggs) spawnEggWithTemplate(spawnEgg);
+
+        Set<Pair<Item, String>> handheldItems = Sets.newHashSet (
+                itemTexturePair(ChristmasItems.SANTA_ELF_BELL.get()),
+                itemTexturePair(ChristmasItems.SWAGGER_STICK.get())
+        );
+
+        for (Pair<Item, String> handheldItem : handheldItems) itemWithTextureHandheld(handheldItem.getKey(), handheldItem.getValue());
     }
 
     // For items with multiple layers
@@ -325,6 +387,14 @@ public class ChristmasItemModels extends ItemModelProvider {
         }
     }
 
+    private void itemWithTextureHandheld(Item item, String... textureId) {
+        String itemId = itemId(item);
+        ItemModelBuilder builder = withExistingParent(itemId, ITEM_HANDHELD);
+        for (int i = 0; i < textureId.length; i++) {
+            builder = builder.texture("layer" + i, resourceOfItem(textureId[i]));
+        }
+    }
+
     private void itemWithSpecificTextureResource(Item item, ResourceLocation... resourceLocations) {
         String itemId = itemId(item);
 
@@ -333,6 +403,13 @@ public class ChristmasItemModels extends ItemModelProvider {
             builder = builder.texture("layer" + i, resourceLocations[i]);
         }
     }
+
+    private void spawnEggWithTemplate(Item item) {
+        String itemId = itemId(item);
+        ItemModelBuilder builder = withExistingParent(itemId, ITEM_SPAWN_EGG);
+    }
+
+
 
     private void blockWithCustomModel(Item item, String customModelId) {
         withExistingParent(itemId(item), resourceOfBlock(customModelId));

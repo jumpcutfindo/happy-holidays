@@ -4,14 +4,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.Holiday;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
+import com.jumpcutfindo.happyholidays.server.data.HolidayAvailabilityData;
+import com.jumpcutfindo.happyholidays.server.data.structs.Availability;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
@@ -22,7 +27,6 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -40,13 +44,9 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatable, IChristmasEntity {
+public abstract class GingerbreadPersonEntity extends PathfinderMob implements IAnimatable, ChristmasEntity {
     public static final float ENTITY_BOX_SIZE = 0.8f;
     public static final float ENTITY_BOX_HEIGHT = 1.95f;
-
-    public static final Item[] HEAT_EMITTING_ITEMS = {
-            Items.CAMPFIRE, Items.SOUL_CAMPFIRE, Items.MAGMA_BLOCK, Items.LAVA_BUCKET
-    };
 
     private AnimationFactory factory = new AnimationFactory(this);
 
@@ -65,19 +65,7 @@ public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatabl
 
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new FollowHeatSourceGoal(this));
-        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.0D, 1.25D,
-                (entity) -> {
-                    if (entity instanceof Player) {
-                        Player playerEntity = (Player) entity;
-                        ItemStack[] heldItems = new ItemStack[]{ playerEntity.getMainHandItem(), playerEntity.getOffhandItem() };
-
-                        return Arrays.stream(heldItems).anyMatch(itemStack -> ItemStack.isSame(itemStack,
-                                Items.WATER_BUCKET.getDefaultInstance()));
-                    }
-
-                    return false;
-                }
-        ));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.0D, 1.25D, this::shouldAvoidEntity));
         this.goalSelector.addGoal(3, new FollowGingerbreadLeaderGoal(this));
         this.goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.0D));
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 6.0F));
@@ -123,6 +111,22 @@ public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatabl
         return false;
     }
 
+    @Override
+    public boolean canBeLeashed(Player p_21418_) {
+        return false;
+    }
+
+    public boolean shouldAvoidEntity(LivingEntity entity) {
+        if (entity instanceof Player player) {
+            ItemStack[] heldItems = new ItemStack[]{ player.getMainHandItem(), player.getOffhandItem() };
+
+            return Arrays.stream(heldItems).anyMatch(itemStack -> ItemStack.isSame(itemStack,
+                    Items.WATER_BUCKET.getDefaultInstance()));
+        }
+
+        return false;
+    }
+
     public void dropConversionLoot() {
         // Drop loot
         LootContext ctx = this.createLootContext(true, DamageSource.GENERIC).create(LootContextParamSets.ENTITY);
@@ -157,23 +161,24 @@ public class GingerbreadPersonEntity extends PathfinderMob implements IAnimatabl
 
     public static boolean checkGingerbreadSpawnRules(EntityType<? extends GingerbreadPersonEntity> entity, LevelAccessor world,
                                                      MobSpawnType spawnReason, BlockPos pos, Random rand) {
+        if (world instanceof ServerLevel serverLevel) {
+            if (!Availability.isAvailable(serverLevel, Holiday.CHRISTMAS, HolidayAvailabilityData.CHRISTMAS_GINGERBREAD_SPAWN)) {
+                return false;
+            }
+        }
+
         return world.getRawBrightness(pos,0) > 8 && world.getBlockState(pos.below()).is(ChristmasTags.Blocks.GINGERBREAD_MEN_SPAWNABLE_ON);
     }
 
     public static boolean isValidHeatItem(ItemStack itemStack) {
-        return Arrays.stream(HEAT_EMITTING_ITEMS).anyMatch(item -> ItemStack.isSame(itemStack, item.getDefaultInstance()));
+        return itemStack.is(ChristmasTags.Items.HEAT_EMITTING_ITEMS);
     }
 
     public static boolean isValidHeatSource(BlockState blockState) {
         return blockState.is(Blocks.FURNACE) && blockState.getValue(BlockStateProperties.LIT)
                 || blockState.is(Blocks.BLAST_FURNACE) && blockState.getValue(BlockStateProperties.LIT)
                 || blockState.is(Blocks.SMOKER) && blockState.getValue(BlockStateProperties.LIT)
-                || blockState.is(Blocks.FIRE)
-                || blockState.is(Blocks.SOUL_FIRE)
-                || blockState.is(Blocks.CAMPFIRE)
-                || blockState.is(Blocks.SOUL_CAMPFIRE)
-                || blockState.is(Blocks.MAGMA_BLOCK)
-                || blockState.is(Blocks.LAVA);
+                || blockState.is(ChristmasTags.Blocks.HEAT_EMITTING_BLOCKS);
     }
 
     private static class FollowHeatSourceGoal extends Goal {

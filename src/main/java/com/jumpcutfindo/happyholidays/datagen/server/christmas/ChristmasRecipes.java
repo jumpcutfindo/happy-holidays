@@ -8,12 +8,11 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
-import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.data.recipes.SpecialRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
@@ -108,7 +107,7 @@ public class ChristmasRecipes extends RecipeProvider {
         stonecutterResultFromBase(consumer, ChristmasBlocks.ALPHABET_ORNAMENT_Y.get(), ChristmasBlocks.ALPHABET_ORNAMENT_TEMPLATE.get());
         stonecutterResultFromBase(consumer, ChristmasBlocks.ALPHABET_ORNAMENT_Z.get(), ChristmasBlocks.ALPHABET_ORNAMENT_TEMPLATE.get());
 
-        babyPresent(consumer);
+        presents(consumer);
         candyCane(consumer);
         christmasStar(consumer);
         christmasWreath(consumer);
@@ -118,7 +117,10 @@ public class ChristmasRecipes extends RecipeProvider {
         guideBook(consumer);
         mistletoeAndHolly(consumer);
         musicBox(consumer);
+        outfits(consumer);
+        patrolOrders(consumer);
         thread(consumer);
+        walnuts(consumer);
         wrappingStation(consumer);
     }
 
@@ -192,12 +194,18 @@ public class ChristmasRecipes extends RecipeProvider {
                 .save(consumer, recipeResourceOf(block));
     }
 
-    private void babyPresent(Consumer<FinishedRecipe> consumer) {
+    private void presents(Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(ChristmasBlocks.BABY_PRESENT.get(), 1)
-                .define('S', Items.STRING).define('#', ChristmasItems.PRESENT_SCRAPS.get()).define('W', ItemTags.WOOL)
-                .pattern("S#S").pattern("WWW")
-                .unlockedBy("has_scraps", has(ChristmasItems.PRESENT_SCRAPS.get())).unlockedBy("has_string", has(Items.STRING)).unlockedBy("has_wool", has(ItemTags.WOOL))
+                .define('P', Items.PAPER).define('#', ChristmasItems.PRESENT_SCRAPS.get())
+                .pattern("#P#").pattern("PPP")
+                .unlockedBy("has_scraps", has(ChristmasItems.PRESENT_SCRAPS.get())).unlockedBy("has_paper", has(Items.PAPER))
                 .save(consumer, recipeResourceOf(ChristmasBlocks.BABY_PRESENT.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasBlocks.EXPLOSIVE_PRESENT.get(), 4)
+                .define('#', ChristmasItems.PRESENT_SCRAPS.get()).define( 'S', Items.IRON_INGOT).define('G', Items.GUNPOWDER).define('W', ItemTags.WOOL)
+                .pattern("WWW").pattern("WGW").pattern("S#S")
+                .unlockedBy("has_scraps", has(ChristmasItems.PRESENT_SCRAPS.get())).unlockedBy("has_gunpowder", has(Items.GUNPOWDER))
+                .save(consumer, recipeResourceOf(ChristmasBlocks.EXPLOSIVE_PRESENT.get()));
     }
 
     private void candyCane(Consumer<FinishedRecipe> consumer) {
@@ -535,7 +543,7 @@ public class ChristmasRecipes extends RecipeProvider {
     }
 
     private void thread(Consumer<FinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shaped(ChristmasItems.THREAD.get(), 2)
+        ShapedRecipeBuilder.shaped(ChristmasItems.THREAD.get(), 1)
                 .define('/', Items.STICK).define('#', Items.STRING)
                 .pattern("/").pattern("#").pattern("/")
                 .unlockedBy(getHasName(Items.STRING), has(Items.STRING)).unlockedBy(getHasName(Items.STICK), has(Items.STICK))
@@ -550,6 +558,204 @@ public class ChristmasRecipes extends RecipeProvider {
                 .save(consumer, recipeResourceOf(ChristmasItems.GIFT_WRAPPING_STATION.get()));
     }
 
+    private void walnuts(Consumer<FinishedRecipe> consumer) {
+        ShapelessRecipeBuilder.shapeless(ChristmasItems.EXPLOSIVE_WALNUT.get(), 4)
+                .requires(ChristmasItems.WALNUT.get()).requires(Items.GUNPOWDER)
+                .unlockedBy("has_walnut", has(ChristmasItems.WALNUT.get())).unlockedBy("has_special_walnut", has(ChristmasItems.EXPLOSIVE_WALNUT.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.EXPLOSIVE_WALNUT.get()));
+
+        ShapelessRecipeBuilder.shapeless(ChristmasItems.SUGARED_WALNUT.get(), 4)
+                .requires(ChristmasItems.WALNUT.get()).requires(Items.SUGAR)
+                .unlockedBy("has_walnut", has(ChristmasItems.WALNUT.get())).unlockedBy("has_special_walnut", has(ChristmasItems.SUGARED_WALNUT.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SUGARED_WALNUT.get()));
+
+        ShapelessRecipeBuilder.shapeless(ChristmasItems.METALLIC_WALNUT.get(), 4)
+                .requires(ChristmasItems.WALNUT.get()).requires(Items.IRON_INGOT)
+                .unlockedBy("has_walnut", has(ChristmasItems.WALNUT.get())).unlockedBy("has_special_walnut", has(ChristmasItems.METALLIC_WALNUT.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.METALLIC_WALNUT.get()));
+
+        ShapelessRecipeBuilder.shapeless(ChristmasItems.HALVED_WALNUT.get(), 2)
+                .requires(ChristmasItems.WALNUT.get())
+                .unlockedBy("has_walnut", has(ChristmasItems.WALNUT.get())).unlockedBy("has_special_walnut", has(ChristmasItems.HALVED_WALNUT.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.HALVED_WALNUT.get()));
+    }
+
+    private void outfits(Consumer<FinishedRecipe> consumer) {
+        // Santa Outfit
+        ShapedRecipeBuilder.shaped(ChristmasItems.SANTA_HAT.get())
+                .define('#', ChristmasItems.THREAD.get()).define('R', Items.RED_WOOL).define('W', Items.WHITE_WOOL)
+                .pattern(" W ").pattern("#R#").pattern("W W")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SANTA_HAT.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.SANTA_TOP.get())
+                .define('#', ChristmasItems.THREAD.get()).define('R', Items.RED_WOOL).define('W', Items.WHITE_WOOL)
+                .pattern("W W").pattern("#R#").pattern("RRR")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SANTA_TOP.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.SANTA_BOTTOM.get())
+                .define('#', ChristmasItems.THREAD.get()).define('R', Items.RED_WOOL).define('W', Items.WHITE_WOOL)
+                .pattern("#R#").pattern("R R").pattern("W W")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SANTA_BOTTOM.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.SANTA_BOOTS.get())
+                .define('#', ChristmasItems.THREAD.get()).define('L', Items.LEATHER)
+                .pattern("# #").pattern("L L")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SANTA_BOOTS.get()));
+
+        // Santa Elf Outfit
+        ShapedRecipeBuilder.shaped(ChristmasItems.SANTA_ELF_HAT.get())
+                .define('#', ChristmasItems.THREAD.get()).define('R', Items.RED_WOOL).define('G', Items.GREEN_WOOL).define('W', Items.WHITE_WOOL)
+                .pattern(" W ").pattern("#R#").pattern("G G")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SANTA_ELF_HAT.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.SANTA_ELF_TOP.get())
+                .define('#', ChristmasItems.THREAD.get()).define('R', Items.RED_WOOL).define('G', Items.GREEN_WOOL)
+                .pattern("G G").pattern("#R#").pattern("RRR")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SANTA_ELF_TOP.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.SANTA_ELF_BOTTOM.get())
+                .define('#', ChristmasItems.THREAD.get()).define('R', Items.RED_WOOL).define('G', Items.GREEN_WOOL)
+                .pattern("#R#").pattern("R R").pattern("G G")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SANTA_ELF_BOTTOM.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.SANTA_ELF_BOOTS.get())
+                .define('#', ChristmasItems.THREAD.get()).define('R', Items.RED_WOOL)
+                .pattern("# #").pattern("R R")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SANTA_ELF_BOOTS.get()));
+
+        // Snowman Outfit
+        ShapedRecipeBuilder.shaped(ChristmasItems.SNOWMAN_HEADPIECE.get())
+                .define('#', ChristmasItems.THREAD.get()).define('S', Items.SNOW_BLOCK).define('B', Items.POLISHED_BLACKSTONE_BUTTON).define('C', Items.CARROT)
+                .pattern("S#S").pattern("BCB").pattern("S#S")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SNOWMAN_HEADPIECE.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.SNOWMAN_TOP.get())
+                .define('#', ChristmasItems.THREAD.get()).define('S', Items.SNOW_BLOCK).define('B', Items.POLISHED_BLACKSTONE_BUTTON)
+                .pattern("SBS").pattern("#S#").pattern("SBS")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SNOWMAN_TOP.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.SNOWMAN_BOTTOM.get())
+                .define('#', ChristmasItems.THREAD.get()).define('S', Items.SNOW_BLOCK).define('B', Items.POLISHED_BLACKSTONE_BUTTON)
+                .pattern("#B#").pattern("SSS").pattern("SSS")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.SNOWMAN_BOTTOM.get()));
+
+        // Candy Cane Outfit
+        ShapedRecipeBuilder.shaped(ChristmasItems.CANDY_CANE_HEADPIECE.get())
+                .define('#', ChristmasItems.THREAD.get()).define('C', ChristmasItems.CANDY_CANE.get())
+                .pattern("#C#").pattern("C C")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.CANDY_CANE_HEADPIECE.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.CANDY_CANE_TOP.get())
+                .define('#', ChristmasItems.THREAD.get()).define('C', ChristmasItems.CANDY_CANE.get())
+                .pattern("C C").pattern("#C#").pattern("CCC")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.CANDY_CANE_TOP.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.CANDY_CANE_BOTTOM.get())
+                .define('#', ChristmasItems.THREAD.get()).define('C', ChristmasItems.CANDY_CANE.get())
+                .pattern("#C#").pattern("C C").pattern("C C")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.CANDY_CANE_BOTTOM.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.CANDY_CANE_BOOTS.get())
+                .define('#', ChristmasItems.THREAD.get()).define('C', ChristmasItems.CANDY_CANE.get())
+                .pattern("# #").pattern("C C")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.CANDY_CANE_BOOTS.get()));
+
+        // Reindeer Outfit
+        ShapedRecipeBuilder.shaped(ChristmasItems.REINDEER_HEADPIECE.get())
+                .define('#', ChristmasItems.THREAD.get()).define('L', Items.LEATHER).define('R', Items.REDSTONE_BLOCK)
+                .pattern("#L#").pattern("L L").pattern("#R#")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.REINDEER_HEADPIECE.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.REINDEER_TOP.get())
+                .define('#', ChristmasItems.THREAD.get()).define('L', Items.LEATHER).define('W', Items.WHITE_WOOL)
+                .pattern("L L").pattern("#W#").pattern("LWL")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.REINDEER_TOP.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.REINDEER_BOTTOM.get())
+                .define('#', ChristmasItems.THREAD.get()).define('L', Items.LEATHER)
+                .pattern("#L#").pattern("L L").pattern("L L")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.REINDEER_BOTTOM.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.REINDEER_BOOTS.get())
+                .define('#', ChristmasItems.THREAD.get()).define('L', Items.LEATHER)
+                .pattern("L L").pattern("# #")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.REINDEER_BOOTS.get()));
+
+        // Nutcracker Outfit
+        ShapedRecipeBuilder.shaped(ChristmasItems.NUTCRACKER_HEADPIECE.get())
+                .define('#', ChristmasItems.THREAD.get()).define('B', Items.BLACK_WOOL)
+                .pattern("BB").pattern("##").pattern("BB")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.NUTCRACKER_HEADPIECE.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.NUTCRACKER_TOP.get())
+                .define('#', ChristmasItems.THREAD.get()).define('R', Items.RED_WOOL).define('G', Items.GREEN_WOOL)
+                .pattern("R R").pattern("#G#").pattern("GRG")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.NUTCRACKER_TOP.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.NUTCRACKER_BOTTOM.get())
+                .define('#', ChristmasItems.THREAD.get()).define('R', Items.RED_WOOL)
+                .pattern("#R#").pattern("R R").pattern("R R")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.NUTCRACKER_BOTTOM.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.NUTCRACKER_BOOTS.get())
+                .define('#', ChristmasItems.THREAD.get()).define('B', Items.BLACK_WOOL)
+                .pattern("# #").pattern("B B")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.NUTCRACKER_BOOTS.get()));
+
+        // Gingerbread Outfit
+        ShapedRecipeBuilder.shaped(ChristmasItems.GINGERBREAD_HEADPIECE.get())
+                .define('#', ChristmasItems.THREAD.get()).define('G', ChristmasItems.GINGERBREAD_BLOCK.get())
+                .pattern("GGG").pattern("# #").pattern("GGG")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.GINGERBREAD_HEADPIECE.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.GINGERBREAD_TOP.get())
+                .define('#', ChristmasItems.THREAD.get()).define('G', ChristmasItems.GINGERBREAD_BLOCK.get())
+                .pattern("G G").pattern("#G#").pattern("GGG")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.GINGERBREAD_TOP.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.GINGERBREAD_BOTTOM.get())
+                .define('#', ChristmasItems.THREAD.get()).define('G', ChristmasItems.GINGERBREAD_BLOCK.get())
+                .pattern("#G#").pattern("G G").pattern("G G")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.GINGERBREAD_BOTTOM.get()));
+
+        ShapedRecipeBuilder.shaped(ChristmasItems.GINGERBREAD_BOOTS.get())
+                .define('#', ChristmasItems.THREAD.get()).define('G', ChristmasItems.GINGERBREAD_BLOCK.get())
+                .pattern("# #").pattern("G G")
+                .unlockedBy("has_thread", has(ChristmasItems.THREAD.get()))
+                .save(consumer, recipeResourceOf(ChristmasItems.GINGERBREAD_BOOTS.get()));
+    }
+
+    private void patrolOrders(Consumer<FinishedRecipe> consumer) {
+        SpecialRecipeBuilder.special(com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasRecipes.PATROL_ORDERS_CLONING.get()).save(consumer, "patrol_orders_cloning");
+    }
+
+    // Helper functions
     private void twoByTwo(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient, int count) {
         ShapedRecipeBuilder.shaped(result, count)
                 .define('#', ingredient)
@@ -558,28 +764,8 @@ public class ChristmasRecipes extends RecipeProvider {
                 .save(consumer, recipeResourceOf(result));
     }
 
-    private void slab(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {
-        slabBuilder(result, Ingredient.of(ingredient)).unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer);
-    }
-
-    private static RecipeBuilder slabBuilder(ItemLike result, Ingredient ingredient) {
-        return ShapedRecipeBuilder.shaped(result, 6).define('#', ingredient).pattern("###");
-    }
-
     private void stair(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {
         stairBuilder(result, Ingredient.of(ingredient)).unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer);
-    }
-
-    private static RecipeBuilder stairBuilder(ItemLike result, Ingredient ingredient) {
-        return ShapedRecipeBuilder.shaped(result, 4).define('#', ingredient).pattern("#  ").pattern("## ").pattern("###");
-    }
-
-    private void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike source) {
-        stonecutterResultFromBase(consumer, result, source, 1);
-    }
-
-    private void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike source, int count) {
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(source), result, count).unlockedBy(getHasName(source), has(source)).save(consumer, stonecutterRecipeResourceOf(result, source));
     }
 
     private ResourceLocation stonecutterRecipeResourceOf(ItemLike result, ItemLike source) {
@@ -594,10 +780,6 @@ public class ChristmasRecipes extends RecipeProvider {
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(ingredient), result, xp, cookingDuration, RecipeSerializer.SMELTING_RECIPE)
                 .unlockedBy(getHasName(ingredient), has(ingredient)).unlockedBy(getHasName(result), has(result))
                 .save(consumer, recipeResourceOf(result) + "_from_" + itemId(ingredient) + "_smelting");
-    }
-
-    private String getHasName(ItemLike item) {
-        return "has_" + itemId(item);
     }
 
     private String itemId(ItemLike item) {

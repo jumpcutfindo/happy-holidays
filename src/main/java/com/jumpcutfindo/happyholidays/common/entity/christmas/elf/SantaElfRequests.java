@@ -1,10 +1,12 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.elf;
 
+import java.util.List;
 import java.util.Random;
 
 import com.jumpcutfindo.happyholidays.common.tags.christmas.ChristmasTags;
+import com.jumpcutfindo.happyholidays.common.utils.TagUtils;
 
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -16,18 +18,17 @@ public class SantaElfRequests {
     public static final int NO_OF_UNIQUE_BASIC_ITEMS = 2;
     public static final int MIN_BASIC_REQUESTABLE_ITEMS = 12;
     public static final int MAX_BASIC_REQUESTABLE_ITEMS = 48;
-    public static final Tag<Item> BASIC_REQUESTABLE_ITEMS = ChristmasTags.Items.SANTA_ELF_BASIC_REQUESTABLES;
 
     public static final int NO_OF_UNIQUE_INTERMEDIATE_ITEMS = 1;
     public static final int MIN_INTERMEDIATE_REQUESTABLE_ITEMS = 6;
     public static final int MAX_INTERMEDIATE_REQUESTABLE_ITEMS = 24;
-    public static final Tag<Item> INTERMEDIATE_REQUESTABLE_ITEMS = ChristmasTags.Items.SANTA_ELF_INTERMEDIATE_REQUESTABLES;
+    public static final TagKey<Item> INTERMEDIATE_REQUESTABLE_ITEMS = ChristmasTags.Items.SANTA_ELF_INTERMEDIATE_REQUESTABLES;
 
     public static final int NO_OF_UNIQUE_ADVANCED_ITEMS = 1;
     public static final int MIN_ADVANCED_REQUESTABLE_ITEMS = 4;
     public static final int MAX_ADVANCED_REQUESTABLE_ITEMS = 12;
-    public static final Tag<Item> ADVANCED_REQUESTABLE_ITEMS = ChristmasTags.Items.SANTA_ELF_ADVANCED_REQUESTABLES;
-    public static final Tag<Item> ADVANCED_REQUESTABLE_ITEMS_ALTERNATE = ChristmasTags.Items.SANTA_ELF_ADVANCED_REQUESTABLES_ALTERNATE;
+    public static final TagKey<Item> ADVANCED_REQUESTABLE_ITEMS = ChristmasTags.Items.SANTA_ELF_ADVANCED_REQUESTABLES;
+    public static final TagKey<Item> ADVANCED_REQUESTABLE_ITEMS_ALTERNATE = ChristmasTags.Items.SANTA_ELF_ADVANCED_REQUESTABLES_ALTERNATE;
 
 
     public static SantaElfRequest createRandomRequest(long gameTime) {
@@ -38,7 +39,7 @@ public class SantaElfRequests {
 
         // Basic items
         for (int i = 0; i < NO_OF_UNIQUE_BASIC_ITEMS; i++) {
-            ItemStack randomItem = getRandomRequestable(BASIC_REQUESTABLE_ITEMS, MIN_BASIC_REQUESTABLE_ITEMS, MAX_BASIC_REQUESTABLE_ITEMS, random);
+            ItemStack randomItem = getRandomRequestable(ChristmasTags.Items.SANTA_ELF_BASIC_REQUESTABLES, MIN_BASIC_REQUESTABLE_ITEMS, MAX_BASIC_REQUESTABLE_ITEMS, random);
             request.addEntry(randomItem, false);
         }
 
@@ -63,8 +64,10 @@ public class SantaElfRequests {
         return request;
     }
 
-    public static ItemStack getRandomRequestable(Tag<Item> tag, int min, int max, Random random) {
-        ItemStack itemStack = tag.getRandomElement(random).asItem().getDefaultInstance();
+    public static ItemStack getRandomRequestable(TagKey<Item> tag, int min, int max, Random random) {
+        List<Item> requestables = TagUtils.itemContents(tag);
+        int randomIdx = random.nextInt(requestables.size());
+        ItemStack itemStack = requestables.get(randomIdx).asItem().getDefaultInstance();
         int randomAmount = random.nextInt(max - min + 1) + min;
 
         itemStack.setCount(randomAmount);
@@ -72,8 +75,10 @@ public class SantaElfRequests {
         return itemStack;
     }
 
-    public static ItemStack getRandomRequestable(Tag<Item> tag, int amount, Random random) {
-        ItemStack itemStack = tag.getRandomElement(random).asItem().getDefaultInstance();
+    public static ItemStack getRandomRequestable(TagKey<Item> tag, int amount, Random random) {
+        List<Item> requestables = TagUtils.itemContents(tag);
+        int randomIdx = random.nextInt(requestables.size());
+        ItemStack itemStack = requestables.get(randomIdx).asItem().getDefaultInstance();
         itemStack.setCount(amount);
 
         return itemStack;

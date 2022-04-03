@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "# #",
+    "B B"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:thread"
+    },
+    "B": {
+      "item": "minecraft:black_wool"
+    }
+  },
+  "result": {
+    "item": "happyholidays:nutcracker_boots"
+  }
+}

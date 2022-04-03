@@ -1,6 +1,6 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry;
 
-import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -21,8 +21,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class SleighEntity extends Entity implements IAnimatable, IChristmasEntity {
-    public static final String ENTITY_ID = "sleigh";
+public class SleighEntity extends Entity implements IAnimatable, ChristmasEntity {
 
     public static final float ENTITY_BOX_SIZE = 32.0f / 16.0f;
     public static final float ENTITY_BOX_HEIGHT = 12.0f / 16.0f;
@@ -78,12 +77,12 @@ public class SleighEntity extends Entity implements IAnimatable, IChristmasEntit
             this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
         }
 
-        if (!this.isDiagonal() && this.isMoving && this.getDeltaMovement().x == 0.0d && this.getDeltaMovement().z == 0.0d) {
-            this.setDeltaMovement(getForward());
-            this.moveTo(this.position().add(0.0D, 1.0D, 0.0D));
-        } else if (this.isDiagonal() && this.isMoving && (this.getDeltaMovement().x == 0.0d || this.getDeltaMovement().z == 0.0d)) {
-            this.setDeltaMovement(getForward());
-            this.moveTo(this.position().add(0.0D, 1.0D, 0.0D));
+        if (this.isDiagonal() && (this.getDeltaMovement().x == 0.0d || this.getDeltaMovement().z == 0.0d)) {
+            this.explode(false);
+        }
+
+        if (!this.isDiagonal() && this.getDeltaMovement().x == 0.0d && this.getDeltaMovement().z == 0.0d) {
+            this.explode(false);
         }
     }
 

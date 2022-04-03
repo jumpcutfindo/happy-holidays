@@ -3,22 +3,26 @@ package com.jumpcutfindo.happyholidays.server.data;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.saveddata.SavedData;
 
 public class SantaSavedData extends SavedData {
     public static final String DATA_NAME = HappyHolidaysMod.MOD_ID + "_santa";
 
+    public static final long SUMMON_COOLDOWN = 72000; // 3 Minecraft days is the default
+
     private boolean hasSummonedBefore;
     private boolean hasDefeatedBefore;
     private long lastSummonTime;
     private long nextSummonTime;
+    private long summonCooldown = SUMMON_COOLDOWN;
 
     public SantaSavedData() {
     }
 
     public void summoned(long currTime) {
         this.lastSummonTime = currTime;
-        this.nextSummonTime = currTime + 24000 * 3;
+        this.nextSummonTime = currTime + summonCooldown;
         this.hasSummonedBefore = true;
     }
 
@@ -46,8 +50,20 @@ public class SantaSavedData extends SavedData {
         this.hasDefeatedBefore = hasDefeatedBefore;
     }
 
+    public void setSummonCooldown(long summonCooldown) {
+        this.summonCooldown = summonCooldown;
+    }
+
     public long getNextSummonTime() {
         return this.nextSummonTime;
+    }
+
+    public long getLastSummonTime() {
+        return this.lastSummonTime;
+    }
+
+    public long getSummonCooldown() {
+        return this.summonCooldown;
     }
 
     public boolean canSummon(long gameTime) {
@@ -60,6 +76,7 @@ public class SantaSavedData extends SavedData {
         nbt.putLong("NextSummonTime", nextSummonTime);
         nbt.putBoolean("HasSummonedBefore", hasSummonedBefore);
         nbt.putBoolean("HasDefeatedBefore", hasDefeatedBefore);
+        nbt.putLong("SummonCooldown", summonCooldown);
 
         return nbt;
     }
@@ -72,6 +89,17 @@ public class SantaSavedData extends SavedData {
         newData.setHasSummonedBefore(tag.getBoolean("HasSummonedBefore"));
         newData.setHasDefeatedBefore(tag.getBoolean("HasDefeatedBefore"));
 
+        if (tag.contains("SummonCooldown")) newData.setSummonCooldown(tag.getLong("SummonCooldown"));
+        else newData.setSummonCooldown(SUMMON_COOLDOWN);
+
         return newData;
+    }
+
+    public static SantaSavedData retrieve(ServerLevel serverLevel) {
+        return serverLevel.getDataStorage().computeIfAbsent(
+                SantaSavedData::createFromTag,
+                SantaSavedData::new,
+                SantaSavedData.DATA_NAME
+        );
     }
 }

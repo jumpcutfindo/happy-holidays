@@ -249,6 +249,46 @@
             }
         ]
     },
+    "item.patrol_orders.action_success": {
+        "category": "item",
+        "subtitle": "item.patrol_orders.action_success.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/patrol_orders_action_success",
+                "stream": true
+            }
+        ]
+    },
+    "item.patrol_orders.action_fail": {
+        "category": "item",
+        "subtitle": "item.patrol_orders.action_fail.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/patrol_orders_action_fail",
+                "stream": true
+            }
+        ]
+    },
+    "item.patrol_orders.route_complete": {
+        "category": "item",
+        "subtitle": "item.patrol_orders.route_complete.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/patrol_orders_route_complete",
+                "stream": true
+            }
+        ]
+    },
+    "item.patrol_orders.crumple": {
+        "category": "item",
+        "subtitle": "item.patrol_orders.crumple.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:item/patrol_orders_crumple",
+                "stream": true
+            }
+        ]
+    },
     "entity.gingerbread_person_passive": {
         "category": "entity",
         "subtitle": "entity.happyholidays.gingerbread_person_passive.sub",
@@ -505,6 +545,66 @@
         "sounds": [
             {
                 "name": "happyholidays:entity/santa_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "entity.nutcracker_passive": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.nutcracker_passive.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/nutcracker_passive",
+                "stream": true
+            }
+        ]
+    },
+    "entity.nutcracker_hurt": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.nutcracker_hurt.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/nutcracker_hurt",
+                "stream": true
+            }
+        ]
+    },
+    "entity.nutcracker_repair": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.nutcracker_repair.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/nutcracker_repair",
+                "stream": true
+            }
+        ]
+    },
+    "entity.nutcracker_target_acquired": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.nutcracker_tamed.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/nutcracker_tamed",
+                "stream": true
+            }
+        ]
+    },
+    "entity.nutcracker_shoot": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.nutcracker_shoot.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/nutcracker_shoot",
+                "stream": true
+            }
+        ]
+    },
+    "entity.nutcracker_receive_orders": {
+        "category": "entity",
+        "subtitle": "entity.happyholidays.nutcracker_receive_orders.sub",
+        "sounds": [
+            {
+                "name": "happyholidays:entity/nutcracker_receive_orders",
                 "stream": true
             }
         ]

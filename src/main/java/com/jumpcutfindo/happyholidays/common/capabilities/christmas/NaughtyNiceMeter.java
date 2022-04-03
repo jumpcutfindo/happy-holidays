@@ -61,6 +61,14 @@ public class NaughtyNiceMeter implements INaughtyNiceHandler {
         return value == VALUE_NAUGHTY_MAX;
     }
 
+    public NaughtyNiceMeter.State getState() {
+        if (this.isMaxNaughty()) return State.MAX_NAUGHTY;
+        else if (this.isNaughty()) return State.NAUGHTY;
+        else if (this.isNeutral()) return State.NEUTRAL;
+        else if (this.isMaxNice()) return State.MAX_NICE;
+        else return State.NICE;
+    }
+
     public CompoundTag writeToNBT(CompoundTag nbt) {
         nbt.putInt("NaughtyNiceValue", this.getValue());
 
@@ -114,5 +122,9 @@ public class NaughtyNiceMeter implements INaughtyNiceHandler {
             NaughtyNiceMeter naughtyNiceMeter = (NaughtyNiceMeter) naughtyNiceCapability.get();
             naughtyNiceMeter.setValue(0);
         }
+    }
+
+    public enum State {
+        MAX_NAUGHTY, NAUGHTY, NEUTRAL, NICE, MAX_NICE
     }
 }

@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:explosive_walnut"
+    ]
+  },
+  "criteria": {
+    "has_walnut": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:walnut"
+            ]
+          }
+        ]
+      }
+    },
+    "has_special_walnut": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:explosive_walnut"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:explosive_walnut"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_walnut",
+      "has_special_walnut",
+      "has_the_recipe"
+    ]
+  ]
+}

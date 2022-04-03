@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "happyholidays:reindeer_bottom"
+    ]
+  },
+  "criteria": {
+    "has_thread": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:thread"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "happyholidays:reindeer_bottom"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_thread",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -9,15 +9,16 @@ import org.apache.commons.lang3.tuple.Pair;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.block.DecorationBlock;
 import com.jumpcutfindo.happyholidays.common.block.WallDecorationBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyCaneBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.candy.festive.FestiveCandyShape;
-import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.misc.StockingBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyCaneBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.FestiveCandyShape;
+import com.jumpcutfindo.happyholidays.common.block.christmas.decorations.StockingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasHamBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.ChristmasPuddingBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.LogCakeBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.food.MilkAndCookiesBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarBlock;
-import com.jumpcutfindo.happyholidays.common.block.christmas.misc.ChristmasStarTier;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarBlock;
+import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarTier;
+import com.jumpcutfindo.happyholidays.common.block.christmas.WalnutPlantBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 
 import net.minecraft.core.Direction;
@@ -60,6 +61,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
                 ChristmasBlocks.BABY_PRESENT.get(),
                 ChristmasBlocks.ADULT_PRESENT.get(),
                 ChristmasBlocks.ELDER_PRESENT.get(),
+                ChristmasBlocks.EXPLOSIVE_PRESENT.get(),
 
                 ChristmasBlocks.MUSIC_BOX.get()
         );
@@ -164,6 +166,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
                 ChristmasBlocks.SANTA_ELF_ORNAMENT.get(),
                 ChristmasBlocks.GINGERBREAD_MAN_ORNAMENT.get(),
                 ChristmasBlocks.GRINCH_ORNAMENT.get(),
+                ChristmasBlocks.NUTCRACKER_ORNAMENT.get(),
 
                 ChristmasBlocks.RED_BAUBLE.get(),
                 ChristmasBlocks.BLUE_BAUBLE.get(),
@@ -483,6 +486,21 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
             if (axis == Direction.Axis.X) return builder.modelFile(modelFileOf(modelId)).rotationY(90).build();
             else return builder.modelFile(modelFileOf(modelId)).build();
+        });
+
+        // Register Walnut Plant
+        Block walnutPlantBlock = ChristmasBlocks.WALNUT_PLANT.get();
+        getVariantBuilder(walnutPlantBlock).forAllStates(state -> {
+            ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
+            String modelId = blockId(walnutPlantBlock);
+
+            int age = state.getValue(WalnutPlantBlock.AGE);
+
+            if (age == 0) modelId += "_stage0";
+            else if (age == 1) modelId += "_stage1";
+            else modelId += "_stage2";
+
+            return builder.modelFile(modelFileOf(modelId)).build();
         });
     }
 

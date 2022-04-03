@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S#S",
+    "BCB",
+    "S#S"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:thread"
+    },
+    "S": {
+      "item": "minecraft:snow_block"
+    },
+    "B": {
+      "item": "minecraft:polished_blackstone_button"
+    },
+    "C": {
+      "item": "minecraft:carrot"
+    }
+  },
+  "result": {
+    "item": "happyholidays:snowman_headpiece"
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "parent": "happyholidays:christmas/outfit_start",
+  "display": {
+    "icon": {
+      "item": "happyholidays:thread"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.outfit_fashion_show"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.outfit_fashion_show.desc"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 150
+  },
+  "criteria": {
+    "obtain_santa_outfit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:santa_hat"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:santa_top"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:santa_bottom"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:santa_boots"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_santa_elf_outfit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:santa_elf_hat"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:santa_elf_top"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:santa_elf_bottom"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:santa_elf_boots"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_snowman_outfit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:snowman_headpiece"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:snowman_top"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:snowman_bottom"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_candy_cane_outfit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:candy_cane_headpiece"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:candy_cane_top"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:candy_cane_bottom"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:candy_cane_boots"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_reindeer_outfit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:reindeer_headpiece"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:reindeer_top"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:reindeer_bottom"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:reindeer_boots"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_nutcracker_outfit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:nutcracker_hat"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:nutcracker_top"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:nutcracker_bottom"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:nutcracker_boots"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_gingerbread_outfit": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:gingerbread_headpiece"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:gingerbread_top"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:gingerbread_bottom"
+            ]
+          },
+          {
+            "items": [
+              "happyholidays:gingerbread_boots"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtain_santa_outfit"
+    ],
+    [
+      "obtain_santa_elf_outfit"
+    ],
+    [
+      "obtain_snowman_outfit"
+    ],
+    [
+      "obtain_candy_cane_outfit"
+    ],
+    [
+      "obtain_reindeer_outfit"
+    ],
+    [
+      "obtain_nutcracker_outfit"
+    ],
+    [
+      "obtain_gingerbread_outfit"
+    ]
+  ]
+}

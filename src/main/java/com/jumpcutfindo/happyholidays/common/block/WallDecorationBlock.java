@@ -2,12 +2,12 @@ package com.jumpcutfindo.happyholidays.common.block;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import org.jetbrains.annotations.NotNull;
+
 import com.jumpcutfindo.happyholidays.common.utils.BlockUtils;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -26,24 +26,20 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class WallDecorationBlock extends Block implements SimpleWaterloggedBlock {
+public abstract class WallDecorationBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public static final Item.Properties ITEM_PROPERTIES =
-            new Item.Properties().tab(HappyHolidaysMod.HAPPY_HOLIDAYS_GROUP);
-
-    private final VoxelShape shape;
-
-    public WallDecorationBlock(Properties properties, VoxelShape shape) {
+    public WallDecorationBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any()
                 .setValue(FACING, Direction.NORTH)
                 .setValue(WATERLOGGED, false)
         );
-
-        this.shape = shape;
     }
+
+    @NotNull
+    public abstract VoxelShape getVoxelShape();
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateBuilder) {
@@ -54,16 +50,16 @@ public class WallDecorationBlock extends Block implements SimpleWaterloggedBlock
     public VoxelShape getShape(BlockState blockState, BlockGetter blockReader, BlockPos blockPos,
                                CollisionContext context) {
         Direction direction = blockState.getValue(FACING);
+        VoxelShape resultShape = this.getVoxelShape();
 
         if (direction == Direction.SOUTH) {
-            return shape;
+            return resultShape;
         } else if (direction == Direction.NORTH) {
-            return BlockUtils.rotateShape(shape, Rotation.CLOCKWISE_180);
+            return BlockUtils.rotateShape(resultShape, Rotation.CLOCKWISE_180);
         } else if (direction == Direction.WEST) {
-            return BlockUtils.rotateShape(shape, Rotation.CLOCKWISE_90);
+            return BlockUtils.rotateShape(resultShape, Rotation.CLOCKWISE_90);
         } else {
-            // Direction.EAST
-            return BlockUtils.rotateShape(shape, Rotation.COUNTERCLOCKWISE_90);
+            return BlockUtils.rotateShape(resultShape, Rotation.COUNTERCLOCKWISE_90);
         }
     }
 

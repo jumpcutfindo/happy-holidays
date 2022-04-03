@@ -1,0 +1,76 @@
+{
+  "parent": "happyholidays:christmas/nutcracker_walnut_obtain",
+  "display": {
+    "icon": {
+      "item": "happyholidays:sugared_walnut"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_special_walnut"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_special_walnut.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "obtain_sugared_walnut": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:sugared_walnut"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_explosive_walnut": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:explosive_walnut"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_halved_walnut": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:halved_walnut"
+            ]
+          }
+        ]
+      }
+    },
+    "obtain_metallic_walnut": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:metallic_walnut"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtain_sugared_walnut",
+      "obtain_explosive_walnut",
+      "obtain_halved_walnut",
+      "obtain_metallic_walnut"
+    ]
+  ]
+}

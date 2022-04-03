@@ -3,13 +3,12 @@ package com.jumpcutfindo.happyholidays.common.guide;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.google.common.collect.Lists;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ISection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ImageSection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.ItemSection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.RecipeSection;
-import com.jumpcutfindo.happyholidays.common.guide.sections.TextSection;
 import com.jumpcutfindo.happyholidays.common.guide.sections.SerializedSection;
+import com.jumpcutfindo.happyholidays.common.guide.sections.TextSection;
 
 public class Chapter {
     public final String title;
@@ -19,7 +18,6 @@ public class Chapter {
     public List<ISection> unserializedSections;
 
     private List<SerializedSection> sections;
-
 
     public Chapter(String title, String description, ImageSection image) {
         this.title = title;
@@ -36,6 +34,11 @@ public class Chapter {
     }
 
     public List<ISection> getSections() {
+        this.initialiseSections();
+        return unserializedSections;
+    }
+
+    private void initialiseSections() {
         if (unserializedSections == null) {
             // Convert serialized sections into their respective components
             unserializedSections = sections.stream().map(serializedSection -> {
@@ -54,7 +57,6 @@ public class Chapter {
                 return null;
             }).collect(Collectors.toList());
         }
-        return unserializedSections;
     }
 
     public ImageSection getImage() {

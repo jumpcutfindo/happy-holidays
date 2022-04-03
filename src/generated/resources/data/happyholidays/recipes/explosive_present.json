@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WGW",
+    "S#S"
+  ],
+  "key": {
+    "#": {
+      "item": "happyholidays:present_scraps"
+    },
+    "S": {
+      "item": "minecraft:iron_ingot"
+    },
+    "G": {
+      "item": "minecraft:gunpowder"
+    },
+    "W": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "result": {
+    "item": "happyholidays:explosive_present",
+    "count": 4
+  }
+}

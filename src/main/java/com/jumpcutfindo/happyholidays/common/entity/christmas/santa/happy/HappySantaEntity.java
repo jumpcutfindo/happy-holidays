@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.BaseSantaEntity;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGiftType;
 import com.jumpcutfindo.happyholidays.common.entity.christmas.santa.SantaGifts;
@@ -50,8 +49,6 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 public class HappySantaEntity extends BaseSantaEntity {
     public static final EntityDataAccessor<Boolean> IS_SUMMONING = SynchedEntityData.defineId(HappySantaEntity.class,
             EntityDataSerializers.BOOLEAN);
-
-    public static final String ENTITY_ID = "happy_santa";
 
     public static final int DEFAULT_DESPAWN_DELAY = 12000;
 
@@ -165,11 +162,11 @@ public class HappySantaEntity extends BaseSantaEntity {
     }
 
     public void playDropPartySummonSound() {
-        HappyHolidaysMod.PROXY.getChristmasProxy().playHappySantaSummoningSound(this.getUUID(), this.blockPosition());
+        MinecraftForge.EVENT_BUS.post(new SantaEvent.SoundChange(this, this.level, true));
     }
 
     public void stopDropPartySummonSound() {
-        HappyHolidaysMod.PROXY.getChristmasProxy().stopHappySantaSummoningSound(this.getUUID());
+        MinecraftForge.EVENT_BUS.post(new SantaEvent.SoundChange(this, this.level, false));
     }
 
     public void summonGift() {
@@ -201,13 +198,13 @@ public class HappySantaEntity extends BaseSantaEntity {
         double giftChance = this.random.nextDouble();
         if (giftChance < LEGENDARY_GIFT_SPAWN_CHANCE_THRESHOLD) {
             giftItem = SantaGifts.generateGift(SantaGiftType.LEGENDARY, this, (ServerLevel) this.level, ctx);
-            particleType = ChristmasParticles.CHRISTMAS_MEDIUM_GOLD_PARTICLE.get();
+            particleType = ChristmasParticles.CHRISTMAS_MEDIUM_GOLD.get();
         } else if (giftChance < RARE_GIFT_SPAWN_CHANCE_THRESHOLD) {
             giftItem = SantaGifts.generateGift(SantaGiftType.RARE, this, (ServerLevel) this.level, ctx);
-            particleType = ChristmasParticles.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get();
+            particleType = ChristmasParticles.CHRISTMAS_MEDIUM_GREEN.get();
         } else {
             giftItem = SantaGifts.generateGift(SantaGiftType.BASIC, this, (ServerLevel) this.level, ctx);
-            particleType = ChristmasParticles.CHRISTMAS_MEDIUM_BLUE_PARTICLE.get();
+            particleType = ChristmasParticles.CHRISTMAS_MEDIUM_BLUE.get();
         }
 
         ItemEntity giftEntity = new ItemEntity(this.level, randomPos.getX(), randomPos.getY(), randomPos.getZ(), giftItem);
@@ -241,10 +238,10 @@ public class HappySantaEntity extends BaseSantaEntity {
         double d2 = (double)(this.random.nextFloat() * 0.1F) + 0.25D;
 
         double d = this.random.nextDouble();
-        SimpleParticleType particleType = d < 0.25 ? ChristmasParticles.CHRISTMAS_SMALL_RED_PARTICLE.get()
-                : d < 0.5 ? ChristmasParticles.CHRISTMAS_MEDIUM_RED_PARTICLE.get()
-                : d < 0.75 ? ChristmasParticles.CHRISTMAS_SMALL_GREEN_PARTICLE.get()
-                : ChristmasParticles.CHRISTMAS_MEDIUM_GREEN_PARTICLE.get();
+        SimpleParticleType particleType = d < 0.25 ? ChristmasParticles.CHRISTMAS_SMALL_RED.get()
+                : d < 0.5 ? ChristmasParticles.CHRISTMAS_MEDIUM_RED.get()
+                : d < 0.75 ? ChristmasParticles.CHRISTMAS_SMALL_GREEN.get()
+                : ChristmasParticles.CHRISTMAS_MEDIUM_GREEN.get();
         
         ((ServerLevel) this.level).sendParticles(particleType,
                 this.getX(),

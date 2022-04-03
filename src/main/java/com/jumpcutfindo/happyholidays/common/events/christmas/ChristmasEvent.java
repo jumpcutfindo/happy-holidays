@@ -13,6 +13,11 @@ public class ChristmasEvent extends Event {
         this.level = player.level;
     }
 
+    public ChristmasEvent(Player player, Level level) {
+        this.player = player;
+        this.level = level;
+    }
+
     public Player getPlayer() {
         return player;
     }

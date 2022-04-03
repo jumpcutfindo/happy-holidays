@@ -6,8 +6,10 @@ import static com.jumpcutfindo.happyholidays.datagen.server.BaseAdvancementProvi
 import java.util.function.Consumer;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
+import com.jumpcutfindo.happyholidays.common.item.outfits.Outfit;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
+import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasOutfits;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasTriggers;
 
 import net.minecraft.advancements.Advancement;
@@ -20,6 +22,7 @@ import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.advancements.critereon.PlacedBlockTrigger;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
 public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
@@ -27,7 +30,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
 
     @Override
     public void accept(Consumer<Advancement> advancementConsumer) {
-        christmasRoot = createRootAdvancement(ChristmasItems.RED_CHRISTMAS_GIFT_ITEM.get(), translatable("root"), getBackground(), FrameType.TASK, true, true, false)
+        christmasRoot = createRootAdvancement(ChristmasItems.RED_CHRISTMAS_GIFT.get(), translatable("root"), getBackground(), FrameType.TASK, true, true, false)
                 .addCriterion("has_any", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.ANY))
                 .save(advancementConsumer, advancementId("root"));
 
@@ -39,12 +42,21 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
         grinchBranch(advancementConsumer);
         ornamentsBranch(advancementConsumer);
         musicBranch(advancementConsumer);
+        miscBranch(advancementConsumer);
         gingerbreadBranch(advancementConsumer);
         candyCaneBranch(advancementConsumer);
         hollyBranch(advancementConsumer);
         stockingBranch(advancementConsumer);
         starBranch(advancementConsumer);
         snowGlobeBranch(advancementConsumer);
+        nutcrackerBranch(advancementConsumer);
+        outfitBranch(advancementConsumer);
+    }
+
+    private void miscBranch(Consumer<Advancement> advancementConsumer) {
+        Advancement explosiveTendencies = createAdvancement(christmasRoot, ChristmasItems.EXPLOSIVE_PRESENT.get(), translatable("explosive_tendencies"))
+                .addCriterion("has_explosive_present", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.EXPLOSIVE_PRESENT.get()))
+                .save(advancementConsumer, advancementId("explosive_tendencies"));
     }
 
     private void presentsBranch(Consumer<Advancement> advancementConsumer) {
@@ -78,7 +90,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .addCriterion("encounter_grinch", ChristmasTriggers.GRINCH_ENCOUNTER.getInstance())
                 .save(advancementConsumer, advancementId("grinch_encounter"));
 
-        Advancement grinchAppeasement = createAdvancement(grinchStart, ChristmasItems.RED_CHRISTMAS_GIFT_ITEM.get(), translatable("grinch_appeasement"))
+        Advancement grinchAppeasement = createAdvancement(grinchStart, ChristmasItems.RED_CHRISTMAS_GIFT.get(), translatable("grinch_appeasement"))
                 .addCriterion("appease_grinch", ChristmasTriggers.GRINCH_APPEASE.getInstance())
                 .save(advancementConsumer, advancementId("grinch_appeasement"));
 
@@ -212,6 +224,7 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .addCriterion("has_candy_cane_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.CANDY_CANE_ORNAMENT.get()))
                 .addCriterion("has_grinch_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.GRINCH_ORNAMENT.get()))
                 .addCriterion("has_santa_elf_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SANTA_ELF_ORNAMENT.get()))
+                .addCriterion("has_nutcracker_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.NUTCRACKER_ORNAMENT.get()))
                 .rewards(AdvancementRewards.Builder.experience(150).build())
                 .requirements(RequirementsStrategy.AND)
                 .save(advancementConsumer, advancementId("ornament_fancy_hoarder"));
@@ -240,24 +253,22 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .save(advancementConsumer, advancementId("music_setting_the_mood"));
 
         Advancement musicalMaestro = createAdvancement(musicStart, ChristmasItems.SHEET_MUSIC_CAROL_OF_THE_BELLS.get(), translatable("music_musical_maestro"), FrameType.CHALLENGE, true, true, false)
-                .addCriterion("has_sheet_music", InventoryChangeTrigger.TriggerInstance.hasItems(
-                        ChristmasItems.SHEET_MUSIC_ANGELS_ON_HIGH.get(),
-                        ChristmasItems.SHEET_MUSIC_CAROL_OF_THE_BELLS.get(),
-                        ChristmasItems.SHEET_MUSIC_DECK_THE_HALLS.get(),
-                        ChristmasItems.SHEET_MUSIC_FROSTY_THE_SNOWMAN.get(),
-                        ChristmasItems.SHEET_MUSIC_GOD_REST_GENTLEMEN.get(),
-                        ChristmasItems.SHEET_MUSIC_HERE_COMES_SANTA.get(),
-                        ChristmasItems.SHEET_MUSIC_JINGLE_BELL_ROCK.get(),
-                        ChristmasItems.SHEET_MUSIC_JINGLE_BELLS.get(),
-                        ChristmasItems.SHEET_MUSIC_JOY_TO_THE_WORLD.get(),
-                        ChristmasItems.SHEET_MUSIC_RUDOLPH.get(),
-                        ChristmasItems.SHEET_MUSIC_SILENT_NIGHT.get(),
-                        ChristmasItems.SHEET_MUSIC_SLEIGH_RIDE.get(),
-                        ChristmasItems.SHEET_MUSIC_THE_FIRST_NOEL.get(),
-                        ChristmasItems.SHEET_MUSIC_WE_THREE_KINGS.get(),
-                        ChristmasItems.SHEET_MUSIC_WE_WISH_YOU.get(),
-                        ChristmasItems.SHEET_MUSIC_WHITE_CHRISTMAS.get()
-                ))
+                .addCriterion("has_sheet_music_0", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_ANGELS_ON_HIGH.get()))
+                .addCriterion("has_sheet_music_1", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_CAROL_OF_THE_BELLS.get()))
+                .addCriterion("has_sheet_music_2", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_DECK_THE_HALLS.get()))
+                .addCriterion("has_sheet_music_3", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_FROSTY_THE_SNOWMAN.get()))
+                .addCriterion("has_sheet_music_4", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_GOD_REST_GENTLEMEN.get()))
+                .addCriterion("has_sheet_music_5", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_HERE_COMES_SANTA.get()))
+                .addCriterion("has_sheet_music_6", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_JINGLE_BELL_ROCK.get()))
+                .addCriterion("has_sheet_music_7", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_JINGLE_BELLS.get()))
+                .addCriterion("has_sheet_music_8", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_JOY_TO_THE_WORLD.get()))
+                .addCriterion("has_sheet_music_9", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_RUDOLPH.get()))
+                .addCriterion("has_sheet_music_10", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_SILENT_NIGHT.get()))
+                .addCriterion("has_sheet_music_11", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_SLEIGH_RIDE.get()))
+                .addCriterion("has_sheet_music_12", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_THE_FIRST_NOEL.get()))
+                .addCriterion("has_sheet_music_13", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_WE_THREE_KINGS.get()))
+                .addCriterion("has_sheet_music_14", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_WE_WISH_YOU.get()))
+                .addCriterion("has_sheet_music_15", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SHEET_MUSIC_WHITE_CHRISTMAS.get()))
                 .rewards(AdvancementRewards.Builder.experience(100).build())
                 .save(advancementConsumer, advancementId("music_musical_maestro"));
     }
@@ -274,6 +285,11 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
         Advancement gingerbreadManTurnDry = createAdvancement(gingerbreadManTurnSoggy, ChristmasItems.GINGERBREAD_BLOCK.get(), translatable("gingerbread_man_turn_dry"))
                 .addCriterion("turn_dry", ChristmasTriggers.GINGERBREAD_MAN_TURN_DRY.getInstance())
                 .save(advancementConsumer, advancementId("gingerbread_man_turn_dry"));
+
+        Advancement gingerbreadManDryChallenge = createAdvancement(gingerbreadManTurnDry, ChristmasItems.GINGERBREAD_HEADPIECE.get(), translatable("gingerbread_man_dry_challenge"), FrameType.CHALLENGE, true, true, false)
+                .addCriterion("complete_challenge", ChristmasTriggers.GINGERBREAD_MAN_DRY_CHALLENGE.getInstance())
+                .rewards(AdvancementRewards.Builder.experience(200))
+                .save(advancementConsumer, advancementId("gingerbread_man_dry_challenge"));
 
         Advancement gingerbreadOrnament = createAdvancement(gingerbreadManTurnDry, ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get(), translatable("gingerbread_man_ornament"), FrameType.GOAL, true, false, false)
                 .addCriterion("has_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.GINGERBREAD_MAN_ORNAMENT.get()))
@@ -335,6 +351,11 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .addCriterion("done_request", ChristmasTriggers.SANTA_ELF_COMPLETE_REQUEST_QUICK.getInstance())
                 .rewards(AdvancementRewards.Builder.experience(150))
                 .save(advancementConsumer, advancementId("santa_elf_request_quick"));
+
+        Advancement santaElfHelpChallenge = createAdvancement(santaElfRequest, ChristmasItems.SANTA_ELF_ORNAMENT.get(), translatable("santa_elf_help_challenge"), FrameType.CHALLENGE, true, true, false)
+                .addCriterion("complete_challenge", ChristmasTriggers.SANTA_ELF_HELP_CHALLENGE.getInstance())
+                .rewards(AdvancementRewards.Builder.experience(200))
+                .save(advancementConsumer, advancementId("santa_elf_help_challenge"));
 
         Advancement santaElfOrnament = createAdvancement(santaElfRequest, ChristmasItems.SANTA_ELF_ORNAMENT.get(), translatable("santa_elf_ornament"), FrameType.GOAL, true, false, false)
                 .addCriterion("has_block", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SANTA_ELF_ORNAMENT.get()))
@@ -407,13 +428,23 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .addCriterion("summon_santa", ChristmasTriggers.STAR_SUMMON_SANTA.getInstance())
                 .save(advancementConsumer, advancementId("santa_summon"));
 
-        Advancement santaDropParty = createAdvancement(santaStart, ChristmasItems.GOLD_CHRISTMAS_GIFT_ITEM.get(), translatable("santa_drop_party"))
+        Advancement santaDropParty = createAdvancement(santaStart, ChristmasItems.GOLD_CHRISTMAS_GIFT.get(), translatable("santa_drop_party"))
                 .addCriterion("drop_party", ChristmasTriggers.SANTA_DROP_PARTY_COMPLETE.getInstance())
                 .save(advancementConsumer, advancementId("santa_drop_party"));
+
+        Advancement santaHappyChallenge = createAdvancement(santaDropParty, ChristmasItems.SANTA_HAT.get(), translatable("santa_happy_challenge"), FrameType.CHALLENGE, true, true, false)
+                .addCriterion("complete_challenge", ChristmasTriggers.SANTA_HAPPY_CHALLENGE.getInstance())
+                .rewards(AdvancementRewards.Builder.experience(200))
+                .save(advancementConsumer, advancementId("santa_happy_challenge"));
 
         Advancement santaAngryDefeat = createAdvancement(santaStart, ChristmasItems.ENCHANTED_SANTA_HAT.get(), translatable("santa_angry_defeat"))
                 .addCriterion("defeat_santa", ChristmasTriggers.SANTA_ANGRY_DIE.getInstance())
                 .save(advancementConsumer, advancementId("santa_angry_defeat"));
+
+        Advancement santaAngryChallenge = createAdvancement(santaAngryDefeat, ChristmasItems.SANTA_HAT.get(), translatable("santa_angry_challenge"), FrameType.CHALLENGE, true, true, false)
+                .addCriterion("complete_challenge", ChristmasTriggers.SANTA_ANGRY_CHALLENGE.getInstance())
+                .rewards(AdvancementRewards.Builder.experience(200))
+                .save(advancementConsumer, advancementId("santa_angry_challenge"));
 
         Advancement noTouchy = createAdvancement(santaStart, ChristmasItems.ENCHANTED_SANTA_HAT.get(), translatable("santa_no_touchy"), FrameType.CHALLENGE, true, true, false)
                 .addCriterion("defeat_santa_restricted", ChristmasTriggers.SANTA_NO_TOUCHY.getInstance())
@@ -436,6 +467,101 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
                 .save(advancementConsumer, advancementId("snow_globe_use_challenge"));
     }
 
+    private void nutcrackerBranch(Consumer<Advancement> advancementConsumer) {
+        Advancement nutcrackerStart = createAdvancement(christmasRoot, ChristmasItems.NUTCRACKER_ORNAMENT.get(), translatable("nutcracker_encounter"))
+                .addCriterion("encounter_nutcracker", ChristmasTriggers.NUTCRACKER_ENCOUNTER.getInstance())
+                .save(advancementConsumer, advancementId("nutcracker_start"));
+
+        Advancement nutcrackerTame = createAdvancement(nutcrackerStart, ChristmasItems.WALNUT.get(), translatable("nutcracker_tame"))
+                .addCriterion("tame_nutcracker", ChristmasTriggers.NUTCRACKER_TAME.getInstance())
+                .save(advancementConsumer, advancementId("nutcracker_tame"));
+
+        Advancement nutcrackerTameChallenge = createAdvancement(nutcrackerTame, ChristmasItems.WALNUT.get(), translatable("nutcracker_tame_challenge"), FrameType.CHALLENGE, true, true, false)
+                .addCriterion("tame_nutcracker_challenge", ChristmasTriggers.NUTCRACKER_TAME_CHALLENGE.getInstance())
+                .rewards(AdvancementRewards.Builder.experience(200).build())
+                .save(advancementConsumer, advancementId("nutcracker_tame_challenge"));
+
+        Advancement nutcrackerKill = createAdvancement(nutcrackerTame, Items.ZOMBIE_HEAD, translatable("nutcracker_kill_mob"))
+                .addCriterion("nutcracker_kill_mobs", ChristmasTriggers.NUTCRACKER_KILLS_MOB.getInstance())
+                .save(advancementConsumer, advancementId("nutcracker_kill_mob"));
+
+        Advancement nutcrackerOrnament = createAdvancement(nutcrackerKill, ChristmasItems.NUTCRACKER_ORNAMENT.get(), translatable("nutcracker_ornament_get"), FrameType.GOAL, true, false, false)
+                .addCriterion("obtain_nutcracker_ornament", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.NUTCRACKER_ORNAMENT.get()))
+                .save(advancementConsumer, advancementId("nutcracker_ornament_get"));
+
+        Advancement nutcrackerKillsChallenge = createAdvancement(nutcrackerKill, Items.ZOMBIE_HEAD, translatable("nutcracker_kill_mob_challenge"), FrameType.CHALLENGE, true, true, false)
+                .addCriterion("nutcracker_kill_mobs", ChristmasTriggers.NUTCRACKER_KILL_CHALLENGE.getInstance())
+                .rewards(AdvancementRewards.Builder.experience(100).build())
+                .save(advancementConsumer, advancementId("nutcracker_kill_mob_challenge"));
+
+        Advancement patrolDuty = createAdvancement(nutcrackerTame, ChristmasItems.PATROL_ORDERS.get(), translatable("nutcracker_patrol_duty"))
+                .addCriterion("get_patrol_orders", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.PATROL_ORDERS.get()))
+                .save(advancementConsumer, advancementId("nutcracker_patrol_duty"));
+
+        Advancement daintyDelegation = createAdvancement(patrolDuty, ChristmasItems.PATROL_ORDERS.get(), translatable("nutcracker_dainty_delegation"))
+                .addCriterion("complete_patrol_orders", ChristmasTriggers.PATROL_ORDERS_COMPLETE.getInstance())
+                .save(advancementConsumer, advancementId("nutcracker_dainty_delegation"));
+
+        Advancement rogerThat = createAdvancement(daintyDelegation, ChristmasItems.PATROL_ORDERS.get(), translatable("nutcracker_roger_that"))
+                .addCriterion("receive_complete_orders", ChristmasTriggers.NUTCRACKER_RECEIVE_COMPLETE_ORDERS.getInstance())
+                .save(advancementConsumer, advancementId("nutcracker_roger_that"));
+
+        Advancement walnutObtain = createAdvancement(nutcrackerStart, ChristmasItems.WALNUT.get(), translatable("nutcracker_walnut_obtain"))
+                .addCriterion("get_walnut", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.WALNUT.get()))
+                .save(advancementConsumer, advancementId("nutcracker_walnut_obtain"));
+
+        Advancement specialWalnut = createAdvancement(walnutObtain, ChristmasItems.SUGARED_WALNUT.get(), translatable("nutcracker_special_walnut"))
+                .addCriterion("obtain_sugared_walnut", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SUGARED_WALNUT.get()))
+                .addCriterion("obtain_explosive_walnut", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.EXPLOSIVE_WALNUT.get()))
+                .addCriterion("obtain_halved_walnut", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.HALVED_WALNUT.get()))
+                .addCriterion("obtain_metallic_walnut", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.METALLIC_WALNUT.get()))
+                .requirements(RequirementsStrategy.OR)
+                .save(advancementConsumer, advancementId("nutcracker_special_walnut"));
+
+        Advancement specialForces = createAdvancement(specialWalnut, ChristmasItems.METALLIC_WALNUT.get(), translatable("nutcracker_special_forces"))
+                .addCriterion("give_nutcracker_special_walnut", ChristmasTriggers.NUTCRACKER_RECEIVE_SPECIAL_WALNUT.getInstance())
+                .save(advancementConsumer, advancementId("nutcracker_special_forces"));
+
+        Advancement explosiveInventory = createAdvancement(specialWalnut, ChristmasItems.EXPLOSIVE_WALNUT.get(), translatable("nutcracker_explosive_inventory"), FrameType.CHALLENGE, true, true,false)
+                .addCriterion("nutcracker_filled_explosive", ChristmasTriggers.NUTCRACKER_EXPLOSIVE_INVENTORY.getInstance())
+                .rewards(AdvancementRewards.Builder.experience(100))
+                .save(advancementConsumer, advancementId("nutcracker_explosive_inventory"));
+
+        Advancement coolerStick = createAdvancement(nutcrackerStart, ChristmasItems.SWAGGER_STICK.get(), translatable("nutcracker_cooler_stick"))
+                .addCriterion("obtain_swagger_stick", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.SWAGGER_STICK.get()))
+                .save(advancementConsumer, advancementId("nutcracker_cooler_stick"));
+
+        Advancement avengersAssemble = createAdvancement(coolerStick, ChristmasItems.SWAGGER_STICK.get(), translatable("nutcracker_avengers_assemble"))
+                .addCriterion("assemble_nutcrackers", ChristmasTriggers.SWAGGER_STICK_HELD.getInstance())
+                .save(advancementConsumer, advancementId("nutcracker_avengers_assemble"));
+
+        Advancement builtDifferent = createAdvancement(nutcrackerStart, Items.LEATHER_CHESTPLATE, translatable("nutcracker_built_different"))
+                .addCriterion("give_nutcracker_armor", ChristmasTriggers.NUTCRACKER_RECEIVE_ARMOR.getInstance())
+                .save(advancementConsumer, advancementId("nutcracker_built_different"));
+
+        Advancement hardNutToCrack = createAdvancement(builtDifferent, Items.NETHERITE_CHESTPLATE, translatable("nutcracker_hard_nut"), FrameType.CHALLENGE, true, true, false)
+                .addCriterion("nutcracker_armor_rating_high", ChristmasTriggers.NUTCRACKER_HIGH_ARMOR_RATING.getInstance())
+                .rewards(AdvancementRewards.Builder.experience(100))
+                .save(advancementConsumer, advancementId("nutcracker_hard_nut"));
+    }
+
+    private void outfitBranch(Consumer<Advancement> advancementConsumer) {
+        Advancement outfitStart = createAdvancement(christmasRoot, ChristmasItems.THREAD.get(), translatable("outfit_start"))
+                .addCriterion("obtain_thread", InventoryChangeTrigger.TriggerInstance.hasItems(ChristmasItems.THREAD.get()))
+                .save(advancementConsumer, advancementId("outfit_start"));
+
+        Advancement dressUp = createAdvancement(outfitStart, ChristmasItems.THREAD.get(), translatable("outfit_fashion_show"), FrameType.CHALLENGE, true, true, false)
+                .addCriterion("obtain_santa_outfit", createObtainOutfitCriterion(ChristmasOutfits.SANTA_OUTFIT))
+                .addCriterion("obtain_santa_elf_outfit", createObtainOutfitCriterion(ChristmasOutfits.SANTA_ELF_OUTFIT))
+                .addCriterion("obtain_snowman_outfit", createObtainOutfitCriterion(ChristmasOutfits.SNOWMAN_OUTFIT))
+                .addCriterion("obtain_candy_cane_outfit", createObtainOutfitCriterion(ChristmasOutfits.CANDY_CANE_OUTFIT))
+                .addCriterion("obtain_reindeer_outfit", createObtainOutfitCriterion(ChristmasOutfits.REINDEER_OUTFIT))
+                .addCriterion("obtain_nutcracker_outfit", createObtainOutfitCriterion(ChristmasOutfits.NUTCRACKER_OUTFIT))
+                .addCriterion("obtain_gingerbread_outfit", createObtainOutfitCriterion(ChristmasOutfits.GINGERBREAD_OUTFIT))
+                .rewards(AdvancementRewards.Builder.experience(150))
+                .save(advancementConsumer, advancementId("outfit_fashion_show"));
+    }
+
     private ResourceLocation getBackground() {
         return new ResourceLocation(HappyHolidaysMod.MOD_ID, "textures/gui/advancements/backgrounds/christmas.png");
     }
@@ -446,5 +572,9 @@ public class ChristmasAdvancements implements Consumer<Consumer<Advancement>> {
 
     private String advancementId(String id) {
         return HappyHolidaysMod.MOD_ID + ":christmas/" + id;
+    }
+
+    private InventoryChangeTrigger.TriggerInstance createObtainOutfitCriterion(Outfit outfit) {
+        return InventoryChangeTrigger.TriggerInstance.hasItems(outfit.getOutfitItems().toArray(new Item[0]));
     }
 }

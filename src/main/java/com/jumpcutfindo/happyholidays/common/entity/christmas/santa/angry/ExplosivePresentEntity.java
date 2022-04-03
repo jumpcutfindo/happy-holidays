@@ -1,18 +1,24 @@
 package com.jumpcutfindo.happyholidays.common.entity.christmas.santa.angry;
 
-import com.jumpcutfindo.happyholidays.common.entity.christmas.IChristmasEntity;
+import javax.annotation.Nullable;
 
+import com.jumpcutfindo.happyholidays.common.entity.christmas.ChristmasEntity;
+
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
-import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
@@ -23,10 +29,8 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
-public class ExplosivePresentEntity extends Entity implements IAnimatable, IChristmasEntity {
-    private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(PrimedTnt.class, EntityDataSerializers.INT);
-
-    public static final String ENTITY_ID = "explosive_present";
+public class ExplosivePresentEntity extends Entity implements IAnimatable, ChristmasEntity {
+    private static final EntityDataAccessor<Integer> DATA_FUSE_ID = SynchedEntityData.defineId(ExplosivePresentEntity.class, EntityDataSerializers.INT);
 
     public static final float ENTITY_BOX_SIZE = 1.0f;
     public static final float ENTITY_BOX_HEIGHT = 1.0f;
@@ -34,6 +38,9 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable, IChri
     private AnimationFactory factory = new AnimationFactory(this);
 
     private int life = 40;
+
+    @Nullable
+    private LivingEntity owner;
 
     public ExplosivePresentEntity(EntityType<?> entityType, Level world) {
         super(entityType, world);
@@ -61,6 +68,15 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable, IChri
         this.remove(RemovalReason.DISCARDED);
     }
 
+    public void setOwner(LivingEntity entity) {
+        this.owner = entity;
+    }
+
+    @Nullable
+    public LivingEntity getOwner() {
+        return owner;
+    }
+
     @Override
     public void tick() {
         super.tick();
@@ -75,6 +91,12 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable, IChri
         if (!this.isNoGravity() && !this.isOnGround()) {
             this.setDeltaMovement(this.getDeltaMovement().add(0.0D, -0.04D, 0.0D));
         }
+
+        if (this.onGround) {
+            this.setDeltaMovement(this.getDeltaMovement().multiply(0.7D, -0.5D, 0.7D));
+        }
+
+        if (!this.level.isClientSide() && this.life > 0) this.spawnIgniteParticles();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -126,5 +148,17 @@ public class ExplosivePresentEntity extends Entity implements IAnimatable, IChri
     @Override
     public AnimationFactory getFactory() {
         return factory;
+    }
+
+    private void spawnIgniteParticles() {
+        Vec3 pos = this.position();
+
+        double d0 = (Math.random() * 0.1D) + 0.25D;
+        double d1 = (Math.random() * 0.1D) + 0.25D;
+        double d2 = (Math.random() * 0.1D) + 0.25D;
+
+        SimpleParticleType particleType = ParticleTypes.SMOKE;
+
+        ((ServerLevel) this.level).sendParticles(particleType, pos.x, pos.y + d1, pos.z, 2, d0, d1, d2, 0.0D);
     }
 }

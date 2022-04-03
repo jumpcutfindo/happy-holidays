@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "unstable=false": {
+      "model": "happyholidays:block/explosive_present"
+    },
+    "unstable=true": {
+      "model": "happyholidays:block/explosive_present"
+    }
+  }
+}

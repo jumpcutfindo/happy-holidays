@@ -1,0 +1,37 @@
+{
+  "parent": "happyholidays:christmas/root",
+  "display": {
+    "icon": {
+      "item": "happyholidays:thread"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.outfit_start"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.outfit_start.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "obtain_thread": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:thread"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtain_thread"
+    ]
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "parent": "happyholidays:christmas/nutcracker_tame",
+  "display": {
+    "icon": {
+      "item": "happyholidays:patrol_orders"
+    },
+    "title": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_patrol_duty"
+    },
+    "description": {
+      "translate": "advancements.happyholidays.christmas.nutcracker_patrol_duty.desc"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "get_patrol_orders": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "happyholidays:patrol_orders"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "get_patrol_orders"
+    ]
+  ]
+}

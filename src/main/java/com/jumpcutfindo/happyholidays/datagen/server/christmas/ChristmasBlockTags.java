@@ -177,6 +177,21 @@ public class ChristmasBlockTags extends BlockTagsProvider {
                 .add(Blocks.GRASS_BLOCK)
                 .add(Blocks.SAND)
                 .add(Blocks.STONE);
+
+        tag(ChristmasTags.Blocks.NUTCRACKER_SPAWNABLE_ON)
+                .add(Blocks.GRASS_BLOCK)
+                .add(Blocks.SAND)
+                .add(Blocks.STONE)
+                .add(Blocks.PODZOL);
+
+        tag(ChristmasTags.Blocks.HEAT_EMITTING_BLOCKS)
+                .add(Blocks.FIRE)
+                .add(Blocks.SOUL_FIRE)
+                .add(Blocks.CAMPFIRE)
+                .add(Blocks.SOUL_CAMPFIRE)
+                .add(Blocks.MAGMA_BLOCK)
+                .add(Blocks.LAVA)
+                .add(Blocks.LAVA_CAULDRON);
     }
 
     private void minecraftTags() {
