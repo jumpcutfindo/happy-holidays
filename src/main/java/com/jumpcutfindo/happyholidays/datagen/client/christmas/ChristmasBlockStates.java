@@ -20,6 +20,7 @@ import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarBlock;
 import com.jumpcutfindo.happyholidays.common.block.christmas.ChristmasStarTier;
 import com.jumpcutfindo.happyholidays.common.block.christmas.WalnutPlantBlock;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlocks;
+import com.jumpcutfindo.happyholidays.datagen.client.BlockStateUtils;
 
 import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
@@ -149,7 +150,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
         for (Block block : blocksWithoutModels) simpleBlock(block);
         for (Block block : blocksWithModels) blockOf(block);
-        for (Block block : blocksWithHorizontals) horizontalBlock(block, modelFileOf(block));
+        for (Block block : blocksWithHorizontals) horizontalBlock(block, BlockStateUtils.modelFileOf(this, block));
 
         for (Pair<Block, ResourceLocation> blockPair : stairBlocks) stairsBlock((StairBlock) blockPair.getKey(), blockPair.getValue());
         for (Pair<Block, ResourceLocation> blockPair : slabBlocks) slabBlock((SlabBlock) blockPair.getKey(), blockPair.getValue(), blockPair.getValue());
@@ -276,14 +277,14 @@ public class ChristmasBlockStates extends BlockStateProvider {
         for (Block festiveCandyCaneBlock : festiveBlocks) {
             getVariantBuilder(festiveCandyCaneBlock).forAllStates(state -> {
                 ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
-                String modelId = blockId(festiveCandyCaneBlock);
+                String modelId = BlockStateUtils.blockId(festiveCandyCaneBlock);
 
                 FestiveCandyShape shape = state.getValue(FestiveCandyCaneBlock.CANDY_SHAPE);
 
                 if (shape == FestiveCandyShape.O_X) modelId += "_ox";
                 else modelId += "_xo";
 
-                return builder.modelFile(modelFileOf(modelId)).build();
+                return builder.modelFile(BlockStateUtils.modelFileOf(this, modelId)).build();
             });
         }
 
@@ -295,7 +296,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
         );
 
         for (Pair<Block, ResourceLocation> stairPair : festiveStairBlocks) {
-            String baseName = blockId(stairPair.getKey());
+            String baseName = BlockStateUtils.blockId(stairPair.getKey());
 
             getVariantBuilder(stairPair.getKey()).forAllStatesExcept(state -> {
                 ResourceLocation side, bottom, top;
@@ -341,7 +342,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
         );
 
         for (Pair<Block, ResourceLocation> slabPair : festiveSlabBlocks) {
-            String blockId = blockId(slabPair.getKey());
+            String blockId = BlockStateUtils.blockId(slabPair.getKey());
             getVariantBuilder(slabPair.getKey()).forAllStatesExcept(state -> {
                 ResourceLocation side, bottom, top;
                 ModelFile bottomslab, topslab, doubleslab;
@@ -373,36 +374,29 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
         for (Pair<Block, ResourceLocation> wallPair : festiveWallBlocks) {
             MultiPartBlockStateBuilder builder = getMultipartBuilder(wallPair.getKey())
-                    .part().modelFile(models().wallPost(blockId(wallPair.getKey()) + "_post_ox", new ResourceLocation(wallPair.getValue().toString() + "_ox"))).addModel()
+                    .part().modelFile(models().wallPost(BlockStateUtils.blockId(wallPair.getKey()) + "_post_ox", new ResourceLocation(wallPair.getValue().toString() + "_ox"))).addModel()
                     .condition(WallBlock.UP, true).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.O_X).end()
-                    .part().modelFile(models().wallPost(blockId(wallPair.getKey()) + "_post_xo", new ResourceLocation(wallPair.getValue().toString() + "_xo"))).addModel()
+                    .part().modelFile(models().wallPost(BlockStateUtils.blockId(wallPair.getKey()) + "_post_xo", new ResourceLocation(wallPair.getValue().toString() + "_xo"))).addModel()
                     .condition(WallBlock.UP, true).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.X_O).end();
 
             WALL_PROPS.entrySet().stream()
                     .filter(e -> e.getKey().getAxis().isHorizontal())
                     .forEach(e -> {
-                        builder.part().modelFile(models().wallSide(blockId(wallPair.getKey()) + "_side_ox", new ResourceLocation(wallPair.getValue().toString() + "_ox")))
+                        builder.part().modelFile(models().wallSide(BlockStateUtils.blockId(wallPair.getKey()) + "_side_ox", new ResourceLocation(wallPair.getValue().toString() + "_ox")))
                                 .rotationY((((int) e.getKey().toYRot()) + 180) % 360).uvLock(true).addModel()
                                 .condition(e.getValue(), WallSide.LOW).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.O_X).end()
-                                .part().modelFile(models().wallSide(blockId(wallPair.getKey()) + "_side_xo", new ResourceLocation(wallPair.getValue().toString() + "_xo")))
+                                .part().modelFile(models().wallSide(BlockStateUtils.blockId(wallPair.getKey()) + "_side_xo", new ResourceLocation(wallPair.getValue().toString() + "_xo")))
                                 .rotationY((((int) e.getKey().toYRot()) + 180) % 360).uvLock(true).addModel()
                                 .condition(e.getValue(), WallSide.LOW).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.X_O).end();
 
-                        builder.part().modelFile(models().wallSideTall(blockId(wallPair.getKey()) + "_side_tall_ox", new ResourceLocation(wallPair.getValue().toString() + "_ox")))
+                        builder.part().modelFile(models().wallSideTall(BlockStateUtils.blockId(wallPair.getKey()) + "_side_tall_ox", new ResourceLocation(wallPair.getValue().toString() + "_ox")))
                                 .rotationY((((int) e.getKey().toYRot()) + 180) % 360).uvLock(true).addModel()
                                 .condition(e.getValue(), WallSide.TALL).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.O_X).end()
-                                .part().modelFile(models().wallSideTall(blockId(wallPair.getKey()) + "_side_tall_xo", new ResourceLocation(wallPair.getValue().toString() + "_xo")))
+                                .part().modelFile(models().wallSideTall(BlockStateUtils.blockId(wallPair.getKey()) + "_side_tall_xo", new ResourceLocation(wallPair.getValue().toString() + "_xo")))
                                 .rotationY((((int) e.getKey().toYRot()) + 180) % 360).uvLock(true).addModel()
                                 .condition(e.getValue(), WallSide.TALL).condition(FestiveCandyCaneBlock.CANDY_SHAPE, FestiveCandyShape.X_O).end();
                     });
         }
-
-        Function<Direction, Integer> getRotationY = (direction) -> switch (direction) {
-            case EAST -> 270;
-            case NORTH -> 180;
-            case WEST -> 90;
-            default -> 0;
-        };
 
         // Register stockings
         Set<Block> stockings = Set.of(
@@ -417,7 +411,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
         for (Block block : stockings) {
             getVariantBuilder(block).forAllStatesExcept(state -> {
                 ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
-                String modelId = blockId(block);
+                String modelId = BlockStateUtils.blockId(block);
 
                 Direction facingDirection = state.getValue(WallDecorationBlock.FACING);
                 boolean isFilled = state.getValue(StockingBlock.FILLED);
@@ -426,7 +420,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
                 if (isEnchanted) modelId += "_enchanted";
                 if (isFilled) modelId += "_filled";
 
-                return builder.modelFile(modelFileOf(modelId)).rotationY(getRotationY.apply(facingDirection)).build();
+                return builder.modelFile(BlockStateUtils.modelFileOf(this, modelId)).rotationY(BlockStateUtils.getRotationY(facingDirection)).build();
             }, BlockStateProperties.WATERLOGGED);
         }
 
@@ -451,7 +445,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
         for (Block block : foodBlocks) {
             getVariantBuilder(block).forAllStatesExcept(state -> {
                 ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
-                String modelId = blockId(block);
+                String modelId = BlockStateUtils.blockId(block);
 
                 Direction facingDirection = state.getValue(WallDecorationBlock.FACING);
                 int bites = state.getValue(getBiteProperty.apply(block));
@@ -462,7 +456,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
                 case 1 -> modelId += "_one_bite";
                 }
 
-                return builder.modelFile(modelFileOf(modelId)).rotationY(getRotationY.apply(facingDirection)).build();
+                return builder.modelFile(BlockStateUtils.modelFileOf(this, modelId)).rotationY(BlockStateUtils.getRotationY(facingDirection)).build();
             });
         }
 
@@ -470,7 +464,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
         Block christmasStarBlock = ChristmasBlocks.CHRISTMAS_STAR.get();
         getVariantBuilder(christmasStarBlock).forAllStates(state -> {
             ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
-            String modelId = blockId(christmasStarBlock);
+            String modelId = BlockStateUtils.blockId(christmasStarBlock);
 
             Direction.Axis axis = state.getValue(ChristmasStarBlock.HORIZONTAL_AXIS);
             ChristmasStarTier starTier = state.getValue(ChristmasStarBlock.STAR_TIER);
@@ -484,15 +478,15 @@ public class ChristmasBlockStates extends BlockStateProvider {
             case TIER_5 -> modelId += "_tier_5";
             }
 
-            if (axis == Direction.Axis.X) return builder.modelFile(modelFileOf(modelId)).rotationY(90).build();
-            else return builder.modelFile(modelFileOf(modelId)).build();
+            if (axis == Direction.Axis.X) return builder.modelFile(BlockStateUtils.modelFileOf(this, modelId)).rotationY(90).build();
+            else return builder.modelFile(BlockStateUtils.modelFileOf(this, modelId)).build();
         });
 
         // Register Walnut Plant
         Block walnutPlantBlock = ChristmasBlocks.WALNUT_PLANT.get();
         getVariantBuilder(walnutPlantBlock).forAllStates(state -> {
             ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
-            String modelId = blockId(walnutPlantBlock);
+            String modelId = BlockStateUtils.blockId(walnutPlantBlock);
 
             int age = state.getValue(WalnutPlantBlock.AGE);
 
@@ -500,7 +494,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
             else if (age == 1) modelId += "_stage1";
             else modelId += "_stage2";
 
-            return builder.modelFile(modelFileOf(modelId)).build();
+            return builder.modelFile(BlockStateUtils.modelFileOf(this, modelId)).build();
         });
     }
 
@@ -509,13 +503,13 @@ public class ChristmasBlockStates extends BlockStateProvider {
         getVariantBuilder(block).forAllStatesExcept(state -> {
             ConfiguredModel.Builder<?> builder = ConfiguredModel.builder();
 
-            return builder.modelFile(modelFileOf(block)).build();
+            return builder.modelFile(BlockStateUtils.modelFileOf(this, block)).build();
         }, BlockStateProperties.WATERLOGGED);
     }
 
     // Creates blockstate for ornament blocks
     private void ornamentOf(Block block) {
-        String blockId = blockId(block);
+        String blockId = BlockStateUtils.blockId(block);
 
         Function<Direction, Integer> getRotationY = (direction) -> switch (direction) {
             case EAST -> 270;
@@ -531,9 +525,9 @@ public class ChristmasBlockStates extends BlockStateProvider {
             AttachFace attachFace = state.getValue(DecorationBlock.ATTACH_FACE);
 
             switch (attachFace) {
-            case WALL -> builder = builder.modelFile(modelFileOf(blockId + "_side"));
-            case CEILING -> builder = builder.modelFile(modelFileOf(blockId + "_hanging"));
-            case FLOOR -> builder = builder.modelFile(modelFileOf(blockId));
+            case WALL -> builder = builder.modelFile(BlockStateUtils.modelFileOf(this, blockId + "_side"));
+            case CEILING -> builder = builder.modelFile(BlockStateUtils.modelFileOf(this, blockId + "_hanging"));
+            case FLOOR -> builder = builder.modelFile(BlockStateUtils.modelFileOf(this, blockId));
             }
 
             return builder.rotationY(getRotationY.apply(facingDirection)).build();
@@ -542,8 +536,8 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
     // Creates blockstate for connected ornament blocks
     private void multiFaceOrnamentOf(Block block, int variantCount) {
-        String blockId = blockId(block);
-        ModelFile modelFile = modelFileOf(blockId);
+        String blockId = BlockStateUtils.blockId(block);
+        ModelFile modelFile = BlockStateUtils.modelFileOf(this, blockId);
 
         MultiPartBlockStateBuilder builder = getMultipartBuilder(block);
 
@@ -561,14 +555,14 @@ public class ChristmasBlockStates extends BlockStateProvider {
                             .condition(PipeBlock.WEST, false)
                             .condition(PipeBlock.EAST, false);
                 } else {
-                    ConfiguredModel.Builder tempBuilder = builder.part().modelFile(modelFileOf(blockId + "_" + 0)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(false);
+                    ConfiguredModel.Builder tempBuilder = builder.part().modelFile(BlockStateUtils.modelFileOf(this, blockId + "_" + 0)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(false);
                     for (int i = 1; i < variantCount; i++) {
-                        tempBuilder = tempBuilder.nextModel().modelFile(modelFileOf(blockId + "_" + i)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(false);
+                        tempBuilder = tempBuilder.nextModel().modelFile(BlockStateUtils.modelFileOf(this, blockId + "_" + i)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(false);
                     }
 
                     ((MultiPartBlockStateBuilder.PartBuilder) tempBuilder.addModel()).condition(e.getValue(), true);
 
-                    builder.part().modelFile(modelFileOf(blockId + "_" + 0)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(false).addModel()
+                    builder.part().modelFile(BlockStateUtils.modelFileOf(this, blockId + "_" + 0)).rotationY((((int) dir.toYRot()) + 180) % 360).uvLock(false).addModel()
                             .condition(PipeBlock.NORTH, false)
                             .condition(PipeBlock.SOUTH, false)
                             .condition(PipeBlock.WEST, false)
@@ -580,7 +574,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
     // Creates blockstate for wall decoration blocks
     private void wallDecorationOf(Block block) {
-        String blockId = blockId(block);
+        String blockId = BlockStateUtils.blockId(block);
 
         Function<Direction, Integer> getRotationY = (direction) -> switch (direction) {
             case EAST -> 270;
@@ -594,13 +588,13 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
             Direction facingDirection = state.getValue(WallDecorationBlock.FACING);
 
-            return builder.modelFile(modelFileOf(block)).rotationY(getRotationY.apply(facingDirection)).build();
+            return builder.modelFile(BlockStateUtils.modelFileOf(this, block)).rotationY(getRotationY.apply(facingDirection)).build();
         }, BlockStateProperties.WATERLOGGED);
     }
 
     // Creates blockstate for wall decorations, where we have rotations along x-axis as well
     private void wallDecorationWithVariants(Block block, int variationCount) {
-        String blockId = blockId(block);
+        String blockId = BlockStateUtils.blockId(block);
 
         Function<Direction, Integer> getRotationY = (direction) -> switch (direction) {
             case EAST -> 270;
@@ -616,10 +610,10 @@ public class ChristmasBlockStates extends BlockStateProvider {
 
             int rotY = getRotationY.apply(facingDirection);
 
-            builder = builder.modelFile(modelFileOf(blockId + "_" + 0)).rotationY(rotY);
+            builder = builder.modelFile(BlockStateUtils.modelFileOf(this, blockId + "_" + 0)).rotationY(rotY);
 
             for (int i = 1; i < variationCount; i++) {
-                ModelFile modelFile = modelFileOf(blockId + "_" + i);
+                ModelFile modelFile = BlockStateUtils.modelFileOf(this, blockId + "_" + i);
                 builder = builder.nextModel().modelFile(modelFile).rotationY(rotY);
             }
 
@@ -628,22 +622,7 @@ public class ChristmasBlockStates extends BlockStateProvider {
     }
 
     private Pair<Block, ResourceLocation> resourcePair(Block block, Block resourceBlock) {
-        return Pair.of(block, resourceOfBlock(blockId(resourceBlock)));
+        return Pair.of(block, BlockStateUtils.resourceOfBlock(BlockStateUtils.blockId(resourceBlock)));
     }
 
-    private String blockId(Block block) {
-        return block.getRegistryName().getPath();
-    }
-
-    private ResourceLocation resourceOfBlock(String id) {
-        return new ResourceLocation(HappyHolidaysMod.MOD_ID, "block/" + id);
-    }
-
-    private ModelFile modelFileOf(String modelId) {
-        return new ModelFile.ExistingModelFile(resourceOfBlock(modelId), models().existingFileHelper);
-    }
-
-    private ModelFile modelFileOf(Block block) {
-        return new ModelFile.ExistingModelFile(resourceOfBlock(blockId(block)), models().existingFileHelper);
-    }
 }

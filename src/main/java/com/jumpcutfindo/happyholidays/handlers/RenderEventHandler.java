@@ -2,6 +2,7 @@ package com.jumpcutfindo.happyholidays.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.client.renderer.block.MusicBoxRenderer;
+import com.jumpcutfindo.happyholidays.client.renderer.block.OfferingTableRenderer;
 import com.jumpcutfindo.happyholidays.client.renderer.entity.ExplosivePresentRenderer;
 import com.jumpcutfindo.happyholidays.client.renderer.entity.GingerbreadPersonEntityRenderer;
 import com.jumpcutfindo.happyholidays.client.renderer.entity.GrinchEntityRenderer;
@@ -12,6 +13,7 @@ import com.jumpcutfindo.happyholidays.client.renderer.entity.SleighRenderer;
 import com.jumpcutfindo.happyholidays.client.renderer.entity.WalnutRenderer;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasBlockEntities;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasEntities;
+import com.jumpcutfindo.happyholidays.common.registry.cny.CNYBlockEntities;
 
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -77,6 +79,11 @@ public class RenderEventHandler {
         event.registerBlockEntityRenderer(
                 ChristmasBlockEntities.MUSIC_BOX.get(),
                 MusicBoxRenderer::new
+        );
+
+        event.registerBlockEntityRenderer(
+                CNYBlockEntities.OFFERING_TABLE.get(),
+                OfferingTableRenderer::new
         );
     }
 }

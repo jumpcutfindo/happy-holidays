@@ -3,6 +3,7 @@ package com.jumpcutfindo.happyholidays.datagen;
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
 import com.jumpcutfindo.happyholidays.datagen.client.christmas.ChristmasBlockStates;
 import com.jumpcutfindo.happyholidays.datagen.client.christmas.ChristmasItemModels;
+import com.jumpcutfindo.happyholidays.datagen.client.cny.CNYBlockStates;
 import com.jumpcutfindo.happyholidays.datagen.server.BaseAdvancementProvider;
 import com.jumpcutfindo.happyholidays.datagen.server.christmas.ChristmasBlockTags;
 import com.jumpcutfindo.happyholidays.datagen.server.christmas.ChristmasEntityTags;
@@ -30,6 +31,8 @@ public class DataGenerators {
         // Client-side providers
         gen.addProvider(new ChristmasBlockStates(gen, existingFileHelper));
         gen.addProvider(new ChristmasItemModels(gen, existingFileHelper));
+
+        gen.addProvider(new CNYBlockStates(gen, existingFileHelper));
 
         // Server-side providers
         ChristmasBlockTags christmasBlockTags = new ChristmasBlockTags(gen, existingFileHelper);

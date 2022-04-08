@@ -12,6 +12,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.data.recipes.SpecialRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -768,8 +769,12 @@ public class ChristmasRecipes extends RecipeProvider {
         stairBuilder(result, Ingredient.of(ingredient)).unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer);
     }
 
-    private ResourceLocation stonecutterRecipeResourceOf(ItemLike result, ItemLike source) {
-        return new ResourceLocation(HappyHolidaysMod.MOD_ID, itemId(result) + "_from_" + itemId(source) + "_stonecutting");
+    protected static void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {
+        stonecutterResultFromBase(consumer, result, ingredient, 1);
+    }
+
+    protected static void stonecutterResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient, int count) {
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ingredient), result, count).unlockedBy(getHasName(ingredient), has(ingredient)).save(consumer, recipeResourceOf(result) + "_from_" + itemId(ingredient) + "_stonecutting");
     }
 
     private void cookingResultFromBase(Consumer<FinishedRecipe> consumer, ItemLike result, ItemLike ingredient) {
@@ -782,11 +787,11 @@ public class ChristmasRecipes extends RecipeProvider {
                 .save(consumer, recipeResourceOf(result) + "_from_" + itemId(ingredient) + "_smelting");
     }
 
-    private String itemId(ItemLike item) {
+    private static String itemId(ItemLike item) {
         return item instanceof Item ? ((Item) item).getRegistryName().getPath() : ((Block) item).getRegistryName().getPath();
     }
 
-    private ResourceLocation recipeResourceOf(ItemLike item) {
+    private static ResourceLocation recipeResourceOf(ItemLike item) {
         String id = item.asItem().getRegistryName().getPath();
         return new ResourceLocation(HappyHolidaysMod.MOD_ID, id);
     }

@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=north,part=left": {
+      "model": "happyholidays:block/offering_table_left",
+      "y": 180
+    },
+    "facing=south,part=left": {
+      "model": "happyholidays:block/offering_table_left"
+    },
+    "facing=west,part=left": {
+      "model": "happyholidays:block/offering_table_left",
+      "y": 90
+    },
+    "facing=east,part=left": {
+      "model": "happyholidays:block/offering_table_left",
+      "y": 270
+    },
+    "facing=north,part=center": {
+      "model": "happyholidays:block/offering_table_center",
+      "y": 180
+    },
+    "facing=south,part=center": {
+      "model": "happyholidays:block/offering_table_center"
+    },
+    "facing=west,part=center": {
+      "model": "happyholidays:block/offering_table_center",
+      "y": 90
+    },
+    "facing=east,part=center": {
+      "model": "happyholidays:block/offering_table_center",
+      "y": 270
+    },
+    "facing=north,part=right": {
+      "model": "happyholidays:block/offering_table_right",
+      "y": 180
+    },
+    "facing=south,part=right": {
+      "model": "happyholidays:block/offering_table_right"
+    },
+    "facing=west,part=right": {
+      "model": "happyholidays:block/offering_table_right",
+      "y": 90
+    },
+    "facing=east,part=right": {
+      "model": "happyholidays:block/offering_table_right",
+      "y": 270
+    }
+  }
+}

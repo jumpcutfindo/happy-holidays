@@ -12,6 +12,7 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasRecipes;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.registry.cny.CNYBlockEntities;
 import com.jumpcutfindo.happyholidays.common.registry.cny.CNYBlocks;
 import com.jumpcutfindo.happyholidays.common.registry.cny.CNYItems;
 
@@ -45,5 +46,6 @@ public class HappyHolidaysMod {
 
         CNYBlocks.BLOCKS.register(bus);
         CNYItems.ITEMS.register(bus);
+        CNYBlockEntities.BLOCK_ENTITY.register(bus);
     }
 }
