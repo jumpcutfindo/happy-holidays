@@ -31,6 +31,8 @@ public class HolidayAvailabilityData extends SavedData {
        map.put(Holiday.CHRISTMAS, Sets.newHashSet(CHRISTMAS_GRINCH_SPAWN,
                CHRISTMAS_GINGERBREAD_SPAWN, CHRISTMAS_NUTCRACKER_SPAWN, CHRISTMAS_SPAWN_SANTA_STAR,
                CHRISTMAS_STAR_GIVE_BUFF, CHRISTMAS_PRESENTS_GROW, CHRISTMAS_STOCKINGS_FILL));
+
+       map.put(Holiday.CNY, Sets.newHashSet());
     });
 
     private final Map<Holiday, Map<String, Availability>> holidayAvailability = Util.make(Maps.newHashMap(), (map) -> {
@@ -43,6 +45,8 @@ public class HolidayAvailabilityData extends SavedData {
             toggleMap.put(CHRISTMAS_PRESENTS_GROW, Availability.INTERVAL_ONLY);
             toggleMap.put(CHRISTMAS_STOCKINGS_FILL, Availability.INTERVAL_ONLY);
         }));
+
+        map.put(Holiday.CNY, Maps.newHashMap());
     });
 
     public void reset(Holiday holiday) {

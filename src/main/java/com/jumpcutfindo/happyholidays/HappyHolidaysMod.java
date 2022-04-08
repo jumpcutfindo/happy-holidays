@@ -12,6 +12,8 @@ import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasParticles;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasRecipes;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasSounds;
+import com.jumpcutfindo.happyholidays.common.registry.cny.CNYBlocks;
+import com.jumpcutfindo.happyholidays.common.registry.cny.CNYItems;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -40,5 +42,8 @@ public class HappyHolidaysMod {
         ChristmasSounds.SOUNDS.register(bus);
         ChristmasEffects.EFFECTS.register(bus);
         ChristmasParticles.PARTICLES.register(bus);
+
+        CNYBlocks.BLOCKS.register(bus);
+        CNYItems.ITEMS.register(bus);
     }
 }

@@ -1,7 +1,8 @@
 package com.jumpcutfindo.happyholidays.common;
 
 public enum Holiday {
-    CHRISTMAS("christmas");
+    CHRISTMAS("christmas"),
+    CNY("cny");
 
     private final String code;
 

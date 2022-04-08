@@ -12,4 +12,11 @@ public class HappyHolidaysTabs {
             return ChristmasBlocks.ELDER_PRESENT.get().asItem().getDefaultInstance();
         }
     }.setRecipeFolderName("christmas/recipes");
+
+    public static final CreativeModeTab CNY_GROUP = new CreativeModeTab("happyholidays.cny") {
+        @Override
+        public ItemStack makeIcon() {
+            return ChristmasBlocks.ELDER_PRESENT.get().asItem().getDefaultInstance();
+        }
+    }.setRecipeFolderName("cny/recipes");
 }
