@@ -40,10 +40,10 @@ public class OfferingTableRenderer implements BlockEntityRenderer<OfferingTableB
             poseStack.mulPose(Vector3f.YP.rotationDegrees(getRotationY(blockState.getValue(OfferingTableBlock.FACING))));
             poseStack.mulPose(Vector3f.XP.rotationDegrees(90.0F));
 
-            if (itemStack.getItem() instanceof BlockItem) poseStack.scale(0.6f, 0.6f, 0.6f);
+            if (itemStack.getItem() instanceof BlockItem) poseStack.scale(0.5f, 0.5f, 0.5f);
             else poseStack.scale(0.40f, 0.40f, 0.40f);
 
-            Minecraft.getInstance().getItemRenderer().renderStatic(itemStack, ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, poseStack, bufferSource, i);
+            itemRenderer.renderStatic(itemStack, ItemTransforms.TransformType.FIXED, combinedLight, combinedOverlay, poseStack, bufferSource, i);
             poseStack.popPose();
         }
     }

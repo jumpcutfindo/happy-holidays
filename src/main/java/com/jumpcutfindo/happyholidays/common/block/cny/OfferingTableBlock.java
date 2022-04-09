@@ -1,6 +1,7 @@
 package com.jumpcutfindo.happyholidays.common.block.cny;
 
 import java.util.Map;
+import java.util.Random;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -15,11 +16,16 @@ import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -28,6 +34,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -40,6 +47,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -68,6 +76,42 @@ public class OfferingTableBlock extends HorizontalDirectionalBlock implements En
         ));
     });
 
+    private static final Map<Direction, Vec3> SMALL_CANDLE_POS = Util.make(Maps.newHashMap(), map -> {
+        Vec3 initialPos = new Vec3(0.195D, 1.35D, 0.73D);
+
+        map.put(Direction.NORTH, initialPos);
+        map.put(Direction.SOUTH, new Vec3(1.0D - initialPos.x, initialPos.y, 1.0D - initialPos.z));
+        map.put(Direction.EAST, new Vec3(1.0D - initialPos.z, initialPos.y, initialPos.x));
+        map.put(Direction.WEST, new Vec3(initialPos.z, initialPos.y, 1.0D - initialPos.x));
+    });
+
+    private static final Map<Direction, Vec3> MEDIUM_CANDLE_POS = Util.make(Maps.newHashMap(), map -> {
+        Vec3 initialPos = new Vec3(0.12D, 1.48D, 0.77D);
+
+        map.put(Direction.NORTH, initialPos);
+        map.put(Direction.SOUTH, new Vec3(1.0D - initialPos.x, initialPos.y, 1.0D - initialPos.z));
+        map.put(Direction.EAST, new Vec3(1.0D - initialPos.z, initialPos.y, initialPos.x));
+        map.put(Direction.WEST, new Vec3(initialPos.z, initialPos.y, 1.0D - initialPos.x));
+    });
+
+    private static final Map<Direction, Vec3> LARGE_CANDLE_POS = Util.make(Maps.newHashMap(), map -> {
+        Vec3 initialPos = new Vec3(0.18D, 1.5D, 0.84D);
+
+        map.put(Direction.NORTH, initialPos);
+        map.put(Direction.SOUTH, new Vec3(1.0D - initialPos.x, initialPos.y, 1.0D - initialPos.z));
+        map.put(Direction.EAST, new Vec3(1.0D - initialPos.z, initialPos.y, initialPos.x));
+        map.put(Direction.WEST, new Vec3(initialPos.z, initialPos.y, 1.0D - initialPos.x));
+    });
+
+    private static final Map<Direction, Vec3> JOSS_STICK_POS = Util.make(Maps.newHashMap(), map -> {
+        Vec3 initialPos = new Vec3(0.85D, 1.5D, 0.75D);
+
+        map.put(Direction.NORTH, initialPos);
+        map.put(Direction.SOUTH, new Vec3(1.0D - initialPos.x, initialPos.y, 1.0D - initialPos.z));
+        map.put(Direction.EAST, new Vec3(1.0D - initialPos.z, initialPos.y, initialPos.x));
+        map.put(Direction.WEST, new Vec3(initialPos.z, initialPos.y, 1.0D - initialPos.x));
+    });
+
     public OfferingTableBlock() {
         super(BLOCK_PROPERTIES);
 
@@ -92,7 +136,9 @@ public class OfferingTableBlock extends HorizontalDirectionalBlock implements En
         BlockPos leftPos = blockpos.relative(direction.getCounterClockWise());
 
         boolean canPlace = level.getBlockState(rightPos).canBeReplaced(context) && level.getWorldBorder().isWithinBounds(rightPos)
-                && level.getBlockState(leftPos).canBeReplaced(context) && level.getWorldBorder().isWithinBounds(leftPos);
+                && level.getBlockState(leftPos).canBeReplaced(context) && level.getWorldBorder().isWithinBounds(leftPos)
+                && level.getBlockState(blockpos.above()).canBeReplaced(context) && level.getBlockState(leftPos.above()).canBeReplaced(context)
+                && level.getBlockState(rightPos.above()).canBeReplaced(context);
 
         if (canPlace) {
             level.setBlock(rightPos, this.defaultBlockState().setValue(PART, OfferingTablePart.RIGHT).setValue(FACING, facingDirection), 2);
@@ -104,7 +150,18 @@ public class OfferingTableBlock extends HorizontalDirectionalBlock implements En
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-        return SHAPES.get(blockState.getValue(PART));
+        Direction direction = blockState.getValue(FACING);
+        VoxelShape resultShape =  SHAPES.get(blockState.getValue(PART));
+
+        if (direction == Direction.SOUTH) {
+            return resultShape;
+        } else if (direction == Direction.NORTH) {
+            return BlockUtils.rotateShape(resultShape, Rotation.CLOCKWISE_180);
+        } else if (direction == Direction.WEST) {
+            return BlockUtils.rotateShape(resultShape, Rotation.CLOCKWISE_90);
+        } else {
+            return BlockUtils.rotateShape(resultShape, Rotation.COUNTERCLOCKWISE_90);
+        }
     }
 
     @Override
@@ -133,6 +190,24 @@ public class OfferingTableBlock extends HorizontalDirectionalBlock implements En
     @Override
     public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (level.getBlockEntity(blockPos) instanceof OfferingTableBlockEntity blockEntity) {
+            if (!player.isCrouching() && player.getItemInHand(hand).is(Items.FLINT_AND_STEEL)) {
+                blockEntity = (OfferingTableBlockEntity) level.getBlockEntity(getCentrePos(blockPos, blockState.getValue(FACING), blockState.getValue(PART)));
+                if (blockEntity == null) return InteractionResult.FAIL;
+
+                ItemStack flintSteel = player.getItemInHand(hand);
+
+                blockEntity.lightTable(1000);
+                return InteractionResult.SUCCESS;
+            }
+
+            if (blockEntity.hasItem()) {
+                ItemStack itemOfBlock = blockEntity.removeItem();
+                ItemEntity itemEntity = new ItemEntity(level, blockPos.getX() + 0.5D, blockPos.getY() + 1.1D, blockPos.getZ() + 0.5D, itemOfBlock);
+                itemEntity.setDefaultPickUpDelay();
+                level.addFreshEntity(itemEntity);
+                level.playSound(player, blockPos, SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F);
+            }
+
             if (!player.getItemInHand(hand).isEmpty() && !blockEntity.hasItem()) {
                 // Take an item from the stack in the hand and create a copy
                 ItemStack handItem = player.getItemInHand(hand);
@@ -142,17 +217,37 @@ public class OfferingTableBlock extends HorizontalDirectionalBlock implements En
 
                 // Set it as the item on the block
                 blockEntity.setItem(itemCopy);
+
+                level.playSound(player, blockPos, SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, 1.0F, 1.0F);
+
                 return InteractionResult.SUCCESS;
-            } else if (player.getItemInHand(hand).isEmpty() && blockEntity.hasItem()) {
-                // Remove item from block and give player
-                ItemStack itemOfBlock = blockEntity.removeItem();
-                player.setItemInHand(hand, itemOfBlock);
             }
 
             return InteractionResult.sidedSuccess(level.isClientSide());
         }
 
         return super.use(blockState, level, blockPos, player, hand, hitResult);
+    }
+
+    public void animateTick(BlockState blockState, Level level, BlockPos blockPos, Random random) {
+        if (blockState.getValue(PART) != OfferingTablePart.CENTER) return;
+
+        if (level.getBlockEntity(blockPos) instanceof OfferingTableBlockEntity blockEntity && blockEntity.isTableLit()) {
+            Direction direction = blockState.getValue(FACING);
+            Vec3 blockPosition = new Vec3(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+
+            Vec3 smallerCandleFlamePos = blockPosition.add(SMALL_CANDLE_POS.get(direction));
+            Vec3 mediumCandleFlamePos = blockPosition.add(MEDIUM_CANDLE_POS.get(direction));
+            Vec3 largeCandleFlamePos = blockPosition.add(LARGE_CANDLE_POS.get(direction));
+            Vec3 jossSticksPos = blockPosition.add(JOSS_STICK_POS.get(direction));
+
+            level.addParticle(ParticleTypes.SMALL_FLAME, smallerCandleFlamePos.x(), smallerCandleFlamePos.y(), smallerCandleFlamePos.z(), 0.0D, 0.0D, 0.0D);
+            level.addParticle(ParticleTypes.SMALL_FLAME, mediumCandleFlamePos.x(), mediumCandleFlamePos.y(), mediumCandleFlamePos.z(), 0.0D, 0.0D, 0.0D);
+            level.addParticle(ParticleTypes.SMALL_FLAME, largeCandleFlamePos.x(), largeCandleFlamePos.y(), largeCandleFlamePos.z(), 0.0D, 0.0D, 0.0D);
+            level.addParticle(ParticleTypes.SMOKE, mediumCandleFlamePos.x(), mediumCandleFlamePos.y(), mediumCandleFlamePos.z(), 0.0D, 0.01D, 0.0D);
+
+            level.addParticle(ParticleTypes.SMOKE, jossSticksPos.x(), jossSticksPos.y(), jossSticksPos.z(), 0.0D, 0.01D, 0.0D);
+        }
     }
 
     @Override
@@ -171,7 +266,7 @@ public class OfferingTableBlock extends HorizontalDirectionalBlock implements En
 
     @Override
     public void configure() {
-        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutoutMipped());
+        ItemBlockRenderTypes.setRenderLayer(this, RenderType.cutout());
     }
 
     @Nullable
@@ -190,6 +285,19 @@ public class OfferingTableBlock extends HorizontalDirectionalBlock implements En
         return level.isClientSide() ? null : BlockUtils.createTickerHelper(blockEntityType, otherEntityType, OfferingTableBlockEntity::serverTick);
     }
 
+    private static BlockPos getCentrePos(BlockPos pos, Direction facingDirection, OfferingTablePart part) {
+        switch (part) {
+        case LEFT -> {
+            return pos.relative(facingDirection.getCounterClockWise());
+        }
+        case RIGHT -> {
+            return pos.relative(facingDirection.getClockWise());
+        }
+        default -> {
+            return pos;
+        }
+        }
+    }
 
     public enum OfferingTablePart implements StringRepresentable {
         LEFT("left"), CENTER("center"), RIGHT("right");
