@@ -1,4 +1,4 @@
-package com.jumpcutfindo.happyholidays.server.resources.guide;
+package com.jumpcutfindo.happyholidays.client.resources;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,7 +25,6 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class GuideManager {
     public static final String DEFAULT_CONTENT_FILE = "main";
     public static final String DEFAULT_GUIDE_LOCATION = "guides/%s/%s.json";
-
 
     public static final Map<Holiday, Guide> GUIDES = new HashMap<>();
 

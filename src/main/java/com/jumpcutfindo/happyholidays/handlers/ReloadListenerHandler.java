@@ -1,7 +1,7 @@
 package com.jumpcutfindo.happyholidays.handlers;
 
 import com.jumpcutfindo.happyholidays.HappyHolidaysMod;
-import com.jumpcutfindo.happyholidays.server.resources.guide.GuideManager;
+import com.jumpcutfindo.happyholidays.client.resources.GuideManager;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.AddReloadListenerEvent;

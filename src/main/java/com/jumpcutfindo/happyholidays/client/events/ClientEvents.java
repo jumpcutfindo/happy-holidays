@@ -15,7 +15,7 @@ import com.jumpcutfindo.happyholidays.common.events.christmas.MusicBoxEvent;
 import com.jumpcutfindo.happyholidays.common.events.christmas.SantaEvent;
 import com.jumpcutfindo.happyholidays.common.item.christmas.music.ChristmasMusic;
 import com.jumpcutfindo.happyholidays.common.registry.christmas.ChristmasItems;
-import com.jumpcutfindo.happyholidays.server.resources.guide.GuideManager;
+import com.jumpcutfindo.happyholidays.client.resources.GuideManager;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
