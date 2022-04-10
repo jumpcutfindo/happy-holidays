@@ -196,7 +196,7 @@ public class OfferingTableBlock extends HorizontalDirectionalBlock implements En
 
                 ItemStack flintSteel = player.getItemInHand(hand);
 
-                blockEntity.lightTable(1000);
+                blockEntity.lightTable(player,20);
                 return InteractionResult.SUCCESS;
             }
 
