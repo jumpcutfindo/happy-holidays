@@ -16,6 +16,7 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -27,6 +28,7 @@ public class OfferingCombinations {
         map.put(resourceOf("two_iron_for_experience"), OfferingCombination.Builder.builder().requireItem(Items.IRON_INGOT).requireItem(Items.IRON_INGOT).setReward(ExperienceReward.withAmount(25)).build());
         map.put(resourceOf("one_iron_for_experience"), OfferingCombination.Builder.builder().requireItem(Items.IRON_INGOT).setReward(ExperienceReward.withAmount(10)).build());
         map.put(resourceOf("coals_for_torches"), OfferingCombination.Builder.builder().requireItems(ItemTags.COALS).requireItem(Items.COAL).requireItem(Items.CHARCOAL).setReward(ItemReward.withRewards(Items.TORCH, 4, 64)).build());
+        map.put(resourceOf("elytra_for_bats"), OfferingCombination.Builder.builder().requireItem(Items.ELYTRA).requireItem(Items.ELYTRA).setReward(MobSpawnReward.mob(EntityType.BAT, 20)).build());
     });
 
     public static void resolveOffering(Level level, Player player, BlockPos blockPos, Offering offering) {

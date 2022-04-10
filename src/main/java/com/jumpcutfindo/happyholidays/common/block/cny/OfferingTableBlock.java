@@ -17,6 +17,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.StringRepresentable;
@@ -195,6 +196,13 @@ public class OfferingTableBlock extends HorizontalDirectionalBlock implements En
                 if (blockEntity == null) return InteractionResult.FAIL;
 
                 ItemStack flintSteel = player.getItemInHand(hand);
+                if (!player.getAbilities().instabuild) {
+                    flintSteel.hurtAndBreak(1, player, (p_41300_) -> {
+                        p_41300_.broadcastBreakEvent(hand);
+                    });
+                }
+
+                level.playSound(player, blockPos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
 
                 blockEntity.lightTable(player,20);
                 return InteractionResult.SUCCESS;
@@ -213,7 +221,7 @@ public class OfferingTableBlock extends HorizontalDirectionalBlock implements En
                 ItemStack handItem = player.getItemInHand(hand);
                 ItemStack itemCopy = handItem.copy();
                 itemCopy.setCount(1);
-                handItem.shrink(1);
+                if (!player.getAbilities().instabuild) handItem.shrink(1);
 
                 // Set it as the item on the block
                 blockEntity.setItem(itemCopy);
@@ -251,8 +259,11 @@ public class OfferingTableBlock extends HorizontalDirectionalBlock implements En
     }
 
     @Override
-    public void playerWillDestroy(Level level, BlockPos blockPos, BlockState blockState, Player player) {
-        super.playerWillDestroy(level, blockPos, blockState, player);
+    public void destroy(LevelAccessor levelAccessor, BlockPos blockPos, BlockState blockState) {
+        super.destroy(levelAccessor, blockPos, blockState);
+        if (levelAccessor instanceof ServerLevel level && level.getBlockEntity(blockPos) instanceof OfferingTableBlockEntity offeringTable) {
+            Block.popResource(level, blockPos, offeringTable.getItem());
+        }
     }
 
     @Override

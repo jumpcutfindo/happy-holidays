@@ -132,16 +132,28 @@ public class OfferingTableBlockEntity extends BlockEntity {
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
 
+        if (!this.getItem().isEmpty()) {
+            tag.put("TableItem", this.getItem().save(new CompoundTag()));
+        }
+
         tag.putInt("LitDuration", this.litDuration);
         if (this.litPlayer != null) tag.putUUID("LitPlayer", this.litPlayer);
+
+        if (this.hasLevel() && !this.getLevel().isClientSide()) {
+            this.level.sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), 2);
+        }
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
 
+        if (tag.contains("TableItem", 10)) {
+            this.setItem(ItemStack.of(tag.getCompound("TableItem")));
+        }
+
         this.litDuration = tag.getInt("LitDuration");
-        this.litPlayer = tag.getUUID("LitPlayer");
+        if (tag.contains("LitPlayer")) this.litPlayer = tag.getUUID("LitPlayer");
     }
 
     @Nullable
@@ -153,6 +165,10 @@ public class OfferingTableBlockEntity extends BlockEntity {
     @Override
     public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt) {
         CompoundTag tag = pkt.getTag();
+
+        if (tag.contains("TableItem", 10)) {
+            this.setItem(ItemStack.of(tag.getCompound("TableItem")));
+        }
 
         int currLitDuration = this.litDuration;
         this.litDuration = tag.getInt("LitDuration");
@@ -166,6 +182,10 @@ public class OfferingTableBlockEntity extends BlockEntity {
         if (blockEntity instanceof OfferingTableBlockEntity offeringTableEntity) {
             tag.putInt("LitDuration", offeringTableEntity.getLitDuration());
             if (offeringTableEntity.getLitPlayer() != null) tag.putUUID("LitPlayer", offeringTableEntity.getLitPlayer());
+
+            if (!offeringTableEntity.getItem().isEmpty()) {
+                tag.put("TableItem", offeringTableEntity.getItem().save(new CompoundTag()));
+            }
         }
 
         return tag;
