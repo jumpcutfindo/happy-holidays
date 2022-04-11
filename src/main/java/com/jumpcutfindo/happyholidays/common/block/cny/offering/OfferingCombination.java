@@ -13,6 +13,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 
 public class OfferingCombination {
+    private String name;
+
     private final List<ItemPredicate> tagPredicates = Lists.newArrayList();
     private final List<ItemPredicate> itemPredicates = Lists.newArrayList();
     private OfferingReward reward;
@@ -30,6 +32,14 @@ public class OfferingCombination {
 
     protected void setReward(OfferingReward reward) {
         this.reward = reward;
+    }
+
+    protected void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public OfferingReward getReward() {
@@ -71,6 +81,17 @@ public class OfferingCombination {
         return true;
     }
 
+    public static Builder builder() {
+        return new OfferingCombination.Builder();
+    }
+
+    @Override
+    public String toString() {
+        return "OfferingCombination{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
     public static class Builder {
         private OfferingCombination combination;
 
@@ -78,10 +99,9 @@ public class OfferingCombination {
             this.combination = new OfferingCombination();
         }
 
-        public static Builder builder() {
-            Builder builder = new Builder();
-            builder.combination = new OfferingCombination();
-            return builder;
+        public Builder name(String name) {
+            combination.setName(name);
+            return this;
         }
 
         public Builder requireItem(ItemLike item) {
@@ -103,6 +123,8 @@ public class OfferingCombination {
 
         public OfferingCombination build() {
             assert combination.getReward() != null;
+            assert combination.getName() != null;
+
             return combination;
         }
     }

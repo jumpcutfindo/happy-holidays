@@ -12,11 +12,13 @@ import com.jumpcutfindo.happyholidays.common.registry.cny.CNYBlockEntities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -115,6 +117,10 @@ public class OfferingTableBlockEntity extends BlockEntity {
             HappyHolidaysMod.LOGGER.debug(String.format("Error retrieving items for offering table at %s", this.getBlockPos()));
             return;
         }
+
+        if (!firstItem.isEmpty()) ((ServerLevel) this.level).sendParticles(ParticleTypes.POOF, left.getX() + 0.5D, left.getY() + 1.1D, left.getZ() + 0.5D, 1, 0.0D, 0.0D, 0.0D, 0.0D);
+        if (!secondItem.isEmpty()) ((ServerLevel) this.level).sendParticles(ParticleTypes.POOF, center.getX() + 0.5D, center.getY() + 1.1D, center.getZ() + 0.5D, 1, 0.0D, 0.0D, 0.0D, 0.0D);
+        if (!thirdItem.isEmpty()) ((ServerLevel) this.level).sendParticles(ParticleTypes.POOF, right.getX() + 0.5D, right.getY() + 1.1D, right.getZ() + 0.5D, 1, 0.0D, 0.0D, 0.0D, 0.0D);
 
         if (!this.level.isClientSide() && this.litPlayer != null) {
             Offering offering = new Offering(firstItem, secondItem, thirdItem);
